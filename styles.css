@@ -1,0 +1,2101 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  text-align: left;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+nav a.router-link-active {
+  font-weight: bold;
+}
+
+.planner .controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.steps .step {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.field select,
+.field input {
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ilvl-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ilvl-slider {
+  flex: 1 1 9rem;
+  min-width: 7rem;
+  padding: 0;
+  accent-color: rgb(140, 180, 255);
+}
+
+.field input.ilvl-number {
+  width: 3.5rem;
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.slot-column h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.slot {
+  border: 1px dashed currentColor;
+  border-radius: 4px;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.4rem;
+  min-height: 1.4rem;
+}
+
+.slot .empty {
+  opacity: 0.4;
+  font-style: italic;
+}
+
+.hint {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.pool {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.pool-column h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.pool-column h3 small {
+  font-size: 0.75rem;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+.pool table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.pool th,
+.pool td {
+  padding: 0.3rem 0.4rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  text-align: left;
+  vertical-align: top;
+}
+
+.pool th {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.pool .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.pool .tname {
+  display: block;
+  font-weight: 600;
+}
+
+.pool .mname {
+  display: block;
+  opacity: 0.95;
+  font-size: 0.85rem;
+}
+
+.pool .mod-link {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  font-size: 0.85rem;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline dotted rgba(140, 180, 255, 0.55);
+  text-underline-offset: 2px;
+}
+
+.pool .mod-link:hover {
+  text-decoration-color: rgb(140, 180, 255);
+  color: rgb(140, 180, 255);
+}
+
+.mod-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.mod-modal {
+  background: #14171c;
+  color: #e8e8ea;
+  border: 1px solid rgba(255, 215, 130, 0.4);
+  border-radius: 6px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: auto;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+.mod-modal header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.mod-modal h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.mod-modal header small {
+  flex: 1;
+  opacity: 0.7;
+  font-size: 0.78rem;
+}
+
+.mod-modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.mod-modal-table th, .mod-modal-table td {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.18);
+  text-align: left;
+}
+
+.mod-modal-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.mod-modal-table tr.unreachable {
+  opacity: 0.45;
+}
+
+.mod-modal-table tr.unreachable td {
+  text-decoration: line-through;
+  text-decoration-color: rgba(220, 130, 100, 0.6);
+}
+
+.mod-modal footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.18);
+  font-size: 0.78rem;
+}
+
+.pool tr.wished {
+  background: rgba(255, 200, 60, 0.12);
+}
+
+.pool tr.on-item {
+  background: rgba(120, 180, 255, 0.10);
+}
+
+.pool tr.on-item .mname {
+  font-weight: 600;
+}
+
+.pool tr.side-full-row {
+  opacity: 0.35;
+  filter: grayscale(0.6);
+}
+
+.pool tr.ineligible {
+  opacity: 0.55;
+}
+
+.pool tr.ineligible .tname,
+.pool tr.ineligible .mname {
+  text-decoration: line-through;
+  text-decoration-color: rgba(220, 130, 100, 0.7);
+}
+
+.pool tr.ineligible td.num {
+  color: rgba(220, 130, 100, 0.7);
+}
+
+.pool tr.ineligible::after {
+  /* Note attached via title attribute — no extra DOM needed. */
+}
+
+.pool tr.tag-filtered {
+  opacity: 0.4;
+  filter: grayscale(0.6);
+}
+.pool tr.tag-filtered .mname {
+  text-decoration: line-through;
+  text-decoration-color: rgba(140, 180, 255, 0.6);
+}
+
+.pool tr.side-full-row td:first-child input,
+.pool tr.side-full-row button:not(:disabled) {
+  pointer-events: none;
+}
+
+.pool button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.pool-column.side-full > h3 {
+  opacity: 0.7;
+}
+
+.pool-column.side-full > h3 small em {
+  color: rgb(220, 130, 100);
+  font-style: italic;
+}
+
+.pool input.score {
+  width: 4rem;
+  font: inherit;
+  padding: 0.15rem 0.3rem;
+  text-align: right;
+}
+
+.pool .tierscores {
+  vertical-align: top;
+  min-width: 8rem;
+}
+
+.pool .base-score {
+  margin-bottom: 0.25rem;
+}
+
+.pool .tier-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  justify-content: flex-end;
+}
+
+.pool .tier-row label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+.pool .tier-row label.rejected {
+  opacity: 0.45;
+}
+
+.pool .tier-row label.rejected input {
+  background: rgba(220, 130, 100, 0.15);
+  border-color: rgba(220, 130, 100, 0.5);
+  color: rgb(180, 90, 60);
+}
+
+.pool input.tier-score {
+  width: 2.5rem;
+  text-align: right;
+  font-size: 0.78rem;
+  padding: 0.05rem 0.2rem;
+}
+
+.tier-score-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  margin-top: 0.3rem;
+  margin-left: 1.6rem;
+  padding: 0.25rem 0.4rem;
+  background: rgba(140, 180, 255, 0.05);
+  border-radius: 3px;
+  font-size: 0.7rem;
+}
+
+.tier-score-row .hint {
+  opacity: 0.6;
+  margin-right: 0.2rem;
+}
+
+.tier-score-row label {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.65rem;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.tier-score-row label > span {
+  min-width: 1.4rem;
+  text-align: right;
+}
+
+.tier-score-row label.rejected {
+  opacity: 0.55;
+}
+
+.tier-score-row label.rejected input {
+  background: rgba(220, 130, 100, 0.12);
+  border-color: rgba(220, 130, 100, 0.4);
+  color: rgb(180, 90, 60);
+}
+
+.tier-score-row label.ilvl-locked {
+  opacity: 0.35;
+}
+
+.tier-score-row label.ilvl-locked span {
+  text-decoration: line-through;
+  text-decoration-color: rgba(220, 130, 100, 0.6);
+}
+
+.tier-score-row label.ilvl-locked input {
+  cursor: not-allowed;
+  background: rgba(128, 128, 128, 0.08);
+  color: rgba(128, 128, 128, 0.6);
+}
+
+.tier-score-row input.tier-score {
+  width: 2.5rem;
+  font: inherit;
+  font-size: 0.7rem;
+  padding: 0.05rem 0.2rem;
+  text-align: right;
+}
+
+.tier-select {
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.1rem 0.2rem;
+  margin-right: 0.25rem;
+}
+
+.add-cell {
+  white-space: nowrap;
+}
+
+.affix .tier-select {
+  flex: 0 0 auto;
+  margin-right: 0.4rem;
+}
+
+.add-confirm {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.add-confirm .hint { font-size: 0.7rem; }
+
+.tier-btn {
+  padding: 0.1rem 0.45rem;
+  border: 1px solid rgba(140, 180, 255, 0.5);
+  border-radius: 3px;
+  background: rgba(140, 180, 255, 0.08);
+  color: inherit;
+  text-decoration: none !important;
+  font-size: 0.78rem;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.tier-btn:hover:not(:disabled) {
+  background: rgba(140, 180, 255, 0.25);
+  opacity: 1;
+}
+
+.tier-btn.ineligible {
+  opacity: 0.35;
+  text-decoration: line-through !important;
+  text-decoration-color: rgba(220, 130, 100, 0.7) !important;
+  cursor: not-allowed;
+  background: rgba(128, 128, 128, 0.05);
+  border-color: rgba(128, 128, 128, 0.2);
+}
+
+select.tier-select option:disabled {
+  color: rgba(220, 130, 100, 0.6);
+  text-decoration: line-through;
+}
+
+.add-confirm .cancel {
+  margin-left: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.wished-tag {
+  font-size: 0.78rem;
+  color: rgb(255, 200, 60);
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.pool .wishcell { width: 5rem; white-space: nowrap; }
+
+.state-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.affix-list-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 1rem;
+}
+
+@media (max-width: 640px) {
+  .affix-list-grid { grid-template-columns: 1fr; }
+}
+
+.affix-list-grid h5 {
+  grid-column: span 1;
+  margin: 0 0 0.2rem 0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.55;
+}
+
+.affix-list-grid .prefix-col,
+.affix-list-grid .suffix-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.item-card {
+  border: 2px solid rgba(128, 128, 128, 0.3);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: rgba(128, 128, 128, 0.03);
+}
+
+.item-card header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  padding-bottom: 0.4rem;
+  text-align: left;
+}
+
+.item-card header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.item-card header small {
+  flex: 1;
+  font-size: 0.78rem;
+  opacity: 0.65;
+}
+
+.reset-btn {
+  font: inherit;
+  font-size: 0.72rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid rgba(220, 130, 100, 0.5);
+  background: rgba(220, 130, 100, 0.10);
+  color: rgb(220, 130, 100);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.reset-btn:hover:not(:disabled) {
+  background: rgba(220, 130, 100, 0.22);
+}
+
+.reset-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  border-color: rgba(128, 128, 128, 0.3);
+  color: rgba(128, 128, 128, 0.7);
+  background: transparent;
+}
+
+.item-card footer small {
+  display: block;
+  font-size: 0.72rem;
+  opacity: 0.55;
+}
+
+.item-card.start {
+  border-color: rgba(255, 215, 130, 0.45); /* default — rare-gold tint */
+}
+
+.item-card.start.rarity-normal { border-color: rgba(200, 200, 200, 0.45); }
+.item-card.start.rarity-magic { border-color: rgba(140, 180, 255, 0.45); }
+.item-card.start.rarity-rare { border-color: rgba(255, 215, 130, 0.55); }
+.item-card.start.rarity-corrupted { border-color: rgba(220, 80, 80, 0.55); }
+
+.rarity-select {
+  font: inherit;
+  font-size: 0.75rem;
+  padding: 0.05rem 0.2rem;
+  margin-right: 0.25rem;
+}
+
+.item-card.target {
+  border-color: rgba(140, 180, 255, 0.45); /* "blueprint" blue */
+  border-style: dashed;
+}
+
+.affix-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.affix {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 3px;
+}
+
+.affix.filled { background: rgba(255, 215, 130, 0.10); }
+
+.affix.fractured {
+  background: rgba(160, 200, 255, 0.18);
+  border-left: 3px solid rgb(120, 180, 255);
+  padding-left: 0.4rem;
+}
+
+.fracture-btn {
+  font-size: 0.85rem;
+  opacity: 0.35;
+  padding: 0;
+  margin-right: 0.2rem;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+}
+.orb-icon {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  display: inline-block;
+}
+/* Time inputs synced from a base orb (Greater/Perfect variants) — show
+   them as read-only / dimmed so users see the value but can't edit it. */
+.time-synced input {
+  opacity: 0.55;
+  background: rgba(128, 128, 128, 0.08);
+  cursor: not-allowed;
+}
+
+.fracture-btn:hover { opacity: 0.8; }
+
+.fracture-btn.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px rgba(120, 180, 255, 0.8));
+}
+
+.affix.fractured .name {
+  font-weight: 600;
+}
+
+.affix.explicit { background: rgba(140, 180, 255, 0.10); }
+
+.affix.shadowed {
+  opacity: 0.45;
+  background: rgba(255, 255, 255, 0.03);
+  font-style: italic;
+}
+.affix.shadowed .name { text-decoration: line-through; }
+
+.target-sides-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .target-sides-grid { grid-template-columns: 1fr; }
+}
+
+.target-side {
+  margin-top: 0;
+}
+
+/* Clearer horizontal separation between consecutive desired/required mod
+   entries in the target item, so the eye can scan one mod at a time. The
+   per-tier score row wraps inside an entry, which previously made
+   neighbouring entries blur into each other. */
+.target-side > .affix + .affix {
+  border-top: 1px solid rgba(128, 128, 128, 0.28);
+  margin-top: 0.35rem;
+  padding-top: 0.45rem;
+}
+
+.target-side h4 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0.4rem 0 0.3rem 0;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.target-side h4 small {
+  font-size: 0.7rem;
+  opacity: 0.55;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+.target-side h4 button.inline-add {
+  margin-left: auto;
+  font-size: 0.72rem;
+}
+
+.empty-list {
+  font-size: 0.78rem;
+  opacity: 0.5;
+  font-style: italic;
+  padding: 0.3rem 0.4rem;
+}
+
+.desire-score-row {
+  margin: 0.4rem 0 0.5rem 0;
+  padding: 0.45rem 0.6rem;
+  background: rgba(80, 200, 120, 0.06);
+  border-radius: 4px;
+  border-left: 3px solid rgba(80, 200, 120, 0.5);
+}
+
+.desire-score-row input { width: 4rem; }
+.desire-score-row .desire-score-slider { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.desire-score-row input[type="range"] { flex: 1 1 12rem; min-width: 8rem; max-width: 24rem; width: auto; accent-color: rgb(80, 200, 120); }
+.desire-score-row input.desire-score-number { width: 4rem; }
+
+.desire-score-row .hint { display: block; font-size: 0.7rem; opacity: 0.7; margin-top: 0.1rem; }
+
+/* Toggle button on each desired/required mod entry. Click flips the entry
+   between desired-only and required (latches the slider to the required
+   band). `.implicit` styling applies when a side has 3 mods, forcing all
+   three into required regardless of toggle state. */
+.req-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.8rem;
+  padding: 0.1rem 0.35rem;
+  margin-right: 0.3rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  border: none;
+  background: rgba(140, 180, 255, 0.18);
+  color: rgb(140, 180, 255);
+  cursor: pointer;
+}
+
+.req-badge:hover:not(:disabled) {
+  filter: brightness(1.15);
+}
+
+.req-badge.required {
+  background: rgba(220, 130, 100, 0.25);
+  color: rgb(220, 130, 100);
+}
+
+.req-badge.implicit {
+  background: rgba(220, 130, 100, 0.12);
+  color: rgba(220, 130, 100, 0.85);
+  font-style: italic;
+}
+
+.req-badge:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Single tier-band slider per entry. Runs T1 (left, strictest) → Tmax
+   (right, most permissive). Track turns warm-orange when the entry is
+   required to mirror `.req-badge.required` colour coding. */
+.tier-band-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+  width: 100%;
+  font-size: 0.7rem;
+}
+
+.tier-band-row .hint {
+  font-size: 0.65rem;
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.tier-band-row input[type="range"].tier-slider {
+  flex: 1 1 8rem;
+  min-width: 6rem;
+  max-width: 16rem;
+  accent-color: rgb(140, 180, 255);
+}
+
+.tier-band-row input[type="range"].tier-slider.required {
+  accent-color: rgb(220, 130, 100);
+}
+
+.tier-band-row .band-summary {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  opacity: 0.85;
+  min-width: 2.2rem;
+}
+
+/* Tier-score row label whose tier is outside the desired band — the score
+   is preserved in storage but ignored by analytics until the slider is
+   widened. Greyed without disabling so the user can still edit. */
+.tier-score-row label.meaningless {
+  opacity: 0.35;
+  text-decoration: line-through;
+  text-decoration-color: rgba(128, 128, 128, 0.5);
+}
+
+.pause-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 0.3rem;
+  border-radius: 999px;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  background: rgba(128, 128, 128, 0.08);
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.65rem;
+  text-decoration: none !important;
+  opacity: 0.65;
+}
+
+.pause-chip:hover { opacity: 1; }
+
+.pause-chip.paused {
+  background: rgba(220, 130, 100, 0.18);
+  color: rgb(220, 130, 100);
+  border-color: rgba(220, 130, 100, 0.5);
+  opacity: 1;
+}
+
+.affix .name.disabled {
+  text-decoration: line-through;
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.affix .name.unreachable {
+  color: rgb(220, 130, 100);
+  font-style: italic;
+}
+
+.unreachable-actions {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-left: 0.4rem;
+  font-size: 0.7rem;
+}
+
+.unreachable-actions .link {
+  padding: 0.05rem 0.4rem;
+  border-radius: 3px;
+  border: 1px solid rgba(220, 130, 100, 0.5);
+  background: rgba(220, 130, 100, 0.12);
+  color: rgb(220, 130, 100);
+  text-decoration: none !important;
+}
+
+.unreachable-actions .link:hover {
+  background: rgba(220, 130, 100, 0.25);
+}
+
+.disclaimer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0.5rem 3rem;
+  line-height: 1.55;
+}
+
+.disclaimer h2 { margin-top: 0; }
+
+.disclaimer .lede {
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  background: rgba(140, 180, 255, 0.08);
+  border-left: 3px solid rgb(140, 180, 255);
+  border-radius: 4px;
+}
+
+.disclaimer h3 {
+  margin-top: 1.75rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  padding-bottom: 0.3rem;
+}
+
+.sources-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.sources-table th, .sources-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.18);
+}
+
+.sources-table th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.sources-table code {
+  font-size: 0.78rem;
+  background: rgba(128, 128, 128, 0.12);
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+}
+
+.app-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+  text-align: center;
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.app-prefs {
+  margin-top: 2rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 5px;
+  background: rgba(128, 128, 128, 0.04);
+}
+
+.app-prefs summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.prefs-row {
+  margin-top: 0.5rem;
+}
+
+.prefs-row select {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.game-tag {
+  font-size: 0.75rem;
+  font-weight: normal;
+  opacity: 0.65;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
+.affix .empty-explicit {
+  flex: 1;
+  font-style: italic;
+  color: rgb(140, 180, 255);
+  font-size: 0.85rem;
+}
+
+.affix .inline-add {
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+
+.affix .inline-add:hover { opacity: 1; }
+
+.affix .badge {
+  display: inline-block;
+  width: 1.3rem;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  padding: 0.05rem 0;
+}
+
+.affix.prefix .badge { background: rgba(120, 180, 255, 0.25); color: #8cc; }
+.affix.suffix .badge { background: rgba(255, 180, 120, 0.25); color: #c97; }
+
+.affix .name { flex: 1; }
+
+.affix.filled {
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.affix.filled .name {
+  flex: 1 1 100%;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+}
+
+/* Per-mod tag chips share the top row with the lock/pause buttons. Use
+   `order` to push them past those buttons, and `margin-left: auto` to
+   right-align (the absolutely-positioned `.remove-btn` doesn't compete
+   for flow space). Reserve right padding so chips don't overlap the ×. */
+.target-side .affix.filled .mod-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  order: 10;
+  margin-left: auto;
+  margin-right: 1.4rem;
+  justify-content: flex-end;
+}
+
+.affix-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 1 1 100%;
+  font-size: 0.8rem;
+}
+
+.affix > .remove-btn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.4rem;
+  margin-left: 0;
+}
+
+.remove-btn {
+  margin-left: auto;
+  padding: 0.05rem 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.55;
+}
+
+.remove-btn:hover { opacity: 1; }
+.affix .empty { flex: 1; opacity: 0.4; font-style: italic; }
+
+.target-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.target-controls input { width: 4rem; }
+
+.open-slot-hint {
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.wishlist-detail summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  opacity: 0.7;
+}
+
+.wishlist-list {
+  list-style: none;
+  padding: 0.5rem 0 0 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.82rem;
+}
+
+.wishlist-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wishlist-list .badge {
+  display: inline-block;
+  width: 1.3rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.7rem;
+  border-radius: 3px;
+  padding: 0.05rem 0;
+  background: rgba(120, 180, 255, 0.25);
+}
+
+.wishlist-list .score { opacity: 0.6; font-variant-numeric: tabular-nums; }
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 1rem;
+  margin: 1.5rem 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.section-title small {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: normal;
+  flex: 1;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+button.link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+button.link:hover { opacity: 1; }
+
+.wishlist-summary {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 6px;
+}
+
+.wishlist-summary h3 {
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+
+.field.inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.field.inline input {
+  width: 6rem;
+}
+
+.chain-detail {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.18);
+}
+.chain-detail > summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+.chain-detail > summary:hover { opacity: 1; }
+/* The chain panel breaks out of the strategy-table cell width via a fixed
+   min-width and horizontal scroll, since wide Markov grids (20+ states)
+   need room to be legible. */
+.mermaid-chain-wrap { margin-top: 0.5rem; }
+.mermaid-chain-toolbar {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 0.3rem; font-size: 0.78rem;
+}
+.mermaid-chain {
+  /* Drop the legacy 60rem min-width: it forced the strategy column
+     to grow to the chart's natural width when the user expanded the
+     chain in-table, pushing every other column rightward and out of
+     view. The ResizeObserver in MermaidChain.js fits the SVG to the
+     container's actual width, so any container constraint is enough
+     to keep the chart inside its cell. */
+  max-height: 70vh;
+  overflow: auto;
+  padding: 0.5rem;
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+.mermaid-chain svg { display: block; }
+/* Confine the chain inside its strategy cell — the cell width is
+   driven by the table layout, not the chart's natural size. */
+.strategies td .mermaid-chain {
+  max-width: 100%;
+  min-width: 0;
+}
+/* Shrink-to-fit safeguard for the wrapper too, since browsers compute
+   table cell widths from intrinsic content of nested elements unless
+   we explicitly tell them not to. */
+.strategies td .mermaid-chain-wrap {
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Near-fullscreen modal: 95vw × 92vh canvas with internal scroll, so wide
+   Markov grids are readable without zooming the whole page. Click backdrop
+   or hit Esc to dismiss. */
+.mermaid-fullscreen-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5vh 1.5vw;
+}
+.mermaid-fullscreen {
+  width: 97vw; height: 95vh;
+  background: #141414;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 6px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  display: flex; flex-direction: column;
+}
+.mermaid-fullscreen header {
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  /* `.link` inherits color, but the modal sits above the page body so we
+     force readable colors here regardless of where the modal renders. */
+  color: #cfd5e0;
+  background: #1a1a1a;
+}
+/* Layout mirrors the inline `.mermaid-chain-toolbar`: actions on the left,
+   hint inline, close pushed to the far right. */
+.mermaid-fs-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+}
+.mermaid-fs-toolbar .hint { color: #aab; }
+.mermaid-fs-toolbar button.link {
+  color: #cfeaff;
+  text-decoration: none;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid rgba(140, 180, 255, 0.4);
+  border-radius: 3px;
+  opacity: 0.9;
+}
+.mermaid-fs-toolbar button.link:hover {
+  opacity: 1;
+  background: rgba(140, 180, 255, 0.12);
+  border-color: rgba(140, 180, 255, 0.7);
+}
+.mermaid-fs-close { margin-left: auto; }
+.mermaid-chain-fs {
+  flex: 1 1 auto;
+  min-width: 0; max-height: none;
+  overflow: auto;
+  padding: 1rem;
+  background: #141414;
+  border-radius: 0;
+}
+.mermaid-chain-fs svg {
+  /* Render at natural size; the user scrolls if it overflows. */
+  margin: 0 auto;
+}
+
+.analytics {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+}
+.divine-bench {
+  margin-top: 0.8rem;
+}
+.divine-mods {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.divine-mods th, .divine-mods td {
+  padding: 0.3rem 0.4rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  vertical-align: middle;
+}
+.divine-mods input[type=text],
+.divine-mods input:not([type]) {
+  width: 16rem;
+}
+.divine-summary {
+  margin-top: 1rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 4px;
+}
+.divine-summary .summary-grid {
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+.divine-summary .summary-grid th,
+.divine-summary .summary-grid td {
+  padding: 0.3rem 0.6rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+.divine-summary .summary-grid th { text-align: left; font-weight: normal; color: #aaa; }
+
+.recipe-panel {
+  margin: 0.6rem 0;
+  padding: 0.5rem 0.7rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 4px;
+}
+.recipe-panel > summary {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+.recipe-toolbar {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin: 0.4rem 0;
+  flex-wrap: wrap;
+}
+.recipe-textarea {
+  width: 100%;
+  min-height: 12rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  background: #1a1a1a;
+  color: #ddd;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 3px;
+  padding: 0.5rem;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.saved-crafts {
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid rgba(255, 200, 60, 0.35);
+  border-radius: 4px;
+  background: rgba(255, 200, 60, 0.04);
+}
+.saved-crafts > summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: rgb(255, 200, 60);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  list-style: none;
+}
+.saved-crafts > summary::-webkit-details-marker { display: none; }
+.save-craft-btn {
+  margin-left: auto;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid rgba(255, 200, 60, 0.6);
+  border-radius: 3px;
+  background: rgba(255, 200, 60, 0.08);
+  color: rgb(255, 220, 130);
+  text-decoration: none !important;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.save-craft-btn:hover {
+  background: rgba(255, 200, 60, 0.18);
+  color: rgb(255, 240, 180);
+}
+.save-craft-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.saved-crafts-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.saved-craft {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: 3px;
+}
+.saved-craft:hover { background: rgba(255, 200, 60, 0.06); }
+.saved-craft-restore {
+  flex: 1;
+  text-align: left;
+  text-decoration: none !important;
+  color: rgb(255, 220, 130);
+}
+.saved-craft-overwrite {
+  opacity: 0.55;
+  text-decoration: none !important;
+  font-size: 1rem;
+  padding: 0 0.4rem;
+  color: rgb(255, 220, 130);
+}
+.saved-craft-overwrite:hover:not(:disabled) {
+  opacity: 1;
+  color: rgb(255, 240, 180);
+}
+.saved-craft-overwrite:disabled { opacity: 0.25; cursor: not-allowed; }
+.saved-craft-delete {
+  opacity: 0.5;
+  text-decoration: none !important;
+  font-size: 1rem;
+  padding: 0 0.3rem;
+}
+.saved-craft-delete:hover { opacity: 1; color: rgb(220, 130, 100); }
+
+.att-count {
+  cursor: help;
+  border-bottom: 1px dotted rgba(140, 180, 255, 0.45);
+}
+
+.mdp-panel {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(140, 220, 180, 0.35);
+}
+.mdp-panel h4 small { color: rgb(140, 220, 180); opacity: 0.85; }
+
+.evaluate-strategies-btn {
+  margin-left: 0.8rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid rgba(140, 220, 180, 0.6);
+  border-radius: 3px;
+  background: rgba(80, 200, 120, 0.08);
+  color: rgb(140, 220, 180);
+  text-decoration: none !important;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.evaluate-strategies-btn:hover {
+  background: rgba(80, 200, 120, 0.18);
+  color: rgb(180, 240, 200);
+}
+.evaluate-strategies-btn:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.analytics h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.analytics h4 small {
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.6;
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.attempt-spec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.attempt-spec input {
+  width: 5rem;
+}
+
+.stats {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.stats th {
+  text-align: left;
+  font-weight: 500;
+  padding: 0.3rem 0.4rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.stats td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  padding: 0.3rem 0.4rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+  font-weight: 600;
+}
+
+.stats td .ratio { font-weight: normal; opacity: 0.7; margin-left: 0.5rem; }
+
+.strategies {
+  width: 100%;
+  /* table-layout: fixed prevents nested expanded content (like the
+     Mermaid chain inside the Strategy cell) from forcing the column
+     to grow. With the default `auto` layout, browsers measure each
+     cell's intrinsic width including all descendants — the chart's
+     natural width then becomes the column's minimum, pushing every
+     other column off-screen. `fixed` distributes width by the header
+     row only and lets cell contents wrap / scroll inside. */
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-top: 0.5rem;
+}
+
+.strategies th, .strategies td {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  text-align: left;
+  vertical-align: top;
+}
+
+.strategies th {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.strategies .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.strategies tr.best {
+  background: rgba(80, 200, 120, 0.10);
+}
+
+.strategies tr.best td:first-child::before {
+  content: '★ ';
+  color: rgb(80, 200, 120);
+}
+
+.strategies tr.unavailable {
+  opacity: 0.5;
+}
+
+.strategies td .ratio { font-weight: normal; opacity: 0.7; margin-left: 0.4rem; }
+.strategies td small { opacity: 0.7; font-size: 0.78rem; }
+
+.strategy-detail summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.strategy-detail summary::-webkit-details-marker { display: none; }
+
+.strategy-detail summary::before {
+  content: '›';
+  display: inline-block;
+  width: 0.9rem;
+  text-align: center;
+  opacity: 0.55;
+  font-weight: bold;
+  transition: transform 0.15s;
+}
+
+.strategy-detail[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.strategy-description {
+  margin: 0.4rem 0 0.2rem 1rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0.9;
+  font-weight: normal;
+}
+
+.strategy-notes-detail {
+  margin: 0.2rem 0 0.4rem 1rem;
+  font-size: 0.72rem;
+  opacity: 0.55;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.missing-rate-link {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 0.7rem;
+}
+
+.missing-rate-link a {
+  color: rgb(220, 130, 100);
+  text-decoration: underline dotted;
+}
+
+.strategies tr.over-cap td:first-child {
+  border-left: 3px solid rgb(220, 130, 100);
+}
+
+.cap-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cap-badge.over-budget { background: rgba(220, 130, 100, 0.25); color: rgb(220, 130, 100); }
+.cap-badge.over-time   { background: rgba(150, 130, 220, 0.25); color: rgb(150, 130, 220); }
+
+.strategies td.p-low { color: rgb(220, 130, 100); }
+.strategies td.p-high { color: rgb(80, 200, 120); }
+.strategies td.num small { display: block; opacity: 0.55; font-size: 0.7rem; }
+
+.strategies th.primary,
+.strategies td.primary {
+  background: rgba(255, 215, 130, 0.06);
+  border-left: 1px solid rgba(255, 215, 130, 0.25);
+  border-right: 1px solid rgba(255, 215, 130, 0.25);
+}
+
+.strategies td.primary {
+  font-size: 1rem;
+}
+
+.rates {
+  margin-top: 2rem;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.rates summary {
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+}
+
+.rates summary small {
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 0.5rem;
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+.rates summary select {
+  font: inherit;
+  margin: 0 0.25rem;
+}
+
+.rates-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.rates-table th, .rates-table td {
+  padding: 0.25rem 0.4rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+  text-align: left;
+}
+
+.rates-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.rates-table input {
+  width: 6rem;
+  font: inherit;
+  text-align: right;
+  padding: 0.15rem 0.3rem;
+}
+
+.ccy-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.ccy-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.rates-table tr.overridden {
+  background: rgba(80, 200, 120, 0.08);
+}
+
+.rates-table tr.overridden input {
+  font-weight: 600;
+}
+
+.rates-table tr.not-applicable {
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.rates-table tr.not-applicable input { background: rgba(128, 128, 128, 0.06); }
+
+.restriction-chip {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(140, 180, 255, 0.15);
+  color: rgb(140, 180, 255);
+  border: 1px solid rgba(140, 180, 255, 0.4);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.restriction-chip.violated {
+  background: rgba(220, 130, 100, 0.22);
+  color: rgb(220, 130, 100);
+  border-color: rgba(220, 130, 100, 0.6);
+}
+
+button.restriction-chip {
+  font: inherit;
+  font-size: 0.65rem;
+  cursor: pointer;
+  margin-left: 0.3rem;
+  padding: 0.05rem 0.4rem;
+}
+
+button.restriction-chip.clickable:hover {
+  background: rgba(140, 180, 255, 0.25);
+  border-color: rgb(140, 180, 255);
+  color: rgb(140, 180, 255);
+}
+
+button.restriction-chip.violated.clickable:hover {
+  background: rgba(220, 130, 100, 0.4);
+  color: white;
+}
+
+.tag-filter-row {
+  margin: 1rem 0 0.6rem 0;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.card-tag-row {
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.15);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.card-tag-row small {
+  opacity: 0.65;
+  margin-left: 0.15rem;
+}
+
+.tag-filter-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.65;
+  margin-right: 0.4rem;
+}
+
+.tag-chip {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  background: rgba(128, 128, 128, 0.08);
+  color: inherit;
+  cursor: default;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.tag-chip.filter {
+  cursor: pointer;
+}
+
+.tag-chip.filter.neutral:hover {
+  background: rgba(140, 180, 255, 0.15);
+  border-color: rgba(140, 180, 255, 0.5);
+}
+
+/* Filter states (include/exclude) keep the per-tag color from the inline
+   :style and add a status ring + bold/strike-through to convey active state.
+   Earlier rules rewrote background/border, which clobbered the per-tag
+   color — switched to box-shadow rings so identification stays. */
+.tag-chip.filter.include {
+  box-shadow: 0 0 0 2px rgba(80, 200, 120, 0.85);
+  font-weight: 700;
+}
+
+.tag-chip.filter.exclude {
+  box-shadow: 0 0 0 2px rgba(220, 130, 100, 0.85);
+  font-weight: 700;
+  text-decoration: line-through !important;
+}
+
+.tag-chip.mini {
+  font-size: 0.62rem;
+  padding: 0 0.35rem;
+  margin-right: 0.15rem;
+  opacity: 0.9;
+  /* No background/border override: let the per-tag :style shine through.
+     The inline tagStyle() already provides good contrast against warm
+     card overlays. */
+}
+
+.mod-tags {
+  display: inline-block;
+  margin-left: 0.3rem;
+}
+
+.poe2db-link {
+  font-size: 0.7rem;
+  text-decoration: underline dotted;
+  opacity: 0.75;
+}
+
+.poe2db-link:hover { opacity: 1; }
+
+.rates-group {
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  border-radius: 4px;
+}
+
+.rates-group summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.rates-group summary small {
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.65;
+}
+
+.extra-pool {
+  margin-top: 1.5rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 5px;
+  background: rgba(128, 128, 128, 0.04);
+}
+
+.extra-pool summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.extra-pool summary small {
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  opacity: 0.65;
+}
+
+.extra-mod-list {
+  list-style: none;
+  padding: 0.5rem 0 0 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem 1rem;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 720px) { .extra-mod-list { grid-template-columns: 1fr; } }
+
+.extra-mod-list li {
+  padding: 0.2rem 0.3rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+}
+
+.extra-mod-list .tname {
+  display: inline-block;
+  margin-right: 0.4rem;
+  font-weight: 600;
+}
+
+.extra-mod-list .mname {
+  opacity: 0.85;
+}
+
+.mechanics {
+  margin-top: 1.5rem;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.mechanics summary {
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+}
+
+.mechanics summary small {
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 0.5rem;
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+.mechanics tr.deprecated td:first-child {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.mechanics .deprecated-tag {
+  color: rgb(220, 130, 100);
+  font-style: italic;
+}
+
+.warning-banner {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.85rem;
+  border-radius: 5px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.warning-banner.deprecated-banner {
+  background: rgba(220, 130, 100, 0.18);
+  border-left: 4px solid rgb(220, 130, 100);
+}
+
+.warning-banner.excluded-banner {
+  background: rgba(140, 180, 255, 0.15);
+  border-left: 4px solid rgb(140, 180, 255);
+}
+
+.warning-banner {
+  position: relative;
+  padding-right: 2.5rem;
+}
+
+.banner-close {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.55rem;
+  background: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  border-radius: 50%;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: 0.95rem;
+  line-height: 1;
+  font-weight: 700;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-close:hover {
+  opacity: 1;
+  border-color: currentColor;
+}
+
+.base-pricing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0.5rem 0 1rem 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(128, 128, 128, 0.05);
+  border-radius: 4px;
+}
+
+.base-pricing input { width: 5rem; }
+.base-pricing .hint { display: block; font-size: 0.7rem; opacity: 0.55; margin-top: 0.1rem; }
+
+.start-pricing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(128, 128, 128, 0.15);
+  margin-top: 0.4rem;
+}
+
+.start-pricing input { width: 5rem; }
+.start-pricing .hint { display: block; font-size: 0.68rem; opacity: 0.55; margin-top: 0.1rem; }

@@ -1,0 +1,1161 @@
+BASE,TYPE,NAME,1,2,3,4,5,6,7,8,9,10,11,12,13,ItemClass
+BOOTS (INT),PREFIX,#% increased Energy Shield,65,60,54,46,33,16,2,,,,,,,Boots
+BOOTS (INT),PREFIX,"#% increased Energy Shield, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Boots
+BOOTS (INT),PREFIX,#% increased Movement Speed,82,65,46,33,16,1,,,,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Energy Shield,54,46,33,25,16,8,1,,,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Boots
+BOOTS (INT),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Boots
+BOOTS (INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Chill Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Freeze Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Shock duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (INT),SUFFIX,# to Stun Threshold,80,72,63,54,45,36,29,22,15,8,1,,,Boots
+BOOTS (INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Boots
+BOOTS (INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Boots
+BOOTS (DEX),PREFIX,#% increased Evasion Rating,65,60,54,46,33,16,2,,,,,,,Boots
+BOOTS (DEX),PREFIX,"#% increased Evasion Rating, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Boots
+BOOTS (DEX),PREFIX,#% increased Movement Speed,82,65,46,33,16,1,,,,,,,,Boots
+BOOTS (DEX),PREFIX,# to Evasion Rating,54,46,33,25,16,8,1,,,,,,,Boots
+BOOTS (DEX),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Boots
+BOOTS (DEX),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Boots
+BOOTS (DEX),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Chill Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Freeze Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Shock duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (DEX),SUFFIX,# to Stun Threshold,80,72,63,54,45,36,29,22,15,8,1,,,Boots
+BOOTS (DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Boots
+BOOTS (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Boots
+BOOTS (STR),PREFIX,#% increased Armour,65,60,54,46,35,16,2,,,,,,,Boots
+BOOTS (STR),PREFIX,"#% increased Armour, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Boots
+BOOTS (STR),PREFIX,#% increased Movement Speed,82,65,46,33,16,1,,,,,,,,Boots
+BOOTS (STR),PREFIX,# to Armour,54,46,33,25,16,8,1,,,,,,,Boots
+BOOTS (STR),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Boots
+BOOTS (STR),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Boots
+BOOTS (STR),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Boots
+BOOTS (STR),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Chill Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Freeze Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Shock duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (STR),SUFFIX,# to Stun Threshold,80,72,63,54,45,36,29,22,15,8,1,,,Boots
+BOOTS (STR),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Boots
+BOOTS (STR),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,65,60,54,46,33,16,2,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,#% increased Movement Speed,82,65,46,33,16,1,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",46,33,16,1,,,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Boots
+BOOTS (DEX/INT),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Chill Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Freeze Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Shock duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Stun Threshold,80,72,63,54,45,36,29,22,15,8,1,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,#% increased Armour and Energy Shield,65,60,54,46,33,16,2,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,#% increased Movement Speed,82,65,46,33,16,1,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",46,33,16,1,,,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Boots
+BOOTS (STR/INT),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Chill Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Freeze Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Shock duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Stun Threshold,80,72,63,54,45,36,29,22,15,8,1,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,#% increased Armour and Evasion,65,60,54,46,33,16,2,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,#% increased Movement Speed,82,65,46,33,16,1,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",46,33,16,1,,,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Boots
+BOOTS (STR/DEX),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Chill Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Freeze Duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Shock duration on you,75,63,49,36,20,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Stun Threshold,80,72,63,54,45,36,29,22,15,8,1,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Boots
+HELMET (INT),PREFIX,#% increased Energy Shield,65,60,54,46,33,16,2,,,,,,,Helmet
+HELMET (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (INT),PREFIX,"#% increased Energy Shield, # to maximum Mana",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (INT),PREFIX,#% increased Rarity of Items found,47,29,10,,,,,,,,,,,Helmet
+HELMET (INT),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Energy Shield,60,54,46,33,25,16,8,1,,,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Life,65,60,54,46,38,33,24,16,6,1,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Mana,65,60,54,46,38,33,25,16,6,1,,,,Helmet
+HELMET (INT),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Critical Hit Chance,58,44,30,20,5,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,# to Intelligence,81,74,66,55,44,33,22,11,1,,,,,Helmet
+HELMET (INT),SUFFIX,# to Level of all Minion Skills,41,5,,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Helmet
+HELMET (DEX),PREFIX,#% increased Evasion Rating,65,60,54,46,33,16,2,,,,,,,Helmet
+HELMET (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Mana",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (DEX),PREFIX,#% increased Rarity of Items found,47,29,10,,,,,,,,,,,Helmet
+HELMET (DEX),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Helmet
+HELMET (DEX),PREFIX,# to Evasion Rating,60,54,46,33,25,16,8,1,,,,,,Helmet
+HELMET (DEX),PREFIX,# to maximum Life,65,60,54,46,38,33,24,16,6,1,,,,Helmet
+HELMET (DEX),PREFIX,# to maximum Mana,65,60,54,46,38,33,25,16,6,1,,,,Helmet
+HELMET (DEX),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% increased Critical Hit Chance,58,44,30,20,5,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Intelligence,81,74,66,55,44,33,22,11,1,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Level of all Minion Skills,41,5,,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Helmet
+HELMET (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Helmet
+HELMET (STR),PREFIX,#% increased Armour,65,60,54,46,35,16,2,,,,,,,Helmet
+HELMET (STR),PREFIX,"#% increased Armour, # to maximum Life",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (STR),PREFIX,"#% increased Armour, # to maximum Mana",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (STR),PREFIX,#% increased Rarity of Items found,47,29,10,,,,,,,,,,,Helmet
+HELMET (STR),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Helmet
+HELMET (STR),PREFIX,# to Armour,60,54,46,33,25,16,8,1,,,,,,Helmet
+HELMET (STR),PREFIX,# to maximum Life,65,60,54,46,38,33,24,16,6,1,,,,Helmet
+HELMET (STR),PREFIX,# to maximum Mana,65,60,54,46,38,33,25,16,6,1,,,,Helmet
+HELMET (STR),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Helmet
+HELMET (STR),SUFFIX,#% increased Critical Hit Chance,58,44,30,20,5,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,# to Intelligence,81,74,66,55,44,33,22,11,1,,,,,Helmet
+HELMET (STR),SUFFIX,# to Level of all Minion Skills,41,5,,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Helmet
+HELMET (STR),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,65,60,54,46,33,16,2,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Mana",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,#% increased Rarity of Items found,47,29,10,,,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",54,46,33,16,1,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to maximum Life,65,60,54,46,38,33,24,16,6,1,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to maximum Mana,65,60,54,46,38,33,25,16,6,1,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Critical Hit Chance,58,44,30,20,5,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Intelligence,81,74,66,55,44,33,22,11,1,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Level of all Minion Skills,41,5,,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,#% increased Armour and Energy Shield,65,60,54,46,33,16,2,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Mana",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,#% increased Rarity of Items found,47,29,10,,,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Helmet
+HELMET (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",54,46,33,16,1,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,# to maximum Life,65,60,54,46,38,33,24,16,6,1,,,,Helmet
+HELMET (STR/INT),PREFIX,# to maximum Mana,65,60,54,46,38,33,25,16,6,1,,,,Helmet
+HELMET (STR/INT),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Critical Hit Chance,58,44,30,20,5,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Intelligence,81,74,66,55,44,33,22,11,1,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Level of all Minion Skills,41,5,,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,#% increased Armour and Evasion,65,60,54,46,33,16,2,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Mana",78,60,46,33,16,8,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,#% increased Rarity of Items found,47,29,10,,,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",54,46,33,16,1,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to maximum Life,65,60,54,46,38,33,24,16,6,1,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to maximum Mana,65,60,54,46,38,33,25,16,6,1,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# Life Regeneration per second,58,47,35,26,17,11,5,1,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% increased Critical Hit Chance,58,44,30,20,5,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Intelligence,81,74,66,55,44,33,22,11,1,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Level of all Minion Skills,41,5,,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Helmet
+BODY ARMOUR (INT),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,#% increased Energy Shield,75,65,60,54,46,33,16,2,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,"# to maximum Energy Shield, #% increased Energy Shield",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,# to maximum Energy Shield,79,70,65,60,54,46,33,25,16,8,1,,,Body Armour
+BODY ARMOUR (INT),PREFIX,# to maximum Life,80,75,70,65,60,54,46,38,33,24,16,6,1,Body Armour
+BODY ARMOUR (INT),PREFIX,# to Spirit,78,65,60,54,46,33,25,16,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# Life Regeneration per second,81,75,68,58,47,35,26,17,11,5,1,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Duration of Bleeding on You,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Ignite Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Poison Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% faster start of Energy Shield Recharge,81,66,48,36,30,30,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,#% increased Evasion Rating,75,65,60,54,46,33,16,2,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,"# to Evasion Rating, #% increased Evasion Rating",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to Evasion Rating,79,75,65,60,54,46,33,25,16,8,1,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to maximum Life,80,75,70,65,60,54,46,38,33,24,16,6,1,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to Spirit,78,65,60,54,46,33,25,16,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# Life Regeneration per second,81,75,68,58,47,35,26,17,11,5,1,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Duration of Bleeding on You,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Ignite Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Poison Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,81,66,48,36,30,30,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,#% increased Armour,75,65,60,54,46,35,16,2,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,"# to Armour, #% increased Armour",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,"#% increased Armour, # to maximum Life",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to Armour,79,75,65,60,54,46,33,25,16,8,1,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to maximum Life,80,75,70,65,60,54,46,38,33,24,16,6,1,Body Armour
+BODY ARMOUR (STR),PREFIX,# to Spirit,78,65,60,54,46,33,25,16,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# Life Regeneration per second,81,75,68,58,47,35,26,17,11,5,1,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Duration of Bleeding on You,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Ignite Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Poison Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% of Armour also applies to Elemental Damage,81,66,48,36,30,30,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,75,65,60,54,46,33,16,2,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield, #% increased Evasion and Energy Shield",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",75,65,60,54,46,33,16,1,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to maximum Life,80,75,70,65,60,54,46,38,33,24,16,6,1,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to Spirit,78,65,60,54,46,33,25,16,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# Life Regeneration per second,81,75,68,58,47,35,26,17,11,5,1,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Duration of Bleeding on You,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Ignite Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Poison Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% faster start of Energy Shield Recharge,81,66,48,36,30,30,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,81,66,48,36,30,30,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,#% increased Armour and Energy Shield,75,65,60,54,46,33,16,2,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield, #% increased Armour and Energy Shield",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",75,65,60,54,46,33,16,1,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to maximum Life,80,75,70,65,60,54,46,38,33,24,16,6,1,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to Spirit,78,65,60,54,46,33,25,16,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# Life Regeneration per second,81,75,68,58,47,35,26,17,11,5,1,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Duration of Bleeding on You,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Ignite Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Poison Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% faster start of Energy Shield Recharge,81,66,48,36,30,30,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,81,66,48,36,30,30,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,#% increased Armour and Evasion,75,65,60,54,46,33,16,2,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating, #% increased Armour and Evasion",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",78,60,46,33,16,8,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",75,65,60,54,46,33,16,1,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to maximum Life,80,75,70,65,60,54,46,38,33,24,16,6,1,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to Spirit,78,65,60,54,46,33,25,16,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# Life Regeneration per second,81,75,68,58,47,35,26,17,11,5,1,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Duration of Bleeding on You,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Ignite Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Poison Duration on you,76,64,50,37,21,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,81,66,48,36,30,30,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,81,66,48,36,30,30,,,,,,,,Body Armour
+SHIELD (STR),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Shield
+SHIELD (STR),PREFIX,#% increased Armour,75,65,60,54,46,35,16,2,,,,,,Shield
+SHIELD (STR),PREFIX,"#% increased Armour, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Shield
+SHIELD (STR),PREFIX,#% increased Block chance,65,33,1,,,,,,,,,,,Shield
+SHIELD (STR),PREFIX,# to Armour,75,65,60,54,46,33,25,16,8,1,,,,Shield
+SHIELD (STR),PREFIX,# to maximum Life,70,65,60,54,46,38,33,24,16,6,1,,,Shield
+SHIELD (STR),SUFFIX,#% additional Physical Damage Reduction,77,66,53,41,32,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Shield
+SHIELD (STR),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Shield
+SHIELD (STR),SUFFIX,#% to all Maximum Elemental Resistances,81,75,,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Chaos Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Cold Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Fire Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Lightning Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% of Armour also applies to Elemental Damage,81,66,48,36,30,30,,,,,,,,Shield
+BUCKLER,PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Buckler
+BUCKLER,PREFIX,#% increased Block chance,65,33,1,,,,,,,,,,,Buckler
+BUCKLER,PREFIX,#% increased Evasion Rating,75,65,60,54,46,35,16,2,,,,,,Buckler
+BUCKLER,PREFIX,"#% increased Evasion Rating, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Buckler
+BUCKLER,PREFIX,# to Evasion Rating,75,65,60,54,46,33,25,16,8,1,,,,Buckler
+BUCKLER,PREFIX,# to maximum Life,70,65,60,54,46,38,33,24,16,6,1,,,Buckler
+BUCKLER,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Buckler
+BUCKLER,SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Buckler
+BUCKLER,SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Buckler
+BUCKLER,SUFFIX,#% to all Maximum Elemental Resistances,81,75,,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Chaos Resistance,81,75,68,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Cold Resistance,81,75,68,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Fire Resistance,81,75,68,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Lightning Resistance,81,75,68,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,81,66,48,36,30,30,,,,,,,,Buckler
+SHIELD (STR/INT),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,#% increased Armour and Energy Shield,75,65,60,54,46,33,16,2,,,,,,Shield
+SHIELD (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,#% increased Block chance,65,33,1,,,,,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",65,60,54,46,33,16,1,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,# to maximum Life,70,65,60,54,46,38,33,24,16,6,1,,,Shield
+SHIELD (STR/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to all Elemental Resistances,80,68,54,40,26,12,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to all Maximum Elemental Resistances,81,75,,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Chaos Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Cold Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Fire Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Lightning Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,81,66,48,36,30,30,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,81,66,48,36,30,30,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,#% increased Armour and Evasion,75,65,60,54,46,33,16,2,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to Stun Threshold",74,63,48,38,19,10,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,#% increased Block chance,65,33,1,,,,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",65,60,54,46,33,16,1,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,# to maximum Life,70,65,60,54,46,38,33,24,16,6,1,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to all Maximum Elemental Resistances,81,75,,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Chaos Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Cold Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Fire Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Lightning Resistance,81,75,68,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,Hits against you have #% reduced Critical Damage Bonus,81,69,58,45,33,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,81,66,48,36,30,30,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,81,66,48,36,30,30,,,,,,,,Shield
+BELT,PREFIX,# to # Physical Thorns damage,74,63,48,38,19,10,1,,,,,,,Belt
+BELT,PREFIX,#% increased Charm Effect Duration,75,60,46,33,8,,,,,,,,,Belt
+BELT,PREFIX,#% increased Flask Life Recovery rate,75,60,46,33,16,1,,,,,,,,Belt
+BELT,PREFIX,#% increased Flask Mana Recovery rate,63,54,36,26,11,5,,,,,,,,Belt
+BELT,PREFIX,# to Armour,80,70,65,54,46,33,25,16,11,1,,,,Belt
+BELT,PREFIX,# to maximum Life,65,60,54,46,38,33,24,16,6,1,,,,Belt
+BELT,PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Belt
+BELT,SUFFIX,# Life Regeneration per second,68,58,47,35,26,17,11,5,1,,,,,Belt
+BELT,SUFFIX,#% increased Charm Charges gained,81,70,48,32,16,2,,,,,,,,Belt
+BELT,SUFFIX,#% increased Flask Charges gained,81,70,48,32,16,2,,,,,,,,Belt
+BELT,SUFFIX,#% reduced Charm Charges used,81,72,50,33,18,3,,,,,,,,Belt
+BELT,SUFFIX,#% reduced Flask Charges used,81,72,50,33,18,3,,,,,,,,Belt
+BELT,SUFFIX,# to Strength,81,74,66,55,44,33,22,11,1,,,,,Belt
+BELT,SUFFIX,# to Stun Threshold,72,63,54,45,36,29,22,15,8,1,,,,Belt
+BELT,SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Belt
+BELT,SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Belt
+BELT,SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Belt
+BELT,SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Belt
+RING,PREFIX,#% increased Chaos Damage,75,65,46,33,16,8,,,,,,,,Ring
+RING,PREFIX,#% increased Cold Damage,75,65,46,33,16,8,,,,,,,,Ring
+RING,PREFIX,#% increased Fire Damage,75,65,46,33,16,8,,,,,,,,Ring
+RING,PREFIX,#% increased Lightning Damage,75,65,46,33,16,8,,,,,,,,Ring
+RING,PREFIX,#% increased Rarity of Items found,47,29,10,,,,,,,,,,,Ring
+RING,PREFIX,# to Accuracy Rating,67,58,48,36,26,18,11,1,,,,,,Ring
+RING,PREFIX,# to Evasion Rating,70,65,54,46,33,25,16,11,1,,,,,Ring
+RING,PREFIX,# to maximum Life,54,46,38,33,24,16,6,1,,,,,,Ring
+RING,PREFIX,# to maximum Mana,75,70,65,60,54,46,38,33,25,16,6,1,,Ring
+RING,PREFIX,Adds # to # Cold damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Ring
+RING,PREFIX,Adds # to # Fire damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Ring
+RING,PREFIX,Adds # to # Lightning damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Ring
+RING,PREFIX,Adds # to # Physical Damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Ring
+RING,SUFFIX,# Life Regeneration per second,47,35,26,17,11,5,1,,,,,,,Ring
+RING,SUFFIX,#% increased Cast Speed,45,30,15,1,,,,,,,,,,Ring
+RING,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Ring
+RING,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Ring
+RING,SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Ring
+RING,SUFFIX,# to all Attributes,33,22,11,1,,,,,,,,,,Ring
+RING,SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Ring
+RING,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Ring
+RING,SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Ring
+RING,SUFFIX,#% to all Elemental Resistances,68,54,40,26,12,,,,,,,,,Ring
+RING,SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Ring
+RING,SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Ring
+RING,SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Ring
+RING,SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Ring
+RING,SUFFIX,Gain # Life per Enemy Killed,55,44,33,22,11,1,,,,,,,,Ring
+RING,SUFFIX,Gain # Mana per Enemy Killed,56,45,34,23,12,1,,,,,,,,Ring
+RING,SUFFIX,Leech #% of Physical Attack Damage as Life,54,38,21,,,,,,,,,,,Ring
+RING,SUFFIX,Leech #% of Physical Attack Damage as Mana,54,38,21,,,,,,,,,,,Ring
+SPEAR,PREFIX,#% increased Elemental Damage with Attacks,81,60,46,33,16,4,,,,,,,,Spear
+SPEAR,PREFIX,#% increased Physical Damage,82,75,60,46,33,16,8,1,,,,,,Spear
+SPEAR,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",81,70,65,54,38,23,11,1,,,,,,Spear
+SPEAR,PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Spear
+SPEAR,PREFIX,Adds # to # Cold Damage,81,75,65,60,54,46,33,16,8,1,,,,Spear
+SPEAR,PREFIX,Adds # to # Fire Damage,81,75,65,60,54,46,33,16,8,1,,,,Spear
+SPEAR,PREFIX,Adds # to # Lightning Damage,81,75,65,60,54,46,33,16,8,1,,,,Spear
+SPEAR,PREFIX,Adds # to # Physical Damage,75,65,60,54,46,33,16,8,1,,,,,Spear
+SPEAR,SUFFIX,#% increased Attack Speed,77,60,45,37,30,22,11,1,,,,,,Spear
+SPEAR,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Spear
+SPEAR,SUFFIX,#% increased Stun Duration,71,58,44,30,18,5,,,,,,,,Spear
+SPEAR,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Spear
+SPEAR,SUFFIX,# to Level of all Melee Skills,81,55,36,18,2,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Level of all Projectile Skills,81,55,36,18,2,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Spear
+SPEAR,SUFFIX,#% to Critical Damage Bonus,73,59,44,30,21,8,,,,,,,,Spear
+SPEAR,SUFFIX,#% to Critical Hit Chance,73,59,44,30,20,1,,,,,,,,Spear
+SPEAR,SUFFIX,Causes #% increased Stun Buildup,74,58,44,30,20,5,,,,,,,,Spear
+SPEAR,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Spear
+SPEAR,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Spear
+SPEAR,SUFFIX,Grants # Life per Enemy Hit,40,30,20,8,,,,,,,,,,Spear
+SPEAR,SUFFIX,Leeches #% of Physical Damage as Life,81,68,54,38,21,,,,,,,,,Spear
+SPEAR,SUFFIX,Leeches #% of Physical Damage as Mana,81,68,54,38,21,,,,,,,,,Spear
+CROSSBOW,PREFIX,#% increased Elemental Damage with Attacks,81,60,46,33,16,4,,,,,,,,Crossbow
+CROSSBOW,PREFIX,#% increased Physical Damage,82,75,60,46,33,16,8,1,,,,,,Crossbow
+CROSSBOW,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",81,70,65,54,38,23,11,1,,,,,,Crossbow
+CROSSBOW,PREFIX,# to Accuracy Rating,82,76,67,58,48,36,26,18,11,1,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Cold Damage,81,75,65,60,54,46,33,16,8,1,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Fire Damage,81,75,65,60,54,46,33,16,8,1,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Lightning Damage,81,75,65,60,54,46,33,16,8,1,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Physical Damage,75,65,60,54,46,33,16,8,1,,,,,Crossbow
+CROSSBOW,SUFFIX,#% increased Attack Speed,37,30,22,11,1,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Level of all Projectile Skills,81,55,36,18,2,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% to Critical Damage Bonus,73,59,44,30,21,8,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% to Critical Hit Chance,73,59,44,30,20,1,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Crossbow
+CROSSBOW,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Crossbow
+CROSSBOW,SUFFIX,Grants # Life per Enemy Hit,40,30,20,8,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Leeches #% of Physical Damage as Life,68,54,38,21,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Leeches #% of Physical Damage as Mana,68,54,38,21,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Loads # additional bolts,82,55,,,,,,,,,,,,Crossbow
+BOW,PREFIX,#% increased Elemental Damage with Attacks,81,60,46,33,16,4,,,,,,,,Bow
+BOW,PREFIX,#% increased Physical Damage,82,75,60,46,33,16,8,1,,,,,,Bow
+BOW,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",81,70,65,54,38,23,11,1,,,,,,Bow
+BOW,PREFIX,# to Accuracy Rating,82,76,67,58,48,36,26,18,11,1,,,,Bow
+BOW,PREFIX,Adds # to # Cold Damage,81,75,65,60,54,46,33,16,8,1,,,,Bow
+BOW,PREFIX,Adds # to # Fire Damage,81,75,65,60,54,46,33,16,8,1,,,,Bow
+BOW,PREFIX,Adds # to # Lightning Damage,81,75,65,60,54,46,33,16,8,1,,,,Bow
+BOW,PREFIX,Adds # to # Physical Damage,75,65,60,54,46,33,16,8,1,,,,,Bow
+BOW,SUFFIX,#% increased Attack Speed,37,30,22,11,1,,,,,,,,,Bow
+BOW,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Bow
+BOW,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Bow
+BOW,SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Bow
+BOW,SUFFIX,# to Level of all Projectile Skills,81,55,36,18,2,,,,,,,,,Bow
+BOW,SUFFIX,#% to Critical Damage Bonus,73,59,44,30,21,8,,,,,,,,Bow
+BOW,SUFFIX,#% to Critical Hit Chance,73,59,44,30,20,1,,,,,,,,Bow
+BOW,SUFFIX,#% Surpassing chance to fire an additional Arrow,82,66,55,46,,,,,,,,,,Bow
+BOW,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Bow
+BOW,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Bow
+BOW,SUFFIX,Grants # Life per Enemy Hit,40,30,20,8,,,,,,,,,,Bow
+BOW,SUFFIX,Leeches #% of Physical Damage as Life,68,54,38,21,,,,,,,,,,Bow
+BOW,SUFFIX,Leeches #% of Physical Damage as Mana,68,54,38,21,,,,,,,,,,Bow
+WARSTAFF,PREFIX,#% increased Elemental Damage with Attacks,81,60,46,33,16,4,,,,,,,,Warstaff
+WARSTAFF,PREFIX,#% increased Physical Damage,82,75,60,46,33,16,8,1,,,,,,Warstaff
+WARSTAFF,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",81,70,65,54,38,23,11,1,,,,,,Warstaff
+WARSTAFF,PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Cold Damage,81,75,65,60,54,46,33,16,8,1,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Fire Damage,81,75,65,60,54,46,33,16,8,1,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Lightning Damage,81,75,65,60,54,46,33,16,8,1,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Physical Damage,75,65,60,54,46,33,16,8,1,,,,,Warstaff
+WARSTAFF,SUFFIX,#% increased Attack Speed,77,60,45,37,30,22,11,1,,,,,,Warstaff
+WARSTAFF,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% increased Stun Duration,71,58,44,30,18,5,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Level of all Melee Skills,81,55,36,18,2,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% to Critical Damage Bonus,73,59,44,30,21,8,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% to Critical Hit Chance,73,59,44,30,20,1,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Causes #% increased Stun Buildup,74,58,44,30,20,5,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Warstaff
+WARSTAFF,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Warstaff
+WARSTAFF,SUFFIX,Grants # Life per Enemy Hit,40,30,20,8,,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Leeches #% of Physical Damage as Life,81,68,54,38,21,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Leeches #% of Physical Damage as Mana,81,68,54,38,21,,,,,,,,,Warstaff
+TWO HAND MACE,PREFIX,#% increased Elemental Damage with Attacks,81,60,46,33,16,4,,,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,#% increased Physical Damage,82,75,60,46,33,16,8,1,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",81,70,65,54,38,23,11,1,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Cold Damage,81,75,65,60,54,46,33,16,8,1,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Fire Damage,81,75,65,60,54,46,33,16,8,1,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Lightning Damage,81,75,65,60,54,46,33,16,8,1,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Physical Damage,75,65,60,54,46,33,16,8,1,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% increased Attack Speed,77,60,45,37,30,22,11,1,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% increased Stun Duration,71,58,44,30,18,5,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,# to Level of all Melee Skills,81,55,36,18,2,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% to Critical Damage Bonus,73,59,44,30,21,8,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% to Critical Hit Chance,73,59,44,30,20,1,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Causes #% increased Stun Buildup,74,58,44,30,20,5,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Grants # Life per Enemy Hit,40,30,20,8,,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Leeches #% of Physical Damage as Life,81,68,54,38,21,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Leeches #% of Physical Damage as Mana,81,68,54,38,21,,,,,,,,,Two Hand Mace
+ONE HAND MACE,PREFIX,#% increased Elemental Damage with Attacks,81,60,46,33,16,4,,,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,#% increased Physical Damage,82,75,60,46,33,16,8,1,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",81,70,65,54,38,23,11,1,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Cold Damage,81,75,65,60,54,46,33,16,8,1,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Fire Damage,81,75,65,60,54,46,33,16,8,1,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Lightning Damage,81,75,65,60,54,46,33,16,8,1,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Physical Damage,75,65,60,54,46,33,16,8,1,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% increased Attack Speed,77,60,45,37,30,22,11,1,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% increased Stun Duration,71,58,44,30,18,5,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,# to Level of all Melee Skills,81,55,36,18,2,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% to Critical Damage Bonus,73,59,44,30,21,8,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% to Critical Hit Chance,73,59,44,30,20,1,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Causes #% increased Stun Buildup,74,58,44,30,20,5,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Grants # Life per Enemy Hit,40,30,20,8,,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Leeches #% of Physical Damage as Life,81,68,54,38,21,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Leeches #% of Physical Damage as Mana,81,68,54,38,21,,,,,,,,,One Hand Mace
+WAND,PREFIX,#% increased Chaos Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+WAND,PREFIX,#% increased Cold Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+WAND,PREFIX,#% increased Fire Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+WAND,PREFIX,#% increased Lightning Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+WAND,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Wand
+WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",80,60,46,38,23,11,2,,,,,,,Wand
+WAND,PREFIX,#% increased Spell Physical Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+WAND,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Wand
+WAND,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Wand
+WAND,SUFFIX,#% increased Flammability Magnitude,75,60,45,30,15,,,,,,,,,Wand
+WAND,SUFFIX,#% increased chance to Shock,75,60,45,30,15,,,,,,,,,Wand
+WAND,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Wand
+WAND,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Wand
+WAND,SUFFIX,#% increased Freeze Buildup,75,60,45,30,15,,,,,,,,,Wand
+WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Wand
+WAND,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Wand
+WAND,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Wand
+WAND,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Wand
+WAND,SUFFIX,# to Level of all Chaos Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Cold Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Fire Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Lightning Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Physical Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Wand
+WAND,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Wand
+WAND,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Wand
+FIRE WAND,PREFIX,#% increased Fire Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+FIRE WAND,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Wand
+FIRE WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",80,60,46,38,23,11,2,,,,,,,Wand
+FIRE WAND,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Flammability Magnitude,75,60,45,30,15,,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Wand
+FIRE WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Wand
+FIRE WAND,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Wand
+FIRE WAND,SUFFIX,# to Level of all Fire Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+FIRE WAND,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Wand
+FIRE WAND,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Wand
+FIRE WAND,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Wand
+ICE WAND,PREFIX,#% increased Cold Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+ICE WAND,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Wand
+ICE WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",80,60,46,38,23,11,2,,,,,,,Wand
+ICE WAND,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Freeze Buildup,75,60,45,30,15,,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Wand
+ICE WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Wand
+ICE WAND,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Wand
+ICE WAND,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Wand
+ICE WAND,SUFFIX,# to Level of all Cold Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+ICE WAND,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Wand
+ICE WAND,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Wand
+ICE WAND,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Wand
+LIGHTNING WAND,PREFIX,#% increased Lightning Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+LIGHTNING WAND,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Wand
+LIGHTNING WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",80,60,46,38,23,11,2,,,,,,,Wand
+LIGHTNING WAND,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased chance to Shock,75,60,45,30,15,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Level of all Lightning Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Wand
+LIGHTNING WAND,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Wand
+PHYSICAL WAND,PREFIX,#% increased Spell Physical Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+PHYSICAL WAND,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Wand
+PHYSICAL WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",80,60,46,38,23,11,2,,,,,,,Wand
+PHYSICAL WAND,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Level of all Physical Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Wand
+PHYSICAL WAND,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Wand
+CHAOS WAND,PREFIX,#% increased Chaos Damage,81,70,60,46,33,16,8,2,,,,,,Wand
+CHAOS WAND,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Wand
+CHAOS WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",80,60,46,38,23,11,2,,,,,,,Wand
+CHAOS WAND,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Wand
+CHAOS WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Level of all Chaos Spell Skills,81,55,36,18,2,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Wand
+CHAOS WAND,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Wand
+STAFF,PREFIX,#% increased Chaos Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+STAFF,PREFIX,#% increased Cold Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+STAFF,PREFIX,#% increased Fire Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+STAFF,PREFIX,#% increased Lightning Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+STAFF,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Staff
+STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",79,63,48,38,23,11,2,,,,,,,Staff
+STAFF,PREFIX,#% increased Spell Physical Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+STAFF,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Staff
+STAFF,SUFFIX,#% increased Flammability Magnitude,75,60,45,30,15,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased chance to Shock,75,60,45,30,15,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Freeze Buildup,75,60,45,30,15,,,,,,,,,Staff
+STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Staff
+STAFF,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Staff
+STAFF,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Chaos Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Cold Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Fire Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Lightning Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Physical Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Staff
+STAFF,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Staff
+STAFF,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Staff
+FIRE STAFF,PREFIX,#% increased Fire Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+FIRE STAFF,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Staff
+FIRE STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",79,63,48,38,23,11,2,,,,,,,Staff
+FIRE STAFF,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Flammability Magnitude,75,60,45,30,15,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Staff
+FIRE STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Level of all Fire Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Staff
+FIRE STAFF,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Staff
+ICE STAFF,PREFIX,#% increased Cold Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+ICE STAFF,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Staff
+ICE STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",79,63,48,38,23,11,2,,,,,,,Staff
+ICE STAFF,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Freeze Buildup,75,60,45,30,15,,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Staff
+ICE STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Staff
+ICE STAFF,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Staff
+ICE STAFF,SUFFIX,# to Level of all Cold Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+ICE STAFF,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Staff
+ICE STAFF,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Staff
+ICE STAFF,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Staff
+LIGHTNING STAFF,PREFIX,#% increased Lightning Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+LIGHTNING STAFF,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Staff
+LIGHTNING STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",79,63,48,38,23,11,2,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased chance to Shock,75,60,45,30,15,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Level of all Lightning Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Staff
+PHYSICAL STAFF,PREFIX,#% increased Spell Physical Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+PHYSICAL STAFF,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Staff
+PHYSICAL STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",79,63,48,38,23,11,2,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Level of all Physical Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Staff
+CHAOS STAFF,PREFIX,#% increased Chaos Damage,81,70,60,46,33,16,8,2,,,,,,Staff
+CHAOS STAFF,PREFIX,#% increased Spell Damage,80,70,60,46,33,16,8,1,,,,,,Staff
+CHAOS STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",79,63,48,38,23,11,2,,,,,,,Staff
+CHAOS STAFF,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,80,60,46,33,16,5,,,,,,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,80,60,46,33,16,5,,,,,,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,80,60,46,33,16,5,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Cast Speed,80,70,60,45,30,15,1,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,76,59,41,28,21,11,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,73,59,44,30,21,8,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Level of all Chaos Spell Skills,81,55,36,18,2,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Level of all Spell Skills,78,55,25,5,,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Staff
+CHAOS STAFF,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Staff
+FOCUS,PREFIX,#% increased Chaos Damage,60,46,33,16,8,2,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Cold Damage,60,46,33,16,8,2,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Energy Shield,65,60,54,46,33,16,2,,,,,,,Focus
+FOCUS,PREFIX,"#% increased Energy Shield, # to maximum Mana",78,60,46,33,16,8,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Fire Damage,60,46,33,16,8,2,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Lightning Damage,60,46,33,16,8,2,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Spell Damage,60,46,33,16,8,1,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Spell Physical Damage,60,46,33,16,8,2,,,,,,,,Focus
+FOCUS,PREFIX,# to maximum Energy Shield,70,65,60,54,46,33,25,16,8,1,,,,Focus
+FOCUS,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Focus
+FOCUS,SUFFIX,#% increased Cast Speed,70,60,45,30,15,1,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Critical Hit Chance for Spells,59,41,28,21,11,,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Critical Spell Damage Bonus,59,44,30,21,8,,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Energy Shield Recharge Rate,81,66,48,36,30,30,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Focus
+FOCUS,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Focus
+FOCUS,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Focus
+FOCUS,SUFFIX,# to Level of all Spell Skills,41,5,,,,,,,,,,,,Focus
+FOCUS,SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Focus
+FOCUS,SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Focus
+FOCUS,SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Focus
+FOCUS,SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Focus
+FOCUS,SUFFIX,#% faster start of Energy Shield Recharge,81,66,48,36,30,30,,,,,,,,Focus
+SCEPTRE,PREFIX,#% increased Spirit,82,75,60,46,33,16,8,1,,,,,,Sceptre
+SCEPTRE,PREFIX,"#% increased Spirit, # to maximum Mana",70,58,48,36,26,11,2,,,,,,,Sceptre
+SCEPTRE,PREFIX,# to maximum Mana,70,65,60,54,46,38,33,25,16,6,1,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Cold Damage,75,65,60,54,46,33,16,8,1,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Fire Damage,75,65,60,54,46,33,16,8,1,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Lightning Damage,75,65,60,54,46,33,16,8,1,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Physical Damage,75,65,60,54,46,33,16,8,1,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal #% increased Damage,82,70,60,46,33,16,8,1,,,,,,Sceptre
+SCEPTRE,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",30,15,8,,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% increased Presence Area of Effect,72,56,40,23,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Level of all Minion Skills,78,55,25,2,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Attack Speed,55,35,20,5,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Cast Speed,56,36,21,6,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Critical Damage Bonus,73,59,44,30,21,8,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Critical Hit Chance,76,59,41,28,21,11,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% to all Elemental Resistances,80,68,54,40,26,12,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence Regenerate # Life per second,75,68,58,47,35,26,17,11,5,1,,,,Sceptre
+SCEPTRE,SUFFIX,Minions have #% increased maximum Life,80,64,48,32,16,2,,,,,,,,Sceptre
+QUIVER,PREFIX,#% increased Damage with Bow Skills,81,60,46,33,16,1,,,,,,,,Quiver
+QUIVER,PREFIX,#% increased Projectile Speed,82,55,41,27,14,,,,,,,,,Quiver
+QUIVER,PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Cold damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Fire damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Lightning damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Physical Damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Quiver
+QUIVER,SUFFIX,#% chance to Pierce an Enemy,77,61,44,26,11,,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Attack Speed,60,37,22,1,,,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Critical Damage Bonus for Attack Damage,74,59,45,31,21,8,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Critical Hit Chance for Attacks,72,58,44,30,20,5,,,,,,,,Quiver
+QUIVER,SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Quiver
+QUIVER,SUFFIX,# to Level of all Projectile Skills,41,5,,,,,,,,,,,,Quiver
+QUIVER,SUFFIX,Gain # Life per Enemy Killed,55,44,33,22,11,1,,,,,,,,Quiver
+QUIVER,SUFFIX,Gain # Mana per Enemy Killed,56,45,34,23,12,1,,,,,,,,Quiver
+GLOVES (INT),PREFIX,#% increased Energy Shield,65,60,54,46,33,16,2,,,,,,,Gloves
+GLOVES (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Gloves
+GLOVES (INT),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Energy Shield,54,46,33,25,16,8,1,,,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Cold damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Fire damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Lightning damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Physical Damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Attack Speed,60,37,22,1,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Critical Damage Bonus,59,45,31,21,8,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Dexterity,81,74,66,55,44,33,22,11,1,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Level of all Melee Skills,41,5,,,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,40,30,20,8,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Gloves
+GLOVES (INT),SUFFIX,Leech #% of Physical Attack Damage as Life,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Gloves
+GLOVES (DEX),PREFIX,#% increased Evasion Rating,65,60,54,46,33,16,2,,,,,,,Gloves
+GLOVES (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",78,60,46,33,16,8,,,,,,,,Gloves
+GLOVES (DEX),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Gloves
+GLOVES (DEX),PREFIX,# to Evasion Rating,54,46,33,25,16,8,1,,,,,,,Gloves
+GLOVES (DEX),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Gloves
+GLOVES (DEX),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Cold damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Fire damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Lightning damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Physical Damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Attack Speed,60,37,22,1,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Critical Damage Bonus,59,45,31,21,8,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,# to Dexterity,81,74,66,55,44,33,22,11,1,,,,,Gloves
+GLOVES (DEX),SUFFIX,# to Level of all Melee Skills,41,5,,,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Life per Enemy Hit with Attacks,40,30,20,8,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Leech #% of Physical Attack Damage as Life,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Leech #% of Physical Attack Damage as Mana,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Gloves
+GLOVES (STR),PREFIX,#% increased Armour,65,60,54,46,35,16,2,,,,,,,Gloves
+GLOVES (STR),PREFIX,"#% increased Armour, # to maximum Life",78,60,46,33,16,8,,,,,,,,Gloves
+GLOVES (STR),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Gloves
+GLOVES (STR),PREFIX,# to Armour,54,46,33,25,16,8,1,,,,,,,Gloves
+GLOVES (STR),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Gloves
+GLOVES (STR),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Cold damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Fire damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Lightning damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Physical Damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Attack Speed,60,37,22,1,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Critical Damage Bonus,59,45,31,21,8,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Dexterity,81,74,66,55,44,33,22,11,1,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Level of all Melee Skills,41,5,,,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Life per Enemy Hit with Attacks,40,30,20,8,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Gloves
+GLOVES (STR),SUFFIX,Leech #% of Physical Attack Damage as Life,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,Leech #% of Physical Attack Damage as Mana,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,65,60,54,46,33,16,2,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",46,33,16,1,,,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Cold damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Fire damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Lightning damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Physical Damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Attack Speed,60,37,22,1,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Critical Damage Bonus,59,45,31,21,8,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Dexterity,81,74,66,55,44,33,22,11,1,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Level of all Melee Skills,41,5,,,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,40,30,20,8,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Leech #% of Physical Attack Damage as Life,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,#% increased Armour and Energy Shield,65,60,54,46,33,16,2,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",78,60,46,33,16,8,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Gloves
+GLOVES (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",46,33,16,1,,,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Cold damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Fire damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Lightning damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Physical Damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Attack Speed,60,37,22,1,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Critical Damage Bonus,59,45,31,21,8,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Dexterity,81,74,66,55,44,33,22,11,1,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Level of all Melee Skills,41,5,,,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,40,30,20,8,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Leech #% of Physical Attack Damage as Life,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,48,36,30,30,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,#% increased Armour and Evasion,65,60,54,46,33,16,2,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",78,60,46,33,16,8,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",46,33,16,1,,,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to maximum Mana,60,54,46,38,33,25,16,6,1,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Cold damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Fire damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Lightning damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Physical Damage to Attacks,75,65,60,54,46,33,16,8,1,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Attack Speed,60,37,22,1,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Critical Damage Bonus,59,45,31,21,8,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Dexterity,81,74,66,55,44,33,22,11,1,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Level of all Melee Skills,41,5,,,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Life per Enemy Hit with Attacks,40,30,20,8,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Leech #% of Physical Attack Damage as Life,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Leech #% of Physical Attack Damage as Mana,81,68,54,38,21,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,66,48,36,30,30,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,66,48,36,30,30,,,,,,,,,Gloves
+AMULET,PREFIX,#% increased Armour,75,65,54,46,33,16,2,,,,,,,Amulet
+AMULET,PREFIX,#% increased Evasion Rating,77,70,54,46,33,16,2,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Energy Shield,75,65,54,46,33,16,2,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Life,75,60,33,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Mana,75,60,33,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased Rarity of Items found,47,29,10,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased Spell Damage,75,60,46,33,16,1,,,,,,,,Amulet
+AMULET,PREFIX,# to Accuracy Rating,67,58,48,36,26,18,11,1,,,,,,Amulet
+AMULET,PREFIX,# to maximum Energy Shield,80,70,65,54,46,33,25,16,11,1,,,,Amulet
+AMULET,PREFIX,# to maximum Life,60,54,46,38,33,24,16,6,1,,,,,Amulet
+AMULET,PREFIX,# to maximum Mana,82,75,70,65,60,54,46,38,33,25,16,6,1,Amulet
+AMULET,PREFIX,# to Spirit,54,46,33,25,16,,,,,,,,,Amulet
+AMULET,SUFFIX,# Life Regeneration per second,75,68,58,47,35,26,17,11,5,1,,,,Amulet
+AMULET,SUFFIX,#% increased Cast Speed,60,45,30,15,1,,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Critical Damage Bonus,74,59,45,31,21,8,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Critical Hit Chance,72,58,44,30,20,5,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Mana Regeneration Rate,79,55,42,29,18,1,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Rarity of Items found,40,24,3,,,,,,,,,,,Amulet
+AMULET,SUFFIX,#% of Damage taken Recouped as Life,79,68,56,44,30,,,,,,,,,Amulet
+AMULET,SUFFIX,#% of Damage taken Recouped as Mana,80,69,57,45,31,,,,,,,,,Amulet
+AMULET,SUFFIX,# to all Attributes,82,75,66,55,44,33,22,11,1,,,,,Amulet
+AMULET,SUFFIX,# to Dexterity,74,66,55,44,33,22,11,1,,,,,,Amulet
+AMULET,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Melee Skills,75,41,5,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Minion Skills,75,41,5,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Projectile Skills,75,41,5,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Spell Skills,75,41,5,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Amulet
+AMULET,SUFFIX,#% to all Elemental Resistances,80,68,54,40,26,12,,,,,,,,Amulet
+AMULET,SUFFIX,#% to Chaos Resistance,81,68,56,44,30,16,,,,,,,,Amulet
+AMULET,SUFFIX,#% to Cold Resistance,82,71,60,50,38,26,14,1,,,,,,Amulet
+AMULET,SUFFIX,#% to Fire Resistance,82,71,60,48,36,24,12,1,,,,,,Amulet
+AMULET,SUFFIX,#% to Lightning Resistance,82,71,60,49,37,25,13,1,,,,,,Amulet
+TALISMAN,PREFIX,#% increased Elemental Damage with Attacks,81,60,46,33,16,4,,,,,,,,Talisman
+TALISMAN,PREFIX,#% increased Physical Damage,82,75,60,46,33,16,8,1,,,,,,Talisman
+TALISMAN,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",81,70,65,54,38,23,11,1,,,,,,Talisman
+TALISMAN,PREFIX,# to Accuracy Rating,76,67,58,48,36,26,18,11,1,,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Cold Damage,81,75,65,60,54,46,33,16,8,1,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Fire Damage,81,75,65,60,54,46,33,16,8,1,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Lightning Damage,81,75,65,60,54,46,33,16,8,1,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Physical Damage,75,65,60,54,46,33,16,8,1,,,,,Talisman
+TALISMAN,SUFFIX,#% increased Attack Speed,77,60,45,37,30,22,11,1,,,,,,Talisman
+TALISMAN,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",30,15,8,,,,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% increased Stun Duration,71,58,44,30,18,5,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% reduced Attribute Requirements,60,52,40,32,24,,,,,,,,,Talisman
+TALISMAN,SUFFIX,# to Level of all Melee Skills,81,55,36,18,2,,,,,,,,,Talisman
+TALISMAN,SUFFIX,# to Strength,74,66,55,44,33,22,11,1,,,,,,Talisman
+TALISMAN,SUFFIX,# to Intelligence,74,66,55,44,33,22,11,1,,,,,,Talisman
+TALISMAN,SUFFIX,#% to Critical Damage Bonus,73,59,44,30,21,8,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% to Critical Hit Chance,73,59,44,30,20,1,,,,,,,,Talisman
+TALISMAN,SUFFIX,Causes #% increased Stun Buildup,74,58,44,30,20,5,,,,,,,,Talisman
+TALISMAN,SUFFIX,Gain # Life per Enemy Killed,77,66,55,44,33,22,11,1,,,,,,Talisman
+TALISMAN,SUFFIX,Gain # Mana per Enemy Killed,78,67,56,45,34,23,12,1,,,,,,Talisman
+TALISMAN,SUFFIX,Grants # Life per Enemy Hit,40,30,20,8,,,,,,,,,,Talisman
+TALISMAN,SUFFIX,Leeches #% of Physical Damage as Life,81,68,54,38,21,,,,,,,,,Talisman
+TALISMAN,SUFFIX,Leeches #% of Physical Damage as Mana,81,68,54,38,21,,,,,,,,,Talisman

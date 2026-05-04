@@ -1,0 +1,3180 @@
+{
+  "BOOTS (INT)": {
+    "# to Intelligence": {
+      "8": "+(5—8) to Intelligence",
+      "7": "+(9—12) to Intelligence",
+      "6": "+(13—16) to Intelligence",
+      "5": "+(17—20) to Intelligence",
+      "4": "+(21—24) to Intelligence",
+      "3": "+(25—27) to Intelligence",
+      "2": "+(28—30) to Intelligence",
+      "1": "+(31—33) to Intelligence"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Life": {
+      "9": "+(10—19) to maximum Life",
+      "8": "+(20—29) to maximum Life",
+      "7": "+(30—39) to maximum Life",
+      "6": "+(40—59) to maximum Life",
+      "5": "+(60—69) to maximum Life",
+      "4": "+(70—84) to maximum Life",
+      "3": "+(85—99) to maximum Life",
+      "2": "+(100—119) to maximum Life",
+      "1": "+(120—149) to maximum Life"
+    },
+    "# to maximum Mana": {
+      "9": "+(10—14) to maximum Mana",
+      "8": "+(15—24) to maximum Mana",
+      "7": "+(25—34) to maximum Mana",
+      "6": "+(35—54) to maximum Mana",
+      "5": "+(55—64) to maximum Mana",
+      "4": "+(65—79) to maximum Mana",
+      "3": "+(80—89) to maximum Mana",
+      "2": "+(90—104) to maximum Mana",
+      "1": "+(105—124) to maximum Mana"
+    },
+    "# to maximum Energy Shield": {
+      "7": "+(10—17) to maximum Energy Shield",
+      "6": "+(18—24) to maximum Energy Shield",
+      "5": "+(25—30) to maximum Energy Shield",
+      "4": "+(31—35) to maximum Energy Shield",
+      "3": "+(36—41) to maximum Energy Shield",
+      "2": "+(42—47) to maximum Energy Shield",
+      "1": "+(48—60) to maximum Energy Shield"
+    },
+    "#% increased Energy Shield": {
+      "7": "(15—26)% increased Energy Shield",
+      "6": "(27—42)% increased Energy Shield",
+      "5": "(43—55)% increased Energy Shield",
+      "4": "(56—67)% increased Energy Shield",
+      "3": "(68—79)% increased Energy Shield",
+      "2": "(80—91)% increased Energy Shield",
+      "1": "(92—100)% increased Energy Shield"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "#% increased Movement Speed": {
+      "6": "10% increased Movement Speed",
+      "5": "15% increased Movement Speed",
+      "4": "20% increased Movement Speed",
+      "3": "25% increased Movement Speed",
+      "2": "30% increased Movement Speed",
+      "1": "35% increased Movement Speed"
+    },
+    "# Life Regeneration per second": {
+      "8": "(1—2) Life Regeneration per second",
+      "7": "(2.1—3) Life Regeneration per second",
+      "6": "(3.1—4) Life Regeneration per second",
+      "5": "(4.1—6) Life Regeneration per second",
+      "4": "(6.1—9) Life Regeneration per second",
+      "3": "(9.1—13) Life Regeneration per second",
+      "2": "(13.1—18) Life Regeneration per second",
+      "1": "(18.1—23) Life Regeneration per second"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "#% reduced Shock duration on you": {
+      "5": "(36—40)% reduced Shock duration on you",
+      "4": "(41—45)% reduced Shock duration on you",
+      "3": "(46—50)% reduced Shock duration on you",
+      "2": "(51—55)% reduced Shock duration on you",
+      "1": "(56—60)% reduced Shock duration on you"
+    },
+    "#% reduced Chill Duration on you": {
+      "5": "(36—40)% reduced Chill Duration on you",
+      "4": "(41—45)% reduced Chill Duration on you",
+      "3": "(46—50)% reduced Chill Duration on you",
+      "2": "(51—55)% reduced Chill Duration on you",
+      "1": "(56—60)% reduced Chill Duration on you"
+    },
+    "#% reduced Freeze Duration on you": {
+      "5": "(36—40)% reduced Freeze Duration on you",
+      "4": "(41—45)% reduced Freeze Duration on you",
+      "3": "(46—50)% reduced Freeze Duration on you",
+      "2": "(51—55)% reduced Freeze Duration on you",
+      "1": "(56—60)% reduced Freeze Duration on you"
+    }
+  },
+  "BOOTS (DEX)": {
+    "# to Dexterity": {
+      "8": "+(5—8) to Dexterity",
+      "7": "+(9—12) to Dexterity",
+      "6": "+(13—16) to Dexterity",
+      "5": "+(17—20) to Dexterity",
+      "4": "+(21—24) to Dexterity",
+      "3": "+(25—27) to Dexterity",
+      "2": "+(28—30) to Dexterity",
+      "1": "+(31—33) to Dexterity"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Life": {
+      "9": "+(10—19) to maximum Life",
+      "8": "+(20—29) to maximum Life",
+      "7": "+(30—39) to maximum Life",
+      "6": "+(40—59) to maximum Life",
+      "5": "+(60—69) to maximum Life",
+      "4": "+(70—84) to maximum Life",
+      "3": "+(85—99) to maximum Life",
+      "2": "+(100—119) to maximum Life",
+      "1": "+(120—149) to maximum Life"
+    },
+    "# to maximum Mana": {
+      "9": "+(10—14) to maximum Mana",
+      "8": "+(15—24) to maximum Mana",
+      "7": "+(25—34) to maximum Mana",
+      "6": "+(35—54) to maximum Mana",
+      "5": "+(55—64) to maximum Mana",
+      "4": "+(65—79) to maximum Mana",
+      "3": "+(80—89) to maximum Mana",
+      "2": "+(90—104) to maximum Mana",
+      "1": "+(105—124) to maximum Mana"
+    },
+    "# to Evasion Rating": {
+      "7": "+(11—18) to Evasion Rating",
+      "6": "+(19—39) to Evasion Rating",
+      "5": "+(40—56) to Evasion Rating",
+      "4": "+(57—70) to Evasion Rating",
+      "3": "+(71—88) to Evasion Rating",
+      "2": "+(89—107) to Evasion Rating",
+      "1": "+(108—142) to Evasion Rating"
+    },
+    "#% increased Evasion Rating": {
+      "7": "(15—26)% increased Evasion Rating",
+      "6": "(27—42)% increased Evasion Rating",
+      "5": "(43—55)% increased Evasion Rating",
+      "4": "(56—67)% increased Evasion Rating",
+      "3": "(68—79)% increased Evasion Rating",
+      "2": "(80—91)% increased Evasion Rating",
+      "1": "(92—100)% increased Evasion Rating"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "#% increased Movement Speed": {
+      "6": "10% increased Movement Speed",
+      "5": "15% increased Movement Speed",
+      "4": "20% increased Movement Speed",
+      "3": "25% increased Movement Speed",
+      "2": "30% increased Movement Speed",
+      "1": "35% increased Movement Speed"
+    },
+    "# Life Regeneration per second": {
+      "8": "(1—2) Life Regeneration per second",
+      "7": "(2.1—3) Life Regeneration per second",
+      "6": "(3.1—4) Life Regeneration per second",
+      "5": "(4.1—6) Life Regeneration per second",
+      "4": "(6.1—9) Life Regeneration per second",
+      "3": "(9.1—13) Life Regeneration per second",
+      "2": "(13.1—18) Life Regeneration per second",
+      "1": "(18.1—23) Life Regeneration per second"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "#% reduced Shock duration on you": {
+      "5": "(36—40)% reduced Shock duration on you",
+      "4": "(41—45)% reduced Shock duration on you",
+      "3": "(46—50)% reduced Shock duration on you",
+      "2": "(51—55)% reduced Shock duration on you",
+      "1": "(56—60)% reduced Shock duration on you"
+    },
+    "#% reduced Chill Duration on you": {
+      "5": "(36—40)% reduced Chill Duration on you",
+      "4": "(41—45)% reduced Chill Duration on you",
+      "3": "(46—50)% reduced Chill Duration on you",
+      "2": "(51—55)% reduced Chill Duration on you",
+      "1": "(56—60)% reduced Chill Duration on you"
+    },
+    "#% reduced Freeze Duration on you": {
+      "5": "(36—40)% reduced Freeze Duration on you",
+      "4": "(41—45)% reduced Freeze Duration on you",
+      "3": "(46—50)% reduced Freeze Duration on you",
+      "2": "(51—55)% reduced Freeze Duration on you",
+      "1": "(56—60)% reduced Freeze Duration on you"
+    },
+    "Gain Deflection Rating equal to #% of Evasion Rating": {
+      "5": "Gain Deflection Rating equal to (8—11)% of Evasion Rating",
+      "4": "Gain Deflection Rating equal to (12—14)% of Evasion Rating",
+      "3": "Gain Deflection Rating equal to (15—17)% of Evasion Rating",
+      "2": "Gain Deflection Rating equal to (18—20)% of Evasion Rating",
+      "1": "Gain Deflection Rating equal to (21—23)% of Evasion Rating"
+    }
+  },
+  "BOOTS (STR)": {
+    "# to Strength": {
+      "8": "+(5—8) to Strength",
+      "7": "+(9—12) to Strength",
+      "6": "+(13—16) to Strength",
+      "5": "+(17—20) to Strength",
+      "4": "+(21—24) to Strength",
+      "3": "+(25—27) to Strength",
+      "2": "+(28—30) to Strength",
+      "1": "+(31—33) to Strength"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Life": {
+      "9": "+(10—19) to maximum Life",
+      "8": "+(20—29) to maximum Life",
+      "7": "+(30—39) to maximum Life",
+      "6": "+(40—59) to maximum Life",
+      "5": "+(60—69) to maximum Life",
+      "4": "+(70—84) to maximum Life",
+      "3": "+(85—99) to maximum Life",
+      "2": "+(100—119) to maximum Life",
+      "1": "+(120—149) to maximum Life"
+    },
+    "# to maximum Mana": {
+      "9": "+(10—14) to maximum Mana",
+      "8": "+(15—24) to maximum Mana",
+      "7": "+(25—34) to maximum Mana",
+      "6": "+(35—54) to maximum Mana",
+      "5": "+(55—64) to maximum Mana",
+      "4": "+(65—79) to maximum Mana",
+      "3": "+(80—89) to maximum Mana",
+      "2": "+(90—104) to maximum Mana",
+      "1": "+(105—124) to maximum Mana"
+    },
+    "# to Armour": {
+      "7": "+(16—27) to Armour",
+      "6": "+(28—50) to Armour",
+      "5": "+(51—68) to Armour",
+      "4": "+(69—82) to Armour",
+      "3": "+(83—102) to Armour",
+      "2": "+(103—122) to Armour",
+      "1": "+(123—160) to Armour"
+    },
+    "#% increased Armour": {
+      "7": "(15—26)% increased Armour",
+      "6": "(27—42)% increased Armour",
+      "5": "(43—55)% increased Armour",
+      "4": "(56—67)% increased Armour",
+      "3": "(68—79)% increased Armour",
+      "2": "(80—91)% increased Armour",
+      "1": "(92—100)% increased Armour"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "#% increased Movement Speed": {
+      "6": "10% increased Movement Speed",
+      "5": "15% increased Movement Speed",
+      "4": "20% increased Movement Speed",
+      "3": "25% increased Movement Speed",
+      "2": "30% increased Movement Speed",
+      "1": "35% increased Movement Speed"
+    },
+    "# Life Regeneration per second": {
+      "8": "(1—2) Life Regeneration per second",
+      "7": "(2.1—3) Life Regeneration per second",
+      "6": "(3.1—4) Life Regeneration per second",
+      "5": "(4.1—6) Life Regeneration per second",
+      "4": "(6.1—9) Life Regeneration per second",
+      "3": "(9.1—13) Life Regeneration per second",
+      "2": "(13.1—18) Life Regeneration per second",
+      "1": "(18.1—23) Life Regeneration per second"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "#% reduced Shock duration on you": {
+      "5": "(36—40)% reduced Shock duration on you",
+      "4": "(41—45)% reduced Shock duration on you",
+      "3": "(46—50)% reduced Shock duration on you",
+      "2": "(51—55)% reduced Shock duration on you",
+      "1": "(56—60)% reduced Shock duration on you"
+    },
+    "#% reduced Chill Duration on you": {
+      "5": "(36—40)% reduced Chill Duration on you",
+      "4": "(41—45)% reduced Chill Duration on you",
+      "3": "(46—50)% reduced Chill Duration on you",
+      "2": "(51—55)% reduced Chill Duration on you",
+      "1": "(56—60)% reduced Chill Duration on you"
+    },
+    "#% reduced Freeze Duration on you": {
+      "5": "(36—40)% reduced Freeze Duration on you",
+      "4": "(41—45)% reduced Freeze Duration on you",
+      "3": "(46—50)% reduced Freeze Duration on you",
+      "2": "(51—55)% reduced Freeze Duration on you",
+      "1": "(56—60)% reduced Freeze Duration on you"
+    },
+    "#% of Armour also applies to Elemental Damage": {
+      "5": "+(14—19)% of Armour also applies to Elemental Damage",
+      "4": "+(20—25)% of Armour also applies to Elemental Damage",
+      "3": "+(26—31)% of Armour also applies to Elemental Damage",
+      "2": "+(32—37)% of Armour also applies to Elemental Damage",
+      "1": "+(38—43)% of Armour also applies to Elemental Damage"
+    }
+  },
+  "HELMET (INT)": {
+    "# to Intelligence": {
+      "9": "+(5—8) to Intelligence",
+      "8": "+(9—12) to Intelligence",
+      "7": "+(13—16) to Intelligence",
+      "6": "+(17—20) to Intelligence",
+      "5": "+(21—24) to Intelligence",
+      "4": "+(25—27) to Intelligence",
+      "3": "+(28—30) to Intelligence",
+      "2": "+(31—33) to Intelligence",
+      "1": "+(34—36) to Intelligence"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Energy Shield": {
+      "8": "+(10—17) to maximum Energy Shield",
+      "7": "+(18—24) to maximum Energy Shield",
+      "6": "+(25—30) to maximum Energy Shield",
+      "5": "+(31—35) to maximum Energy Shield",
+      "4": "+(36—41) to maximum Energy Shield",
+      "3": "+(42—47) to maximum Energy Shield",
+      "2": "+(48—60) to maximum Energy Shield",
+      "1": "+(61—73) to maximum Energy Shield"
+    },
+    "#% increased Energy Shield": {
+      "7": "(15—26)% increased Energy Shield",
+      "6": "(27—42)% increased Energy Shield",
+      "5": "(43—55)% increased Energy Shield",
+      "4": "(56—67)% increased Energy Shield",
+      "3": "(68—79)% increased Energy Shield",
+      "2": "(80—91)% increased Energy Shield",
+      "1": "(92—100)% increased Energy Shield"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "# to Level of all Minion Skills": {
+      "2": "+1 to Level of all Minion Skills",
+      "1": "+2 to Level of all Minion Skills"
+    },
+    "# Life Regeneration per second": {
+      "8": "(1—2) Life Regeneration per second",
+      "7": "(2.1—3) Life Regeneration per second",
+      "6": "(3.1—4) Life Regeneration per second",
+      "5": "(4.1—6) Life Regeneration per second",
+      "4": "(6.1—9) Life Regeneration per second",
+      "3": "(9.1—13) Life Regeneration per second",
+      "2": "(13.1—18) Life Regeneration per second",
+      "1": "(18.1—23) Life Regeneration per second"
+    },
+    "# to Accuracy Rating": {
+      "9": "+(11—32) to Accuracy Rating",
+      "8": "+(33—60) to Accuracy Rating",
+      "7": "+(61—84) to Accuracy Rating",
+      "6": "+(85—123) to Accuracy Rating",
+      "5": "+(124—167) to Accuracy Rating",
+      "4": "+(168—236) to Accuracy Rating",
+      "3": "+(237—346) to Accuracy Rating",
+      "2": "+(347—450) to Accuracy Rating",
+      "1": "+(451—550) to Accuracy Rating"
+    },
+    "#% increased Critical Hit Chance": {
+      "5": "(10—14)% increased Critical Hit Chance",
+      "4": "(15—19)% increased Critical Hit Chance",
+      "3": "(20—24)% increased Critical Hit Chance",
+      "2": "(25—29)% increased Critical Hit Chance",
+      "1": "(30—34)% increased Critical Hit Chance"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    }
+  },
+  "HELMET (DEX)": {
+    "# to Dexterity": {
+      "8": "+(5—8) to Dexterity",
+      "7": "+(9—12) to Dexterity",
+      "6": "+(13—16) to Dexterity",
+      "5": "+(17—20) to Dexterity",
+      "4": "+(21—24) to Dexterity",
+      "3": "+(25—27) to Dexterity",
+      "2": "+(28—30) to Dexterity",
+      "1": "+(31—33) to Dexterity"
+    },
+    "# to Intelligence": {
+      "9": "+(5—8) to Intelligence",
+      "8": "+(9—12) to Intelligence",
+      "7": "+(13—16) to Intelligence",
+      "6": "+(17—20) to Intelligence",
+      "5": "+(21—24) to Intelligence",
+      "4": "+(25—27) to Intelligence",
+      "3": "+(28—30) to Intelligence",
+      "2": "+(31—33) to Intelligence",
+      "1": "+(34—36) to Intelligence"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to Evasion Rating": {
+      "8": "+(11—18) to Evasion Rating",
+      "7": "+(19—39) to Evasion Rating",
+      "6": "+(40—56) to Evasion Rating",
+      "5": "+(57—70) to Evasion Rating",
+      "4": "+(71—88) to Evasion Rating",
+      "3": "+(89—107) to Evasion Rating",
+      "2": "+(108—142) to Evasion Rating",
+      "1": "+(143—181) to Evasion Rating"
+    },
+    "#% increased Evasion Rating": {
+      "7": "(15—26)% increased Evasion Rating",
+      "6": "(27—42)% increased Evasion Rating",
+      "5": "(43—55)% increased Evasion Rating",
+      "4": "(56—67)% increased Evasion Rating",
+      "3": "(68—79)% increased Evasion Rating",
+      "2": "(80—91)% increased Evasion Rating",
+      "1": "(92—100)% increased Evasion Rating"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "# to Level of all Minion Skills": {
+      "2": "+1 to Level of all Minion Skills",
+      "1": "+2 to Level of all Minion Skills"
+    },
+    "# Life Regeneration per second": {
+      "8": "(1—2) Life Regeneration per second",
+      "7": "(2.1—3) Life Regeneration per second",
+      "6": "(3.1—4) Life Regeneration per second",
+      "5": "(4.1—6) Life Regeneration per second",
+      "4": "(6.1—9) Life Regeneration per second",
+      "3": "(9.1—13) Life Regeneration per second",
+      "2": "(13.1—18) Life Regeneration per second",
+      "1": "(18.1—23) Life Regeneration per second"
+    },
+    "# to Accuracy Rating": {
+      "9": "+(11—32) to Accuracy Rating",
+      "8": "+(33—60) to Accuracy Rating",
+      "7": "+(61—84) to Accuracy Rating",
+      "6": "+(85—123) to Accuracy Rating",
+      "5": "+(124—167) to Accuracy Rating",
+      "4": "+(168—236) to Accuracy Rating",
+      "3": "+(237—346) to Accuracy Rating",
+      "2": "+(347—450) to Accuracy Rating",
+      "1": "+(451—550) to Accuracy Rating"
+    },
+    "#% increased Critical Hit Chance": {
+      "5": "(10—14)% increased Critical Hit Chance",
+      "4": "(15—19)% increased Critical Hit Chance",
+      "3": "(20—24)% increased Critical Hit Chance",
+      "2": "(25—29)% increased Critical Hit Chance",
+      "1": "(30—34)% increased Critical Hit Chance"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "Gain Deflection Rating equal to #% of Evasion Rating": {
+      "5": "Gain Deflection Rating equal to (8—11)% of Evasion Rating",
+      "4": "Gain Deflection Rating equal to (12—14)% of Evasion Rating",
+      "3": "Gain Deflection Rating equal to (15—17)% of Evasion Rating",
+      "2": "Gain Deflection Rating equal to (18—20)% of Evasion Rating",
+      "1": "Gain Deflection Rating equal to (21—23)% of Evasion Rating"
+    }
+  },
+  "HELMET (STR)": {
+    "# to Strength": {
+      "8": "+(5—8) to Strength",
+      "7": "+(9—12) to Strength",
+      "6": "+(13—16) to Strength",
+      "5": "+(17—20) to Strength",
+      "4": "+(21—24) to Strength",
+      "3": "+(25—27) to Strength",
+      "2": "+(28—30) to Strength",
+      "1": "+(31—33) to Strength"
+    },
+    "# to Intelligence": {
+      "9": "+(5—8) to Intelligence",
+      "8": "+(9—12) to Intelligence",
+      "7": "+(13—16) to Intelligence",
+      "6": "+(17—20) to Intelligence",
+      "5": "+(21—24) to Intelligence",
+      "4": "+(25—27) to Intelligence",
+      "3": "+(28—30) to Intelligence",
+      "2": "+(31—33) to Intelligence",
+      "1": "+(34—36) to Intelligence"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to Armour": {
+      "8": "+(16—27) to Armour",
+      "7": "+(28—50) to Armour",
+      "6": "+(51—68) to Armour",
+      "5": "+(69—82) to Armour",
+      "4": "+(83—102) to Armour",
+      "3": "+(103—122) to Armour",
+      "2": "+(123—160) to Armour",
+      "1": "+(161—202) to Armour"
+    },
+    "#% increased Armour": {
+      "7": "(15—26)% increased Armour",
+      "6": "(27—42)% increased Armour",
+      "5": "(43—55)% increased Armour",
+      "4": "(56—67)% increased Armour",
+      "3": "(68—79)% increased Armour",
+      "2": "(80—91)% increased Armour",
+      "1": "(92—100)% increased Armour"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "# to Level of all Minion Skills": {
+      "2": "+1 to Level of all Minion Skills",
+      "1": "+2 to Level of all Minion Skills"
+    },
+    "# Life Regeneration per second": {
+      "8": "(1—2) Life Regeneration per second",
+      "7": "(2.1—3) Life Regeneration per second",
+      "6": "(3.1—4) Life Regeneration per second",
+      "5": "(4.1—6) Life Regeneration per second",
+      "4": "(6.1—9) Life Regeneration per second",
+      "3": "(9.1—13) Life Regeneration per second",
+      "2": "(13.1—18) Life Regeneration per second",
+      "1": "(18.1—23) Life Regeneration per second"
+    },
+    "# to Accuracy Rating": {
+      "9": "+(11—32) to Accuracy Rating",
+      "8": "+(33—60) to Accuracy Rating",
+      "7": "+(61—84) to Accuracy Rating",
+      "6": "+(85—123) to Accuracy Rating",
+      "5": "+(124—167) to Accuracy Rating",
+      "4": "+(168—236) to Accuracy Rating",
+      "3": "+(237—346) to Accuracy Rating",
+      "2": "+(347—450) to Accuracy Rating",
+      "1": "+(451—550) to Accuracy Rating"
+    },
+    "#% increased Critical Hit Chance": {
+      "5": "(10—14)% increased Critical Hit Chance",
+      "4": "(15—19)% increased Critical Hit Chance",
+      "3": "(20—24)% increased Critical Hit Chance",
+      "2": "(25—29)% increased Critical Hit Chance",
+      "1": "(30—34)% increased Critical Hit Chance"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "#% of Armour also applies to Elemental Damage": {
+      "5": "+(14—19)% of Armour also applies to Elemental Damage",
+      "4": "+(20—25)% of Armour also applies to Elemental Damage",
+      "3": "+(26—31)% of Armour also applies to Elemental Damage",
+      "2": "+(32—37)% of Armour also applies to Elemental Damage",
+      "1": "+(38—43)% of Armour also applies to Elemental Damage"
+    }
+  },
+  "SHIELD (STR)": {
+    "# to Strength": {
+      "8": "+(5—8) to Strength",
+      "7": "+(9—12) to Strength",
+      "6": "+(13—16) to Strength",
+      "5": "+(17—20) to Strength",
+      "4": "+(21—24) to Strength",
+      "3": "+(25—27) to Strength",
+      "2": "+(28—30) to Strength",
+      "1": "+(31—33) to Strength"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Life": {
+      "11": "+(10—19) to maximum Life",
+      "10": "+(20—29) to maximum Life",
+      "9": "+(30—39) to maximum Life",
+      "8": "+(40—59) to maximum Life",
+      "7": "+(60—69) to maximum Life",
+      "6": "+(70—84) to maximum Life",
+      "5": "+(85—99) to maximum Life",
+      "4": "+(100—119) to maximum Life",
+      "3": "+(120—149) to maximum Life",
+      "2": "+(150—174) to maximum Life",
+      "1": "+(175—189) to maximum Life"
+    },
+    "# to Armour": {
+      "10": "+(16—27) to Armour",
+      "9": "+(28—50) to Armour",
+      "8": "+(51—68) to Armour",
+      "7": "+(69—82) to Armour",
+      "6": "+(83—102) to Armour",
+      "5": "+(103—122) to Armour",
+      "4": "+(123—160) to Armour",
+      "3": "+(161—202) to Armour",
+      "2": "+(203—225) to Armour",
+      "1": "+(226—256) to Armour"
+    },
+    "#% increased Armour": {
+      "8": "(15—26)% increased Armour",
+      "7": "(27—42)% increased Armour",
+      "6": "(43—55)% increased Armour",
+      "5": "(56—67)% increased Armour",
+      "4": "(68—79)% increased Armour",
+      "3": "(80—91)% increased Armour",
+      "2": "(92—100)% increased Armour",
+      "1": "(101—110)% increased Armour"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "# to # Physical Thorns damage": {
+      "7": "(1—2) to (3—4) Physical Thorns damage",
+      "6": "(5—7) to (7—10) Physical Thorns damage",
+      "5": "(11—16) to (15—23) Physical Thorns damage",
+      "4": "(24—35) to (35—53) Physical Thorns damage",
+      "3": "(40—60) to (61—92) Physical Thorns damage",
+      "2": "(64—97) to (97—145) Physical Thorns damage",
+      "1": "(101—151) to (146—220) Physical Thorns damage"
+    },
+    "#% increased Block chance": {
+      "3": "(15—19)% increased Block chance",
+      "2": "(20—24)% increased Block chance",
+      "1": "(25—30)% increased Block chance"
+    },
+    "#% additional Physical Damage Reduction": {
+      "5": "4% additional Physical Damage Reduction",
+      "4": "5% additional Physical Damage Reduction",
+      "3": "6% additional Physical Damage Reduction",
+      "2": "7% additional Physical Damage Reduction",
+      "1": "8% additional Physical Damage Reduction"
+    },
+    "#% to Maximum Fire Resistance": {
+      "3": "+1% to Maximum Fire Resistance",
+      "2": "+2% to Maximum Fire Resistance",
+      "1": "+3% to Maximum Fire Resistance"
+    },
+    "#% to Maximum Cold Resistance": {
+      "3": "+1% to Maximum Cold Resistance",
+      "2": "+2% to Maximum Cold Resistance",
+      "1": "+3% to Maximum Cold Resistance"
+    },
+    "#% to Maximum Lightning Resistance": {
+      "3": "+1% to Maximum Lightning Resistance",
+      "2": "+2% to Maximum Lightning Resistance",
+      "1": "+3% to Maximum Lightning Resistance"
+    },
+    "#% to Maximum Chaos Resistance": {
+      "3": "+1% to Maximum Chaos Resistance",
+      "2": "+2% to Maximum Chaos Resistance",
+      "1": "+3% to Maximum Chaos Resistance"
+    },
+    "#% to all Maximum Elemental Resistances": {
+      "2": "+1% to all Maximum Elemental Resistances",
+      "1": "+2% to all Maximum Elemental Resistances"
+    },
+    "#% of Armour also applies to Elemental Damage": {
+      "6": "+(14—19)% of Armour also applies to Elemental Damage",
+      "5": "+(20—25)% of Armour also applies to Elemental Damage",
+      "4": "+(26—31)% of Armour also applies to Elemental Damage",
+      "3": "+(32—37)% of Armour also applies to Elemental Damage",
+      "2": "+(38—43)% of Armour also applies to Elemental Damage",
+      "1": "+(44—50)% of Armour also applies to Elemental Damage"
+    }
+  },
+  "BELT": {
+    "# to Strength": {
+      "9": "+(5—8) to Strength",
+      "8": "+(9—12) to Strength",
+      "7": "+(13—16) to Strength",
+      "6": "+(17—20) to Strength",
+      "5": "+(21—24) to Strength",
+      "4": "+(25—27) to Strength",
+      "3": "+(28—30) to Strength",
+      "2": "+(31—33) to Strength",
+      "1": "+(34—36) to Strength"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Life": {
+      "10": "+(10—19) to maximum Life",
+      "9": "+(20—29) to maximum Life",
+      "8": "+(30—39) to maximum Life",
+      "7": "+(40—59) to maximum Life",
+      "6": "+(60—69) to maximum Life",
+      "5": "+(70—84) to maximum Life",
+      "4": "+(85—99) to maximum Life",
+      "3": "+(100—119) to maximum Life",
+      "2": "+(120—149) to maximum Life",
+      "1": "+(150—174) to maximum Life"
+    },
+    "# to maximum Mana": {
+      "9": "+(10—14) to maximum Mana",
+      "8": "+(15—24) to maximum Mana",
+      "7": "+(25—34) to maximum Mana",
+      "6": "+(35—54) to maximum Mana",
+      "5": "+(55—64) to maximum Mana",
+      "4": "+(65—79) to maximum Mana",
+      "3": "+(80—89) to maximum Mana",
+      "2": "+(90—104) to maximum Mana",
+      "1": "+(105—124) to maximum Mana"
+    },
+    "# to Armour": {
+      "10": "+(12—22) to Armour",
+      "9": "+(23—42) to Armour",
+      "8": "+(43—54) to Armour",
+      "7": "+(55—81) to Armour",
+      "6": "+(82—106) to Armour",
+      "5": "+(107—138) to Armour",
+      "4": "+(139—168) to Armour",
+      "3": "+(169—195) to Armour",
+      "2": "+(196—224) to Armour",
+      "1": "+(225—255) to Armour"
+    },
+    "# to Stun Threshold": {
+      "10": "+(6—11) to Stun Threshold",
+      "9": "+(12—29) to Stun Threshold",
+      "8": "+(30—49) to Stun Threshold",
+      "7": "+(50—72) to Stun Threshold",
+      "6": "+(73—97) to Stun Threshold",
+      "5": "+(98—124) to Stun Threshold",
+      "4": "+(125—163) to Stun Threshold",
+      "3": "+(164—206) to Stun Threshold",
+      "2": "+(207—253) to Stun Threshold",
+      "1": "+(254—304) to Stun Threshold"
+    },
+    "# to # Physical Thorns damage": {
+      "7": "(1—2) to (3—4) Physical Thorns damage",
+      "6": "(5—7) to (7—10) Physical Thorns damage",
+      "5": "(11—16) to (15—23) Physical Thorns damage",
+      "4": "(24—35) to (35—53) Physical Thorns damage",
+      "3": "(40—60) to (61—92) Physical Thorns damage",
+      "2": "(64—97) to (97—145) Physical Thorns damage",
+      "1": "(101—151) to (146—220) Physical Thorns damage"
+    },
+    "# Life Regeneration per second": {
+      "9": "(1—2) Life Regeneration per second",
+      "8": "(2.1—3) Life Regeneration per second",
+      "7": "(3.1—4) Life Regeneration per second",
+      "6": "(4.1—6) Life Regeneration per second",
+      "5": "(6.1—9) Life Regeneration per second",
+      "4": "(9.1—13) Life Regeneration per second",
+      "3": "(13.1—18) Life Regeneration per second",
+      "2": "(18.1—23) Life Regeneration per second",
+      "1": "(23.1—29) Life Regeneration per second"
+    },
+    "#% increased Flask Life Recovery rate": {
+      "6": "(5—10)% increased Flask Life Recovery rate",
+      "5": "(11—16)% increased Flask Life Recovery rate",
+      "4": "(17—22)% increased Flask Life Recovery rate",
+      "3": "(23—28)% increased Flask Life Recovery rate",
+      "2": "(29—34)% increased Flask Life Recovery rate",
+      "1": "(35—40)% increased Flask Life Recovery rate"
+    },
+    "#% increased Flask Mana Recovery rate": {
+      "6": "(5—10)% increased Flask Mana Recovery rate",
+      "5": "(11—16)% increased Flask Mana Recovery rate",
+      "4": "(17—22)% increased Flask Mana Recovery rate",
+      "3": "(23—28)% increased Flask Mana Recovery rate",
+      "2": "(29—34)% increased Flask Mana Recovery rate",
+      "1": "(35—40)% increased Flask Mana Recovery rate"
+    },
+    "#% increased Charm Effect Duration": {
+      "5": "(4—9)% increased Charm Effect Duration",
+      "4": "(10—15)% increased Charm Effect Duration",
+      "3": "(16—21)% increased Charm Effect Duration",
+      "2": "(22—27)% increased Charm Effect Duration",
+      "1": "(28—33)% increased Charm Effect Duration"
+    },
+    "#% increased Flask Charges gained": {
+      "6": "(5—10)% increased Flask Charges gained",
+      "5": "(11—16)% increased Flask Charges gained",
+      "4": "(17—22)% increased Flask Charges gained",
+      "3": "(23—28)% increased Flask Charges gained",
+      "2": "(29—34)% increased Flask Charges gained",
+      "1": "(35—40)% increased Flask Charges gained"
+    },
+    "#% reduced Flask Charges used": {
+      "6": "(8—10)% reduced Flask Charges used",
+      "5": "(11—13)% reduced Flask Charges used",
+      "4": "(14—16)% reduced Flask Charges used",
+      "3": "(17—19)% reduced Flask Charges used",
+      "2": "(20—22)% reduced Flask Charges used",
+      "1": "(23—25)% reduced Flask Charges used"
+    },
+    "#% increased Charm Charges gained": {
+      "6": "(5—10)% increased Charm Charges gained",
+      "5": "(11—16)% increased Charm Charges gained",
+      "4": "(17—22)% increased Charm Charges gained",
+      "3": "(23—28)% increased Charm Charges gained",
+      "2": "(29—34)% increased Charm Charges gained",
+      "1": "(35—40)% increased Charm Charges gained"
+    },
+    "#% reduced Charm Charges used": {
+      "6": "(8—10)% reduced Charm Charges used",
+      "5": "(11—13)% reduced Charm Charges used",
+      "4": "(14—16)% reduced Charm Charges used",
+      "3": "(17—19)% reduced Charm Charges used",
+      "2": "(20—22)% reduced Charm Charges used",
+      "1": "(23—25)% reduced Charm Charges used"
+    }
+  },
+  "RING": {
+    "# to Strength": {
+      "8": "+(5—8) to Strength",
+      "7": "+(9—12) to Strength",
+      "6": "+(13—16) to Strength",
+      "5": "+(17—20) to Strength",
+      "4": "+(21—24) to Strength",
+      "3": "+(25—27) to Strength",
+      "2": "+(28—30) to Strength",
+      "1": "+(31—33) to Strength"
+    },
+    "# to Dexterity": {
+      "8": "+(5—8) to Dexterity",
+      "7": "+(9—12) to Dexterity",
+      "6": "+(13—16) to Dexterity",
+      "5": "+(17—20) to Dexterity",
+      "4": "+(21—24) to Dexterity",
+      "3": "+(25—27) to Dexterity",
+      "2": "+(28—30) to Dexterity",
+      "1": "+(31—33) to Dexterity"
+    },
+    "# to Intelligence": {
+      "8": "+(5—8) to Intelligence",
+      "7": "+(9—12) to Intelligence",
+      "6": "+(13—16) to Intelligence",
+      "5": "+(17—20) to Intelligence",
+      "4": "+(21—24) to Intelligence",
+      "3": "+(25—27) to Intelligence",
+      "2": "+(28—30) to Intelligence",
+      "1": "+(31—33) to Intelligence"
+    },
+    "# to all Attributes": {
+      "4": "+(2—4) to all Attributes",
+      "3": "+(5—7) to all Attributes",
+      "2": "+(8—10) to all Attributes",
+      "1": "+(11—13) to all Attributes"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to all Elemental Resistances": {
+      "5": "+(3—5)% to all Elemental Resistances",
+      "4": "+(6—8)% to all Elemental Resistances",
+      "3": "+(9—11)% to all Elemental Resistances",
+      "2": "+(12—14)% to all Elemental Resistances",
+      "1": "+(15—16)% to all Elemental Resistances"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Life": {
+      "8": "+(10—19) to maximum Life",
+      "7": "+(20—29) to maximum Life",
+      "6": "+(30—39) to maximum Life",
+      "5": "+(40—59) to maximum Life",
+      "4": "+(60—69) to maximum Life",
+      "3": "+(70—84) to maximum Life",
+      "2": "+(85—99) to maximum Life",
+      "1": "+(100—119) to maximum Life"
+    },
+    "# to maximum Mana": {
+      "12": "+(10—14) to maximum Mana",
+      "11": "+(15—24) to maximum Mana",
+      "10": "+(25—34) to maximum Mana",
+      "9": "+(35—54) to maximum Mana",
+      "8": "+(55—64) to maximum Mana",
+      "7": "+(65—79) to maximum Mana",
+      "6": "+(80—89) to maximum Mana",
+      "5": "+(90—104) to maximum Mana",
+      "4": "+(105—124) to maximum Mana",
+      "3": "+(125—149) to maximum Mana",
+      "2": "+(150—164) to maximum Mana",
+      "1": "+(165—179) to maximum Mana"
+    },
+    "# to Evasion Rating": {
+      "9": "+(8—15) to Evasion Rating",
+      "8": "+(16—33) to Evasion Rating",
+      "7": "+(34—44) to Evasion Rating",
+      "6": "+(45—69) to Evasion Rating",
+      "5": "+(70—93) to Evasion Rating",
+      "4": "+(94—123) to Evasion Rating",
+      "3": "+(124—151) to Evasion Rating",
+      "2": "+(152—176) to Evasion Rating",
+      "1": "+(177—203) to Evasion Rating"
+    },
+    "Adds # to # Physical Damage to Attacks": {
+      "9": "Adds (1—2) to 3 Physical Damage to Attacks",
+      "8": "Adds (2—3) to (4—6) Physical Damage to Attacks",
+      "7": "Adds (2—4) to (5—8) Physical Damage to Attacks",
+      "6": "Adds (4—6) to (8—11) Physical Damage to Attacks",
+      "5": "Adds (5—7) to (9—13) Physical Damage to Attacks",
+      "4": "Adds (6—10) to (12—17) Physical Damage to Attacks",
+      "3": "Adds (7—11) to (14—20) Physical Damage to Attacks",
+      "2": "Adds (10—15) to (18—26) Physical Damage to Attacks",
+      "1": "Adds (12—19) to (22—32) Physical Damage to Attacks"
+    },
+    "Adds # to # Fire damage to Attacks": {
+      "9": "Adds (1—2) to 3 Fire damage to Attacks",
+      "8": "Adds (3—5) to (6—9) Fire damage to Attacks",
+      "7": "Adds (6—8) to (10—13) Fire damage to Attacks",
+      "6": "Adds (9—11) to (14—17) Fire damage to Attacks",
+      "5": "Adds (12—13) to (18—20) Fire damage to Attacks",
+      "4": "Adds (11—16) to (21—26) Fire damage to Attacks",
+      "3": "Adds (13—19) to (27—32) Fire damage to Attacks",
+      "2": "Adds (20—24) to (33—36) Fire damage to Attacks",
+      "1": "Adds (25—29) to (37—45) Fire damage to Attacks"
+    },
+    "Adds # to # Cold damage to Attacks": {
+      "9": "Adds 1 to (2—3) Cold damage to Attacks",
+      "8": "Adds (3—4) to (5—8) Cold damage to Attacks",
+      "7": "Adds (5—6) to (9—11) Cold damage to Attacks",
+      "6": "Adds (7—8) to (12—14) Cold damage to Attacks",
+      "5": "Adds (9—10) to (15—17) Cold damage to Attacks",
+      "4": "Adds (11—13) to (18—21) Cold damage to Attacks",
+      "3": "Adds (14—15) to (22—24) Cold damage to Attacks",
+      "2": "Adds (16—20) to (25—31) Cold damage to Attacks",
+      "1": "Adds (21—24) to (32—37) Cold damage to Attacks"
+    },
+    "Adds # to # Lightning damage to Attacks": {
+      "9": "Adds 1 to (4—6) Lightning damage to Attacks",
+      "8": "Adds 1 to (10—15) Lightning damage to Attacks",
+      "7": "Adds 1 to (16—22) Lightning damage to Attacks",
+      "6": "Adds 1 to (23—27) Lightning damage to Attacks",
+      "5": "Adds 1 to (28—32) Lightning damage to Attacks",
+      "4": "Adds (1—2) to (33—40) Lightning damage to Attacks",
+      "3": "Adds (1—2) to (41—47) Lightning damage to Attacks",
+      "2": "Adds (1—3) to (48—59) Lightning damage to Attacks",
+      "1": "Adds (1—4) to (60—71) Lightning damage to Attacks"
+    },
+    "# Life Regeneration per second": {
+      "7": "(1—2) Life Regeneration per second",
+      "6": "(2.1—3) Life Regeneration per second",
+      "5": "(3.1—4) Life Regeneration per second",
+      "4": "(4.1—6) Life Regeneration per second",
+      "3": "(6.1—9) Life Regeneration per second",
+      "2": "(9.1—13) Life Regeneration per second",
+      "1": "(13.1—18) Life Regeneration per second"
+    },
+    "Leech #% of Physical Attack Damage as Life": {
+      "3": "Leech (5—5.9)% of Physical Attack Damage as Life",
+      "2": "Leech (6—6.9)% of Physical Attack Damage as Life",
+      "1": "Leech (7—7.9)% of Physical Attack Damage as Life"
+    },
+    "Leech #% of Physical Attack Damage as Mana": {
+      "3": "Leech (4—4.9)% of Physical Attack Damage as Mana",
+      "2": "Leech (5—5.9)% of Physical Attack Damage as Mana",
+      "1": "Leech (6—6.9)% of Physical Attack Damage as Mana"
+    },
+    "Gain # Life per Enemy Killed": {
+      "6": "Gain (4—6) Life per enemy killed",
+      "5": "Gain (7—9) Life per enemy killed",
+      "4": "Gain (10—18) Life per enemy killed",
+      "3": "Gain (19—28) Life per enemy killed",
+      "2": "Gain (29—40) Life per enemy killed",
+      "1": "Gain (41—53) Life per enemy killed"
+    },
+    "Gain # Mana per Enemy Killed": {
+      "6": "Gain (2—3) Mana per enemy killed",
+      "5": "Gain (4—5) Mana per enemy killed",
+      "4": "Gain (6—9) Mana per enemy killed",
+      "3": "Gain (10—14) Mana per enemy killed",
+      "2": "Gain (15—20) Mana per enemy killed",
+      "1": "Gain (21—27) Mana per enemy killed"
+    },
+    "#% increased Cast Speed": {
+      "4": "(9—12)% increased Cast Speed",
+      "3": "(13—16)% increased Cast Speed",
+      "2": "(17—20)% increased Cast Speed",
+      "1": "(21—24)% increased Cast Speed"
+    },
+    "# to Accuracy Rating": {
+      "8": "+(11—32) to Accuracy Rating",
+      "7": "+(33—60) to Accuracy Rating",
+      "6": "+(61—84) to Accuracy Rating",
+      "5": "+(85—123) to Accuracy Rating",
+      "4": "+(124—167) to Accuracy Rating",
+      "3": "+(168—236) to Accuracy Rating",
+      "2": "+(237—346) to Accuracy Rating",
+      "1": "+(347—450) to Accuracy Rating"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "#% increased Fire Damage": {
+      "6": "(3—7)% increased Fire Damage",
+      "5": "(8—12)% increased Fire Damage",
+      "4": "(13—17)% increased Fire Damage",
+      "3": "(18—22)% increased Fire Damage",
+      "2": "(23—26)% increased Fire Damage",
+      "1": "(27—30)% increased Fire Damage"
+    },
+    "#% increased Cold Damage": {
+      "6": "(3—7)% increased Cold Damage",
+      "5": "(8—12)% increased Cold Damage",
+      "4": "(13—17)% increased Cold Damage",
+      "3": "(18—22)% increased Cold Damage",
+      "2": "(23—26)% increased Cold Damage",
+      "1": "(27—30)% increased Cold Damage"
+    },
+    "#% increased Lightning Damage": {
+      "6": "(3—7)% increased Lightning Damage",
+      "5": "(8—12)% increased Lightning Damage",
+      "4": "(13—17)% increased Lightning Damage",
+      "3": "(18—22)% increased Lightning Damage",
+      "2": "(23—26)% increased Lightning Damage",
+      "1": "(27—30)% increased Lightning Damage"
+    },
+    "#% increased Chaos Damage": {
+      "6": "(3—7)% increased Chaos Damage",
+      "5": "(8—12)% increased Chaos Damage",
+      "4": "(13—17)% increased Chaos Damage",
+      "3": "(18—22)% increased Chaos Damage",
+      "2": "(23—26)% increased Chaos Damage",
+      "1": "(27—30)% increased Chaos Damage"
+    }
+  },
+  "WAND": {
+    "# to Intelligence": {
+      "8": "+(5—8) to Intelligence",
+      "7": "+(9—12) to Intelligence",
+      "6": "+(13—16) to Intelligence",
+      "5": "+(17—20) to Intelligence",
+      "4": "+(21—24) to Intelligence",
+      "3": "+(25—27) to Intelligence",
+      "2": "+(28—30) to Intelligence",
+      "1": "+(31—33) to Intelligence"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "#% increased Spell Damage": {
+      "8": "(25—34)% increased Spell Damage",
+      "7": "(35—44)% increased Spell Damage",
+      "6": "(45—54)% increased Spell Damage",
+      "5": "(55—64)% increased Spell Damage",
+      "4": "(65—74)% increased Spell Damage",
+      "3": "(75—89)% increased Spell Damage",
+      "2": "(90—104)% increased Spell Damage",
+      "1": "(105—119)% increased Spell Damage"
+    },
+    "#% increased Fire Damage": {
+      "8": "(25—34)% increased Fire Damage",
+      "7": "(35—44)% increased Fire Damage",
+      "6": "(45—54)% increased Fire Damage",
+      "5": "(55—64)% increased Fire Damage",
+      "4": "(65—74)% increased Fire Damage",
+      "3": "(75—89)% increased Fire Damage",
+      "2": "(90—104)% increased Fire Damage",
+      "1": "(105—119)% increased Fire Damage"
+    },
+    "#% increased Cold Damage": {
+      "8": "(25—34)% increased Cold Damage",
+      "7": "(35—44)% increased Cold Damage",
+      "6": "(45—54)% increased Cold Damage",
+      "5": "(55—64)% increased Cold Damage",
+      "4": "(65—74)% increased Cold Damage",
+      "3": "(75—89)% increased Cold Damage",
+      "2": "(90—104)% increased Cold Damage",
+      "1": "(105—119)% increased Cold Damage"
+    },
+    "#% increased Lightning Damage": {
+      "8": "(25—34)% increased Lightning Damage",
+      "7": "(35—44)% increased Lightning Damage",
+      "6": "(45—54)% increased Lightning Damage",
+      "5": "(55—64)% increased Lightning Damage",
+      "4": "(65—74)% increased Lightning Damage",
+      "3": "(75—89)% increased Lightning Damage",
+      "2": "(90—104)% increased Lightning Damage",
+      "1": "(105—119)% increased Lightning Damage"
+    },
+    "#% increased Chaos Damage": {
+      "8": "(25—34)% increased Chaos Damage",
+      "7": "(35—44)% increased Chaos Damage",
+      "6": "(45—54)% increased Chaos Damage",
+      "5": "(55—64)% increased Chaos Damage",
+      "4": "(65—74)% increased Chaos Damage",
+      "3": "(75—89)% increased Chaos Damage",
+      "2": "(90—104)% increased Chaos Damage",
+      "1": "(105—119)% increased Chaos Damage"
+    },
+    "#% increased Spell Physical Damage": {
+      "8": "(25—34)% increased Spell Physical Damage",
+      "7": "(35—44)% increased Spell Physical Damage",
+      "6": "(45—54)% increased Spell Physical Damage",
+      "5": "(55—64)% increased Spell Physical Damage",
+      "4": "(65—74)% increased Spell Physical Damage",
+      "3": "(75—89)% increased Spell Physical Damage",
+      "2": "(90—104)% increased Spell Physical Damage",
+      "1": "(105—119)% increased Spell Physical Damage"
+    },
+    "# to Level of all Spell Skills": {
+      "4": "+1 to Level of all Spell Skills",
+      "3": "+2 to Level of all Spell Skills",
+      "2": "+3 to Level of all Spell Skills",
+      "1": "+4 to Level of all Spell Skills"
+    },
+    "# to Level of all Fire Spell Skills": {
+      "5": "+1 to Level of all Fire Spell Skills",
+      "4": "+2 to Level of all Fire Spell Skills",
+      "3": "+3 to Level of all Fire Spell Skills",
+      "2": "+4 to Level of all Fire Spell Skills",
+      "1": "+5 to Level of all Fire Spell Skills"
+    },
+    "# to Level of all Cold Spell Skills": {
+      "5": "+1 to Level of all Cold Spell Skills",
+      "4": "+2 to Level of all Cold Spell Skills",
+      "3": "+3 to Level of all Cold Spell Skills",
+      "2": "+4 to Level of all Cold Spell Skills",
+      "1": "+5 to Level of all Cold Spell Skills"
+    },
+    "# to Level of all Lightning Spell Skills": {
+      "5": "+1 to Level of all Lightning Spell Skills",
+      "4": "+2 to Level of all Lightning Spell Skills",
+      "3": "+3 to Level of all Lightning Spell Skills",
+      "2": "+4 to Level of all Lightning Spell Skills",
+      "1": "+5 to Level of all Lightning Spell Skills"
+    },
+    "# to Level of all Chaos Spell Skills": {
+      "5": "+1 to Level of all Chaos Spell Skills",
+      "4": "+2 to Level of all Chaos Spell Skills",
+      "3": "+3 to Level of all Chaos Spell Skills",
+      "2": "+4 to Level of all Chaos Spell Skills",
+      "1": "+5 to Level of all Chaos Spell Skills"
+    },
+    "# to Level of all Physical Spell Skills": {
+      "5": "+1 to Level of all Physical Spell Skills",
+      "4": "+2 to Level of all Physical Spell Skills",
+      "3": "+3 to Level of all Physical Spell Skills",
+      "2": "+4 to Level of all Physical Spell Skills",
+      "1": "+5 to Level of all Physical Spell Skills"
+    },
+    "Gain # Life per Enemy Killed": {
+      "8": "Gain (4—6) Life per enemy killed",
+      "7": "Gain (7—9) Life per enemy killed",
+      "6": "Gain (10—18) Life per enemy killed",
+      "5": "Gain (19—28) Life per enemy killed",
+      "4": "Gain (29—40) Life per enemy killed",
+      "3": "Gain (41—53) Life per enemy killed",
+      "2": "Gain (54—68) Life per enemy killed",
+      "1": "Gain (69—84) Life per enemy killed"
+    },
+    "Gain # Mana per Enemy Killed": {
+      "8": "Gain (2—3) Mana per enemy killed",
+      "7": "Gain (4—5) Mana per enemy killed",
+      "6": "Gain (6—9) Mana per enemy killed",
+      "5": "Gain (10—14) Mana per enemy killed",
+      "4": "Gain (15—20) Mana per enemy killed",
+      "3": "Gain (21—27) Mana per enemy killed",
+      "2": "Gain (28—35) Mana per enemy killed",
+      "1": "Gain (36—45) Mana per enemy killed"
+    },
+    "#% increased Cast Speed": {
+      "7": "(9—12)% increased Cast Speed",
+      "6": "(13—16)% increased Cast Speed",
+      "5": "(17—20)% increased Cast Speed",
+      "4": "(21—24)% increased Cast Speed",
+      "3": "(25—28)% increased Cast Speed",
+      "2": "(29—32)% increased Cast Speed",
+      "1": "(33—35)% increased Cast Speed"
+    },
+    "#% increased Critical Hit Chance for Spells": {
+      "6": "(27—33)% increased Critical Hit Chance for Spells",
+      "5": "(34—39)% increased Critical Hit Chance for Spells",
+      "4": "(40—46)% increased Critical Hit Chance for Spells",
+      "3": "(47—53)% increased Critical Hit Chance for Spells",
+      "2": "(54—59)% increased Critical Hit Chance for Spells",
+      "1": "(60—73)% increased Critical Hit Chance for Spells"
+    },
+    "#% increased Critical Spell Damage Bonus": {
+      "6": "(10—14)% increased Critical Spell Damage Bonus",
+      "5": "(15—19)% increased Critical Spell Damage Bonus",
+      "4": "(20—24)% increased Critical Spell Damage Bonus",
+      "3": "(25—29)% increased Critical Spell Damage Bonus",
+      "2": "(30—34)% increased Critical Spell Damage Bonus",
+      "1": "(35—39)% increased Critical Spell Damage Bonus"
+    },
+    "#% increased Flammability Magnitude": {
+      "5": "(51—60)% increased Flammability Magnitude",
+      "4": "(61—70)% increased Flammability Magnitude",
+      "3": "(71—80)% increased Flammability Magnitude",
+      "2": "(81—90)% increased Flammability Magnitude",
+      "1": "(91—100)% increased Flammability Magnitude"
+    },
+    "#% increased Freeze Buildup": {
+      "5": "(31—40)% increased Freeze Buildup",
+      "4": "(41—50)% increased Freeze Buildup",
+      "3": "(51—60)% increased Freeze Buildup",
+      "2": "(61—70)% increased Freeze Buildup",
+      "1": "(71—80)% increased Freeze Buildup"
+    },
+    "#% increased chance to Shock": {
+      "5": "(51—60)% increased chance to Shock",
+      "4": "(61—70)% increased chance to Shock",
+      "3": "(71—80)% increased chance to Shock",
+      "2": "(81—90)% increased chance to Shock",
+      "1": "(91—100)% increased chance to Shock"
+    },
+    "Gain #% of Damage as Extra Fire Damage": {
+      "6": "Gain (13—15)% of Damage as Extra Fire Damage",
+      "5": "Gain (16—18)% of Damage as Extra Fire Damage",
+      "4": "Gain (19—21)% of Damage as Extra Fire Damage",
+      "3": "Gain (22—24)% of Damage as Extra Fire Damage",
+      "2": "Gain (25—27)% of Damage as Extra Fire Damage",
+      "1": "Gain (28—30)% of Damage as Extra Fire Damage"
+    },
+    "Gain #% of Damage as Extra Cold Damage": {
+      "6": "Gain (13—15)% of Damage as Extra Cold Damage",
+      "5": "Gain (16—18)% of Damage as Extra Cold Damage",
+      "4": "Gain (19—21)% of Damage as Extra Cold Damage",
+      "3": "Gain (22—24)% of Damage as Extra Cold Damage",
+      "2": "Gain (25—27)% of Damage as Extra Cold Damage",
+      "1": "Gain (28—30)% of Damage as Extra Cold Damage"
+    },
+    "Gain #% of Damage as Extra Lightning Damage": {
+      "6": "Gain (13—15)% of Damage as Extra Lightning Damage",
+      "5": "Gain (16—18)% of Damage as Extra Lightning Damage",
+      "4": "Gain (19—21)% of Damage as Extra Lightning Damage",
+      "3": "Gain (22—24)% of Damage as Extra Lightning Damage",
+      "2": "Gain (25—27)% of Damage as Extra Lightning Damage",
+      "1": "Gain (28—30)% of Damage as Extra Lightning Damage"
+    }
+  },
+  "STAFF": {
+    "# to Intelligence": {
+      "8": "+(5—8) to Intelligence",
+      "7": "+(9—12) to Intelligence",
+      "6": "+(13—16) to Intelligence",
+      "5": "+(17—20) to Intelligence",
+      "4": "+(21—24) to Intelligence",
+      "3": "+(25—27) to Intelligence",
+      "2": "+(28—30) to Intelligence",
+      "1": "+(31—33) to Intelligence"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "#% increased Spell Damage": {
+      "8": "(50—68)% increased Spell Damage",
+      "7": "(69—88)% increased Spell Damage",
+      "6": "(89—108)% increased Spell Damage",
+      "5": "(109—128)% increased Spell Damage",
+      "4": "(129—148)% increased Spell Damage",
+      "3": "(149—188)% increased Spell Damage",
+      "2": "(189—208)% increased Spell Damage",
+      "1": "(209—238)% increased Spell Damage"
+    },
+    "#% increased Fire Damage": {
+      "8": "(50—68)% increased Fire Damage",
+      "7": "(69—88)% increased Fire Damage",
+      "6": "(89—108)% increased Fire Damage",
+      "5": "(109—128)% increased Fire Damage",
+      "4": "(129—148)% increased Fire Damage",
+      "3": "(149—188)% increased Fire Damage",
+      "2": "(189—208)% increased Fire Damage",
+      "1": "(209—238)% increased Fire Damage"
+    },
+    "#% increased Cold Damage": {
+      "8": "(50—68)% increased Cold Damage",
+      "7": "(69—88)% increased Cold Damage",
+      "6": "(89—108)% increased Cold Damage",
+      "5": "(109—128)% increased Cold Damage",
+      "4": "(129—148)% increased Cold Damage",
+      "3": "(149—188)% increased Cold Damage",
+      "2": "(189—208)% increased Cold Damage",
+      "1": "(209—238)% increased Cold Damage"
+    },
+    "#% increased Lightning Damage": {
+      "8": "(50—68)% increased Lightning Damage",
+      "7": "(69—88)% increased Lightning Damage",
+      "6": "(89—108)% increased Lightning Damage",
+      "5": "(109—128)% increased Lightning Damage",
+      "4": "(129—148)% increased Lightning Damage",
+      "3": "(149—188)% increased Lightning Damage",
+      "2": "(189—208)% increased Lightning Damage",
+      "1": "(209—238)% increased Lightning Damage"
+    },
+    "#% increased Chaos Damage": {
+      "8": "(50—68)% increased Chaos Damage",
+      "7": "(69—88)% increased Chaos Damage",
+      "6": "(89—108)% increased Chaos Damage",
+      "5": "(109—128)% increased Chaos Damage",
+      "4": "(129—148)% increased Chaos Damage",
+      "3": "(149—188)% increased Chaos Damage",
+      "2": "(189—208)% increased Chaos Damage",
+      "1": "(209—238)% increased Chaos Damage"
+    },
+    "#% increased Spell Physical Damage": {
+      "8": "(50—68)% increased Spell Physical Damage",
+      "7": "(69—88)% increased Spell Physical Damage",
+      "6": "(89—108)% increased Spell Physical Damage",
+      "5": "(109—128)% increased Spell Physical Damage",
+      "4": "(129—148)% increased Spell Physical Damage",
+      "3": "(149—188)% increased Spell Physical Damage",
+      "2": "(189—208)% increased Spell Physical Damage",
+      "1": "(209—238)% increased Spell Physical Damage"
+    },
+    "# to Level of all Spell Skills": {
+      "4": "+2 to Level of all Spell Skills",
+      "3": "+3 to Level of all Spell Skills",
+      "2": "+4 to Level of all Spell Skills",
+      "1": "+(5—6) to Level of all Spell Skills"
+    },
+    "# to Level of all Fire Spell Skills": {
+      "5": "+1 to Level of all Fire Spell Skills",
+      "4": "+2 to Level of all Fire Spell Skills",
+      "3": "+(3—4) to Level of all Fire Spell Skills",
+      "2": "+(5—6) to Level of all Fire Spell Skills",
+      "1": "+7 to Level of all Fire Spell Skills"
+    },
+    "# to Level of all Cold Spell Skills": {
+      "5": "+1 to Level of all Cold Spell Skills",
+      "4": "+2 to Level of all Cold Spell Skills",
+      "3": "+(3—4) to Level of all Cold Spell Skills",
+      "2": "+(5—6) to Level of all Cold Spell Skills",
+      "1": "+7 to Level of all Cold Spell Skills"
+    },
+    "# to Level of all Lightning Spell Skills": {
+      "5": "+1 to Level of all Lightning Spell Skills",
+      "4": "+2 to Level of all Lightning Spell Skills",
+      "3": "+(3—4) to Level of all Lightning Spell Skills",
+      "2": "+(5—6) to Level of all Lightning Spell Skills",
+      "1": "+7 to Level of all Lightning Spell Skills"
+    },
+    "# to Level of all Chaos Spell Skills": {
+      "5": "+1 to Level of all Chaos Spell Skills",
+      "4": "+2 to Level of all Chaos Spell Skills",
+      "3": "+(3—4) to Level of all Chaos Spell Skills",
+      "2": "+(5—6) to Level of all Chaos Spell Skills",
+      "1": "+7 to Level of all Chaos Spell Skills"
+    },
+    "# to Level of all Physical Spell Skills": {
+      "5": "+1 to Level of all Physical Spell Skills",
+      "4": "+2 to Level of all Physical Spell Skills",
+      "3": "+(3—4) to Level of all Physical Spell Skills",
+      "2": "+(5—6) to Level of all Physical Spell Skills",
+      "1": "+7 to Level of all Physical Spell Skills"
+    },
+    "Gain # Life per Enemy Killed": {
+      "8": "Gain (4—6) Life per enemy killed",
+      "7": "Gain (7—9) Life per enemy killed",
+      "6": "Gain (10—18) Life per enemy killed",
+      "5": "Gain (19—28) Life per enemy killed",
+      "4": "Gain (29—40) Life per enemy killed",
+      "3": "Gain (41—53) Life per enemy killed",
+      "2": "Gain (54—68) Life per enemy killed",
+      "1": "Gain (69—84) Life per enemy killed"
+    },
+    "Gain # Mana per Enemy Killed": {
+      "8": "Gain (2—3) Mana per enemy killed",
+      "7": "Gain (4—5) Mana per enemy killed",
+      "6": "Gain (6—9) Mana per enemy killed",
+      "5": "Gain (10—14) Mana per enemy killed",
+      "4": "Gain (15—20) Mana per enemy killed",
+      "3": "Gain (21—27) Mana per enemy killed",
+      "2": "Gain (28—35) Mana per enemy killed",
+      "1": "Gain (36—45) Mana per enemy killed"
+    },
+    "#% increased Cast Speed": {
+      "7": "(14—19)% increased Cast Speed",
+      "6": "(20—25)% increased Cast Speed",
+      "5": "(26—31)% increased Cast Speed",
+      "4": "(32—37)% increased Cast Speed",
+      "3": "(38—43)% increased Cast Speed",
+      "2": "(44—49)% increased Cast Speed",
+      "1": "(50—52)% increased Cast Speed"
+    },
+    "#% increased Critical Hit Chance for Spells": {
+      "6": "(40—49)% increased Critical Hit Chance for Spells",
+      "5": "(50—59)% increased Critical Hit Chance for Spells",
+      "4": "(60—69)% increased Critical Hit Chance for Spells",
+      "3": "(70—79)% increased Critical Hit Chance for Spells",
+      "2": "(80—89)% increased Critical Hit Chance for Spells",
+      "1": "(90—109)% increased Critical Hit Chance for Spells"
+    },
+    "#% increased Critical Spell Damage Bonus": {
+      "6": "(15—21)% increased Critical Spell Damage Bonus",
+      "5": "(23—29)% increased Critical Spell Damage Bonus",
+      "4": "(30—36)% increased Critical Spell Damage Bonus",
+      "3": "(38—44)% increased Critical Spell Damage Bonus",
+      "2": "(45—51)% increased Critical Spell Damage Bonus",
+      "1": "(53—59)% increased Critical Spell Damage Bonus"
+    },
+    "#% increased Flammability Magnitude": {
+      "5": "(51—60)% increased Flammability Magnitude",
+      "4": "(61—70)% increased Flammability Magnitude",
+      "3": "(71—80)% increased Flammability Magnitude",
+      "2": "(81—90)% increased Flammability Magnitude",
+      "1": "(91—100)% increased Flammability Magnitude"
+    },
+    "#% increased Freeze Buildup": {
+      "5": "(31—40)% increased Freeze Buildup",
+      "4": "(41—50)% increased Freeze Buildup",
+      "3": "(51—60)% increased Freeze Buildup",
+      "2": "(61—70)% increased Freeze Buildup",
+      "1": "(71—80)% increased Freeze Buildup"
+    },
+    "#% increased chance to Shock": {
+      "5": "(51—60)% increased chance to Shock",
+      "4": "(61—70)% increased chance to Shock",
+      "3": "(71—80)% increased chance to Shock",
+      "2": "(81—90)% increased chance to Shock",
+      "1": "(91—100)% increased chance to Shock"
+    },
+    "Gain #% of Damage as Extra Fire Damage": {
+      "6": "Gain (26—30)% of Damage as Extra Fire Damage",
+      "5": "Gain (31—36)% of Damage as Extra Fire Damage",
+      "4": "Gain (37—42)% of Damage as Extra Fire Damage",
+      "3": "Gain (43—48)% of Damage as Extra Fire Damage",
+      "2": "Gain (49—54)% of Damage as Extra Fire Damage",
+      "1": "Gain (55—60)% of Damage as Extra Fire Damage"
+    },
+    "Gain #% of Damage as Extra Cold Damage": {
+      "6": "Gain (26—30)% of Damage as Extra Cold Damage",
+      "5": "Gain (31—36)% of Damage as Extra Cold Damage",
+      "4": "Gain (37—42)% of Damage as Extra Cold Damage",
+      "3": "Gain (43—48)% of Damage as Extra Cold Damage",
+      "2": "Gain (49—54)% of Damage as Extra Cold Damage",
+      "1": "Gain (55—60)% of Damage as Extra Cold Damage"
+    },
+    "Gain #% of Damage as Extra Lightning Damage": {
+      "6": "Gain (26—30)% of Damage as Extra Lightning Damage",
+      "5": "Gain (31—36)% of Damage as Extra Lightning Damage",
+      "4": "Gain (37—42)% of Damage as Extra Lightning Damage",
+      "3": "Gain (43—48)% of Damage as Extra Lightning Damage",
+      "2": "Gain (49—54)% of Damage as Extra Lightning Damage",
+      "1": "Gain (55—60)% of Damage as Extra Lightning Damage"
+    }
+  },
+  "FOCUS": {
+    "# to Intelligence": {
+      "8": "+(5—8) to Intelligence",
+      "7": "+(9—12) to Intelligence",
+      "6": "+(13—16) to Intelligence",
+      "5": "+(17—20) to Intelligence",
+      "4": "+(21—24) to Intelligence",
+      "3": "+(25—27) to Intelligence",
+      "2": "+(28—30) to Intelligence",
+      "1": "+(31—33) to Intelligence"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Energy Shield": {
+      "10": "+(10—17) to maximum Energy Shield",
+      "9": "+(18—24) to maximum Energy Shield",
+      "8": "+(25—30) to maximum Energy Shield",
+      "7": "+(31—35) to maximum Energy Shield",
+      "6": "+(36—41) to maximum Energy Shield",
+      "5": "+(42—47) to maximum Energy Shield",
+      "4": "+(48—60) to maximum Energy Shield",
+      "3": "+(61—73) to maximum Energy Shield",
+      "2": "+(74—80) to maximum Energy Shield",
+      "1": "+(81—90) to maximum Energy Shield"
+    },
+    "#% increased Energy Shield": {
+      "7": "(15—26)% increased Energy Shield",
+      "6": "(27—42)% increased Energy Shield",
+      "5": "(43—55)% increased Energy Shield",
+      "4": "(56—67)% increased Energy Shield",
+      "3": "(68—79)% increased Energy Shield",
+      "2": "(80—91)% increased Energy Shield",
+      "1": "(92—100)% increased Energy Shield"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "#% increased Spell Damage": {
+      "6": "(25—34)% increased Spell Damage",
+      "5": "(35—44)% increased Spell Damage",
+      "4": "(45—54)% increased Spell Damage",
+      "3": "(55—64)% increased Spell Damage",
+      "2": "(65—74)% increased Spell Damage",
+      "1": "(75—89)% increased Spell Damage"
+    },
+    "#% increased Fire Damage": {
+      "6": "(25—34)% increased Fire Damage",
+      "5": "(35—44)% increased Fire Damage",
+      "4": "(45—54)% increased Fire Damage",
+      "3": "(55—64)% increased Fire Damage",
+      "2": "(65—74)% increased Fire Damage",
+      "1": "(75—89)% increased Fire Damage"
+    },
+    "#% increased Cold Damage": {
+      "6": "(25—34)% increased Cold Damage",
+      "5": "(35—44)% increased Cold Damage",
+      "4": "(45—54)% increased Cold Damage",
+      "3": "(55—64)% increased Cold Damage",
+      "2": "(65—74)% increased Cold Damage",
+      "1": "(75—89)% increased Cold Damage"
+    },
+    "#% increased Lightning Damage": {
+      "6": "(25—34)% increased Lightning Damage",
+      "5": "(35—44)% increased Lightning Damage",
+      "4": "(45—54)% increased Lightning Damage",
+      "3": "(55—64)% increased Lightning Damage",
+      "2": "(65—74)% increased Lightning Damage",
+      "1": "(75—89)% increased Lightning Damage"
+    },
+    "#% increased Chaos Damage": {
+      "6": "(25—34)% increased Chaos Damage",
+      "5": "(35—44)% increased Chaos Damage",
+      "4": "(45—54)% increased Chaos Damage",
+      "3": "(55—64)% increased Chaos Damage",
+      "2": "(65—74)% increased Chaos Damage",
+      "1": "(75—89)% increased Chaos Damage"
+    },
+    "#% increased Spell Physical Damage": {
+      "6": "(25—34)% increased Spell Physical Damage",
+      "5": "(35—44)% increased Spell Physical Damage",
+      "4": "(45—54)% increased Spell Physical Damage",
+      "3": "(55—64)% increased Spell Physical Damage",
+      "2": "(65—74)% increased Spell Physical Damage",
+      "1": "(75—89)% increased Spell Physical Damage"
+    },
+    "# to Level of all Spell Skills": {
+      "2": "+1 to Level of all Spell Skills",
+      "1": "+2 to Level of all Spell Skills"
+    },
+    "#% increased Mana Regeneration Rate": {
+      "6": "(10—19)% increased Mana Regeneration Rate",
+      "5": "(20—29)% increased Mana Regeneration Rate",
+      "4": "(30—39)% increased Mana Regeneration Rate",
+      "3": "(40—49)% increased Mana Regeneration Rate",
+      "2": "(50—59)% increased Mana Regeneration Rate",
+      "1": "(60—69)% increased Mana Regeneration Rate"
+    },
+    "#% increased Cast Speed": {
+      "6": "(9—12)% increased Cast Speed",
+      "5": "(13—16)% increased Cast Speed",
+      "4": "(17—20)% increased Cast Speed",
+      "3": "(21—24)% increased Cast Speed",
+      "2": "(25—28)% increased Cast Speed",
+      "1": "(29—32)% increased Cast Speed"
+    },
+    "#% increased Critical Hit Chance for Spells": {
+      "5": "(27—33)% increased Critical Hit Chance for Spells",
+      "4": "(34—39)% increased Critical Hit Chance for Spells",
+      "3": "(40—46)% increased Critical Hit Chance for Spells",
+      "2": "(47—53)% increased Critical Hit Chance for Spells",
+      "1": "(54—59)% increased Critical Hit Chance for Spells"
+    },
+    "#% increased Critical Spell Damage Bonus": {
+      "5": "(10—14)% increased Critical Spell Damage Bonus",
+      "4": "(15—19)% increased Critical Spell Damage Bonus",
+      "3": "(20—24)% increased Critical Spell Damage Bonus",
+      "2": "(25—29)% increased Critical Spell Damage Bonus",
+      "1": "(30—34)% increased Critical Spell Damage Bonus"
+    },
+    "#% faster start of Energy Shield Recharge": {
+      "6": "(26—30)% faster start of Energy Shield Recharge",
+      "5": "(31—35)% faster start of Energy Shield Recharge",
+      "4": "(36—40)% faster start of Energy Shield Recharge",
+      "3": "(41—45)% faster start of Energy Shield Recharge",
+      "2": "(46—50)% faster start of Energy Shield Recharge",
+      "1": "(51—55)% faster start of Energy Shield Recharge"
+    }
+  },
+  "SCEPTRE": {
+    "# to Strength": {
+      "8": "+(5—8) to Strength",
+      "7": "+(9—12) to Strength",
+      "6": "+(13—16) to Strength",
+      "5": "+(17—20) to Strength",
+      "4": "+(21—24) to Strength",
+      "3": "+(25—27) to Strength",
+      "2": "+(28—30) to Strength",
+      "1": "+(31—33) to Strength"
+    },
+    "# to Intelligence": {
+      "8": "+(5—8) to Intelligence",
+      "7": "+(9—12) to Intelligence",
+      "6": "+(13—16) to Intelligence",
+      "5": "+(17—20) to Intelligence",
+      "4": "+(21—24) to Intelligence",
+      "3": "+(25—27) to Intelligence",
+      "2": "+(28—30) to Intelligence",
+      "1": "+(31—33) to Intelligence"
+    },
+    "Allies in your Presence have #% to all Elemental Resistances": {
+      "6": "Allies in your Presence have +(3—5)% to all Elemental Resistances",
+      "5": "Allies in your Presence have +(6—8)% to all Elemental Resistances",
+      "4": "Allies in your Presence have +(9—11)% to all Elemental Resistances",
+      "3": "Allies in your Presence have +(12—14)% to all Elemental Resistances",
+      "2": "Allies in your Presence have +(15—16)% to all Elemental Resistances",
+      "1": "Allies in your Presence have +(17—18)% to all Elemental Resistances"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "Allies in your Presence deal # to # added Attack Physical Damage": {
+      "9": "Allies in your Presence deal (1—2) to (3—4) added Attack Physical Damage",
+      "8": "Allies in your Presence deal (2—3) to (4—6) added Attack Physical Damage",
+      "7": "Allies in your Presence deal (2—4) to (5—8) added Attack Physical Damage",
+      "6": "Allies in your Presence deal (4—6) to (8—11) added Attack Physical Damage",
+      "5": "Allies in your Presence deal (5—7) to (9—13) added Attack Physical Damage",
+      "4": "Allies in your Presence deal (6—10) to (12—17) added Attack Physical Damage",
+      "3": "Allies in your Presence deal (7—11) to (14—20) added Attack Physical Damage",
+      "2": "Allies in your Presence deal (10—15) to (18—26) added Attack Physical Damage",
+      "1": "Allies in your Presence deal (12—19) to (22—32) added Attack Physical Damage"
+    },
+    "Allies in your Presence deal # to # added Attack Fire Damage": {
+      "9": "Allies in your Presence deal (1—2) to (3—4) added Attack Fire Damage",
+      "8": "Allies in your Presence deal (3—5) to (6—9) added Attack Fire Damage",
+      "7": "Allies in your Presence deal (6—8) to (10—13) added Attack Fire Damage",
+      "6": "Allies in your Presence deal (9—11) to (14—17) added Attack Fire Damage",
+      "5": "Allies in your Presence deal (12—13) to (18—20) added Attack Fire Damage",
+      "4": "Allies in your Presence deal (14—16) to (21—26) added Attack Fire Damage",
+      "3": "Allies in your Presence deal (17—19) to (27—30) added Attack Fire Damage",
+      "2": "Allies in your Presence deal (20—24) to (31—38) added Attack Fire Damage",
+      "1": "Allies in your Presence deal (25—29) to (39—45) added Attack Fire Damage"
+    },
+    "Allies in your Presence deal # to # added Attack Cold Damage": {
+      "9": "Allies in your Presence deal (1—2) to (3—4) added Attack Cold Damage",
+      "8": "Allies in your Presence deal (3—4) to (5—8) added Attack Cold Damage",
+      "7": "Allies in your Presence deal (5—6) to (9—11) added Attack Cold Damage",
+      "6": "Allies in your Presence deal (7—8) to (12—14) added Attack Cold Damage",
+      "5": "Allies in your Presence deal (9—10) to (15—17) added Attack Cold Damage",
+      "4": "Allies in your Presence deal (11—13) to (18—21) added Attack Cold Damage",
+      "3": "Allies in your Presence deal (14—15) to (22—24) added Attack Cold Damage",
+      "2": "Allies in your Presence deal (16—20) to (25—31) added Attack Cold Damage",
+      "1": "Allies in your Presence deal (21—24) to (32—37) added Attack Cold Damage"
+    },
+    "Allies in your Presence deal # to # added Attack Lightning Damage": {
+      "9": "Allies in your Presence deal 1 to (5—7) added Attack Lightning Damage",
+      "8": "Allies in your Presence deal 1 to (10—15) added Attack Lightning Damage",
+      "7": "Allies in your Presence deal 1 to (16—22) added Attack Lightning Damage",
+      "6": "Allies in your Presence deal 1 to (23—27) added Attack Lightning Damage",
+      "5": "Allies in your Presence deal 1 to (28—32) added Attack Lightning Damage",
+      "4": "Allies in your Presence deal (1—2) to (33—40) added Attack Lightning Damage",
+      "3": "Allies in your Presence deal (1—2) to (41—47) added Attack Lightning Damage",
+      "2": "Allies in your Presence deal (1—3) to (48—59) added Attack Lightning Damage",
+      "1": "Allies in your Presence deal (1—4) to (60—71) added Attack Lightning Damage"
+    },
+    "Allies in your Presence deal #% increased Damage": {
+      "8": "Allies in your Presence deal (25—34)% increased Damage",
+      "7": "Allies in your Presence deal (35—44)% increased Damage",
+      "6": "Allies in your Presence deal (45—54)% increased Damage",
+      "5": "Allies in your Presence deal (55—64)% increased Damage",
+      "4": "Allies in your Presence deal (65—74)% increased Damage",
+      "3": "Allies in your Presence deal (75—89)% increased Damage",
+      "2": "Allies in your Presence deal (90—104)% increased Damage",
+      "1": "Allies in your Presence deal (105—119)% increased Damage"
+    },
+    "# to Level of all Minion Skills": {
+      "4": "+1 to Level of all Minion Skills",
+      "3": "+2 to Level of all Minion Skills",
+      "2": "+3 to Level of all Minion Skills",
+      "1": "+4 to Level of all Minion Skills"
+    },
+    "Allies in your Presence Regenerate # Life per second": {
+      "10": "Allies in your Presence Regenerate (1—2) Life per second",
+      "9": "Allies in your Presence Regenerate (2.1—3) Life per second",
+      "8": "Allies in your Presence Regenerate (3.1—4) Life per second",
+      "7": "Allies in your Presence Regenerate (4.1—6) Life per second",
+      "6": "Allies in your Presence Regenerate (6.1—9) Life per second",
+      "5": "Allies in your Presence Regenerate (9.1—13) Life per second",
+      "4": "Allies in your Presence Regenerate (13.1—18) Life per second",
+      "3": "Allies in your Presence Regenerate (18.1—23) Life per second",
+      "2": "Allies in your Presence Regenerate (23.1—29) Life per second",
+      "1": "Allies in your Presence Regenerate (29.1—33) Life per second"
+    },
+    "Allies in your Presence have #% increased Attack Speed": {
+      "4": "Allies in your Presence have (5—7)% increased Attack Speed",
+      "3": "Allies in your Presence have (8—10)% increased Attack Speed",
+      "2": "Allies in your Presence have (11—13)% increased Attack Speed",
+      "1": "Allies in your Presence have (14—16)% increased Attack Speed"
+    },
+    "Allies in your Presence have #% increased Cast Speed": {
+      "4": "Allies in your Presence have (5—8)% increased Cast Speed",
+      "3": "Allies in your Presence have (9—12)% increased Cast Speed",
+      "2": "Allies in your Presence have (13—16)% increased Cast Speed",
+      "1": "Allies in your Presence have (17—20)% increased Cast Speed"
+    },
+    "Allies in your Presence have #% increased Critical Hit Chance": {
+      "6": "Allies in your Presence have (10—14)% increased Critical Hit Chance",
+      "5": "Allies in your Presence have (15—19)% increased Critical Hit Chance",
+      "4": "Allies in your Presence have (20—24)% increased Critical Hit Chance",
+      "3": "Allies in your Presence have (25—29)% increased Critical Hit Chance",
+      "2": "Allies in your Presence have (30—34)% increased Critical Hit Chance",
+      "1": "Allies in your Presence have (35—38)% increased Critical Hit Chance"
+    },
+    "Allies in your Presence have #% increased Critical Damage Bonus": {
+      "6": "Allies in your Presence have (10—14)% increased Critical Damage Bonus",
+      "5": "Allies in your Presence have (15—19)% increased Critical Damage Bonus",
+      "4": "Allies in your Presence have (20—24)% increased Critical Damage Bonus",
+      "3": "Allies in your Presence have (25—29)% increased Critical Damage Bonus",
+      "2": "Allies in your Presence have (30—34)% increased Critical Damage Bonus",
+      "1": "Allies in your Presence have (35—39)% increased Critical Damage Bonus"
+    },
+    "#% increased Spirit": {
+      "8": "(30—36)% increased Spirit",
+      "7": "(27—32)% increased Spirit",
+      "6": "(33—38)% increased Spirit",
+      "5": "(39—44)% increased Spirit",
+      "4": "(45—50)% increased Spirit",
+      "3": "(51—55)% increased Spirit",
+      "2": "(56—60)% increased Spirit",
+      "1": "(61—65)% increased Spirit"
+    },
+    "#% increased Presence Area of Effect": {
+      "4": "(36—45)% increased Presence Area of Effect",
+      "3": "(46—55)% increased Presence Area of Effect",
+      "2": "(56—65)% increased Presence Area of Effect",
+      "1": "(66—80)% increased Presence Area of Effect"
+    },
+    "Minions have #% increased maximum Life": {
+      "6": "Minions have (21—25)% increased maximum Life",
+      "5": "Minions have (26—30)% increased maximum Life",
+      "4": "Minions have (31—35)% increased maximum Life",
+      "3": "Minions have (36—40)% increased maximum Life",
+      "2": "Minions have (41—45)% increased maximum Life",
+      "1": "Minions have (46—50)% increased maximum Life"
+    }
+  },
+  "QUIVER": {
+    "# to Dexterity": {
+      "8": "+(5—8) to Dexterity",
+      "7": "+(9—12) to Dexterity",
+      "6": "+(13—16) to Dexterity",
+      "5": "+(17—20) to Dexterity",
+      "4": "+(21—24) to Dexterity",
+      "3": "+(25—27) to Dexterity",
+      "2": "+(28—30) to Dexterity",
+      "1": "+(31—33) to Dexterity"
+    },
+    "Adds # to # Physical Damage to Attacks": {
+      "9": "Adds (1—2) to 3 Physical Damage to Attacks",
+      "8": "Adds (2—3) to (4—6) Physical Damage to Attacks",
+      "7": "Adds (2—4) to (5—8) Physical Damage to Attacks",
+      "6": "Adds (4—6) to (8—11) Physical Damage to Attacks",
+      "5": "Adds (5—7) to (9—13) Physical Damage to Attacks",
+      "4": "Adds (6—10) to (12—17) Physical Damage to Attacks",
+      "3": "Adds (7—11) to (14—20) Physical Damage to Attacks",
+      "2": "Adds (10—15) to (18—26) Physical Damage to Attacks",
+      "1": "Adds (12—19) to (22—32) Physical Damage to Attacks"
+    },
+    "Adds # to # Fire damage to Attacks": {
+      "9": "Adds (1—2) to 3 Fire damage to Attacks",
+      "8": "Adds (3—5) to (6—9) Fire damage to Attacks",
+      "7": "Adds (6—8) to (10—13) Fire damage to Attacks",
+      "6": "Adds (9—11) to (14—17) Fire damage to Attacks",
+      "5": "Adds (12—13) to (18—20) Fire damage to Attacks",
+      "4": "Adds (11—16) to (21—26) Fire damage to Attacks",
+      "3": "Adds (13—19) to (27—32) Fire damage to Attacks",
+      "2": "Adds (20—24) to (33—36) Fire damage to Attacks",
+      "1": "Adds (25—29) to (37—45) Fire damage to Attacks"
+    },
+    "Adds # to # Cold damage to Attacks": {
+      "9": "Adds 1 to (2—3) Cold damage to Attacks",
+      "8": "Adds (3—4) to (5—8) Cold damage to Attacks",
+      "7": "Adds (5—6) to (9—11) Cold damage to Attacks",
+      "6": "Adds (7—8) to (12—14) Cold damage to Attacks",
+      "5": "Adds (9—10) to (15—17) Cold damage to Attacks",
+      "4": "Adds (11—13) to (18—21) Cold damage to Attacks",
+      "3": "Adds (14—15) to (22—24) Cold damage to Attacks",
+      "2": "Adds (16—20) to (25—31) Cold damage to Attacks",
+      "1": "Adds (21—24) to (32—37) Cold damage to Attacks"
+    },
+    "Adds # to # Lightning damage to Attacks": {
+      "9": "Adds 1 to (4—6) Lightning damage to Attacks",
+      "8": "Adds 1 to (10—15) Lightning damage to Attacks",
+      "7": "Adds 1 to (16—22) Lightning damage to Attacks",
+      "6": "Adds 1 to (23—27) Lightning damage to Attacks",
+      "5": "Adds 1 to (28—32) Lightning damage to Attacks",
+      "4": "Adds (1—2) to (33—40) Lightning damage to Attacks",
+      "3": "Adds (1—2) to (41—47) Lightning damage to Attacks",
+      "2": "Adds (1—3) to (48—59) Lightning damage to Attacks",
+      "1": "Adds (1—4) to (60—71) Lightning damage to Attacks"
+    },
+    "# to Level of all Projectile Skills": {
+      "2": "+1 to Level of all Projectile Skills",
+      "1": "+2 to Level of all Projectile Skills"
+    },
+    "Gain # Life per Enemy Killed": {
+      "6": "Gain (4—6) Life per enemy killed",
+      "5": "Gain (7—9) Life per enemy killed",
+      "4": "Gain (10—18) Life per enemy killed",
+      "3": "Gain (19—28) Life per enemy killed",
+      "2": "Gain (29—40) Life per enemy killed",
+      "1": "Gain (41—53) Life per enemy killed"
+    },
+    "Gain # Mana per Enemy Killed": {
+      "6": "Gain (2—3) Mana per enemy killed",
+      "5": "Gain (4—5) Mana per enemy killed",
+      "4": "Gain (6—9) Mana per enemy killed",
+      "3": "Gain (10—14) Mana per enemy killed",
+      "2": "Gain (15—20) Mana per enemy killed",
+      "1": "Gain (21—27) Mana per enemy killed"
+    },
+    "#% increased Attack Speed": {
+      "4": "(5—7)% increased Attack Speed",
+      "3": "(8—10)% increased Attack Speed",
+      "2": "(11—13)% increased Attack Speed",
+      "1": "(14—16)% increased Attack Speed"
+    },
+    "# to Accuracy Rating": {
+      "9": "+(11—32) to Accuracy Rating",
+      "8": "+(33—60) to Accuracy Rating",
+      "7": "+(61—84) to Accuracy Rating",
+      "6": "+(85—123) to Accuracy Rating",
+      "5": "+(124—167) to Accuracy Rating",
+      "4": "+(168—236) to Accuracy Rating",
+      "3": "+(237—346) to Accuracy Rating",
+      "2": "+(347—450) to Accuracy Rating",
+      "1": "+(451—550) to Accuracy Rating"
+    },
+    "#% increased Critical Hit Chance for Attacks": {
+      "6": "(10—14)% increased Critical Hit Chance for Attacks",
+      "5": "(15—19)% increased Critical Hit Chance for Attacks",
+      "4": "(20—24)% increased Critical Hit Chance for Attacks",
+      "3": "(25—29)% increased Critical Hit Chance for Attacks",
+      "2": "(30—34)% increased Critical Hit Chance for Attacks",
+      "1": "(35—38)% increased Critical Hit Chance for Attacks"
+    },
+    "#% increased Critical Damage Bonus for Attack Damage": {
+      "6": "(10—14)% increased Critical Damage Bonus for Attack Damage",
+      "5": "(15—19)% increased Critical Damage Bonus for Attack Damage",
+      "4": "(20—24)% increased Critical Damage Bonus for Attack Damage",
+      "3": "(25—29)% increased Critical Damage Bonus for Attack Damage",
+      "2": "(30—34)% increased Critical Damage Bonus for Attack Damage",
+      "1": "(35—39)% increased Critical Damage Bonus for Attack Damage"
+    },
+    "#% chance to Pierce an Enemy": {
+      "5": "(12—14)% chance to Pierce an Enemy",
+      "4": "(15—17)% chance to Pierce an Enemy",
+      "3": "(18—20)% chance to Pierce an Enemy",
+      "2": "(21—23)% chance to Pierce an Enemy",
+      "1": "(24—26)% chance to Pierce an Enemy"
+    },
+    "#% increased Projectile Speed": {
+      "5": "(10—17)% increased Projectile Speed",
+      "4": "(18—25)% increased Projectile Speed",
+      "3": "(26—33)% increased Projectile Speed",
+      "2": "(34—41)% increased Projectile Speed",
+      "1": "(42—46)% increased Projectile Speed"
+    },
+    "#% increased Damage with Bow Skills": {
+      "6": "(11—20)% increased Damage with Bow Skills",
+      "5": "(21—30)% increased Damage with Bow Skills",
+      "4": "(31—36)% increased Damage with Bow Skills",
+      "3": "(37—42)% increased Damage with Bow Skills",
+      "2": "(43—50)% increased Damage with Bow Skills",
+      "1": "(51—59)% increased Damage with Bow Skills"
+    }
+  },
+  "GLOVES (INT)": {
+    "# to Dexterity": {
+      "9": "+(5—8) to Dexterity",
+      "8": "+(9—12) to Dexterity",
+      "7": "+(13—16) to Dexterity",
+      "6": "+(17—20) to Dexterity",
+      "5": "+(21—24) to Dexterity",
+      "4": "+(25—27) to Dexterity",
+      "3": "+(28—30) to Dexterity",
+      "2": "+(31—33) to Dexterity",
+      "1": "+(34—36) to Dexterity"
+    },
+    "# to Intelligence": {
+      "8": "+(5—8) to Intelligence",
+      "7": "+(9—12) to Intelligence",
+      "6": "+(13—16) to Intelligence",
+      "5": "+(17—20) to Intelligence",
+      "4": "+(21—24) to Intelligence",
+      "3": "+(25—27) to Intelligence",
+      "2": "+(28—30) to Intelligence",
+      "1": "+(31—33) to Intelligence"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Mana": {
+      "9": "+(10—14) to maximum Mana",
+      "8": "+(15—24) to maximum Mana",
+      "7": "+(25—34) to maximum Mana",
+      "6": "+(35—54) to maximum Mana",
+      "5": "+(55—64) to maximum Mana",
+      "4": "+(65—79) to maximum Mana",
+      "3": "+(80—89) to maximum Mana",
+      "2": "+(90—104) to maximum Mana",
+      "1": "+(105—124) to maximum Mana"
+    },
+    "# to maximum Energy Shield": {
+      "7": "+(10—17) to maximum Energy Shield",
+      "6": "+(18—24) to maximum Energy Shield",
+      "5": "+(25—30) to maximum Energy Shield",
+      "4": "+(31—35) to maximum Energy Shield",
+      "3": "+(36—41) to maximum Energy Shield",
+      "2": "+(42—47) to maximum Energy Shield",
+      "1": "+(48—60) to maximum Energy Shield"
+    },
+    "#% increased Energy Shield": {
+      "7": "(15—26)% increased Energy Shield",
+      "6": "(27—42)% increased Energy Shield",
+      "5": "(43—55)% increased Energy Shield",
+      "4": "(56—67)% increased Energy Shield",
+      "3": "(68—79)% increased Energy Shield",
+      "2": "(80—91)% increased Energy Shield",
+      "1": "(92—100)% increased Energy Shield"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "Adds # to # Physical Damage to Attacks": {
+      "9": "Adds (1—2) to 3 Physical Damage to Attacks",
+      "8": "Adds (2—3) to (4—6) Physical Damage to Attacks",
+      "7": "Adds (2—4) to (5—8) Physical Damage to Attacks",
+      "6": "Adds (4—6) to (8—11) Physical Damage to Attacks",
+      "5": "Adds (5—7) to (9—13) Physical Damage to Attacks",
+      "4": "Adds (6—10) to (12—17) Physical Damage to Attacks",
+      "3": "Adds (7—11) to (14—20) Physical Damage to Attacks",
+      "2": "Adds (10—15) to (18—26) Physical Damage to Attacks",
+      "1": "Adds (12—19) to (22—32) Physical Damage to Attacks"
+    },
+    "Adds # to # Fire damage to Attacks": {
+      "9": "Adds (1—2) to 3 Fire damage to Attacks",
+      "8": "Adds (3—5) to (6—9) Fire damage to Attacks",
+      "7": "Adds (6—8) to (10—13) Fire damage to Attacks",
+      "6": "Adds (9—11) to (14—17) Fire damage to Attacks",
+      "5": "Adds (12—13) to (18—20) Fire damage to Attacks",
+      "4": "Adds (11—16) to (21—26) Fire damage to Attacks",
+      "3": "Adds (13—19) to (27—32) Fire damage to Attacks",
+      "2": "Adds (20—24) to (33—36) Fire damage to Attacks",
+      "1": "Adds (25—29) to (37—45) Fire damage to Attacks"
+    },
+    "Adds # to # Cold damage to Attacks": {
+      "9": "Adds 1 to (2—3) Cold damage to Attacks",
+      "8": "Adds (3—4) to (5—8) Cold damage to Attacks",
+      "7": "Adds (5—6) to (9—11) Cold damage to Attacks",
+      "6": "Adds (7—8) to (12—14) Cold damage to Attacks",
+      "5": "Adds (9—10) to (15—17) Cold damage to Attacks",
+      "4": "Adds (11—13) to (18—21) Cold damage to Attacks",
+      "3": "Adds (14—15) to (22—24) Cold damage to Attacks",
+      "2": "Adds (16—20) to (25—31) Cold damage to Attacks",
+      "1": "Adds (21—24) to (32—37) Cold damage to Attacks"
+    },
+    "Adds # to # Lightning damage to Attacks": {
+      "9": "Adds 1 to (4—6) Lightning damage to Attacks",
+      "8": "Adds 1 to (10—15) Lightning damage to Attacks",
+      "7": "Adds 1 to (16—22) Lightning damage to Attacks",
+      "6": "Adds 1 to (23—27) Lightning damage to Attacks",
+      "5": "Adds 1 to (28—32) Lightning damage to Attacks",
+      "4": "Adds (1—2) to (33—40) Lightning damage to Attacks",
+      "3": "Adds (1—2) to (41—47) Lightning damage to Attacks",
+      "2": "Adds (1—3) to (48—59) Lightning damage to Attacks",
+      "1": "Adds (1—4) to (60—71) Lightning damage to Attacks"
+    },
+    "# to Level of all Melee Skills": {
+      "2": "+1 to Level of all Melee Skills",
+      "1": "+2 to Level of all Melee Skills"
+    },
+    "Leech #% of Physical Attack Damage as Life": {
+      "5": "Leech (5—5.9)% of Physical Attack Damage as Life",
+      "4": "Leech (6—6.9)% of Physical Attack Damage as Life",
+      "3": "Leech (7—7.9)% of Physical Attack Damage as Life",
+      "2": "Leech (8—8.9)% of Physical Attack Damage as Life",
+      "1": "Leech (9—9.9)% of Physical Attack Damage as Life"
+    },
+    "Leech #% of Physical Attack Damage as Mana": {
+      "5": "Leech (4—4.9)% of Physical Attack Damage as Mana",
+      "4": "Leech (5—5.9)% of Physical Attack Damage as Mana",
+      "3": "Leech (6—6.9)% of Physical Attack Damage as Mana",
+      "2": "Leech (7—7.9)% of Physical Attack Damage as Mana",
+      "1": "Leech (8—8.9)% of Physical Attack Damage as Mana"
+    },
+    "Gain # Life per Enemy Killed": {
+      "8": "Gain (4—6) Life per enemy killed",
+      "7": "Gain (7—9) Life per enemy killed",
+      "6": "Gain (10—18) Life per enemy killed",
+      "5": "Gain (19—28) Life per enemy killed",
+      "4": "Gain (29—40) Life per enemy killed",
+      "3": "Gain (41—53) Life per enemy killed",
+      "2": "Gain (54—68) Life per enemy killed",
+      "1": "Gain (69—84) Life per enemy killed"
+    },
+    "Gain # Mana per Enemy Killed": {
+      "8": "Gain (2—3) Mana per enemy killed",
+      "7": "Gain (4—5) Mana per enemy killed",
+      "6": "Gain (6—9) Mana per enemy killed",
+      "5": "Gain (10—14) Mana per enemy killed",
+      "4": "Gain (15—20) Mana per enemy killed",
+      "3": "Gain (21—27) Mana per enemy killed",
+      "2": "Gain (28—35) Mana per enemy killed",
+      "1": "Gain (36—45) Mana per enemy killed"
+    },
+    "Gain # Life per Enemy Hit with Attacks": {
+      "4": "Gain 2 Life per Enemy Hit with Attacks",
+      "3": "Gain 3 Life per Enemy Hit with Attacks",
+      "2": "Gain 4 Life per Enemy Hit with Attacks",
+      "1": "Gain 5 Life per Enemy Hit with Attacks"
+    },
+    "#% increased Attack Speed": {
+      "4": "(5—7)% increased Attack Speed",
+      "3": "(8—10)% increased Attack Speed",
+      "2": "(11—13)% increased Attack Speed",
+      "1": "(14—16)% increased Attack Speed"
+    },
+    "# to Accuracy Rating": {
+      "9": "+(11—32) to Accuracy Rating",
+      "8": "+(33—60) to Accuracy Rating",
+      "7": "+(61—84) to Accuracy Rating",
+      "6": "+(85—123) to Accuracy Rating",
+      "5": "+(124—167) to Accuracy Rating",
+      "4": "+(168—236) to Accuracy Rating",
+      "3": "+(237—346) to Accuracy Rating",
+      "2": "+(347—450) to Accuracy Rating",
+      "1": "+(451—550) to Accuracy Rating"
+    },
+    "#% increased Critical Damage Bonus": {
+      "5": "(10—14)% increased Critical Damage Bonus",
+      "4": "(15—19)% increased Critical Damage Bonus",
+      "3": "(20—24)% increased Critical Damage Bonus",
+      "2": "(25—29)% increased Critical Damage Bonus",
+      "1": "(30—34)% increased Critical Damage Bonus"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    }
+  },
+  "GLOVES (DEX)": {
+    "# to Dexterity": {
+      "9": "+(5—8) to Dexterity",
+      "8": "+(9—12) to Dexterity",
+      "7": "+(13—16) to Dexterity",
+      "6": "+(17—20) to Dexterity",
+      "5": "+(21—24) to Dexterity",
+      "4": "+(25—27) to Dexterity",
+      "3": "+(28—30) to Dexterity",
+      "2": "+(31—33) to Dexterity",
+      "1": "+(34—36) to Dexterity"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Mana": {
+      "9": "+(10—14) to maximum Mana",
+      "8": "+(15—24) to maximum Mana",
+      "7": "+(25—34) to maximum Mana",
+      "6": "+(35—54) to maximum Mana",
+      "5": "+(55—64) to maximum Mana",
+      "4": "+(65—79) to maximum Mana",
+      "3": "+(80—89) to maximum Mana",
+      "2": "+(90—104) to maximum Mana",
+      "1": "+(105—124) to maximum Mana"
+    },
+    "# to Evasion Rating": {
+      "7": "+(11—18) to Evasion Rating",
+      "6": "+(19—39) to Evasion Rating",
+      "5": "+(40—56) to Evasion Rating",
+      "4": "+(57—70) to Evasion Rating",
+      "3": "+(71—88) to Evasion Rating",
+      "2": "+(89—107) to Evasion Rating",
+      "1": "+(108—142) to Evasion Rating"
+    },
+    "#% increased Evasion Rating": {
+      "7": "(15—26)% increased Evasion Rating",
+      "6": "(27—42)% increased Evasion Rating",
+      "5": "(43—55)% increased Evasion Rating",
+      "4": "(56—67)% increased Evasion Rating",
+      "3": "(68—79)% increased Evasion Rating",
+      "2": "(80—91)% increased Evasion Rating",
+      "1": "(92—100)% increased Evasion Rating"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "Adds # to # Physical Damage to Attacks": {
+      "9": "Adds (1—2) to 3 Physical Damage to Attacks",
+      "8": "Adds (2—3) to (4—6) Physical Damage to Attacks",
+      "7": "Adds (2—4) to (5—8) Physical Damage to Attacks",
+      "6": "Adds (4—6) to (8—11) Physical Damage to Attacks",
+      "5": "Adds (5—7) to (9—13) Physical Damage to Attacks",
+      "4": "Adds (6—10) to (12—17) Physical Damage to Attacks",
+      "3": "Adds (7—11) to (14—20) Physical Damage to Attacks",
+      "2": "Adds (10—15) to (18—26) Physical Damage to Attacks",
+      "1": "Adds (12—19) to (22—32) Physical Damage to Attacks"
+    },
+    "Adds # to # Fire damage to Attacks": {
+      "9": "Adds (1—2) to 3 Fire damage to Attacks",
+      "8": "Adds (3—5) to (6—9) Fire damage to Attacks",
+      "7": "Adds (6—8) to (10—13) Fire damage to Attacks",
+      "6": "Adds (9—11) to (14—17) Fire damage to Attacks",
+      "5": "Adds (12—13) to (18—20) Fire damage to Attacks",
+      "4": "Adds (11—16) to (21—26) Fire damage to Attacks",
+      "3": "Adds (13—19) to (27—32) Fire damage to Attacks",
+      "2": "Adds (20—24) to (33—36) Fire damage to Attacks",
+      "1": "Adds (25—29) to (37—45) Fire damage to Attacks"
+    },
+    "Adds # to # Cold damage to Attacks": {
+      "9": "Adds 1 to (2—3) Cold damage to Attacks",
+      "8": "Adds (3—4) to (5—8) Cold damage to Attacks",
+      "7": "Adds (5—6) to (9—11) Cold damage to Attacks",
+      "6": "Adds (7—8) to (12—14) Cold damage to Attacks",
+      "5": "Adds (9—10) to (15—17) Cold damage to Attacks",
+      "4": "Adds (11—13) to (18—21) Cold damage to Attacks",
+      "3": "Adds (14—15) to (22—24) Cold damage to Attacks",
+      "2": "Adds (16—20) to (25—31) Cold damage to Attacks",
+      "1": "Adds (21—24) to (32—37) Cold damage to Attacks"
+    },
+    "Adds # to # Lightning damage to Attacks": {
+      "9": "Adds 1 to (4—6) Lightning damage to Attacks",
+      "8": "Adds 1 to (10—15) Lightning damage to Attacks",
+      "7": "Adds 1 to (16—22) Lightning damage to Attacks",
+      "6": "Adds 1 to (23—27) Lightning damage to Attacks",
+      "5": "Adds 1 to (28—32) Lightning damage to Attacks",
+      "4": "Adds (1—2) to (33—40) Lightning damage to Attacks",
+      "3": "Adds (1—2) to (41—47) Lightning damage to Attacks",
+      "2": "Adds (1—3) to (48—59) Lightning damage to Attacks",
+      "1": "Adds (1—4) to (60—71) Lightning damage to Attacks"
+    },
+    "# to Level of all Melee Skills": {
+      "2": "+1 to Level of all Melee Skills",
+      "1": "+2 to Level of all Melee Skills"
+    },
+    "Leech #% of Physical Attack Damage as Life": {
+      "5": "Leech (5—5.9)% of Physical Attack Damage as Life",
+      "4": "Leech (6—6.9)% of Physical Attack Damage as Life",
+      "3": "Leech (7—7.9)% of Physical Attack Damage as Life",
+      "2": "Leech (8—8.9)% of Physical Attack Damage as Life",
+      "1": "Leech (9—9.9)% of Physical Attack Damage as Life"
+    },
+    "Leech #% of Physical Attack Damage as Mana": {
+      "5": "Leech (4—4.9)% of Physical Attack Damage as Mana",
+      "4": "Leech (5—5.9)% of Physical Attack Damage as Mana",
+      "3": "Leech (6—6.9)% of Physical Attack Damage as Mana",
+      "2": "Leech (7—7.9)% of Physical Attack Damage as Mana",
+      "1": "Leech (8—8.9)% of Physical Attack Damage as Mana"
+    },
+    "Gain # Life per Enemy Killed": {
+      "8": "Gain (4—6) Life per enemy killed",
+      "7": "Gain (7—9) Life per enemy killed",
+      "6": "Gain (10—18) Life per enemy killed",
+      "5": "Gain (19—28) Life per enemy killed",
+      "4": "Gain (29—40) Life per enemy killed",
+      "3": "Gain (41—53) Life per enemy killed",
+      "2": "Gain (54—68) Life per enemy killed",
+      "1": "Gain (69—84) Life per enemy killed"
+    },
+    "Gain # Mana per Enemy Killed": {
+      "8": "Gain (2—3) Mana per enemy killed",
+      "7": "Gain (4—5) Mana per enemy killed",
+      "6": "Gain (6—9) Mana per enemy killed",
+      "5": "Gain (10—14) Mana per enemy killed",
+      "4": "Gain (15—20) Mana per enemy killed",
+      "3": "Gain (21—27) Mana per enemy killed",
+      "2": "Gain (28—35) Mana per enemy killed",
+      "1": "Gain (36—45) Mana per enemy killed"
+    },
+    "Gain # Life per Enemy Hit with Attacks": {
+      "4": "Gain 2 Life per Enemy Hit with Attacks",
+      "3": "Gain 3 Life per Enemy Hit with Attacks",
+      "2": "Gain 4 Life per Enemy Hit with Attacks",
+      "1": "Gain 5 Life per Enemy Hit with Attacks"
+    },
+    "#% increased Attack Speed": {
+      "4": "(5—7)% increased Attack Speed",
+      "3": "(8—10)% increased Attack Speed",
+      "2": "(11—13)% increased Attack Speed",
+      "1": "(14—16)% increased Attack Speed"
+    },
+    "# to Accuracy Rating": {
+      "9": "+(11—32) to Accuracy Rating",
+      "8": "+(33—60) to Accuracy Rating",
+      "7": "+(61—84) to Accuracy Rating",
+      "6": "+(85—123) to Accuracy Rating",
+      "5": "+(124—167) to Accuracy Rating",
+      "4": "+(168—236) to Accuracy Rating",
+      "3": "+(237—346) to Accuracy Rating",
+      "2": "+(347—450) to Accuracy Rating",
+      "1": "+(451—550) to Accuracy Rating"
+    },
+    "#% increased Critical Damage Bonus": {
+      "5": "(10—14)% increased Critical Damage Bonus",
+      "4": "(15—19)% increased Critical Damage Bonus",
+      "3": "(20—24)% increased Critical Damage Bonus",
+      "2": "(25—29)% increased Critical Damage Bonus",
+      "1": "(30—34)% increased Critical Damage Bonus"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "Gain Deflection Rating equal to #% of Evasion Rating": {
+      "5": "Gain Deflection Rating equal to (8—11)% of Evasion Rating",
+      "4": "Gain Deflection Rating equal to (12—14)% of Evasion Rating",
+      "3": "Gain Deflection Rating equal to (15—17)% of Evasion Rating",
+      "2": "Gain Deflection Rating equal to (18—20)% of Evasion Rating",
+      "1": "Gain Deflection Rating equal to (21—23)% of Evasion Rating"
+    }
+  },
+  "GLOVES (STR)": {
+    "# to Strength": {
+      "8": "+(5—8) to Strength",
+      "7": "+(9—12) to Strength",
+      "6": "+(13—16) to Strength",
+      "5": "+(17—20) to Strength",
+      "4": "+(21—24) to Strength",
+      "3": "+(25—27) to Strength",
+      "2": "+(28—30) to Strength",
+      "1": "+(31—33) to Strength"
+    },
+    "# to Dexterity": {
+      "9": "+(5—8) to Dexterity",
+      "8": "+(9—12) to Dexterity",
+      "7": "+(13—16) to Dexterity",
+      "6": "+(17—20) to Dexterity",
+      "5": "+(21—24) to Dexterity",
+      "4": "+(25—27) to Dexterity",
+      "3": "+(28—30) to Dexterity",
+      "2": "+(31—33) to Dexterity",
+      "1": "+(34—36) to Dexterity"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Mana": {
+      "9": "+(10—14) to maximum Mana",
+      "8": "+(15—24) to maximum Mana",
+      "7": "+(25—34) to maximum Mana",
+      "6": "+(35—54) to maximum Mana",
+      "5": "+(55—64) to maximum Mana",
+      "4": "+(65—79) to maximum Mana",
+      "3": "+(80—89) to maximum Mana",
+      "2": "+(90—104) to maximum Mana",
+      "1": "+(105—124) to maximum Mana"
+    },
+    "# to Armour": {
+      "7": "+(16—27) to Armour",
+      "6": "+(28—50) to Armour",
+      "5": "+(51—68) to Armour",
+      "4": "+(69—82) to Armour",
+      "3": "+(83—102) to Armour",
+      "2": "+(103—122) to Armour",
+      "1": "+(123—160) to Armour"
+    },
+    "#% increased Armour": {
+      "7": "(15—26)% increased Armour",
+      "6": "(27—42)% increased Armour",
+      "5": "(43—55)% increased Armour",
+      "4": "(56—67)% increased Armour",
+      "3": "(68—79)% increased Armour",
+      "2": "(80—91)% increased Armour",
+      "1": "(92—100)% increased Armour"
+    },
+    "#% reduced Attribute Requirements": {
+      "5": "15% reduced Attribute Requirements",
+      "4": "20% reduced Attribute Requirements",
+      "3": "25% reduced Attribute Requirements",
+      "2": "30% reduced Attribute Requirements",
+      "1": "35% reduced Attribute Requirements"
+    },
+    "Adds # to # Physical Damage to Attacks": {
+      "9": "Adds (1—2) to 3 Physical Damage to Attacks",
+      "8": "Adds (2—3) to (4—6) Physical Damage to Attacks",
+      "7": "Adds (2—4) to (5—8) Physical Damage to Attacks",
+      "6": "Adds (4—6) to (8—11) Physical Damage to Attacks",
+      "5": "Adds (5—7) to (9—13) Physical Damage to Attacks",
+      "4": "Adds (6—10) to (12—17) Physical Damage to Attacks",
+      "3": "Adds (7—11) to (14—20) Physical Damage to Attacks",
+      "2": "Adds (10—15) to (18—26) Physical Damage to Attacks",
+      "1": "Adds (12—19) to (22—32) Physical Damage to Attacks"
+    },
+    "Adds # to # Fire damage to Attacks": {
+      "9": "Adds (1—2) to 3 Fire damage to Attacks",
+      "8": "Adds (3—5) to (6—9) Fire damage to Attacks",
+      "7": "Adds (6—8) to (10—13) Fire damage to Attacks",
+      "6": "Adds (9—11) to (14—17) Fire damage to Attacks",
+      "5": "Adds (12—13) to (18—20) Fire damage to Attacks",
+      "4": "Adds (11—16) to (21—26) Fire damage to Attacks",
+      "3": "Adds (13—19) to (27—32) Fire damage to Attacks",
+      "2": "Adds (20—24) to (33—36) Fire damage to Attacks",
+      "1": "Adds (25—29) to (37—45) Fire damage to Attacks"
+    },
+    "Adds # to # Cold damage to Attacks": {
+      "9": "Adds 1 to (2—3) Cold damage to Attacks",
+      "8": "Adds (3—4) to (5—8) Cold damage to Attacks",
+      "7": "Adds (5—6) to (9—11) Cold damage to Attacks",
+      "6": "Adds (7—8) to (12—14) Cold damage to Attacks",
+      "5": "Adds (9—10) to (15—17) Cold damage to Attacks",
+      "4": "Adds (11—13) to (18—21) Cold damage to Attacks",
+      "3": "Adds (14—15) to (22—24) Cold damage to Attacks",
+      "2": "Adds (16—20) to (25—31) Cold damage to Attacks",
+      "1": "Adds (21—24) to (32—37) Cold damage to Attacks"
+    },
+    "Adds # to # Lightning damage to Attacks": {
+      "9": "Adds 1 to (4—6) Lightning damage to Attacks",
+      "8": "Adds 1 to (10—15) Lightning damage to Attacks",
+      "7": "Adds 1 to (16—22) Lightning damage to Attacks",
+      "6": "Adds 1 to (23—27) Lightning damage to Attacks",
+      "5": "Adds 1 to (28—32) Lightning damage to Attacks",
+      "4": "Adds (1—2) to (33—40) Lightning damage to Attacks",
+      "3": "Adds (1—2) to (41—47) Lightning damage to Attacks",
+      "2": "Adds (1—3) to (48—59) Lightning damage to Attacks",
+      "1": "Adds (1—4) to (60—71) Lightning damage to Attacks"
+    },
+    "# to Level of all Melee Skills": {
+      "2": "+1 to Level of all Melee Skills",
+      "1": "+2 to Level of all Melee Skills"
+    },
+    "Leech #% of Physical Attack Damage as Life": {
+      "5": "Leech (5—5.9)% of Physical Attack Damage as Life",
+      "4": "Leech (6—6.9)% of Physical Attack Damage as Life",
+      "3": "Leech (7—7.9)% of Physical Attack Damage as Life",
+      "2": "Leech (8—8.9)% of Physical Attack Damage as Life",
+      "1": "Leech (9—9.9)% of Physical Attack Damage as Life"
+    },
+    "Leech #% of Physical Attack Damage as Mana": {
+      "5": "Leech (4—4.9)% of Physical Attack Damage as Mana",
+      "4": "Leech (5—5.9)% of Physical Attack Damage as Mana",
+      "3": "Leech (6—6.9)% of Physical Attack Damage as Mana",
+      "2": "Leech (7—7.9)% of Physical Attack Damage as Mana",
+      "1": "Leech (8—8.9)% of Physical Attack Damage as Mana"
+    },
+    "Gain # Life per Enemy Killed": {
+      "8": "Gain (4—6) Life per enemy killed",
+      "7": "Gain (7—9) Life per enemy killed",
+      "6": "Gain (10—18) Life per enemy killed",
+      "5": "Gain (19—28) Life per enemy killed",
+      "4": "Gain (29—40) Life per enemy killed",
+      "3": "Gain (41—53) Life per enemy killed",
+      "2": "Gain (54—68) Life per enemy killed",
+      "1": "Gain (69—84) Life per enemy killed"
+    },
+    "Gain # Mana per Enemy Killed": {
+      "8": "Gain (2—3) Mana per enemy killed",
+      "7": "Gain (4—5) Mana per enemy killed",
+      "6": "Gain (6—9) Mana per enemy killed",
+      "5": "Gain (10—14) Mana per enemy killed",
+      "4": "Gain (15—20) Mana per enemy killed",
+      "3": "Gain (21—27) Mana per enemy killed",
+      "2": "Gain (28—35) Mana per enemy killed",
+      "1": "Gain (36—45) Mana per enemy killed"
+    },
+    "Gain # Life per Enemy Hit with Attacks": {
+      "4": "Gain 2 Life per Enemy Hit with Attacks",
+      "3": "Gain 3 Life per Enemy Hit with Attacks",
+      "2": "Gain 4 Life per Enemy Hit with Attacks",
+      "1": "Gain 5 Life per Enemy Hit with Attacks"
+    },
+    "#% increased Attack Speed": {
+      "4": "(5—7)% increased Attack Speed",
+      "3": "(8—10)% increased Attack Speed",
+      "2": "(11—13)% increased Attack Speed",
+      "1": "(14—16)% increased Attack Speed"
+    },
+    "# to Accuracy Rating": {
+      "9": "+(11—32) to Accuracy Rating",
+      "8": "+(33—60) to Accuracy Rating",
+      "7": "+(61—84) to Accuracy Rating",
+      "6": "+(85—123) to Accuracy Rating",
+      "5": "+(124—167) to Accuracy Rating",
+      "4": "+(168—236) to Accuracy Rating",
+      "3": "+(237—346) to Accuracy Rating",
+      "2": "+(347—450) to Accuracy Rating",
+      "1": "+(451—550) to Accuracy Rating"
+    },
+    "#% increased Critical Damage Bonus": {
+      "5": "(10—14)% increased Critical Damage Bonus",
+      "4": "(15—19)% increased Critical Damage Bonus",
+      "3": "(20—24)% increased Critical Damage Bonus",
+      "2": "(25—29)% increased Critical Damage Bonus",
+      "1": "(30—34)% increased Critical Damage Bonus"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "#% of Armour also applies to Elemental Damage": {
+      "5": "+(14—19)% of Armour also applies to Elemental Damage",
+      "4": "+(20—25)% of Armour also applies to Elemental Damage",
+      "3": "+(26—31)% of Armour also applies to Elemental Damage",
+      "2": "+(32—37)% of Armour also applies to Elemental Damage",
+      "1": "+(38—43)% of Armour also applies to Elemental Damage"
+    }
+  },
+  "AMULET": {
+    "# to Strength": {
+      "8": "+(5—8) to Strength",
+      "7": "+(9—12) to Strength",
+      "6": "+(13—16) to Strength",
+      "5": "+(17—20) to Strength",
+      "4": "+(21—24) to Strength",
+      "3": "+(25—27) to Strength",
+      "2": "+(28—30) to Strength",
+      "1": "+(31—33) to Strength"
+    },
+    "# to Dexterity": {
+      "8": "+(5—8) to Dexterity",
+      "7": "+(9—12) to Dexterity",
+      "6": "+(13—16) to Dexterity",
+      "5": "+(17—20) to Dexterity",
+      "4": "+(21—24) to Dexterity",
+      "3": "+(25—27) to Dexterity",
+      "2": "+(28—30) to Dexterity",
+      "1": "+(31—33) to Dexterity"
+    },
+    "# to Intelligence": {
+      "8": "+(5—8) to Intelligence",
+      "7": "+(9—12) to Intelligence",
+      "6": "+(13—16) to Intelligence",
+      "5": "+(17—20) to Intelligence",
+      "4": "+(21—24) to Intelligence",
+      "3": "+(25—27) to Intelligence",
+      "2": "+(28—30) to Intelligence",
+      "1": "+(31—33) to Intelligence"
+    },
+    "# to all Attributes": {
+      "9": "+(2—4) to all Attributes",
+      "8": "+(5—7) to all Attributes",
+      "7": "+(8—10) to all Attributes",
+      "6": "+(11—13) to all Attributes",
+      "5": "+(14—16) to all Attributes",
+      "4": "+(17—18) to all Attributes",
+      "3": "+(19—20) to all Attributes",
+      "2": "+(21—22) to all Attributes",
+      "1": "+(23—24) to all Attributes"
+    },
+    "#% to Fire Resistance": {
+      "8": "+(6—10)% to Fire Resistance",
+      "7": "+(11—15)% to Fire Resistance",
+      "6": "+(16—20)% to Fire Resistance",
+      "5": "+(21—25)% to Fire Resistance",
+      "4": "+(26—30)% to Fire Resistance",
+      "3": "+(31—35)% to Fire Resistance",
+      "2": "+(36—40)% to Fire Resistance",
+      "1": "+(41—45)% to Fire Resistance"
+    },
+    "#% to Cold Resistance": {
+      "8": "+(6—10)% to Cold Resistance",
+      "7": "+(11—15)% to Cold Resistance",
+      "6": "+(16—20)% to Cold Resistance",
+      "5": "+(21—25)% to Cold Resistance",
+      "4": "+(26—30)% to Cold Resistance",
+      "3": "+(31—35)% to Cold Resistance",
+      "2": "+(36—40)% to Cold Resistance",
+      "1": "+(41—45)% to Cold Resistance"
+    },
+    "#% to Lightning Resistance": {
+      "8": "+(6—10)% to Lightning Resistance",
+      "7": "+(11—15)% to Lightning Resistance",
+      "6": "+(16—20)% to Lightning Resistance",
+      "5": "+(21—25)% to Lightning Resistance",
+      "4": "+(26—30)% to Lightning Resistance",
+      "3": "+(31—35)% to Lightning Resistance",
+      "2": "+(36—40)% to Lightning Resistance",
+      "1": "+(41—45)% to Lightning Resistance"
+    },
+    "#% to all Elemental Resistances": {
+      "6": "+(3—5)% to all Elemental Resistances",
+      "5": "+(6—8)% to all Elemental Resistances",
+      "4": "+(9—11)% to all Elemental Resistances",
+      "3": "+(12—14)% to all Elemental Resistances",
+      "2": "+(15—16)% to all Elemental Resistances",
+      "1": "+(17—18)% to all Elemental Resistances"
+    },
+    "#% to Chaos Resistance": {
+      "6": "+(4—7)% to Chaos Resistance",
+      "5": "+(8—11)% to Chaos Resistance",
+      "4": "+(12—15)% to Chaos Resistance",
+      "3": "+(16—19)% to Chaos Resistance",
+      "2": "+(20—23)% to Chaos Resistance",
+      "1": "+(24—27)% to Chaos Resistance"
+    },
+    "# to maximum Life": {
+      "9": "+(10—19) to maximum Life",
+      "8": "+(20—29) to maximum Life",
+      "7": "+(30—39) to maximum Life",
+      "6": "+(40—59) to maximum Life",
+      "5": "+(60—69) to maximum Life",
+      "4": "+(70—84) to maximum Life",
+      "3": "+(85—99) to maximum Life",
+      "2": "+(100—119) to maximum Life",
+      "1": "+(120—149) to maximum Life"
+    },
+    "#% increased maximum Life": {
+      "3": "(3—4)% increased maximum Life",
+      "2": "(5—6)% increased maximum Life",
+      "1": "(7—8)% increased maximum Life"
+    },
+    "# to maximum Mana": {
+      "13": "+(10—14) to maximum Mana",
+      "12": "+(15—24) to maximum Mana",
+      "11": "+(25—34) to maximum Mana",
+      "10": "+(35—54) to maximum Mana",
+      "9": "+(55—64) to maximum Mana",
+      "8": "+(65—79) to maximum Mana",
+      "7": "+(80—89) to maximum Mana",
+      "6": "+(90—104) to maximum Mana",
+      "5": "+(105—124) to maximum Mana",
+      "4": "+(125—149) to maximum Mana",
+      "3": "+(150—164) to maximum Mana",
+      "2": "+(165—179) to maximum Mana",
+      "1": "+(180—189) to maximum Mana"
+    },
+    "#% increased maximum Mana": {
+      "3": "(3—4)% increased maximum Mana",
+      "2": "(5—6)% increased maximum Mana",
+      "1": "(7—8)% increased maximum Mana"
+    },
+    "# to maximum Energy Shield": {
+      "10": "+(8—14) to maximum Energy Shield",
+      "9": "+(15—20) to maximum Energy Shield",
+      "8": "+(21—24) to maximum Energy Shield",
+      "7": "+(25—33) to maximum Energy Shield",
+      "6": "+(34—41) to maximum Energy Shield",
+      "5": "+(42—51) to maximum Energy Shield",
+      "4": "+(52—61) to maximum Energy Shield",
+      "3": "+(62—70) to maximum Energy Shield",
+      "2": "+(71—79) to maximum Energy Shield",
+      "1": "+(80—89) to maximum Energy Shield"
+    },
+    "#% increased Armour": {
+      "7": "(10—14)% increased Armour",
+      "6": "(15—20)% increased Armour",
+      "5": "(21—26)% increased Armour",
+      "4": "(27—32)% increased Armour",
+      "3": "(33—38)% increased Armour",
+      "2": "(39—44)% increased Armour",
+      "1": "(45—50)% increased Armour"
+    },
+    "#% increased Evasion Rating": {
+      "7": "(10—14)% increased Evasion Rating",
+      "6": "(15—20)% increased Evasion Rating",
+      "5": "(21—26)% increased Evasion Rating",
+      "4": "(27—32)% increased Evasion Rating",
+      "3": "(33—38)% increased Evasion Rating",
+      "2": "(39—44)% increased Evasion Rating",
+      "1": "(45—50)% increased Evasion Rating"
+    },
+    "#% increased maximum Energy Shield": {
+      "7": "(10—14)% increased maximum Energy Shield",
+      "6": "(15—20)% increased maximum Energy Shield",
+      "5": "(21—26)% increased maximum Energy Shield",
+      "4": "(27—32)% increased maximum Energy Shield",
+      "3": "(33—38)% increased maximum Energy Shield",
+      "2": "(39—44)% increased maximum Energy Shield",
+      "1": "(45—50)% increased maximum Energy Shield"
+    },
+    "# to Level of all Spell Skills": {
+      "3": "+1 to Level of all Spell Skills",
+      "2": "+2 to Level of all Spell Skills",
+      "1": "+3 to Level of all Spell Skills"
+    },
+    "# to Level of all Minion Skills": {
+      "3": "+1 to Level of all Minion Skills",
+      "2": "+2 to Level of all Minion Skills",
+      "1": "+3 to Level of all Minion Skills"
+    },
+    "# to Level of all Melee Skills": {
+      "3": "+1 to Level of all Melee Skills",
+      "2": "+2 to Level of all Melee Skills",
+      "1": "+3 to Level of all Melee Skills"
+    },
+    "# to Level of all Projectile Skills": {
+      "3": "+1 to Level of all Projectile Skills",
+      "2": "+2 to Level of all Projectile Skills",
+      "1": "+3 to Level of all Projectile Skills"
+    },
+    "# Life Regeneration per second": {
+      "10": "(1—2) Life Regeneration per second",
+      "9": "(2.1—3) Life Regeneration per second",
+      "8": "(3.1—4) Life Regeneration per second",
+      "7": "(4.1—6) Life Regeneration per second",
+      "6": "(6.1—9) Life Regeneration per second",
+      "5": "(9.1—13) Life Regeneration per second",
+      "4": "(13.1—18) Life Regeneration per second",
+      "3": "(18.1—23) Life Regeneration per second",
+      "2": "(23.1—29) Life Regeneration per second",
+      "1": "(29.1—33) Life Regeneration per second"
+    },
+    "#% increased Mana Regeneration Rate": {
+      "6": "(10—19)% increased Mana Regeneration Rate",
+      "5": "(20—29)% increased Mana Regeneration Rate",
+      "4": "(30—39)% increased Mana Regeneration Rate",
+      "3": "(40—49)% increased Mana Regeneration Rate",
+      "2": "(50—59)% increased Mana Regeneration Rate",
+      "1": "(60—69)% increased Mana Regeneration Rate"
+    },
+    "#% increased Cast Speed": {
+      "5": "(9—12)% increased Cast Speed",
+      "4": "(13—16)% increased Cast Speed",
+      "3": "(17—20)% increased Cast Speed",
+      "2": "(21—24)% increased Cast Speed",
+      "1": "(25—28)% increased Cast Speed"
+    },
+    "# to Accuracy Rating": {
+      "8": "+(11—32) to Accuracy Rating",
+      "7": "+(33—60) to Accuracy Rating",
+      "6": "+(61—84) to Accuracy Rating",
+      "5": "+(85—123) to Accuracy Rating",
+      "4": "+(124—167) to Accuracy Rating",
+      "3": "+(168—236) to Accuracy Rating",
+      "2": "+(237—346) to Accuracy Rating",
+      "1": "+(347—450) to Accuracy Rating"
+    },
+    "#% increased Critical Hit Chance": {
+      "6": "(10—14)% increased Critical Hit Chance",
+      "5": "(15—19)% increased Critical Hit Chance",
+      "4": "(20—24)% increased Critical Hit Chance",
+      "3": "(25—29)% increased Critical Hit Chance",
+      "2": "(30—34)% increased Critical Hit Chance",
+      "1": "(35—38)% increased Critical Hit Chance"
+    },
+    "#% increased Critical Damage Bonus": {
+      "6": "(10—14)% increased Critical Damage Bonus",
+      "5": "(15—19)% increased Critical Damage Bonus",
+      "4": "(20—24)% increased Critical Damage Bonus",
+      "3": "(25—29)% increased Critical Damage Bonus",
+      "2": "(30—34)% increased Critical Damage Bonus",
+      "1": "(35—39)% increased Critical Damage Bonus"
+    },
+    "#% increased Rarity of Items found": {
+      "3": "(6—10)% increased Rarity of Items found",
+      "2": "(11—14)% increased Rarity of Items found",
+      "1": "(15—18)% increased Rarity of Items found"
+    },
+    "# to Spirit": {
+      "5": "+(30—33) to Spirit",
+      "4": "+(34—37) to Spirit",
+      "3": "+(38—42) to Spirit",
+      "2": "+(43—46) to Spirit",
+      "1": "+(47—50) to Spirit"
+    },
+    "#% of Damage taken Recouped as Life": {
+      "5": "(10—12)% of Damage taken Recouped as Life",
+      "4": "(13—15)% of Damage taken Recouped as Life",
+      "3": "(16—18)% of Damage taken Recouped as Life",
+      "2": "(19—21)% of Damage taken Recouped as Life",
+      "1": "(22—24)% of Damage taken Recouped as Life"
+    },
+    "#% of Damage taken Recouped as Mana": {
+      "5": "(10—12)% of Damage taken Recouped as Mana",
+      "4": "(13—15)% of Damage taken Recouped as Mana",
+      "3": "(16—18)% of Damage taken Recouped as Mana",
+      "2": "(19—21)% of Damage taken Recouped as Mana",
+      "1": "(22—24)% of Damage taken Recouped as Mana"
+    },
+    "#% increased Spell Damage": {
+      "6": "(3—7)% increased Spell Damage",
+      "5": "(8—12)% increased Spell Damage",
+      "4": "(13—17)% increased Spell Damage",
+      "3": "(18—22)% increased Spell Damage",
+      "2": "(23—26)% increased Spell Damage",
+      "1": "(27—30)% increased Spell Damage"
+    }
+  }
+}

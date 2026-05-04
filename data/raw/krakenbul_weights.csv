@@ -1,0 +1,1161 @@
+BASE,TYPE,NAME,1,2,3,4,5,6,7,8,9,10,11,12,13,ItemClass
+BOOTS (INT),PREFIX,#% increased Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (INT),PREFIX,"#% increased Energy Shield, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (INT),PREFIX,#% increased Movement Speed,1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Attribute Requirements,750,750,750,750,750,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Chill Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Freeze Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Shock duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (INT),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,800,,,Boots
+BOOTS (INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (INT),SUFFIX,#% increased Energy Shield Recharge Rate,1000,1000,1000,1000,,,,,,,,,,Boots
+BOOTS (DEX),PREFIX,#% increased Evasion Rating,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (DEX),PREFIX,"#% increased Evasion Rating, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (DEX),PREFIX,#% increased Movement Speed,1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (DEX),PREFIX,# to Evasion Rating,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (DEX),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (DEX),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Attribute Requirements,750,750,750,750,750,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Chill Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Freeze Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Shock duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,800,,,Boots
+BOOTS (DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,1000,1000,1000,1000,1000,,,,,,,,,Boots
+BOOTS (STR),PREFIX,#% increased Armour,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (STR),PREFIX,"#% increased Armour, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (STR),PREFIX,#% increased Movement Speed,1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (STR),PREFIX,# to Armour,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (STR),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (STR),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (STR),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Attribute Requirements,750,750,750,750,750,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Chill Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Freeze Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Shock duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,800,,,Boots
+BOOTS (STR),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR),SUFFIX,#% of Armour also applies to Elemental Damage,1000,1000,1000,1000,1000,,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,#% increased Movement Speed,1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",1000,1000,1000,1000,,,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (DEX/INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Attribute Requirements,750,750,750,750,750,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Chill Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Freeze Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Shock duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Dexterity,500,500,500,500,500,500,500,500,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Intelligence,500,500,500,500,500,500,500,500,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,800,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,500,500,500,500,,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,#% increased Armour and Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,#% increased Movement Speed,1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",1000,1000,1000,1000,,,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (STR/INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Attribute Requirements,750,750,750,750,750,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Chill Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Freeze Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Shock duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Intelligence,500,500,500,500,500,500,500,500,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,800,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,500,500,500,500,,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,#% increased Armour and Evasion,1000,1000,1000,1000,1000,1000,1000,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,#% increased Movement Speed,1000,1000,1000,1000,1000,1000,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",1000,1000,1000,1000,,,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (STR/DEX),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Attribute Requirements,750,750,750,750,750,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Chill Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Freeze Duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Shock duration on you,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Dexterity,500,500,500,500,500,500,500,500,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,800,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,,,,,,,,,Boots
+HELMET (INT),PREFIX,#% increased Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Helmet
+HELMET (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (INT),PREFIX,"#% increased Energy Shield, # to maximum Mana",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (INT),PREFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (INT),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Energy Shield,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Critical Hit Chance,250,500,1000,1000,1000,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Helmet
+HELMET (INT),SUFFIX,# to Level of all Minion Skills,250,500,,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Energy Shield Recharge Rate,1000,1000,1000,1000,,,,,,,,,,Helmet
+HELMET (DEX),PREFIX,#% increased Evasion Rating,1000,1000,1000,1000,1000,1000,1000,,,,,,,Helmet
+HELMET (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Mana",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (DEX),PREFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (DEX),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Helmet
+HELMET (DEX),PREFIX,# to Evasion Rating,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (DEX),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (DEX),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% increased Critical Hit Chance,250,500,1000,1000,1000,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Level of all Minion Skills,250,500,,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,1000,1000,1000,1000,1000,,,,,,,,,Helmet
+HELMET (STR),PREFIX,#% increased Armour,1000,1000,1000,1000,1000,1000,1000,,,,,,,Helmet
+HELMET (STR),PREFIX,"#% increased Armour, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (STR),PREFIX,"#% increased Armour, # to maximum Mana",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (STR),PREFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Helmet
+HELMET (STR),PREFIX,# to Armour,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (STR),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (STR),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR),SUFFIX,#% increased Critical Hit Chance,250,500,1000,1000,1000,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Helmet
+HELMET (STR),SUFFIX,# to Level of all Minion Skills,250,500,,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR),SUFFIX,#% of Armour also applies to Elemental Damage,1000,1000,1000,1000,1000,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Mana",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",1000,1000,1000,1000,1000,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Critical Hit Chance,250,500,1000,1000,1000,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Dexterity,500,500,500,500,500,500,500,500,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Level of all Minion Skills,250,500,,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,500,500,500,500,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,#% increased Armour and Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Mana",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Helmet
+HELMET (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",1000,1000,1000,1000,1000,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (STR/INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (STR/INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Critical Hit Chance,250,500,1000,1000,1000,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Level of all Minion Skills,250,500,,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,500,500,500,500,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,#% increased Armour and Evasion,1000,1000,1000,1000,1000,1000,1000,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Mana",1000,1000,1000,1000,1000,1000,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",1000,1000,1000,1000,1000,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% increased Critical Hit Chance,250,500,1000,1000,1000,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Dexterity,500,500,500,500,500,500,500,500,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Level of all Minion Skills,250,500,,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,,,,,,,,,Helmet
+BODY ARMOUR (INT),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,#% increased Energy Shield,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,"# to maximum Energy Shield, #% increased Energy Shield",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,# to maximum Energy Shield,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,Body Armour
+BODY ARMOUR (INT),PREFIX,# to Spirit,100,200,300,400,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Attribute Requirements,900,900,900,900,900,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Duration of Bleeding on You,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Ignite Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Poison Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% faster start of Energy Shield Recharge,1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,#% increased Evasion Rating,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,"# to Evasion Rating, #% increased Evasion Rating",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to Evasion Rating,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to Spirit,100,200,300,400,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Attribute Requirements,900,900,900,900,900,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Duration of Bleeding on You,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Ignite Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Poison Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,#% increased Armour,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,"# to Armour, #% increased Armour",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,"#% increased Armour, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to Armour,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,Body Armour
+BODY ARMOUR (STR),PREFIX,# to Spirit,100,200,300,400,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Attribute Requirements,900,900,900,900,900,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Duration of Bleeding on You,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Ignite Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Poison Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% of Armour also applies to Elemental Damage,1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield, #% increased Evasion and Energy Shield",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to Spirit,100,200,300,400,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Attribute Requirements,900,900,900,900,900,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Duration of Bleeding on You,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Ignite Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Poison Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Dexterity,500,500,500,500,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Intelligence,500,500,500,500,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% faster start of Energy Shield Recharge,500,500,500,500,500,500,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,500,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,#% increased Armour and Energy Shield,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield, #% increased Armour and Energy Shield",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to Spirit,100,200,300,400,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Attribute Requirements,900,900,900,900,900,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Duration of Bleeding on You,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Ignite Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Poison Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Intelligence,500,500,500,500,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% faster start of Energy Shield Recharge,500,500,500,500,500,500,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,500,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,#% increased Armour and Evasion,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating, #% increased Armour and Evasion",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to Spirit,100,200,300,400,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Attribute Requirements,900,900,900,900,900,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Duration of Bleeding on You,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Ignite Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Poison Duration on you,500,500,500,500,500,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Dexterity,500,500,500,500,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,500,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,500,,,,,,,,Body Armour
+SHIELD (STR),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Shield
+SHIELD (STR),PREFIX,#% increased Armour,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR),PREFIX,"#% increased Armour, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Shield
+SHIELD (STR),PREFIX,#% increased Block chance,1000,1000,1000,,,,,,,,,,,Shield
+SHIELD (STR),PREFIX,# to Armour,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Shield
+SHIELD (STR),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Shield
+SHIELD (STR),SUFFIX,#% additional Physical Damage Reduction,800,800,800,800,800,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Shield
+SHIELD (STR),SUFFIX,#% to all Maximum Elemental Resistances,125,125,,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Chaos Resistance,125,125,125,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Cold Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Fire Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Lightning Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% of Armour also applies to Elemental Damage,1000,1000,1000,1000,1000,1000,,,,,,,,Shield
+BUCKLER,PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Buckler
+BUCKLER,PREFIX,#% increased Block chance,1000,1000,1000,,,,,,,,,,,Buckler
+BUCKLER,PREFIX,#% increased Evasion Rating,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Buckler
+BUCKLER,PREFIX,"#% increased Evasion Rating, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Buckler
+BUCKLER,PREFIX,# to Evasion Rating,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Buckler
+BUCKLER,PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Buckler
+BUCKLER,SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Buckler
+BUCKLER,SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Buckler
+BUCKLER,SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Buckler
+BUCKLER,SUFFIX,#% to all Maximum Elemental Resistances,125,125,,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Chaos Resistance,125,125,125,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Cold Resistance,250,250,250,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Fire Resistance,250,250,250,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Lightning Resistance,250,250,250,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,1000,1000,1000,1000,1000,1000,,,,,,,,Buckler
+SHIELD (STR/INT),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,#% increased Armour and Energy Shield,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,#% increased Block chance,1000,1000,1000,,,,,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",1000,1000,1000,1000,1000,1000,1000,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Shield
+SHIELD (STR/INT),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Intelligence,500,500,500,500,500,500,500,500,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to all Elemental Resistances,800,800,800,800,800,800,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to all Maximum Elemental Resistances,125,125,,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Chaos Resistance,125,125,125,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Cold Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Fire Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Lightning Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,500,500,500,500,500,500,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,500,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,#% increased Armour and Evasion,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to Stun Threshold",1000,1000,1000,1000,1000,1000,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,#% increased Block chance,1000,1000,1000,,,,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",1000,1000,1000,1000,1000,1000,1000,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Dexterity,500,500,500,500,500,500,500,500,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to all Maximum Elemental Resistances,125,125,,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Chaos Resistance,125,125,125,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Cold Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Fire Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Lightning Resistance,250,250,250,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,Hits against you have #% reduced Critical Damage Bonus,800,800,800,800,800,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,500,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,500,,,,,,,,Shield
+BELT,PREFIX,# to # Physical Thorns damage,1000,1000,1000,1000,1000,1000,1000,,,,,,,Belt
+BELT,PREFIX,#% increased Charm Effect Duration,800,800,800,800,800,,,,,,,,,Belt
+BELT,PREFIX,#% increased Flask Life Recovery rate,800,800,800,800,800,800,,,,,,,,Belt
+BELT,PREFIX,#% increased Flask Mana Recovery rate,800,800,800,800,800,800,,,,,,,,Belt
+BELT,PREFIX,# to Armour,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Belt
+BELT,PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Belt
+BELT,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Belt
+BELT,SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Belt
+BELT,SUFFIX,#% increased Charm Charges gained,800,800,800,800,800,800,,,,,,,,Belt
+BELT,SUFFIX,#% increased Flask Charges gained,800,800,800,800,800,800,,,,,,,,Belt
+BELT,SUFFIX,#% reduced Charm Charges used,800,800,800,800,800,800,,,,,,,,Belt
+BELT,SUFFIX,#% reduced Flask Charges used,800,800,800,800,800,800,,,,,,,,Belt
+BELT,SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Belt
+BELT,SUFFIX,# to Stun Threshold,800,800,800,800,800,800,800,800,800,800,,,,Belt
+BELT,SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Belt
+BELT,SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Belt
+BELT,SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Belt
+BELT,SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Belt
+RING,PREFIX,#% increased Chaos Damage,500,500,500,500,500,500,,,,,,,,Ring
+RING,PREFIX,#% increased Cold Damage,500,500,500,500,500,500,,,,,,,,Ring
+RING,PREFIX,#% increased Fire Damage,500,500,500,500,500,500,,,,,,,,Ring
+RING,PREFIX,#% increased Lightning Damage,500,500,500,500,500,500,,,,,,,,Ring
+RING,PREFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Ring
+RING,PREFIX,# to Accuracy Rating,400,800,800,800,800,800,800,800,,,,,,Ring
+RING,PREFIX,# to Evasion Rating,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Ring
+RING,PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Ring
+RING,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,Ring
+RING,PREFIX,Adds # to # Cold damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Ring
+RING,PREFIX,Adds # to # Fire damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Ring
+RING,PREFIX,Adds # to # Lightning damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Ring
+RING,PREFIX,Adds # to # Physical Damage to Attacks,400,600,800,1000,1000,1000,1000,1000,1000,,,,,Ring
+RING,SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,,,,,,,Ring
+RING,SUFFIX,#% increased Cast Speed,1000,1000,1000,1000,,,,,,,,,,Ring
+RING,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Ring
+RING,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Ring
+RING,SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Ring
+RING,SUFFIX,# to all Attributes,400,400,400,400,,,,,,,,,,Ring
+RING,SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Ring
+RING,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Ring
+RING,SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Ring
+RING,SUFFIX,#% to all Elemental Resistances,800,800,800,800,800,,,,,,,,,Ring
+RING,SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Ring
+RING,SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Ring
+RING,SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Ring
+RING,SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Ring
+RING,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,,,,,,,,Ring
+RING,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,,,,,,,,Ring
+RING,SUFFIX,Leech #% of Physical Attack Damage as Life,1000,1000,1000,,,,,,,,,,,Ring
+RING,SUFFIX,Leech #% of Physical Attack Damage as Mana,1000,1000,1000,,,,,,,,,,,Ring
+SPEAR,PREFIX,#% increased Elemental Damage with Attacks,500,500,500,500,500,500,,,,,,,,Spear
+SPEAR,PREFIX,#% increased Physical Damage,25,50,100,200,400,1000,1000,1000,,,,,,Spear
+SPEAR,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",100,200,400,600,1000,1000,1000,1000,,,,,,Spear
+SPEAR,PREFIX,# to Accuracy Rating,200,300,600,600,800,800,800,800,800,,,,,Spear
+SPEAR,PREFIX,Adds # to # Cold Damage,80,200,320,480,800,800,800,800,800,800,,,,Spear
+SPEAR,PREFIX,Adds # to # Fire Damage,90,225,360,540,900,900,900,900,900,900,,,,Spear
+SPEAR,PREFIX,Adds # to # Lightning Damage,110,275,440,660,1100,1100,1100,1100,1100,1100,,,,Spear
+SPEAR,PREFIX,Adds # to # Physical Damage,100,200,400,600,1000,1000,1000,1000,1000,,,,,Spear
+SPEAR,SUFFIX,#% increased Attack Speed,100,200,500,500,1000,1000,1000,1000,,,,,,Spear
+SPEAR,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Spear
+SPEAR,SUFFIX,#% increased Stun Duration,1000,1000,1000,1000,1000,1000,,,,,,,,Spear
+SPEAR,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Dexterity,750,750,750,750,750,750,750,750,,,,,,Spear
+SPEAR,SUFFIX,# to Level of all Melee Skills,50,125,250,375,500,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Level of all Projectile Skills,50,125,250,375,500,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Strength,250,250,250,250,250,250,250,250,,,,,,Spear
+SPEAR,SUFFIX,#% to Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Spear
+SPEAR,SUFFIX,#% to Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,Spear
+SPEAR,SUFFIX,Causes #% increased Stun Buildup,1000,1000,1000,1000,1000,1000,,,,,,,,Spear
+SPEAR,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Spear
+SPEAR,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Spear
+SPEAR,SUFFIX,Grants # Life per Enemy Hit,1000,1000,1000,1000,,,,,,,,,,Spear
+SPEAR,SUFFIX,Leeches #% of Physical Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Spear
+SPEAR,SUFFIX,Leeches #% of Physical Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Spear
+CROSSBOW,PREFIX,#% increased Elemental Damage with Attacks,500,500,500,500,500,500,,,,,,,,Crossbow
+CROSSBOW,PREFIX,#% increased Physical Damage,25,50,100,200,400,1000,1000,1000,,,,,,Crossbow
+CROSSBOW,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",100,200,400,600,1000,1000,1000,1000,,,,,,Crossbow
+CROSSBOW,PREFIX,# to Accuracy Rating,100,200,300,600,600,800,800,800,800,800,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Cold Damage,80,200,320,480,800,800,800,800,800,800,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Fire Damage,100,250,400,600,1000,1000,1000,1000,1000,1000,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Lightning Damage,100,250,400,600,1000,1000,1000,1000,1000,1000,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Physical Damage,100,200,400,600,1000,1000,1000,1000,1000,,,,,Crossbow
+CROSSBOW,SUFFIX,#% increased Attack Speed,400,500,1000,1000,1000,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Dexterity,500,500,500,500,500,500,500,500,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Level of all Projectile Skills,100,250,500,750,1000,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% to Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% to Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Crossbow
+CROSSBOW,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Crossbow
+CROSSBOW,SUFFIX,Grants # Life per Enemy Hit,1000,1000,1000,1000,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Leeches #% of Physical Damage as Life,1000,1000,1000,1000,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Leeches #% of Physical Damage as Mana,1000,1000,1000,1000,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Loads # additional bolts,125,250,,,,,,,,,,,,Crossbow
+BOW,PREFIX,#% increased Elemental Damage with Attacks,500,500,500,500,500,500,,,,,,,,Bow
+BOW,PREFIX,#% increased Physical Damage,25,50,100,200,400,1000,1000,1000,,,,,,Bow
+BOW,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",100,200,400,600,1000,1000,1000,1000,,,,,,Bow
+BOW,PREFIX,# to Accuracy Rating,100,200,300,600,600,800,800,800,800,800,,,,Bow
+BOW,PREFIX,Adds # to # Cold Damage,80,200,320,480,800,800,800,800,800,800,,,,Bow
+BOW,PREFIX,Adds # to # Fire Damage,80,200,320,480,800,800,800,800,800,800,,,,Bow
+BOW,PREFIX,Adds # to # Lightning Damage,120,300,480,720,1200,1200,1200,1200,1200,1200,,,,Bow
+BOW,PREFIX,Adds # to # Physical Damage,100,200,400,600,1000,1000,1000,1000,1000,,,,,Bow
+BOW,SUFFIX,#% increased Attack Speed,400,500,1000,1000,1000,,,,,,,,,Bow
+BOW,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Bow
+BOW,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Bow
+BOW,SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Bow
+BOW,SUFFIX,# to Level of all Projectile Skills,100,250,500,750,1000,,,,,,,,,Bow
+BOW,SUFFIX,#% to Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Bow
+BOW,SUFFIX,#% to Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,Bow
+BOW,SUFFIX,#% Surpassing chance to fire an additional Arrow,125,200,300,400,,,,,,,,,,Bow
+BOW,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Bow
+BOW,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Bow
+BOW,SUFFIX,Grants # Life per Enemy Hit,1000,1000,1000,1000,,,,,,,,,,Bow
+BOW,SUFFIX,Leeches #% of Physical Damage as Life,1000,1000,1000,1000,,,,,,,,,,Bow
+BOW,SUFFIX,Leeches #% of Physical Damage as Mana,1000,1000,1000,1000,,,,,,,,,,Bow
+WARSTAFF,PREFIX,#% increased Elemental Damage with Attacks,500,500,500,500,500,500,,,,,,,,Warstaff
+WARSTAFF,PREFIX,#% increased Physical Damage,25,50,100,200,400,1000,1000,1000,,,,,,Warstaff
+WARSTAFF,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",100,200,400,600,1000,1000,1000,1000,,,,,,Warstaff
+WARSTAFF,PREFIX,# to Accuracy Rating,200,300,600,600,800,800,800,800,800,,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Cold Damage,90,225,360,540,900,900,900,900,900,900,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Fire Damage,80,200,320,480,800,800,800,800,800,800,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Lightning Damage,110,275,440,660,1100,1100,1100,1100,1100,1100,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Physical Damage,100,200,400,600,1000,1000,1000,1000,1000,,,,,Warstaff
+WARSTAFF,SUFFIX,#% increased Attack Speed,100,200,500,500,1000,1000,1000,1000,,,,,,Warstaff
+WARSTAFF,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% increased Stun Duration,1000,1000,1000,1000,1000,1000,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Dexterity,750,750,750,750,750,750,750,750,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Intelligence,250,250,250,250,250,250,250,250,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Level of all Melee Skills,100,250,500,750,1000,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% to Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% to Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Causes #% increased Stun Buildup,1000,1000,1000,1000,1000,1000,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Warstaff
+WARSTAFF,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Warstaff
+WARSTAFF,SUFFIX,Grants # Life per Enemy Hit,1000,1000,1000,1000,,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Leeches #% of Physical Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Leeches #% of Physical Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Warstaff
+TWO HAND MACE,PREFIX,#% increased Elemental Damage with Attacks,500,500,500,500,500,500,,,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,#% increased Physical Damage,25,50,100,200,400,1000,1000,1000,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",100,200,400,600,1000,1000,1000,1000,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,# to Accuracy Rating,200,300,600,600,800,800,800,800,800,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Cold Damage,80,200,320,480,800,800,800,800,800,800,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Fire Damage,120,300,480,720,1200,1200,1200,1200,1200,1200,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Lightning Damage,80,200,320,480,800,800,800,800,800,800,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Physical Damage,100,200,400,600,1000,1000,1000,1000,1000,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% increased Attack Speed,100,200,500,500,1000,1000,1000,1000,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% increased Stun Duration,1000,1000,1000,1000,1000,1000,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,# to Level of all Melee Skills,100,250,500,750,1000,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% to Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% to Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Causes #% increased Stun Buildup,1000,1000,1000,1000,1000,1000,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Grants # Life per Enemy Hit,1000,1000,1000,1000,,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Leeches #% of Physical Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Leeches #% of Physical Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Two Hand Mace
+ONE HAND MACE,PREFIX,#% increased Elemental Damage with Attacks,500,500,500,500,500,500,,,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,#% increased Physical Damage,25,50,100,200,400,1000,1000,1000,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",100,200,400,600,1000,1000,1000,1000,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,# to Accuracy Rating,200,300,600,600,800,800,800,800,800,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Cold Damage,80,200,320,480,800,800,800,800,800,800,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Fire Damage,120,300,480,720,1200,1200,1200,1200,1200,1200,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Lightning Damage,80,200,320,480,800,800,800,800,800,800,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Physical Damage,100,200,400,600,1000,1000,1000,1000,1000,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% increased Attack Speed,100,200,500,500,1000,1000,1000,1000,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% increased Stun Duration,1000,1000,1000,1000,1000,1000,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,# to Level of all Melee Skills,100,250,500,750,1000,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% to Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% to Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Causes #% increased Stun Buildup,1000,1000,1000,1000,1000,1000,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Grants # Life per Enemy Hit,1000,1000,1000,1000,,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Leeches #% of Physical Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Leeches #% of Physical Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,One Hand Mace
+WAND,PREFIX,#% increased Chaos Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+WAND,PREFIX,#% increased Cold Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+WAND,PREFIX,#% increased Fire Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+WAND,PREFIX,#% increased Lightning Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+WAND,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Wand
+WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Wand
+WAND,PREFIX,#% increased Spell Physical Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+WAND,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Wand
+WAND,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Wand
+WAND,SUFFIX,#% increased Flammability Magnitude,500,500,1000,1000,1000,,,,,,,,,Wand
+WAND,SUFFIX,#% increased chance to Shock,500,500,1000,1000,1000,,,,,,,,,Wand
+WAND,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Wand
+WAND,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Wand
+WAND,SUFFIX,#% increased Freeze Buildup,500,500,1000,1000,1000,,,,,,,,,Wand
+WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Wand
+WAND,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Wand
+WAND,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Wand
+WAND,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Wand
+WAND,SUFFIX,# to Level of all Chaos Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Cold Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Fire Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Lightning Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Physical Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Wand
+WAND,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+WAND,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+FIRE WAND,PREFIX,#% increased Fire Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+FIRE WAND,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Wand
+FIRE WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Wand
+FIRE WAND,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Flammability Magnitude,500,500,1000,1000,1000,,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Wand
+FIRE WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Wand
+FIRE WAND,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Wand
+FIRE WAND,SUFFIX,# to Level of all Fire Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+FIRE WAND,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Wand
+FIRE WAND,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+FIRE WAND,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+ICE WAND,PREFIX,#% increased Cold Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+ICE WAND,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Wand
+ICE WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Wand
+ICE WAND,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Freeze Buildup,500,500,1000,1000,1000,,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Wand
+ICE WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Wand
+ICE WAND,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Wand
+ICE WAND,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Wand
+ICE WAND,SUFFIX,# to Level of all Cold Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+ICE WAND,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Wand
+ICE WAND,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+ICE WAND,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+LIGHTNING WAND,PREFIX,#% increased Lightning Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+LIGHTNING WAND,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Wand
+LIGHTNING WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Wand
+LIGHTNING WAND,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased chance to Shock,500,500,1000,1000,1000,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Level of all Lightning Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+LIGHTNING WAND,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+PHYSICAL WAND,PREFIX,#% increased Spell Physical Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+PHYSICAL WAND,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Wand
+PHYSICAL WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Wand
+PHYSICAL WAND,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Level of all Physical Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+PHYSICAL WAND,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+CHAOS WAND,PREFIX,#% increased Chaos Damage,50,100,200,300,400,500,500,500,,,,,,Wand
+CHAOS WAND,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Wand
+CHAOS WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Wand
+CHAOS WAND,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Wand
+CHAOS WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Level of all Chaos Spell Skills,100,250,500,750,1000,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+CHAOS WAND,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Wand
+STAFF,PREFIX,#% increased Chaos Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+STAFF,PREFIX,#% increased Cold Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+STAFF,PREFIX,#% increased Fire Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+STAFF,PREFIX,#% increased Lightning Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+STAFF,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Staff
+STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Staff
+STAFF,PREFIX,#% increased Spell Physical Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+STAFF,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Staff
+STAFF,SUFFIX,#% increased Flammability Magnitude,500,500,1000,1000,1000,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased chance to Shock,500,500,1000,1000,1000,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Freeze Buildup,500,500,1000,1000,1000,,,,,,,,,Staff
+STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Staff
+STAFF,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Staff
+STAFF,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Chaos Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Cold Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Fire Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Lightning Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Physical Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Staff
+STAFF,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+STAFF,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+FIRE STAFF,PREFIX,#% increased Fire Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+FIRE STAFF,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Staff
+FIRE STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Staff
+FIRE STAFF,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Flammability Magnitude,500,500,1000,1000,1000,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Staff
+FIRE STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Level of all Fire Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+FIRE STAFF,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+ICE STAFF,PREFIX,#% increased Cold Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+ICE STAFF,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Staff
+ICE STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Staff
+ICE STAFF,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Freeze Buildup,500,500,1000,1000,1000,,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Staff
+ICE STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Staff
+ICE STAFF,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Staff
+ICE STAFF,SUFFIX,# to Level of all Cold Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+ICE STAFF,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Staff
+ICE STAFF,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+ICE STAFF,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+LIGHTNING STAFF,PREFIX,#% increased Lightning Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+LIGHTNING STAFF,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Staff
+LIGHTNING STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased chance to Shock,500,500,1000,1000,1000,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Level of all Lightning Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+PHYSICAL STAFF,PREFIX,#% increased Spell Physical Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+PHYSICAL STAFF,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Staff
+PHYSICAL STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Level of all Physical Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+CHAOS STAFF,PREFIX,#% increased Chaos Damage,50,100,200,300,400,500,500,500,,,,,,Staff
+CHAOS STAFF,PREFIX,#% increased Spell Damage,50,100,200,400,600,1000,1000,1000,,,,,,Staff
+CHAOS STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Staff
+CHAOS STAFF,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,500,500,500,500,500,500,,,,,,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,500,500,500,500,500,500,,,,,,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,500,500,500,500,500,500,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Cast Speed,250,500,1000,1000,1000,1000,1000,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,125,250,500,1000,1000,1000,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Level of all Chaos Spell Skills,100,250,500,750,1000,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Level of all Spell Skills,50,100,150,200,,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+CHAOS STAFF,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Staff
+FOCUS,PREFIX,#% increased Chaos Damage,200,300,400,500,500,500,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Cold Damage,200,300,400,500,500,500,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Focus
+FOCUS,PREFIX,"#% increased Energy Shield, # to maximum Mana",1000,1000,1000,1000,1000,1000,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Fire Damage,200,300,400,500,500,500,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Lightning Damage,200,300,400,500,500,500,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Spell Damage,200,400,600,1000,1000,1000,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Spell Physical Damage,200,300,400,500,500,500,,,,,,,,Focus
+FOCUS,PREFIX,# to maximum Energy Shield,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Focus
+FOCUS,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Focus
+FOCUS,SUFFIX,#% increased Cast Speed,500,1000,1000,1000,1000,1000,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Critical Hit Chance for Spells,250,500,1000,1000,1000,,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Critical Spell Damage Bonus,250,500,1000,1000,1000,,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Energy Shield Recharge Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Focus
+FOCUS,SUFFIX,#% reduced Attribute Requirements,800,800,800,800,800,,,,,,,,,Focus
+FOCUS,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Focus
+FOCUS,SUFFIX,# to Level of all Spell Skills,250,500,,,,,,,,,,,,Focus
+FOCUS,SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Focus
+FOCUS,SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Focus
+FOCUS,SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Focus
+FOCUS,SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Focus
+FOCUS,SUFFIX,#% faster start of Energy Shield Recharge,1000,1000,1000,1000,1000,1000,,,,,,,,Focus
+SCEPTRE,PREFIX,#% increased Spirit,50,100,200,400,600,1000,1000,1000,,,,,,Sceptre
+SCEPTRE,PREFIX,"#% increased Spirit, # to maximum Mana",100,200,400,600,1000,1000,1000,,,,,,,Sceptre
+SCEPTRE,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Cold Damage,200,300,400,500,500,500,500,500,500,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Fire Damage,200,300,400,500,500,500,500,500,500,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Lightning Damage,200,300,400,500,500,500,500,500,500,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Physical Damage,200,300,400,500,500,500,500,500,500,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal #% increased Damage,50,100,200,400,600,1000,1000,1000,,,,,,Sceptre
+SCEPTRE,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% increased Presence Area of Effect,500,500,500,500,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Intelligence,750,750,750,750,750,750,750,750,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Level of all Minion Skills,100,250,500,750,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Strength,250,250,250,250,250,250,250,250,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Attack Speed,1000,1000,1000,1000,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Cast Speed,1000,1000,1000,1000,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% to all Elemental Resistances,800,800,800,800,800,800,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence Regenerate # Life per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Sceptre
+SCEPTRE,SUFFIX,Minions have #% increased maximum Life,1000,1000,1000,1000,1000,1000,,,,,,,,Sceptre
+QUIVER,PREFIX,#% increased Damage with Bow Skills,500,500,500,500,500,500,,,,,,,,Quiver
+QUIVER,PREFIX,#% increased Projectile Speed,1000,1000,1000,1000,1000,,,,,,,,,Quiver
+QUIVER,PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Cold damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Fire damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Lightning damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Physical Damage to Attacks,400,600,800,1000,1000,1000,1000,1000,1000,,,,,Quiver
+QUIVER,SUFFIX,#% chance to Pierce an Enemy,500,500,500,500,500,,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Attack Speed,500,500,500,500,,,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Critical Damage Bonus for Attack Damage,125,250,500,1000,1000,1000,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Critical Hit Chance for Attacks,125,250,500,1000,1000,1000,,,,,,,,Quiver
+QUIVER,SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Quiver
+QUIVER,SUFFIX,# to Level of all Projectile Skills,250,500,,,,,,,,,,,,Quiver
+QUIVER,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,,,,,,,,Quiver
+QUIVER,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,,,,,,,,Quiver
+GLOVES (INT),PREFIX,#% increased Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Gloves
+GLOVES (INT),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Cold damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Fire damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Lightning damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Physical Damage to Attacks,400,600,800,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Attack Speed,500,500,500,500,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Critical Damage Bonus,250,500,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% reduced Attribute Requirements,700,700,700,700,700,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Level of all Melee Skills,250,500,,,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (INT),SUFFIX,Leech #% of Physical Attack Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Energy Shield Recharge Rate,1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (DEX),PREFIX,#% increased Evasion Rating,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Gloves
+GLOVES (DEX),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Gloves
+GLOVES (DEX),PREFIX,# to Evasion Rating,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (DEX),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Cold damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Fire damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Lightning damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Physical Damage to Attacks,400,600,800,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Attack Speed,500,500,500,500,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Critical Damage Bonus,250,500,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% reduced Attribute Requirements,700,700,700,700,700,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (DEX),SUFFIX,# to Level of all Melee Skills,250,500,,,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Life per Enemy Hit with Attacks,1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Leech #% of Physical Attack Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Leech #% of Physical Attack Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR),PREFIX,#% increased Armour,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (STR),PREFIX,"#% increased Armour, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Gloves
+GLOVES (STR),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Gloves
+GLOVES (STR),PREFIX,# to Armour,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (STR),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Cold damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Fire damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Lightning damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Physical Damage to Attacks,400,600,800,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Attack Speed,500,500,500,500,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Critical Damage Bonus,250,500,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% reduced Attribute Requirements,700,700,700,700,700,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Level of all Melee Skills,250,500,,,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Life per Enemy Hit with Attacks,1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (STR),SUFFIX,Leech #% of Physical Attack Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,Leech #% of Physical Attack Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% of Armour also applies to Elemental Damage,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Cold damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Fire damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Lightning damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Physical Damage to Attacks,400,600,800,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Attack Speed,500,500,500,500,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Critical Damage Bonus,250,500,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% reduced Attribute Requirements,700,700,700,700,700,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Intelligence,500,500,500,500,500,500,500,500,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Level of all Melee Skills,250,500,,,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Leech #% of Physical Attack Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,500,500,500,500,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,#% increased Armour and Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Gloves
+GLOVES (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Cold damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Fire damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Lightning damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Physical Damage to Attacks,400,600,800,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Attack Speed,500,500,500,500,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Critical Damage Bonus,250,500,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% reduced Attribute Requirements,700,700,700,700,700,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Intelligence,500,500,500,500,500,500,500,500,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Level of all Melee Skills,250,500,,,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Leech #% of Physical Attack Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,500,500,500,500,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,#% increased Armour and Evasion,1000,1000,1000,1000,1000,1000,1000,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",1000,1000,1000,1000,1000,1000,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to Accuracy Rating,200,400,800,800,800,800,800,800,800,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Cold damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Fire damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Lightning damage to Attacks,200,300,400,500,500,500,500,500,500,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Physical Damage to Attacks,400,600,800,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Attack Speed,500,500,500,500,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Critical Damage Bonus,250,500,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% reduced Attribute Requirements,700,700,700,700,700,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Level of all Melee Skills,250,500,,,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Strength,500,500,500,500,500,500,500,500,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Life per Enemy Hit with Attacks,1000,1000,1000,1000,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Leech #% of Physical Attack Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Leech #% of Physical Attack Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,500,500,500,500,500,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,500,500,500,500,500,,,,,,,,,Gloves
+AMULET,PREFIX,#% increased Armour,1000,1000,1000,1000,1000,1000,1000,,,,,,,Amulet
+AMULET,PREFIX,#% increased Evasion Rating,1000,1000,1000,1000,1000,1000,1000,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Energy Shield,1000,1000,1000,1000,1000,1000,1000,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Life,300,300,300,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Mana,300,300,300,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased Spell Damage,1000,1000,1000,1000,1000,1000,,,,,,,,Amulet
+AMULET,PREFIX,# to Accuracy Rating,400,800,800,800,800,800,800,800,,,,,,Amulet
+AMULET,PREFIX,# to maximum Energy Shield,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Amulet
+AMULET,PREFIX,# to maximum Life,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,,Amulet
+AMULET,PREFIX,# to maximum Mana,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,Amulet
+AMULET,PREFIX,# to Spirit,400,500,500,500,500,,,,,,,,,Amulet
+AMULET,SUFFIX,# Life Regeneration per second,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,,,,Amulet
+AMULET,SUFFIX,#% increased Cast Speed,800,800,800,800,800,,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Mana Regeneration Rate,1000,1000,1000,1000,1000,1000,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Rarity of Items found,1000,1000,1000,,,,,,,,,,,Amulet
+AMULET,SUFFIX,#% of Damage taken Recouped as Life,500,500,500,500,500,,,,,,,,,Amulet
+AMULET,SUFFIX,#% of Damage taken Recouped as Mana,500,500,500,500,500,,,,,,,,,Amulet
+AMULET,SUFFIX,# to all Attributes,800,800,800,800,800,800,800,800,800,,,,,Amulet
+AMULET,SUFFIX,# to Dexterity,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Amulet
+AMULET,SUFFIX,# to Intelligence,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Melee Skills,100,250,500,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Minion Skills,100,250,500,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Projectile Skills,100,250,500,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Spell Skills,100,250,500,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Strength,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Amulet
+AMULET,SUFFIX,#% to all Elemental Resistances,800,800,800,800,800,800,,,,,,,,Amulet
+AMULET,SUFFIX,#% to Chaos Resistance,250,250,250,250,250,250,,,,,,,,Amulet
+AMULET,SUFFIX,#% to Cold Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Amulet
+AMULET,SUFFIX,#% to Fire Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Amulet
+AMULET,SUFFIX,#% to Lightning Resistance,1000,1000,1000,1000,1000,1000,1000,1000,,,,,,Amulet
+TALISMAN,PREFIX,#% increased Elemental Damage with Attacks,500,500,500,500,500,500,,,,,,,,Talisman
+TALISMAN,PREFIX,#% increased Physical Damage,25,50,100,200,400,1000,1000,1000,,,,,,Talisman
+TALISMAN,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",100,200,400,600,1000,1000,1000,1000,,,,,,Talisman
+TALISMAN,PREFIX,# to Accuracy Rating,200,300,600,600,800,800,800,800,800,,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Cold Damage,100,250,400,600,1000,1000,1000,1000,1000,1000,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Fire Damage,110,275,440,660,1100,1100,1100,1100,1100,1100,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Lightning Damage,80,200,360,480,800,800,800,800,800,800,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Physical Damage,100,200,400,600,1000,1000,1000,1000,1000,,,,,Talisman
+TALISMAN,SUFFIX,#% increased Attack Speed,100,200,500,500,1000,1000,1000,1000,,,,,,Talisman
+TALISMAN,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",1000,1000,1000,,,,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% increased Stun Duration,1000,1000,1000,1000,1000,1000,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% reduced Attribute Requirements,1000,1000,1000,1000,1000,,,,,,,,,Talisman
+TALISMAN,SUFFIX,# to Level of all Melee Skills,100,250,500,750,1000,,,,,,,,,Talisman
+TALISMAN,SUFFIX,# to Strength,600,600,600,600,600,600,600,600,,,,,,Talisman
+TALISMAN,SUFFIX,# to Intelligence,400,400,400,400,400,400,400,400,,,,,,Talisman
+TALISMAN,SUFFIX,#% to Critical Damage Bonus,125,250,500,1000,1000,1000,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% to Critical Hit Chance,125,250,500,1000,1000,1000,,,,,,,,Talisman
+TALISMAN,SUFFIX,Causes #% increased Stun Buildup,1000,1000,1000,1000,1000,1000,,,,,,,,Talisman
+TALISMAN,SUFFIX,Gain # Life per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Talisman
+TALISMAN,SUFFIX,Gain # Mana per Enemy Killed,750,750,750,750,750,750,750,750,,,,,,Talisman
+TALISMAN,SUFFIX,Grants # Life per Enemy Hit,1000,1000,1000,1000,,,,,,,,,,Talisman
+TALISMAN,SUFFIX,Leeches #% of Physical Damage as Life,1000,1000,1000,1000,1000,,,,,,,,,Talisman
+TALISMAN,SUFFIX,Leeches #% of Physical Damage as Mana,1000,1000,1000,1000,1000,,,,,,,,,Talisman

@@ -1,0 +1,33 @@
+id,name,effect,target_orb,side_constraint,available,notes
+omen-of-dextral-exaltation,Omen of Dextral Exaltation,Exalted Orb will add only Suffix modifiers,Exalted,SUFFIX,true,
+omen-of-sinistral-exaltation,Omen of Sinistral Exaltation,Exalted Orb will add only Prefix modifiers,Exalted,PREFIX,true,
+omen-of-greater-exaltation,Omen of Greater Exaltation,Exalted Orb will add two random modifiers,Exalted,BOTH,true,
+omen-of-sinistral-coronation,Omen of Sinistral Coronation,Regal Orb will only add a Prefix modifier,Regal,PREFIX,true,
+omen-of-dextral-coronation,Omen of Dextral Coronation,Regal Orb will only add a Suffix modifier,Regal,SUFFIX,true,
+omen-of-sinistral-alchemy,Omen of Sinistral Alchemy,Orb of Alchemy will inflict the maximum number of prefixes,Alchemy,PREFIX,true,
+omen-of-dextral-alchemy,Omen of Dextral Alchemy,Orb of Alchemy will inflict the maximum number of suffixes,Alchemy,SUFFIX,true,
+omen-of-greater-annulment,Omen of Greater Annulment,Orb of Annulment will remove two random modifiers,Annulment,BOTH,true,
+omen-of-dextral-annulment,Omen of Dextral Annulment,Orb of Annulment will remove only Suffix modifiers,Annulment,SUFFIX,true,
+omen-of-sinistral-annulment,Omen of Sinistral Annulment,Orb of Annulment will remove only Prefix modifiers,Annulment,PREFIX,true,
+omen-of-dextral-erasure,Omen of Dextral Erasure,Chaos Orb will remove only Suffix modifiers,Chaos,SUFFIX,true,
+omen-of-sinistral-erasure,Omen of Sinistral Erasure,Chaos Orb will remove only Prefix modifiers,Chaos,PREFIX,true,
+omen-of-dextral-crystallisation,Omen of Dextral Crystallisation,Perfect or Corrupted Essence will remove only Suffix modifiers,Essence,SUFFIX,true,Ring/Amulet only
+omen-of-sinistral-crystallisation,Omen of Sinistral Crystallisation,Perfect or Corrupted Essence will remove only Prefix modifiers,Essence,PREFIX,true,Ring/Amulet only
+omen-of-homogenising-exaltation,Omen of Homogenising Exaltation,Exalted Orb will add a Modifier of the same type as existing Modifier on Item,Exalted,—,false,Deprecated — removed from the game (https://poe2db.tw/Omen_of_Homogenising_Exaltation)
+omen-of-homogenising-coronation,Omen of Homogenising Coronation,Regal Orb will add a Modifier of the same type as existing Modifier on Item,Regal,—,true,
+omen-of-whittling,Omen of Whittling,Chaos Orb will remove the lowest level modifier,Chaos,—,true,Lowest item-level req — not tier
+omen-of-catalysing-exaltation,Omen of Catalysing Exaltation,Exalted Orb will consume all Catalyst Quality to increase chance of corresponding modifier,Exalted,—,true,Ring/Amulet only; exact odds unknown
+omen-of-corruption,Omen of Corruption,Vaal Orb will always result in change,Vaal,—,true,Forces outcome: Brick/Divine/Enchant/Socket/Quality
+omen-of-the-ancients,Omen of the Ancients,Orb of Chance will upgrade to random Unique of same Item Class,Chance,—,true,Not same base type
+omen-of-chance,Omen of Chance,Orb of Chance will not destroy the Item,Chance,—,true,Guarantees exact same base type Unique
+omen-of-sanctification,Omen of Sanctification,Divine Orb on Rare item will Sanctify it,Divine,—,true,Values 80–120% of normal; adds Sanctified tag
+omen-of-recombination,Omen of Recombination,Next Recombination is Lucky,Recombinator,—,true,Improves odds via lucky roll formula
+omen-of-the-blessed,Omen of the Blessed,Divine Orb will only reroll Implicit Modifiers,Divine,—,true,Niche/limited utility
+omen-of-dextral-necromancy,Omen of Dextral Necromancy,Desecration attempt will only add Suffix Modifiers,Desecration,SUFFIX,true,Abyssal craft
+omen-of-sinistral-necromancy,Omen of Sinistral Necromancy,Desecration attempt will only add Prefix Modifiers,Desecration,PREFIX,true,Abyssal craft
+omen-of-light,Omen of Light,Orb of Annulment will remove only Desecrated Modifiers,Annulment,—,true,Abyssal craft
+omen-of-abyssal-echoes,Omen of Abyssal Echoes,Next Reveal Desecrated Modifiers can reroll options once,Desecration,—,true,Abyssal craft; allows second option set
+omen-of-putrefaction,Omen of Putrefaction,Desecration attempt will replace all modifiers with up to 6 Desecrated and Corrupt,Desecration,BOTH,true,Abyssal craft
+omen-of-the-blackblooded,Omen of the Blackblooded,Weapon/Jewellery Desecration guarantees random Kurgal Modifier,Desecration,—,true,Abyssal craft
+omen-of-the-liege,Omen of the Liege,Weapon/Jewellery Desecration guarantees random Amanamu Modifier,Desecration,—,true,Abyssal craft
+omen-of-the-sovereign,Omen of the Sovereign,Weapon/Jewellery Desecration guarantees random Ulaman Modifier,Desecration,—,true,Abyssal craft

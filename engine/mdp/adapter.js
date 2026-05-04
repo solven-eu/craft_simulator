@@ -1,0 +1,436 @@
+// Adapter: convert the craft-store strategy ctx into the MDP-α input.
+// Same `ctx` already plumbed for compareStrategies, plus a few derived
+// fields (wishlist weights from the conditional pool).
+//
+// Output is the input shape consumed by `solveMDP(input)`. Pure function;
+// no store / DOM / async.
+
+/**
+ * @param {object} ctx                Strategy context (see strategiesAnalytics).
+ * @returns input for solveMDP, or null if the problem is degenerate
+ *          (no wishlist, no required mods, etc.).
+ */
+export function ctxToMdpInput(ctx) {
+  if (!ctx?.wishlist?.length) return null;
+
+  // Build wishlist with pool weights. Use the *full* pool (not conditional)
+  // since the MDP models alchemy-from-scratch where prior item state is
+  // irrelevant; exalt's per-state pool exclusion is computed separately
+  // inside the action's transitions.
+  const wishlist = ctx.wishlist.map((w) => {
+    const poolEntry = (ctx.fullPool ?? []).find((m) => m.key === w.key);
+    return {
+      key: w.key,
+      type: w.type ?? poolEntry?.type ?? null, // PREFIX | SUFFIX
+      weight: poolEntry?.weight ?? 0,
+      required: !!w.required,
+      fractured: !!w.fractured,
+      tierScores: w.tierScores ?? null,
+      requiredTier: pickFiniteMin(w.requiredTier, w.minTier),
+      tiers: poolEntry?.tiers ?? [],
+    };
+  });
+  const totalPool = (ctx.fullPool ?? []).reduce((s, m) => s + (m.weight ?? 0), 0);
+  const wishedW = wishlist.reduce((s, w) => s + w.weight, 0);
+  const irrelevantWeight = Math.max(0, totalPool - wishedW);
+  // Side-typed pool sums for omen-side-filtered orbs (Sinistral /
+  // Dextral Coronation, etc). Each side's irrelevant pool = total
+  // weight of mods of that type minus wished mods of that type.
+  const totalPoolPrefix = (ctx.fullPool ?? [])
+    .filter((m) => m.type === 'PREFIX').reduce((s, m) => s + (m.weight ?? 0), 0);
+  const totalPoolSuffix = (ctx.fullPool ?? [])
+    .filter((m) => m.type === 'SUFFIX').reduce((s, m) => s + (m.weight ?? 0), 0);
+  const wishedPrefixW = wishlist.filter((w) => w.type === 'PREFIX').reduce((s, w) => s + w.weight, 0);
+  const wishedSuffixW = wishlist.filter((w) => w.type === 'SUFFIX').reduce((s, w) => s + w.weight, 0);
+  const irrelevantWeightBySide = {
+    PREFIX: Math.max(0, totalPoolPrefix - wishedPrefixW),
+    SUFFIX: Math.max(0, totalPoolSuffix - wishedSuffixW),
+  };
+
+  const requiredMods = wishlist.filter((w) => w.required).map((w) => w.key);
+  // Fractured target: prefer an explicit user flag; fall back to the
+  // store-level `requiredFracturedKey` if plumbed.
+  const fracturedKey = ctx.requiredFracturedKey
+    ?? wishlist.find((w) => w.fractured && w.required)?.key
+    ?? null;
+
+  // Map every MDP action to its game-orb costs/times. Missing any key
+  // here causes the action to be silently dropped — that's what bit us
+  // earlier with transmute/augment/regal absent from this dict.
+  // Omen prices come from ctx.omenPrices (loaded by the store from
+  // omens.csv → poe2 economy table). Each Sinistral/Dextral Coronation
+  // omen-orb action's cost = orb cost + omen cost. Missing omens (e.g.
+  // user hasn't loaded that specific omen's price) → NaN → action
+  // silently excluded by the engine's quality-variant skip rule.
+  const omenCost = (slug) => {
+    const v = ctx.omenPrices?.[slug];
+    return Number.isFinite(v) ? v : NaN;
+  };
+  const sumCost = (...vs) => {
+    let s = 0;
+    for (const v of vs) {
+      if (!Number.isFinite(v)) return NaN;
+      s += v;
+    }
+    return s;
+  };
+  // Bone-trick: cheapest applicable Bone-class desecrated currency
+  // for the current item class. Bones are item-class-restricted (e.g.
+  // collarbones for Amulet/Ring/Belt; rib-cage for Body Armour; …).
+  // The cheapest applicable one is what the user would actually use
+  // to pad totalMods to fracture-eligible. If none applies / no
+  // rates loaded, boneCostEx stays NaN and the engine silently
+  // excludes apply_bone.
+  let boneCostEx = NaN;
+  const itemClass = ctx.itemClass ?? null;
+  for (const c of Object.values(ctx.currencies ?? {})) {
+    if (c.kind !== 'desecrated') continue;
+    // Bone family: collarbone / rib / cranium / jawbone / vertebra.
+    // Filter strictly on item-class applicability when known.
+    const applies = !itemClass
+      || !c.appliesToItemClasses
+      || c.appliesToItemClasses.includes(itemClass);
+    if (!applies) continue;
+    if (!Number.isFinite(c.exaltedPer)) continue;
+    if (!Number.isFinite(boneCostEx) || c.exaltedPer < boneCostEx) {
+      boneCostEx = c.exaltedPer;
+    }
+  }
+  // Per-wished P(reveal lands wished mod i). The bone REVEAL step
+  // shows 3 random affixes from the bone's affix pool (per-base
+  // desecrated mod list, sourced from `data/poe2/extra_mods.json`).
+  // The user picks the best of 3:
+  //   P(specific wished i present in the 3 picks) ≈ 1 - (1 - 1/N)^3
+  // where N = pool size for this base. The "with replacement" model
+  // is a small-error approximation; for sparse pools (N ~ 30-100)
+  // the actual without-replacement P is within a few % of this.
+  // Wishlist entries not in the desecrated pool get pBoneRevealHit=0
+  // — the reveal lands an irrelevant desecrated affix.
+  const desecratedPool = (ctx.extraMods?.[ctx.base]?.desecrated) ?? [];
+  const desecratedPoolSize = desecratedPool.length;
+  // Side-typed sub-pools — used by Sinistral/Dextral Necromancy omens
+  // which restrict the reveal pick to one side. The pool entry's `tags`
+  // / `tier_name` don't always carry side info; fall back to checking
+  // the `text` against known prefix/suffix patterns when the entry
+  // doesn't directly classify. Approximate but works for the bulk of
+  // mods. Mods with unknown side go in BOTH sub-pools (conservative —
+  // they could land under either omen).
+  const desecPoolPrefix = desecratedPool.filter((d) => d.type === 'PREFIX' || d.type == null);
+  const desecPoolSuffix = desecratedPool.filter((d) => d.type === 'SUFFIX' || d.type == null);
+  const desecratedNames        = new Set(desecratedPool.map((d) => d.text));
+  const desecratedNamesPrefix  = new Set(desecPoolPrefix.map((d) => d.text));
+  const desecratedNamesSuffix  = new Set(desecPoolSuffix.map((d) => d.text));
+
+  // 3-pick hit prob (plain reveal): user picks best of 3 random affixes.
+  // 6-pick hit prob (Abyssal Echoes): re-roll once = 6 effective picks.
+  const hit3 = (poolSize) => poolSize > 0 ? 1 - Math.pow(1 - 1/poolSize, 3) : 0;
+  const hit6 = (poolSize) => poolSize > 0 ? 1 - Math.pow(1 - 1/poolSize, 6) : 0;
+
+  const pBoneRevealHit        = wishlist.map((w) => {
+    const name = w.key.split(':').slice(1).join(':');
+    return desecratedNames.has(name) ? hit3(desecratedPoolSize) : 0;
+  });
+  const pBoneRevealHitPrefix  = wishlist.map((w) => {
+    if (w.type !== 'PREFIX') return 0;
+    const name = w.key.split(':').slice(1).join(':');
+    return desecratedNamesPrefix.has(name) ? hit3(desecPoolPrefix.length) : 0;
+  });
+  const pBoneRevealHitSuffix  = wishlist.map((w) => {
+    if (w.type !== 'SUFFIX') return 0;
+    const name = w.key.split(':').slice(1).join(':');
+    return desecratedNamesSuffix.has(name) ? hit3(desecPoolSuffix.length) : 0;
+  });
+  const pBoneRevealHitAbyssal = wishlist.map((w) => {
+    const name = w.key.split(':').slice(1).join(':');
+    return desecratedNames.has(name) ? hit6(desecratedPoolSize) : 0;
+  });
+  const orbCosts = {
+    transmute:         safeCost('transmute',        ctx),
+    transmute_greater: safeCost('transmuteGreater', ctx),
+    transmute_perfect: safeCost('transmutePerfect', ctx),
+    augment:           safeCost('augment',          ctx),
+    augment_greater:   safeCost('augmentGreater',   ctx),
+    augment_perfect:   safeCost('augmentPerfect',   ctx),
+    regal:             safeCost('regal',            ctx),
+    regal_greater:     safeCost('regalGreater',     ctx),
+    regal_perfect:     safeCost('regalPerfect',     ctx),
+    regal_sinistral:   sumCost(safeCost('regal', ctx), omenCost('omen-of-sinistral-coronation')),
+    regal_dextral:     sumCost(safeCost('regal', ctx), omenCost('omen-of-dextral-coronation')),
+    // Bone reveal omens — cost is just the omen (in-game reveal is
+    // a free confirm step). Plain reveal is free (cost=0). When the
+    // omen has no rate loaded the variant's cost is NaN; the engine
+    // silently skips it.
+    reveal_bone:           0,
+    reveal_bone_sinistral: omenCost('omen-of-sinistral-necromancy'),
+    reveal_bone_dextral:   omenCost('omen-of-dextral-necromancy'),
+    reveal_bone_abyssal:   omenCost('omen-of-abyssal-echoes'),
+    alch:              safeCost('alchemy',          ctx),
+    exalt:             safeCost('exalted',          ctx),
+    exalt_greater:     safeCost('exaltedGreater',   ctx),
+    exalt_perfect:     safeCost('exaltedPerfect',   ctx),
+    annul:             safeCost('annulment',        ctx),
+    chaos:             safeCost('chaos',            ctx),
+    chaos_greater:     safeCost('chaosGreater',     ctx),
+    chaos_perfect:     safeCost('chaosPerfect',     ctx),
+    fracturing:        safeCost('fracturing',       ctx),
+  };
+  const orbTimes = {
+    transmute:         ctx.orbs?.transmute?.timeSeconds         ?? 1,
+    transmute_greater: ctx.orbs?.transmuteGreater?.timeSeconds  ?? 1,
+    transmute_perfect: ctx.orbs?.transmutePerfect?.timeSeconds  ?? 1,
+    augment:           ctx.orbs?.augment?.timeSeconds           ?? 1,
+    augment_greater:   ctx.orbs?.augmentGreater?.timeSeconds    ?? 1,
+    augment_perfect:   ctx.orbs?.augmentPerfect?.timeSeconds    ?? 1,
+    regal:             ctx.orbs?.regal?.timeSeconds             ?? 1,
+    regal_greater:     ctx.orbs?.regalGreater?.timeSeconds      ?? 1,
+    regal_perfect:     ctx.orbs?.regalPerfect?.timeSeconds      ?? 1,
+    regal_sinistral:   ctx.orbs?.regal?.timeSeconds             ?? 1,
+    regal_dextral:     ctx.orbs?.regal?.timeSeconds             ?? 1,
+    alch:              ctx.orbs?.alchemy?.timeSeconds           ?? 1,
+    exalt:             ctx.orbs?.exalted?.timeSeconds           ?? 1,
+    exalt_greater:     ctx.orbs?.exaltedGreater?.timeSeconds    ?? 1,
+    exalt_perfect:     ctx.orbs?.exaltedPerfect?.timeSeconds    ?? 1,
+    annul:             ctx.orbs?.annulment?.timeSeconds         ?? 1,
+    chaos:             ctx.orbs?.chaos?.timeSeconds             ?? 1,
+    chaos_greater:     ctx.orbs?.chaosGreater?.timeSeconds      ?? 1,
+    chaos_perfect:     ctx.orbs?.chaosPerfect?.timeSeconds      ?? 1,
+    fracturing:        ctx.orbs?.fracturing?.timeSeconds        ?? 3,
+  };
+  // ---- pTierAcceptable[actionId][i] = P(orb i, having drawn wished
+  // mod i, lands at an acceptable tier). Computed exactly from the
+  // mod's per-tier weight table crossed with the orb's "Minimum
+  // Modifier Level" filter (game-rule, scraped from poe2db.tw):
+  //
+  //   pAcceptable(orb, mod) =
+  //     Σ(weight of tier t : t.ilvl ≥ orb.minLevel ∧ tier-acceptable-to-user)
+  //     / Σ(weight of tier t : t.ilvl ≥ orb.minLevel)
+  //
+  // Plain orbs use minLevel=0 (no filter). Greater/Perfect minLevel
+  // values verified at https://poe2db.tw/us/<orb_name> (see commit
+  // notes for fetched evidence).
+  const orbMinLevel = {
+    transmute: 0, transmute_greater: 55, transmute_perfect: 70,
+    augment:   0, augment_greater:   55, augment_perfect:   70,
+    regal:     0, regal_greater:     35, regal_perfect:     50,
+    regal_sinistral: 0, regal_dextral: 0, // omens preserve plain Regal's tier filter
+    alch:      0,
+    exalt:     0, exalt_greater:     35, exalt_perfect:     50,
+    // Chaos minLevel values from poe2db's per-orb pages (verified
+    // 2026-05-04, same scrape pattern as the Greater/Perfect Exalt
+    // values). Plain Chaos: no filter. Greater: ≥35. Perfect: ≥50.
+    chaos:     0, chaos_greater:     35, chaos_perfect:     50,
+  };
+  // Acceptance test per tier:
+  //   requiredTier: hard bar — tier T is acceptable iff T ≤ requiredTier
+  //                 (lower tier number = better in PoE2). Takes
+  //                 precedence when set.
+  //   tierScores:   per-tier desire flags. Tier acceptable iff
+  //                 tierScores[T] > 0. Used only when requiredTier
+  //                 isn't set.
+  // Without either, every tier in the mod's tier table is acceptable.
+  const isTierAcceptable = (tier, requiredTier, tierScores) => {
+    if (Number.isFinite(requiredTier)) return tier <= requiredTier;
+    if (tierScores && typeof tierScores === 'object') {
+      const s = tierScores[String(tier)] ?? tierScores[tier];
+      return Number(s) > 0;
+    }
+    return true;
+  };
+  const pAcceptableForOrbMod = (w, minLevel) => {
+    const tiers = w.tiers ?? [];
+    if (tiers.length === 0) {
+      // No per-tier data: fall back to tierScores-based count ratio
+      // (best effort when the mod catalog is unavailable).
+      if (w.tierScores && typeof w.tierScores === 'object') {
+        const tnums = Object.keys(w.tierScores).map(Number).filter(Number.isFinite);
+        if (tnums.length === 0) return 1;
+        const acc = tnums.filter((t) => isTierAcceptable(t, w.requiredTier, w.tierScores)).length;
+        return acc / tnums.length;
+      }
+      return 1;
+    }
+    // Per-tier exact: filter by orb's minLevel, then by user acceptance.
+    const eligible = tiers.filter((t) => (t.ilvl ?? 0) >= minLevel);
+    if (eligible.length === 0) return 0; // orb's filter excludes every tier this mod has
+    const eligibleW = eligible.reduce((s, t) => s + (t.weight ?? 0), 0);
+    if (eligibleW <= 0) return 0;
+    const acceptableW = eligible
+      .filter((t) => isTierAcceptable(t.tier, w.requiredTier, w.tierScores))
+      .reduce((s, t) => s + (t.weight ?? 0), 0);
+    return acceptableW / eligibleW;
+  };
+  const pTierAcceptable = {};
+  for (const [orbId, minLevel] of Object.entries(orbMinLevel)) {
+    pTierAcceptable[orbId] = wishlist.map((w) => pAcceptableForOrbMod(w, minLevel));
+  }
+
+  // Starting item: derive from `startingR` / `startingWSoft`. We don't
+  // know which specific wished mods are on the start item from the ctx,
+  // so we canonicalize: first R required + first WSoft soft. Same as
+  // chaos-spam / exalt-annul-cycle do internally.
+  const wIsReq = wishlist.map((w) => !!w.required);
+  const startMods = [];
+  let placedR = 0, placedW = 0;
+  const startR = ctx.startingR ?? 0;
+  const startWS = ctx.startingWSoft ?? 0;
+  for (let i = 0; i < wishlist.length && (placedR < startR || placedW < startWS); i++) {
+    if (wIsReq[i] && placedR < startR)        { startMods.push(wishlist[i].key); placedR++; }
+    else if (!wIsReq[i] && placedW < startWS) { startMods.push(wishlist[i].key); placedW++; }
+  }
+  const startingFracturedKey = ctx.startingFracturedKey ?? null;
+  const startTotal = (ctx.startingCounts?.prefixes ?? 0) + (ctx.startingCounts?.suffixes ?? 0);
+
+  return {
+    // Live UI: opt into partial-rate mode so a missing rate surfaces as
+    // a warning rather than crashing the panel. Tests / programmatic
+    // callers default to hard-fail so silent-drop bugs can't recur.
+    allowMissingRates: true,
+    wishlist,
+    irrelevantWeight,
+    irrelevantWeightBySide,
+    target: {
+      requiredMods,
+      fracturedKey,
+      // Acceptance bounds (game-target shape, NOT crafting cap).
+      minFilled: ctx.minFilled ?? null,
+      maxFilled: ctx.maxFilled ?? null,
+    },
+    start: {
+      // Rough rarity inference: any starting mods ⇒ Rare; else Normal.
+      // Normal is the cleanest place for the solver to begin.
+      rarity: startTotal === 0 ? 'normal' : 'rare',
+      modsOnItem: startMods,
+      totalMods: startTotal,
+      fracturedKey: startingFracturedKey,
+    },
+    orbCosts, orbTimes, pTierAcceptable,
+    boneCostEx,
+    pBoneRevealHit,
+    pBoneRevealHitPrefix,
+    pBoneRevealHitSuffix,
+    pBoneRevealHitAbyssal,
+    essences: buildEssenceSpecs(ctx, wishlist),
+    basePriceEx: ctx.basePriceEx ?? 0,
+    // Default 60 sec — see solve.js note. Adapter reads from ctx if
+    // the user surfaces a per-base-source override (e.g. hideout
+    // stash = 5 sec, trade = 60 sec, SSF rolling = much higher).
+    basePriceSec: ctx.basePriceSec ?? 60,
+    // Trade-equivalent value of the desired final item. Used purely for
+    // the chain renderer to show itemValue(s) = budgetEx − V*(s) on each
+    // node (a "what's this in-progress item worth right now?" annotation).
+    // Doesn't influence solver decisions — purely cosmetic. Falls back
+    // to ctx.totalBudgetEx (the strategy comparator's budget cap) so the
+    // user doesn't have to maintain two separate "budget" inputs.
+    budgetEx: ctx.budgetEx ?? ctx.totalBudgetEx ?? null,
+    // Toggle from store/UI: include step-id prefix (e.g. "[s5] ") on
+    // chain node labels. Default true so debug conversations can
+    // refer to "step s5" unambiguously.
+    showStepIds: ctx.showStepIds ?? true,
+    timeWeightExPerSec: ctx.timeWeightExPerSec ?? 0,
+    // Game-rule cap on a Rare's affix count during crafting — NOT the
+    // user's target final-mod count. ctx.maxFilled is plumbed separately
+    // through `target.maxFilled` so isGoalState can enforce it on the
+    // final item; env.maxFilled stays at the PoE2 6-affix game rule so
+    // exalt remains applicable during crafting. Earlier these were
+    // conflated and a 1-affix target silently blocked exalt at every
+    // rare with totalMods ≥ 1.
+    maxFilled: 6,
+    // Game-rule constants like `alchemyDraws` and `minModsToFracture`
+    // live in `engine/mdp/solve.js` as defaults — single source of
+    // truth. The adapter intentionally does NOT pass them so any future
+    // change to the canonical PoE2 rule lands in one place. (Earlier
+    // we duplicated them here and a stale `minModsToFracture: 4` shadowed
+    // the engine's correct default of 3, silently disabling fracturing
+    // on 3-mod Rares.)
+  };
+}
+
+function safeCost(orbId, ctx) {
+  const orb = ctx.orbs?.[orbId];
+  if (!orb) return NaN;
+  const ccy = ctx.currencies?.[orb.priceCurrency];
+  if (!ccy || !Number.isFinite(ccy.exaltedPer)) return NaN;
+  return ccy.exaltedPer;
+}
+
+// Build the MDP-ε `essences` input list from the strategy ctx. For
+// each essence applicable to the current item class with matched_mods
+// overlapping the wishlist, emit one spec:
+//   { id, name, costEx, timeSec, matchedKeys, pAcceptable }
+// where:
+//   - matchedKeys: the wishlist keys the essence's affix would set.
+//   - pAcceptable: 1.0 if essence's tier band is at or above the
+//     user's requiredTier, 0 otherwise (binary v1 — refined later
+//     when essence-tier-to-affix-tier mapping is encoded).
+//
+// Tier ordinal heuristic (lower = better in PoE2):
+//   Lesser    ≈ T5     (modest tier)
+//   Normal    ≈ T4
+//   Greater   ≈ T2
+//   Perfect   ≈ T1     (top tier)
+//   Corrupted ≈ T1     (corrupted essences hit highest tier band)
+// Refinement deferred to MDP-ε v2; for v1 the binary check works for
+// "user wants ≤ T2 ⇒ Greater/Perfect essences are acceptable, Lesser
+// isn't" — the most common case.
+function buildEssenceSpecs(ctx, wishlist) {
+  const out = [];
+  const essences = ctx.essences ?? [];
+  const prices = ctx.essencePrices ?? {};
+  const itemClass = ctx.itemClass ?? null;
+  // Map wishlist mod-name → wishlist key for fast lookup.
+  const nameToKey = new Map();
+  for (const w of wishlist) {
+    const name = w.key.split(':').slice(1).join(':');
+    nameToKey.set(name, w.key);
+  }
+  const tierOrdinal = { Lesser: 5, Normal: 4, Greater: 2, Perfect: 1, Corrupted: 1 };
+  for (const ess of essences) {
+    // Item-class filter — essences carry pipe-separated `item_classes`.
+    const classes = (ess.item_classes ?? '').split('|').map((s) => s.trim()).filter(Boolean);
+    if (itemClass && classes.length > 0 && !classes.includes(itemClass)) continue;
+    // Match the essence's `matched_mods` (pipe-separated mod names)
+    // against the wishlist. Skip essences with no overlap.
+    const matchedNames = (ess.matched_mods ?? '').split('|').map((s) => s.trim()).filter(Boolean);
+    const matchedKeys = matchedNames.map((n) => nameToKey.get(n)).filter(Boolean);
+    if (matchedKeys.length === 0) continue;
+    // Price lookup (essence_prices.csv via ctx.essencePrices map).
+    const priceEntry = prices[ess.name];
+    const costEx = Number.isFinite(priceEntry?.priceEx) ? priceEntry.priceEx : NaN;
+    if (!Number.isFinite(costEx)) continue;
+    // Per-essence tier acceptance: binary check vs each matched
+    // wished mod's requiredTier. If the essence's tier ordinal is
+    // ≤ the wished's requiredTier, the rolled affix is at acceptable
+    // tier ⇒ pAcc=1; else 0.
+    const essenceTier = tierOrdinal[ess.tier] ?? 5;
+    let pAcceptable = 1;
+    for (const k of matchedKeys) {
+      const w = wishlist.find((x) => x.key === k);
+      const required = w?.requiredTier;
+      if (Number.isFinite(required) && essenceTier > required) {
+        pAcceptable = 0; // essence's tier band is below the user's bar
+        break;
+      }
+    }
+    out.push({
+      id: `essence_${ess.poe2db_slug ?? ess.name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
+      name: ess.name,
+      costEx,
+      timeSec: 1,
+      matchedKeys,
+      pAcceptable,
+    });
+  }
+  return out;
+}
+
+// Smallest finite value among the args, or null if none are finite.
+// Used to merge requiredTier and minTier — the more permissive (lower
+// tier number) of the two represents the user's tier acceptance bar.
+function pickFiniteMin(...vals) {
+  let best = null;
+  for (const v of vals) {
+    if (!Number.isFinite(v)) continue;
+    if (best === null || v < best) best = v;
+  }
+  return best;
+}

@@ -1,0 +1,1161 @@
+BASE,TYPE,NAME,1,2,3,4,5,6,7,8,9,10,11,12,13,ItemClass
+BOOTS (INT),PREFIX,#% increased Energy Shield,Unassailable,Indomitable,Dauntless,Fearless,Resolute,Strong-Willed,Protective,,,,,,,Boots
+BOOTS (INT),PREFIX,"#% increased Energy Shield, # to Stun Threshold",Seraphim's,Djinn's,Naga's,Boggart's,Gremlin's,Pixie's,,,,,,,,Boots
+BOOTS (INT),PREFIX,#% increased Movement Speed,Hellion's,Cheetah's,Gazelle's,Stallion's,Sprinter's,Runner's,,,,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Energy Shield,Blazing,Pulsing,Radiating,Glowing,Glittering,Glimmering,Shining,,,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Boots
+BOOTS (INT),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Boots
+BOOTS (INT),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Boots
+BOOTS (INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Chill Duration on you,of the Reversal,of Dissipation,of Entropy,of Fluidity,of Convection,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Freeze Duration on you,of Thawing,of the Temperate,of Defrosting,of Unfreezing,of Heating,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% reduced Shock duration on you,of Grounding,of the Dielectric,of the Impedance,of Insulation,of Earthing,,,,,,,,,Boots
+BOOTS (INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Boots
+BOOTS (INT),SUFFIX,# to Stun Threshold,of Titanium Skin,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,Boots
+BOOTS (INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Boots
+BOOTS (INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Boots
+BOOTS (INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Boots
+BOOTS (DEX),PREFIX,#% increased Evasion Rating,Mirage's,Nightmare's,Phantasm's,Wraith's,Spectre's,Ghost's,Shade's,,,,,,,Boots
+BOOTS (DEX),PREFIX,"#% increased Evasion Rating, # to Stun Threshold",Hummingbird's,Dragonfly's,Wasp's,Butterfly's,Moth's,Mosquito's,,,,,,,,Boots
+BOOTS (DEX),PREFIX,#% increased Movement Speed,Hellion's,Cheetah's,Gazelle's,Stallion's,Sprinter's,Runner's,,,,,,,,Boots
+BOOTS (DEX),PREFIX,# to Evasion Rating,Vaporous,Phased,Blurred,Fleet,Acrobat's,Dancer's,Agile,,,,,,,Boots
+BOOTS (DEX),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Boots
+BOOTS (DEX),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Boots
+BOOTS (DEX),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Chill Duration on you,of the Reversal,of Dissipation,of Entropy,of Fluidity,of Convection,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Freeze Duration on you,of Thawing,of the Temperate,of Defrosting,of Unfreezing,of Heating,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% reduced Shock duration on you,of Grounding,of the Dielectric,of the Impedance,of Insulation,of Earthing,,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Boots
+BOOTS (DEX),SUFFIX,# to Stun Threshold,of Titanium Skin,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,Boots
+BOOTS (DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Boots
+BOOTS (DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Boots
+BOOTS (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Boots
+BOOTS (STR),PREFIX,#% increased Armour,Impregnable,Girded,Thickened,Buttressed,Lobstered,Layered,Reinforced,,,,,,,Boots
+BOOTS (STR),PREFIX,"#% increased Armour, # to Stun Threshold",Mammoth's,Elephant's,Rhino's,Armadillo's,Crab's,Beetle's,,,,,,,,Boots
+BOOTS (STR),PREFIX,#% increased Movement Speed,Hellion's,Cheetah's,Gazelle's,Stallion's,Sprinter's,Runner's,,,,,,,,Boots
+BOOTS (STR),PREFIX,# to Armour,Encased,Carapaced,Plated,Fortified,Ribbed,Studded,Lacquered,,,,,,,Boots
+BOOTS (STR),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Boots
+BOOTS (STR),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Boots
+BOOTS (STR),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Boots
+BOOTS (STR),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Chill Duration on you,of the Reversal,of Dissipation,of Entropy,of Fluidity,of Convection,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Freeze Duration on you,of Thawing,of the Temperate,of Defrosting,of Unfreezing,of Heating,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% reduced Shock duration on you,of Grounding,of the Dielectric,of the Impedance,of Insulation,of Earthing,,,,,,,,,Boots
+BOOTS (STR),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Boots
+BOOTS (STR),SUFFIX,# to Stun Threshold,of Titanium Skin,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,Boots
+BOOTS (STR),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Boots
+BOOTS (STR),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Boots
+BOOTS (STR),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,Illusory,Unreal,Evanescent,Ephemeral,Unworldly,Ethereal,Shadowy,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to Stun Threshold",Trickster's,Mentalist's,Illusionist's,Telepath's,Psychic,Intuitive,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,#% increased Movement Speed,Hellion's,Cheetah's,Gazelle's,Stallion's,Sprinter's,Runner's,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",Cherub's,Sylph's,Nymph's,Will-o-wisp's,,,,,,,,,,Boots
+BOOTS (DEX/INT),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Boots
+BOOTS (DEX/INT),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Chill Duration on you,of the Reversal,of Dissipation,of Entropy,of Fluidity,of Convection,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Freeze Duration on you,of Thawing,of the Temperate,of Defrosting,of Unfreezing,of Heating,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% reduced Shock duration on you,of Grounding,of the Dielectric,of the Impedance,of Insulation,of Earthing,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,# to Stun Threshold,of Titanium Skin,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Boots
+BOOTS (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,#% increased Armour and Energy Shield,Inspired,Interpolated,Inculcated,Infused,Instilled,Ingrained,Infixed,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to Stun Threshold",Sentinel's,Warden's,Guardian's,Keeper's,Protector's,Defender's,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,#% increased Movement Speed,Hellion's,Cheetah's,Gazelle's,Stallion's,Sprinter's,Runner's,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",Hallowed,Sanctified,Anointed,Blessed,,,,,,,,,,Boots
+BOOTS (STR/INT),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Boots
+BOOTS (STR/INT),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Chill Duration on you,of the Reversal,of Dissipation,of Entropy,of Fluidity,of Convection,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Freeze Duration on you,of Thawing,of the Temperate,of Defrosting,of Unfreezing,of Heating,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% reduced Shock duration on you,of Grounding,of the Dielectric,of the Impedance,of Insulation,of Earthing,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,# to Stun Threshold,of Titanium Skin,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Boots
+BOOTS (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,#% increased Armour and Evasion,Legend's,Hero's,Duelist's,Gladiator's,Fencer's,Brawler's,Scrapper's,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to Stun Threshold",Warlord's,General's,Marshal's,Magnate's,Commander's,Captain's,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,#% increased Movement Speed,Hellion's,Cheetah's,Gazelle's,Stallion's,Sprinter's,Runner's,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",Durable,Flexible,Pliant,Supple,,,,,,,,,,Boots
+BOOTS (STR/DEX),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Boots
+BOOTS (STR/DEX),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Chill Duration on you,of the Reversal,of Dissipation,of Entropy,of Fluidity,of Convection,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Freeze Duration on you,of Thawing,of the Temperate,of Defrosting,of Unfreezing,of Heating,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% reduced Shock duration on you,of Grounding,of the Dielectric,of the Impedance,of Insulation,of Earthing,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,# to Stun Threshold,of Titanium Skin,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Boots
+BOOTS (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Boots
+HELMET (INT),PREFIX,#% increased Energy Shield,Unassailable,Indomitable,Dauntless,Fearless,Resolute,Strong-Willed,Protective,,,,,,,Helmet
+HELMET (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",Pope's,Exarch's,Bishop's,Abbot's,Prior's,Monk's,,,,,,,,Helmet
+HELMET (INT),PREFIX,"#% increased Energy Shield, # to maximum Mana",Angel's,Heavenly,Celestial,Sacred,Serene,Imbued,,,,,,,,Helmet
+HELMET (INT),PREFIX,#% increased Rarity of Items found,Hoarder's,Collector's,Magpie's,,,,,,,,,,,Helmet
+HELMET (INT),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Energy Shield,Dazzling,Blazing,Pulsing,Radiating,Glowing,Glittering,Glimmering,Shining,,,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Life,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,Helmet
+HELMET (INT),PREFIX,# to maximum Mana,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,Helmet
+HELMET (INT),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Critical Hit Chance,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,# to Intelligence,of the Genius,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,Helmet
+HELMET (INT),SUFFIX,# to Level of all Minion Skills,of the Despot,of the Taskmaster,,,,,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Helmet
+HELMET (INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Helmet
+HELMET (INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Helmet
+HELMET (DEX),PREFIX,#% increased Evasion Rating,Mirage's,Nightmare's,Phantasm's,Wraith's,Spectre's,Ghost's,Shade's,,,,,,,Helmet
+HELMET (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",Stag's,Ibex's,Ram's,Mouflon's,Fawn's,Flea's,,,,,,,,Helmet
+HELMET (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Mana",Wanderer's,Wayfarer's,Explorer's,Traveller's,Drifter's,Nomad's,,,,,,,,Helmet
+HELMET (DEX),PREFIX,#% increased Rarity of Items found,Hoarder's,Collector's,Magpie's,,,,,,,,,,,Helmet
+HELMET (DEX),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Helmet
+HELMET (DEX),PREFIX,# to Evasion Rating,Elusory,Vaporous,Phased,Blurred,Fleet,Acrobat's,Dancer's,Agile,,,,,,Helmet
+HELMET (DEX),PREFIX,# to maximum Life,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,Helmet
+HELMET (DEX),PREFIX,# to maximum Mana,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,Helmet
+HELMET (DEX),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% increased Critical Hit Chance,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Intelligence,of the Genius,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,Helmet
+HELMET (DEX),SUFFIX,# to Level of all Minion Skills,of the Despot,of the Taskmaster,,,,,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Helmet
+HELMET (DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Helmet
+HELMET (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Helmet
+HELMET (STR),PREFIX,#% increased Armour,Impregnable,Girded,Thickened,Buttressed,Lobstered,Layered,Reinforced,,,,,,,Helmet
+HELMET (STR),PREFIX,"#% increased Armour, # to maximum Life",Crocodile's,Octopus',Nautilus',Urchin's,Lobster's,Oyster's,,,,,,,,Helmet
+HELMET (STR),PREFIX,"#% increased Armour, # to maximum Mana",Ancestral,Chieftain's,Colossal,Regal,Venerable,Imposing,,,,,,,,Helmet
+HELMET (STR),PREFIX,#% increased Rarity of Items found,Hoarder's,Collector's,Magpie's,,,,,,,,,,,Helmet
+HELMET (STR),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Helmet
+HELMET (STR),PREFIX,# to Armour,Enveloped,Encased,Carapaced,Plated,Fortified,Ribbed,Studded,Lacquered,,,,,,Helmet
+HELMET (STR),PREFIX,# to maximum Life,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,Helmet
+HELMET (STR),PREFIX,# to maximum Mana,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,Helmet
+HELMET (STR),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Helmet
+HELMET (STR),SUFFIX,#% increased Critical Hit Chance,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,# to Intelligence,of the Genius,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,Helmet
+HELMET (STR),SUFFIX,# to Level of all Minion Skills,of the Despot,of the Taskmaster,,,,,,,,,,,,Helmet
+HELMET (STR),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Helmet
+HELMET (STR),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Helmet
+HELMET (STR),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,Illusory,Unreal,Evanescent,Ephemeral,Unworldly,Ethereal,Shadowy,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",Maestro's,Minstrel's,Bard's,Troubadour's,Musician's,Poet's,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Mana",Falcon's,Eagle's,Hawk's,Owl's,Kingfisher's,Vulture's,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,#% increased Rarity of Items found,Hoarder's,Collector's,Magpie's,,,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Helmet
+HELMET (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",Spirit's,Cherub's,Sylph's,Nymph's,Will-o-wisp's,,,,,,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to maximum Life,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,Helmet
+HELMET (DEX/INT),PREFIX,# to maximum Mana,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Critical Hit Chance,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Intelligence,of the Genius,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,# to Level of all Minion Skills,of the Despot,of the Taskmaster,,,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Helmet
+HELMET (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,#% increased Armour and Energy Shield,Inspired,Interpolated,Inculcated,Infused,Instilled,Ingrained,Infixed,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",Prophet's,Visionary's,Haruspex's,Druid's,Auspex's,Augur's,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Mana",Whale's,Orca's,Dolphin's,Shark's,Swordfish's,Coelacanth's,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,#% increased Rarity of Items found,Hoarder's,Collector's,Magpie's,,,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Helmet
+HELMET (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",Beatified,Hallowed,Sanctified,Anointed,Blessed,,,,,,,,,Helmet
+HELMET (STR/INT),PREFIX,# to maximum Life,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,Helmet
+HELMET (STR/INT),PREFIX,# to maximum Mana,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,Helmet
+HELMET (STR/INT),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Critical Hit Chance,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Intelligence,of the Genius,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Level of all Minion Skills,of the Despot,of the Taskmaster,,,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Helmet
+HELMET (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,#% increased Armour and Evasion,Legend's,Hero's,Duelist's,Gladiator's,Fencer's,Brawler's,Scrapper's,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",Predator's,Aggressor's,Assailant's,Brute's,Thug's,Bully's,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Mana",Cerberus',Minotaur's,Bull's,Chimeral's,Rhex's,Rhoa's,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,#% increased Rarity of Items found,Hoarder's,Collector's,Magpie's,,,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Helmet
+HELMET (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",Sturdy,Durable,Flexible,Pliant,Supple,,,,,,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to maximum Life,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,Helmet
+HELMET (STR/DEX),PREFIX,# to maximum Mana,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# Life Regeneration per second,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% increased Critical Hit Chance,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Intelligence,of the Genius,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Level of all Minion Skills,of the Despot,of the Taskmaster,,,,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Helmet
+HELMET (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Helmet
+BODY ARMOUR (INT),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,#% increased Energy Shield,Unfaltering,Unassailable,Indomitable,Dauntless,Fearless,Resolute,Strong-Willed,Protective,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,"# to maximum Energy Shield, #% increased Energy Shield",Divine,Archon's,High Priest's,Priest's,Cardinal's,Deacon's,,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",Pope's,Exarch's,Bishop's,Abbot's,Prior's,Monk's,,,,,,,,Body Armour
+BODY ARMOUR (INT),PREFIX,# to maximum Energy Shield,Resplendent,Incandescent,Scintillating,Dazzling,Blazing,Pulsing,Radiating,Glowing,Glittering,Glimmering,Shining,,,Body Armour
+BODY ARMOUR (INT),PREFIX,# to maximum Life,Prime,Rapturous,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,Body Armour
+BODY ARMOUR (INT),PREFIX,# to Spirit,Queen's,Princess',Duchess',Countess',Marchioness',Viscountess',Baronness',Lady's,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# Life Regeneration per second,of the Phoenix,of Immortality,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Duration of Bleeding on You,of Staunching,of Assuaging,of Allaying,of Alleviation,of Sealing,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Ignite Duration on you,of Dousing,of Quenching,of Quelling,of Quashing,of Damping,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% reduced Poison Duration on you,of the Antidote,of the Panacea,of the Cure,of the Remedy,of the Antitoxin,,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Body Armour
+BODY ARMOUR (INT),SUFFIX,#% faster start of Energy Shield Recharge,of Anticipation,of Excitement,of Motivation,of Fretfulness,of Restlessness,of Impatience,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,#% increased Evasion Rating,Illusion's,Mirage's,Nightmare's,Phantasm's,Wraith's,Spectre's,Ghost's,Shade's,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,"# to Evasion Rating, #% increased Evasion Rating",Antelope's,Caribou's,Deer's,Moose's,Buck's,Impala's,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",Stag's,Ibex's,Ram's,Mouflon's,Fawn's,Flea's,,,,,,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to Evasion Rating,Fugitive,Lissome,Adroit,Elusory,Vaporous,Phased,Blurred,Fleet,Acrobat's,Dancer's,Agile,,,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to maximum Life,Prime,Rapturous,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,Body Armour
+BODY ARMOUR (DEX),PREFIX,# to Spirit,Queen's,Princess',Duchess',Countess',Marchioness',Viscountess',Baronness',Lady's,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# Life Regeneration per second,of the Phoenix,of Immortality,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Duration of Bleeding on You,of Staunching,of Assuaging,of Allaying,of Alleviation,of Sealing,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Ignite Duration on you,of Dousing,of Quenching,of Quelling,of Quashing,of Damping,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% reduced Poison Duration on you,of the Antidote,of the Panacea,of the Cure,of the Remedy,of the Antitoxin,,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Body Armour
+BODY ARMOUR (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Warping,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,#% increased Armour,Impenetrable,Impregnable,Girded,Thickened,Buttressed,Lobstered,Layered,Reinforced,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,"# to Armour, #% increased Armour",Hardened,Shelled,Pangolin's,Tortoise's,Snail's,Abalone's,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,"#% increased Armour, # to maximum Life",Crocodile's,Octopus',Nautilus',Urchin's,Lobster's,Oyster's,,,,,,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to Armour,Impervious,Unmoving,Abating,Enveloped,Encased,Carapaced,Plated,Fortified,Ribbed,Studded,Lacquered,,,Body Armour
+BODY ARMOUR (STR),PREFIX,# to maximum Life,Prime,Rapturous,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,Body Armour
+BODY ARMOUR (STR),PREFIX,# to Spirit,Queen's,Princess',Duchess',Countess',Marchioness',Viscountess',Baronness',Lady's,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# Life Regeneration per second,of the Phoenix,of Immortality,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Duration of Bleeding on You,of Staunching,of Assuaging,of Allaying,of Alleviation,of Sealing,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Ignite Duration on you,of Dousing,of Quenching,of Quelling,of Quashing,of Damping,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% reduced Poison Duration on you,of the Antidote,of the Panacea,of the Cure,of the Remedy,of the Antitoxin,,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Body Armour
+BODY ARMOUR (STR),SUFFIX,#% of Armour also applies to Elemental Damage,of Thermokryptance,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,Incorporeal,Illusory,Unreal,Evanescent,Ephemeral,Unworldly,Ethereal,Shadowy,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield, #% increased Evasion and Energy Shield",Stalker's,Rogue's,Phantom's,Chaser's,Tracker's,Pursuer's,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",Maestro's,Minstrel's,Bard's,Troubadour's,Musician's,Poet's,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",Banshee's,Apparition's,Eidolon's,Spirit's,Cherub's,Sylph's,Nymph's,Will-o-wisp's,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to maximum Life,Prime,Rapturous,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,Body Armour
+BODY ARMOUR (DEX/INT),PREFIX,# to Spirit,Queen's,Princess',Duchess',Countess',Marchioness',Viscountess',Baronness',Lady's,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# Life Regeneration per second,of the Phoenix,of Immortality,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Duration of Bleeding on You,of Staunching,of Assuaging,of Allaying,of Alleviation,of Sealing,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Ignite Duration on you,of Dousing,of Quenching,of Quelling,of Quashing,of Damping,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% reduced Poison Duration on you,of the Antidote,of the Panacea,of the Cure,of the Remedy,of the Antitoxin,,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,#% faster start of Energy Shield Recharge,of Anticipation,of Excitement,of Motivation,of Fretfulness,of Restlessness,of Impatience,,,,,,,,Body Armour
+BODY ARMOUR (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Warping,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,#% increased Armour and Energy Shield,Interpermeated,Inspired,Interpolated,Inculcated,Infused,Instilled,Ingrained,Infixed,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield, #% increased Armour and Energy Shield",Grand,Paladin's,Crusader's,Inquisitor's,Noble's,Faithful,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",Prophet's,Visionary's,Haruspex's,Druid's,Auspex's,Augur's,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",Godly,Saintly,Consecrated,Beatified,Hallowed,Sanctified,Anointed,Blessed,,,,,,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to maximum Life,Prime,Rapturous,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,Body Armour
+BODY ARMOUR (STR/INT),PREFIX,# to Spirit,Queen's,Princess',Duchess',Countess',Marchioness',Viscountess',Baronness',Lady's,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# Life Regeneration per second,of the Phoenix,of Immortality,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Duration of Bleeding on You,of Staunching,of Assuaging,of Allaying,of Alleviation,of Sealing,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Ignite Duration on you,of Dousing,of Quenching,of Quelling,of Quashing,of Damping,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% reduced Poison Duration on you,of the Antidote,of the Panacea,of the Cure,of the Remedy,of the Antitoxin,,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% faster start of Energy Shield Recharge,of Anticipation,of Excitement,of Motivation,of Fretfulness,of Restlessness,of Impatience,,,,,,,,Body Armour
+BODY ARMOUR (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,of Thermokryptance,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,#% increased Armour and Evasion,Victor's,Legend's,Hero's,Duelist's,Gladiator's,Fencer's,Brawler's,Scrapper's,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating, #% increased Armour and Evasion",Centurion's,Knight's,Warrior's,Veteran's,Fighter's,Swordsman's,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",Predator's,Aggressor's,Assailant's,Brute's,Thug's,Bully's,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",Versatile,Adaptable,Resilient,Sturdy,Durable,Flexible,Pliant,Supple,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to maximum Life,Prime,Rapturous,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,Body Armour
+BODY ARMOUR (STR/DEX),PREFIX,# to Spirit,Queen's,Princess',Duchess',Countess',Marchioness',Viscountess',Baronness',Lady's,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# Life Regeneration per second,of the Phoenix,of Immortality,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Duration of Bleeding on You,of Staunching,of Assuaging,of Allaying,of Alleviation,of Sealing,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Ignite Duration on you,of Dousing,of Quenching,of Quelling,of Quashing,of Damping,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% reduced Poison Duration on you,of the Antidote,of the Panacea,of the Cure,of the Remedy,of the Antitoxin,,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,of Thermokryptance,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,Body Armour
+BODY ARMOUR (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Warping,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,Body Armour
+SHIELD (STR),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Shield
+SHIELD (STR),PREFIX,#% increased Armour,Impenetrable,Impregnable,Girded,Thickened,Buttressed,Lobstered,Layered,Reinforced,,,,,,Shield
+SHIELD (STR),PREFIX,"#% increased Armour, # to Stun Threshold",Mammoth's,Elephant's,Rhino's,Armadillo's,Crab's,Beetle's,,,,,,,,Shield
+SHIELD (STR),PREFIX,#% increased Block chance,Adamant,Unrelenting,Steadfast,,,,,,,,,,,Shield
+SHIELD (STR),PREFIX,# to Armour,Unmoving,Abating,Enveloped,Encased,Carapaced,Plated,Fortified,Ribbed,Studded,Lacquered,,,,Shield
+SHIELD (STR),PREFIX,# to maximum Life,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,Shield
+SHIELD (STR),SUFFIX,#% additional Physical Damage Reduction,of the Conservator,of the Protector,of the Sentry,of the Custodian,of the Watchman,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Shield
+SHIELD (STR),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Shield
+SHIELD (STR),SUFFIX,#% to all Maximum Elemental Resistances,of the Everlasting,of the Deathless,,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Chaos Resistance,of Harmony,of Concord,of Regularity,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Cold Resistance,of the Mammoth,of the Tundra,of Furs,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Fire Resistance,of the Solar Storm,of the Molten Core,of the Bushfire,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% to Maximum Lightning Resistance,of the Lightning Rod,of Shockproofing,of Impedance,,,,,,,,,,,Shield
+SHIELD (STR),SUFFIX,#% of Armour also applies to Elemental Damage,of Thermokryptance,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,Shield
+BUCKLER,PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Buckler
+BUCKLER,PREFIX,#% increased Block chance,Adamant,Unrelenting,Steadfast,,,,,,,,,,,Buckler
+BUCKLER,PREFIX,#% increased Evasion Rating,Illusion's,Mirage's,Nightmare's,Phantasm's,Wraith's,Spectre's,Ghost's,Shade's,,,,,,Buckler
+BUCKLER,PREFIX,"#% increased Evasion Rating, # to Stun Threshold",Hummingbird's,Dragonfly's,Wasp's,Butterfly's,Moth's,Mosquito's,,,,,,,,Buckler
+BUCKLER,PREFIX,# to Evasion Rating,Lissome,Adroit,Elusory,Vaporous,Phased,Blurred,Fleet,Acrobat's,Dancer's,Agile,,,,Buckler
+BUCKLER,PREFIX,# to maximum Life,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,Buckler
+BUCKLER,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Buckler
+BUCKLER,SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Buckler
+BUCKLER,SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Buckler
+BUCKLER,SUFFIX,#% to all Maximum Elemental Resistances,of the Everlasting,of the Deathless,,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Chaos Resistance,of Harmony,of Concord,of Regularity,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Cold Resistance,of the Mammoth,of the Tundra,of Furs,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Fire Resistance,of the Solar Storm,of the Molten Core,of the Bushfire,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,#% to Maximum Lightning Resistance,of the Lightning Rod,of Shockproofing,of Impedance,,,,,,,,,,,Buckler
+BUCKLER,SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Warping,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,Buckler
+SHIELD (STR/INT),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,#% increased Armour and Energy Shield,Interpermeated,Inspired,Interpolated,Inculcated,Infused,Instilled,Ingrained,Infixed,,,,,,Shield
+SHIELD (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to Stun Threshold",Sentinel's,Warden's,Guardian's,Keeper's,Protector's,Defender's,,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,#% increased Block chance,Adamant,Unrelenting,Steadfast,,,,,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",Saintly,Consecrated,Beatified,Hallowed,Sanctified,Anointed,Blessed,,,,,,,Shield
+SHIELD (STR/INT),PREFIX,# to maximum Life,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,Shield
+SHIELD (STR/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to all Elemental Resistances,of the Span,of the Rainbow,of Variegation,of the Kaleidoscope,of the Prism,of the Crystal,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to all Maximum Elemental Resistances,of the Everlasting,of the Deathless,,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Chaos Resistance,of Harmony,of Concord,of Regularity,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Cold Resistance,of the Mammoth,of the Tundra,of Furs,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Fire Resistance,of the Solar Storm,of the Molten Core,of the Bushfire,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% to Maximum Lightning Resistance,of the Lightning Rod,of Shockproofing,of Impedance,,,,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Suffusion,of Ardour,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,Shield
+SHIELD (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,of Thermokryptance,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,#% increased Armour and Evasion,Victor's,Legend's,Hero's,Duelist's,Gladiator's,Fencer's,Brawler's,Scrapper's,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to Stun Threshold",Warlord's,General's,Marshal's,Magnate's,Commander's,Captain's,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,#% increased Block chance,Adamant,Unrelenting,Steadfast,,,,,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",Adaptable,Resilient,Sturdy,Durable,Flexible,Pliant,Supple,,,,,,,Shield
+SHIELD (STR/DEX),PREFIX,# to maximum Life,Vigorous,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to all Maximum Elemental Resistances,of the Everlasting,of the Deathless,,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Chaos Resistance,of Harmony,of Concord,of Regularity,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Cold Resistance,of the Mammoth,of the Tundra,of Furs,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Fire Resistance,of the Solar Storm,of the Molten Core,of the Bushfire,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% to Maximum Lightning Resistance,of the Lightning Rod,of Shockproofing,of Impedance,,,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,Hits against you have #% reduced Critical Damage Bonus,of the Bastion,of Obstruction,of Interference,of Deadening,of Dulling,,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,of Thermokryptance,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,Shield
+SHIELD (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Warping,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,Shield
+BELT,PREFIX,# to # Physical Thorns damage,Jagged,Edged,Spiked,Pointed,Barbed,Spiny,Thorny,,,,,,,Belt
+BELT,PREFIX,#% increased Charm Effect Duration,Revolutionary,Innovative,Progressive,Transformative,Conservative,,,,,,,,,Belt
+BELT,PREFIX,#% increased Flask Life Recovery rate,Regenerating,Rejuvenating,Refreshing,Renewing,Recovering,Restoring,,,,,,,,Belt
+BELT,PREFIX,#% increased Flask Mana Recovery rate,Inspiring,Galvanizing,Exciting,Heartening,Stirring,Affecting,,,,,,,,Belt
+BELT,PREFIX,# to Armour,Unmoving,Abating,Enveloped,Encased,Carapaced,Plated,Fortified,Ribbed,Studded,Lacquered,,,,Belt
+BELT,PREFIX,# to maximum Life,Fecund,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,Belt
+BELT,PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Belt
+BELT,SUFFIX,# Life Regeneration per second,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,Belt
+BELT,SUFFIX,#% increased Charm Charges gained,of Abundance,of the Harvest,of Bounty,of Fertility,of Surplus,of Plenty,,,,,,,,Belt
+BELT,SUFFIX,#% increased Flask Charges gained,of Overflowing,of Brimming,of Pouring,of Replenishing,of Restocking,of Refilling,,,,,,,,Belt
+BELT,SUFFIX,#% reduced Charm Charges used,of Scarcity,of Economy,of Restraint,of Temperance,of Frugality,of Austerity,,,,,,,,Belt
+BELT,SUFFIX,#% reduced Flask Charges used,of Nourishing,of Reveling,of Savouring,of Relishing,of Imbibing,of Sipping,,,,,,,,Belt
+BELT,SUFFIX,# to Strength,of the Gods,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,Belt
+BELT,SUFFIX,# to Stun Threshold,of Obsidian Skin,of Corundum Skin,of Adamantite Skin,of Platinum Skin,of Granite Skin,of Steel Skin,of Iron Skin,of Stone Skin,of Reinforced Skin,of Thick Skin,,,,Belt
+BELT,SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Belt
+BELT,SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Belt
+BELT,SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Belt
+BELT,SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Belt
+RING,PREFIX,#% increased Chaos Damage,Vile,Malignant,Darkened,Clouded,Tainted,Impure,,,,,,,,Ring
+RING,PREFIX,#% increased Cold Damage,Crystalline,Hailing,Snowy,Alpine,Biting,Bitter,,,,,,,,Ring
+RING,PREFIX,#% increased Fire Damage,Magmatic,Volcanic,Cauterising,Blistering,Sizzling,Searing,,,,,,,,Ring
+RING,PREFIX,#% increased Lightning Damage,Smiting,Striking,Coursing,Bolting,Hissing,Charged,,,,,,,,Ring
+RING,PREFIX,#% increased Rarity of Items found,Hoarder's,Collector's,Magpie's,,,,,,,,,,,Ring
+RING,PREFIX,# to Accuracy Rating,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,,Ring
+RING,PREFIX,# to Evasion Rating,Adroit,Elusory,Vaporous,Phased,Blurred,Fleet,Acrobat's,Dancer's,Agile,,,,,Ring
+RING,PREFIX,# to maximum Life,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,,Ring
+RING,PREFIX,# to maximum Mana,Zaffre,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,Ring
+RING,PREFIX,Adds # to # Cold damage to Attacks,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Ring
+RING,PREFIX,Adds # to # Fire damage to Attacks,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Ring
+RING,PREFIX,Adds # to # Lightning damage to Attacks,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Ring
+RING,PREFIX,Adds # to # Physical Damage to Attacks,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Ring
+RING,SUFFIX,# Life Regeneration per second,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,,,,Ring
+RING,SUFFIX,#% increased Cast Speed,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,,,,Ring
+RING,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Ring
+RING,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Ring
+RING,SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Ring
+RING,SUFFIX,# to all Attributes,of the Comet,of the Meteor,of the Sky,of the Clouds,,,,,,,,,,Ring
+RING,SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Ring
+RING,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Ring
+RING,SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Ring
+RING,SUFFIX,#% to all Elemental Resistances,of the Rainbow,of Variegation,of the Kaleidoscope,of the Prism,of the Crystal,,,,,,,,,Ring
+RING,SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Ring
+RING,SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Ring
+RING,SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Ring
+RING,SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Ring
+RING,SUFFIX,Gain # Life per Enemy Killed,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,,,Ring
+RING,SUFFIX,Gain # Mana per Enemy Killed,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,,,Ring
+RING,SUFFIX,Leech #% of Physical Attack Damage as Life,of the Remora,of the Locust,of the Parasite,,,,,,,,,,,Ring
+RING,SUFFIX,Leech #% of Physical Attack Damage as Mana,of the Arid,of the Parched,of the Thirsty,,,,,,,,,,,Ring
+SPEAR,PREFIX,#% increased Elemental Damage with Attacks,Devastating,Overpowering,Unleashed,Empowering,Infusing,Catalysing,,,,,,,,Spear
+SPEAR,PREFIX,#% increased Physical Damage,Merciless,Tyrannical,Cruel,Bloodthirsty,Vicious,Wicked,Serrated,Heavy,,,,,,Spear
+SPEAR,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",Dictator's,Emperor's,Conqueror's,Champion's,Mercenary's,Reaver's,Journeyman's,Squire's,,,,,,Spear
+SPEAR,PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Spear
+SPEAR,PREFIX,Adds # to # Cold Damage,Crystalising,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,Spear
+SPEAR,PREFIX,Adds # to # Fire Damage,Carbonising,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,Spear
+SPEAR,PREFIX,Adds # to # Lightning Damage,Vapourising,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,Spear
+SPEAR,PREFIX,Adds # to # Physical Damage,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Spear
+SPEAR,SUFFIX,#% increased Attack Speed,of Celebration,of Infamy,of Fame,of Acclaim,of Renown,of Mastery,of Ease,of Skill,,,,,,Spear
+SPEAR,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Spear
+SPEAR,SUFFIX,#% increased Stun Duration,of the Concussion,of Staggering,of Slamming,of Stunning,of Dazing,of Impact,,,,,,,,Spear
+SPEAR,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Spear
+SPEAR,SUFFIX,# to Level of all Melee Skills,of War,of Battle,of Conflict,of Dueling,of Combat,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Level of all Projectile Skills,of the Sniper,of the Marksman,of the Sharpshooter,of the Fletcher,of the Archer,,,,,,,,,Spear
+SPEAR,SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Spear
+SPEAR,SUFFIX,#% to Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Spear
+SPEAR,SUFFIX,#% to Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Spear
+SPEAR,SUFFIX,Causes #% increased Stun Buildup,of the Champion,of the Gladiator,of the Combatant,of the Boxer,of the Brawler,of the Pugilist,,,,,,,,Spear
+SPEAR,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Spear
+SPEAR,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Spear
+SPEAR,SUFFIX,Grants # Life per Enemy Hit,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Spear
+SPEAR,SUFFIX,Leeches #% of Physical Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Spear
+SPEAR,SUFFIX,Leeches #% of Physical Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Spear
+CROSSBOW,PREFIX,#% increased Elemental Damage with Attacks,Devastating,Overpowering,Unleashed,Empowering,Infusing,Catalysing,,,,,,,,Crossbow
+CROSSBOW,PREFIX,#% increased Physical Damage,Merciless,Tyrannical,Cruel,Bloodthirsty,Vicious,Wicked,Serrated,Heavy,,,,,,Crossbow
+CROSSBOW,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",Dictator's,Emperor's,Conqueror's,Champion's,Mercenary's,Reaver's,Journeyman's,Squire's,,,,,,Crossbow
+CROSSBOW,PREFIX,# to Accuracy Rating,Valkyrie's,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Cold Damage,Crystalising,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Fire Damage,Carbonising,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Lightning Damage,Vapourising,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,Crossbow
+CROSSBOW,PREFIX,Adds # to # Physical Damage,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Crossbow
+CROSSBOW,SUFFIX,#% increased Attack Speed,of Acclaim,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Level of all Projectile Skills,of the Sniper,of the Marksman,of the Sharpshooter,of the Fletcher,of the Archer,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% to Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,#% to Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Crossbow
+CROSSBOW,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Crossbow
+CROSSBOW,SUFFIX,Grants # Life per Enemy Hit,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Leeches #% of Physical Damage as Life,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Leeches #% of Physical Damage as Mana,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,,Crossbow
+CROSSBOW,SUFFIX,Loads # additional bolts,of Bursting,of Shelling,,,,,,,,,,,,Crossbow
+BOW,PREFIX,#% increased Elemental Damage with Attacks,Devastating,Overpowering,Unleashed,Empowering,Infusing,Catalysing,,,,,,,,Bow
+BOW,PREFIX,#% increased Physical Damage,Merciless,Tyrannical,Cruel,Bloodthirsty,Vicious,Wicked,Serrated,Heavy,,,,,,Bow
+BOW,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",Dictator's,Emperor's,Conqueror's,Champion's,Mercenary's,Reaver's,Journeyman's,Squire's,,,,,,Bow
+BOW,PREFIX,# to Accuracy Rating,Valkyrie's,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,Bow
+BOW,PREFIX,Adds # to # Cold Damage,Crystalising,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,Bow
+BOW,PREFIX,Adds # to # Fire Damage,Carbonising,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,Bow
+BOW,PREFIX,Adds # to # Lightning Damage,Vapourising,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,Bow
+BOW,PREFIX,Adds # to # Physical Damage,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Bow
+BOW,SUFFIX,#% increased Attack Speed,of Acclaim,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,Bow
+BOW,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Bow
+BOW,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Bow
+BOW,SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Bow
+BOW,SUFFIX,# to Level of all Projectile Skills,of the Sniper,of the Marksman,of the Sharpshooter,of the Fletcher,of the Archer,,,,,,,,,Bow
+BOW,SUFFIX,#% to Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Bow
+BOW,SUFFIX,#% to Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Bow
+BOW,SUFFIX,#% Surpassing chance to fire an additional Arrow,of Many,of Shards,of Splintering,of Surplus,,,,,,,,,,Bow
+BOW,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Bow
+BOW,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Bow
+BOW,SUFFIX,Grants # Life per Enemy Hit,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Bow
+BOW,SUFFIX,Leeches #% of Physical Damage as Life,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,,Bow
+BOW,SUFFIX,Leeches #% of Physical Damage as Mana,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,,Bow
+WARSTAFF,PREFIX,#% increased Elemental Damage with Attacks,Devastating,Overpowering,Unleashed,Empowering,Infusing,Catalysing,,,,,,,,Warstaff
+WARSTAFF,PREFIX,#% increased Physical Damage,Merciless,Tyrannical,Cruel,Bloodthirsty,Vicious,Wicked,Serrated,Heavy,,,,,,Warstaff
+WARSTAFF,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",Dictator's,Emperor's,Conqueror's,Champion's,Mercenary's,Reaver's,Journeyman's,Squire's,,,,,,Warstaff
+WARSTAFF,PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Cold Damage,Crystalising,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Fire Damage,Carbonising,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Lightning Damage,Vapourising,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,Warstaff
+WARSTAFF,PREFIX,Adds # to # Physical Damage,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Warstaff
+WARSTAFF,SUFFIX,#% increased Attack Speed,of Celebration,of Infamy,of Fame,of Acclaim,of Renown,of Mastery,of Ease,of Skill,,,,,,Warstaff
+WARSTAFF,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% increased Stun Duration,of the Concussion,of Staggering,of Slamming,of Stunning,of Dazing,of Impact,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Warstaff
+WARSTAFF,SUFFIX,# to Level of all Melee Skills,of War,of Battle,of Conflict,of Dueling,of Combat,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% to Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,#% to Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Causes #% increased Stun Buildup,of the Champion,of the Gladiator,of the Combatant,of the Boxer,of the Brawler,of the Pugilist,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Warstaff
+WARSTAFF,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Warstaff
+WARSTAFF,SUFFIX,Grants # Life per Enemy Hit,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Leeches #% of Physical Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Warstaff
+WARSTAFF,SUFFIX,Leeches #% of Physical Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Warstaff
+TWO HAND MACE,PREFIX,#% increased Elemental Damage with Attacks,Devastating,Overpowering,Unleashed,Empowering,Infusing,Catalysing,,,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,#% increased Physical Damage,Merciless,Tyrannical,Cruel,Bloodthirsty,Vicious,Wicked,Serrated,Heavy,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",Dictator's,Emperor's,Conqueror's,Champion's,Mercenary's,Reaver's,Journeyman's,Squire's,,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Cold Damage,Crystalising,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Fire Damage,Carbonising,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Lightning Damage,Vapourising,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,Two Hand Mace
+TWO HAND MACE,PREFIX,Adds # to # Physical Damage,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% increased Attack Speed,of Celebration,of Infamy,of Fame,of Acclaim,of Renown,of Mastery,of Ease,of Skill,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% increased Stun Duration,of the Concussion,of Staggering,of Slamming,of Stunning,of Dazing,of Impact,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,# to Level of all Melee Skills,of War,of Battle,of Conflict,of Dueling,of Combat,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% to Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,#% to Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Causes #% increased Stun Buildup,of the Champion,of the Gladiator,of the Combatant,of the Boxer,of the Brawler,of the Pugilist,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Grants # Life per Enemy Hit,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Leeches #% of Physical Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Two Hand Mace
+TWO HAND MACE,SUFFIX,Leeches #% of Physical Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Two Hand Mace
+ONE HAND MACE,PREFIX,#% increased Elemental Damage with Attacks,Devastating,Overpowering,Unleashed,Empowering,Infusing,Catalysing,,,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,#% increased Physical Damage,Merciless,Tyrannical,Cruel,Bloodthirsty,Vicious,Wicked,Serrated,Heavy,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",Dictator's,Emperor's,Conqueror's,Champion's,Mercenary's,Reaver's,Journeyman's,Squire's,,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Cold Damage,Crystalising,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Fire Damage,Carbonising,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Lightning Damage,Vapourising,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,One Hand Mace
+ONE HAND MACE,PREFIX,Adds # to # Physical Damage,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% increased Attack Speed,of Celebration,of Infamy,of Fame,of Acclaim,of Renown,of Mastery,of Ease,of Skill,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% increased Stun Duration,of the Concussion,of Staggering,of Slamming,of Stunning,of Dazing,of Impact,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,# to Level of all Melee Skills,of War,of Battle,of Conflict,of Dueling,of Combat,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% to Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,#% to Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Causes #% increased Stun Buildup,of the Champion,of the Gladiator,of the Combatant,of the Boxer,of the Brawler,of the Pugilist,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Grants # Life per Enemy Hit,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Leeches #% of Physical Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,One Hand Mace
+ONE HAND MACE,SUFFIX,Leeches #% of Physical Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,One Hand Mace
+WAND,PREFIX,#% increased Chaos Damage,Malevolent,Twisted,Vile,Malignant,Darkened,Clouded,Tainted,Impure,,,,,,Wand
+WAND,PREFIX,#% increased Cold Damage,Cryomancer's,Crystalline,Arctic,Hailing,Snowy,Alpine,Biting,Bitter,,,,,,Wand
+WAND,PREFIX,#% increased Fire Damage,Pyromancer's,Volcanic,Magmatic,Smoldering,Cauterising,Blistering,Sizzling,Searing,,,,,,Wand
+WAND,PREFIX,#% increased Lightning Damage,Electromancer's,Ionising,Smiting,Striking,Coursing,Bolting,Hissing,Charged,,,,,,Wand
+WAND,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Wand
+WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Wand
+WAND,PREFIX,#% increased Spell Physical Damage,Torturer's,Oppressor's,Agonising,Pitiless,Sadistic,Vengeful,Unforgiving,Punishing,,,,,,Wand
+WAND,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Wand
+WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Wand
+WAND,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Wand
+WAND,SUFFIX,#% increased Flammability Magnitude,of Conflagration,of Combustion,of Incineration,of Scorching,of Ignition,,,,,,,,,Wand
+WAND,SUFFIX,#% increased chance to Shock,of the Thunderbolt,of Voltages,of Electrocution,of Zapping,of Shocking,,,,,,,,,Wand
+WAND,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Wand
+WAND,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Wand
+WAND,SUFFIX,#% increased Freeze Buildup,of the Arctic,of the Hyperboreal,of the Glacier,of Bleakness,of Freezing,,,,,,,,,Wand
+WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Wand
+WAND,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Wand
+WAND,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Wand
+WAND,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Wand
+WAND,SUFFIX,# to Level of all Chaos Spell Skills,of Armageddon,of Havoc,of Ruin,of Turmoil,of Anarchy,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Cold Spell Skills,of Frostbite,of Rime,of Ice,of Sleet,of Snow,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Fire Spell Skills,of Inferno,of Immolation,of Flames,of Cinders,of Coals,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Lightning Spell Skills,of Thunder,of Voltage,of Electricity,of Static,of Sparks,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Physical Spell Skills,of Grief,of Desolation,of Torment,of Suffering,of Agony,,,,,,,,,Wand
+WAND,SUFFIX,# to Level of all Spell Skills,of the Wizard,of the Sorcerer,of the Enchanter,of the Mage,,,,,,,,,,Wand
+WAND,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Wand
+WAND,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Wand
+FIRE WAND,PREFIX,#% increased Fire Damage,Pyromancer's,Volcanic,Magmatic,Smoldering,Cauterising,Blistering,Sizzling,Searing,,,,,,Wand
+FIRE WAND,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Wand
+FIRE WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Wand
+FIRE WAND,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Wand
+FIRE WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Flammability Magnitude,of Conflagration,of Combustion,of Incineration,of Scorching,of Ignition,,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Wand
+FIRE WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Wand
+FIRE WAND,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Wand
+FIRE WAND,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Wand
+FIRE WAND,SUFFIX,# to Level of all Fire Spell Skills,of Inferno,of Immolation,of Flames,of Cinders,of Coals,,,,,,,,,Wand
+FIRE WAND,SUFFIX,# to Level of all Spell Skills,of the Wizard,of the Sorcerer,of the Enchanter,of the Mage,,,,,,,,,,Wand
+FIRE WAND,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Wand
+FIRE WAND,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Wand
+ICE WAND,PREFIX,#% increased Cold Damage,Cryomancer's,Crystalline,Arctic,Hailing,Snowy,Alpine,Biting,Bitter,,,,,,Wand
+ICE WAND,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Wand
+ICE WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Wand
+ICE WAND,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Wand
+ICE WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Freeze Buildup,of the Arctic,of the Hyperboreal,of the Glacier,of Bleakness,of Freezing,,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Wand
+ICE WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Wand
+ICE WAND,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Wand
+ICE WAND,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Wand
+ICE WAND,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Wand
+ICE WAND,SUFFIX,# to Level of all Cold Spell Skills,of Frostbite,of Rime,of Ice,of Sleet,of Snow,,,,,,,,,Wand
+ICE WAND,SUFFIX,# to Level of all Spell Skills,of the Wizard,of the Sorcerer,of the Enchanter,of the Mage,,,,,,,,,,Wand
+ICE WAND,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Wand
+ICE WAND,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Wand
+LIGHTNING WAND,PREFIX,#% increased Lightning Damage,Electromancer's,Ionising,Smiting,Striking,Coursing,Bolting,Hissing,Charged,,,,,,Wand
+LIGHTNING WAND,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Wand
+LIGHTNING WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Wand
+LIGHTNING WAND,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Wand
+LIGHTNING WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased chance to Shock,of the Thunderbolt,of Voltages,of Electrocution,of Zapping,of Shocking,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Level of all Lightning Spell Skills,of Thunder,of Voltage,of Electricity,of Static,of Sparks,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,# to Level of all Spell Skills,of the Wizard,of the Sorcerer,of the Enchanter,of the Mage,,,,,,,,,,Wand
+LIGHTNING WAND,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Wand
+LIGHTNING WAND,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Wand
+PHYSICAL WAND,PREFIX,#% increased Spell Physical Damage,Torturer's,Oppressor's,Agonising,Pitiless,Sadistic,Vengeful,Unforgiving,Punishing,,,,,,Wand
+PHYSICAL WAND,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Wand
+PHYSICAL WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Wand
+PHYSICAL WAND,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Wand
+PHYSICAL WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Level of all Physical Spell Skills,of Grief,of Desolation,of Torment,of Suffering,of Agony,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,# to Level of all Spell Skills,of the Wizard,of the Sorcerer,of the Enchanter,of the Mage,,,,,,,,,,Wand
+PHYSICAL WAND,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Wand
+PHYSICAL WAND,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Wand
+CHAOS WAND,PREFIX,#% increased Chaos Damage,Malevolent,Twisted,Vile,Malignant,Darkened,Clouded,Tainted,Impure,,,,,,Wand
+CHAOS WAND,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Wand
+CHAOS WAND,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Wand
+CHAOS WAND,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Wand
+CHAOS WAND,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Wand
+CHAOS WAND,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Wand
+CHAOS WAND,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Level of all Chaos Spell Skills,of Armageddon,of Havoc,of Ruin,of Turmoil,of Anarchy,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,# to Level of all Spell Skills,of the Wizard,of the Sorcerer,of the Enchanter,of the Mage,,,,,,,,,,Wand
+CHAOS WAND,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Wand
+CHAOS WAND,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Wand
+STAFF,PREFIX,#% increased Chaos Damage,Malevolent,Twisted,Vile,Malignant,Darkened,Clouded,Tainted,Impure,,,,,,Staff
+STAFF,PREFIX,#% increased Cold Damage,Cryomancer's,Crystalline,Arctic,Hailing,Snowy,Alpine,Biting,Bitter,,,,,,Staff
+STAFF,PREFIX,#% increased Fire Damage,Pyromancer's,Volcanic,Magmatic,Smoldering,Cauterising,Blistering,Sizzling,Searing,,,,,,Staff
+STAFF,PREFIX,#% increased Lightning Damage,Electromancer's,Ionising,Smiting,Striking,Coursing,Bolting,Hissing,Charged,,,,,,Staff
+STAFF,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Staff
+STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Staff
+STAFF,PREFIX,#% increased Spell Physical Damage,Torturer's,Oppressor's,Agonising,Pitiless,Sadistic,Vengeful,Unforgiving,Punishing,,,,,,Staff
+STAFF,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Sapphire,Azure,Cobalt,Beryl,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Staff
+STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Staff
+STAFF,SUFFIX,#% increased Flammability Magnitude,of Conflagration,of Combustion,of Incineration,of Scorching,of Ignition,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased chance to Shock,of the Thunderbolt,of Voltages,of Electrocution,of Zapping,of Shocking,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Freeze Buildup,of the Arctic,of the Hyperboreal,of the Glacier,of Bleakness,of Freezing,,,,,,,,,Staff
+STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Staff
+STAFF,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Staff
+STAFF,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Staff
+STAFF,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Chaos Spell Skills,of Armageddon,of Havoc,of Ruin,of Turmoil,of Anarchy,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Cold Spell Skills,of Frostbite,of Rime,of Ice,of Sleet,of Snow,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Fire Spell Skills,of Inferno,of Immolation,of Flames,of Cinders,of Coals,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Lightning Spell Skills,of Thunder,of Voltage,of Electricity,of Static,of Sparks,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Physical Spell Skills,of Grief,of Desolation,of Torment,of Suffering,of Agony,,,,,,,,,Staff
+STAFF,SUFFIX,# to Level of all Spell Skills,of the Sorcerer,of the Evoker,of the Enchanter,of the Mage,,,,,,,,,,Staff
+STAFF,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Staff
+STAFF,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Staff
+FIRE STAFF,PREFIX,#% increased Fire Damage,Pyromancer's,Volcanic,Magmatic,Smoldering,Cauterising,Blistering,Sizzling,Searing,,,,,,Staff
+FIRE STAFF,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Staff
+FIRE STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Staff
+FIRE STAFF,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Sapphire,Azure,Cobalt,Beryl,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Staff
+FIRE STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Flammability Magnitude,of Conflagration,of Combustion,of Incineration,of Scorching,of Ignition,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Staff
+FIRE STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Staff
+FIRE STAFF,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Level of all Fire Spell Skills,of Inferno,of Immolation,of Flames,of Cinders,of Coals,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,# to Level of all Spell Skills,of the Sorcerer,of the Evoker,of the Enchanter,of the Mage,,,,,,,,,,Staff
+FIRE STAFF,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Staff
+FIRE STAFF,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Staff
+ICE STAFF,PREFIX,#% increased Cold Damage,Cryomancer's,Crystalline,Arctic,Hailing,Snowy,Alpine,Biting,Bitter,,,,,,Staff
+ICE STAFF,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Staff
+ICE STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Staff
+ICE STAFF,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Sapphire,Azure,Cobalt,Beryl,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Staff
+ICE STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Freeze Buildup,of the Arctic,of the Hyperboreal,of the Glacier,of Bleakness,of Freezing,,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Staff
+ICE STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Staff
+ICE STAFF,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Staff
+ICE STAFF,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Staff
+ICE STAFF,SUFFIX,# to Level of all Cold Spell Skills,of Frostbite,of Rime,of Ice,of Sleet,of Snow,,,,,,,,,Staff
+ICE STAFF,SUFFIX,# to Level of all Spell Skills,of the Sorcerer,of the Evoker,of the Enchanter,of the Mage,,,,,,,,,,Staff
+ICE STAFF,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Staff
+ICE STAFF,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Staff
+LIGHTNING STAFF,PREFIX,#% increased Lightning Damage,Electromancer's,Ionising,Smiting,Striking,Coursing,Bolting,Hissing,Charged,,,,,,Staff
+LIGHTNING STAFF,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Staff
+LIGHTNING STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Sapphire,Azure,Cobalt,Beryl,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Staff
+LIGHTNING STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased chance to Shock,of the Thunderbolt,of Voltages,of Electrocution,of Zapping,of Shocking,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Level of all Lightning Spell Skills,of Thunder,of Voltage,of Electricity,of Static,of Sparks,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,# to Level of all Spell Skills,of the Sorcerer,of the Evoker,of the Enchanter,of the Mage,,,,,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Staff
+LIGHTNING STAFF,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Staff
+PHYSICAL STAFF,PREFIX,#% increased Spell Physical Damage,Torturer's,Oppressor's,Agonising,Pitiless,Sadistic,Vengeful,Unforgiving,Punishing,,,,,,Staff
+PHYSICAL STAFF,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Staff
+PHYSICAL STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Sapphire,Azure,Cobalt,Beryl,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Staff
+PHYSICAL STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Level of all Physical Spell Skills,of Grief,of Desolation,of Torment,of Suffering,of Agony,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,# to Level of all Spell Skills,of the Sorcerer,of the Evoker,of the Enchanter,of the Mage,,,,,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Staff
+PHYSICAL STAFF,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Staff
+CHAOS STAFF,PREFIX,#% increased Chaos Damage,Malevolent,Twisted,Vile,Malignant,Darkened,Clouded,Tainted,Impure,,,,,,Staff
+CHAOS STAFF,PREFIX,#% increased Spell Damage,Runic,Glyphic,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,Staff
+CHAOS STAFF,PREFIX,"#% increased Spell Damage, # to maximum Mana",Lich's,Archmage's,Mage's,Warlock's,Wizard's,Conjuror's,Caster's,,,,,,,Staff
+CHAOS STAFF,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Sapphire,Azure,Cobalt,Beryl,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Cold Damage,Frostbound,Ruthless,Malicious,Destructive,Pernicious,Malignant,,,,,,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Fire Damage,Flamebound,Infernal,Zealot's,Fanatic's,Ardent,Fervent,,,,,,,,Staff
+CHAOS STAFF,PREFIX,Gain #% of Damage as Extra Lightning Damage,Stormbound,Electrifying,Vorpal,Fatal,Lethal,Deadly,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Cast Speed,of Finesse,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Critical Hit Chance for Spells,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Critical Spell Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Level of all Chaos Spell Skills,of Armageddon,of Havoc,of Ruin,of Turmoil,of Anarchy,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,# to Level of all Spell Skills,of the Sorcerer,of the Evoker,of the Enchanter,of the Mage,,,,,,,,,,Staff
+CHAOS STAFF,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Staff
+CHAOS STAFF,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Staff
+FOCUS,PREFIX,#% increased Chaos Damage,Vile,Malignant,Darkened,Clouded,Tainted,Impure,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Cold Damage,Arctic,Hailing,Snowy,Alpine,Biting,Bitter,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Energy Shield,Unassailable,Indomitable,Dauntless,Fearless,Resolute,Strong-Willed,Protective,,,,,,,Focus
+FOCUS,PREFIX,"#% increased Energy Shield, # to maximum Mana",Angel's,Heavenly,Celestial,Sacred,Serene,Imbued,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Fire Damage,Magmatic,Smoldering,Cauterising,Blistering,Sizzling,Searing,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Lightning Damage,Smiting,Striking,Coursing,Bolting,Hissing,Charged,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Spell Damage,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,,,Focus
+FOCUS,PREFIX,#% increased Spell Physical Damage,Agonising,Pitiless,Sadistic,Vengeful,Unforgiving,Punishing,,,,,,,,Focus
+FOCUS,PREFIX,# to maximum Energy Shield,Incandescent,Scintillating,Dazzling,Blazing,Pulsing,Radiating,Glowing,Glittering,Glimmering,Shining,,,,Focus
+FOCUS,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,Focus
+FOCUS,SUFFIX,#% increased Cast Speed,of Prestidigitation,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Critical Hit Chance for Spells,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Critical Spell Damage Bonus,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Energy Shield Recharge Rate,of Suffusion,of Ardour,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,Focus
+FOCUS,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Focus
+FOCUS,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Focus
+FOCUS,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Focus
+FOCUS,SUFFIX,# to Level of all Spell Skills,of the Enchanter,of the Mage,,,,,,,,,,,,Focus
+FOCUS,SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Focus
+FOCUS,SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Focus
+FOCUS,SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Focus
+FOCUS,SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Focus
+FOCUS,SUFFIX,#% faster start of Energy Shield Recharge,of Anticipation,of Excitement,of Motivation,of Fretfulness,of Restlessness,of Impatience,,,,,,,,Focus
+SCEPTRE,PREFIX,#% increased Spirit,King's,Prince's,Duke's,Count's,Marquess',Viscount's,Baron's,Lord's,,,,,,Sceptre
+SCEPTRE,PREFIX,"#% increased Spirit, # to maximum Mana",Chancellor's,Diplomat's,Envoy's,Minister's,Emissary's,Counselor's,Advisor's,,,,,,,Sceptre
+SCEPTRE,PREFIX,# to maximum Mana,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Cold Damage,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Fire Damage,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Lightning Damage,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal # to # added Attack Physical Damage,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Sceptre
+SCEPTRE,PREFIX,Allies in your Presence deal #% increased Damage,Empowering,Inspirational,Motivating,Persuasive,Provocative,Instigative,Agitative,Coercive,,,,,,Sceptre
+SCEPTRE,SUFFIX,"#% increased Mana Regeneration Rate, #% increased Light Radius",of the Hearth,of Kindling,of Warmth,,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% increased Presence Area of Effect,of Influence,of Guidance,of Outreach,of Direction,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Level of all Minion Skills,of the Slavedriver,of the Overseer,of the Despot,of the Taskmaster,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Attack Speed,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Cast Speed,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% increased Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence have #% to all Elemental Resistances,of Metamorphosis,of Progression,of Evolution,of Adaptation,of Acclimatisation,of Adjustment,,,,,,,,Sceptre
+SCEPTRE,SUFFIX,Allies in your Presence Regenerate # Life per second,of Immortality,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,Sceptre
+SCEPTRE,SUFFIX,Minions have #% increased maximum Life,of the Rector,of the Administrator,of the Headmaster,of the Director,of the Tutor,of the Mentor,,,,,,,,Sceptre
+QUIVER,PREFIX,#% increased Damage with Bow Skills,Impaling,Lacerating,Incisive,Perforating,Trenchant,Acute,,,,,,,,Quiver
+QUIVER,PREFIX,#% increased Projectile Speed,Nimble,Rapid,Quick,Brisk,Darting,,,,,,,,,Quiver
+QUIVER,PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Cold damage to Attacks,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Fire damage to Attacks,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Lightning damage to Attacks,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Quiver
+QUIVER,PREFIX,Adds # to # Physical Damage to Attacks,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Quiver
+QUIVER,SUFFIX,#% chance to Pierce an Enemy,of Penetrating,of Skewering,of Puncturing,of Drilling,of Piercing,,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Attack Speed,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Critical Damage Bonus for Attack Damage,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Quiver
+QUIVER,SUFFIX,#% increased Critical Hit Chance for Attacks,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Quiver
+QUIVER,SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Quiver
+QUIVER,SUFFIX,# to Level of all Projectile Skills,of the Fletcher,of the Archer,,,,,,,,,,,,Quiver
+QUIVER,SUFFIX,Gain # Life per Enemy Killed,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,,,Quiver
+QUIVER,SUFFIX,Gain # Mana per Enemy Killed,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,,,Quiver
+GLOVES (INT),PREFIX,#% increased Energy Shield,Unassailable,Indomitable,Dauntless,Fearless,Resolute,Strong-Willed,Protective,,,,,,,Gloves
+GLOVES (INT),PREFIX,"#% increased Energy Shield, # to maximum Life",Pope's,Exarch's,Bishop's,Abbot's,Prior's,Monk's,,,,,,,,Gloves
+GLOVES (INT),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Energy Shield,Blazing,Pulsing,Radiating,Glowing,Glittering,Glimmering,Shining,,,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Gloves
+GLOVES (INT),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Cold damage to Attacks,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Fire damage to Attacks,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Lightning damage to Attacks,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Gloves
+GLOVES (INT),PREFIX,Adds # to # Physical Damage to Attacks,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Attack Speed,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Critical Damage Bonus,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Dexterity,of the Wind,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Gloves
+GLOVES (INT),SUFFIX,# to Level of all Melee Skills,of Dueling,of Combat,,,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Gloves
+GLOVES (INT),SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Gloves
+GLOVES (INT),SUFFIX,Leech #% of Physical Attack Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Gloves
+GLOVES (INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Gloves
+GLOVES (DEX),PREFIX,#% increased Evasion Rating,Mirage's,Nightmare's,Phantasm's,Wraith's,Spectre's,Ghost's,Shade's,,,,,,,Gloves
+GLOVES (DEX),PREFIX,"#% increased Evasion Rating, # to maximum Life",Stag's,Ibex's,Ram's,Mouflon's,Fawn's,Flea's,,,,,,,,Gloves
+GLOVES (DEX),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Gloves
+GLOVES (DEX),PREFIX,# to Evasion Rating,Vaporous,Phased,Blurred,Fleet,Acrobat's,Dancer's,Agile,,,,,,,Gloves
+GLOVES (DEX),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Gloves
+GLOVES (DEX),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Cold damage to Attacks,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Fire damage to Attacks,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Lightning damage to Attacks,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Gloves
+GLOVES (DEX),PREFIX,Adds # to # Physical Damage to Attacks,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Attack Speed,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Critical Damage Bonus,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,# to Dexterity,of the Wind,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,Gloves
+GLOVES (DEX),SUFFIX,# to Level of all Melee Skills,of Dueling,of Combat,,,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Gloves
+GLOVES (DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Life per Enemy Hit with Attacks,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Leech #% of Physical Attack Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Leech #% of Physical Attack Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Gloves
+GLOVES (DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Gloves
+GLOVES (STR),PREFIX,#% increased Armour,Impregnable,Girded,Thickened,Buttressed,Lobstered,Layered,Reinforced,,,,,,,Gloves
+GLOVES (STR),PREFIX,"#% increased Armour, # to maximum Life",Crocodile's,Octopus',Nautilus',Urchin's,Lobster's,Oyster's,,,,,,,,Gloves
+GLOVES (STR),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Gloves
+GLOVES (STR),PREFIX,# to Armour,Encased,Carapaced,Plated,Fortified,Ribbed,Studded,Lacquered,,,,,,,Gloves
+GLOVES (STR),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Gloves
+GLOVES (STR),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Cold damage to Attacks,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Fire damage to Attacks,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Lightning damage to Attacks,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Gloves
+GLOVES (STR),PREFIX,Adds # to # Physical Damage to Attacks,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Attack Speed,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Critical Damage Bonus,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Dexterity,of the Wind,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Level of all Melee Skills,of Dueling,of Combat,,,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Life per Enemy Hit with Attacks,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Gloves
+GLOVES (STR),SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Gloves
+GLOVES (STR),SUFFIX,Leech #% of Physical Attack Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,Leech #% of Physical Attack Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Gloves
+GLOVES (STR),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,#% increased Evasion and Energy Shield,Illusory,Unreal,Evanescent,Ephemeral,Unworldly,Ethereal,Shadowy,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,"#% increased Evasion and Energy Shield, # to maximum Life",Maestro's,Minstrel's,Bard's,Troubadour's,Musician's,Poet's,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,"# to Evasion Rating, # to maximum Energy Shield",Cherub's,Sylph's,Nymph's,Will-o-wisp's,,,,,,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Cold damage to Attacks,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Fire damage to Attacks,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Lightning damage to Attacks,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Gloves
+GLOVES (DEX/INT),PREFIX,Adds # to # Physical Damage to Attacks,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Attack Speed,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Critical Damage Bonus,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Dexterity,of the Wind,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,# to Level of all Melee Skills,of Dueling,of Combat,,,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Leech #% of Physical Attack Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Gloves
+GLOVES (DEX/INT),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,#% increased Armour and Energy Shield,Inspired,Interpolated,Inculcated,Infused,Instilled,Ingrained,Infixed,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,"#% increased Armour and Energy Shield, # to maximum Life",Prophet's,Visionary's,Haruspex's,Druid's,Auspex's,Augur's,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Gloves
+GLOVES (STR/INT),PREFIX,"# to Armour, # to maximum Energy Shield",Hallowed,Sanctified,Anointed,Blessed,,,,,,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Gloves
+GLOVES (STR/INT),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Cold damage to Attacks,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Fire damage to Attacks,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Lightning damage to Attacks,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Gloves
+GLOVES (STR/INT),PREFIX,Adds # to # Physical Damage to Attacks,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Attack Speed,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Critical Damage Bonus,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Dexterity,of the Wind,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Level of all Melee Skills,of Dueling,of Combat,,,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Life per Enemy Hit with Attacks,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Leech #% of Physical Attack Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,Leech #% of Physical Attack Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% increased Energy Shield Recharge Rate,of Buffering,of Dispersal,of Diffusion,of Enlivening,,,,,,,,,,Gloves
+GLOVES (STR/INT),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,#% increased Armour and Evasion,Legend's,Hero's,Duelist's,Gladiator's,Fencer's,Brawler's,Scrapper's,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,"#% increased Armour and Evasion, # to maximum Life",Predator's,Aggressor's,Assailant's,Brute's,Thug's,Bully's,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,"# to Armour, # to Evasion Rating",Durable,Flexible,Pliant,Supple,,,,,,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,# to maximum Mana,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Cold damage to Attacks,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Fire damage to Attacks,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Lightning damage to Attacks,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,,Gloves
+GLOVES (STR/DEX),PREFIX,Adds # to # Physical Damage to Attacks,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Attack Speed,of Renown,of Mastery,of Ease,of Skill,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Critical Damage Bonus,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Dexterity,of the Wind,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Level of all Melee Skills,of Dueling,of Combat,,,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Life per Enemy Hit with Attacks,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Leech #% of Physical Attack Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Leech #% of Physical Attack Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,#% of Armour also applies to Elemental Damage,of Furring,of Padding,of Lining,of Sheathing,of Covering,,,,,,,,,Gloves
+GLOVES (STR/DEX),SUFFIX,Gain Deflection Rating equal to #% of Evasion Rating,of Flexure,of Diversion,of Curvation,of Bending,of Deflecting,,,,,,,,,Gloves
+AMULET,PREFIX,#% increased Armour,Impregnable,Girded,Thickened,Buttressed,Lobstered,Layered,Reinforced,,,,,,,Amulet
+AMULET,PREFIX,#% increased Evasion Rating,Mirage's,Nightmare's,Phantasm's,Wraith's,Spectre's,Ghost's,Shade's,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Energy Shield,Unassailable,Indomitable,Dauntless,Fearless,Resolute,Strong-Willed,Protective,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Life,Confident,Optimistic,Hopeful,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased maximum Mana,Mnemonic,Perceptive,Cognizant,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased Rarity of Items found,Hoarder's,Collector's,Magpie's,,,,,,,,,,,Amulet
+AMULET,PREFIX,#% increased Spell Damage,Incanter's,Occultist's,Professor's,Scholar's,Adept's,Apprentice's,,,,,,,,Amulet
+AMULET,PREFIX,# to Accuracy Rating,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,,Amulet
+AMULET,PREFIX,# to maximum Energy Shield,Incandescent,Scintillating,Dazzling,Blazing,Pulsing,Radiating,Glowing,Glittering,Glimmering,Shining,,,,Amulet
+AMULET,PREFIX,# to maximum Life,Athlete's,Virile,Rotund,Robust,Stout,Stalwart,Sanguine,Healthy,Hale,,,,,Amulet
+AMULET,PREFIX,# to maximum Mana,Ultramarine,Zaffre,Blue,Mazarine,Chalybeous,Gentian,Opalescent,Aqua,Cerulean,Teal,Azure,Cobalt,Beryl,Amulet
+AMULET,PREFIX,# to Spirit,Countess',Marchioness',Viscountess',Baronness',Lady's,,,,,,,,,Amulet
+AMULET,SUFFIX,# Life Regeneration per second,of Immortality,of Resurgence,of Recuperation,of Convalescence,of the Troll,of the Hydra,of the Starfish,of the Flatworm,of the Lizard,of the Newt,,,,Amulet
+AMULET,SUFFIX,#% increased Cast Speed,of Legerdemain,of Sortilege,of Expertise,of Nimbleness,of Talent,,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Mana Regeneration Rate,of Nirvana,of Euphoria,of Bliss,of Elation,of Joy,of Excitement,,,,,,,,Amulet
+AMULET,SUFFIX,#% increased Rarity of Items found,of Archaeology,of Raiding,of Plunder,,,,,,,,,,,Amulet
+AMULET,SUFFIX,#% of Damage taken Recouped as Life,of Fleshbinding,of Suturing,of Stitching,of Bandaging,of Mending,,,,,,,,,Amulet
+AMULET,SUFFIX,#% of Damage taken Recouped as Mana,of Zen,of Serenity,of Tranquility,of Solace,of Reprieve,,,,,,,,,Amulet
+AMULET,SUFFIX,# to all Attributes,of the Infinite,of the Multiverse,of the Universe,of the Galaxy,of the Heavens,of the Comet,of the Meteor,of the Sky,of the Clouds,,,,,Amulet
+AMULET,SUFFIX,# to Dexterity,of the Phantom,of the Jaguar,of the Leopard,of the Panther,of the Falcon,of the Fox,of the Lynx,of the Mongoose,,,,,,Amulet
+AMULET,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Melee Skills,of Battle,of Dueling,of Combat,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Minion Skills,of the Overseer,of the Despot,of the Taskmaster,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Projectile Skills,of the Sharpshooter,of the Fletcher,of the Archer,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Level of all Spell Skills,of the Sorcerer,of the Enchanter,of the Mage,,,,,,,,,,,Amulet
+AMULET,SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Amulet
+AMULET,SUFFIX,#% to all Elemental Resistances,of the Span,of the Rainbow,of Variegation,of the Kaleidoscope,of the Prism,of the Crystal,,,,,,,,Amulet
+AMULET,SUFFIX,#% to Chaos Resistance,of Bameth,of Exile,of Expulsion,of Eviction,of Banishment,of the Lost,,,,,,,,Amulet
+AMULET,SUFFIX,#% to Cold Resistance,of Haast,of the Ice,of the Polar Bear,of the Walrus,of the Yeti,of the Narwhal,of the Penguin,of the Seal,,,,,,Amulet
+AMULET,SUFFIX,#% to Fire Resistance,of Tzteosh,of Magma,of the Volcano,of the Furnace,of the Kiln,of the Drake,of the Salamander,of the Whelpling,,,,,,Amulet
+AMULET,SUFFIX,#% to Lightning Resistance,of Ephij,of the Lightning,of the Maelstrom,of the Tempest,of the Thunderhead,of the Storm,of the Squall,of the Cloud,,,,,,Amulet
+TALISMAN,PREFIX,#% increased Elemental Damage with Attacks,Devastating,Overpowering,Unleashed,Empowering,Infusing,Catalysing,,,,,,,,Talisman
+TALISMAN,PREFIX,#% increased Physical Damage,Merciless,Tyrannical,Cruel,Bloodthirsty,Vicious,Wicked,Serrated,Heavy,,,,,,Talisman
+TALISMAN,PREFIX,"#% increased Physical Damage, # to Accuracy Rating",Dictator's,Emperor's,Conqueror's,Champion's,Mercenary's,Reaver's,Journeyman's,Squire's,,,,,,Talisman
+TALISMAN,PREFIX,# to Accuracy Rating,Amazon's,Ranger's,Hunter's,Steady,Consistent,Deliberate,Focused,Reliable,Precise,,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Cold Damage,Crystalising,Entombing,Polar,Glaciated,Frozen,Freezing,Frigid,Icy,Chilled,Frosted,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Fire Damage,Carbonising,Cremating,Blasting,Incinerating,Scorching,Flaming,Burning,Smoking,Smouldering,Heated,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Lightning Damage,Vapourising,Electrocuting,Discharging,Shocking,Arcing,Sparking,Crackling,Snapping,Buzzing,Humming,,,,Talisman
+TALISMAN,PREFIX,Adds # to # Physical Damage,Flaring,Tempered,Razor-sharp,Annealed,Gleaming,Honed,Polished,Burnished,Glinting,,,,,Talisman
+TALISMAN,SUFFIX,#% increased Attack Speed,of Celebration,of Infamy,of Fame,of Acclaim,of Renown,of Mastery,of Ease,of Skill,,,,,,Talisman
+TALISMAN,SUFFIX,"# to Accuracy Rating, #% increased Light Radius",of Radiance,of Light,of Shining,,,,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% increased Stun Duration,of the Concussion,of Staggering,of Slamming,of Stunning,of Dazing,of Impact,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% reduced Attribute Requirements,of the Proficient,of the Skilled,of the Talented,of the Apt,of the Worthy,,,,,,,,,Talisman
+TALISMAN,SUFFIX,# to Level of all Melee Skills,of War,of Battle,of Conflict,of Dueling,of Combat,,,,,,,,,Talisman
+TALISMAN,SUFFIX,# to Strength,of the Titan,of the Leviathan,of the Goliath,of the Gorilla,of the Lion,of the Bear,of the Wrestler,of the Brute,,,,,,Talisman
+TALISMAN,SUFFIX,# to Intelligence,of the Virtuoso,of the Savant,of the Sage,of the Philosopher,of the Augur,of the Prodigy,of the Student,of the Pupil,,,,,,Talisman
+TALISMAN,SUFFIX,#% to Critical Damage Bonus,of Destruction,of Ferocity,of Fury,of Rage,of Anger,of Ire,,,,,,,,Talisman
+TALISMAN,SUFFIX,#% to Critical Hit Chance,of Unmaking,of Ruin,of Calamity,of Disaster,of Havoc,of Menace,,,,,,,,Talisman
+TALISMAN,SUFFIX,Causes #% increased Stun Buildup,of the Champion,of the Gladiator,of the Combatant,of the Boxer,of the Brawler,of the Pugilist,,,,,,,,Talisman
+TALISMAN,SUFFIX,Gain # Life per Enemy Killed,of Legend,of Glory,of Valour,of Vanquishing,of Conquest,of Triumph,of Victory,of Success,,,,,,Talisman
+TALISMAN,SUFFIX,Gain # Mana per Enemy Killed,of Assimilation,of Devouring,of Siphoning,of Consumption,of Enveloping,of Infusion,of Osmosis,of Absorption,,,,,,Talisman
+TALISMAN,SUFFIX,Grants # Life per Enemy Hit,of Nourishment,of Regrowth,of Restoration,of Rejuvenation,,,,,,,,,,Talisman
+TALISMAN,SUFFIX,Leeches #% of Physical Damage as Life,of the Vampire,of the Lamprey,of the Remora,of the Locust,of the Parasite,,,,,,,,,Talisman
+TALISMAN,SUFFIX,Leeches #% of Physical Damage as Mana,of the Desperate,of the Drought,of the Arid,of the Parched,of the Thirsty,,,,,,,,,Talisman

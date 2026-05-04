@@ -1,0 +1,19 @@
+{
+  "name": "craft-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "license": "CC-BY-NC-SA-4.0",                                                                                                       
+  "author": "Benoit Lacelle" ,
+  "description": "Closed-form crafting cost evaluator for Path of Exile 2 (and beyond). Pure-frontend Vue 3 via importmap; the only Node dependency is for offline scraping scripts.",
+  "type": "module",
+  "scripts": {
+    "test": "for f in tests/*.test.js; do node \"$f\" || exit 1; done",
+    "rates": "node scripts/fetch-poe-ninja-rates.mjs",
+    "rates:install": "npx playwright install chromium",
+    "rates:record": "npx playwright codegen --target javascript --output scripts/codegen-poe-ninja.mjs https://poe.ninja/",
+    "serve": "python3 scripts/dev-server.py 8765"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

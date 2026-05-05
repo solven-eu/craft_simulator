@@ -1,0 +1,145 @@
+{
+  "# to Strength": {
+    "8": "+(5—8) to Strength",
+    "7": "+(9—12) to Strength",
+    "6": "+(13—16) to Strength",
+    "5": "+(17—20) to Strength",
+    "4": "+(21—24) to Strength",
+    "3": "+(25—27) to Strength",
+    "2": "+(28—30) to Strength",
+    "1": "+(31—33) to Strength"
+  },
+  "#% to Fire Resistance": {
+    "8": "+(6—10)% to Fire Resistance",
+    "7": "+(11—15)% to Fire Resistance",
+    "6": "+(16—20)% to Fire Resistance",
+    "5": "+(21—25)% to Fire Resistance",
+    "4": "+(26—30)% to Fire Resistance",
+    "3": "+(31—35)% to Fire Resistance",
+    "2": "+(36—40)% to Fire Resistance",
+    "1": "+(41—45)% to Fire Resistance"
+  },
+  "#% to Cold Resistance": {
+    "8": "+(6—10)% to Cold Resistance",
+    "7": "+(11—15)% to Cold Resistance",
+    "6": "+(16—20)% to Cold Resistance",
+    "5": "+(21—25)% to Cold Resistance",
+    "4": "+(26—30)% to Cold Resistance",
+    "3": "+(31—35)% to Cold Resistance",
+    "2": "+(36—40)% to Cold Resistance",
+    "1": "+(41—45)% to Cold Resistance"
+  },
+  "#% to Lightning Resistance": {
+    "8": "+(6—10)% to Lightning Resistance",
+    "7": "+(11—15)% to Lightning Resistance",
+    "6": "+(16—20)% to Lightning Resistance",
+    "5": "+(21—25)% to Lightning Resistance",
+    "4": "+(26—30)% to Lightning Resistance",
+    "3": "+(31—35)% to Lightning Resistance",
+    "2": "+(36—40)% to Lightning Resistance",
+    "1": "+(41—45)% to Lightning Resistance"
+  },
+  "#% to Chaos Resistance": {
+    "6": "+(4—7)% to Chaos Resistance",
+    "5": "+(8—11)% to Chaos Resistance",
+    "4": "+(12—15)% to Chaos Resistance",
+    "3": "+(16—19)% to Chaos Resistance",
+    "2": "+(20—23)% to Chaos Resistance",
+    "1": "+(24—27)% to Chaos Resistance"
+  },
+  "# to maximum Life": {
+    "11": "+(10—19) to maximum Life",
+    "10": "+(20—29) to maximum Life",
+    "9": "+(30—39) to maximum Life",
+    "8": "+(40—59) to maximum Life",
+    "7": "+(60—69) to maximum Life",
+    "6": "+(70—84) to maximum Life",
+    "5": "+(85—99) to maximum Life",
+    "4": "+(100—119) to maximum Life",
+    "3": "+(120—149) to maximum Life",
+    "2": "+(150—174) to maximum Life",
+    "1": "+(175—189) to maximum Life"
+  },
+  "# to Armour": {
+    "10": "+(16—27) to Armour",
+    "9": "+(28—50) to Armour",
+    "8": "+(51—68) to Armour",
+    "7": "+(69—82) to Armour",
+    "6": "+(83—102) to Armour",
+    "5": "+(103—122) to Armour",
+    "4": "+(123—160) to Armour",
+    "3": "+(161—202) to Armour",
+    "2": "+(203—225) to Armour",
+    "1": "+(226—256) to Armour"
+  },
+  "#% increased Armour": {
+    "8": "(15—26)% increased Armour",
+    "7": "(27—42)% increased Armour",
+    "6": "(43—55)% increased Armour",
+    "5": "(56—67)% increased Armour",
+    "4": "(68—79)% increased Armour",
+    "3": "(80—91)% increased Armour",
+    "2": "(92—100)% increased Armour",
+    "1": "(101—110)% increased Armour"
+  },
+  "#% reduced Attribute Requirements": {
+    "5": "15% reduced Attribute Requirements",
+    "4": "20% reduced Attribute Requirements",
+    "3": "25% reduced Attribute Requirements",
+    "2": "30% reduced Attribute Requirements",
+    "1": "35% reduced Attribute Requirements"
+  },
+  "# to # Physical Thorns damage": {
+    "7": "(1—2) to (3—4) Physical Thorns damage",
+    "6": "(5—7) to (7—10) Physical Thorns damage",
+    "5": "(11—16) to (15—23) Physical Thorns damage",
+    "4": "(24—35) to (35—53) Physical Thorns damage",
+    "3": "(40—60) to (61—92) Physical Thorns damage",
+    "2": "(64—97) to (97—145) Physical Thorns damage",
+    "1": "(101—151) to (146—220) Physical Thorns damage"
+  },
+  "#% increased Block chance": {
+    "3": "(15—19)% increased Block chance",
+    "2": "(20—24)% increased Block chance",
+    "1": "(25—30)% increased Block chance"
+  },
+  "#% additional Physical Damage Reduction": {
+    "5": "4% additional Physical Damage Reduction",
+    "4": "5% additional Physical Damage Reduction",
+    "3": "6% additional Physical Damage Reduction",
+    "2": "7% additional Physical Damage Reduction",
+    "1": "8% additional Physical Damage Reduction"
+  },
+  "#% to Maximum Fire Resistance": {
+    "3": "+1% to Maximum Fire Resistance",
+    "2": "+2% to Maximum Fire Resistance",
+    "1": "+3% to Maximum Fire Resistance"
+  },
+  "#% to Maximum Cold Resistance": {
+    "3": "+1% to Maximum Cold Resistance",
+    "2": "+2% to Maximum Cold Resistance",
+    "1": "+3% to Maximum Cold Resistance"
+  },
+  "#% to Maximum Lightning Resistance": {
+    "3": "+1% to Maximum Lightning Resistance",
+    "2": "+2% to Maximum Lightning Resistance",
+    "1": "+3% to Maximum Lightning Resistance"
+  },
+  "#% to Maximum Chaos Resistance": {
+    "3": "+1% to Maximum Chaos Resistance",
+    "2": "+2% to Maximum Chaos Resistance",
+    "1": "+3% to Maximum Chaos Resistance"
+  },
+  "#% to all Maximum Elemental Resistances": {
+    "2": "+1% to all Maximum Elemental Resistances",
+    "1": "+2% to all Maximum Elemental Resistances"
+  },
+  "#% of Armour also applies to Elemental Damage": {
+    "6": "+(14—19)% of Armour also applies to Elemental Damage",
+    "5": "+(20—25)% of Armour also applies to Elemental Damage",
+    "4": "+(26—31)% of Armour also applies to Elemental Damage",
+    "3": "+(32—37)% of Armour also applies to Elemental Damage",
+    "2": "+(38—43)% of Armour also applies to Elemental Damage",
+    "1": "+(44—50)% of Armour also applies to Elemental Damage"
+  }
+}

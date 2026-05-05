@@ -1,0 +1,60 @@
+{
+  "#% increased Evasion Rating": [
+    "defences"
+  ],
+  "#% increased Movement Speed": [
+    "speed"
+  ],
+  "# to Evasion Rating": [
+    "defences"
+  ],
+  "# to maximum Life": [
+    "life"
+  ],
+  "# to maximum Mana": [
+    "mana"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "#% reduced Chill Duration on you": [
+    "ailment",
+    "cold",
+    "elemental"
+  ],
+  "#% reduced Freeze Duration on you": [
+    "ailment",
+    "cold",
+    "elemental"
+  ],
+  "#% reduced Shock duration on you": [
+    "ailment",
+    "elemental",
+    "lightning"
+  ],
+  "# to Dexterity": [
+    "attribute"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "Gain Deflection Rating equal to #% of Evasion Rating": [
+    "defences"
+  ]
+}

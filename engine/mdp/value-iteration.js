@@ -30,7 +30,12 @@ import { stateKey, isGoalState, isBrickedByFracture } from './state.js';
  *   appsPerState: Map<idx, ActionApplication[]> — every applicable action
  *     and its outcomes, with `to` resolved to indices.
  */
-export function buildStateSpace({ start, actions, env, target, maxStates = 4096 }) {
+export function buildStateSpace({ start, actions, env, target, maxStates = 65536 }) {
+  // maxStates bumped from 4096 → 65536 alongside the wishlist cap
+  // lift from 8 → 12. State space scales 2^N so going from 8 wished
+  // (2^8 = 256 masks) to 12 wished (2^12 = 4096 masks) needs ~16×
+  // the headroom; 65536 covers the worst-case 12-wished × all-other-
+  // dims scenario without being so large it hides genuine bugs.
   const states = [];
   const stateIdx = new Map();
   const enqueue = (s) => {

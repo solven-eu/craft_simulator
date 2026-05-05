@@ -1,0 +1,431 @@
+{
+  "desecrated": [
+    {
+      "text": "#% increased Spell DamageMinions deal #% increased Damage",
+      "tags": [
+        "amanamu_mod",
+        "caster",
+        "minion"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "(55—64)% increased Spell DamageMinions deal (55—64)% increased Damage"
+    },
+    {
+      "text": "#% increased Elemental Damage",
+      "tags": [
+        "amanamu_mod",
+        "damage",
+        "elemental"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "(74—89)% increased Elemental Damage"
+    },
+    {
+      "text": "#% increased Spell Damage with Spells that cost Life",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "(74—89)% increased Spell Damage with Spells that cost Life"
+    },
+    {
+      "text": "Invocated Spells deal #% increased Damage",
+      "tags": [
+        "caster",
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "Invocated Spells deal (75—89)% increased Damage"
+    },
+    {
+      "text": "Enemies Hindered by you take #% increased Elemental Damage",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "Enemies Hindered by you take (4—7)% increased Elemental Damage"
+    },
+    {
+      "text": "Spell Skills have #% increased Area of Effect",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "Spell Skills have (8—16)% increased Area of Effect"
+    },
+    {
+      "text": "#% increased Cost Efficiency#% of Spell Mana Cost Converted to Life Cost",
+      "tags": [
+        "amanamu_mod",
+        "caster",
+        "life"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "(5—10)% increased Cost Efficiency(15—25)% of Spell Mana Cost Converted to Life Cost"
+    },
+    {
+      "text": "#% increased Cast Speed while on Full Mana",
+      "tags": [
+        "caster",
+        "kurgal_mod",
+        "mana",
+        "speed"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(26—36)% increased Cast Speed while on Full Mana"
+    },
+    {
+      "text": "#% increased Cast Speed for each different Non-Instant Spell you've Cast Recently",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(3—5)% increased Cast Speed for each different Non-Instant Spell you've Cast Recently"
+    },
+    {
+      "text": "Enemies Hindered by you take #% increased Chaos Damage",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "Enemies Hindered by you take (4—7)% increased Chaos Damage"
+    },
+    {
+      "text": "Break #% increased Armour",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "Break (31—39)% increased Armour"
+    },
+    {
+      "text": "Break Armour on Critical Hit with Spells equal to #% of Physical Damage dealt",
+      "tags": [
+        "caster",
+        "critical",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "Break Armour on Critical Hit with Spells equal to (11—18)% of Physical Damage dealt"
+    },
+    {
+      "text": "Enemies Hindered by you take #% increased Physical Damage",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "Enemies Hindered by you take (4—7)% increased Physical Damage"
+    },
+    {
+      "text": "#% increased Magnitude of Bleeding you inflict",
+      "tags": [
+        "ailment",
+        "attack",
+        "damage",
+        "physical",
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "(27—38)% increased Magnitude of Bleeding you inflict"
+    },
+    {
+      "text": "Gain #% of Damage as Extra Physical Damage",
+      "tags": [
+        "damage",
+        "physical",
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "Gain (21—25)% of Damage as Extra Physical Damage"
+    }
+  ],
+  "essence": [
+    {
+      "text": "#% increased Spell Damage",
+      "tags": [
+        "caster",
+        "damage"
+      ],
+      "tier_name": "Lesser Essence of Sorcery",
+      "display": "(35—44)% increased Spell Damage"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "#% increased Spell Damage",
+      "tags": [
+        "caster",
+        "damage"
+      ],
+      "tier_name": "Essence of Sorcery",
+      "display": "(55—64)% increased Spell Damage"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "#% increased Spell Damage",
+      "tags": [
+        "caster",
+        "damage"
+      ],
+      "tier_name": "Greater Essence of Sorcery",
+      "display": "(75—89)% increased Spell Damage"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "#% increased Critical Hit Chance for Spells",
+      "tags": [
+        "caster",
+        "critical"
+      ],
+      "tier_name": "Lesser Essence of Seeking",
+      "display": "(34—39)% increased Critical Hit Chance for Spells"
+    },
+    {
+      "text": "#% increased Critical Hit Chance for Spells",
+      "tags": [
+        "caster",
+        "critical"
+      ],
+      "tier_name": "Essence of Seeking",
+      "display": "(40—46)% increased Critical Hit Chance for Spells"
+    },
+    {
+      "text": "#% increased Critical Hit Chance for Spells",
+      "tags": [
+        "caster",
+        "critical"
+      ],
+      "tier_name": "Greater Essence of Seeking",
+      "display": "(47—53)% increased Critical Hit Chance for Spells"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "#% increased Cast Speed",
+      "tags": [
+        "caster",
+        "speed"
+      ],
+      "tier_name": "Lesser Essence of Alacrity",
+      "display": "(13—16)% increased Cast Speed"
+    },
+    {
+      "text": "#% increased Cast Speed",
+      "tags": [
+        "caster",
+        "speed"
+      ],
+      "tier_name": "Essence of Alacrity",
+      "display": "(17—20)% increased Cast Speed"
+    },
+    {
+      "text": "#% increased Cast Speed",
+      "tags": [
+        "caster",
+        "speed"
+      ],
+      "tier_name": "Greater Essence of Alacrity",
+      "display": "(25—28)% increased Cast Speed"
+    }
+  ],
+  "corrupted": [
+    {
+      "text": "#% reduced Attribute Requirements",
+      "tags": [],
+      "tier_name": "CorruptionReducedLocalAttributeRequirements1",
+      "display": "(10—20)% reduced Attribute Requirements"
+    },
+    {
+      "text": "+# to Level of all Fire Spell Skills",
+      "tags": [
+        "caster",
+        "elemental",
+        "fire",
+        "gem"
+      ],
+      "tier_name": "CorruptionGlobalFireSpellGemsLevel1",
+      "display": "+1 to Level of all Fire Spell Skills"
+    },
+    {
+      "text": "+# to Level of all Cold Spell Skills",
+      "tags": [
+        "caster",
+        "cold",
+        "elemental",
+        "gem"
+      ],
+      "tier_name": "CorruptionGlobalColdSpellGemsLevel1",
+      "display": "+1 to Level of all Cold Spell Skills"
+    },
+    {
+      "text": "+# to Level of all Lightning Spell Skills",
+      "tags": [
+        "caster",
+        "elemental",
+        "gem",
+        "lightning"
+      ],
+      "tier_name": "CorruptionGlobalLightningSpellGemsLevel1",
+      "display": "+1 to Level of all Lightning Spell Skills"
+    },
+    {
+      "text": "+# to Level of all Chaos Spell Skills",
+      "tags": [
+        "caster",
+        "chaos",
+        "gem"
+      ],
+      "tier_name": "CorruptionGlobalChaosSpellGemsLevel1",
+      "display": "+1 to Level of all Chaos Spell Skills"
+    },
+    {
+      "text": "+# to Level of all Physical Spell Skills",
+      "tags": [
+        "caster",
+        "gem",
+        "physical"
+      ],
+      "tier_name": "CorruptionGlobalPhysicalSpellGemsLevel1",
+      "display": "+1 to Level of all Physical Spell Skills"
+    },
+    {
+      "text": "#% increased Spell Damage",
+      "tags": [
+        "caster",
+        "damage"
+      ],
+      "tier_name": "CorruptionSpellDamageOnWeapon1",
+      "display": "(20—30)% increased Spell Damage"
+    },
+    {
+      "text": "#% increased Flammability Magnitude",
+      "tags": [],
+      "tier_name": "CorruptionIgniteChanceIncrease1",
+      "display": "(20—30)% increased Flammability Magnitude"
+    },
+    {
+      "text": "#% increased Freeze Buildup",
+      "tags": [],
+      "tier_name": "CorruptionFreezeDamageIncrease1",
+      "display": "(20—30)% increased Freeze Buildup"
+    },
+    {
+      "text": "#% increased chance to Shock",
+      "tags": [],
+      "tier_name": "CorruptionShockChanceIncrease1",
+      "display": "(20—30)% increased chance to Shock"
+    },
+    {
+      "text": "#% increased Critical Hit Chance for Spells",
+      "tags": [
+        "caster",
+        "critical"
+      ],
+      "tier_name": "CorruptionSpellCriticalStrikeChance1",
+      "display": "(20—30)% increased Critical Hit Chance for Spells"
+    },
+    {
+      "text": "Gain # Life per enemy killed",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "CorruptionLifeGainedFromEnemyDeath1",
+      "display": "Gain (20—25) Life per enemy killed"
+    },
+    {
+      "text": "Gain # Mana per enemy killed",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "CorruptionManaGainedFromEnemyDeath1",
+      "display": "Gain (10—15) Mana per enemy killed"
+    },
+    {
+      "text": "#% increased Cast Speed",
+      "tags": [
+        "caster",
+        "speed"
+      ],
+      "tier_name": "CorruptionIncreasedCastSpeed1",
+      "display": "(10—15)% increased Cast Speed"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "#% increased Evasion and Energy Shield, # to maximum Life": [
+    "life"
+  ],
+  "# to Accuracy Rating": [
+    "attack"
+  ],
+  "# to Evasion Rating, # to maximum Energy Shield": [
+    "defences"
+  ],
+  "# to maximum Life": [
+    "defences",
+    "life"
+  ],
+  "# to maximum Mana": [
+    "mana"
+  ],
+  "Adds # to # Cold damage to Attacks": [
+    "attack",
+    "cold",
+    "damage",
+    "elemental"
+  ],
+  "Adds # to # Fire damage to Attacks": [
+    "attack",
+    "damage",
+    "elemental",
+    "fire"
+  ],
+  "Adds # to # Lightning damage to Attacks": [
+    "attack",
+    "damage",
+    "elemental",
+    "lightning"
+  ],
+  "Adds # to # Physical Damage to Attacks": [
+    "attack",
+    "damage",
+    "physical"
+  ],
+  "#% increased Attack Speed": [
+    "attack",
+    "speed"
+  ],
+  "#% increased Critical Damage Bonus": [
+    "critical",
+    "damage"
+  ],
+  "# to Dexterity": [
+    "attribute"
+  ],
+  "# to Level of all Melee Skills": [
+    "attack"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "Gain # Life per Enemy Hit with Attacks": [
+    "attack",
+    "life"
+  ],
+  "Gain # Life per Enemy Killed": [
+    "life"
+  ],
+  "Gain # Mana per Enemy Killed": [
+    "mana"
+  ],
+  "Leech #% of Physical Attack Damage as Life": [
+    "attack",
+    "life",
+    "physical"
+  ],
+  "Leech #% of Physical Attack Damage as Mana": [
+    "attack",
+    "mana",
+    "physical"
+  ],
+  "Gain Deflection Rating equal to #% of Evasion Rating": [
+    "defences"
+  ]
+}

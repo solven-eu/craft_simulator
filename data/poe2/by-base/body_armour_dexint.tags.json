@@ -1,0 +1,57 @@
+{
+  "# to # Physical Thorns damage": [
+    "damage",
+    "physical"
+  ],
+  "# to Evasion Rating, # to maximum Energy Shield, #% increased Evasion and Energy Shield": [
+    "defences"
+  ],
+  "#% increased Evasion and Energy Shield, # to maximum Life": [
+    "life"
+  ],
+  "# to maximum Life": [
+    "defences",
+    "life"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "#% reduced Duration of Bleeding on You": [
+    "ailment",
+    "physical"
+  ],
+  "#% reduced Ignite Duration on you": [
+    "ailment",
+    "elemental",
+    "fire"
+  ],
+  "#% reduced Poison Duration on you": [
+    "ailment",
+    "chaos"
+  ],
+  "# to Dexterity": [
+    "attribute"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "Gain Deflection Rating equal to #% of Evasion Rating": [
+    "defences"
+  ]
+}

@@ -1,0 +1,1402 @@
+[
+  {
+    "base": "ONE HAND MACE",
+    "type": "PREFIX",
+    "name": "#% increased Elemental Damage with Attacks",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "Devastating",
+        "id": "WeaponElementalDamage6_"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Overpowering",
+        "id": "WeaponElementalDamage5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Unleashed",
+        "id": "WeaponElementalDamage4"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Empowering",
+        "id": "WeaponElementalDamage3"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Infusing",
+        "id": "WeaponElementalDamage2"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 4,
+        "spawnLvl": 4,
+        "tierName": "Catalysing",
+        "id": "WeaponElementalDamage1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "PREFIX",
+    "name": "#% increased Physical Damage",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 25,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "Merciless",
+        "id": "LocalIncreasedPhysicalDamagePercent8"
+      },
+      {
+        "tier": 2,
+        "weight": 50,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Tyrannical",
+        "id": "LocalIncreasedPhysicalDamagePercent7"
+      },
+      {
+        "tier": 3,
+        "weight": 100,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Cruel",
+        "id": "LocalIncreasedPhysicalDamagePercent6"
+      },
+      {
+        "tier": 4,
+        "weight": 200,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Bloodthirsty",
+        "id": "LocalIncreasedPhysicalDamagePercent5"
+      },
+      {
+        "tier": 5,
+        "weight": 400,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Vicious",
+        "id": "LocalIncreasedPhysicalDamagePercent4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Wicked",
+        "id": "LocalIncreasedPhysicalDamagePercent3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Serrated",
+        "id": "LocalIncreasedPhysicalDamagePercent2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Heavy",
+        "id": "LocalIncreasedPhysicalDamagePercent1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "PREFIX",
+    "name": "#% increased Physical Damage, # to Accuracy Rating",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "Dictator's",
+        "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating8"
+      },
+      {
+        "tier": 2,
+        "weight": 200,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Emperor's",
+        "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating7"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Conqueror's",
+        "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating6"
+      },
+      {
+        "tier": 4,
+        "weight": 600,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Champion's",
+        "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "Mercenary's",
+        "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 23,
+        "spawnLvl": 23,
+        "tierName": "Reaver's",
+        "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "Journeyman's",
+        "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Squire's",
+        "id": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "PREFIX",
+    "name": "# to Accuracy Rating",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 76,
+        "spawnLvl": 76,
+        "tierName": "Amazon's",
+        "id": "LocalIncreasedAccuracy9_"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 67,
+        "spawnLvl": 67,
+        "tierName": "Ranger's",
+        "id": "LocalIncreasedAccuracy8"
+      },
+      {
+        "tier": 3,
+        "weight": 600,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "Hunter's",
+        "id": "LocalIncreasedAccuracy7"
+      },
+      {
+        "tier": 4,
+        "weight": 600,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "Steady",
+        "id": "LocalIncreasedAccuracy6"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "Consistent",
+        "id": "LocalIncreasedAccuracy5"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "Deliberate",
+        "id": "LocalIncreasedAccuracy4"
+      },
+      {
+        "tier": 7,
+        "weight": 800,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "Focused",
+        "id": "LocalIncreasedAccuracy3"
+      },
+      {
+        "tier": 8,
+        "weight": 800,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "Reliable",
+        "id": "LocalIncreasedAccuracy2"
+      },
+      {
+        "tier": 9,
+        "weight": 800,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Precise",
+        "id": "LocalIncreasedAccuracy1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "PREFIX",
+    "name": "Adds # to # Cold Damage",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 80,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "Crystalising",
+        "id": "LocalAddedColdDamage10__"
+      },
+      {
+        "tier": 2,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Entombing",
+        "id": "LocalAddedColdDamage9"
+      },
+      {
+        "tier": 3,
+        "weight": 320,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Polar",
+        "id": "LocalAddedColdDamage8"
+      },
+      {
+        "tier": 4,
+        "weight": 480,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Glaciated",
+        "id": "LocalAddedColdDamage7"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Frozen",
+        "id": "LocalAddedColdDamage6"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Freezing",
+        "id": "LocalAddedColdDamage5"
+      },
+      {
+        "tier": 7,
+        "weight": 800,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Frigid",
+        "id": "LocalAddedColdDamage4"
+      },
+      {
+        "tier": 8,
+        "weight": 800,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Icy",
+        "id": "LocalAddedColdDamage3"
+      },
+      {
+        "tier": 9,
+        "weight": 800,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Chilled",
+        "id": "LocalAddedColdDamage2"
+      },
+      {
+        "tier": 10,
+        "weight": 800,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Frosted",
+        "id": "LocalAddedColdDamage1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "PREFIX",
+    "name": "Adds # to # Fire Damage",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 120,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "Carbonising",
+        "id": "LocalAddedFireDamage10_"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Cremating",
+        "id": "LocalAddedFireDamage9"
+      },
+      {
+        "tier": 3,
+        "weight": 480,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Blasting",
+        "id": "LocalAddedFireDamage8"
+      },
+      {
+        "tier": 4,
+        "weight": 720,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Incinerating",
+        "id": "LocalAddedFireDamage7"
+      },
+      {
+        "tier": 5,
+        "weight": 1200,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Scorching",
+        "id": "LocalAddedFireDamage6"
+      },
+      {
+        "tier": 6,
+        "weight": 1200,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Flaming",
+        "id": "LocalAddedFireDamage5"
+      },
+      {
+        "tier": 7,
+        "weight": 1200,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Burning",
+        "id": "LocalAddedFireDamage4"
+      },
+      {
+        "tier": 8,
+        "weight": 1200,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Smoking",
+        "id": "LocalAddedFireDamage3"
+      },
+      {
+        "tier": 9,
+        "weight": 1200,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Smouldering",
+        "id": "LocalAddedFireDamage2"
+      },
+      {
+        "tier": 10,
+        "weight": 1200,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Heated",
+        "id": "LocalAddedFireDamage1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "PREFIX",
+    "name": "Adds # to # Lightning Damage",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 80,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "Vapourising",
+        "id": "LocalAddedLightningDamage10"
+      },
+      {
+        "tier": 2,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Electrocuting",
+        "id": "LocalAddedLightningDamage9"
+      },
+      {
+        "tier": 3,
+        "weight": 320,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Discharging",
+        "id": "LocalAddedLightningDamage8"
+      },
+      {
+        "tier": 4,
+        "weight": 480,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Shocking",
+        "id": "LocalAddedLightningDamage7"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Arcing",
+        "id": "LocalAddedLightningDamage6"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Sparking",
+        "id": "LocalAddedLightningDamage5"
+      },
+      {
+        "tier": 7,
+        "weight": 800,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Crackling",
+        "id": "LocalAddedLightningDamage4"
+      },
+      {
+        "tier": 8,
+        "weight": 800,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Snapping",
+        "id": "LocalAddedLightningDamage3"
+      },
+      {
+        "tier": 9,
+        "weight": 800,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Buzzing",
+        "id": "LocalAddedLightningDamage2"
+      },
+      {
+        "tier": 10,
+        "weight": 800,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Humming",
+        "id": "LocalAddedLightningDamage1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "PREFIX",
+    "name": "Adds # to # Physical Damage",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Flaring",
+        "id": "LocalAddedPhysicalDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 200,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Tempered",
+        "id": "LocalAddedPhysicalDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Razor-sharp",
+        "id": "LocalAddedPhysicalDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 600,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Annealed",
+        "id": "LocalAddedPhysicalDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Gleaming",
+        "id": "LocalAddedPhysicalDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Honed",
+        "id": "LocalAddedPhysicalDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Polished",
+        "id": "LocalAddedPhysicalDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Burnished",
+        "id": "LocalAddedPhysicalDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Glinting",
+        "id": "LocalAddedPhysicalDamage1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "#% increased Attack Speed",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 77,
+        "spawnLvl": 77,
+        "tierName": "of Celebration",
+        "id": "LocalIncreasedAttackSpeed8"
+      },
+      {
+        "tier": 2,
+        "weight": 200,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of Infamy",
+        "id": "LocalIncreasedAttackSpeed7"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Fame",
+        "id": "LocalIncreasedAttackSpeed6"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 37,
+        "spawnLvl": 37,
+        "tierName": "of Acclaim",
+        "id": "LocalIncreasedAttackSpeed5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Renown",
+        "id": "LocalIncreasedAttackSpeed4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of Mastery",
+        "id": "LocalIncreasedAttackSpeed3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of Ease",
+        "id": "LocalIncreasedAttackSpeed2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Skill",
+        "id": "LocalIncreasedAttackSpeed1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "# to Accuracy Rating, #% increased Light Radius",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Radiance",
+        "id": "LocalLightRadiusAndAccuracy3"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 15,
+        "spawnLvl": 15,
+        "tierName": "of Light",
+        "id": "LocalLightRadiusAndAccuracy2"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Shining",
+        "id": "LocalLightRadiusAndAccuracy1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "#% increased Stun Duration",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 71,
+        "spawnLvl": 71,
+        "tierName": "of the Concussion",
+        "id": "StunDuration6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "of Staggering",
+        "id": "StunDuration5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Slamming",
+        "id": "StunDuration4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Stunning",
+        "id": "StunDuration3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "of Dazing",
+        "id": "StunDuration2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of Impact",
+        "id": "StunDuration1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "#% reduced Attribute Requirements",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Proficient",
+        "id": "ReducedLocalAttributeRequirements5"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 52,
+        "spawnLvl": 52,
+        "tierName": "of the Skilled",
+        "id": "ReducedLocalAttributeRequirements4"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of the Talented",
+        "id": "ReducedLocalAttributeRequirements3"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 32,
+        "spawnLvl": 32,
+        "tierName": "of the Apt",
+        "id": "ReducedLocalAttributeRequirements2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "of the Worthy",
+        "id": "ReducedLocalAttributeRequirements1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "# to Level of all Melee Skills",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of War",
+        "id": "GlobalMeleeSkillGemLevelWeapon5"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Battle",
+        "id": "GlobalMeleeSkillGemLevelWeapon4"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "of Conflict",
+        "id": "GlobalMeleeSkillGemLevelWeapon3"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "of Dueling",
+        "id": "GlobalMeleeSkillGemLevelWeapon2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "of Combat",
+        "id": "GlobalMeleeSkillGemLevelWeapon1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "# to Strength",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Titan",
+        "id": "Strength8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Leviathan",
+        "id": "Strength7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Goliath",
+        "id": "Strength6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Gorilla",
+        "id": "Strength5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Lion",
+        "id": "Strength4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Bear",
+        "id": "Strength3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Wrestler",
+        "id": "Strength2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Brute",
+        "id": "Strength1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "#% to Critical Damage Bonus",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 73,
+        "spawnLvl": 73,
+        "tierName": "of Destruction",
+        "id": "LocalCriticalMultiplier6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 59,
+        "spawnLvl": 59,
+        "tierName": "of Ferocity",
+        "id": "LocalCriticalMultiplier5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Fury",
+        "id": "LocalCriticalMultiplier4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Rage",
+        "id": "LocalCriticalMultiplier3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Anger",
+        "id": "LocalCriticalMultiplier2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Ire",
+        "id": "LocalCriticalMultiplier1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "#% to Critical Hit Chance",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 73,
+        "spawnLvl": 73,
+        "tierName": "of Unmaking",
+        "id": "LocalCriticalStrikeChance6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 59,
+        "spawnLvl": 59,
+        "tierName": "of Ruin",
+        "id": "LocalCriticalStrikeChance5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Calamity",
+        "id": "LocalCriticalStrikeChance4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Disaster",
+        "id": "LocalCriticalStrikeChance3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 20,
+        "spawnLvl": 20,
+        "tierName": "of Havoc",
+        "id": "LocalCriticalStrikeChance2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Menace",
+        "id": "LocalCriticalStrikeChance1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "Causes #% increased Stun Buildup",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Champion",
+        "id": "StunDamageIncrease6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "of the Gladiator",
+        "id": "StunDamageIncrease5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Combatant",
+        "id": "StunDamageIncrease4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of the Boxer",
+        "id": "StunDamageIncrease3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 20,
+        "spawnLvl": 20,
+        "tierName": "of the Brawler",
+        "id": "StunDamageIncrease2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Pugilist",
+        "id": "StunDamageIncrease1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "Gain # Life per Enemy Killed",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 750,
+        "ilvl": 77,
+        "spawnLvl": 77,
+        "tierName": "of Legend",
+        "id": "LifeGainedFromEnemyDeath8"
+      },
+      {
+        "tier": 2,
+        "weight": 750,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of Glory",
+        "id": "LifeGainedFromEnemyDeath7"
+      },
+      {
+        "tier": 3,
+        "weight": 750,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Valour",
+        "id": "LifeGainedFromEnemyDeath6"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Vanquishing",
+        "id": "LifeGainedFromEnemyDeath5"
+      },
+      {
+        "tier": 5,
+        "weight": 750,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of Conquest",
+        "id": "LifeGainedFromEnemyDeath4"
+      },
+      {
+        "tier": 6,
+        "weight": 750,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of Triumph",
+        "id": "LifeGainedFromEnemyDeath3"
+      },
+      {
+        "tier": 7,
+        "weight": 750,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of Victory",
+        "id": "LifeGainedFromEnemyDeath2"
+      },
+      {
+        "tier": 8,
+        "weight": 750,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Success",
+        "id": "LifeGainedFromEnemyDeath1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "Gain # Mana per Enemy Killed",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 750,
+        "ilvl": 78,
+        "spawnLvl": 78,
+        "tierName": "of Assimilation",
+        "id": "ManaGainedFromEnemyDeath8"
+      },
+      {
+        "tier": 2,
+        "weight": 750,
+        "ilvl": 67,
+        "spawnLvl": 67,
+        "tierName": "of Devouring",
+        "id": "ManaGainedFromEnemyDeath7"
+      },
+      {
+        "tier": 3,
+        "weight": 750,
+        "ilvl": 56,
+        "spawnLvl": 56,
+        "tierName": "of Siphoning",
+        "id": "ManaGainedFromEnemyDeath6"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Consumption",
+        "id": "ManaGainedFromEnemyDeath5"
+      },
+      {
+        "tier": 5,
+        "weight": 750,
+        "ilvl": 34,
+        "spawnLvl": 34,
+        "tierName": "of Enveloping",
+        "id": "ManaGainedFromEnemyDeath4"
+      },
+      {
+        "tier": 6,
+        "weight": 750,
+        "ilvl": 23,
+        "spawnLvl": 23,
+        "tierName": "of Infusion",
+        "id": "ManaGainedFromEnemyDeath3"
+      },
+      {
+        "tier": 7,
+        "weight": 750,
+        "ilvl": 12,
+        "spawnLvl": 12,
+        "tierName": "of Osmosis",
+        "id": "ManaGainedFromEnemyDeath2"
+      },
+      {
+        "tier": 8,
+        "weight": 750,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Absorption",
+        "id": "ManaGainedFromEnemyDeath1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "Grants # Life per Enemy Hit",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of Nourishment",
+        "id": "LifeGainPerTargetLocal4"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Regrowth",
+        "id": "LifeGainPerTargetLocal3"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 20,
+        "spawnLvl": 20,
+        "tierName": "of Restoration",
+        "id": "LifeGainPerTargetLocal2"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Rejuvenation",
+        "id": "LifeGainPerTargetLocal1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "Leeches #% of Physical Damage as Life",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of the Vampire",
+        "id": "LifeLeechLocal5"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of the Lamprey",
+        "id": "LifeLeechLocal4"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "of the Remora",
+        "id": "LifeLeechLocal3"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "of the Locust",
+        "id": "LifeLeechLocal2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of the Parasite",
+        "id": "LifeLeechLocal1"
+      }
+    ]
+  },
+  {
+    "base": "ONE HAND MACE",
+    "type": "SUFFIX",
+    "name": "Leeches #% of Physical Damage as Mana",
+    "itemClass": "One Hand Mace",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of the Desperate",
+        "id": "ManaLeechLocal5"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of the Drought",
+        "id": "ManaLeechLocal4"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "of the Arid",
+        "id": "ManaLeechLocal3"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "of the Parched",
+        "id": "ManaLeechLocal2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of the Thirsty",
+        "id": "ManaLeechLocal1"
+      }
+    ]
+  }
+]

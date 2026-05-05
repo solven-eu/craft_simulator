@@ -1,0 +1,106 @@
+{
+  "#% increased Armour": [
+    "defences"
+  ],
+  "#% increased Evasion Rating": [
+    "defences"
+  ],
+  "#% increased maximum Energy Shield": [
+    "defences"
+  ],
+  "#% increased maximum Life": [
+    "life"
+  ],
+  "#% increased maximum Mana": [
+    "mana"
+  ],
+  "#% increased Spell Damage": [
+    "caster",
+    "damage"
+  ],
+  "# to Accuracy Rating": [
+    "attack"
+  ],
+  "# to maximum Energy Shield": [
+    "defences"
+  ],
+  "# to maximum Life": [
+    "life"
+  ],
+  "# to maximum Mana": [
+    "mana"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "#% increased Cast Speed": [
+    "caster",
+    "speed"
+  ],
+  "#% increased Critical Damage Bonus": [
+    "critical",
+    "damage"
+  ],
+  "#% increased Critical Hit Chance": [
+    "critical"
+  ],
+  "#% increased Mana Regeneration Rate": [
+    "mana"
+  ],
+  "#% of Damage taken Recouped as Life": [
+    "life"
+  ],
+  "#% of Damage taken Recouped as Mana": [
+    "life",
+    "mana"
+  ],
+  "# to all Attributes": [
+    "attribute"
+  ],
+  "# to Dexterity": [
+    "attribute"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "# to Level of all Melee Skills": [
+    "attack"
+  ],
+  "# to Level of all Minion Skills": [
+    "gem",
+    "minion"
+  ],
+  "# to Level of all Spell Skills": [
+    "caster",
+    "gem"
+  ],
+  "# to Strength": [
+    "attribute"
+  ],
+  "#% to all Elemental Resistances": [
+    "cold",
+    "elemental",
+    "fire",
+    "lightning",
+    "resistance"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ]
+}

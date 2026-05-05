@@ -1,0 +1,57 @@
+{
+  "#% increased Energy Shield": [
+    "defences"
+  ],
+  "#% increased Movement Speed": [
+    "speed"
+  ],
+  "# to maximum Energy Shield": [
+    "defences"
+  ],
+  "# to maximum Life": [
+    "life"
+  ],
+  "# to maximum Mana": [
+    "mana"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "#% reduced Chill Duration on you": [
+    "ailment",
+    "cold",
+    "elemental"
+  ],
+  "#% reduced Freeze Duration on you": [
+    "ailment",
+    "cold",
+    "elemental"
+  ],
+  "#% reduced Shock duration on you": [
+    "ailment",
+    "elemental",
+    "lightning"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ]
+}

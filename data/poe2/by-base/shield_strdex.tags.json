@@ -1,0 +1,64 @@
+{
+  "# to # Physical Thorns damage": [
+    "damage",
+    "physical"
+  ],
+  "#% increased Armour and Evasion": [
+    "defences"
+  ],
+  "# to Armour, # to Evasion Rating": [
+    "defences"
+  ],
+  "# to maximum Life": [
+    "life"
+  ],
+  "# to Strength": [
+    "attribute"
+  ],
+  "#% to all Maximum Elemental Resistances": [
+    "elemental",
+    "resistance"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "#% to Maximum Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Maximum Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Maximum Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Maximum Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "#% of Armour also applies to Elemental Damage": [
+    "defences",
+    "elemental"
+  ]
+}

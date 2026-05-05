@@ -1,0 +1,562 @@
+{
+  "desecrated": [
+    {
+      "text": "Minions deal #% increased Damage if you've Hit Recently",
+      "tags": [
+        "amanamu_mod",
+        "damage",
+        "minion"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "Minions deal (60—79)% increased Damage if you've Hit Recently"
+    },
+    {
+      "text": "Companions deal #% increased Damage#% increased Damage while your Companion is in your Presence",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "Companions deal (40—59)% increased Damage(40—59)% increased Damage while your Companion is in your Presence"
+    },
+    {
+      "text": "Attacks with this Weapon Penetrate #% Fire Resistance",
+      "tags": [
+        "amanamu_mod",
+        "attack",
+        "damage",
+        "elemental",
+        "fire"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "Attacks with this Weapon Penetrate (15—25)% Fire Resistance"
+    },
+    {
+      "text": "Empowered Attacks deal #% increased Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "Empowered Attacks deal (86—99)% increased Damage"
+    },
+    {
+      "text": "Warcries Empower an additional Attack",
+      "tags": [
+        "attack",
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "Warcries Empower an additional Attack"
+    },
+    {
+      "text": "Attacks with this Weapon Penetrate #% Cold Resistance",
+      "tags": [
+        "attack",
+        "cold",
+        "damage",
+        "elemental",
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "Attacks with this Weapon Penetrate (15—25)% Cold Resistance"
+    },
+    {
+      "text": "#% increased Spirit Reservation Efficiency of Skills",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "(5—10)% increased Spirit Reservation Efficiency of Skills"
+    },
+    {
+      "text": "Skills which create Fissures have a #% chance to create an additional Fissure",
+      "tags": [
+        "amanamu_mod",
+        "attack"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "Skills which create Fissures have a (25—31)% chance to create an additional Fissure"
+    },
+    {
+      "text": "#% increased Attack SpeedCompanions have #% increased Attack Speed",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "(12—18)% increased Attack SpeedCompanions have (12—18)% increased Attack Speed"
+    },
+    {
+      "text": "#% increased Cost Efficiency of Attacks",
+      "tags": [
+        "attack",
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(8—15)% increased Cost Efficiency of Attacks"
+    },
+    {
+      "text": "#% increased Warcry Cooldown Recovery Rate",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(25—31)% increased Warcry Cooldown Recovery Rate"
+    },
+    {
+      "text": "#% increased Critical Hit Chance against Marked Enemies",
+      "tags": [
+        "critical",
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(39—51)% increased Critical Hit Chance against Marked Enemies"
+    },
+    {
+      "text": "#% increased Totem Placement speed",
+      "tags": [
+        "speed",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "(25—31)% increased Totem Placement speed"
+    },
+    {
+      "text": "#% of Skill Mana Costs Converted to Life Costs",
+      "tags": [
+        "life",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "(15—20)% of Skill Mana Costs Converted to Life Costs"
+    },
+    {
+      "text": "Gain # Rage on Melee Hit",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "Gain (3—6) Rage on Melee Hit"
+    },
+    {
+      "text": "Melee Attack Skills have +# to maximum number of Summoned Totems",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "Melee Attack Skills have +1 to maximum number of Summoned Totems"
+    },
+    {
+      "text": "Attacks with this Weapon Penetrate #% Lightning Resistance",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "lightning",
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "Attacks with this Weapon Penetrate (15—25)% Lightning Resistance"
+    },
+    {
+      "text": "#% increased Damage while you have a Totem",
+      "tags": [
+        "damage",
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "(86—99)% increased Damage while you have a Totem"
+    }
+  ],
+  "essence": [
+    {
+      "text": "Adds # to # Physical Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "physical"
+      ],
+      "tier_name": "Lesser Essence of Abrasion",
+      "display": "Adds (5—8) to (10—15) Physical Damage"
+    },
+    {
+      "text": "Adds # to # Fire Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "fire"
+      ],
+      "tier_name": "Lesser Essence of Flames",
+      "display": "Adds (6—9) to (10—16) Fire Damage"
+    },
+    {
+      "text": "Adds # to # Cold Damage",
+      "tags": [
+        "attack",
+        "cold",
+        "damage",
+        "elemental"
+      ],
+      "tier_name": "Lesser Essence of Ice",
+      "display": "Adds (5—8) to (9—14) Cold Damage"
+    },
+    {
+      "text": "Adds # to # Lightning Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "lightning"
+      ],
+      "tier_name": "Lesser Essence of Electricity",
+      "display": "Adds (1—2) to (19—27) Lightning Damage"
+    },
+    {
+      "text": "+# to Accuracy Rating",
+      "tags": [
+        "attack"
+      ],
+      "tier_name": "Lesser Essence of Battle",
+      "display": "+(61—84) to Accuracy Rating"
+    },
+    {
+      "text": "#% increased Attack Speed",
+      "tags": [
+        "attack",
+        "speed"
+      ],
+      "tier_name": "Lesser Essence of Haste",
+      "display": "(11—13)% increased Attack Speed"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "Adds # to # Physical Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "physical"
+      ],
+      "tier_name": "Essence of Abrasion",
+      "display": "Adds (14—21) to (25—37) Physical Damage"
+    },
+    {
+      "text": "Adds # to # Fire Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "fire"
+      ],
+      "tier_name": "Essence of Flames",
+      "display": "Adds (30—37) to (45—56) Fire Damage"
+    },
+    {
+      "text": "Adds # to # Cold Damage",
+      "tags": [
+        "attack",
+        "cold",
+        "damage",
+        "elemental"
+      ],
+      "tier_name": "Essence of Ice",
+      "display": "Adds (25—30) to (38—46) Cold Damage"
+    },
+    {
+      "text": "Adds # to # Lightning Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "lightning"
+      ],
+      "tier_name": "Essence of Electricity",
+      "display": "Adds (1—4) to (80—88) Lightning Damage"
+    },
+    {
+      "text": "+# to Accuracy Rating",
+      "tags": [
+        "attack"
+      ],
+      "tier_name": "Essence of Battle",
+      "display": "+(124—167) to Accuracy Rating"
+    },
+    {
+      "text": "#% increased Attack Speed",
+      "tags": [
+        "attack",
+        "speed"
+      ],
+      "tier_name": "Essence of Haste",
+      "display": "(17—19)% increased Attack Speed"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "Adds # to # Physical Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "physical"
+      ],
+      "tier_name": "Greater Essence of Abrasion",
+      "display": "Adds (23—35) to (39—59) Physical Damage"
+    },
+    {
+      "text": "Adds # to # Fire Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "fire"
+      ],
+      "tier_name": "Greater Essence of Flames",
+      "display": "Adds (56—70) to (84—107) Fire Damage"
+    },
+    {
+      "text": "Adds # to # Cold Damage",
+      "tags": [
+        "attack",
+        "cold",
+        "damage",
+        "elemental"
+      ],
+      "tier_name": "Greater Essence of Ice",
+      "display": "Adds (46—57) to (70—88) Cold Damage"
+    },
+    {
+      "text": "Adds # to # Lightning Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "lightning"
+      ],
+      "tier_name": "Greater Essence of Electricity",
+      "display": "Adds (1—8) to (128—162) Lightning Damage"
+    },
+    {
+      "text": "+# to Accuracy Rating",
+      "tags": [
+        "attack"
+      ],
+      "tier_name": "Greater Essence of Battle",
+      "display": "+(237—346) to Accuracy Rating"
+    },
+    {
+      "text": "+# to Accuracy Rating",
+      "tags": [
+        "attack"
+      ],
+      "tier_name": "Greater Essence of Battle",
+      "display": "+(237—346) to Accuracy Rating"
+    },
+    {
+      "text": "#% increased Attack Speed",
+      "tags": [
+        "attack",
+        "speed"
+      ],
+      "tier_name": "Greater Essence of Haste",
+      "display": "(23—25)% increased Attack Speed"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+#% to Critical Hit Chance",
+      "tags": [
+        "attack",
+        "critical"
+      ],
+      "tier_name": "Lesser Essence of Seeking",
+      "display": "+(1.51—2.1)% to Critical Hit Chance"
+    },
+    {
+      "text": "+#% to Critical Hit Chance",
+      "tags": [
+        "attack",
+        "critical"
+      ],
+      "tier_name": "Essence of Seeking",
+      "display": "+(2.11—2.7)% to Critical Hit Chance"
+    },
+    {
+      "text": "+#% to Critical Hit Chance",
+      "tags": [
+        "attack",
+        "critical"
+      ],
+      "tier_name": "Greater Essence of Seeking",
+      "display": "+(3.11—3.8)% to Critical Hit Chance"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    }
+  ],
+  "corrupted": [
+    {
+      "text": "#% reduced Attribute Requirements",
+      "tags": [],
+      "tier_name": "CorruptionReducedLocalAttributeRequirements1",
+      "display": "(10—20)% reduced Attribute Requirements"
+    },
+    {
+      "text": "#% increased Physical Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "physical"
+      ],
+      "tier_name": "CorruptionLocalIncreasedPhysicalDamagePercent1",
+      "display": "(15—25)% increased Physical Damage"
+    },
+    {
+      "text": "Adds # to # Fire Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "fire"
+      ],
+      "tier_name": "CorruptionLocalAddedFireDamageTwoHand1",
+      "display": "Adds (13—20) to (21—31) Fire Damage"
+    },
+    {
+      "text": "Adds # to # Cold Damage",
+      "tags": [
+        "attack",
+        "cold",
+        "damage",
+        "elemental"
+      ],
+      "tier_name": "CorruptionLocalAddedColdDamageTwoHand1",
+      "display": "Adds (11—17) to (18—26) Cold Damage"
+    },
+    {
+      "text": "Adds # to # Lightning Damage",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental",
+        "lightning"
+      ],
+      "tier_name": "CorruptionLocalAddedLightningDamageTwoHand1",
+      "display": "Adds (1—3) to (41—61) Lightning Damage"
+    },
+    {
+      "text": "Adds # to # Chaos damage",
+      "tags": [
+        "attack",
+        "chaos",
+        "damage"
+      ],
+      "tier_name": "CorruptionLocalAddedChaosDamageTwoHand1",
+      "display": "Adds (10—16) to (17—25) Chaos damage"
+    },
+    {
+      "text": "#% increased Attack Speed",
+      "tags": [
+        "attack",
+        "speed"
+      ],
+      "tier_name": "CorruptionLocalIncreasedAttackSpeed1",
+      "display": "(6—8)% increased Attack Speed"
+    },
+    {
+      "text": "+#% to Critical Damage Bonus",
+      "tags": [
+        "attack",
+        "critical",
+        "damage"
+      ],
+      "tier_name": "CorruptionLocalCriticalStrikeMultiplier1",
+      "display": "+(5—10)% to Critical Damage Bonus"
+    },
+    {
+      "text": "#% increased Elemental Damage with Attacks",
+      "tags": [
+        "attack",
+        "damage",
+        "elemental"
+      ],
+      "tier_name": "CorruptionWeaponElementalDamageTwoHand1",
+      "display": "(40—50)% increased Elemental Damage with Attacks"
+    }
+  ]
+}

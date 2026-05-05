@@ -1,0 +1,83 @@
+{
+  "#% increased Elemental Damage with Attacks": [
+    "attack",
+    "damage",
+    "elemental"
+  ],
+  "#% increased Physical Damage": [
+    "attack",
+    "damage",
+    "physical"
+  ],
+  "#% increased Physical Damage, # to Accuracy Rating": [
+    "attack"
+  ],
+  "# to Accuracy Rating": [
+    "attack"
+  ],
+  "Adds # to # Cold Damage": [
+    "attack",
+    "cold",
+    "damage",
+    "elemental"
+  ],
+  "Adds # to # Fire Damage": [
+    "attack",
+    "damage",
+    "elemental",
+    "fire"
+  ],
+  "Adds # to # Lightning Damage": [
+    "attack",
+    "damage",
+    "elemental",
+    "lightning"
+  ],
+  "Adds # to # Physical Damage": [
+    "attack",
+    "damage",
+    "physical"
+  ],
+  "#% increased Attack Speed": [
+    "attack",
+    "speed"
+  ],
+  "# to Level of all Melee Skills": [
+    "attack"
+  ],
+  "# to Strength": [
+    "attribute"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "#% to Critical Damage Bonus": [
+    "attack",
+    "critical",
+    "damage"
+  ],
+  "#% to Critical Hit Chance": [
+    "attack",
+    "critical"
+  ],
+  "Gain # Life per Enemy Killed": [
+    "life"
+  ],
+  "Gain # Mana per Enemy Killed": [
+    "mana"
+  ],
+  "Grants # Life per Enemy Hit": [
+    "attack",
+    "life"
+  ],
+  "Leeches #% of Physical Damage as Life": [
+    "attack",
+    "life",
+    "physical"
+  ],
+  "Leeches #% of Physical Damage as Mana": [
+    "attack",
+    "mana",
+    "physical"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "#% increased Chaos Damage": [
+    "chaos",
+    "damage"
+  ],
+  "#% increased Cold Damage": [
+    "cold",
+    "damage",
+    "elemental"
+  ],
+  "#% increased Energy Shield": [
+    "defences",
+    "mana"
+  ],
+  "#% increased Energy Shield, # to maximum Mana": [
+    "mana"
+  ],
+  "#% increased Fire Damage": [
+    "damage",
+    "elemental",
+    "fire"
+  ],
+  "#% increased Lightning Damage": [
+    "damage",
+    "elemental",
+    "lightning"
+  ],
+  "#% increased Spell Damage": [
+    "caster",
+    "damage"
+  ],
+  "#% increased Spell Physical Damage": [
+    "damage",
+    "physical"
+  ],
+  "# to maximum Energy Shield": [
+    "defences"
+  ],
+  "#% increased Cast Speed": [
+    "caster",
+    "speed"
+  ],
+  "#% increased Critical Hit Chance for Spells": [
+    "caster",
+    "critical"
+  ],
+  "#% increased Critical Spell Damage Bonus": [
+    "caster",
+    "critical"
+  ],
+  "#% increased Mana Regeneration Rate": [
+    "mana"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "# to Level of all Spell Skills": [
+    "caster",
+    "gem"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "#% faster start of Energy Shield Recharge": [
+    "defences"
+  ]
+}

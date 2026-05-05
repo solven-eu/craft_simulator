@@ -1,0 +1,57 @@
+{
+  "#% increased Evasion Rating": [
+    "defences",
+    "life",
+    "mana"
+  ],
+  "#% increased Evasion Rating, # to maximum Life": [
+    "life"
+  ],
+  "#% increased Evasion Rating, # to maximum Mana": [
+    "mana"
+  ],
+  "# to Accuracy Rating": [
+    "attack"
+  ],
+  "# to Evasion Rating": [
+    "defences"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "#% increased Critical Hit Chance": [
+    "critical"
+  ],
+  "# to Dexterity": [
+    "attribute"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "# to Level of all Minion Skills": [
+    "gem",
+    "minion"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "Gain Deflection Rating equal to #% of Evasion Rating": [
+    "defences"
+  ]
+}

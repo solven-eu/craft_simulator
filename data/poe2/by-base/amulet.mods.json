@@ -1,0 +1,1930 @@
+[
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "#% increased Armour",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Impregnable",
+        "id": "IncreasedPhysicalDamageReductionRatingPercent7"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Girded",
+        "id": "IncreasedPhysicalDamageReductionRatingPercent6"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Thickened",
+        "id": "IncreasedPhysicalDamageReductionRatingPercent5"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Buttressed",
+        "id": "IncreasedPhysicalDamageReductionRatingPercent4"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Lobstered",
+        "id": "IncreasedPhysicalDamageReductionRatingPercent3"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Layered",
+        "id": "IncreasedPhysicalDamageReductionRatingPercent2"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "Reinforced",
+        "id": "IncreasedPhysicalDamageReductionRatingPercent1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "#% increased Evasion Rating",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 77,
+        "spawnLvl": 77,
+        "tierName": "Mirage's",
+        "id": "IncreasedEvasionRatingPercent7"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Nightmare's",
+        "id": "IncreasedEvasionRatingPercent6"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Phantasm's",
+        "id": "IncreasedEvasionRatingPercent5"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Wraith's",
+        "id": "IncreasedEvasionRatingPercent4"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Spectre's",
+        "id": "IncreasedEvasionRatingPercent3"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Ghost's",
+        "id": "IncreasedEvasionRatingPercent2"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "Shade's",
+        "id": "IncreasedEvasionRatingPercent1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "#% increased maximum Energy Shield",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Unassailable",
+        "id": "IncreasedEnergyShieldPercent7"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Indomitable",
+        "id": "IncreasedEnergyShieldPercent6"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Dauntless",
+        "id": "IncreasedEnergyShieldPercent5"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Fearless",
+        "id": "IncreasedEnergyShieldPercent4"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Resolute",
+        "id": "IncreasedEnergyShieldPercent3"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Strong-Willed",
+        "id": "IncreasedEnergyShieldPercent2"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "Protective",
+        "id": "IncreasedEnergyShieldPercent1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "#% increased maximum Life",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 300,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Confident",
+        "id": "MaximumLifeIncrease3"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Optimistic",
+        "id": "MaximumLifeIncrease2"
+      },
+      {
+        "tier": 3,
+        "weight": 300,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Hopeful",
+        "id": "MaximumLifeIncrease1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "#% increased maximum Mana",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 300,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Mnemonic",
+        "id": "MaximumManaIncrease3"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Perceptive",
+        "id": "MaximumManaIncrease2"
+      },
+      {
+        "tier": 3,
+        "weight": 300,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Cognizant",
+        "id": "MaximumManaIncrease1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "#% increased Rarity of Items found",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 47,
+        "spawnLvl": 47,
+        "tierName": "Hoarder's",
+        "id": "ItemFoundRarityIncreasePrefix3"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 29,
+        "spawnLvl": 29,
+        "tierName": "Collector's",
+        "id": "ItemFoundRarityIncreasePrefix2"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 10,
+        "spawnLvl": 10,
+        "tierName": "Magpie's",
+        "id": "ItemFoundRarityIncreasePrefix1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "#% increased Spell Damage",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Incanter's",
+        "id": "SpellDamage6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Occultist's",
+        "id": "SpellDamage5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Professor's",
+        "id": "SpellDamage4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Scholar's",
+        "id": "SpellDamage3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Adept's",
+        "id": "SpellDamage2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Apprentice's",
+        "id": "SpellDamage1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "# to Accuracy Rating",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 400,
+        "ilvl": 67,
+        "spawnLvl": 67,
+        "tierName": "Ranger's",
+        "id": "IncreasedAccuracy8"
+      },
+      {
+        "tier": 2,
+        "weight": 800,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "Hunter's",
+        "id": "IncreasedAccuracy7"
+      },
+      {
+        "tier": 3,
+        "weight": 800,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "Steady",
+        "id": "IncreasedAccuracy6"
+      },
+      {
+        "tier": 4,
+        "weight": 800,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "Consistent",
+        "id": "IncreasedAccuracy5"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "Deliberate",
+        "id": "IncreasedAccuracy4"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "Focused",
+        "id": "IncreasedAccuracy3"
+      },
+      {
+        "tier": 7,
+        "weight": 800,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "Reliable",
+        "id": "IncreasedAccuracy2"
+      },
+      {
+        "tier": 8,
+        "weight": 800,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Precise",
+        "id": "IncreasedAccuracy1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "# to maximum Energy Shield",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "Incandescent",
+        "id": "IncreasedEnergyShield10"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Scintillating",
+        "id": "IncreasedEnergyShield9"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Dazzling",
+        "id": "IncreasedEnergyShield8"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Blazing",
+        "id": "IncreasedEnergyShield7"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Pulsing",
+        "id": "IncreasedEnergyShield6"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Radiating",
+        "id": "IncreasedEnergyShield5"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "Glowing",
+        "id": "IncreasedEnergyShield4"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Glittering",
+        "id": "IncreasedEnergyShield3"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "Glimmering",
+        "id": "IncreasedEnergyShield2"
+      },
+      {
+        "tier": 10,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Shining",
+        "id": "IncreasedEnergyShield1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "# to maximum Life",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Athlete's",
+        "id": "IncreasedLife9"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Virile",
+        "id": "IncreasedLife8"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Rotund",
+        "id": "IncreasedLife7"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "Robust",
+        "id": "IncreasedLife6"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Stout",
+        "id": "IncreasedLife5"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "Stalwart",
+        "id": "IncreasedLife4"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Sanguine",
+        "id": "IncreasedLife3"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 6,
+        "spawnLvl": 6,
+        "tierName": "Healthy",
+        "id": "IncreasedLife2"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Hale",
+        "id": "IncreasedLife1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "# to maximum Mana",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "Ultramarine",
+        "id": "IncreasedMana13"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Zaffre",
+        "id": "IncreasedMana12"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Blue",
+        "id": "IncreasedMana11"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Mazarine",
+        "id": "IncreasedMana10"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Chalybeous",
+        "id": "IncreasedMana9"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Gentian",
+        "id": "IncreasedMana8"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Opalescent",
+        "id": "IncreasedMana7"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "Aqua",
+        "id": "IncreasedMana6"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Cerulean",
+        "id": "IncreasedMana5"
+      },
+      {
+        "tier": 10,
+        "weight": 1000,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "Teal",
+        "id": "IncreasedMana4"
+      },
+      {
+        "tier": 11,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Azure",
+        "id": "IncreasedMana3"
+      },
+      {
+        "tier": 12,
+        "weight": 1000,
+        "ilvl": 6,
+        "spawnLvl": 6,
+        "tierName": "Cobalt",
+        "id": "IncreasedMana2"
+      },
+      {
+        "tier": 13,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Beryl",
+        "id": "IncreasedMana1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "PREFIX",
+    "name": "# to Spirit",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 400,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Countess'",
+        "id": "IncreasedSpirit5"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Marchioness'",
+        "id": "IncreasedSpirit4"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Viscountess'",
+        "id": "IncreasedSpirit3"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "Baronness'",
+        "id": "IncreasedSpirit2"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Lady's",
+        "id": "IncreasedSpirit1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# Life Regeneration per second",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of Immortality",
+        "id": "LifeRegeneration10__"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of Resurgence",
+        "id": "LifeRegeneration9"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "of Recuperation",
+        "id": "LifeRegeneration8_"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 47,
+        "spawnLvl": 47,
+        "tierName": "of Convalescence",
+        "id": "LifeRegeneration7"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 35,
+        "spawnLvl": 35,
+        "tierName": "of the Troll",
+        "id": "LifeRegeneration6"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "of the Hydra",
+        "id": "LifeRegeneration5"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 17,
+        "spawnLvl": 17,
+        "tierName": "of the Starfish",
+        "id": "LifeRegeneration4"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Flatworm",
+        "id": "LifeRegeneration3"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Lizard",
+        "id": "LifeRegeneration2"
+      },
+      {
+        "tier": 10,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Newt",
+        "id": "LifeRegeneration1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% increased Cast Speed",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 800,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of Legerdemain",
+        "id": "IncreasedCastSpeed5"
+      },
+      {
+        "tier": 2,
+        "weight": 800,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Sortilege",
+        "id": "IncreasedCastSpeed4"
+      },
+      {
+        "tier": 3,
+        "weight": 800,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Expertise",
+        "id": "IncreasedCastSpeed3"
+      },
+      {
+        "tier": 4,
+        "weight": 800,
+        "ilvl": 15,
+        "spawnLvl": 15,
+        "tierName": "of Nimbleness",
+        "id": "IncreasedCastSpeed2"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Talent",
+        "id": "IncreasedCastSpeed1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% increased Critical Damage Bonus",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of Destruction",
+        "id": "CriticalMultiplier6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 59,
+        "spawnLvl": 59,
+        "tierName": "of Ferocity",
+        "id": "CriticalMultiplier5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Fury",
+        "id": "CriticalMultiplier4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 31,
+        "spawnLvl": 31,
+        "tierName": "of Rage",
+        "id": "CriticalMultiplier3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Anger",
+        "id": "CriticalMultiplier2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Ire",
+        "id": "CriticalMultiplier1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% increased Critical Hit Chance",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 72,
+        "spawnLvl": 72,
+        "tierName": "of Unmaking",
+        "id": "CriticalStrikeChance6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "of Ruin",
+        "id": "CriticalStrikeChance5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Calamity",
+        "id": "CriticalStrikeChance4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Disaster",
+        "id": "CriticalStrikeChance3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 20,
+        "spawnLvl": 20,
+        "tierName": "of Havoc",
+        "id": "CriticalStrikeChance2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of Menace",
+        "id": "CriticalStrikeChance1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% increased Mana Regeneration Rate",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 79,
+        "spawnLvl": 79,
+        "tierName": "of Nirvana",
+        "id": "ManaRegeneration6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Euphoria",
+        "id": "ManaRegeneration5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 42,
+        "spawnLvl": 42,
+        "tierName": "of Bliss",
+        "id": "ManaRegeneration4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 29,
+        "spawnLvl": 29,
+        "tierName": "of Elation",
+        "id": "ManaRegeneration3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "of Joy",
+        "id": "ManaRegeneration2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Excitement",
+        "id": "ManaRegeneration1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% increased Rarity of Items found",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of Archaeology",
+        "id": "ItemFoundRarityIncrease3"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "of Raiding",
+        "id": "ItemFoundRarityIncrease2"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 3,
+        "spawnLvl": 3,
+        "tierName": "of Plunder",
+        "id": "ItemFoundRarityIncrease1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% of Damage taken Recouped as Life",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 79,
+        "spawnLvl": 79,
+        "tierName": "of Fleshbinding",
+        "id": "DamageTakenGainedAsLife5"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of Suturing",
+        "id": "DamageTakenGainedAsLife4_"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 56,
+        "spawnLvl": 56,
+        "tierName": "of Stitching",
+        "id": "DamageTakenGainedAsLife3"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Bandaging",
+        "id": "DamageTakenGainedAsLife2"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Mending",
+        "id": "DamageTakenGainedAsLife1___"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% of Damage taken Recouped as Mana",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "of Zen",
+        "id": "DamageTakenGainedAsMana5"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 69,
+        "spawnLvl": 69,
+        "tierName": "of Serenity",
+        "id": "DamageTakenGainedAsMana4"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 57,
+        "spawnLvl": 57,
+        "tierName": "of Tranquility",
+        "id": "DamageTakenGainedAsMana3"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Solace",
+        "id": "DamageTakenGainedAsMana2"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 31,
+        "spawnLvl": 31,
+        "tierName": "of Reprieve",
+        "id": "DamageTakenGainedAsMana1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# to all Attributes",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 800,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "of the Infinite",
+        "id": "AllAttributes9_"
+      },
+      {
+        "tier": 2,
+        "weight": 800,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of the Multiverse",
+        "id": "AllAttributes8"
+      },
+      {
+        "tier": 3,
+        "weight": 800,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Universe",
+        "id": "AllAttributes7"
+      },
+      {
+        "tier": 4,
+        "weight": 800,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Galaxy",
+        "id": "AllAttributes6"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Heavens",
+        "id": "AllAttributes5"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Comet",
+        "id": "AllAttributes4"
+      },
+      {
+        "tier": 7,
+        "weight": 800,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Meteor",
+        "id": "AllAttributes3"
+      },
+      {
+        "tier": 8,
+        "weight": 800,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Sky",
+        "id": "AllAttributes2"
+      },
+      {
+        "tier": 9,
+        "weight": 800,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Clouds",
+        "id": "AllAttributes1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# to Dexterity",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Phantom",
+        "id": "Dexterity8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Jaguar",
+        "id": "Dexterity7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Leopard",
+        "id": "Dexterity6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Panther",
+        "id": "Dexterity5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Falcon",
+        "id": "Dexterity4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Fox",
+        "id": "Dexterity3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Lynx",
+        "id": "Dexterity2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Mongoose",
+        "id": "Dexterity1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# to Intelligence",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Virtuoso",
+        "id": "Intelligence8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Savant",
+        "id": "Intelligence7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Sage",
+        "id": "Intelligence6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Philosopher",
+        "id": "Intelligence5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Augur",
+        "id": "Intelligence4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Prodigy",
+        "id": "Intelligence3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Student",
+        "id": "Intelligence2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Pupil",
+        "id": "Intelligence1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# to Level of all Melee Skills",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of Battle",
+        "id": "GlobalMeleeSkillGemLevel3"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 41,
+        "spawnLvl": 41,
+        "tierName": "of Dueling",
+        "id": "GlobalMeleeSkillGemLevel2"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of Combat",
+        "id": "GlobalMeleeSkillGemLevel1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# to Level of all Minion Skills",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of the Overseer",
+        "id": "GlobalMinionSpellSkillGemLevel3"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 41,
+        "spawnLvl": 41,
+        "tierName": "of the Despot",
+        "id": "GlobalMinionSpellSkillGemLevel2"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Taskmaster",
+        "id": "GlobalMinionSpellSkillGemLevel1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# to Level of all Projectile Skills",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of the Sharpshooter",
+        "id": "GlobalProjectileSkillGemLevel3"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 41,
+        "spawnLvl": 41,
+        "tierName": "of the Fletcher",
+        "id": "GlobalProjectileSkillGemLevel2"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Archer",
+        "id": "GlobalProjectileSkillGemLevel1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# to Level of all Spell Skills",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of the Sorcerer",
+        "id": "GlobalSpellGemsLevel3"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 41,
+        "spawnLvl": 41,
+        "tierName": "of the Enchanter",
+        "id": "GlobalSpellGemsLevel2"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Mage",
+        "id": "GlobalSpellGemsLevel1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "# to Strength",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Titan",
+        "id": "Strength8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Leviathan",
+        "id": "Strength7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Goliath",
+        "id": "Strength6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Gorilla",
+        "id": "Strength5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Lion",
+        "id": "Strength4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Bear",
+        "id": "Strength3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Wrestler",
+        "id": "Strength2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Brute",
+        "id": "Strength1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% to all Elemental Resistances",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 800,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "of the Span",
+        "id": "AllResistances6"
+      },
+      {
+        "tier": 2,
+        "weight": 800,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of the Rainbow",
+        "id": "AllResistances5"
+      },
+      {
+        "tier": 3,
+        "weight": 800,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "of Variegation",
+        "id": "AllResistances4"
+      },
+      {
+        "tier": 4,
+        "weight": 800,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of the Kaleidoscope",
+        "id": "AllResistances3"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "of the Prism",
+        "id": "AllResistances2"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 12,
+        "spawnLvl": 12,
+        "tierName": "of the Crystal",
+        "id": "AllResistances1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% to Chaos Resistance",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 250,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of Bameth",
+        "id": "ChaosResist6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of Exile",
+        "id": "ChaosResist5"
+      },
+      {
+        "tier": 3,
+        "weight": 250,
+        "ilvl": 56,
+        "spawnLvl": 56,
+        "tierName": "of Expulsion",
+        "id": "ChaosResist4"
+      },
+      {
+        "tier": 4,
+        "weight": 250,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Eviction",
+        "id": "ChaosResist3"
+      },
+      {
+        "tier": 5,
+        "weight": 250,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Banishment",
+        "id": "ChaosResist2"
+      },
+      {
+        "tier": 6,
+        "weight": 250,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "of the Lost",
+        "id": "ChaosResist1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% to Cold Resistance",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "of Haast",
+        "id": "ColdResist8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 71,
+        "spawnLvl": 71,
+        "tierName": "of the Ice",
+        "id": "ColdResist7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Polar Bear",
+        "id": "ColdResist6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 50,
+        "spawnLvl": 50,
+        "tierName": "of the Walrus",
+        "id": "ColdResist5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "of the Yeti",
+        "id": "ColdResist4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "of the Narwhal",
+        "id": "ColdResist3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 14,
+        "spawnLvl": 14,
+        "tierName": "of the Penguin",
+        "id": "ColdResist2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Seal",
+        "id": "ColdResist1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% to Fire Resistance",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "of Tzteosh",
+        "id": "FireResist8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 71,
+        "spawnLvl": 71,
+        "tierName": "of Magma",
+        "id": "FireResist7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Volcano",
+        "id": "FireResist6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "of the Furnace",
+        "id": "FireResist5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "of the Kiln",
+        "id": "FireResist4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "of the Drake",
+        "id": "FireResist3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 12,
+        "spawnLvl": 12,
+        "tierName": "of the Salamander",
+        "id": "FireResist2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Whelpling",
+        "id": "FireResist1"
+      }
+    ]
+  },
+  {
+    "base": "AMULET",
+    "type": "SUFFIX",
+    "name": "#% to Lightning Resistance",
+    "itemClass": "Amulet",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "of Ephij",
+        "id": "LightningResist8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 71,
+        "spawnLvl": 71,
+        "tierName": "of the Lightning",
+        "id": "LightningResist7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Maelstrom",
+        "id": "LightningResist6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 49,
+        "spawnLvl": 49,
+        "tierName": "of the Tempest",
+        "id": "LightningResist5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 37,
+        "spawnLvl": 37,
+        "tierName": "of the Thunderhead",
+        "id": "LightningResist4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "of the Storm",
+        "id": "LightningResist3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 13,
+        "spawnLvl": 13,
+        "tierName": "of the Squall",
+        "id": "LightningResist2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Cloud",
+        "id": "LightningResist1"
+      }
+    ]
+  }
+]

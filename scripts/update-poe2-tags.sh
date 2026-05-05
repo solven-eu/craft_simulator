@@ -11,6 +11,11 @@
 # Outputs:
 #   data/raw/poe2db_base_<slug>.html     cached per-base HTML
 #   data/poe2/mod_tags.json              { "BASE": { "<mod name>": [tags] } }
+#   data/poe2/extra_mods.json            { "BASE": { desecrated/essence/corrupted: [...] } }
+#   data/poe2/mod_ranges.json            { "BASE": { "<mod name>": { tier: display } } }
+#   data/poe2/by-base/<slug>.tags.json   per-base partition of mod_tags
+#   data/poe2/by-base/<slug>.extra.json  per-base partition of extra_mods
+#   data/poe2/by-base/<slug>.ranges.json per-base partition of mod_ranges
 #
 # Usage:  scripts/update-poe2-tags.sh [BASE...]
 #   With no arguments: enriches every base present in data/poe2/mods.json.
@@ -44,19 +49,60 @@ for m in mods:
     if filter_set and base not in filter_set: continue
     if base in seen: continue
     seen.add(base)
-    # Map "GLOVES (DEX)" -> "Gloves_dex"; "BODY ARMOURS (STR/DEX)" -> "Body_Armours_strdex"
-    # "RING" -> "Rings", "QUIVER" -> "Quivers" (poe2db uses plural for some bases)
-    name, _, paren = base.partition('(')
-    name = name.strip().lower()
-    spec = paren.rstrip(')').strip().lower().replace('/', '') if paren else ''
-    # Pluralise common singular bases on poe2db
-    plural = {'ring': 'rings', 'quiver': 'quivers', 'amulet': 'amulets',
-              'belt': 'belts', 'wand': 'wands', 'staff': 'staves',
-              'sceptre': 'sceptres', 'focus': 'foci', 'shield': 'shields',
-              'helmet': 'helmets', 'boot': 'boots', 'glove': 'gloves'}
-    title = plural.get(name, name)
-    title = '_'.join(w.capitalize() for w in title.split())
-    slug = title + ('_' + spec if spec else '')
+    # Map base name -> poe2db URL slug. Two layers:
+    # 1. Hard overrides for irregulars (WARSTAFF lives at /Quarterstaves;
+    #    elemental wand/staff variants all share /Wands and /Staves on
+    #    poe2db — they're not split per element). Hybrid armour bases
+    #    (e.g. BODY ARMOUR (STR/DEX)) don't have dedicated pages on
+    #    poe2db and are mapped to the closest single-attribute parent.
+    # 2. Pluralise + attribute-suffix fallback for the regular bases
+    #    (BOOTS (DEX) -> Boots_dex, RING -> Rings, etc.).
+    overrides = {
+        'BOW': 'Bows', 'CROSSBOW': 'Crossbows', 'SPEAR': 'Spears',
+        'WARSTAFF': 'Quarterstaves',
+        'ONE HAND MACE': 'One_Hand_Maces', 'TWO HAND MACE': 'Two_Hand_Maces',
+        'BUCKLER': 'Bucklers', 'TALISMAN': 'Talismans',
+        'FIRE WAND': 'Wands', 'ICE WAND': 'Wands',
+        'LIGHTNING WAND': 'Wands', 'CHAOS WAND': 'Wands',
+        'PHYSICAL WAND': 'Wands',
+        'FIRE STAFF': 'Staves', 'ICE STAFF': 'Staves',
+        'LIGHTNING STAFF': 'Staves', 'CHAOS STAFF': 'Staves',
+        'PHYSICAL STAFF': 'Staves',
+        # Hybrid armour bases reuse one of the parent single-attribute
+        # pages — pick whichever attribute appears first. The hybrid mod
+        # pool overlaps heavily with the single-attribute parent, so the
+        # tag map is at least directionally correct.
+        'BODY ARMOUR (DEX)': 'Body_Armours_dex',
+        'BODY ARMOUR (STR)': 'Body_Armours_str',
+        'BODY ARMOUR (INT)': 'Body_Armours_int',
+        'BODY ARMOUR (STR/DEX)': 'Body_Armours_str',
+        'BODY ARMOUR (STR/INT)': 'Body_Armours_str',
+        'BODY ARMOUR (DEX/INT)': 'Body_Armours_dex',
+        'BOOTS (STR/DEX)': 'Boots_str',
+        'BOOTS (STR/INT)': 'Boots_str',
+        'BOOTS (DEX/INT)': 'Boots_dex',
+        'HELMET (STR/DEX)': 'Helmets_str',
+        'HELMET (STR/INT)': 'Helmets_str',
+        'HELMET (DEX/INT)': 'Helmets_dex',
+        'GLOVES (STR/DEX)': 'Gloves_str',
+        'GLOVES (STR/INT)': 'Gloves_str',
+        'GLOVES (DEX/INT)': 'Gloves_dex',
+        'SHIELD (STR/DEX)': 'Shields_str',
+        'SHIELD (STR/INT)': 'Shields_str',
+    }
+    if base in overrides:
+        slug = overrides[base]
+    else:
+        name, _, paren = base.partition('(')
+        name = name.strip().lower()
+        spec = paren.rstrip(')').strip().lower().replace('/', '') if paren else ''
+        plural = {'ring': 'rings', 'quiver': 'quivers', 'amulet': 'amulets',
+                  'belt': 'belts', 'wand': 'wands', 'staff': 'staves',
+                  'sceptre': 'sceptres', 'focus': 'foci', 'shield': 'shields',
+                  'helmet': 'helmets', 'boot': 'boots', 'glove': 'gloves'}
+        title = plural.get(name, name)
+        title = '_'.join(w.capitalize() for w in title.split())
+        slug = title + ('_' + spec if spec else '')
     mapping.append((base, slug))
 with open(out_file, 'w') as f:
     for b, s in mapping: f.write(f'{b}\t{s}\n')
@@ -64,13 +110,21 @@ print(f'  {len(mapping)} base(s) to fetch')
 PY
 
 echo "[2/3] Fetching per-base HTML…"
+# Drop any cached HTML that lacks the ModsView payload — those are stale
+# 404 / redirect pages from earlier runs with wrong slugs. Re-fetching is
+# cheap and idempotent for valid slugs.
 while IFS=$'\t' read -r base slug; do
   out="$RAW/poe2db_base_${slug}.html"
+  if [[ -s "$out" ]] && ! grep -q 'new ModsView' "$out"; then
+    rm -f "$out"
+    printf '  invalidated stale cache for %s (%s)\n' "$base" "$slug"
+  fi
   if [[ ! -s "$out" ]]; then
     if curl -fsSL "https://poe2db.tw/us/${slug}" -o "$out" 2>/dev/null; then
       printf '  fetched %s -> %s\n' "$base" "$slug"
     else
       printf '  ! failed: %s (%s) — slug guess wrong; skipping\n' "$base" "$slug"
+      rm -f "$out"
     fi
     sleep 0.2
   fi
@@ -150,15 +204,30 @@ with slugs_file.open() as f:
         bases.append((b, s))
 
 mods = json.load((out_dir / 'mods.json').open())
-mod_tags = {}
-# Per-base, per-bucket extracted entries (desecrated/essence/corrupted) for
-# the UI to render as separate mod-pool sections. Each item:
-# { name, text (canonical with `#`), tags, tier_name }
-extra_mods = {}  # { base: { 'desecrated': [...], 'essence': [...], 'corrupted': [...] } }
-# Per-base, per-mod, per-tier display strings with ACTUAL value ranges
-# preserved from poe2db (`+(10—19) to maximum Life` instead of `#`).
-# Shape: { base: { mod_name: { tier_number: display_text } } }
-mod_ranges = {}
+# Seed the consolidated dicts from existing on-disk JSONs so a partial
+# re-scrape (script invoked with explicit [BASE…] args) only TOUCHES the
+# bases it processes — every other base's data carries over. Without this
+# seeding, running e.g. `update-poe2-tags.sh BOW` would clobber the entire
+# extra_mods.json down to just BOW's data.
+def _load_existing(name):
+    p = out_dir / name
+    if not p.exists():
+        return {}
+    try:
+        return json.load(p.open())
+    except Exception:
+        return {}
+mod_tags = _load_existing('mod_tags.json')
+extra_mods = _load_existing('extra_mods.json')
+mod_ranges = _load_existing('mod_ranges.json')
+# Restrict touch-set to the bases actually being scraped this run, so the
+# loop below overwrites their entries cleanly (no stale-from-prior-run
+# noise) without affecting other bases.
+touched_bases = {b for b, _s in bases}
+for base in list(touched_bases):
+    mod_tags.pop(base, None)
+    extra_mods.pop(base, None)
+    mod_ranges.pop(base, None)
 for base, slug in bases:
     path = raw_dir / f'poe2db_base_{slug}.html'
     if not path.exists():
@@ -238,6 +307,46 @@ with ranges_path.open('w', encoding='utf-8') as f:
     json.dump(mod_ranges, f, ensure_ascii=False, indent=2)
 ranges_total = sum(sum(len(t) for t in m.values()) for m in mod_ranges.values())
 print(f'  wrote {len(mod_ranges)} bases, {ranges_total} per-tier display strings -> {ranges_path.relative_to(out_dir.parent.parent)}')
+
+# --- Per-base partition --------------------------------------------------
+# Use the slug from the manifest emitted by update-poe2-data.sh so file
+# names line up across the two scripts. Fall back to local slug derivation
+# if the manifest isn't there yet (first-run ordering).
+def slugify(base):
+    head, _, paren = base.partition('(')
+    name = head.strip().lower().replace(' ', '_')
+    spec = paren.rstrip(')').strip().lower().replace('/', '').replace(' ', '') if paren else ''
+    return name + ('_' + spec if spec else '')
+
+by_base_dir = out_dir / 'by-base'
+by_base_dir.mkdir(parents=True, exist_ok=True)
+manifest_path = by_base_dir / 'index.json'
+manifest = {}
+if manifest_path.exists():
+    try:
+        manifest = json.load(manifest_path.open())
+    except Exception:
+        manifest = {}
+
+all_bases = set(mod_tags) | set(extra_mods) | set(mod_ranges) | set(manifest)
+for base in all_bases:
+    slug = manifest.get(base) or slugify(base)
+    manifest.setdefault(base, slug)
+    tags_only = mod_tags.get(base, {})
+    extra_only = extra_mods.get(base, {})
+    ranges_only = mod_ranges.get(base, {})
+    with (by_base_dir / f'{slug}.tags.json').open('w', encoding='utf-8') as f:
+        json.dump(tags_only, f, ensure_ascii=False, indent=2)
+    with (by_base_dir / f'{slug}.extra.json').open('w', encoding='utf-8') as f:
+        json.dump(extra_only, f, ensure_ascii=False, indent=2)
+    with (by_base_dir / f'{slug}.ranges.json').open('w', encoding='utf-8') as f:
+        json.dump(ranges_only, f, ensure_ascii=False, indent=2)
+
+# Refresh the manifest (idempotent — keeps any pre-existing entries from
+# update-poe2-data.sh and adds bases visible only to the tags scrape).
+with manifest_path.open('w', encoding='utf-8') as f:
+    json.dump(dict(sorted(manifest.items())), f, ensure_ascii=False, indent=2)
+print(f'  wrote per-base tags/extra/ranges for {len(all_bases)} base(s) -> {by_base_dir.name}/')
 PY
 
 rm -f "$SLUGS_FILE"

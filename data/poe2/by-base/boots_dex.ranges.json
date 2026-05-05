@@ -1,0 +1,148 @@
+{
+  "# to Dexterity": {
+    "8": "+(5—8) to Dexterity",
+    "7": "+(9—12) to Dexterity",
+    "6": "+(13—16) to Dexterity",
+    "5": "+(17—20) to Dexterity",
+    "4": "+(21—24) to Dexterity",
+    "3": "+(25—27) to Dexterity",
+    "2": "+(28—30) to Dexterity",
+    "1": "+(31—33) to Dexterity"
+  },
+  "#% to Fire Resistance": {
+    "8": "+(6—10)% to Fire Resistance",
+    "7": "+(11—15)% to Fire Resistance",
+    "6": "+(16—20)% to Fire Resistance",
+    "5": "+(21—25)% to Fire Resistance",
+    "4": "+(26—30)% to Fire Resistance",
+    "3": "+(31—35)% to Fire Resistance",
+    "2": "+(36—40)% to Fire Resistance",
+    "1": "+(41—45)% to Fire Resistance"
+  },
+  "#% to Cold Resistance": {
+    "8": "+(6—10)% to Cold Resistance",
+    "7": "+(11—15)% to Cold Resistance",
+    "6": "+(16—20)% to Cold Resistance",
+    "5": "+(21—25)% to Cold Resistance",
+    "4": "+(26—30)% to Cold Resistance",
+    "3": "+(31—35)% to Cold Resistance",
+    "2": "+(36—40)% to Cold Resistance",
+    "1": "+(41—45)% to Cold Resistance"
+  },
+  "#% to Lightning Resistance": {
+    "8": "+(6—10)% to Lightning Resistance",
+    "7": "+(11—15)% to Lightning Resistance",
+    "6": "+(16—20)% to Lightning Resistance",
+    "5": "+(21—25)% to Lightning Resistance",
+    "4": "+(26—30)% to Lightning Resistance",
+    "3": "+(31—35)% to Lightning Resistance",
+    "2": "+(36—40)% to Lightning Resistance",
+    "1": "+(41—45)% to Lightning Resistance"
+  },
+  "#% to Chaos Resistance": {
+    "6": "+(4—7)% to Chaos Resistance",
+    "5": "+(8—11)% to Chaos Resistance",
+    "4": "+(12—15)% to Chaos Resistance",
+    "3": "+(16—19)% to Chaos Resistance",
+    "2": "+(20—23)% to Chaos Resistance",
+    "1": "+(24—27)% to Chaos Resistance"
+  },
+  "# to maximum Life": {
+    "9": "+(10—19) to maximum Life",
+    "8": "+(20—29) to maximum Life",
+    "7": "+(30—39) to maximum Life",
+    "6": "+(40—59) to maximum Life",
+    "5": "+(60—69) to maximum Life",
+    "4": "+(70—84) to maximum Life",
+    "3": "+(85—99) to maximum Life",
+    "2": "+(100—119) to maximum Life",
+    "1": "+(120—149) to maximum Life"
+  },
+  "# to maximum Mana": {
+    "9": "+(10—14) to maximum Mana",
+    "8": "+(15—24) to maximum Mana",
+    "7": "+(25—34) to maximum Mana",
+    "6": "+(35—54) to maximum Mana",
+    "5": "+(55—64) to maximum Mana",
+    "4": "+(65—79) to maximum Mana",
+    "3": "+(80—89) to maximum Mana",
+    "2": "+(90—104) to maximum Mana",
+    "1": "+(105—124) to maximum Mana"
+  },
+  "# to Evasion Rating": {
+    "7": "+(11—18) to Evasion Rating",
+    "6": "+(19—39) to Evasion Rating",
+    "5": "+(40—56) to Evasion Rating",
+    "4": "+(57—70) to Evasion Rating",
+    "3": "+(71—88) to Evasion Rating",
+    "2": "+(89—107) to Evasion Rating",
+    "1": "+(108—142) to Evasion Rating"
+  },
+  "#% increased Evasion Rating": {
+    "7": "(15—26)% increased Evasion Rating",
+    "6": "(27—42)% increased Evasion Rating",
+    "5": "(43—55)% increased Evasion Rating",
+    "4": "(56—67)% increased Evasion Rating",
+    "3": "(68—79)% increased Evasion Rating",
+    "2": "(80—91)% increased Evasion Rating",
+    "1": "(92—100)% increased Evasion Rating"
+  },
+  "#% reduced Attribute Requirements": {
+    "5": "15% reduced Attribute Requirements",
+    "4": "20% reduced Attribute Requirements",
+    "3": "25% reduced Attribute Requirements",
+    "2": "30% reduced Attribute Requirements",
+    "1": "35% reduced Attribute Requirements"
+  },
+  "#% increased Movement Speed": {
+    "6": "10% increased Movement Speed",
+    "5": "15% increased Movement Speed",
+    "4": "20% increased Movement Speed",
+    "3": "25% increased Movement Speed",
+    "2": "30% increased Movement Speed",
+    "1": "35% increased Movement Speed"
+  },
+  "# Life Regeneration per second": {
+    "8": "(1—2) Life Regeneration per second",
+    "7": "(2.1—3) Life Regeneration per second",
+    "6": "(3.1—4) Life Regeneration per second",
+    "5": "(4.1—6) Life Regeneration per second",
+    "4": "(6.1—9) Life Regeneration per second",
+    "3": "(9.1—13) Life Regeneration per second",
+    "2": "(13.1—18) Life Regeneration per second",
+    "1": "(18.1—23) Life Regeneration per second"
+  },
+  "#% increased Rarity of Items found": {
+    "3": "(6—10)% increased Rarity of Items found",
+    "2": "(11—14)% increased Rarity of Items found",
+    "1": "(15—18)% increased Rarity of Items found"
+  },
+  "#% reduced Shock duration on you": {
+    "5": "(36—40)% reduced Shock duration on you",
+    "4": "(41—45)% reduced Shock duration on you",
+    "3": "(46—50)% reduced Shock duration on you",
+    "2": "(51—55)% reduced Shock duration on you",
+    "1": "(56—60)% reduced Shock duration on you"
+  },
+  "#% reduced Chill Duration on you": {
+    "5": "(36—40)% reduced Chill Duration on you",
+    "4": "(41—45)% reduced Chill Duration on you",
+    "3": "(46—50)% reduced Chill Duration on you",
+    "2": "(51—55)% reduced Chill Duration on you",
+    "1": "(56—60)% reduced Chill Duration on you"
+  },
+  "#% reduced Freeze Duration on you": {
+    "5": "(36—40)% reduced Freeze Duration on you",
+    "4": "(41—45)% reduced Freeze Duration on you",
+    "3": "(46—50)% reduced Freeze Duration on you",
+    "2": "(51—55)% reduced Freeze Duration on you",
+    "1": "(56—60)% reduced Freeze Duration on you"
+  },
+  "Gain Deflection Rating equal to #% of Evasion Rating": {
+    "5": "Gain Deflection Rating equal to (8—11)% of Evasion Rating",
+    "4": "Gain Deflection Rating equal to (12—14)% of Evasion Rating",
+    "3": "Gain Deflection Rating equal to (15—17)% of Evasion Rating",
+    "2": "Gain Deflection Rating equal to (18—20)% of Evasion Rating",
+    "1": "Gain Deflection Rating equal to (21—23)% of Evasion Rating"
+  }
+}

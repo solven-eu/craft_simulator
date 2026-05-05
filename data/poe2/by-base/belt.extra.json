@@ -1,0 +1,567 @@
+{
+  "desecrated": [
+    {
+      "text": "#% chance for Charms you use to not consume Charges",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "(10—18)% chance for Charms you use to not consume Charges"
+    },
+    {
+      "text": "Charms gain # charges per Second",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "Charms gain (0.1—0.2) charges per Second"
+    },
+    {
+      "text": "# to # Fire Thorns damage per # maximum Life",
+      "tags": [
+        "amanamu_mod",
+        "elemental",
+        "fire"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "2 to 4 Fire Thorns damage per 100 maximum Life"
+    },
+    {
+      "text": "Mana Flasks gain # charges per Second",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "Mana Flasks gain (0.1—0.2) charges per Second"
+    },
+    {
+      "text": "Gain #% of Maximum Mana as Armour",
+      "tags": [
+        "defences",
+        "kurgal_mod",
+        "mana"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "Gain (6—12)% of Maximum Mana as Armour"
+    },
+    {
+      "text": "#% chance for Flasks you use to not consume Charges",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "(10—15)% chance for Flasks you use to not consume Charges"
+    },
+    {
+      "text": "+# to Strength and Intelligence",
+      "tags": [
+        "amanamu_mod",
+        "attribute"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "+(9—15) to Strength and Intelligence"
+    },
+    {
+      "text": "#% reduced Ignite Duration on you",
+      "tags": [
+        "ailment",
+        "amanamu_mod",
+        "elemental",
+        "fire"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "(20—30)% reduced Ignite Duration on you"
+    },
+    {
+      "text": "+#% to Thorns Critical Hit Chance",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "+(2—4)% to Thorns Critical Hit Chance"
+    },
+    {
+      "text": "+#% to Fire and Chaos Resistances",
+      "tags": [
+        "amanamu_mod",
+        "chaos",
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "+(13—17)% to Fire and Chaos Resistances"
+    },
+    {
+      "text": "+# to Dexterity and Intelligence",
+      "tags": [
+        "attribute",
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "+(9—15) to Dexterity and Intelligence"
+    },
+    {
+      "text": "+#% to Cold and Chaos Resistances",
+      "tags": [
+        "chaos",
+        "cold",
+        "elemental",
+        "kurgal_mod",
+        "resistance"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "+(13—17)% to Cold and Chaos Resistances"
+    },
+    {
+      "text": "#% increased Mana Regeneration Rate",
+      "tags": [
+        "kurgal_mod",
+        "mana"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(30—40)% increased Mana Regeneration Rate"
+    },
+    {
+      "text": "#% reduced Duration of Bleeding on You",
+      "tags": [
+        "ailment",
+        "kurgal_mod",
+        "physical"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(20—30)% reduced Duration of Bleeding on You"
+    },
+    {
+      "text": "+# to Strength and Dexterity",
+      "tags": [
+        "attribute",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "+(9—15) to Strength and Dexterity"
+    },
+    {
+      "text": "+#% to Lightning and Chaos Resistances",
+      "tags": [
+        "chaos",
+        "elemental",
+        "lightning",
+        "resistance",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "+(13—17)% to Lightning and Chaos Resistances"
+    },
+    {
+      "text": "#% reduced Slowing Potency of Debuffs on You if you've used a Charm Recently",
+      "tags": [
+        "charm",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "(17—25)% reduced Slowing Potency of Debuffs on You if you've used a Charm Recently"
+    },
+    {
+      "text": "#% reduced Poison Duration on you",
+      "tags": [
+        "ailment",
+        "chaos",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "(20—30)% reduced Poison Duration on you"
+    },
+    {
+      "text": "#% chance for Flasks you use to not consume Charges",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "(10—18)% chance for Flasks you use to not consume Charges"
+    },
+    {
+      "text": "Life Flasks gain # charges per Second",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "Life Flasks gain (0.1—0.2) charges per Second"
+    },
+    {
+      "text": "#% increased Life Regeneration rate during Effect of any Life Flask",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "(20—30)% increased Life Regeneration rate during Effect of any Life Flask"
+    }
+  ],
+  "essence": [
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "Lesser Essence of the Body",
+      "display": "+(30—39) to maximum Life"
+    },
+    {
+      "text": "+# to maximum Mana",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "Lesser Essence of the Mind",
+      "display": "+(25—34) to maximum Mana"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Ruin",
+      "display": "+(4—7)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "Essence of the Body",
+      "display": "+(85—99) to maximum Life"
+    },
+    {
+      "text": "+# to maximum Mana",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "Essence of the Mind",
+      "display": "+(65—79) to maximum Mana"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Essence of Ruin",
+      "display": "+(8—11)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "Greater Essence of the Body",
+      "display": "+(100—119) to maximum Life"
+    },
+    {
+      "text": "+# to maximum Mana",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "Greater Essence of the Mind",
+      "display": "+(80—89) to maximum Mana"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Ruin",
+      "display": "+(16—19)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Stun Threshold",
+      "tags": [],
+      "tier_name": "Essence of Hysteria",
+      "display": "+(254—304) to Stun Threshold"
+    },
+    {
+      "text": "On Corruption, Item gains two Enchantments",
+      "tags": [],
+      "tier_name": "Essence of Insanity",
+      "display": "On Corruption, Item gains two Enchantments"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Insulation",
+      "display": "+(11—15)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Essence of Insulation",
+      "display": "+(21—25)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Insulation",
+      "display": "+(31—35)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Thawing",
+      "display": "+(11—15)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Essence of Thawing",
+      "display": "+(21—25)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Thawing",
+      "display": "+(31—35)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Grounding",
+      "display": "+(11—15)% to Lightning Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Essence of Grounding",
+      "display": "+(21—25)% to Lightning Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Grounding",
+      "display": "+(31—35)% to Lightning Resistance"
+    }
+  ],
+  "corrupted": [
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "CorruptionIncreasedLife1",
+      "display": "+(30—40) to maximum Life"
+    },
+    {
+      "text": "#% increased Armour",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "CorruptionIncreasedPhysicalDamageReductionRatingPercent1",
+      "display": "(15—25)% increased Armour"
+    },
+    {
+      "text": "#% increased Evasion Rating",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "CorruptionIncreasedEvasionRatingPercent1",
+      "display": "(15—25)% increased Evasion Rating"
+    },
+    {
+      "text": "#% increased maximum Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "CorruptionIncreasedEnergyShieldPercent1",
+      "display": "(15—25)% increased maximum Energy Shield"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "CorruptionFireResistance1",
+      "display": "+(20—25)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "CorruptionColdResistance1",
+      "display": "+(20—25)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "CorruptionLightningResistance1",
+      "display": "+(20—25)% to Lightning Resistance"
+    },
+    {
+      "text": "+#% to Maximum Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "CorruptionMaximumFireResistance1",
+      "display": "+(1—3)% to Maximum Fire Resistance"
+    },
+    {
+      "text": "+# to Maximum Endurance Charges",
+      "tags": [],
+      "tier_name": "CorruptionMaximumEnduranceCharges1",
+      "display": "+1 to Maximum Endurance Charges"
+    },
+    {
+      "text": "+# to Strength",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "CorruptionStrength1",
+      "display": "+(10—15) to Strength"
+    },
+    {
+      "text": "+# to Dexterity",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "CorruptionDexterity1",
+      "display": "+(10—15) to Dexterity"
+    },
+    {
+      "text": "+# to Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "CorruptionIntelligence1",
+      "display": "+(10—15) to Intelligence"
+    }
+  ]
+}

@@ -177,6 +177,185 @@
       "elemental"
     ]
   },
+  "BOOTS (DEX/INT)": {
+    "#% increased Movement Speed": [
+      "speed"
+    ],
+    "# to Evasion Rating, # to maximum Energy Shield": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "life"
+    ],
+    "# to maximum Mana": [
+      "mana"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Chill Duration on you": [
+      "ailment",
+      "cold",
+      "elemental"
+    ],
+    "#% reduced Freeze Duration on you": [
+      "ailment",
+      "cold",
+      "elemental"
+    ],
+    "#% reduced Shock duration on you": [
+      "ailment",
+      "elemental",
+      "lightning"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "Gain Deflection Rating equal to #% of Evasion Rating": [
+      "defences"
+    ]
+  },
+  "BOOTS (STR/INT)": {
+    "#% increased Armour and Energy Shield": [
+      "defences"
+    ],
+    "#% increased Movement Speed": [
+      "speed"
+    ],
+    "# to Armour, # to maximum Energy Shield": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "life"
+    ],
+    "# to maximum Mana": [
+      "mana"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Chill Duration on you": [
+      "ailment",
+      "cold",
+      "elemental"
+    ],
+    "#% reduced Freeze Duration on you": [
+      "ailment",
+      "cold",
+      "elemental"
+    ],
+    "#% reduced Shock duration on you": [
+      "ailment",
+      "elemental",
+      "lightning"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
+  "BOOTS (STR/DEX)": {
+    "#% increased Armour and Evasion": [
+      "defences"
+    ],
+    "#% increased Movement Speed": [
+      "speed"
+    ],
+    "# to Armour, # to Evasion Rating": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "life"
+    ],
+    "# to maximum Mana": [
+      "mana"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Chill Duration on you": [
+      "ailment",
+      "cold",
+      "elemental"
+    ],
+    "#% reduced Freeze Duration on you": [
+      "ailment",
+      "cold",
+      "elemental"
+    ],
+    "#% reduced Shock duration on you": [
+      "ailment",
+      "elemental",
+      "lightning"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
   "HELMET (INT)": {
     "#% increased Energy Shield": [
       "defences",
@@ -343,6 +522,373 @@
       "elemental"
     ]
   },
+  "HELMET (DEX/INT)": {
+    "#% increased Evasion and Energy Shield, # to maximum Life": [
+      "life"
+    ],
+    "#% increased Evasion and Energy Shield, # to maximum Mana": [
+      "mana"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Evasion Rating, # to maximum Energy Shield": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# to maximum Mana": [
+      "defences",
+      "mana"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% increased Critical Hit Chance": [
+      "critical"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Minion Skills": [
+      "gem",
+      "minion"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "Gain Deflection Rating equal to #% of Evasion Rating": [
+      "defences"
+    ]
+  },
+  "HELMET (STR/INT)": {
+    "#% increased Armour and Energy Shield": [
+      "defences"
+    ],
+    "#% increased Armour and Energy Shield, # to maximum Life": [
+      "life"
+    ],
+    "#% increased Armour and Energy Shield, # to maximum Mana": [
+      "mana"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Armour, # to maximum Energy Shield": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# to maximum Mana": [
+      "defences",
+      "mana"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% increased Critical Hit Chance": [
+      "critical"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Minion Skills": [
+      "gem",
+      "minion"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
+  "HELMET (STR/DEX)": {
+    "#% increased Armour and Evasion": [
+      "defences"
+    ],
+    "#% increased Armour and Evasion, # to maximum Life": [
+      "life"
+    ],
+    "#% increased Armour and Evasion, # to maximum Mana": [
+      "mana"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Armour, # to Evasion Rating": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# to maximum Mana": [
+      "defences",
+      "mana"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% increased Critical Hit Chance": [
+      "critical"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Minion Skills": [
+      "gem",
+      "minion"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
+  "BODY ARMOUR (DEX/INT)": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "# to Evasion Rating, # to maximum Energy Shield, #% increased Evasion and Energy Shield": [
+      "defences"
+    ],
+    "#% increased Evasion and Energy Shield, # to maximum Life": [
+      "life"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Duration of Bleeding on You": [
+      "ailment",
+      "physical"
+    ],
+    "#% reduced Ignite Duration on you": [
+      "ailment",
+      "elemental",
+      "fire"
+    ],
+    "#% reduced Poison Duration on you": [
+      "ailment",
+      "chaos"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "Gain Deflection Rating equal to #% of Evasion Rating": [
+      "defences"
+    ]
+  },
+  "BODY ARMOUR (STR/INT)": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Armour and Energy Shield": [
+      "defences"
+    ],
+    "# to Armour, # to maximum Energy Shield, #% increased Armour and Energy Shield": [
+      "defences"
+    ],
+    "#% increased Armour and Energy Shield, # to maximum Life": [
+      "life"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Duration of Bleeding on You": [
+      "ailment",
+      "physical"
+    ],
+    "#% reduced Ignite Duration on you": [
+      "ailment",
+      "elemental",
+      "fire"
+    ],
+    "#% reduced Poison Duration on you": [
+      "ailment",
+      "chaos"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
+  "BODY ARMOUR (STR/DEX)": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Armour and Evasion": [
+      "defences"
+    ],
+    "# to Armour, # to Evasion Rating, #% increased Armour and Evasion": [
+      "defences"
+    ],
+    "#% increased Armour and Evasion, # to maximum Life": [
+      "life"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Duration of Bleeding on You": [
+      "ailment",
+      "physical"
+    ],
+    "#% reduced Ignite Duration on you": [
+      "ailment",
+      "elemental",
+      "fire"
+    ],
+    "#% reduced Poison Duration on you": [
+      "ailment",
+      "chaos"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
   "SHIELD (STR)": {
     "# to # Physical Thorns damage": [
       "damage",
@@ -359,6 +905,197 @@
     ],
     "#% additional Physical Damage Reduction": [
       "physical"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to all Maximum Elemental Resistances": [
+      "elemental",
+      "resistance"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% to Maximum Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Maximum Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Maximum Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Maximum Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
+  "BUCKLER": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Evasion Rating": [
+      "defences"
+    ],
+    "# to Evasion Rating": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "life"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "#% to all Maximum Elemental Resistances": [
+      "elemental",
+      "resistance"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% to Maximum Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Maximum Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Maximum Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Maximum Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "Gain Deflection Rating equal to #% of Evasion Rating": [
+      "defences"
+    ]
+  },
+  "SHIELD (STR/INT)": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Armour and Energy Shield": [
+      "defences"
+    ],
+    "# to Armour, # to maximum Energy Shield": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "life"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to all Maximum Elemental Resistances": [
+      "elemental",
+      "resistance"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% to Maximum Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Maximum Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Maximum Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Maximum Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
+  "SHIELD (STR/DEX)": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Armour and Evasion": [
+      "defences"
+    ],
+    "# to Armour, # to Evasion Rating": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "life"
     ],
     "# to Strength": [
       "attribute"
@@ -579,7 +1316,495 @@
       "physical"
     ]
   },
-  "BOW": {},
+  "SPEAR": {
+    "#% increased Elemental Damage with Attacks": [
+      "attack",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Physical Damage, # to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "Adds # to # Cold Damage": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "# to Level of all Melee Skills": [
+      "attack"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Critical Damage Bonus": [
+      "attack",
+      "critical",
+      "damage"
+    ],
+    "#% to Critical Hit Chance": [
+      "attack",
+      "critical"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Grants # Life per Enemy Hit": [
+      "attack",
+      "life"
+    ],
+    "Leeches #% of Physical Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leeches #% of Physical Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ]
+  },
+  "CROSSBOW": {
+    "#% increased Elemental Damage with Attacks": [
+      "attack",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Physical Damage, # to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "Adds # to # Cold Damage": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Critical Damage Bonus": [
+      "attack",
+      "critical",
+      "damage"
+    ],
+    "#% to Critical Hit Chance": [
+      "attack",
+      "critical"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Grants # Life per Enemy Hit": [
+      "attack",
+      "life"
+    ],
+    "Leeches #% of Physical Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leeches #% of Physical Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ],
+    "Loads # additional bolts": [
+      "attack"
+    ]
+  },
+  "BOW": {
+    "#% increased Elemental Damage with Attacks": [
+      "attack",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Physical Damage, # to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "Adds # to # Cold Damage": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "#% to Critical Damage Bonus": [
+      "attack",
+      "critical",
+      "damage"
+    ],
+    "#% to Critical Hit Chance": [
+      "attack",
+      "critical"
+    ],
+    "#% Surpassing chance to fire an additional Arrow": [
+      "attack"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Grants # Life per Enemy Hit": [
+      "attack",
+      "life"
+    ],
+    "Leeches #% of Physical Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leeches #% of Physical Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ]
+  },
+  "WARSTAFF": {
+    "#% increased Elemental Damage with Attacks": [
+      "attack",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Physical Damage, # to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "Adds # to # Cold Damage": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Melee Skills": [
+      "attack"
+    ],
+    "#% to Critical Damage Bonus": [
+      "attack",
+      "critical",
+      "damage"
+    ],
+    "#% to Critical Hit Chance": [
+      "attack",
+      "critical"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Grants # Life per Enemy Hit": [
+      "attack",
+      "life"
+    ],
+    "Leeches #% of Physical Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leeches #% of Physical Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ]
+  },
+  "TWO HAND MACE": {
+    "#% increased Elemental Damage with Attacks": [
+      "attack",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Physical Damage, # to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "Adds # to # Cold Damage": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "# to Level of all Melee Skills": [
+      "attack"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Critical Damage Bonus": [
+      "attack",
+      "critical",
+      "damage"
+    ],
+    "#% to Critical Hit Chance": [
+      "attack",
+      "critical"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Grants # Life per Enemy Hit": [
+      "attack",
+      "life"
+    ],
+    "Leeches #% of Physical Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leeches #% of Physical Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ]
+  },
+  "ONE HAND MACE": {
+    "#% increased Elemental Damage with Attacks": [
+      "attack",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Physical Damage, # to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "Adds # to # Cold Damage": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "# to Level of all Melee Skills": [
+      "attack"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Critical Damage Bonus": [
+      "attack",
+      "critical",
+      "damage"
+    ],
+    "#% to Critical Hit Chance": [
+      "attack",
+      "critical"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Grants # Life per Enemy Hit": [
+      "attack",
+      "life"
+    ],
+    "Leeches #% of Physical Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leeches #% of Physical Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ]
+  },
   "WAND": {
     "#% increased Chaos Damage": [
       "chaos",
@@ -687,6 +1912,337 @@
       "mana"
     ]
   },
+  "FIRE WAND": {
+    "#% increased Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Fire Spell Skills": [
+      "caster",
+      "elemental",
+      "fire",
+      "gem"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "ICE WAND": {
+    "#% increased Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Cold Spell Skills": [
+      "caster",
+      "cold",
+      "elemental",
+      "gem"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "LIGHTNING WAND": {
+    "#% increased Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Lightning Spell Skills": [
+      "caster",
+      "elemental",
+      "gem",
+      "lightning"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "PHYSICAL WAND": {
+    "#% increased Spell Physical Damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Physical Spell Skills": [
+      "caster",
+      "gem",
+      "physical"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "CHAOS WAND": {
+    "#% increased Chaos Damage": [
+      "chaos",
+      "damage"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Chaos Spell Skills": [
+      "caster",
+      "chaos",
+      "gem"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
   "STAFF": {
     "#% increased Chaos Damage": [
       "chaos",
@@ -782,6 +2338,337 @@
       "caster",
       "gem",
       "physical"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "FIRE STAFF": {
+    "#% increased Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Fire Spell Skills": [
+      "caster",
+      "elemental",
+      "fire",
+      "gem"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "ICE STAFF": {
+    "#% increased Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Cold Spell Skills": [
+      "caster",
+      "cold",
+      "elemental",
+      "gem"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "LIGHTNING STAFF": {
+    "#% increased Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Lightning Spell Skills": [
+      "caster",
+      "elemental",
+      "gem",
+      "lightning"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "PHYSICAL STAFF": {
+    "#% increased Spell Physical Damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Physical Spell Skills": [
+      "caster",
+      "gem",
+      "physical"
+    ],
+    "# to Level of all Spell Skills": [
+      "caster",
+      "gem"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ]
+  },
+  "CHAOS STAFF": {
+    "#% increased Chaos Damage": [
+      "chaos",
+      "damage"
+    ],
+    "#% increased Spell Damage": [
+      "caster",
+      "damage",
+      "mana"
+    ],
+    "#% increased Spell Damage, # to maximum Mana": [
+      "mana"
+    ],
+    "Gain #% of Damage as Extra Cold Damage": [
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Gain #% of Damage as Extra Fire Damage": [
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Gain #% of Damage as Extra Lightning Damage": [
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "#% increased Cast Speed": [
+      "caster",
+      "speed"
+    ],
+    "#% increased Critical Hit Chance for Spells": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Critical Spell Damage Bonus": [
+      "caster",
+      "critical"
+    ],
+    "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+      "mana"
+    ],
+    "#% increased Mana Regeneration Rate": [
+      "mana"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "# to Level of all Chaos Spell Skills": [
+      "caster",
+      "chaos",
+      "gem"
     ],
     "# to Level of all Spell Skills": [
       "caster",
@@ -1300,6 +3187,311 @@
       "elemental"
     ]
   },
+  "GLOVES (DEX/INT)": {
+    "#% increased Evasion and Energy Shield, # to maximum Life": [
+      "life"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Evasion Rating, # to maximum Energy Shield": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# to maximum Mana": [
+      "mana"
+    ],
+    "Adds # to # Cold damage to Attacks": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire damage to Attacks": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning damage to Attacks": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage to Attacks": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "#% increased Critical Damage Bonus": [
+      "critical",
+      "damage"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "# to Level of all Melee Skills": [
+      "attack"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "Gain # Life per Enemy Hit with Attacks": [
+      "attack",
+      "life"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Leech #% of Physical Attack Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leech #% of Physical Attack Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ],
+    "Gain Deflection Rating equal to #% of Evasion Rating": [
+      "defences"
+    ]
+  },
+  "GLOVES (STR/INT)": {
+    "#% increased Armour and Energy Shield": [
+      "defences"
+    ],
+    "#% increased Armour and Energy Shield, # to maximum Life": [
+      "life"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Armour, # to maximum Energy Shield": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# to maximum Mana": [
+      "mana"
+    ],
+    "Adds # to # Cold damage to Attacks": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire damage to Attacks": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning damage to Attacks": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage to Attacks": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "#% increased Critical Damage Bonus": [
+      "critical",
+      "damage"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "# to Level of all Melee Skills": [
+      "attack"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "Gain # Life per Enemy Hit with Attacks": [
+      "attack",
+      "life"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Leech #% of Physical Attack Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leech #% of Physical Attack Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
+  "GLOVES (STR/DEX)": {
+    "#% increased Armour and Evasion": [
+      "defences"
+    ],
+    "#% increased Armour and Evasion, # to maximum Life": [
+      "life"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Armour, # to Evasion Rating": [
+      "defences"
+    ],
+    "# to maximum Life": [
+      "defences",
+      "life"
+    ],
+    "# to maximum Mana": [
+      "mana"
+    ],
+    "Adds # to # Cold damage to Attacks": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire damage to Attacks": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning damage to Attacks": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage to Attacks": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "#% increased Critical Damage Bonus": [
+      "critical",
+      "damage"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "# to Level of all Melee Skills": [
+      "attack"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "Gain # Life per Enemy Hit with Attacks": [
+      "attack",
+      "life"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Leech #% of Physical Attack Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leech #% of Physical Attack Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  },
   "AMULET": {
     "#% increased Armour": [
       "defences"
@@ -1406,5 +3598,259 @@
       "resistance"
     ]
   },
-  "TALISMAN": {}
+  "TALISMAN": {
+    "#% increased Elemental Damage with Attacks": [
+      "attack",
+      "damage",
+      "elemental"
+    ],
+    "#% increased Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Physical Damage, # to Accuracy Rating": [
+      "attack"
+    ],
+    "# to Accuracy Rating": [
+      "attack"
+    ],
+    "Adds # to # Cold Damage": [
+      "attack",
+      "cold",
+      "damage",
+      "elemental"
+    ],
+    "Adds # to # Fire Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "fire"
+    ],
+    "Adds # to # Lightning Damage": [
+      "attack",
+      "damage",
+      "elemental",
+      "lightning"
+    ],
+    "Adds # to # Physical Damage": [
+      "attack",
+      "damage",
+      "physical"
+    ],
+    "#% increased Attack Speed": [
+      "attack",
+      "speed"
+    ],
+    "# to Level of all Melee Skills": [
+      "attack"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "#% to Critical Damage Bonus": [
+      "attack",
+      "critical",
+      "damage"
+    ],
+    "#% to Critical Hit Chance": [
+      "attack",
+      "critical"
+    ],
+    "Gain # Life per Enemy Killed": [
+      "life"
+    ],
+    "Gain # Mana per Enemy Killed": [
+      "mana"
+    ],
+    "Grants # Life per Enemy Hit": [
+      "attack",
+      "life"
+    ],
+    "Leeches #% of Physical Damage as Life": [
+      "attack",
+      "life",
+      "physical"
+    ],
+    "Leeches #% of Physical Damage as Mana": [
+      "attack",
+      "mana",
+      "physical"
+    ]
+  },
+  "BODY ARMOUR (INT)": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Energy Shield": [
+      "defences",
+      "life"
+    ],
+    "# to maximum Energy Shield, #% increased Energy Shield": [
+      "defences"
+    ],
+    "#% increased Energy Shield, # to maximum Life": [
+      "life"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Duration of Bleeding on You": [
+      "ailment",
+      "physical"
+    ],
+    "#% reduced Ignite Duration on you": [
+      "ailment",
+      "elemental",
+      "fire"
+    ],
+    "#% reduced Poison Duration on you": [
+      "ailment",
+      "chaos"
+    ],
+    "# to Intelligence": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% faster start of Energy Shield Recharge": [
+      "defences"
+    ]
+  },
+  "BODY ARMOUR (DEX)": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Evasion Rating": [
+      "defences",
+      "life"
+    ],
+    "# to Evasion Rating, #% increased Evasion Rating": [
+      "defences"
+    ],
+    "#% increased Evasion Rating, # to maximum Life": [
+      "life"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Duration of Bleeding on You": [
+      "ailment",
+      "physical"
+    ],
+    "#% reduced Ignite Duration on you": [
+      "ailment",
+      "elemental",
+      "fire"
+    ],
+    "#% reduced Poison Duration on you": [
+      "ailment",
+      "chaos"
+    ],
+    "# to Dexterity": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "Gain Deflection Rating equal to #% of Evasion Rating": [
+      "defences"
+    ]
+  },
+  "BODY ARMOUR (STR)": {
+    "# to # Physical Thorns damage": [
+      "damage",
+      "physical"
+    ],
+    "#% increased Armour": [
+      "defences",
+      "life"
+    ],
+    "# to Armour, #% increased Armour": [
+      "defences"
+    ],
+    "#% increased Armour, # to maximum Life": [
+      "life"
+    ],
+    "# Life Regeneration per second": [
+      "life"
+    ],
+    "#% reduced Duration of Bleeding on You": [
+      "ailment",
+      "physical"
+    ],
+    "#% reduced Ignite Duration on you": [
+      "ailment",
+      "elemental",
+      "fire"
+    ],
+    "#% reduced Poison Duration on you": [
+      "ailment",
+      "chaos"
+    ],
+    "# to Strength": [
+      "attribute"
+    ],
+    "#% to Chaos Resistance": [
+      "chaos",
+      "resistance"
+    ],
+    "#% to Cold Resistance": [
+      "cold",
+      "elemental",
+      "resistance"
+    ],
+    "#% to Fire Resistance": [
+      "elemental",
+      "fire",
+      "resistance"
+    ],
+    "#% to Lightning Resistance": [
+      "elemental",
+      "lightning",
+      "resistance"
+    ],
+    "#% of Armour also applies to Elemental Damage": [
+      "defences",
+      "elemental"
+    ]
+  }
 }

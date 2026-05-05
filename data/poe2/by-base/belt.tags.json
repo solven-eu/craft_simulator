@@ -1,0 +1,46 @@
+{
+  "# to # Physical Thorns damage": [
+    "damage",
+    "physical"
+  ],
+  "#% increased Flask Life Recovery rate": [
+    "life"
+  ],
+  "#% increased Flask Mana Recovery rate": [
+    "mana"
+  ],
+  "# to Armour": [
+    "defences"
+  ],
+  "# to maximum Life": [
+    "life"
+  ],
+  "# to maximum Mana": [
+    "mana"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "# to Strength": [
+    "attribute"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ]
+}

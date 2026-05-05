@@ -1,0 +1,1410 @@
+[
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "PREFIX",
+    "name": "# to # Physical Thorns damage",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "Jagged",
+        "id": "AttackerTakesDamage7"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 63,
+        "spawnLvl": 63,
+        "tierName": "Edged",
+        "id": "AttackerTakesDamage6"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "Spiked",
+        "id": "AttackerTakesDamage5"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "Pointed",
+        "id": "AttackerTakesDamage4"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 19,
+        "spawnLvl": 19,
+        "tierName": "Barbed",
+        "id": "AttackerTakesDamage3"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 10,
+        "spawnLvl": 10,
+        "tierName": "Spiny",
+        "id": "AttackerTakesDamage2"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Thorny",
+        "id": "AttackerTakesDamage1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "PREFIX",
+    "name": "#% increased Evasion and Energy Shield",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Incorporeal",
+        "id": "LocalIncreasedEvasionAndEnergyShield8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Illusory",
+        "id": "LocalIncreasedEvasionAndEnergyShield7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Unreal",
+        "id": "LocalIncreasedEvasionAndEnergyShield6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Evanescent",
+        "id": "LocalIncreasedEvasionAndEnergyShield5_"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Ephemeral",
+        "id": "LocalIncreasedEvasionAndEnergyShield4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Unworldly",
+        "id": "LocalIncreasedEvasionAndEnergyShield3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Ethereal",
+        "id": "LocalIncreasedEvasionAndEnergyShield2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "Shadowy",
+        "id": "LocalIncreasedEvasionAndEnergyShield1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "PREFIX",
+    "name": "# to Evasion Rating, # to maximum Energy Shield, #% increased Evasion and Energy Shield",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 78,
+        "spawnLvl": 78,
+        "tierName": "Stalker's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndBase6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Rogue's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndBase5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Phantom's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndBase4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Chaser's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndBase3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Tracker's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndBase2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Pursuer's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndBase1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "PREFIX",
+    "name": "#% increased Evasion and Energy Shield, # to maximum Life",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 78,
+        "spawnLvl": 78,
+        "tierName": "Maestro's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndLife6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Minstrel's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndLife5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Bard's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndLife4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Troubadour's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndLife3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Musician's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndLife2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Poet's",
+        "id": "LocalIncreasedEvasionAndEnergyShieldAndLife1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "PREFIX",
+    "name": "# to Evasion Rating, # to maximum Energy Shield",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Banshee's",
+        "id": "LocalBaseEvasionRatingAndEnergyShield8___"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Apparition's",
+        "id": "LocalBaseEvasionRatingAndEnergyShield7___"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Eidolon's",
+        "id": "LocalBaseEvasionRatingAndEnergyShield6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Spirit's",
+        "id": "LocalBaseEvasionRatingAndEnergyShield5_"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Cherub's",
+        "id": "LocalBaseEvasionRatingAndEnergyShield4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Sylph's",
+        "id": "LocalBaseEvasionRatingAndEnergyShield3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Nymph's",
+        "id": "LocalBaseEvasionRatingAndEnergyShield2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Will-o-wisp's",
+        "id": "LocalBaseEvasionRatingAndEnergyShield1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "PREFIX",
+    "name": "# to maximum Life",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "Prime",
+        "id": "IncreasedLife13"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Rapturous",
+        "id": "IncreasedLife12"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Vigorous",
+        "id": "IncreasedLife11"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Fecund",
+        "id": "IncreasedLife10"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Athlete's",
+        "id": "IncreasedLife9"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Virile",
+        "id": "IncreasedLife8"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Rotund",
+        "id": "IncreasedLife7"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "Robust",
+        "id": "IncreasedLife6"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Stout",
+        "id": "IncreasedLife5"
+      },
+      {
+        "tier": 10,
+        "weight": 1000,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "Stalwart",
+        "id": "IncreasedLife4"
+      },
+      {
+        "tier": 11,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Sanguine",
+        "id": "IncreasedLife3"
+      },
+      {
+        "tier": 12,
+        "weight": 1000,
+        "ilvl": 6,
+        "spawnLvl": 6,
+        "tierName": "Healthy",
+        "id": "IncreasedLife2"
+      },
+      {
+        "tier": 13,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Hale",
+        "id": "IncreasedLife1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "PREFIX",
+    "name": "# to Spirit",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 78,
+        "spawnLvl": 78,
+        "tierName": "Queen's",
+        "id": "IncreasedSpirit8"
+      },
+      {
+        "tier": 2,
+        "weight": 200,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Princess'",
+        "id": "IncreasedSpirit7"
+      },
+      {
+        "tier": 3,
+        "weight": 300,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Duchess'",
+        "id": "IncreasedSpirit6"
+      },
+      {
+        "tier": 4,
+        "weight": 400,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Countess'",
+        "id": "IncreasedSpirit5"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Marchioness'",
+        "id": "IncreasedSpirit4"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Viscountess'",
+        "id": "IncreasedSpirit3"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "Baronness'",
+        "id": "IncreasedSpirit2"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Lady's",
+        "id": "IncreasedSpirit1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "# Life Regeneration per second",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of the Phoenix",
+        "id": "LifeRegeneration11____"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of Immortality",
+        "id": "LifeRegeneration10__"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of Resurgence",
+        "id": "LifeRegeneration9"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "of Recuperation",
+        "id": "LifeRegeneration8_"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 47,
+        "spawnLvl": 47,
+        "tierName": "of Convalescence",
+        "id": "LifeRegeneration7"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 35,
+        "spawnLvl": 35,
+        "tierName": "of the Troll",
+        "id": "LifeRegeneration6"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "of the Hydra",
+        "id": "LifeRegeneration5"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 17,
+        "spawnLvl": 17,
+        "tierName": "of the Starfish",
+        "id": "LifeRegeneration4"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Flatworm",
+        "id": "LifeRegeneration3"
+      },
+      {
+        "tier": 10,
+        "weight": 1000,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Lizard",
+        "id": "LifeRegeneration2"
+      },
+      {
+        "tier": 11,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Newt",
+        "id": "LifeRegeneration1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% reduced Attribute Requirements",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 900,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Proficient",
+        "id": "ReducedLocalAttributeRequirements5"
+      },
+      {
+        "tier": 2,
+        "weight": 900,
+        "ilvl": 52,
+        "spawnLvl": 52,
+        "tierName": "of the Skilled",
+        "id": "ReducedLocalAttributeRequirements4"
+      },
+      {
+        "tier": 3,
+        "weight": 900,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of the Talented",
+        "id": "ReducedLocalAttributeRequirements3"
+      },
+      {
+        "tier": 4,
+        "weight": 900,
+        "ilvl": 32,
+        "spawnLvl": 32,
+        "tierName": "of the Apt",
+        "id": "ReducedLocalAttributeRequirements2"
+      },
+      {
+        "tier": 5,
+        "weight": 900,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "of the Worthy",
+        "id": "ReducedLocalAttributeRequirements1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% reduced Duration of Bleeding on You",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 76,
+        "spawnLvl": 76,
+        "tierName": "of Staunching",
+        "id": "ReducedBleedDuration5"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 64,
+        "spawnLvl": 64,
+        "tierName": "of Assuaging",
+        "id": "ReducedBleedDuration4"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 50,
+        "spawnLvl": 50,
+        "tierName": "of Allaying",
+        "id": "ReducedBleedDuration3"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 37,
+        "spawnLvl": 37,
+        "tierName": "of Alleviation",
+        "id": "ReducedBleedDuration2"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Sealing",
+        "id": "ReducedBleedDuration1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% reduced Ignite Duration on you",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 76,
+        "spawnLvl": 76,
+        "tierName": "of Dousing",
+        "id": "ReducedBurnDuration5"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 64,
+        "spawnLvl": 64,
+        "tierName": "of Quenching",
+        "id": "ReducedBurnDuration4"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 50,
+        "spawnLvl": 50,
+        "tierName": "of Quelling",
+        "id": "ReducedBurnDuration3"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 37,
+        "spawnLvl": 37,
+        "tierName": "of Quashing",
+        "id": "ReducedBurnDuration2"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Damping",
+        "id": "ReducedBurnDuration1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% reduced Poison Duration on you",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 76,
+        "spawnLvl": 76,
+        "tierName": "of the Antidote",
+        "id": "ReducedPoisonDuration5"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 64,
+        "spawnLvl": 64,
+        "tierName": "of the Panacea",
+        "id": "ReducedPoisonDuration4"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 50,
+        "spawnLvl": 50,
+        "tierName": "of the Cure",
+        "id": "ReducedPoisonDuration3"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 37,
+        "spawnLvl": 37,
+        "tierName": "of the Remedy",
+        "id": "ReducedPoisonDuration2"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of the Antitoxin",
+        "id": "ReducedPoisonDuration1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "# to Dexterity",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Phantom",
+        "id": "Dexterity8"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Jaguar",
+        "id": "Dexterity7"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Leopard",
+        "id": "Dexterity6"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Panther",
+        "id": "Dexterity5"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Falcon",
+        "id": "Dexterity4"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Fox",
+        "id": "Dexterity3"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Lynx",
+        "id": "Dexterity2"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Mongoose",
+        "id": "Dexterity1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "# to Intelligence",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Virtuoso",
+        "id": "Intelligence8"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Savant",
+        "id": "Intelligence7"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Sage",
+        "id": "Intelligence6"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Philosopher",
+        "id": "Intelligence5"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Augur",
+        "id": "Intelligence4"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Prodigy",
+        "id": "Intelligence3"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Student",
+        "id": "Intelligence2"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Pupil",
+        "id": "Intelligence1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "# to Stun Threshold",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 800,
+        "ilvl": 72,
+        "spawnLvl": 72,
+        "tierName": "of Obsidian Skin",
+        "id": "StunThreshold10"
+      },
+      {
+        "tier": 2,
+        "weight": 800,
+        "ilvl": 63,
+        "spawnLvl": 63,
+        "tierName": "of Corundum Skin",
+        "id": "StunThreshold9"
+      },
+      {
+        "tier": 3,
+        "weight": 800,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "of Adamantite Skin",
+        "id": "StunThreshold8"
+      },
+      {
+        "tier": 4,
+        "weight": 800,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Platinum Skin",
+        "id": "StunThreshold7"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "of Granite Skin",
+        "id": "StunThreshold6"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 29,
+        "spawnLvl": 29,
+        "tierName": "of Steel Skin",
+        "id": "StunThreshold5"
+      },
+      {
+        "tier": 7,
+        "weight": 800,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of Iron Skin",
+        "id": "StunThreshold4"
+      },
+      {
+        "tier": 8,
+        "weight": 800,
+        "ilvl": 15,
+        "spawnLvl": 15,
+        "tierName": "of Stone Skin",
+        "id": "StunThreshold3"
+      },
+      {
+        "tier": 9,
+        "weight": 800,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Reinforced Skin",
+        "id": "StunThreshold2"
+      },
+      {
+        "tier": 10,
+        "weight": 800,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Thick Skin",
+        "id": "StunThreshold1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% to Chaos Resistance",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 250,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of Bameth",
+        "id": "ChaosResist6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of Exile",
+        "id": "ChaosResist5"
+      },
+      {
+        "tier": 3,
+        "weight": 250,
+        "ilvl": 56,
+        "spawnLvl": 56,
+        "tierName": "of Expulsion",
+        "id": "ChaosResist4"
+      },
+      {
+        "tier": 4,
+        "weight": 250,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Eviction",
+        "id": "ChaosResist3"
+      },
+      {
+        "tier": 5,
+        "weight": 250,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Banishment",
+        "id": "ChaosResist2"
+      },
+      {
+        "tier": 6,
+        "weight": 250,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "of the Lost",
+        "id": "ChaosResist1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% to Cold Resistance",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "of Haast",
+        "id": "ColdResist8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 71,
+        "spawnLvl": 71,
+        "tierName": "of the Ice",
+        "id": "ColdResist7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Polar Bear",
+        "id": "ColdResist6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 50,
+        "spawnLvl": 50,
+        "tierName": "of the Walrus",
+        "id": "ColdResist5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "of the Yeti",
+        "id": "ColdResist4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "of the Narwhal",
+        "id": "ColdResist3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 14,
+        "spawnLvl": 14,
+        "tierName": "of the Penguin",
+        "id": "ColdResist2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Seal",
+        "id": "ColdResist1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% to Fire Resistance",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "of Tzteosh",
+        "id": "FireResist8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 71,
+        "spawnLvl": 71,
+        "tierName": "of Magma",
+        "id": "FireResist7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Volcano",
+        "id": "FireResist6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "of the Furnace",
+        "id": "FireResist5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "of the Kiln",
+        "id": "FireResist4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "of the Drake",
+        "id": "FireResist3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 12,
+        "spawnLvl": 12,
+        "tierName": "of the Salamander",
+        "id": "FireResist2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Whelpling",
+        "id": "FireResist1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% to Lightning Resistance",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "of Ephij",
+        "id": "LightningResist8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 71,
+        "spawnLvl": 71,
+        "tierName": "of the Lightning",
+        "id": "LightningResist7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Maelstrom",
+        "id": "LightningResist6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 49,
+        "spawnLvl": 49,
+        "tierName": "of the Tempest",
+        "id": "LightningResist5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 37,
+        "spawnLvl": 37,
+        "tierName": "of the Thunderhead",
+        "id": "LightningResist4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "of the Storm",
+        "id": "LightningResist3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 13,
+        "spawnLvl": 13,
+        "tierName": "of the Squall",
+        "id": "LightningResist2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Cloud",
+        "id": "LightningResist1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "#% faster start of Energy Shield Recharge",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of Anticipation",
+        "id": "FasterStartOfEnergyShieldRecharge6"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of Excitement",
+        "id": "FasterStartOfEnergyShieldRecharge5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "of Motivation",
+        "id": "FasterStartOfEnergyShieldRecharge4"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "of Fretfulness",
+        "id": "FasterStartOfEnergyShieldRecharge3"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 30,
+        "tierName": "of Restlessness",
+        "id": "FasterStartOfEnergyShieldRecharge2"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 30,
+        "tierName": "of Impatience",
+        "id": "FasterStartOfEnergyShieldRecharge1"
+      }
+    ]
+  },
+  {
+    "base": "BODY ARMOUR (DEX/INT)",
+    "type": "SUFFIX",
+    "name": "Gain Deflection Rating equal to #% of Evasion Rating",
+    "itemClass": "Body Armour",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of Warping",
+        "id": "EvasionGrantsDeflection6"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of Flexure",
+        "id": "EvasionGrantsDeflection5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "of Diversion",
+        "id": "EvasionGrantsDeflection4"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "of Curvation",
+        "id": "EvasionGrantsDeflection3"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 30,
+        "tierName": "of Bending",
+        "id": "EvasionGrantsDeflection2"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 30,
+        "tierName": "of Deflecting",
+        "id": "EvasionGrantsDeflection1"
+      }
+    ]
+  }
+]

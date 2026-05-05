@@ -198,7 +198,7 @@ function exaltAction(ctx) {
 function sideExaltAction(ctx, side) {
   const isPrefix = side === 'PREFIX';
   const id = isPrefix ? 'exalt-sinistral' : 'exalt-dextral';
-  const omenCostEx = 10; // placeholder until poe.ninja seeds omen prices
+  const omenCostEx = 10; // placeholder until poe2db Economy_Omen seeds omen prices
   return {
     id,
     label: isPrefix ? 'Exalt + Sinistral Omen (prefix-only)' : 'Exalt + Dextral Omen (suffix-only)',

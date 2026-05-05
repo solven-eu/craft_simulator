@@ -1,0 +1,173 @@
+{
+  "# to Strength": {
+    "9": "+(5—8) to Strength",
+    "8": "+(9—12) to Strength",
+    "7": "+(13—16) to Strength",
+    "6": "+(17—20) to Strength",
+    "5": "+(21—24) to Strength",
+    "4": "+(25—27) to Strength",
+    "3": "+(28—30) to Strength",
+    "2": "+(31—33) to Strength",
+    "1": "+(34—36) to Strength"
+  },
+  "#% to Fire Resistance": {
+    "8": "+(6—10)% to Fire Resistance",
+    "7": "+(11—15)% to Fire Resistance",
+    "6": "+(16—20)% to Fire Resistance",
+    "5": "+(21—25)% to Fire Resistance",
+    "4": "+(26—30)% to Fire Resistance",
+    "3": "+(31—35)% to Fire Resistance",
+    "2": "+(36—40)% to Fire Resistance",
+    "1": "+(41—45)% to Fire Resistance"
+  },
+  "#% to Cold Resistance": {
+    "8": "+(6—10)% to Cold Resistance",
+    "7": "+(11—15)% to Cold Resistance",
+    "6": "+(16—20)% to Cold Resistance",
+    "5": "+(21—25)% to Cold Resistance",
+    "4": "+(26—30)% to Cold Resistance",
+    "3": "+(31—35)% to Cold Resistance",
+    "2": "+(36—40)% to Cold Resistance",
+    "1": "+(41—45)% to Cold Resistance"
+  },
+  "#% to Lightning Resistance": {
+    "8": "+(6—10)% to Lightning Resistance",
+    "7": "+(11—15)% to Lightning Resistance",
+    "6": "+(16—20)% to Lightning Resistance",
+    "5": "+(21—25)% to Lightning Resistance",
+    "4": "+(26—30)% to Lightning Resistance",
+    "3": "+(31—35)% to Lightning Resistance",
+    "2": "+(36—40)% to Lightning Resistance",
+    "1": "+(41—45)% to Lightning Resistance"
+  },
+  "#% to Chaos Resistance": {
+    "6": "+(4—7)% to Chaos Resistance",
+    "5": "+(8—11)% to Chaos Resistance",
+    "4": "+(12—15)% to Chaos Resistance",
+    "3": "+(16—19)% to Chaos Resistance",
+    "2": "+(20—23)% to Chaos Resistance",
+    "1": "+(24—27)% to Chaos Resistance"
+  },
+  "# to maximum Life": {
+    "10": "+(10—19) to maximum Life",
+    "9": "+(20—29) to maximum Life",
+    "8": "+(30—39) to maximum Life",
+    "7": "+(40—59) to maximum Life",
+    "6": "+(60—69) to maximum Life",
+    "5": "+(70—84) to maximum Life",
+    "4": "+(85—99) to maximum Life",
+    "3": "+(100—119) to maximum Life",
+    "2": "+(120—149) to maximum Life",
+    "1": "+(150—174) to maximum Life"
+  },
+  "# to maximum Mana": {
+    "9": "+(10—14) to maximum Mana",
+    "8": "+(15—24) to maximum Mana",
+    "7": "+(25—34) to maximum Mana",
+    "6": "+(35—54) to maximum Mana",
+    "5": "+(55—64) to maximum Mana",
+    "4": "+(65—79) to maximum Mana",
+    "3": "+(80—89) to maximum Mana",
+    "2": "+(90—104) to maximum Mana",
+    "1": "+(105—124) to maximum Mana"
+  },
+  "# to Armour": {
+    "10": "+(12—22) to Armour",
+    "9": "+(23—42) to Armour",
+    "8": "+(43—54) to Armour",
+    "7": "+(55—81) to Armour",
+    "6": "+(82—106) to Armour",
+    "5": "+(107—138) to Armour",
+    "4": "+(139—168) to Armour",
+    "3": "+(169—195) to Armour",
+    "2": "+(196—224) to Armour",
+    "1": "+(225—255) to Armour"
+  },
+  "# to Stun Threshold": {
+    "10": "+(6—11) to Stun Threshold",
+    "9": "+(12—29) to Stun Threshold",
+    "8": "+(30—49) to Stun Threshold",
+    "7": "+(50—72) to Stun Threshold",
+    "6": "+(73—97) to Stun Threshold",
+    "5": "+(98—124) to Stun Threshold",
+    "4": "+(125—163) to Stun Threshold",
+    "3": "+(164—206) to Stun Threshold",
+    "2": "+(207—253) to Stun Threshold",
+    "1": "+(254—304) to Stun Threshold"
+  },
+  "# to # Physical Thorns damage": {
+    "7": "(1—2) to (3—4) Physical Thorns damage",
+    "6": "(5—7) to (7—10) Physical Thorns damage",
+    "5": "(11—16) to (15—23) Physical Thorns damage",
+    "4": "(24—35) to (35—53) Physical Thorns damage",
+    "3": "(40—60) to (61—92) Physical Thorns damage",
+    "2": "(64—97) to (97—145) Physical Thorns damage",
+    "1": "(101—151) to (146—220) Physical Thorns damage"
+  },
+  "# Life Regeneration per second": {
+    "9": "(1—2) Life Regeneration per second",
+    "8": "(2.1—3) Life Regeneration per second",
+    "7": "(3.1—4) Life Regeneration per second",
+    "6": "(4.1—6) Life Regeneration per second",
+    "5": "(6.1—9) Life Regeneration per second",
+    "4": "(9.1—13) Life Regeneration per second",
+    "3": "(13.1—18) Life Regeneration per second",
+    "2": "(18.1—23) Life Regeneration per second",
+    "1": "(23.1—29) Life Regeneration per second"
+  },
+  "#% increased Flask Life Recovery rate": {
+    "6": "(5—10)% increased Flask Life Recovery rate",
+    "5": "(11—16)% increased Flask Life Recovery rate",
+    "4": "(17—22)% increased Flask Life Recovery rate",
+    "3": "(23—28)% increased Flask Life Recovery rate",
+    "2": "(29—34)% increased Flask Life Recovery rate",
+    "1": "(35—40)% increased Flask Life Recovery rate"
+  },
+  "#% increased Flask Mana Recovery rate": {
+    "6": "(5—10)% increased Flask Mana Recovery rate",
+    "5": "(11—16)% increased Flask Mana Recovery rate",
+    "4": "(17—22)% increased Flask Mana Recovery rate",
+    "3": "(23—28)% increased Flask Mana Recovery rate",
+    "2": "(29—34)% increased Flask Mana Recovery rate",
+    "1": "(35—40)% increased Flask Mana Recovery rate"
+  },
+  "#% increased Charm Effect Duration": {
+    "5": "(4—9)% increased Charm Effect Duration",
+    "4": "(10—15)% increased Charm Effect Duration",
+    "3": "(16—21)% increased Charm Effect Duration",
+    "2": "(22—27)% increased Charm Effect Duration",
+    "1": "(28—33)% increased Charm Effect Duration"
+  },
+  "#% increased Flask Charges gained": {
+    "6": "(5—10)% increased Flask Charges gained",
+    "5": "(11—16)% increased Flask Charges gained",
+    "4": "(17—22)% increased Flask Charges gained",
+    "3": "(23—28)% increased Flask Charges gained",
+    "2": "(29—34)% increased Flask Charges gained",
+    "1": "(35—40)% increased Flask Charges gained"
+  },
+  "#% reduced Flask Charges used": {
+    "6": "(8—10)% reduced Flask Charges used",
+    "5": "(11—13)% reduced Flask Charges used",
+    "4": "(14—16)% reduced Flask Charges used",
+    "3": "(17—19)% reduced Flask Charges used",
+    "2": "(20—22)% reduced Flask Charges used",
+    "1": "(23—25)% reduced Flask Charges used"
+  },
+  "#% increased Charm Charges gained": {
+    "6": "(5—10)% increased Charm Charges gained",
+    "5": "(11—16)% increased Charm Charges gained",
+    "4": "(17—22)% increased Charm Charges gained",
+    "3": "(23—28)% increased Charm Charges gained",
+    "2": "(29—34)% increased Charm Charges gained",
+    "1": "(35—40)% increased Charm Charges gained"
+  },
+  "#% reduced Charm Charges used": {
+    "6": "(8—10)% reduced Charm Charges used",
+    "5": "(11—13)% reduced Charm Charges used",
+    "4": "(14—16)% reduced Charm Charges used",
+    "3": "(17—19)% reduced Charm Charges used",
+    "2": "(20—22)% reduced Charm Charges used",
+    "1": "(23—25)% reduced Charm Charges used"
+  }
+}

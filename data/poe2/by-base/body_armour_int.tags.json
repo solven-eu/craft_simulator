@@ -1,0 +1,57 @@
+{
+  "# to # Physical Thorns damage": [
+    "damage",
+    "physical"
+  ],
+  "#% increased Energy Shield": [
+    "defences",
+    "life"
+  ],
+  "# to maximum Energy Shield, #% increased Energy Shield": [
+    "defences"
+  ],
+  "#% increased Energy Shield, # to maximum Life": [
+    "life"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "#% reduced Duration of Bleeding on You": [
+    "ailment",
+    "physical"
+  ],
+  "#% reduced Ignite Duration on you": [
+    "ailment",
+    "elemental",
+    "fire"
+  ],
+  "#% reduced Poison Duration on you": [
+    "ailment",
+    "chaos"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "#% faster start of Energy Shield Recharge": [
+    "defences"
+  ]
+}

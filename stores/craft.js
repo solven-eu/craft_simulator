@@ -294,6 +294,19 @@ export const useCraftStore = defineStore('craft', {
     mdpResult: null,
     mdpEvaluating: false,
     /**
+     * Sampled trajectory scenarios — each click of "🎲 Simulate"
+     * appends one. Cleared by `clearMdpScenarios`.
+     */
+    mdpScenarios: [],
+    /** Auto-incrementing scenario id; private. */
+    _scenarioCounter: 0,
+    /**
+     * One-shot handoff slot for the Plan view's "→ Divine Bench"
+     * button. Set by `sendScenarioToDivineBench`; the Divine Bench
+     * view consumes it on mount and clears it.
+     */
+    pendingDivineBenchItem: null,
+    /**
      * User-saved craft snapshots (favorites). Each entry =
      *   { id, name, savedAt, snapshot: {<SHAREABLE_FIELDS subset>} }
      * Persisted to localStorage so they survive reloads.
@@ -845,10 +858,35 @@ export const useCraftStore = defineStore('craft', {
           rateFetchedAt: liveEntry?.fetchedAt ?? '',
         };
       }
+      // Surface live-only entries (currently: omens; rates.csv carries
+      // ~30 omen rows but the static catalog tracks omens separately
+      // via state.omens, so they'd otherwise be invisible in the
+      // rates panel). Use the live slug as the synthetic id; skip
+      // anything that already collided on name.
+      const seenNames = new Set(Object.values(out).map((c) => c.name));
+      for (const [name, e] of Object.entries(live)) {
+        if (seenNames.has(name)) continue;
+        const id = `live:${e.slug || name}`;
+        const override = state.rateOverrides[id];
+        const exaltedPer = Number.isFinite(override) ? override
+          : (Number.isFinite(e.exaltedPer) ? e.exaltedPer : NaN);
+        out[id] = {
+          id,
+          name: e.name,
+          short: e.slug || '',
+          kind: e.kind || 'other',
+          exaltedPer,
+          overridden: Number.isFinite(override),
+          live: !Number.isFinite(override),
+          trend7dPct: e.trend7dPct ?? null,
+          dailyVolume: e.dailyVolume ?? null,
+          rateFetchedAt: e.fetchedAt ?? '',
+        };
+      }
       return out;
     },
     /**
-     * Currencies grouped by kind (matching poe.ninja's section structure).
+     * Currencies grouped by kind (matching the poe2db Economy_* table grouping).
      * Each kind also carries a `applicable: boolean` per entry, computed from
      * the current item type and ilvl — the rates panel can hide non-applicable
      * entries when the user enables the filter.
@@ -976,8 +1014,21 @@ export const useCraftStore = defineStore('craft', {
       const excludes = Object.entries(state.tagFilters)
         .filter(([, v]) => v === 'exclude').map(([t]) => t);
       const tagsForMod = (mod) => {
-        const baseMap = state.modTags?.[mod.base];
-        return baseMap ? (baseMap[mod.name] ?? []) : [];
+        // Direct lookup: tags for this exact (base, mod-name) pair.
+        const direct = state.modTags?.[mod.base]?.[mod.name];
+        if (direct?.length) return direct;
+        // Cross-base fallback: PoE2 mods carry the same name + same
+        // tags across most bases ("# to maximum Life" is `life` on
+        // every wearable). The mod_tags scraper is best-effort and
+        // didn't cover every base — for missing bases we search any
+        // populated base for the same mod name. This made tags
+        // disappear on Bow / Crossbow / Spear etc. where the scrape
+        // hasn't reached.
+        for (const baseMap of Object.values(state.modTags ?? {})) {
+          const tags = baseMap?.[mod.name];
+          if (tags?.length) return tags;
+        }
+        return [];
       };
       for (const mod of state.mods) {
         if (mod.base !== state.base) continue;
@@ -1272,7 +1323,10 @@ export const useCraftStore = defineStore('craft', {
       this._syncTargetConstraints();
       // Auto-pick the base if only one variant exists for this type.
       const bases = this.basesForType;
-      if (bases.length === 1) this.base = bases[0].base;
+      if (bases.length === 1) {
+        this.base = bases[0].base;
+        this._refreshBaseData();
+      }
     },
     setBase(base) {
       this.base = base || null;
@@ -1280,6 +1334,46 @@ export const useCraftStore = defineStore('craft', {
       this.wishlist = {};
       this.targetEntries = [];
       this._syncTargetConstraints();
+      this._refreshBaseData();
+    },
+    /**
+     * Refresh the active base's slice of mod data from the per-base files
+     * emitted by update-poe2-data.sh / update-poe2-tags.sh
+     * (data/poe2/by-base/<slug>.{mods,tags,extra,ranges}.json).
+     *
+     * Why: the consolidated load at game-init is a snapshot. This pulls
+     * the smaller per-base bundle on demand so partial re-scrapes (e.g.
+     * `scripts/update-poe2-tags.sh BOW`) reflect immediately without
+     * forcing a full reload of the 1.5 MB consolidated mods.json.
+     *
+     * Idempotent: merges by (base, type, name) for mods.json records and
+     * overwrites the per-base entry for the keyed maps. Safe to call
+     * repeatedly. Best-effort — silently no-ops if loadBaseBundle isn't
+     * wired (e.g. a future game module without per-base files).
+     */
+    async _refreshBaseData() {
+      if (!this.base || !this.game?.loadBaseBundle) return;
+      try {
+        const bundle = await this.game.loadBaseBundle(this.base);
+        if (!bundle) return;
+        if (bundle.tags && Object.keys(bundle.tags).length) {
+          this.modTags = { ...this.modTags, [this.base]: bundle.tags };
+        }
+        if (bundle.ranges && Object.keys(bundle.ranges).length) {
+          this.modRanges = { ...this.modRanges, [this.base]: bundle.ranges };
+        }
+        if (bundle.extra && Object.keys(bundle.extra).length) {
+          this.extraMods = { ...this.extraMods, [this.base]: bundle.extra };
+        }
+        if (Array.isArray(bundle.mods) && bundle.mods.length) {
+          // Replace this base's slice in the global mods array, leaving
+          // every other base untouched. Cheaper than a full re-load and
+          // preserves anything the consolidated load already populated
+          // (e.g. itemTypes derived from all bases).
+          const others = this.mods.filter((m) => m.base !== this.base);
+          this.mods = [...others, ...bundle.mods];
+        }
+      } catch { /* per-base file may not exist for this base — fall back to consolidated data */ }
     },
     isWished(type, name) {
       return Boolean(this.wishlist[wlKey(type, name)]);
@@ -1839,6 +1933,48 @@ export const useCraftStore = defineStore('craft', {
       this.totalBudgetEx = Number.isFinite(n) && n > 0 ? n : Infinity;
     },
     setShowMdpStepIds(v) { this.showMdpStepIds = !!v; },
+
+    /**
+     * Sample one trajectory through the optimal MDP policy and append
+     * a concrete-item scenario to `mdpScenarios`. Each click of the
+     * "🎲 Simulate" button calls this; scenarios stack so the user
+     * can build intuition over multiple runs. `mdpScenarios[]` is
+     * cleared by `clearMdpScenarios`.
+     */
+    async simulateMdp() {
+      if (!this.mdpResult) return null;
+      const [{ sampleTrajectory, buildConcreteAffixes },
+             { parseModRange, rollValue }]
+        = await Promise.all([
+          import('../engine/mdp/sample.js'),
+          import('../engine/mod-range-parser.js'),
+        ]);
+      const wishlist = this._lastStrategyCtx?.wishlist ?? [];
+      const traj = sampleTrajectory(this.mdpResult, { wishlist });
+      const affixes = buildConcreteAffixes({
+        concreteItem: traj.concreteItem,
+        wishlist,
+        modRanges: this.modRanges ?? {},
+        base: this.base,
+        parseModRange, rollValue,
+      });
+      const scenario = {
+        id: ++this._scenarioCounter,
+        traj,
+        affixes,
+        // Stable copy of the metadata we need for the Divine Bench
+        // export; doesn't depend on store state changing later.
+        itemType: this.itemType,
+        base: this.base,
+        itemLevel: this.itemLevel,
+      };
+      this.mdpScenarios.push(scenario);
+      return scenario;
+    },
+    clearMdpScenarios() { this.mdpScenarios = []; },
+    removeMdpScenario(id) {
+      this.mdpScenarios = this.mdpScenarios.filter((s) => s.id !== id);
+    },
     /**
      * Export the current craft state as a recipe DSL string. Round-
      * trips with `applyRecipe` so users can copy-paste a recipe

@@ -1,0 +1,64 @@
+{
+  "#% increased Armour and Evasion": [
+    "defences"
+  ],
+  "#% increased Armour and Evasion, # to maximum Life": [
+    "life"
+  ],
+  "#% increased Armour and Evasion, # to maximum Mana": [
+    "mana"
+  ],
+  "# to Accuracy Rating": [
+    "attack"
+  ],
+  "# to Armour, # to Evasion Rating": [
+    "defences"
+  ],
+  "# to maximum Life": [
+    "defences",
+    "life"
+  ],
+  "# to maximum Mana": [
+    "defences",
+    "mana"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "#% increased Critical Hit Chance": [
+    "critical"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "# to Level of all Minion Skills": [
+    "gem",
+    "minion"
+  ],
+  "# to Strength": [
+    "attribute"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "#% of Armour also applies to Elemental Damage": [
+    "defences",
+    "elemental"
+  ]
+}

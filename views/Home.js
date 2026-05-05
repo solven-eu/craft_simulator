@@ -61,6 +61,45 @@ export default {
       return div && Number.isFinite(div.exaltedPer) ? div.exaltedPer : null;
     });
 
+    /**
+     * Rates snapshot badge: short headline + tooltip detail. Drives both the
+     * coloured pill in the rates panel header and the human-readable
+     * "Snapshot: poe2db /us — fetched 3d ago" line. Reads `craft.rates`
+     * (populated by loadRates() at game-init), so it's reactive without an
+     * extra subscription.
+     */
+    const ratesSnapshotLabel = computed(() => {
+      const r = craft.rates;
+      if (!r || !r.fetchedAt) return 'Rates snapshot: not loaded';
+      const region = r.region ? `/${r.region}` : '';
+      const hours = r.ageHours;
+      const days = r.ageDays;
+      // Sub-48h windows benefit from hour-precision because the user
+      // typically refreshes rates manually right before a heavy
+      // simulation; "since 6h" tells them the snapshot is current
+      // for this session, "1d ago" doesn't.
+      let age;
+      if (hours == null) age = '?';
+      else if (hours < 1) age = 'just now';
+      else if (hours < 48) age = `since ${hours} hour${hours === 1 ? '' : 's'}`;
+      else if (days === 1) age = 'yesterday';
+      else age = `${days}d ago`;
+      const league = r.league ? ` · league ${r.league}` : '';
+      return `Snapshot: poe2db${region}${league} — fetched ${age}`;
+    });
+    const ratesSnapshotTitle = computed(() => {
+      const r = craft.rates;
+      if (!r || !r.fetchedAt) return 'No rates snapshot loaded — run scripts/update-poe2-rates.sh';
+      const lines = [
+        `fetched_at: ${r.fetchedAt}`,
+        `region: ${r.region || '(unknown)'}`,
+        `league: ${r.league || '(unknown)'}`,
+        `age: ${r.ageDays == null ? '?' : r.ageDays + 'd'}`,
+        `staleness: ${r.staleness} (green ≤7d · orange 8–30d · red >30d)`,
+      ];
+      return lines.join('\n');
+    });
+
     const prefixesFull = computed(() => craft.startingCounts.prefixes >= 3);
     const suffixesFull = computed(() => craft.startingCounts.suffixes >= 3);
 
@@ -94,6 +133,183 @@ export default {
       }
       collapse(kind, type, m.name);
     };
+
+    // Per-mod-name lookup tables for the essence/desecrated chips
+    // surfaced inline in the prefix/suffix tables. The user asked
+    // for desecrated + essence affixes to be visible in the main
+    // bench (rather than only in the bottom panels). The chips give
+    // a glance-able marker on each row that's also reachable via
+    // the special-pool consumables.
+    const desecratedNames = computed(() => {
+      const out = new Set();
+      const list = craft.extraMods?.[craft.base]?.desecrated ?? [];
+      for (const m of list) if (m.text) out.add(m.text);
+      return out;
+    });
+    const essenceableNames = computed(() => {
+      const out = new Set();
+      const list = craft.extraMods?.[craft.base]?.essence ?? [];
+      for (const m of list) if (m.text) out.add(m.text);
+      return out;
+    });
+
+    // Group essence rows so that the same affix doesn't appear three
+    // times (once per Lesser / normal / Greater tier). Each group keys
+    // on (family, text) — family being the essence family with the
+    // tier prefix stripped (e.g. "Essence of the Body"). Within a
+    // group we record the display ranges per tier so the panel can
+    // show them as columns, mirroring how affix tiers are presented
+    // elsewhere. Identical rows from upstream data are deduped.
+    const ESSENCE_TIERS = ['lesser', 'normal', 'greater'];
+    const ESSENCE_TIER_LABELS = { lesser: 'Lesser', normal: 'Normal', greater: 'Greater' };
+    const essenceTierOf = (tierName) => {
+      if (!tierName) return 'normal';
+      if (/^Lesser\s+/i.test(tierName)) return 'lesser';
+      if (/^Greater\s+/i.test(tierName)) return 'greater';
+      return 'normal';
+    };
+    const essenceFamilyOf = (tierName) =>
+      (tierName || '').replace(/^(Lesser|Greater)\s+/i, '').trim();
+    // External-link builders. poe2db uses underscores, fextralife wiki
+    // uses '+' as the space separator. We don't validate that the page
+    // exists — broken links open as a 404, which is fine for a "jump
+    // out and double-check" affordance.
+    const poedbItemUrl = (name) =>
+      name ? `https://poe2db.tw/us/${encodeURI(name.trim().replace(/\s+/g, '_'))}` : null;
+    const poedbEconomyUrl = (slug) =>
+      slug ? `https://poe2db.tw/Economy_${encodeURI(slug)}` : null;
+    const wikiUrl = (name) =>
+      name ? `https://pathofexile2.wiki.fextralife.com/${encodeURI(name.trim().replace(/\s+/g, '+'))}` : null;
+
+    // Map mod display name -> 'PREFIX' | 'SUFFIX'.
+    // Source: the full `craft.mods` registry (every base/ilvl), not
+    // just the currently visible pool — otherwise essence rows whose
+    // mod is gated above the current ilvl resolve to side 'unknown'
+    // and lose their +start / +wish controls. The registry carries
+    // `type` per (base, name) tuple, which is what we need.
+    const modSideByName = computed(() => {
+      const out = new Map();
+      const allMods = craft.mods ?? [];
+      const base = craft.base;
+      // First pass: rows for the current base.
+      for (const m of allMods) {
+        if (m.base !== base) continue;
+        if (!out.has(m.name)) out.set(m.name, m.type);
+      }
+      // Second pass: any base. Mod-name -> side is invariant in PoE2
+      // (e.g. "+# to maximum Life" is always a prefix), so this is a
+      // safe cross-base fallback.
+      for (const m of allMods) {
+        if (!out.has(m.name)) out.set(m.name, m.type);
+      }
+      return out;
+    });
+
+    // Essence-detail modal (replaces the inline tier-grid expansion).
+    // Shape: { family, text, tags, tiers: { lesser, normal, greater } }.
+    const selectedEssence = ref(null);
+    const openEssenceModal = (row) => { selectedEssence.value = row; };
+    const closeEssenceModal = () => { selectedEssence.value = null; };
+    if (typeof window !== 'undefined') {
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') selectedEssence.value = null;
+      });
+    }
+
+    const groupedEssences = computed(() => {
+      const list = craft.extraMods?.[craft.base]?.essence ?? [];
+      const map = new Map();
+      for (const m of list) {
+        const family = essenceFamilyOf(m.tier_name);
+        const tier = essenceTierOf(m.tier_name);
+        const key = family + ' ' + (m.text || '');
+        let row = map.get(key);
+        if (!row) {
+          row = { key, family, text: m.text, tags: m.tags || [], tiers: {} };
+          map.set(key, row);
+        }
+        row.tiers[tier] = m.display || m.text;
+      }
+      const sides = modSideByName.value;
+      const rows = Array.from(map.values()).map((r) => ({
+        ...r,
+        side: sides.get(r.text) || 'unknown',
+      }));
+      return rows.sort((a, b) => {
+        if (a.family !== b.family) return a.family.localeCompare(b.family);
+        return (a.text || '').localeCompare(b.text || '');
+      });
+    });
+
+    const groupedDesecrated = computed(() => {
+      const list = craft.extraMods?.[craft.base]?.desecrated ?? [];
+      const sides = modSideByName.value;
+      const seen = new Map();
+      for (const m of list) {
+        const key = (m.tier_name || '') + ' ' + (m.text || '');
+        if (seen.has(key)) continue;
+        seen.set(key, {
+          key,
+          tierName: m.tier_name || '',
+          text: m.text || '',
+          display: m.display || m.text || '',
+          tags: m.tags || [],
+          side: sides.get(m.text) || 'unknown',
+        });
+      }
+      return Array.from(seen.values()).sort((a, b) => {
+        if (a.tierName !== b.tierName) return a.tierName.localeCompare(b.tierName);
+        return a.text.localeCompare(b.text);
+      });
+    });
+
+    // Desecrated-only filter tags: tags ending in `_mod`
+    // (amanamu_mod, kurgal_mod, ulaman_mod, kulemak_mod, ...).
+    // Reuses craft.tagFilters so include / exclude / clear cycles
+    // behave identically to the base-pool filter row.
+    const desecratedFamilyTags = computed(() => {
+      const set = new Set();
+      const list = craft.extraMods?.[craft.base]?.desecrated ?? [];
+      for (const m of list) {
+        for (const t of (m.tags || [])) {
+          if (t.endsWith('_mod')) set.add(t);
+        }
+      }
+      return Array.from(set).sort();
+    });
+
+    const matchesTagFilters = (rowTags) => {
+      const filters = craft.tagFilters || {};
+      const includes = [], excludes = [];
+      for (const [t, mode] of Object.entries(filters)) {
+        if (mode === 'include') includes.push(t);
+        else if (mode === 'exclude') excludes.push(t);
+      }
+      const tagSet = new Set(rowTags);
+      for (const t of includes) if (!tagSet.has(t)) return false;
+      for (const t of excludes) if (tagSet.has(t)) return false;
+      return true;
+    };
+    const filteredDesecrated = computed(
+      () => groupedDesecrated.value.filter((r) => matchesTagFilters(r.tags)),
+    );
+    const filteredEssences = computed(
+      () => groupedEssences.value.filter((r) => matchesTagFilters(r.tags)),
+    );
+    // Prefix/Suffix splits for the two-column layouts. Rows with side
+    // 'unknown' fall into a separate bucket the UI can render below
+    // the columns (instead of silently hiding them).
+    const splitBySide = (rows) => {
+      const out = { PREFIX: [], SUFFIX: [], unknown: [] };
+      for (const r of rows) {
+        if (r.side === 'PREFIX') out.PREFIX.push(r);
+        else if (r.side === 'SUFFIX') out.SUFFIX.push(r);
+        else out.unknown.push(r);
+      }
+      return out;
+    };
+    const desecratedBySide = computed(() => splitBySide(filteredDesecrated.value));
+    const essencesBySide   = computed(() => splitBySide(filteredEssences.value));
 
     /** Currently-open modifier modal — null when no modal is shown. */
     const selectedMod = ref(null);
@@ -197,11 +413,50 @@ export default {
       }
     };
 
+    // Scenario serialization + handoff to Divine Bench. Lazy-imports
+    // the concrete-item DSL serializer so the engine module isn't on
+    // the Home view's hot path.
+    const copyScenarioToClipboard = async (scenario) => {
+      const text = await scenarioToDSL(scenario);
+      try { await navigator.clipboard.writeText(text); }
+      catch { /* fallback: nothing — user can use the Divine Bench send instead */ }
+    };
+    const sendScenarioToDivineBench = async (scenario) => {
+      const text = await scenarioToDSL(scenario);
+      craft.pendingDivineBenchItem = text;
+      // Navigate to the Divine Bench tab so it picks up the staged
+      // item via its own setup() reading craft.pendingDivineBenchItem.
+      window.location.hash = `#/${craft.gameId ?? 'poe2'}/divine-bench`;
+    };
+    const scenarioToDSL = async (scenario) => {
+      const { serializeConcreteItem } = await import('../engine/concrete-item-syntax.js');
+      return serializeConcreteItem({
+        itemType: scenario.itemType,
+        base: scenario.base,
+        itemLevel: scenario.itemLevel,
+        rarity: scenario.traj.concreteItem?.rarity,
+        totalEx: scenario.traj.totalEx,
+        totalSec: scenario.traj.totalSec,
+        buyBaseEvents: scenario.traj.buyBaseEvents,
+        orbCounts: scenario.traj.orbCounts,
+        affixes: scenario.affixes,
+      });
+    };
+
     return { craft, showSpecStep, fmt, toRef, fmtTime, fmtCost, divToEx, prefixesFull, suffixesFull,
              expand, collapse, isExpanded, confirmTier,
              selectedMod, openModModal, closeModModal, tagStyle,
+             essenceableNames, desecratedNames,
+             groupedEssences, filteredEssences, essencesBySide,
+             groupedDesecrated, filteredDesecrated, desecratedBySide,
+             desecratedFamilyTags,
+             ESSENCE_TIERS, ESSENCE_TIER_LABELS,
+             selectedEssence, openEssenceModal, closeEssenceModal,
+             poedbItemUrl, poedbEconomyUrl, wikiUrl,
+             ratesSnapshotLabel, ratesSnapshotTitle,
              promptSaveCraft, confirmDeleteCraft, confirmOverwriteCraft, attemptMeaning,
-             recipeText, recipeStatus, recipeExport, recipeImport };
+             recipeText, recipeStatus, recipeExport, recipeImport,
+             copyScenarioToClipboard, sendScenarioToDivineBench };
   },
   template: `
     <section class="planner">
@@ -238,15 +493,20 @@ export default {
           <li class="step">
             <label class="field">
               <span>1. Item type</span>
-              <input
-                type="text" list="item-types-list"
-                placeholder="— pick a type —"
-                :value="craft.itemType ?? ''"
-                @change="craft.itemTypes.includes($event.target.value) && craft.setItemType($event.target.value)"
-              />
-              <datalist id="item-types-list">
-                <option v-for="t in craft.itemTypes" :key="t" :value="t"></option>
-              </datalist>
+              <!-- Native <select> instead of <datalist>: HTML5
+                   datalist popovers in Chromium have a positioning
+                   quirk where they sometimes open beside the input
+                   instead of below it (browser-controlled, not
+                   CSS-tunable). Switching to <select> matches the
+                   step-2 dropdown's UX and guarantees the dropdown
+                   opens directly under the input. Item types are a
+                   closed enumeration, so type-to-filter on free-text
+                   isn't needed here. -->
+              <select :value="craft.itemType ?? ''"
+                      @change="craft.setItemType($event.target.value || null)">
+                <option value="">— pick a type —</option>
+                <option v-for="t in craft.itemTypes" :key="t" :value="t">{{ t }}</option>
+              </select>
             </label>
           </li>
 
@@ -570,6 +830,7 @@ export default {
           <button v-for="t in craft.availableTags()" :key="'tf'+t"
             class="tag-chip filter"
             :class="craft.tagFilters[t] || 'neutral'"
+            :style="tagStyle(t)"
             :title="craft.tagFilters[t] === 'include' ? 'including only this tag — click to exclude' :
                     craft.tagFilters[t] === 'exclude' ? 'excluding this tag — click to reset' :
                     'click to include only this tag'"
@@ -627,6 +888,8 @@ export default {
                   <td>
                     <button class="mname mod-link" :title="'Click for tier details (T1..T' + m.tiersTotal + ')'"
                       @click="openModModal(m)">{{ m.name }}</button>
+                    <span v-if="essenceableNames.has(m.name)" class="essence-chip" title="An Essence consumable can guarantee this mod">🟢</span>
+                    <span v-if="desecratedNames.has(m.name)" class="desecrated-chip" title="Also rollable via Desecrated currencies (Bones)">💀</span>
                     <button v-if="!m.ilvlOk" class="restriction-chip violated clickable"
                       :title="'Raise item level to ' + m.requiredIlvl + ' to unlock this modifier'"
                       @click="craft.setItemLevel(m.requiredIlvl)">ilvl ≥ {{ m.requiredIlvl }}</button>
@@ -704,6 +967,8 @@ export default {
                   <td>
                     <button class="mname mod-link" :title="'Click for tier details (T1..T' + m.tiersTotal + ')'"
                       @click="openModModal(m)">{{ m.name }}</button>
+                    <span v-if="essenceableNames.has(m.name)" class="essence-chip" title="An Essence consumable can guarantee this mod">🟢</span>
+                    <span v-if="desecratedNames.has(m.name)" class="desecrated-chip" title="Also rollable via Desecrated currencies (Bones)">💀</span>
                     <button v-if="!m.ilvlOk" class="restriction-chip violated clickable"
                       :title="'Raise item level to ' + m.requiredIlvl + ' to unlock this modifier'"
                       @click="craft.setItemLevel(m.requiredIlvl)">ilvl ≥ {{ m.requiredIlvl }}</button>
@@ -734,6 +999,223 @@ export default {
             <p v-else class="empty">No suffixes spawn at ilvl {{ craft.itemLevel }}.</p>
           </div>
         </div>
+
+        <details class="extra-pool" open
+          v-if="craft.base && groupedDesecrated.length">
+          <summary>
+            💀 Desecrated modifiers
+            <small>{{ groupedDesecrated.length }} mods · only roll on Desecrated items (apply a Bone-class currency)</small>
+            <a class="ext-link mini" :href="poedbEconomyUrl('Soul_Cores')"
+               target="_blank" rel="noopener" @click.stop>↗ poe2db</a>
+          </summary>
+          <div v-if="desecratedFamilyTags.length" class="tag-filter-row">
+            <span class="tag-filter-label">Desecrated source:</span>
+            <button v-for="t in desecratedFamilyTags" :key="'dft'+t"
+              class="tag-chip filter"
+              :class="craft.tagFilters[t] || 'neutral'"
+              :style="tagStyle(t)"
+              :title="craft.tagFilters[t] === 'include' ? 'including only this source — click to exclude' : craft.tagFilters[t] === 'exclude' ? 'excluding this source — click to reset' : 'click to include only this source'"
+              @click="craft.cycleTagFilter(t)">{{ t.replace(/_mod$/, '') }}</button>
+          </div>
+          <div class="pool extra-pool-cols">
+            <div class="pool-column">
+              <h3>Desecrated prefixes <small>{{ desecratedBySide.PREFIX.length }}</small></h3>
+              <table v-if="desecratedBySide.PREFIX.length" class="extra-pool-table">
+                <thead><tr><th></th><th>Modifier</th><th>Source</th><th></th></tr></thead>
+                <tbody>
+                  <tr v-for="(row, i) in desecratedBySide.PREFIX" :key="row.key">
+                    <td class="add-cell">
+                      <button class="link"
+                        :disabled="prefixesFull || craft.isOnStarting('PREFIX', row.text)"
+                        :title="craft.isOnStarting('PREFIX', row.text) ? 'Already on item' : (prefixesFull ? 'Prefix slots full' : 'Add as starting affix')"
+                        @click="craft.addToStarting({ type: 'PREFIX', name: row.text, tier: 1, tierName: row.tierName, bestTier: 1, bestTierName: row.tierName })">+ start</button>
+                    </td>
+                    <td>
+                      <div class="mname">{{ row.text }}</div>
+                      <div class="hint">{{ row.display }}</div>
+                      <div v-if="row.tags?.length" class="mod-tags">
+                        <button v-for="t in row.tags" :key="'dpt'+i+t"
+                          class="tag-chip mini filter"
+                          :class="craft.tagFilters[t] || 'neutral'"
+                          :style="tagStyle(t)"
+                          @click.stop="craft.cycleTagFilter(t)">{{ t }}</button>
+                      </div>
+                    </td>
+                    <td class="tname">{{ row.tierName }}</td>
+                    <td class="wishcell">
+                      <button v-if="!craft.isWished('PREFIX', row.text)"
+                        class="link"
+                        title="Add to wishlist (prefix)"
+                        @click="craft.addTargetMod('PREFIX', row.text, 1, [])">+ wish</button>
+                      <span v-else class="hint wished-tag">★ wished</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p v-else class="empty">No desecrated prefixes.</p>
+            </div>
+            <div class="pool-column">
+              <h3>Desecrated suffixes <small>{{ desecratedBySide.SUFFIX.length }}</small></h3>
+              <table v-if="desecratedBySide.SUFFIX.length" class="extra-pool-table">
+                <thead><tr><th></th><th>Modifier</th><th>Source</th><th></th></tr></thead>
+                <tbody>
+                  <tr v-for="(row, i) in desecratedBySide.SUFFIX" :key="row.key">
+                    <td class="add-cell">
+                      <button class="link"
+                        :disabled="suffixesFull || craft.isOnStarting('SUFFIX', row.text)"
+                        :title="craft.isOnStarting('SUFFIX', row.text) ? 'Already on item' : (suffixesFull ? 'Suffix slots full' : 'Add as starting affix')"
+                        @click="craft.addToStarting({ type: 'SUFFIX', name: row.text, tier: 1, tierName: row.tierName, bestTier: 1, bestTierName: row.tierName })">+ start</button>
+                    </td>
+                    <td>
+                      <div class="mname">{{ row.text }}</div>
+                      <div class="hint">{{ row.display }}</div>
+                      <div v-if="row.tags?.length" class="mod-tags">
+                        <button v-for="t in row.tags" :key="'dst'+i+t"
+                          class="tag-chip mini filter"
+                          :class="craft.tagFilters[t] || 'neutral'"
+                          :style="tagStyle(t)"
+                          @click.stop="craft.cycleTagFilter(t)">{{ t }}</button>
+                      </div>
+                    </td>
+                    <td class="tname">{{ row.tierName }}</td>
+                    <td class="wishcell">
+                      <button v-if="!craft.isWished('SUFFIX', row.text)"
+                        class="link"
+                        title="Add to wishlist (suffix)"
+                        @click="craft.addTargetMod('SUFFIX', row.text, 1, [])">+ wish</button>
+                      <span v-else class="hint wished-tag">★ wished</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p v-else class="empty">No desecrated suffixes.</p>
+            </div>
+          </div>
+          <details v-if="desecratedBySide.unknown.length" class="extra-pool-unknown">
+            <summary>{{ desecratedBySide.unknown.length }} mods with unknown side <small>(not visible in the regular pool — manual side disambiguation needed)</small></summary>
+            <ul class="extra-mod-list">
+              <li v-for="(row, i) in desecratedBySide.unknown" :key="row.key">
+                <span class="tname">{{ row.tierName }}</span>
+                <span class="mname">{{ row.text }}</span>
+                <small class="hint">{{ row.display }}</small>
+              </li>
+            </ul>
+          </details>
+        </details>
+
+        <details class="extra-pool" open
+          v-if="craft.base && groupedEssences.length">
+          <summary>
+            🟢 Essence-guaranteed modifiers
+            <small>{{ groupedEssences.length }} mods · forced by an Essence consumable</small>
+            <a class="ext-link mini" :href="poedbEconomyUrl('Essences')"
+               target="_blank" rel="noopener" @click.stop>↗ poe2db</a>
+          </summary>
+          <p class="hint">
+            <strong>Lesser / Normal / Greater</strong> apply only to a
+            <strong>Magic</strong> item and upgrade it to a 4-affix Rare.
+            <strong>Perfect</strong> essences apply only to an existing
+            <strong>Rare</strong> item. Click a modifier name to see
+            the per-tier roll ranges in a modal.
+          </p>
+          <div class="pool extra-pool-cols">
+            <div class="pool-column">
+              <h3>Essence-able prefixes <small>{{ essencesBySide.PREFIX.length }}</small></h3>
+              <table v-if="essencesBySide.PREFIX.length" class="extra-pool-table">
+                <thead><tr><th></th><th>Modifier</th><th>Family</th><th></th></tr></thead>
+                <tbody>
+                  <tr v-for="(row, i) in essencesBySide.PREFIX" :key="row.key">
+                    <td class="add-cell">
+                      <button class="link"
+                        :disabled="prefixesFull || craft.isOnStarting('PREFIX', row.text)"
+                        :title="craft.isOnStarting('PREFIX', row.text) ? 'Already on item' : (prefixesFull ? 'Prefix slots full' : 'Add as starting affix')"
+                        @click="craft.addToStarting({ type: 'PREFIX', name: row.text, tier: 1, tierName: row.family, bestTier: 1, bestTierName: row.family })">+ start</button>
+                    </td>
+                    <td>
+                      <button class="mname mod-link"
+                        title="Click to see per-tier roll ranges"
+                        @click="openEssenceModal(row)">{{ row.text }}</button>
+                      <div v-if="row.tags?.length" class="mod-tags">
+                        <button v-for="t in row.tags" :key="'ept'+i+t"
+                          class="tag-chip mini filter"
+                          :class="craft.tagFilters[t] || 'neutral'"
+                          :style="tagStyle(t)"
+                          @click.stop="craft.cycleTagFilter(t)">{{ t }}</button>
+                      </div>
+                    </td>
+                    <td class="tname">
+                      {{ row.family }}
+                      <a class="ext-link mini" :href="poedbItemUrl(row.family)"
+                         target="_blank" rel="noopener" @click.stop>↗ db</a>
+                      <a class="ext-link mini" :href="wikiUrl(row.family)"
+                         target="_blank" rel="noopener" @click.stop>↗ wiki</a>
+                    </td>
+                    <td class="wishcell">
+                      <button v-if="!craft.isWished('PREFIX', row.text)"
+                        class="link"
+                        title="Add to wishlist (prefix)"
+                        @click="craft.addTargetMod('PREFIX', row.text, 1, [])">+ wish</button>
+                      <span v-else class="hint wished-tag">★ wished</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p v-else class="empty">No essence-able prefixes match the current filter.</p>
+            </div>
+            <div class="pool-column">
+              <h3>Essence-able suffixes <small>{{ essencesBySide.SUFFIX.length }}</small></h3>
+              <table v-if="essencesBySide.SUFFIX.length" class="extra-pool-table">
+                <thead><tr><th></th><th>Modifier</th><th>Family</th><th></th></tr></thead>
+                <tbody>
+                  <tr v-for="(row, i) in essencesBySide.SUFFIX" :key="row.key">
+                    <td class="add-cell">
+                      <button class="link"
+                        :disabled="suffixesFull || craft.isOnStarting('SUFFIX', row.text)"
+                        :title="craft.isOnStarting('SUFFIX', row.text) ? 'Already on item' : (suffixesFull ? 'Suffix slots full' : 'Add as starting affix')"
+                        @click="craft.addToStarting({ type: 'SUFFIX', name: row.text, tier: 1, tierName: row.family, bestTier: 1, bestTierName: row.family })">+ start</button>
+                    </td>
+                    <td>
+                      <button class="mname mod-link"
+                        title="Click to see per-tier roll ranges"
+                        @click="openEssenceModal(row)">{{ row.text }}</button>
+                      <div v-if="row.tags?.length" class="mod-tags">
+                        <button v-for="t in row.tags" :key="'est'+i+t"
+                          class="tag-chip mini filter"
+                          :class="craft.tagFilters[t] || 'neutral'"
+                          :style="tagStyle(t)"
+                          @click.stop="craft.cycleTagFilter(t)">{{ t }}</button>
+                      </div>
+                    </td>
+                    <td class="tname">
+                      {{ row.family }}
+                      <a class="ext-link mini" :href="poedbItemUrl(row.family)"
+                         target="_blank" rel="noopener" @click.stop>↗ db</a>
+                      <a class="ext-link mini" :href="wikiUrl(row.family)"
+                         target="_blank" rel="noopener" @click.stop>↗ wiki</a>
+                    </td>
+                    <td class="wishcell">
+                      <button v-if="!craft.isWished('SUFFIX', row.text)"
+                        class="link"
+                        title="Add to wishlist (suffix)"
+                        @click="craft.addTargetMod('SUFFIX', row.text, 1, [])">+ wish</button>
+                      <span v-else class="hint wished-tag">★ wished</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p v-else class="empty">No essence-able suffixes match the current filter.</p>
+            </div>
+          </div>
+          <details v-if="essencesBySide.unknown.length" class="extra-pool-unknown">
+            <summary>{{ essencesBySide.unknown.length }} mods with unknown side</summary>
+            <ul class="extra-mod-list">
+              <li v-for="(row, i) in essencesBySide.unknown" :key="row.key">
+                <span class="tname">{{ row.family }}</span>
+                <button class="mname mod-link" @click="openEssenceModal(row)">{{ row.text }}</button>
+              </li>
+            </ul>
+          </details>
+        </details>
 
         <!-- ─── Recipe DSL (paste-able human-readable target spec) ─── -->
         <!-- Round-trips with the rest of the UI: Export fills the box
@@ -944,6 +1426,16 @@ export default {
                   @change="craft.setShowMdpStepIds($event.target.checked); craft.solveMdp();" />
                 show step ids
               </label>
+              <button class="link" :disabled="!craft.mdpResult" @click="craft.simulateMdp()"
+                title="Sample one trajectory through the optimal policy. Click multiple times to stack scenarios."
+                style="margin-left: 0.6rem;">
+                🎲 Simulate one craft
+              </button>
+              <button v-if="craft.mdpScenarios.length" class="link"
+                @click="craft.clearMdpScenarios()" style="margin-left: 0.4rem;"
+                title="Remove all simulated scenarios.">
+                clear scenarios
+              </button>
             </h4>
             <p v-if="!craft.mdpResult" class="hint">
               Walks every reachable item state, picks the optimal action per
@@ -1012,51 +1504,71 @@ export default {
                 <summary>▶ Optimal policy chain ({{ craft.mdpResult.chain.states.length }} states · {{ craft.mdpResult.chain.edges.length }} edges)</summary>
                 <MermaidChain :chain="craft.mdpResult.chain" />
               </details>
+
+              <!-- Stacked scenarios from the 🎲 Simulate button. Each
+                   click samples one trajectory through π* and pushes a
+                   scenario card here so the user builds intuition over
+                   multiple runs. Each card surfaces the resource ledger
+                   (orbs spent, ex spent, buy_base events) plus the
+                   final concrete item; the "Send to Divine Bench"
+                   button serializes the affixes via the concrete-item
+                   DSL and stages them on the store for the Divine
+                   Bench tab to pick up. -->
+              <div v-if="craft.mdpScenarios.length" class="mdp-scenarios">
+                <h5>🎲 Simulated scenarios ({{ craft.mdpScenarios.length }})</h5>
+                <div v-for="s in craft.mdpScenarios" :key="s.id" class="scenario-card">
+                  <div class="scenario-head">
+                    <strong>Scenario #{{ s.id }}</strong>
+                    <span class="hint">
+                      {{ s.traj.steps.length }} step(s) ·
+                      {{ s.traj.totalEx.toFixed(0) }} ex ·
+                      {{ (s.traj.totalSec / 60).toFixed(1) }} min ·
+                      <span :style="s.traj.reachedGoal ? 'color:#5d9' : 'color:#d96'">
+                        {{ s.traj.reachedGoal ? '✓ goal reached' : (s.traj.truncated ? '⚠ truncated' : '— stopped') }}
+                      </span>
+                      <span v-if="s.traj.buyBaseEvents > 0">
+                        · {{ s.traj.buyBaseEvents }}× buy_base
+                      </span>
+                    </span>
+                    <span style="margin-left:auto">
+                      <button class="link" @click="copyScenarioToClipboard(s)" title="Copy concrete-item DSL to clipboard">📋 copy</button>
+                      <button class="link" @click="sendScenarioToDivineBench(s)" title="Stage this item on the Divine Bench tab">→ Divine Bench</button>
+                      <button class="link" @click="craft.removeMdpScenario(s.id)" title="Remove this scenario">×</button>
+                    </span>
+                  </div>
+                  <details>
+                    <summary>orb spend</summary>
+                    <ul class="hint">
+                      <li v-for="(n, action) in s.traj.orbCounts" :key="action">
+                        <code>{{ action }}</code> × {{ n }}
+                      </li>
+                    </ul>
+                  </details>
+                  <details>
+                    <summary>final item ({{ s.traj.concreteItem?.rarity ?? '—' }} · {{ s.traj.concreteItem?.affixCount ?? 0 }} affix)</summary>
+                    <ul class="hint">
+                      <li v-for="(a, i) in s.affixes" :key="i">
+                        [<strong>{{ a.side === 'PREFIX' ? 'P' : 'S' }} T{{ a.tier }}</strong>]
+                        <span v-if="a.fractured" title="fractured">🔒</span>
+                        {{ a.name }}
+                        <span v-if="Number.isFinite(a.value)"> = <strong>{{ a.value }}</strong></span>
+                        <span v-if="Number.isFinite(a.vmin) && Number.isFinite(a.vmax)" class="hint">
+                          [{{ a.vmin }}..{{ a.vmax }}]
+                        </span>
+                      </li>
+                      <li v-if="(s.traj.concreteItem?.irrelevantCount ?? 0) > 0" class="hint">
+                        + {{ s.traj.concreteItem.irrelevantCount }} irrelevant slot(s)
+                      </li>
+                      <li v-if="s.traj.concreteItem?.boneMod && !s.traj.concreteItem?.boneRevealed" class="hint">
+                        🦴 unrevealed bone-mod
+                      </li>
+                    </ul>
+                  </details>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <details class="extra-pool"
-          v-if="craft.base && craft.extraMods?.[craft.base]?.desecrated?.length">
-          <summary>
-            Desecrated modifiers
-            <small>{{ craft.extraMods[craft.base].desecrated.length }} mods · only roll on Desecrated items</small>
-          </summary>
-          <ul class="extra-mod-list">
-            <li v-for="(m, i) in craft.extraMods[craft.base].desecrated" :key="'des'+i">
-              <span class="tname">{{ m.tier_name }}</span>
-              <span class="mname">{{ m.text }}</span>
-              <span v-if="m.tags?.length" class="mod-tags">
-                <button v-for="t in m.tags" :key="'dt'+i+t"
-                  class="tag-chip mini filter"
-                  :class="craft.tagFilters[t] || 'neutral'"
-                :style="tagStyle(t)"
-                  @click="craft.cycleTagFilter(t)">{{ t }}</button>
-              </span>
-            </li>
-          </ul>
-        </details>
-
-        <details class="extra-pool"
-          v-if="craft.base && craft.extraMods?.[craft.base]?.essence?.length">
-          <summary>
-            Essence modifiers
-            <small>{{ craft.extraMods[craft.base].essence.length }} mods · forced by an Essence consumable</small>
-          </summary>
-          <ul class="extra-mod-list">
-            <li v-for="(m, i) in craft.extraMods[craft.base].essence" :key="'ess'+i">
-              <span class="tname">{{ m.tier_name }}</span>
-              <span class="mname">{{ m.text }}</span>
-              <span v-if="m.tags?.length" class="mod-tags">
-                <button v-for="t in m.tags" :key="'et'+i+t"
-                  class="tag-chip mini filter"
-                  :class="craft.tagFilters[t] || 'neutral'"
-                :style="tagStyle(t)"
-                  @click="craft.cycleTagFilter(t)">{{ t }}</button>
-              </span>
-            </li>
-          </ul>
-        </details>
 
         <details class="mechanics" v-if="craft.game && craft.omens.length">
           <summary>
@@ -1106,9 +1618,16 @@ export default {
             </small>
           </summary>
           <p class="hint">
-            Defaults seeded from poe.ninja (Vaal, 2026-04-29). Rates are
-            <strong>1 unit of this currency = X Exalted Orbs</strong>.
-            Edit any value below; overrides are saved locally.
+            <span class="rates-snapshot" :class="'rates-' + (craft.rates?.staleness || 'unknown')"
+                  :title="ratesSnapshotTitle">
+              <span class="rates-dot" aria-hidden="true">●</span>
+              {{ ratesSnapshotLabel }}
+            </span>
+            Rates are <strong>1 unit of this currency = X Exalted Orbs</strong>.
+            Edit any value below; overrides are saved locally. Refresh with
+            <code>scripts/update-poe2-rates.sh [region]</code> (region defaults to
+            <code>us</code>; <code>cn de fr ru kr tw jp</code> are language
+            variants — prices are identical, only item names localise).
             <button class="link" @click="craft.resetRates()" v-if="Object.keys(craft.rateOverrides).length">
               reset all overrides
             </button>
@@ -1122,6 +1641,12 @@ export default {
                 {{ craft.currenciesByKind[kind.id].filter(c => c.applicable).length }}
                 / {{ craft.currenciesByKind[kind.id].length }} applicable to current item
               </small>
+              <a v-if="kind.poedbEconomy"
+                 class="ext-link"
+                 :href="poedbEconomyUrl(kind.poedbEconomy)"
+                 target="_blank" rel="noopener"
+                 :title="'Open poe2db Economy_' + kind.poedbEconomy + ' page'"
+                 @click.stop>↗ poe2db</a>
             </summary>
             <table class="rates-table">
               <thead><tr><th>Currency</th><th class="num">1 ↔ Exalted</th><th class="num" title="Time per single use, in seconds">Time (s)</th><th></th></tr></thead>
@@ -1134,6 +1659,12 @@ export default {
                          :src="craft.itemDescriptions[c.name].image_url"
                          :alt="c.name" class="ccy-icon" loading="lazy" />
                     {{ c.name }} <small>({{ c.short }})</small>
+                    <a class="ext-link mini" :href="poedbItemUrl(c.name)"
+                       target="_blank" rel="noopener"
+                       :title="'Open ' + c.name + ' on poe2db'">↗ db</a>
+                    <a class="ext-link mini" :href="wikiUrl(c.name)"
+                       target="_blank" rel="noopener"
+                       :title="'Open ' + c.name + ' on the fextralife wiki'">↗ wiki</a>
                     <template v-for="(chip, ci) in (c.chips ?? [])" :key="ci">
                       <button v-if="chip.fixIlvl"
                             class="restriction-chip"
@@ -1229,6 +1760,46 @@ export default {
                 @click="craft.cycleTagFilter(t)">{{ t }}</button>
             </span>
             <a v-if="craft.poe2dbBaseUrl()" :href="craft.poe2dbBaseUrl()" target="_blank" rel="noopener" class="poe2db-link">view full base on poe2db ↗</a>
+          </footer>
+        </div>
+      </div>
+
+      <!-- Essence-detail modal: per-tier roll ranges (Lesser / Normal / Greater) -->
+      <div v-if="selectedEssence" class="mod-modal-overlay" @click.self="closeEssenceModal()">
+        <div class="mod-modal">
+          <header>
+            <h3>{{ selectedEssence.text }}</h3>
+            <small>{{ selectedEssence.family }}</small>
+            <button class="banner-close" @click="closeEssenceModal()">×</button>
+          </header>
+          <table class="mod-modal-table">
+            <thead>
+              <tr><th>Essence tier</th><th>Roll range</th><th>Input rarity</th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="tier in ESSENCE_TIERS" :key="'em'+tier"
+                  :class="{ unreachable: !selectedEssence.tiers[tier] }">
+                <td>{{ ESSENCE_TIER_LABELS[tier] }}</td>
+                <td>{{ selectedEssence.tiers[tier] || '—' }}</td>
+                <td><small class="hint">Magic → Rare</small></td>
+              </tr>
+              <tr class="unreachable">
+                <td>Perfect</td>
+                <td><small class="hint">(no data)</small></td>
+                <td><small class="hint">Rare → Rare</small></td>
+              </tr>
+            </tbody>
+          </table>
+          <footer>
+            <span v-if="selectedEssence.tags?.length" class="mod-tags">
+              <button v-for="t in selectedEssence.tags" :key="'emtg'+t"
+                class="tag-chip mini filter"
+                :class="craft.tagFilters[t] || 'neutral'"
+                :style="tagStyle(t)"
+                @click="craft.cycleTagFilter(t)">{{ t }}</button>
+            </span>
+            <a :href="poedbItemUrl(selectedEssence.family)" target="_blank" rel="noopener" class="poe2db-link">poe2db ↗</a>
+            <a :href="wikiUrl(selectedEssence.family)" target="_blank" rel="noopener" class="poe2db-link">fextralife wiki ↗</a>
           </footer>
         </div>
       </div>

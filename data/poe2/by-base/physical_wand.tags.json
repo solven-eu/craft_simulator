@@ -1,0 +1,65 @@
+{
+  "#% increased Spell Physical Damage": [
+    "damage",
+    "physical"
+  ],
+  "#% increased Spell Damage": [
+    "caster",
+    "damage",
+    "mana"
+  ],
+  "#% increased Spell Damage, # to maximum Mana": [
+    "mana"
+  ],
+  "Gain #% of Damage as Extra Cold Damage": [
+    "cold",
+    "damage",
+    "elemental"
+  ],
+  "Gain #% of Damage as Extra Fire Damage": [
+    "damage",
+    "elemental",
+    "fire"
+  ],
+  "Gain #% of Damage as Extra Lightning Damage": [
+    "damage",
+    "elemental",
+    "lightning"
+  ],
+  "#% increased Cast Speed": [
+    "caster",
+    "speed"
+  ],
+  "#% increased Critical Hit Chance for Spells": [
+    "caster",
+    "critical"
+  ],
+  "#% increased Critical Spell Damage Bonus": [
+    "caster",
+    "critical"
+  ],
+  "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+    "mana"
+  ],
+  "#% increased Mana Regeneration Rate": [
+    "mana"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "# to Level of all Physical Spell Skills": [
+    "caster",
+    "gem",
+    "physical"
+  ],
+  "# to Level of all Spell Skills": [
+    "caster",
+    "gem"
+  ],
+  "Gain # Life per Enemy Killed": [
+    "life"
+  ],
+  "Gain # Mana per Enemy Killed": [
+    "mana"
+  ]
+}

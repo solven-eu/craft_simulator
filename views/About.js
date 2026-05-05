@@ -23,6 +23,32 @@ export default {
         See the <router-link :to="'/' + game + '/disclaimer'">disclaimer</router-link>
         for data sources and licensing.
       </p>
+
+      <h3>Other crafting tools</h3>
+      <p>
+        These existing tools cover broader UX surface (full mod planner,
+        full orb action set, fossil / harvest UI). Both rely on Monte
+        Carlo simulation rather than closed-form analytics, which is
+        what this project differentiates against — but they're worth
+        knowing about, and useful as cross-references when validating
+        edge-case probabilities.
+      </p>
+      <ul class="other-tools">
+        <li>
+          <a href="https://www.craftofexile.com/?game=poe2"
+             target="_blank" rel="noopener">Craft of Exile (PoE2)</a>
+          — full mod planner with cascade flow (type → base → ilvl →
+          mod plan → method → simulate). UX reference for the wishlist
+          → recipe → solver pipeline.
+        </li>
+        <li>
+          <a href="https://pathofcrafting.net/craft/interactive"
+             target="_blank" rel="noopener">Path of Crafting — Interactive</a>
+          — alternative interactive crafter. Step-by-step orb-by-orb
+          manual simulation; the "evaluate" button runs Monte Carlo
+          trials.
+        </li>
+      </ul>
     </section>
   `,
 };

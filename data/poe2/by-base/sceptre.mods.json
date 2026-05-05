@@ -1,0 +1,1378 @@
+[
+  {
+    "base": "SCEPTRE",
+    "type": "PREFIX",
+    "name": "#% increased Spirit",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 50,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "King's",
+        "id": "LocalIncreasedSpiritPercent8"
+      },
+      {
+        "tier": 2,
+        "weight": 100,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Prince's",
+        "id": "LocalIncreasedSpiritPercent7"
+      },
+      {
+        "tier": 3,
+        "weight": 200,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Duke's",
+        "id": "LocalIncreasedSpiritPercent6"
+      },
+      {
+        "tier": 4,
+        "weight": 400,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Count's",
+        "id": "LocalIncreasedSpiritPercent5"
+      },
+      {
+        "tier": 5,
+        "weight": 600,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Marquess'",
+        "id": "LocalIncreasedSpiritPercent4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Viscount's",
+        "id": "LocalIncreasedSpiritPercent3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Baron's",
+        "id": "LocalIncreasedSpiritPercent2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Lord's",
+        "id": "LocalIncreasedSpiritPercent1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "PREFIX",
+    "name": "#% increased Spirit, # to maximum Mana",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Chancellor's",
+        "id": "LocalIncreasedSpiritAndMana7"
+      },
+      {
+        "tier": 2,
+        "weight": 200,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "Diplomat's",
+        "id": "LocalIncreasedSpiritAndMana6"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "Envoy's",
+        "id": "LocalIncreasedSpiritAndMana5"
+      },
+      {
+        "tier": 4,
+        "weight": 600,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "Minister's",
+        "id": "LocalIncreasedSpiritAndMana4"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "Emissary's",
+        "id": "LocalIncreasedSpiritAndMana3"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "Counselor's",
+        "id": "LocalIncreasedSpiritAndMana2"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "Advisor's",
+        "id": "LocalIncreasedSpiritAndMana1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "PREFIX",
+    "name": "# to maximum Mana",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Blue",
+        "id": "IncreasedMana11"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Mazarine",
+        "id": "IncreasedMana10"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Chalybeous",
+        "id": "IncreasedMana9"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Gentian",
+        "id": "IncreasedMana8"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Opalescent",
+        "id": "IncreasedMana7"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "Aqua",
+        "id": "IncreasedMana6"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Cerulean",
+        "id": "IncreasedMana5"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "Teal",
+        "id": "IncreasedMana4"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Azure",
+        "id": "IncreasedMana3"
+      },
+      {
+        "tier": 10,
+        "weight": 1000,
+        "ilvl": 6,
+        "spawnLvl": 6,
+        "tierName": "Cobalt",
+        "id": "IncreasedMana2"
+      },
+      {
+        "tier": 11,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Beryl",
+        "id": "IncreasedMana1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "PREFIX",
+    "name": "Allies in your Presence deal # to # added Attack Cold Damage",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Entombing",
+        "id": "NearbyAlliesAddedColdDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Polar",
+        "id": "NearbyAlliesAddedColdDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Glaciated",
+        "id": "NearbyAlliesAddedColdDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Frozen",
+        "id": "NearbyAlliesAddedColdDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Freezing",
+        "id": "NearbyAlliesAddedColdDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Frigid",
+        "id": "NearbyAlliesAddedColdDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Icy",
+        "id": "NearbyAlliesAddedColdDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Chilled",
+        "id": "NearbyAlliesAddedColdDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Frosted",
+        "id": "NearbyAlliesAddedColdDamage1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "PREFIX",
+    "name": "Allies in your Presence deal # to # added Attack Fire Damage",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Cremating",
+        "id": "NearbyAlliesAddedFireDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Blasting",
+        "id": "NearbyAlliesAddedFireDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Incinerating",
+        "id": "NearbyAlliesAddedFireDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Scorching",
+        "id": "NearbyAlliesAddedFireDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Flaming",
+        "id": "NearbyAlliesAddedFireDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Burning",
+        "id": "NearbyAlliesAddedFireDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Smoking",
+        "id": "NearbyAlliesAddedFireDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Smouldering",
+        "id": "NearbyAlliesAddedFireDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Heated",
+        "id": "NearbyAlliesAddedFireDamage1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "PREFIX",
+    "name": "Allies in your Presence deal # to # added Attack Lightning Damage",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Electrocuting",
+        "id": "NearbyAlliesAddedLightningDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Discharging",
+        "id": "NearbyAlliesAddedLightningDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Shocking",
+        "id": "NearbyAlliesAddedLightningDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Arcing",
+        "id": "NearbyAlliesAddedLightningDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Sparking",
+        "id": "NearbyAlliesAddedLightningDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Crackling",
+        "id": "NearbyAlliesAddedLightningDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Snapping",
+        "id": "NearbyAlliesAddedLightningDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Buzzing",
+        "id": "NearbyAlliesAddedLightningDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Humming",
+        "id": "NearbyAlliesAddedLightningDamage1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "PREFIX",
+    "name": "Allies in your Presence deal # to # added Attack Physical Damage",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Flaring",
+        "id": "NearbyAlliesAddedPhysicalDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Tempered",
+        "id": "NearbyAlliesAddedPhysicalDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Razor-sharp",
+        "id": "NearbyAlliesAddedPhysicalDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Annealed",
+        "id": "NearbyAlliesAddedPhysicalDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Gleaming",
+        "id": "NearbyAlliesAddedPhysicalDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Honed",
+        "id": "NearbyAlliesAddedPhysicalDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Polished",
+        "id": "NearbyAlliesAddedPhysicalDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Burnished",
+        "id": "NearbyAlliesAddedPhysicalDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Glinting",
+        "id": "NearbyAlliesAddedPhysicalDamage1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "PREFIX",
+    "name": "Allies in your Presence deal #% increased Damage",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 50,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "Empowering",
+        "id": "NearbyAlliesAllDamage8"
+      },
+      {
+        "tier": 2,
+        "weight": 100,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Inspirational",
+        "id": "NearbyAlliesAllDamage7"
+      },
+      {
+        "tier": 3,
+        "weight": 200,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Motivating",
+        "id": "NearbyAlliesAllDamage6"
+      },
+      {
+        "tier": 4,
+        "weight": 400,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Persuasive",
+        "id": "NearbyAlliesAllDamage5"
+      },
+      {
+        "tier": 5,
+        "weight": 600,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Provocative",
+        "id": "NearbyAlliesAllDamage4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Instigative",
+        "id": "NearbyAlliesAllDamage3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Agitative",
+        "id": "NearbyAlliesAllDamage2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Coercive",
+        "id": "NearbyAlliesAllDamage1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "#% increased Mana Regeneration Rate, #% increased Light Radius",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of the Hearth",
+        "id": "LightRadiusAndManaRegeneration3"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 15,
+        "spawnLvl": 15,
+        "tierName": "of Kindling",
+        "id": "LightRadiusAndManaRegeneration2"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Warmth",
+        "id": "LightRadiusAndManaRegeneration1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "#% increased Mana Regeneration Rate",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 79,
+        "spawnLvl": 79,
+        "tierName": "of Nirvana",
+        "id": "ManaRegeneration6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Euphoria",
+        "id": "ManaRegeneration5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 42,
+        "spawnLvl": 42,
+        "tierName": "of Bliss",
+        "id": "ManaRegeneration4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 29,
+        "spawnLvl": 29,
+        "tierName": "of Elation",
+        "id": "ManaRegeneration3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "of Joy",
+        "id": "ManaRegeneration2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Excitement",
+        "id": "ManaRegeneration1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "#% increased Presence Area of Effect",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 72,
+        "spawnLvl": 72,
+        "tierName": "of Influence",
+        "id": "PresenceRadius4"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 56,
+        "spawnLvl": 56,
+        "tierName": "of Guidance",
+        "id": "PresenceRadius3"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of Outreach",
+        "id": "PresenceRadius2"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 23,
+        "spawnLvl": 23,
+        "tierName": "of Direction",
+        "id": "PresenceRadius1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "#% reduced Attribute Requirements",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Proficient",
+        "id": "ReducedLocalAttributeRequirements5"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 52,
+        "spawnLvl": 52,
+        "tierName": "of the Skilled",
+        "id": "ReducedLocalAttributeRequirements4"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of the Talented",
+        "id": "ReducedLocalAttributeRequirements3"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 32,
+        "spawnLvl": 32,
+        "tierName": "of the Apt",
+        "id": "ReducedLocalAttributeRequirements2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "of the Worthy",
+        "id": "ReducedLocalAttributeRequirements1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "# to Intelligence",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 750,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Virtuoso",
+        "id": "Intelligence8"
+      },
+      {
+        "tier": 2,
+        "weight": 750,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Savant",
+        "id": "Intelligence7"
+      },
+      {
+        "tier": 3,
+        "weight": 750,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Sage",
+        "id": "Intelligence6"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Philosopher",
+        "id": "Intelligence5"
+      },
+      {
+        "tier": 5,
+        "weight": 750,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Augur",
+        "id": "Intelligence4"
+      },
+      {
+        "tier": 6,
+        "weight": 750,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Prodigy",
+        "id": "Intelligence3"
+      },
+      {
+        "tier": 7,
+        "weight": 750,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Student",
+        "id": "Intelligence2"
+      },
+      {
+        "tier": 8,
+        "weight": 750,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Pupil",
+        "id": "Intelligence1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "# to Level of all Minion Skills",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 78,
+        "spawnLvl": 78,
+        "tierName": "of the Slavedriver",
+        "id": "GlobalMinionSpellSkillGemLevelWeapon4"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Overseer",
+        "id": "GlobalMinionSpellSkillGemLevelWeapon3"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "of the Despot",
+        "id": "GlobalMinionSpellSkillGemLevelWeapon2"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "of the Taskmaster",
+        "id": "GlobalMinionSpellSkillGemLevelWeapon1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "# to Strength",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 250,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Titan",
+        "id": "Strength8"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Leviathan",
+        "id": "Strength7"
+      },
+      {
+        "tier": 3,
+        "weight": 250,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Goliath",
+        "id": "Strength6"
+      },
+      {
+        "tier": 4,
+        "weight": 250,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Gorilla",
+        "id": "Strength5"
+      },
+      {
+        "tier": 5,
+        "weight": 250,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Lion",
+        "id": "Strength4"
+      },
+      {
+        "tier": 6,
+        "weight": 250,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Bear",
+        "id": "Strength3"
+      },
+      {
+        "tier": 7,
+        "weight": 250,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Wrestler",
+        "id": "Strength2"
+      },
+      {
+        "tier": 8,
+        "weight": 250,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Brute",
+        "id": "Strength1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "Allies in your Presence have #% increased Attack Speed",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Renown",
+        "id": "NearbyAlliesIncreasedAttackSpeed4"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 35,
+        "spawnLvl": 35,
+        "tierName": "of Mastery",
+        "id": "NearbyAlliesIncreasedAttackSpeed3"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 20,
+        "spawnLvl": 20,
+        "tierName": "of Ease",
+        "id": "NearbyAlliesIncreasedAttackSpeed2"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of Skill",
+        "id": "NearbyAlliesIncreasedAttackSpeed1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "Allies in your Presence have #% increased Cast Speed",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 56,
+        "spawnLvl": 56,
+        "tierName": "of Sortilege",
+        "id": "NearbyAlliesIncreasedCastSpeed4"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "of Expertise",
+        "id": "NearbyAlliesIncreasedCastSpeed3"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Nimbleness",
+        "id": "NearbyAlliesIncreasedCastSpeed2"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 6,
+        "spawnLvl": 6,
+        "tierName": "of Talent",
+        "id": "NearbyAlliesIncreasedCastSpeed1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "Allies in your Presence have #% increased Critical Damage Bonus",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 73,
+        "spawnLvl": 73,
+        "tierName": "of Destruction",
+        "id": "NearbyAlliesCriticalMultiplier6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 59,
+        "spawnLvl": 59,
+        "tierName": "of Ferocity",
+        "id": "NearbyAlliesCriticalMultiplier5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Fury",
+        "id": "NearbyAlliesCriticalMultiplier4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Rage",
+        "id": "NearbyAlliesCriticalMultiplier3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Anger",
+        "id": "NearbyAlliesCriticalMultiplier2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Ire",
+        "id": "NearbyAlliesCriticalMultiplier1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "Allies in your Presence have #% increased Critical Hit Chance",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 76,
+        "spawnLvl": 76,
+        "tierName": "of Unmaking",
+        "id": "NearbyAlliesCriticalStrikeChance6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 59,
+        "spawnLvl": 59,
+        "tierName": "of Ruin",
+        "id": "NearbyAlliesCriticalStrikeChance5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 41,
+        "spawnLvl": 41,
+        "tierName": "of Calamity",
+        "id": "NearbyAlliesCriticalStrikeChance4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 28,
+        "spawnLvl": 28,
+        "tierName": "of Disaster",
+        "id": "NearbyAlliesCriticalStrikeChance3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Havoc",
+        "id": "NearbyAlliesCriticalStrikeChance2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of Menace",
+        "id": "NearbyAlliesCriticalStrikeChance1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "Allies in your Presence have #% to all Elemental Resistances",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 800,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "of Metamorphosis",
+        "id": "NearbyAlliesAllResistances6"
+      },
+      {
+        "tier": 2,
+        "weight": 800,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of Progression",
+        "id": "NearbyAlliesAllResistances5"
+      },
+      {
+        "tier": 3,
+        "weight": 800,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "of Evolution",
+        "id": "NearbyAlliesAllResistances4"
+      },
+      {
+        "tier": 4,
+        "weight": 800,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of Adaptation",
+        "id": "NearbyAlliesAllResistances3"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "of Acclimatisation",
+        "id": "NearbyAlliesAllResistances2"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 12,
+        "spawnLvl": 12,
+        "tierName": "of Adjustment",
+        "id": "NearbyAlliesAllResistances1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "Allies in your Presence Regenerate # Life per second",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of Immortality",
+        "id": "NearbyAlliesLifeRegeneration10"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 68,
+        "spawnLvl": 68,
+        "tierName": "of Resurgence",
+        "id": "NearbyAlliesLifeRegeneration9"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "of Recuperation",
+        "id": "NearbyAlliesLifeRegeneration8"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 47,
+        "spawnLvl": 47,
+        "tierName": "of Convalescence",
+        "id": "NearbyAlliesLifeRegeneration7"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 35,
+        "spawnLvl": 35,
+        "tierName": "of the Troll",
+        "id": "NearbyAlliesLifeRegeneration6"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "of the Hydra",
+        "id": "NearbyAlliesLifeRegeneration5"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 17,
+        "spawnLvl": 17,
+        "tierName": "of the Starfish",
+        "id": "NearbyAlliesLifeRegeneration4"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Flatworm",
+        "id": "NearbyAlliesLifeRegeneration3"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Lizard",
+        "id": "NearbyAlliesLifeRegeneration2"
+      },
+      {
+        "tier": 10,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Newt",
+        "id": "NearbyAlliesLifeRegeneration1"
+      }
+    ]
+  },
+  {
+    "base": "SCEPTRE",
+    "type": "SUFFIX",
+    "name": "Minions have #% increased maximum Life",
+    "itemClass": "Sceptre",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "of the Rector",
+        "id": "MinionLife6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 64,
+        "spawnLvl": 64,
+        "tierName": "of the Administrator",
+        "id": "MinionLife5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "of the Headmaster",
+        "id": "MinionLife4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 32,
+        "spawnLvl": 32,
+        "tierName": "of the Director",
+        "id": "MinionLife3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "of the Tutor",
+        "id": "MinionLife2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "of the Mentor",
+        "id": "MinionLife1"
+      }
+    ]
+  }
+]

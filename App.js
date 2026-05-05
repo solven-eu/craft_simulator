@@ -42,9 +42,10 @@ export default {
       <footer class="app-footer">
         <small>
           Craft Simulator is not affiliated with or endorsed by Grinding Gear Games. ·
-          {{ gameLabel }} content © its respective rights-holders · data
-          redistributed under
-          <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" rel="noopener">CC BY-NC-SA 3.0</a> ·
+          {{ gameLabel }} content © its respective rights-holders · whole project
+          licensed under
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> ·
+          <a href="https://github.com/solven-eu/craft_simulator/issues" target="_blank" rel="noopener">🐛 report issue / ask question</a> ·
           <router-link :to="'/' + game + '/disclaimer'">full disclaimer & sources</router-link>
         </small>
       </footer>

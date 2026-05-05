@@ -1,0 +1,183 @@
+{
+  "# to Dexterity": {
+    "8": "+(5—8) to Dexterity",
+    "7": "+(9—12) to Dexterity",
+    "6": "+(13—16) to Dexterity",
+    "5": "+(17—20) to Dexterity",
+    "4": "+(21—24) to Dexterity",
+    "3": "+(25—27) to Dexterity",
+    "2": "+(28—30) to Dexterity",
+    "1": "+(31—33) to Dexterity"
+  },
+  "# to Intelligence": {
+    "8": "+(5—8) to Intelligence",
+    "7": "+(9—12) to Intelligence",
+    "6": "+(13—16) to Intelligence",
+    "5": "+(17—20) to Intelligence",
+    "4": "+(21—24) to Intelligence",
+    "3": "+(25—27) to Intelligence",
+    "2": "+(28—30) to Intelligence",
+    "1": "+(31—33) to Intelligence"
+  },
+  "#% reduced Attribute Requirements": {
+    "5": "15% reduced Attribute Requirements",
+    "4": "20% reduced Attribute Requirements",
+    "3": "25% reduced Attribute Requirements",
+    "2": "30% reduced Attribute Requirements",
+    "1": "35% reduced Attribute Requirements"
+  },
+  "Adds # to # Physical Damage": {
+    "9": "Adds (2—3) to (5—7) Physical Damage",
+    "8": "Adds (5—8) to (10—15) Physical Damage",
+    "7": "Adds (8—12) to (15—22) Physical Damage",
+    "6": "Adds (11—17) to (20—30) Physical Damage",
+    "5": "Adds (14—21) to (25—37) Physical Damage",
+    "4": "Adds (19—29) to (33—49) Physical Damage",
+    "3": "Adds (23—35) to (39—59) Physical Damage",
+    "2": "Adds (29—44) to (50—75) Physical Damage",
+    "1": "Adds (37—55) to (63—94) Physical Damage"
+  },
+  "Adds # to # Fire Damage": {
+    "10": "Adds (2—4) to (5—7) Fire Damage",
+    "9": "Adds (6—9) to (10—16) Fire Damage",
+    "8": "Adds (11—17) to (19—28) Fire Damage",
+    "7": "Adds (19—27) to (30—42) Fire Damage",
+    "6": "Adds (30—37) to (45—56) Fire Damage",
+    "5": "Adds (39—53) to (59—80) Fire Damage",
+    "4": "Adds (56—70) to (84—107) Fire Damage",
+    "3": "Adds (73—97) to (112—149) Fire Damage",
+    "2": "Adds (102—130) to (155—198) Fire Damage",
+    "1": "Adds (135—156) to (205—236) Fire Damage"
+  },
+  "Adds # to # Cold Damage": {
+    "10": "Adds (2—3) to (4—6) Cold Damage",
+    "9": "Adds (5—8) to (9—14) Cold Damage",
+    "8": "Adds (10—14) to (15—23) Cold Damage",
+    "7": "Adds (16—23) to (25—35) Cold Damage",
+    "6": "Adds (25—30) to (38—46) Cold Damage",
+    "5": "Adds (32—43) to (49—66) Cold Damage",
+    "4": "Adds (46—57) to (70—88) Cold Damage",
+    "3": "Adds (60—80) to (92—121) Cold Damage",
+    "2": "Adds (84—107) to (126—161) Cold Damage",
+    "1": "Adds (112—124) to (168—189) Cold Damage"
+  },
+  "Adds # to # Lightning Damage": {
+    "10": "Adds 1 to (7—10) Lightning Damage",
+    "9": "Adds (1—2) to (19—27) Lightning Damage",
+    "8": "Adds (1—3) to (31—43) Lightning Damage",
+    "7": "Adds (1—4) to (53—76) Lightning Damage",
+    "6": "Adds (1—4) to (80—88) Lightning Damage",
+    "5": "Adds (1—6) to (93—122) Lightning Damage",
+    "4": "Adds (1—8) to (128—162) Lightning Damage",
+    "3": "Adds (1—13) to (168—231) Lightning Damage",
+    "2": "Adds (1—16) to (239—300) Lightning Damage",
+    "1": "Adds (1—19) to (310—358) Lightning Damage"
+  },
+  "#% increased Physical Damage": {
+    "8": "(40—49)% increased Physical Damage",
+    "7": "(50—64)% increased Physical Damage",
+    "6": "(65—84)% increased Physical Damage",
+    "5": "(85—109)% increased Physical Damage",
+    "4": "(110—134)% increased Physical Damage",
+    "3": "(135—154)% increased Physical Damage",
+    "2": "(155—169)% increased Physical Damage",
+    "1": "(170—179)% increased Physical Damage"
+  },
+  "# to Level of all Melee Skills": {
+    "5": "+2 to Level of all Melee Skills",
+    "4": "+3 to Level of all Melee Skills",
+    "3": "+4 to Level of all Melee Skills",
+    "2": "+(5—6) to Level of all Melee Skills",
+    "1": "+7 to Level of all Melee Skills"
+  },
+  "Leeches #% of Physical Damage as Life": {
+    "5": "Leeches (5—5.9)% of Physical Damage as Life",
+    "4": "Leeches (6—6.9)% of Physical Damage as Life",
+    "3": "Leeches (7—7.9)% of Physical Damage as Life",
+    "2": "Leeches (8—8.9)% of Physical Damage as Life",
+    "1": "Leeches (9—9.9)% of Physical Damage as Life"
+  },
+  "Leeches #% of Physical Damage as Mana": {
+    "5": "Leeches (4—4.9)% of Physical Damage as Mana",
+    "4": "Leeches (5—5.9)% of Physical Damage as Mana",
+    "3": "Leeches (6—6.9)% of Physical Damage as Mana",
+    "2": "Leeches (7—7.9)% of Physical Damage as Mana",
+    "1": "Leeches (8—8.9)% of Physical Damage as Mana"
+  },
+  "Gain # Life per Enemy Killed": {
+    "8": "Gain (4—6) Life per enemy killed",
+    "7": "Gain (7—9) Life per enemy killed",
+    "6": "Gain (10—18) Life per enemy killed",
+    "5": "Gain (19—28) Life per enemy killed",
+    "4": "Gain (29—40) Life per enemy killed",
+    "3": "Gain (41—53) Life per enemy killed",
+    "2": "Gain (54—68) Life per enemy killed",
+    "1": "Gain (69—84) Life per enemy killed"
+  },
+  "Gain # Mana per Enemy Killed": {
+    "8": "Gain (2—3) Mana per enemy killed",
+    "7": "Gain (4—5) Mana per enemy killed",
+    "6": "Gain (6—9) Mana per enemy killed",
+    "5": "Gain (10—14) Mana per enemy killed",
+    "4": "Gain (15—20) Mana per enemy killed",
+    "3": "Gain (21—27) Mana per enemy killed",
+    "2": "Gain (28—35) Mana per enemy killed",
+    "1": "Gain (36—45) Mana per enemy killed"
+  },
+  "Grants # Life per Enemy Hit": {
+    "4": "Grants 2 Life per Enemy Hit",
+    "3": "Grants 3 Life per Enemy Hit",
+    "2": "Grants 4 Life per Enemy Hit",
+    "1": "Grants 5 Life per Enemy Hit"
+  },
+  "#% increased Attack Speed": {
+    "8": "(5—7)% increased Attack Speed",
+    "7": "(8—10)% increased Attack Speed",
+    "6": "(11—13)% increased Attack Speed",
+    "5": "(14—16)% increased Attack Speed",
+    "4": "(17—19)% increased Attack Speed",
+    "3": "(20—22)% increased Attack Speed",
+    "2": "(23—25)% increased Attack Speed",
+    "1": "(26—28)% increased Attack Speed"
+  },
+  "#% to Critical Hit Chance": {
+    "6": "+(1.01—1.5)% to Critical Hit Chance",
+    "5": "+(1.51—2.1)% to Critical Hit Chance",
+    "4": "+(2.11—2.7)% to Critical Hit Chance",
+    "3": "+(3.11—3.8)% to Critical Hit Chance",
+    "2": "+(3.81—4.4)% to Critical Hit Chance",
+    "1": "+(4.41—5)% to Critical Hit Chance"
+  },
+  "#% to Critical Damage Bonus": {
+    "6": "+(10—11)% to Critical Damage Bonus",
+    "5": "+(12—13)% to Critical Damage Bonus",
+    "4": "+(14—16)% to Critical Damage Bonus",
+    "3": "+(17—19)% to Critical Damage Bonus",
+    "2": "+(20—22)% to Critical Damage Bonus",
+    "1": "+(23—25)% to Critical Damage Bonus"
+  },
+  "#% increased Stun Duration": {
+    "6": "(11—13)% increased Stun Duration",
+    "5": "(14—16)% increased Stun Duration",
+    "4": "(17—19)% increased Stun Duration",
+    "3": "(20—22)% increased Stun Duration",
+    "2": "(23—26)% increased Stun Duration",
+    "1": "(27—30)% increased Stun Duration"
+  },
+  "Causes #% increased Stun Buildup": {
+    "6": "Causes (21—30)% increased Stun Buildup",
+    "5": "Causes (31—40)% increased Stun Buildup",
+    "4": "Causes (41—50)% increased Stun Buildup",
+    "3": "Causes (51—60)% increased Stun Buildup",
+    "2": "Causes (61—70)% increased Stun Buildup",
+    "1": "Causes (71—80)% increased Stun Buildup"
+  },
+  "#% increased Elemental Damage with Attacks": {
+    "6": "(34—47)% increased Elemental Damage with Attacks",
+    "5": "(48—71)% increased Elemental Damage with Attacks",
+    "4": "(72—85)% increased Elemental Damage with Attacks",
+    "3": "(86—99)% increased Elemental Damage with Attacks",
+    "2": "(100—119)% increased Elemental Damage with Attacks",
+    "1": "(120—139)% increased Elemental Damage with Attacks"
+  }
+}

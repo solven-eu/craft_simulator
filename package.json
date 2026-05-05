@@ -8,9 +8,7 @@
   "type": "module",
   "scripts": {
     "test": "for f in tests/*.test.js; do node \"$f\" || exit 1; done",
-    "rates": "node scripts/fetch-poe-ninja-rates.mjs",
-    "rates:install": "npx playwright install chromium",
-    "rates:record": "npx playwright codegen --target javascript --output scripts/codegen-poe-ninja.mjs https://poe.ninja/",
+    "rates": "scripts/update-poe2-rates.sh",
     "serve": "python3 scripts/dev-server.py 8765"
   },
   "devDependencies": {

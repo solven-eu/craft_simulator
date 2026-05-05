@@ -1,0 +1,1138 @@
+[
+  {
+    "base": "FIRE WAND",
+    "type": "PREFIX",
+    "name": "#% increased Fire Damage",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 50,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "Pyromancer's",
+        "id": "FireDamagePrefixOnWeapon8_"
+      },
+      {
+        "tier": 2,
+        "weight": 100,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Volcanic",
+        "id": "FireDamagePrefixOnWeapon7_"
+      },
+      {
+        "tier": 3,
+        "weight": 200,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Magmatic",
+        "id": "FireDamagePrefixOnWeapon6"
+      },
+      {
+        "tier": 4,
+        "weight": 300,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Smoldering",
+        "id": "FireDamagePrefixOnWeapon5_"
+      },
+      {
+        "tier": 5,
+        "weight": 400,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Cauterising",
+        "id": "FireDamagePrefixOnWeapon4"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Blistering",
+        "id": "FireDamagePrefixOnWeapon3"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Sizzling",
+        "id": "FireDamagePrefixOnWeapon2"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "Searing",
+        "id": "FireDamagePrefixOnWeapon1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "PREFIX",
+    "name": "#% increased Spell Damage",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 50,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "Runic",
+        "id": "SpellDamageOnWeapon8_"
+      },
+      {
+        "tier": 2,
+        "weight": 100,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Glyphic",
+        "id": "SpellDamageOnWeapon7"
+      },
+      {
+        "tier": 3,
+        "weight": 200,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Incanter's",
+        "id": "SpellDamageOnWeapon6"
+      },
+      {
+        "tier": 4,
+        "weight": 400,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Occultist's",
+        "id": "SpellDamageOnWeapon5"
+      },
+      {
+        "tier": 5,
+        "weight": 600,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Professor's",
+        "id": "SpellDamageOnWeapon4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Scholar's",
+        "id": "SpellDamageOnWeapon3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Adept's",
+        "id": "SpellDamageOnWeapon2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Apprentice's",
+        "id": "SpellDamageOnWeapon1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "PREFIX",
+    "name": "#% increased Spell Damage, # to maximum Mana",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "Lich's",
+        "id": "SpellDamageAndManaOnWeapon7"
+      },
+      {
+        "tier": 2,
+        "weight": 200,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Archmage's",
+        "id": "SpellDamageAndManaOnWeapon6"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Mage's",
+        "id": "SpellDamageAndManaOnWeapon5"
+      },
+      {
+        "tier": 4,
+        "weight": 600,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "Warlock's",
+        "id": "SpellDamageAndManaOnWeapon4"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 23,
+        "spawnLvl": 23,
+        "tierName": "Wizard's",
+        "id": "SpellDamageAndManaOnWeapon3"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "Conjuror's",
+        "id": "SpellDamageAndManaOnWeapon2"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "Caster's",
+        "id": "SpellDamageAndManaOnWeapon1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "PREFIX",
+    "name": "# to maximum Mana",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "Blue",
+        "id": "IncreasedMana11"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Mazarine",
+        "id": "IncreasedMana10"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Chalybeous",
+        "id": "IncreasedMana9"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Gentian",
+        "id": "IncreasedMana8"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Opalescent",
+        "id": "IncreasedMana7"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 38,
+        "spawnLvl": 38,
+        "tierName": "Aqua",
+        "id": "IncreasedMana6"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Cerulean",
+        "id": "IncreasedMana5"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "Teal",
+        "id": "IncreasedMana4"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Azure",
+        "id": "IncreasedMana3"
+      },
+      {
+        "tier": 10,
+        "weight": 1000,
+        "ilvl": 6,
+        "spawnLvl": 6,
+        "tierName": "Cobalt",
+        "id": "IncreasedMana2"
+      },
+      {
+        "tier": 11,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Beryl",
+        "id": "IncreasedMana1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "PREFIX",
+    "name": "Gain #% of Damage as Extra Cold Damage",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "Frostbound",
+        "id": "SpellDamageGainedAsCold6"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Ruthless",
+        "id": "SpellDamageGainedAsCold5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Malicious",
+        "id": "SpellDamageGainedAsCold4"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Destructive",
+        "id": "SpellDamageGainedAsCold3"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Pernicious",
+        "id": "SpellDamageGainedAsCold2"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "Malignant",
+        "id": "SpellDamageGainedAsCold1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "PREFIX",
+    "name": "Gain #% of Damage as Extra Fire Damage",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "Flamebound",
+        "id": "SpellDamageGainedAsFire6"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Infernal",
+        "id": "SpellDamageGainedAsFire5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Zealot's",
+        "id": "SpellDamageGainedAsFire4"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Fanatic's",
+        "id": "SpellDamageGainedAsFire3"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Ardent",
+        "id": "SpellDamageGainedAsFire2"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "Fervent",
+        "id": "SpellDamageGainedAsFire1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "PREFIX",
+    "name": "Gain #% of Damage as Extra Lightning Damage",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "Stormbound",
+        "id": "SpellDamageGainedAsLightning6"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Electrifying",
+        "id": "SpellDamageGainedAsLightning5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Vorpal",
+        "id": "SpellDamageGainedAsLightning4"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Fatal",
+        "id": "SpellDamageGainedAsLightning3"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Lethal",
+        "id": "SpellDamageGainedAsLightning2"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "Deadly",
+        "id": "SpellDamageGainedAsLightning1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "#% increased Cast Speed",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 250,
+        "ilvl": 80,
+        "spawnLvl": 80,
+        "tierName": "of Finesse",
+        "id": "IncreasedCastSpeed7"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 70,
+        "spawnLvl": 70,
+        "tierName": "of Prestidigitation",
+        "id": "IncreasedCastSpeed6"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of Legerdemain",
+        "id": "IncreasedCastSpeed5"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Sortilege",
+        "id": "IncreasedCastSpeed4"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Expertise",
+        "id": "IncreasedCastSpeed3"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 15,
+        "spawnLvl": 15,
+        "tierName": "of Nimbleness",
+        "id": "IncreasedCastSpeed2"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Talent",
+        "id": "IncreasedCastSpeed1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "#% increased Flammability Magnitude",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "of Conflagration",
+        "id": "IgniteChanceIncrease5"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of Combustion",
+        "id": "IgniteChanceIncrease4"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Incineration",
+        "id": "IgniteChanceIncrease3"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Scorching",
+        "id": "IgniteChanceIncrease2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 15,
+        "spawnLvl": 15,
+        "tierName": "of Ignition",
+        "id": "IgniteChanceIncrease1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "#% increased Critical Hit Chance for Spells",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 76,
+        "spawnLvl": 76,
+        "tierName": "of Unmaking",
+        "id": "SpellCriticalStrikeChance6_"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 59,
+        "spawnLvl": 59,
+        "tierName": "of Ruin",
+        "id": "SpellCriticalStrikeChance5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 41,
+        "spawnLvl": 41,
+        "tierName": "of Calamity",
+        "id": "SpellCriticalStrikeChance4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 28,
+        "spawnLvl": 28,
+        "tierName": "of Disaster",
+        "id": "SpellCriticalStrikeChance3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Havoc",
+        "id": "SpellCriticalStrikeChance2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of Menace",
+        "id": "SpellCriticalStrikeChance1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "#% increased Critical Spell Damage Bonus",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 73,
+        "spawnLvl": 73,
+        "tierName": "of Destruction",
+        "id": "SpellCriticalStrikeMultiplier6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 59,
+        "spawnLvl": 59,
+        "tierName": "of Ferocity",
+        "id": "SpellCriticalStrikeMultiplier5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Fury",
+        "id": "SpellCriticalStrikeMultiplier4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Rage",
+        "id": "SpellCriticalStrikeMultiplier3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Anger",
+        "id": "SpellCriticalStrikeMultiplier2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Ire",
+        "id": "SpellCriticalStrikeMultiplier1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "#% increased Mana Regeneration Rate, #% increased Light Radius",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of the Hearth",
+        "id": "LightRadiusAndManaRegeneration3"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 15,
+        "spawnLvl": 15,
+        "tierName": "of Kindling",
+        "id": "LightRadiusAndManaRegeneration2"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Warmth",
+        "id": "LightRadiusAndManaRegeneration1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "#% increased Mana Regeneration Rate",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 79,
+        "spawnLvl": 79,
+        "tierName": "of Nirvana",
+        "id": "ManaRegeneration6"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Euphoria",
+        "id": "ManaRegeneration5"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 42,
+        "spawnLvl": 42,
+        "tierName": "of Bliss",
+        "id": "ManaRegeneration4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 29,
+        "spawnLvl": 29,
+        "tierName": "of Elation",
+        "id": "ManaRegeneration3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "of Joy",
+        "id": "ManaRegeneration2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Excitement",
+        "id": "ManaRegeneration1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "#% reduced Attribute Requirements",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of the Proficient",
+        "id": "ReducedLocalAttributeRequirements5"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 52,
+        "spawnLvl": 52,
+        "tierName": "of the Skilled",
+        "id": "ReducedLocalAttributeRequirements4"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 40,
+        "spawnLvl": 40,
+        "tierName": "of the Talented",
+        "id": "ReducedLocalAttributeRequirements3"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 32,
+        "spawnLvl": 32,
+        "tierName": "of the Apt",
+        "id": "ReducedLocalAttributeRequirements2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 24,
+        "spawnLvl": 24,
+        "tierName": "of the Worthy",
+        "id": "ReducedLocalAttributeRequirements1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "# to Intelligence",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Virtuoso",
+        "id": "Intelligence8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Savant",
+        "id": "Intelligence7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Sage",
+        "id": "Intelligence6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Philosopher",
+        "id": "Intelligence5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Augur",
+        "id": "Intelligence4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Prodigy",
+        "id": "Intelligence3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Student",
+        "id": "Intelligence2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Pupil",
+        "id": "Intelligence1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "# to Level of all Fire Spell Skills",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 100,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "of Inferno",
+        "id": "GlobalFireSpellGemsLevelWeapon5"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Immolation",
+        "id": "GlobalFireSpellGemsLevelWeapon4"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "of Flames",
+        "id": "GlobalFireSpellGemsLevelWeapon3"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "of Cinders",
+        "id": "GlobalFireSpellGemsLevelWeapon2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 2,
+        "spawnLvl": 2,
+        "tierName": "of Coals",
+        "id": "GlobalFireSpellGemsLevelWeapon1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "# to Level of all Spell Skills",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 50,
+        "ilvl": 78,
+        "spawnLvl": 78,
+        "tierName": "of the Wizard",
+        "id": "GlobalSpellGemsLevelWeapon4"
+      },
+      {
+        "tier": 2,
+        "weight": 100,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Sorcerer",
+        "id": "GlobalSpellGemsLevelWeapon3"
+      },
+      {
+        "tier": 3,
+        "weight": 150,
+        "ilvl": 25,
+        "spawnLvl": 25,
+        "tierName": "of the Enchanter",
+        "id": "GlobalSpellGemsLevelWeapon2"
+      },
+      {
+        "tier": 4,
+        "weight": 200,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Mage",
+        "id": "GlobalSpellGemsLevelWeapon1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "Gain # Life per Enemy Killed",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 750,
+        "ilvl": 77,
+        "spawnLvl": 77,
+        "tierName": "of Legend",
+        "id": "LifeGainedFromEnemyDeath8"
+      },
+      {
+        "tier": 2,
+        "weight": 750,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of Glory",
+        "id": "LifeGainedFromEnemyDeath7"
+      },
+      {
+        "tier": 3,
+        "weight": 750,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Valour",
+        "id": "LifeGainedFromEnemyDeath6"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Vanquishing",
+        "id": "LifeGainedFromEnemyDeath5"
+      },
+      {
+        "tier": 5,
+        "weight": 750,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of Conquest",
+        "id": "LifeGainedFromEnemyDeath4"
+      },
+      {
+        "tier": 6,
+        "weight": 750,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of Triumph",
+        "id": "LifeGainedFromEnemyDeath3"
+      },
+      {
+        "tier": 7,
+        "weight": 750,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of Victory",
+        "id": "LifeGainedFromEnemyDeath2"
+      },
+      {
+        "tier": 8,
+        "weight": 750,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Success",
+        "id": "LifeGainedFromEnemyDeath1"
+      }
+    ]
+  },
+  {
+    "base": "FIRE WAND",
+    "type": "SUFFIX",
+    "name": "Gain # Mana per Enemy Killed",
+    "itemClass": "Wand",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 750,
+        "ilvl": 78,
+        "spawnLvl": 78,
+        "tierName": "of Assimilation",
+        "id": "ManaGainedFromEnemyDeath8"
+      },
+      {
+        "tier": 2,
+        "weight": 750,
+        "ilvl": 67,
+        "spawnLvl": 67,
+        "tierName": "of Devouring",
+        "id": "ManaGainedFromEnemyDeath7"
+      },
+      {
+        "tier": 3,
+        "weight": 750,
+        "ilvl": 56,
+        "spawnLvl": 56,
+        "tierName": "of Siphoning",
+        "id": "ManaGainedFromEnemyDeath6"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Consumption",
+        "id": "ManaGainedFromEnemyDeath5"
+      },
+      {
+        "tier": 5,
+        "weight": 750,
+        "ilvl": 34,
+        "spawnLvl": 34,
+        "tierName": "of Enveloping",
+        "id": "ManaGainedFromEnemyDeath4"
+      },
+      {
+        "tier": 6,
+        "weight": 750,
+        "ilvl": 23,
+        "spawnLvl": 23,
+        "tierName": "of Infusion",
+        "id": "ManaGainedFromEnemyDeath3"
+      },
+      {
+        "tier": 7,
+        "weight": 750,
+        "ilvl": 12,
+        "spawnLvl": 12,
+        "tierName": "of Osmosis",
+        "id": "ManaGainedFromEnemyDeath2"
+      },
+      {
+        "tier": 8,
+        "weight": 750,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Absorption",
+        "id": "ManaGainedFromEnemyDeath1"
+      }
+    ]
+  }
+]

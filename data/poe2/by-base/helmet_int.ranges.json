@@ -1,0 +1,114 @@
+{
+  "# to Intelligence": {
+    "9": "+(5—8) to Intelligence",
+    "8": "+(9—12) to Intelligence",
+    "7": "+(13—16) to Intelligence",
+    "6": "+(17—20) to Intelligence",
+    "5": "+(21—24) to Intelligence",
+    "4": "+(25—27) to Intelligence",
+    "3": "+(28—30) to Intelligence",
+    "2": "+(31—33) to Intelligence",
+    "1": "+(34—36) to Intelligence"
+  },
+  "#% to Fire Resistance": {
+    "8": "+(6—10)% to Fire Resistance",
+    "7": "+(11—15)% to Fire Resistance",
+    "6": "+(16—20)% to Fire Resistance",
+    "5": "+(21—25)% to Fire Resistance",
+    "4": "+(26—30)% to Fire Resistance",
+    "3": "+(31—35)% to Fire Resistance",
+    "2": "+(36—40)% to Fire Resistance",
+    "1": "+(41—45)% to Fire Resistance"
+  },
+  "#% to Cold Resistance": {
+    "8": "+(6—10)% to Cold Resistance",
+    "7": "+(11—15)% to Cold Resistance",
+    "6": "+(16—20)% to Cold Resistance",
+    "5": "+(21—25)% to Cold Resistance",
+    "4": "+(26—30)% to Cold Resistance",
+    "3": "+(31—35)% to Cold Resistance",
+    "2": "+(36—40)% to Cold Resistance",
+    "1": "+(41—45)% to Cold Resistance"
+  },
+  "#% to Lightning Resistance": {
+    "8": "+(6—10)% to Lightning Resistance",
+    "7": "+(11—15)% to Lightning Resistance",
+    "6": "+(16—20)% to Lightning Resistance",
+    "5": "+(21—25)% to Lightning Resistance",
+    "4": "+(26—30)% to Lightning Resistance",
+    "3": "+(31—35)% to Lightning Resistance",
+    "2": "+(36—40)% to Lightning Resistance",
+    "1": "+(41—45)% to Lightning Resistance"
+  },
+  "#% to Chaos Resistance": {
+    "6": "+(4—7)% to Chaos Resistance",
+    "5": "+(8—11)% to Chaos Resistance",
+    "4": "+(12—15)% to Chaos Resistance",
+    "3": "+(16—19)% to Chaos Resistance",
+    "2": "+(20—23)% to Chaos Resistance",
+    "1": "+(24—27)% to Chaos Resistance"
+  },
+  "# to maximum Energy Shield": {
+    "8": "+(10—17) to maximum Energy Shield",
+    "7": "+(18—24) to maximum Energy Shield",
+    "6": "+(25—30) to maximum Energy Shield",
+    "5": "+(31—35) to maximum Energy Shield",
+    "4": "+(36—41) to maximum Energy Shield",
+    "3": "+(42—47) to maximum Energy Shield",
+    "2": "+(48—60) to maximum Energy Shield",
+    "1": "+(61—73) to maximum Energy Shield"
+  },
+  "#% increased Energy Shield": {
+    "7": "(15—26)% increased Energy Shield",
+    "6": "(27—42)% increased Energy Shield",
+    "5": "(43—55)% increased Energy Shield",
+    "4": "(56—67)% increased Energy Shield",
+    "3": "(68—79)% increased Energy Shield",
+    "2": "(80—91)% increased Energy Shield",
+    "1": "(92—100)% increased Energy Shield"
+  },
+  "#% reduced Attribute Requirements": {
+    "5": "15% reduced Attribute Requirements",
+    "4": "20% reduced Attribute Requirements",
+    "3": "25% reduced Attribute Requirements",
+    "2": "30% reduced Attribute Requirements",
+    "1": "35% reduced Attribute Requirements"
+  },
+  "# to Level of all Minion Skills": {
+    "2": "+1 to Level of all Minion Skills",
+    "1": "+2 to Level of all Minion Skills"
+  },
+  "# Life Regeneration per second": {
+    "8": "(1—2) Life Regeneration per second",
+    "7": "(2.1—3) Life Regeneration per second",
+    "6": "(3.1—4) Life Regeneration per second",
+    "5": "(4.1—6) Life Regeneration per second",
+    "4": "(6.1—9) Life Regeneration per second",
+    "3": "(9.1—13) Life Regeneration per second",
+    "2": "(13.1—18) Life Regeneration per second",
+    "1": "(18.1—23) Life Regeneration per second"
+  },
+  "# to Accuracy Rating": {
+    "9": "+(11—32) to Accuracy Rating",
+    "8": "+(33—60) to Accuracy Rating",
+    "7": "+(61—84) to Accuracy Rating",
+    "6": "+(85—123) to Accuracy Rating",
+    "5": "+(124—167) to Accuracy Rating",
+    "4": "+(168—236) to Accuracy Rating",
+    "3": "+(237—346) to Accuracy Rating",
+    "2": "+(347—450) to Accuracy Rating",
+    "1": "+(451—550) to Accuracy Rating"
+  },
+  "#% increased Critical Hit Chance": {
+    "5": "(10—14)% increased Critical Hit Chance",
+    "4": "(15—19)% increased Critical Hit Chance",
+    "3": "(20—24)% increased Critical Hit Chance",
+    "2": "(25—29)% increased Critical Hit Chance",
+    "1": "(30—34)% increased Critical Hit Chance"
+  },
+  "#% increased Rarity of Items found": {
+    "3": "(6—10)% increased Rarity of Items found",
+    "2": "(11—14)% increased Rarity of Items found",
+    "1": "(15—18)% increased Rarity of Items found"
+  }
+}

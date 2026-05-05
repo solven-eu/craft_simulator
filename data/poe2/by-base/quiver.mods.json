@@ -1,0 +1,914 @@
+[
+  {
+    "base": "QUIVER",
+    "type": "PREFIX",
+    "name": "#% increased Damage with Bow Skills",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 81,
+        "spawnLvl": 81,
+        "tierName": "Impaling",
+        "id": "DamageWithBows6"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Lacerating",
+        "id": "DamageWithBows5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Incisive",
+        "id": "DamageWithBows4"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Perforating",
+        "id": "DamageWithBows3"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Trenchant",
+        "id": "DamageWithBows2"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Acute",
+        "id": "DamageWithBows1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "PREFIX",
+    "name": "#% increased Projectile Speed",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 82,
+        "spawnLvl": 82,
+        "tierName": "Nimble",
+        "id": "ProjectileSpeed5"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "Rapid",
+        "id": "ProjectileSpeed4"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 41,
+        "spawnLvl": 41,
+        "tierName": "Quick",
+        "id": "ProjectileSpeed3"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 27,
+        "spawnLvl": 27,
+        "tierName": "Brisk",
+        "id": "ProjectileSpeed2"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 14,
+        "spawnLvl": 14,
+        "tierName": "Darting",
+        "id": "ProjectileSpeed1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "PREFIX",
+    "name": "# to Accuracy Rating",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 76,
+        "spawnLvl": 76,
+        "tierName": "Amazon's",
+        "id": "IncreasedAccuracy9"
+      },
+      {
+        "tier": 2,
+        "weight": 400,
+        "ilvl": 67,
+        "spawnLvl": 67,
+        "tierName": "Ranger's",
+        "id": "IncreasedAccuracy8"
+      },
+      {
+        "tier": 3,
+        "weight": 800,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "Hunter's",
+        "id": "IncreasedAccuracy7"
+      },
+      {
+        "tier": 4,
+        "weight": 800,
+        "ilvl": 48,
+        "spawnLvl": 48,
+        "tierName": "Steady",
+        "id": "IncreasedAccuracy6"
+      },
+      {
+        "tier": 5,
+        "weight": 800,
+        "ilvl": 36,
+        "spawnLvl": 36,
+        "tierName": "Consistent",
+        "id": "IncreasedAccuracy5"
+      },
+      {
+        "tier": 6,
+        "weight": 800,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "Deliberate",
+        "id": "IncreasedAccuracy4"
+      },
+      {
+        "tier": 7,
+        "weight": 800,
+        "ilvl": 18,
+        "spawnLvl": 18,
+        "tierName": "Focused",
+        "id": "IncreasedAccuracy3"
+      },
+      {
+        "tier": 8,
+        "weight": 800,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "Reliable",
+        "id": "IncreasedAccuracy2"
+      },
+      {
+        "tier": 9,
+        "weight": 800,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Precise",
+        "id": "IncreasedAccuracy1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "PREFIX",
+    "name": "Adds # to # Cold damage to Attacks",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Entombing",
+        "id": "AddedColdDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Polar",
+        "id": "AddedColdDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Glaciated",
+        "id": "AddedColdDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Frozen",
+        "id": "AddedColdDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Freezing",
+        "id": "AddedColdDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Frigid",
+        "id": "AddedColdDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Icy",
+        "id": "AddedColdDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Chilled",
+        "id": "AddedColdDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Frosted",
+        "id": "AddedColdDamage1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "PREFIX",
+    "name": "Adds # to # Fire damage to Attacks",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Cremating",
+        "id": "AddedFireDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Blasting",
+        "id": "AddedFireDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Incinerating",
+        "id": "AddedFireDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Scorching",
+        "id": "AddedFireDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Flaming",
+        "id": "AddedFireDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Burning",
+        "id": "AddedFireDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Smoking",
+        "id": "AddedFireDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Smouldering",
+        "id": "AddedFireDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Heated",
+        "id": "AddedFireDamage1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "PREFIX",
+    "name": "Adds # to # Lightning damage to Attacks",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 200,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Electrocuting",
+        "id": "AddedLightningDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 300,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Discharging",
+        "id": "AddedLightningDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 400,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Shocking",
+        "id": "AddedLightningDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Arcing",
+        "id": "AddedLightningDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Sparking",
+        "id": "AddedLightningDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 500,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Crackling",
+        "id": "AddedLightningDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 500,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Snapping",
+        "id": "AddedLightningDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 500,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Buzzing",
+        "id": "AddedLightningDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Humming",
+        "id": "AddedLightningDamage1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "PREFIX",
+    "name": "Adds # to # Physical Damage to Attacks",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 400,
+        "ilvl": 75,
+        "spawnLvl": 75,
+        "tierName": "Flaring",
+        "id": "AddedPhysicalDamage9"
+      },
+      {
+        "tier": 2,
+        "weight": 600,
+        "ilvl": 65,
+        "spawnLvl": 65,
+        "tierName": "Tempered",
+        "id": "AddedPhysicalDamage8"
+      },
+      {
+        "tier": 3,
+        "weight": 800,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "Razor-sharp",
+        "id": "AddedPhysicalDamage7"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 54,
+        "spawnLvl": 54,
+        "tierName": "Annealed",
+        "id": "AddedPhysicalDamage6"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 46,
+        "spawnLvl": 46,
+        "tierName": "Gleaming",
+        "id": "AddedPhysicalDamage5"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "Honed",
+        "id": "AddedPhysicalDamage4"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 16,
+        "spawnLvl": 16,
+        "tierName": "Polished",
+        "id": "AddedPhysicalDamage3"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "Burnished",
+        "id": "AddedPhysicalDamage2"
+      },
+      {
+        "tier": 9,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "Glinting",
+        "id": "AddedPhysicalDamage1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "SUFFIX",
+    "name": "#% chance to Pierce an Enemy",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 77,
+        "spawnLvl": 77,
+        "tierName": "of Penetrating",
+        "id": "ArrowPierceChance5"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 61,
+        "spawnLvl": 61,
+        "tierName": "of Skewering",
+        "id": "ArrowPierceChance4"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Puncturing",
+        "id": "ArrowPierceChance3"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 26,
+        "spawnLvl": 26,
+        "tierName": "of Drilling",
+        "id": "ArrowPierceChance2"
+      },
+      {
+        "tier": 5,
+        "weight": 500,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of Piercing",
+        "id": "ArrowPierceChance1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "SUFFIX",
+    "name": "#% increased Attack Speed",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 500,
+        "ilvl": 60,
+        "spawnLvl": 60,
+        "tierName": "of Renown",
+        "id": "IncreasedAttackSpeed4"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 37,
+        "spawnLvl": 37,
+        "tierName": "of Mastery",
+        "id": "IncreasedAttackSpeed3"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of Ease",
+        "id": "IncreasedAttackSpeed2"
+      },
+      {
+        "tier": 4,
+        "weight": 500,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Skill",
+        "id": "IncreasedAttackSpeed1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "SUFFIX",
+    "name": "#% increased Critical Damage Bonus for Attack Damage",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of Destruction",
+        "id": "AttackCriticalStrikeMultiplier6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 59,
+        "spawnLvl": 59,
+        "tierName": "of Ferocity",
+        "id": "AttackCriticalStrikeMultiplier5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Fury",
+        "id": "AttackCriticalStrikeMultiplier4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 31,
+        "spawnLvl": 31,
+        "tierName": "of Rage",
+        "id": "AttackCriticalStrikeMultiplier3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 21,
+        "spawnLvl": 21,
+        "tierName": "of Anger",
+        "id": "AttackCriticalStrikeMultiplier2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 8,
+        "spawnLvl": 8,
+        "tierName": "of Ire",
+        "id": "AttackCriticalStrikeMultiplier1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "SUFFIX",
+    "name": "#% increased Critical Hit Chance for Attacks",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 125,
+        "ilvl": 72,
+        "spawnLvl": 72,
+        "tierName": "of Unmaking",
+        "id": "AttackCriticalStrikeChance6"
+      },
+      {
+        "tier": 2,
+        "weight": 250,
+        "ilvl": 58,
+        "spawnLvl": 58,
+        "tierName": "of Ruin",
+        "id": "AttackCriticalStrikeChance5"
+      },
+      {
+        "tier": 3,
+        "weight": 500,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Calamity",
+        "id": "AttackCriticalStrikeChance4"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 30,
+        "spawnLvl": 30,
+        "tierName": "of Disaster",
+        "id": "AttackCriticalStrikeChance3"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 20,
+        "spawnLvl": 20,
+        "tierName": "of Havoc",
+        "id": "AttackCriticalStrikeChance2"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of Menace",
+        "id": "AttackCriticalStrikeChance1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "SUFFIX",
+    "name": "# to Dexterity",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 1000,
+        "ilvl": 74,
+        "spawnLvl": 74,
+        "tierName": "of the Phantom",
+        "id": "Dexterity8"
+      },
+      {
+        "tier": 2,
+        "weight": 1000,
+        "ilvl": 66,
+        "spawnLvl": 66,
+        "tierName": "of the Jaguar",
+        "id": "Dexterity7"
+      },
+      {
+        "tier": 3,
+        "weight": 1000,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of the Leopard",
+        "id": "Dexterity6"
+      },
+      {
+        "tier": 4,
+        "weight": 1000,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of the Panther",
+        "id": "Dexterity5"
+      },
+      {
+        "tier": 5,
+        "weight": 1000,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of the Falcon",
+        "id": "Dexterity4"
+      },
+      {
+        "tier": 6,
+        "weight": 1000,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of the Fox",
+        "id": "Dexterity3"
+      },
+      {
+        "tier": 7,
+        "weight": 1000,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of the Lynx",
+        "id": "Dexterity2"
+      },
+      {
+        "tier": 8,
+        "weight": 1000,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of the Mongoose",
+        "id": "Dexterity1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "SUFFIX",
+    "name": "# to Level of all Projectile Skills",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 250,
+        "ilvl": 41,
+        "spawnLvl": 41,
+        "tierName": "of the Fletcher",
+        "id": "GlobalProjectileSkillGemLevel2"
+      },
+      {
+        "tier": 2,
+        "weight": 500,
+        "ilvl": 5,
+        "spawnLvl": 5,
+        "tierName": "of the Archer",
+        "id": "GlobalProjectileSkillGemLevel1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "SUFFIX",
+    "name": "Gain # Life per Enemy Killed",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 750,
+        "ilvl": 55,
+        "spawnLvl": 55,
+        "tierName": "of Valour",
+        "id": "LifeGainedFromEnemyDeath6"
+      },
+      {
+        "tier": 2,
+        "weight": 750,
+        "ilvl": 44,
+        "spawnLvl": 44,
+        "tierName": "of Vanquishing",
+        "id": "LifeGainedFromEnemyDeath5"
+      },
+      {
+        "tier": 3,
+        "weight": 750,
+        "ilvl": 33,
+        "spawnLvl": 33,
+        "tierName": "of Conquest",
+        "id": "LifeGainedFromEnemyDeath4"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 22,
+        "spawnLvl": 22,
+        "tierName": "of Triumph",
+        "id": "LifeGainedFromEnemyDeath3"
+      },
+      {
+        "tier": 5,
+        "weight": 750,
+        "ilvl": 11,
+        "spawnLvl": 11,
+        "tierName": "of Victory",
+        "id": "LifeGainedFromEnemyDeath2"
+      },
+      {
+        "tier": 6,
+        "weight": 750,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Success",
+        "id": "LifeGainedFromEnemyDeath1"
+      }
+    ]
+  },
+  {
+    "base": "QUIVER",
+    "type": "SUFFIX",
+    "name": "Gain # Mana per Enemy Killed",
+    "itemClass": "Quiver",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 750,
+        "ilvl": 56,
+        "spawnLvl": 56,
+        "tierName": "of Siphoning",
+        "id": "ManaGainedFromEnemyDeath6"
+      },
+      {
+        "tier": 2,
+        "weight": 750,
+        "ilvl": 45,
+        "spawnLvl": 45,
+        "tierName": "of Consumption",
+        "id": "ManaGainedFromEnemyDeath5"
+      },
+      {
+        "tier": 3,
+        "weight": 750,
+        "ilvl": 34,
+        "spawnLvl": 34,
+        "tierName": "of Enveloping",
+        "id": "ManaGainedFromEnemyDeath4"
+      },
+      {
+        "tier": 4,
+        "weight": 750,
+        "ilvl": 23,
+        "spawnLvl": 23,
+        "tierName": "of Infusion",
+        "id": "ManaGainedFromEnemyDeath3"
+      },
+      {
+        "tier": 5,
+        "weight": 750,
+        "ilvl": 12,
+        "spawnLvl": 12,
+        "tierName": "of Osmosis",
+        "id": "ManaGainedFromEnemyDeath2"
+      },
+      {
+        "tier": 6,
+        "weight": 750,
+        "ilvl": 1,
+        "spawnLvl": 1,
+        "tierName": "of Absorption",
+        "id": "ManaGainedFromEnemyDeath1"
+      }
+    ]
+  }
+]

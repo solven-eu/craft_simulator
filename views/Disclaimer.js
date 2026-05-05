@@ -41,25 +41,34 @@ const POE2_DISCLAIMER = {
     },
     {
       what: 'Desecration consumable prices',
-      source: `<a href="https://poe.ninja/poe2/economy/vaal/abyssal-bones" target="_blank" rel="noopener">poe.ninja — Abyssal Bones</a>.
-        Manual screenshot (CF-blocked) → <code>data/poe2/desecrated_prices.csv</code>.`,
-      license: 'poe.ninja terms; live rates fluctuate.',
+      source: `<a href="https://poe2db.tw/Economy_Abyssal_Bones" target="_blank" rel="noopener">poe2db.tw — Economy: Abyssal Bones</a>.
+        Snapshot via <code>scripts/update-poe2-rates.sh</code> into
+        <code>data/poe2/rates.csv</code> (older entries in
+        <code>data/poe2/desecrated_prices.csv</code> retained as a
+        historical seed).`,
+      license: 'CC BY-NC-SA 3.0',
     },
     {
       what: 'Omen catalog',
-      source: `<a href="https://mobalytics.gg/poe-2/guides/omen-crafting" target="_blank" rel="noopener">Mobalytics — Omen Crafting</a>.
+      source: `<a href="https://poe2db.tw/Omen" target="_blank" rel="noopener">poe2db.tw — Omen</a>.
         Cached as <code>data/poe2/omens.csv</code>.`,
-      license: "Used per Mobalytics' terms of use; no commercial reuse.",
+      license: 'CC BY-NC-SA 3.0',
     },
     {
       what: 'Currency / orb / essence prices',
-      source: `<a href="https://poe.ninja/poe2/economy/vaal/currency" target="_blank" rel="noopener">poe.ninja PoE2 economy</a>.
-        Manual screenshots; rates are user-editable in the app.`,
-      license: 'poe.ninja terms; live rates fluctuate, treat seeded values as snapshots.',
+      source: `<a href="https://poe2db.tw/Economy_Currency" target="_blank" rel="noopener">poe2db.tw — Economy tables</a>.
+        Snapshot via <code>scripts/update-poe2-rates.sh</code> into
+        <code>data/poe2/rates.csv</code>; rates are user-editable in the app.`,
+      license: 'CC BY-NC-SA 3.0; live rates fluctuate, treat seeded values as snapshots.',
     },
     {
       what: 'Crafting strategies (fracture-anchor, etc.)',
-      source: `<a href="https://www.reddit.com/r/PathOfExile2/comments/1kbdnzv/beginner_crafting_guide_for_path_of_exile_2/" target="_blank" rel="noopener">r/PathOfExile2 community guide</a>.`,
+      source: `Community guides on <a href="https://www.reddit.com/r/PathOfExile2/" target="_blank" rel="noopener">r/PathOfExile2</a>
+        and the old-Reddit mirror at
+        <a href="https://old.reddit.com/r/PathOfExile2/" target="_blank" rel="noopener">old.reddit.com/r/PathOfExile2</a>
+        (the old subdomain serves plain HTML, which is cURL-friendly for
+        offline analysis). Specific articles cited in commit messages and
+        engine comments as they're consulted.`,
       license: 'Inspirational; engine analytics derived independently.',
     },
   ],
@@ -123,20 +132,45 @@ export default {
 
         <h3>Licensing</h3>
         <p>
-          Some redistributed data (essence catalog, mod tags from poe2db) is
-          licensed under <strong>CC BY-NC-SA 3.0</strong>; the share-alike
-          clause requires derivatives that incorporate this data to use the
-          same license. Therefore the <strong>data assets in
-          <code>data/{{ game }}/</code></strong> are redistributed under
-          <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" rel="noopener">
-          Creative Commons Attribution-NonCommercial-ShareAlike 3.0</a>.
+          The <strong>entire project — code AND data</strong> — is
+          licensed under
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">
+          Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+          International (CC BY-NC-SA 4.0)</a>. Full license text in
+          the repository's <code>LICENSE</code> file.
         </p>
         <p>
-          The <strong>application source code</strong> (Vue components, the
-          analytical engine, scripts) is original work and may be relicensed
-          by the project author under any compatible terms; a permissive code
-          license such as MIT or Apache-2.0 alongside CC BY-NC-SA 3.0 data is
-          a typical choice. (Project author to confirm.)
+          Single-license-for-everything was chosen because:
+          (i) some redistributed game data (poe2db tables, essence
+          catalog, mod tags) is upstream-licensed under
+          <strong>CC BY-NC-SA 3.0</strong>; the share-alike clause
+          requires derivatives that incorporate this data to use the
+          same license. CC BY-NC-SA 4.0 is one-way upgrade-compatible
+          with 3.0 and satisfies the inheritance.
+          (ii) keeping a single license across code and data avoids
+          the maintenance overhead of dual-licensing for a fan tool
+          where the data and the analysis engine are tightly coupled.
+        </p>
+        <p>
+          What this means for users:
+          <ul>
+            <li><strong>You can</strong> share, fork, modify, redistribute
+                the entire project (code + data) provided you keep
+                the same license and credit the project.</li>
+            <li><strong>You cannot</strong> use this tool, its code,
+                or its data for primarily commercial purposes — no
+                paywall, no embedding in a paid service, no commercial
+                resale of derivative datasets.</li>
+            <li><strong>Derivatives must remain CC BY-NC-SA 4.0.</strong></li>
+          </ul>
+        </p>
+        <p>
+          For software-licensing tooling (Snyk, FOSSA, npm dependency
+          audits) that may not natively handle CC licenses on code:
+          GitHub's license-detection picks up the root <code>LICENSE</code>
+          file and tags the repo correctly; per-file SPDX headers were
+          intentionally omitted to keep source files clean (the tool is
+          a self-contained application, not a library to be vendored).
         </p>
         <p><strong>Use of this tool is non-commercial.</strong></p>
 

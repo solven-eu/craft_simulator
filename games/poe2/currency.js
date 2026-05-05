@@ -1,16 +1,18 @@
 // PoE2 currency catalog and conversion rates.
 //
 // Conversion rates fluctuate with the game economy and must be refreshed
-// periodically. Source: https://poe.ninja/poe2/economy/vaal/currency
-// (Cloudflare-protected — read off screenshots the user provides).
+// periodically. Source: https://poe2db.tw/Economy_Currency
+// (server-rendered tables, scraped via scripts/update-poe2-rates.sh; the
+// output lands in data/poe2/rates.csv and is hot-loaded at runtime).
 //
 // Internal model: every currency declares its rate in **Exalted Orbs**
 // (the universal small-denomination unit). All cost arithmetic happens in
 // exalted; conversion to Divine for display is `cost / divinePerExalted`.
 //
-// Defaults below are seeded from a poe.ninja snapshot (Vaal league, dated
-// 2026-04-29). Users override at runtime; overrides are persisted in
-// localStorage by the store.
+// Defaults below are seeded from a Vaal-league snapshot (2026-04-29) so the
+// catalog renders before rates.csv resolves; the loader overwrites them
+// when the live snapshot is present. Users can override at runtime; their
+// overrides are persisted in localStorage by the store.
 
 /**
  * @typedef {Object} Currency
@@ -20,8 +22,8 @@
  * @property {number} exaltedPer       Value of 1 unit in Exalted Orbs.
  * @property {boolean} [reference]     True for the two reference currencies.
  * @property {'orb'|'catalyst'|'essence'|'jeweller'|'desecrated'|'omen'|'other'} [kind]
- *           Categorisation matching poe.ninja's UI grouping. Drives the
- *           rates-panel section the entry appears in.
+ *           Categorisation matching the poe2db Economy_* table grouping.
+ *           Drives the rates-panel section the entry appears in.
  * @property {string[]} [appliesToItemClasses]
  *           If set, restricts UI visibility to items of these classes (e.g.
  *           Abyssal Bones for Armour only show on Armour bases).
@@ -87,30 +89,35 @@ export const currencies = {
   preservedRib:        { id: 'preservedRib',        name: 'Preserved Rib',        short: 'prib',  exaltedPer: 0.357,  kind: 'desecrated', appliesToItemClasses: ['Body Armour', 'Boots', 'Gloves', 'Helmet'] },
   gnawedRib:           { id: 'gnawedRib',           name: 'Gnawed Rib',           short: 'grib',  exaltedPer: 1.5,    kind: 'desecrated', appliesToItemClasses: ['Body Armour', 'Boots', 'Gloves', 'Helmet'], maxIlvl: 64 },
   preservedCranium:    { id: 'preservedCranium',    name: 'Preserved Cranium',    short: 'pcra',  exaltedPer: 3.6,    kind: 'desecrated', appliesToItemClasses: ['Jewel'] },
-  // (Gazes / Invitation are higher-tier desecration products with their own
-  //  effects — included for price tracking but not yet wired as actions.)
-  tecrodsGaze:         { id: 'tecrodsGaze',         name: "Tecrod's Gaze",        short: 'tgaze', exaltedPer: 146,    kind: 'desecrated' },
-  kurgalsGaze:         { id: 'kurgalsGaze',         name: "Kurgal's Gaze",        short: 'kgaze', exaltedPer: 3.5,    kind: 'desecrated' },
-  amanamusGaze:        { id: 'amanamusGaze',        name: "Amanamu's Gaze",       short: 'agaze', exaltedPer: 2.6,    kind: 'desecrated' },
-  ulamansGaze:         { id: 'ulamansGaze',         name: "Ulaman's Gaze",        short: 'ugaze', exaltedPer: 2.0,    kind: 'desecrated' },
+  // Gazes are *socket runes*, not crafting consumables — they fill a
+  // socket on the finished item but do not modify affixes. Tagging
+  // `kind: 'rune'` (not in CURRENCY_KINDS) keeps them out of the
+  // crafting rates panel, mirroring how Jeweller's Orbs are muted.
+  // Kulemak's Invitation, by contrast, is a real desecration consumable
+  // (boss-mod target) and stays under `kind: 'desecrated'`.
+  tecrodsGaze:         { id: 'tecrodsGaze',         name: "Tecrod's Gaze",        short: 'tgaze', exaltedPer: 146,    kind: 'rune' },
+  kurgalsGaze:         { id: 'kurgalsGaze',         name: "Kurgal's Gaze",        short: 'kgaze', exaltedPer: 3.5,    kind: 'rune' },
+  amanamusGaze:        { id: 'amanamusGaze',        name: "Amanamu's Gaze",       short: 'agaze', exaltedPer: 2.6,    kind: 'rune' },
+  ulamansGaze:         { id: 'ulamansGaze',         name: "Ulaman's Gaze",        short: 'ugaze', exaltedPer: 2.0,    kind: 'rune' },
   kulemaksInvitation:  { id: 'kulemaksInvitation',  name: "Kulemak's Invitation", short: 'kulinv',exaltedPer: 5.8,    kind: 'desecrated' },
 };
 
 /**
- * Display order and labels for the rates-panel sections. Mirrors poe.ninja's
- * categorisation so users see a familiar grouping.
+ * Display order and labels for the rates-panel sections. Mirrors the
+ * categorisation used by poe2db's Economy_* tables so users see a familiar
+ * grouping.
  */
 // Note: `jeweller` (Jeweller's Orbs / Artificer) is intentionally omitted —
 // those orbs manage sockets/links, not mods, so they're irrelevant to the
 // crafting cost analytics this tool produces. Currencies of `kind: 'jeweller'`
 // remain in the catalog but no section renders them in the rates panel.
 export const CURRENCY_KINDS = [
-  { id: 'orb',        label: 'Orbs (rarity & mod)', appliesAlways: true },
-  { id: 'catalyst',   label: 'Catalysts',            appliesAlways: false },
-  { id: 'essence',    label: 'Essences',             appliesAlways: false },
-  { id: 'desecrated', label: 'Desecration (Bones / Skulls / Gazes)', appliesAlways: false },
-  { id: 'omen',       label: 'Omens',                appliesAlways: false },
-  { id: 'other',      label: 'Other',                appliesAlways: true },
+  { id: 'orb',        label: 'Orbs (rarity & mod)', appliesAlways: true,  poedbEconomy: 'Currency' },
+  { id: 'catalyst',   label: 'Catalysts',            appliesAlways: false, poedbEconomy: 'Catalyst' },
+  { id: 'essence',    label: 'Essences',             appliesAlways: false, poedbEconomy: 'Essences' },
+  { id: 'desecrated', label: 'Desecration (Bones / Skulls / Gazes)', appliesAlways: false, poedbEconomy: 'Soul_Cores' },
+  { id: 'omen',       label: 'Omens',                appliesAlways: false, poedbEconomy: 'Omen' },
+  { id: 'other',      label: 'Other',                appliesAlways: true,  poedbEconomy: null },
 ];
 
 /**
@@ -124,10 +131,10 @@ export function convert(amount, fromId, toId, table = currencies) {
   return (amount * f.exaltedPer) / t.exaltedPer;
 }
 
-/** Snapshot metadata for "rates last refreshed from poe.ninja on …". */
+/** Snapshot metadata for "rates last refreshed from poe2db on …". */
 export const ratesSeed = {
-  source: 'https://poe.ninja/poe2/economy/vaal/currency',
+  source: 'https://poe2db.tw/Economy_Currency',
   league: 'Vaal',
   capturedAt: '2026-04-29',
-  note: 'Seeded from user-provided screenshot; overridden at runtime.',
+  note: 'Seed values; the loader overwrites these from data/poe2/rates.csv when it resolves.',
 };

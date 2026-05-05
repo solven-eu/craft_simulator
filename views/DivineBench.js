@@ -6,7 +6,7 @@
 // a divine count budget N. Engine math lives in `engine/divine.js`;
 // this view is purely the editor + summary table.
 
-import { reactive, computed, ref } from 'vue';
+import { reactive, computed, ref, onMounted } from 'vue';
 import { useCraftStore } from '../stores/craft.js';
 import {
   discretize, summarize,
@@ -15,13 +15,12 @@ import {
 export default {
   setup() {
     const craft = useCraftStore();
-    // Local state (not persisted to URL hash for now — keeps the
-    // view self-contained while we iterate). Pre-populated with one
-    // example row so the panel isn't empty on first open.
     const mods = reactive([
       { name: '+ to maximum Life', vmin: 30, vmax: 50, target: 45 },
     ]);
     const N = ref(10);
+    const pasteText = ref('');
+    const pasteStatus = ref(null);
     const divinePriceEx = computed(() =>
       craft.effectiveCurrencies?.divine?.exaltedPer ?? 187);
 
@@ -32,6 +31,64 @@ export default {
       mods.push({ name: '', vmin: 0, vmax: 100, target: 80 });
     };
     const removeMod = (i) => mods.splice(i, 1);
+    const clearMods = () => { mods.splice(0, mods.length); };
+
+    /**
+     * Apply a parsed concrete-item to the Divine Bench mods table.
+     * Each affix with a vmin/vmax becomes a row with target = current
+     * value. Affixes lacking a value range are silently skipped (no
+     * useful divine math without bounds).
+     */
+    const applyConcreteItem = (item) => {
+      const usable = (item.affixes ?? []).filter((a) =>
+        Number.isFinite(a.vmin) && Number.isFinite(a.vmax));
+      if (!usable.length) {
+        pasteStatus.value = { kind: 'err',
+          message: 'No affixes with [vmin..vmax] ranges — nothing to load.' };
+        return false;
+      }
+      mods.splice(0, mods.length); // replace existing rows
+      for (const a of usable) {
+        mods.push({
+          name: a.name,
+          vmin: a.vmin,
+          vmax: a.vmax,
+          // Default target to the current rolled value — user can
+          // edit upward to ask "P(roll improves)?".
+          target: Number.isFinite(a.value) ? a.value : a.vmin,
+        });
+      }
+      const dropped = (item.affixes?.length ?? 0) - usable.length;
+      pasteStatus.value = { kind: 'ok',
+        message: `Imported ${usable.length} affix(es)`
+          + (dropped > 0 ? ` (${dropped} skipped — no value range)` : '') + '.' };
+      return true;
+    };
+    const pasteImport = async () => {
+      try {
+        const { parseConcreteItem } = await import('../engine/concrete-item-syntax.js');
+        const r = parseConcreteItem(pasteText.value);
+        if (!r.ok) {
+          pasteStatus.value = { kind: 'err',
+            message: `Parse errors: ${r.errors.join('; ')}` };
+          return;
+        }
+        applyConcreteItem(r.item);
+      } catch (e) {
+        pasteStatus.value = { kind: 'err', message: `Import failed: ${e?.message ?? e}` };
+      }
+    };
+
+    // Pick up a staged item from the Plan view's "→ Divine Bench"
+    // button. One-shot: consume `pendingDivineBenchItem` then clear
+    // it so navigating back-and-forth doesn't re-apply.
+    onMounted(async () => {
+      const staged = craft.pendingDivineBenchItem;
+      if (!staged) return;
+      pasteText.value = staged;
+      craft.pendingDivineBenchItem = null;
+      await pasteImport();
+    });
 
     const fmt = {
       pct(p) { return Number.isFinite(p) ? `${(p * 100).toFixed(2)}%` : '—'; },
@@ -45,7 +102,8 @@ export default {
       return `${b[0]}, ${b[1]}, …, ${b[b.length - 1]}  (${b.length} buckets)`;
     };
 
-    return { mods, N, summary, addMod, removeMod, fmt, bucketsPreview };
+    return { mods, N, summary, addMod, removeMod, clearMods, fmt, bucketsPreview,
+             pasteText, pasteStatus, pasteImport };
   },
 
   template: `
@@ -66,6 +124,25 @@ export default {
         Otherwise the range splits into 10 evenly-spaced buckets.
         Uniform density across buckets.
       </p>
+
+      <details class="recipe-panel">
+        <summary>📝 Paste a concrete item (DSL)</summary>
+        <p class="hint">
+          Paste a concrete-item DSL block (output of the Plan view's
+          "→ Divine Bench" button, or hand-typed). Each affix line
+          carrying <code>[vmin..vmax]</code> becomes one row in the
+          mods table below; the target defaults to the rolled value
+          (edit upward to ask "P(divine improves this)?").
+        </p>
+        <div class="recipe-toolbar">
+          <button class="link" :disabled="!pasteText.trim()" @click="pasteImport">Import pasted item</button>
+          <span v-if="pasteStatus" class="hint" :style="pasteStatus.kind === 'err' ? 'color:#d96' : 'color:#5d9'">
+            {{ pasteStatus.message }}
+          </span>
+        </div>
+        <textarea v-model="pasteText" rows="10" class="recipe-textarea"
+          placeholder="# Concrete item (sampled trajectory output)&#10;type: Bow&#10;rarity: rare&#10;S T1 =9 [8..12] &quot;#% Surpassing chance to fire an additional Arrow&quot; frac&#10;P T2 =180 [170..200] &quot;# increased Physical Damage&quot;"></textarea>
+      </details>
 
       <div class="divine-bench">
         <table class="divine-mods">

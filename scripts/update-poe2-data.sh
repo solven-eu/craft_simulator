@@ -5,7 +5,15 @@
 #   data/raw/krakenbul_weights.xlsx     full workbook (archive)
 #   data/raw/krakenbul_<tab>.csv        per-tab CSV (one per visible tab)
 #   data/poe2/mods.json                 merged per-(base, mod) records,
-#                                       runtime-friendly shape
+#                                       runtime-friendly shape (legacy
+#                                       consolidated view kept for callers
+#                                       that need a global mod list)
+#   data/poe2/by-base/<slug>.mods.json  same records, partitioned by base —
+#                                       runtime should prefer these for
+#                                       per-craft loads
+#   data/poe2/by-base/index.json        manifest { base: slug } so the
+#                                       runtime can resolve a base name to
+#                                       a filename without directory scans
 #
 # Usage:  scripts/update-poe2-data.sh [SHEET_ID]
 # Default SHEET_ID is Krakenbul's "WEIGHTS + ILVLS 0.4".
@@ -121,7 +129,42 @@ with out_path.open("w", encoding="utf-8") as f:
     json.dump(out, f, ensure_ascii=False, indent=2)
 
 print(f"  wrote {len(out)} mod records, "
-      f"{sum(len(r['tiers']) for r in out)} tiers total")
+      f"{sum(len(r['tiers']) for r in out)} tiers total -> {out_path.name}")
+
+# --- Per-base partition --------------------------------------------------
+# Filename slug matches the convention shared with update-poe2-tags.sh so
+# both scripts produce consistent <slug>.*.json files.
+def slugify(base):
+    head, _, paren = base.partition("(")
+    name = head.strip().lower().replace(" ", "_")
+    spec = paren.rstrip(")").strip().lower().replace("/", "").replace(" ", "") if paren else ""
+    return name + ("_" + spec if spec else "")
+
+by_base_dir = out_path.parent / "by-base"
+by_base_dir.mkdir(parents=True, exist_ok=True)
+
+per_base = {}
+for rec in out:
+    per_base.setdefault(rec["base"], []).append(rec)
+
+manifest = {}
+for base, recs in per_base.items():
+    slug = slugify(base)
+    if slug in manifest.values():
+        # collision guard — should not happen with current bases but loud-fail
+        # so we notice if the sheet adds something unexpected.
+        raise SystemExit(f"slug collision on '{slug}' for base '{base}'")
+    manifest[base] = slug
+    with (by_base_dir / f"{slug}.mods.json").open("w", encoding="utf-8") as f:
+        json.dump(recs, f, ensure_ascii=False, indent=2)
+
+# Manifest is the source of truth for "which bases exist". Other build
+# scripts (update-poe2-tags.sh) read it back to align their per-base
+# emissions with the same slugs.
+manifest_path = by_base_dir / "index.json"
+with manifest_path.open("w", encoding="utf-8") as f:
+    json.dump(dict(sorted(manifest.items())), f, ensure_ascii=False, indent=2)
+print(f"  wrote {len(manifest)} per-base files -> {by_base_dir.name}/")
 PY
 
 echo "Done."

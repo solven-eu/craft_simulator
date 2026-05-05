@@ -1,0 +1,252 @@
+{
+  "desecrated": [
+    {
+      "text": "Projectiles deal #% increased Damage with Hits against Enemies within #m",
+      "tags": [
+        "amanamu_mod",
+        "damage"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "Projectiles deal (20—30)% increased Damage with Hits against Enemies within 2m"
+    },
+    {
+      "text": "Projectiles deal #% increased Damage with Hits against Enemies further than #m",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "Projectiles deal (20—30)% increased Damage with Hits against Enemies further than 6m"
+    },
+    {
+      "text": "Projectiles have #% increased Critical Damage Bonus against Enemies within #m",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "Projectiles have (18—26)% increased Critical Damage Bonus against Enemies within 2m"
+    },
+    {
+      "text": "#% increased Mana Cost Efficiency",
+      "tags": [
+        "kurgal_mod",
+        "mana"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(6—10)% increased Mana Cost Efficiency"
+    },
+    {
+      "text": "Projectiles have #% increased Critical Hit Chance against Enemies further than #m",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "Projectiles have (18—26)% increased Critical Hit Chance against Enemies further than 6m"
+    },
+    {
+      "text": "#% of Skill Mana Costs Converted to Life Costs",
+      "tags": [
+        "life",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "(10—14)% of Skill Mana Costs Converted to Life Costs"
+    },
+    {
+      "text": "Projectile Attacks have a #% chance to fire two additional Projectiles while moving",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "Projectile Attacks have a (8—12)% chance to fire two additional Projectiles while moving"
+    },
+    {
+      "text": "Increases and Reductions to Projectile Speed also apply to Damage with Bows",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "Increases and Reductions to Projectile Speed also apply to Damage with Bows"
+    }
+  ],
+  "essence": [
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Accuracy Rating",
+      "tags": [
+        "attack"
+      ],
+      "tier_name": "Greater Essence of Battle",
+      "display": "+(237—346) to Accuracy Rating"
+    },
+    {
+      "text": "+# to Accuracy Rating",
+      "tags": [
+        "attack"
+      ],
+      "tier_name": "Greater Essence of Battle",
+      "display": "+(237—346) to Accuracy Rating"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "#% increased Damage with Bow Skills",
+      "tags": [
+        "damage"
+      ],
+      "tier_name": "Essence of Hysteria",
+      "display": "(43—50)% increased Damage with Bow Skills"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    }
+  ],
+  "corrupted": [
+    {
+      "text": "+# to maximum Mana",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "CorruptionIncreasedMana1",
+      "display": "+(20—25) to maximum Mana"
+    },
+    {
+      "text": "+# to Accuracy Rating",
+      "tags": [
+        "attack"
+      ],
+      "tier_name": "CorruptionIncreasedAccuracy1",
+      "display": "+(50—100) to Accuracy Rating"
+    },
+    {
+      "text": "#% increased Damage",
+      "tags": [
+        "damage"
+      ],
+      "tier_name": "CorruptionAllDamage1",
+      "display": "(20—30)% increased Damage"
+    },
+    {
+      "text": "#% increased Skill Speed",
+      "tags": [
+        "speed"
+      ],
+      "tier_name": "CorruptionIncreasedSkillSpeed1",
+      "display": "(4—6)% increased Skill Speed"
+    },
+    {
+      "text": "#% increased Critical Damage Bonus",
+      "tags": [
+        "critical",
+        "damage"
+      ],
+      "tier_name": "CorruptionCriticalStrikeMultiplier1",
+      "display": "(15—20)% increased Critical Damage Bonus"
+    },
+    {
+      "text": "Gain # Life per enemy killed",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "CorruptionLifeGainedFromEnemyDeath1",
+      "display": "Gain (20—25) Life per enemy killed"
+    },
+    {
+      "text": "Gain # Mana per enemy killed",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "CorruptionManaGainedFromEnemyDeath1",
+      "display": "Gain (10—15) Mana per enemy killed"
+    },
+    {
+      "text": "#% chance to Pierce an Enemy",
+      "tags": [],
+      "tier_name": "CorruptionChanceToPierce1",
+      "display": "(20—30)% chance to Pierce an Enemy"
+    },
+    {
+      "text": "Projectiles have #% chance to Chain an additional time from terrain",
+      "tags": [],
+      "tier_name": "CorruptionChainFromTerrain1",
+      "display": "Projectiles have (10—20)% chance to Chain an additional time from terrain"
+    }
+  ]
+}

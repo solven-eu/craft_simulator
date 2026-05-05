@@ -1,0 +1,55 @@
+{
+  "#% increased Damage with Bow Skills": [
+    "damage"
+  ],
+  "#% increased Projectile Speed": [
+    "speed"
+  ],
+  "# to Accuracy Rating": [
+    "attack"
+  ],
+  "Adds # to # Cold damage to Attacks": [
+    "attack",
+    "cold",
+    "damage",
+    "elemental"
+  ],
+  "Adds # to # Fire damage to Attacks": [
+    "attack",
+    "damage",
+    "elemental",
+    "fire"
+  ],
+  "Adds # to # Lightning damage to Attacks": [
+    "attack",
+    "damage",
+    "elemental",
+    "lightning"
+  ],
+  "Adds # to # Physical Damage to Attacks": [
+    "attack",
+    "damage",
+    "physical"
+  ],
+  "#% increased Attack Speed": [
+    "attack",
+    "speed"
+  ],
+  "#% increased Critical Damage Bonus for Attack Damage": [
+    "attack",
+    "critical"
+  ],
+  "#% increased Critical Hit Chance for Attacks": [
+    "attack",
+    "critical"
+  ],
+  "# to Dexterity": [
+    "attribute"
+  ],
+  "Gain # Life per Enemy Killed": [
+    "life"
+  ],
+  "Gain # Mana per Enemy Killed": [
+    "mana"
+  ]
+}

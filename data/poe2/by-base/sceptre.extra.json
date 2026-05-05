@@ -1,0 +1,161 @@
+{
+  "essence": [
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "Allies in your Presence deal #% increased Damage",
+      "tags": [
+        "damage"
+      ],
+      "tier_name": "Lesser Essence of Command",
+      "display": "Allies in your Presence deal (35—44)% increased Damage"
+    },
+    {
+      "text": "Allies in your Presence deal #% increased Damage",
+      "tags": [
+        "damage"
+      ],
+      "tier_name": "Essence of Command",
+      "display": "Allies in your Presence deal (55—64)% increased Damage"
+    },
+    {
+      "text": "Allies in your Presence deal #% increased Damage",
+      "tags": [
+        "damage"
+      ],
+      "tier_name": "Greater Essence of Command",
+      "display": "Allies in your Presence deal (75—89)% increased Damage"
+    }
+  ],
+  "corrupted": [
+    {
+      "text": "#% reduced Attribute Requirements",
+      "tags": [],
+      "tier_name": "CorruptionReducedLocalAttributeRequirements1",
+      "display": "(10—20)% reduced Attribute Requirements"
+    },
+    {
+      "text": "#% increased Spirit",
+      "tags": [],
+      "tier_name": "CorruptionLocalIncreasedSpiritPercent1",
+      "display": "(15—25)% increased Spirit"
+    },
+    {
+      "text": "Allies in your Presence deal #% increased Damage",
+      "tags": [
+        "damage"
+      ],
+      "tier_name": "CorruptionAlliesInPresenceAllDamage1",
+      "display": "Allies in your Presence deal (20—30)% increased Damage"
+    },
+    {
+      "text": "Allies in your Presence have #% increased Attack Speed",
+      "tags": [
+        "attack",
+        "speed"
+      ],
+      "tier_name": "CorruptionAlliesInPresenceIncreasedAttackSpeed1",
+      "display": "Allies in your Presence have (5—10)% increased Attack Speed"
+    },
+    {
+      "text": "Allies in your Presence have #% increased Cast Speed",
+      "tags": [
+        "caster",
+        "speed"
+      ],
+      "tier_name": "CorruptionAlliesInPresenceIncreasedCastSpeed1",
+      "display": "Allies in your Presence have (5—10)% increased Cast Speed"
+    },
+    {
+      "text": "Allies in your Presence have #% increased Critical Damage Bonus",
+      "tags": [
+        "critical",
+        "damage"
+      ],
+      "tier_name": "CorruptionAlliesInPresenceCriticalStrikeMultiplier1",
+      "display": "Allies in your Presence have (10—15)% increased Critical Damage Bonus"
+    }
+  ]
+}

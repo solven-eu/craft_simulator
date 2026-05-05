@@ -1,0 +1,62 @@
+name: Deploy to GitHub Pages
+
+# Triggers: every push to master, and manual re-runs from the Actions tab.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# Permissions required by actions/deploy-pages — read the repo, write
+# the Pages site artefact, and use the OIDC token Pages uses for the
+# deploy step.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Single in-flight deploy; if a new push lands while a deploy is
+# running, queue the new one and let the running one finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        # `npm install` rather than `ci` — repo doesn't ship a
+        # package-lock.json (pure-frontend with importmap; tests
+        # are the only thing using node_modules).
+        run: npm install
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    name: Build & deploy
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Deploy the whole repo as-is. The site is index.html +
+          # ES modules under their existing paths; no build step
+          # required. Excluded paths come from the action's default
+          # ignore list (.git, node_modules) plus the .gitignore.
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,123 @@
+{
+  "#% increased Chaos Damage": [
+    "chaos",
+    "damage"
+  ],
+  "#% increased Cold Damage": [
+    "cold",
+    "damage",
+    "elemental"
+  ],
+  "#% increased Fire Damage": [
+    "damage",
+    "elemental",
+    "fire"
+  ],
+  "#% increased Lightning Damage": [
+    "damage",
+    "elemental",
+    "lightning"
+  ],
+  "# to Accuracy Rating": [
+    "attack"
+  ],
+  "# to Evasion Rating": [
+    "defences"
+  ],
+  "# to maximum Life": [
+    "life"
+  ],
+  "# to maximum Mana": [
+    "mana"
+  ],
+  "Adds # to # Cold damage to Attacks": [
+    "attack",
+    "cold",
+    "damage",
+    "elemental"
+  ],
+  "Adds # to # Fire damage to Attacks": [
+    "attack",
+    "damage",
+    "elemental",
+    "fire"
+  ],
+  "Adds # to # Lightning damage to Attacks": [
+    "attack",
+    "damage",
+    "elemental",
+    "lightning"
+  ],
+  "Adds # to # Physical Damage to Attacks": [
+    "attack",
+    "damage",
+    "physical"
+  ],
+  "# Life Regeneration per second": [
+    "life"
+  ],
+  "#% increased Cast Speed": [
+    "caster",
+    "speed"
+  ],
+  "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+    "mana"
+  ],
+  "#% increased Mana Regeneration Rate": [
+    "mana"
+  ],
+  "# to all Attributes": [
+    "attribute"
+  ],
+  "# to Dexterity": [
+    "attribute"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "# to Strength": [
+    "attribute"
+  ],
+  "#% to all Elemental Resistances": [
+    "cold",
+    "elemental",
+    "fire",
+    "lightning",
+    "resistance"
+  ],
+  "#% to Chaos Resistance": [
+    "chaos",
+    "resistance"
+  ],
+  "#% to Cold Resistance": [
+    "cold",
+    "elemental",
+    "resistance"
+  ],
+  "#% to Fire Resistance": [
+    "elemental",
+    "fire",
+    "resistance"
+  ],
+  "#% to Lightning Resistance": [
+    "elemental",
+    "lightning",
+    "resistance"
+  ],
+  "Gain # Life per Enemy Killed": [
+    "life"
+  ],
+  "Gain # Mana per Enemy Killed": [
+    "mana"
+  ],
+  "Leech #% of Physical Attack Damage as Life": [
+    "attack",
+    "life",
+    "physical"
+  ],
+  "Leech #% of Physical Attack Damage as Mana": [
+    "attack",
+    "mana",
+    "physical"
+  ]
+}

@@ -1344,6 +1344,42 @@ button.link:hover { opacity: 1; }
   padding-top: 1rem;
   border-top: 1px solid rgba(128, 128, 128, 0.2);
 }
+/* Inline mod-row chips: 🟢 essence-targetable, 💀 desecrated-rollable.
+   Sit inline next to the mod name in the prefix/suffix tables. */
+.essence-chip, .desecrated-chip {
+  display: inline-block;
+  margin-left: 0.3rem;
+  font-size: 0.85rem;
+  cursor: help;
+  opacity: 0.85;
+}
+.essence-chip:hover, .desecrated-chip:hover { opacity: 1; }
+
+/* Stacked simulator scenarios in the MDP panel. */
+.mdp-scenarios {
+  margin-top: 0.8rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+}
+.mdp-scenarios > h5 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+}
+.scenario-card {
+  margin: 0.3rem 0;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  border-radius: 3px;
+}
+.scenario-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
 .divine-bench {
   margin-top: 0.8rem;
 }
@@ -1730,6 +1766,29 @@ button.link:hover { opacity: 1; }
   margin: 0 0.25rem;
 }
 
+/* Rates snapshot badge — surfaces (region, league, age) with a coloured
+   dot whose colour reflects staleness. Tooltip carries the raw values. */
+.rates-snapshot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+  cursor: help;
+  white-space: nowrap;
+}
+.rates-snapshot .rates-dot { font-size: 0.7em; line-height: 1; }
+.rates-fresh   { background: #1d3a1d; color: #c8e6c9; }
+.rates-fresh   .rates-dot { color: #4caf50; }
+.rates-aging   { background: #3a2f1d; color: #ffe0b2; }
+.rates-aging   .rates-dot { color: #ff9800; }
+.rates-stale   { background: #3a1d1d; color: #ffcdd2; }
+.rates-stale   .rates-dot { color: #f44336; }
+.rates-unknown { background: #2a2a2a; color: #aaa; }
+.rates-unknown .rates-dot { color: #888; }
+
 .rates-table {
   width: 100%;
   border-collapse: collapse;
@@ -1765,6 +1824,51 @@ button.link:hover { opacity: 1; }
   flex-shrink: 0;
   image-rendering: -webkit-optimize-contrast;
 }
+
+.ext-link {
+  font-size: 0.78em;
+  padding: 0 0.35em;
+  margin-left: 0.35em;
+  border-radius: 3px;
+  border: 1px solid rgba(150, 170, 200, 0.25);
+  color: #88aac8;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ext-link:hover { color: #cfe0f3; border-color: rgba(150, 170, 200, 0.55); }
+.ext-link.mini { font-size: 0.72em; padding: 0 0.3em; }
+
+.side-badge {
+  display: inline-block;
+  min-width: 1.1em;
+  padding: 0 0.3em;
+  border-radius: 3px;
+  font-size: 0.78em;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+}
+.side-badge.prefix { background: rgba(120, 160, 220, 0.18); color: #aac6f0; }
+.side-badge.suffix { background: rgba(220, 170, 110, 0.18); color: #f0c89a; }
+
+.extra-pool-table { width: 100%; border-collapse: collapse; }
+.extra-pool-table th { text-align: left; font-weight: 500; opacity: 0.6; padding: 0.25rem 0.4rem; }
+.extra-pool-table td { vertical-align: top; padding: 0.3rem 0.4rem; border-top: 1px solid rgba(150, 170, 200, 0.08); }
+.extra-pool-table tr.side-unknown td { opacity: 0.65; }
+
+.extra-pool-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.extra-pool-cols .pool-column h3 { display: flex; align-items: baseline; gap: 0.4em; }
+.extra-pool-cols .pool-column h3 small { opacity: 0.6; font-weight: 400; }
+.extra-pool-unknown { margin-top: 0.5rem; opacity: 0.85; }
+
+.disclosure { display: inline-block; width: 0.9em; opacity: 0.65; margin-right: 0.15em; }
+
+.essence-tier-detail td { background: rgba(150, 170, 200, 0.04); border-top: 0; }
+.essence-tier-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+.essence-tier-cell { padding: 0.25rem 0.5rem; border-left: 2px solid rgba(150, 170, 200, 0.18); }
+.essence-tier-cell.empty { opacity: 0.45; }
+.essence-tier-cell .tier-label { font-weight: 600; }
+.essence-tier-cell .tier-range { margin-top: 0.15rem; }
 
 .rates-table tr.overridden {
   background: rgba(80, 200, 120, 0.08);

@@ -1,0 +1,577 @@
+{
+  "desecrated": [
+    {
+      "text": "Remnants have #% increased effect",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "Remnants have (8—15)% increased effect"
+    },
+    {
+      "text": "#% increased Magnitude of Ignite if you've consumed an Endurance Charge Recently",
+      "tags": [
+        "ailment",
+        "amanamu_mod"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "(20—30)% increased Magnitude of Ignite if you've consumed an Endurance Charge Recently"
+    },
+    {
+      "text": "Minions deal #% increased Damage if you've Hit Recently",
+      "tags": [
+        "amanamu_mod",
+        "damage",
+        "minion"
+      ],
+      "tier_name": "Amanamu's",
+      "display": "Minions deal (15—25)% increased Damage if you've Hit Recently"
+    },
+    {
+      "text": "#% increased Freeze Buildup if you've consumed an Power Charge Recently",
+      "tags": [
+        "ailment",
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "(20—30)% increased Freeze Buildup if you've consumed an Power Charge Recently"
+    },
+    {
+      "text": "#% increased Spell Damage while on Full Energy Shield",
+      "tags": [
+        "caster",
+        "damage",
+        "kurgal_mod"
+      ],
+      "tier_name": "Kurgal's",
+      "display": "(15—25)% increased Spell Damage while on Full Energy Shield"
+    },
+    {
+      "text": "+# to Strength and Intelligence",
+      "tags": [
+        "amanamu_mod",
+        "attribute"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "+(9—15) to Strength and Intelligence"
+    },
+    {
+      "text": "#% increased Skill Effect Duration",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "(8—12)% increased Skill Effect Duration"
+    },
+    {
+      "text": "Remnants can be collected from #% further away",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "Remnants can be collected from (20—30)% further away"
+    },
+    {
+      "text": "#% increased amount of Life Leeched",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "(12—20)% increased amount of Life Leeched"
+    },
+    {
+      "text": "+#% to Fire and Chaos Resistances",
+      "tags": [
+        "amanamu_mod",
+        "chaos",
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "+(13—17)% to Fire and Chaos Resistances"
+    },
+    {
+      "text": "+# to Dexterity and Intelligence",
+      "tags": [
+        "attribute",
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "+(9—15) to Dexterity and Intelligence"
+    },
+    {
+      "text": "+#% to Cold and Chaos Resistances",
+      "tags": [
+        "chaos",
+        "cold",
+        "elemental",
+        "kurgal_mod",
+        "resistance"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "+(13—17)% to Cold and Chaos Resistances"
+    },
+    {
+      "text": "#% increased Cooldown Recovery Rate",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(8—12)% increased Cooldown Recovery Rate"
+    },
+    {
+      "text": "#% increased Exposure Effect",
+      "tags": [
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(10—15)% increased Exposure Effect"
+    },
+    {
+      "text": "Recover #% of maximum Mana on Kill",
+      "tags": [
+        "kurgal_mod",
+        "mana"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "Recover (2—3)% of maximum Mana on Kill"
+    },
+    {
+      "text": "#% increased amount of Mana Leeched",
+      "tags": [
+        "kurgal_mod",
+        "mana"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(12—20)% increased amount of Mana Leeched"
+    },
+    {
+      "text": "+# to Strength and Dexterity",
+      "tags": [
+        "attribute",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "+(9—15) to Strength and Dexterity"
+    },
+    {
+      "text": "+#% to Lightning and Chaos Resistances",
+      "tags": [
+        "chaos",
+        "elemental",
+        "lightning",
+        "resistance",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "+(13—17)% to Lightning and Chaos Resistances"
+    },
+    {
+      "text": "Recover #% of maximum Life on Kill",
+      "tags": [
+        "life",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "Recover (2—3)% of maximum Life on Kill"
+    },
+    {
+      "text": "#% increased Skill Speed",
+      "tags": [
+        "speed",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "(3—6)% increased Skill Speed"
+    },
+    {
+      "text": "#% increased Attack Damage while on Low Life",
+      "tags": [
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "(15—25)% increased Attack Damage while on Low Life"
+    },
+    {
+      "text": "#% increased Magnitude of Shock if you've consumed a Frenzy Charge Recently",
+      "tags": [
+        "ailment",
+        "ulaman_mod"
+      ],
+      "tier_name": "Ulaman's",
+      "display": "(20—30)% increased Magnitude of Shock if you've consumed a Frenzy Charge Recently"
+    }
+  ],
+  "essence": [
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "Lesser Essence of the Body",
+      "display": "+(20—29) to maximum Life"
+    },
+    {
+      "text": "+# to maximum Mana",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "Lesser Essence of the Mind",
+      "display": "+(25—34) to maximum Mana"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Ruin",
+      "display": "+(4—7)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "Essence of the Body",
+      "display": "+(70—84) to maximum Life"
+    },
+    {
+      "text": "+# to maximum Mana",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "Essence of the Mind",
+      "display": "+(80—89) to maximum Mana"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Essence of Ruin",
+      "display": "+(8—11)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to maximum Mana",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "Greater Essence of the Mind",
+      "display": "+(90—104) to maximum Mana"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Ruin",
+      "display": "+(16—19)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "#% increased Mana Regeneration Rate",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "Essence of Hysteria",
+      "display": "(50—59)% increased Mana Regeneration Rate"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Insulation",
+      "display": "+(11—15)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Essence of Insulation",
+      "display": "+(21—25)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Insulation",
+      "display": "+(31—35)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Thawing",
+      "display": "+(11—15)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Essence of Thawing",
+      "display": "+(21—25)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Thawing",
+      "display": "+(31—35)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Grounding",
+      "display": "+(11—15)% to Lightning Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Essence of Grounding",
+      "display": "+(21—25)% to Lightning Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Grounding",
+      "display": "+(31—35)% to Lightning Resistance"
+    },
+    {
+      "text": "#% increased Rarity of Items found",
+      "tags": [],
+      "tier_name": "Lesser Essence of Opulence",
+      "display": "(6—10)% increased Rarity of Items found"
+    },
+    {
+      "text": "#% increased Rarity of Items found",
+      "tags": [],
+      "tier_name": "Essence of Opulence",
+      "display": "(11—14)% increased Rarity of Items found"
+    },
+    {
+      "text": "#% increased Rarity of Items found",
+      "tags": [],
+      "tier_name": "Greater Essence of Opulence",
+      "display": "(15—18)% increased Rarity of Items found"
+    }
+  ],
+  "corrupted": [
+    {
+      "text": "+# to maximum Mana",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "CorruptionIncreasedMana1",
+      "display": "+(20—25) to maximum Mana"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "CorruptionChaosResistance1",
+      "display": "+(13—19)% to Chaos Resistance"
+    },
+    {
+      "text": "#% increased Life Regeneration rate",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "CorruptionLifeRegenerationRate1",
+      "display": "(15—25)% increased Life Regeneration rate"
+    },
+    {
+      "text": "#% increased Mana Regeneration Rate",
+      "tags": [
+        "mana"
+      ],
+      "tier_name": "CorruptionManaRegeneration1",
+      "display": "(20—30)% increased Mana Regeneration Rate"
+    },
+    {
+      "text": "+#% to all Elemental Resistances",
+      "tags": [
+        "cold",
+        "elemental",
+        "fire",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "CorruptionAllResistances1",
+      "display": "+(5—10)% to all Elemental Resistances"
+    },
+    {
+      "text": "#% increased Rarity of Items found",
+      "tags": [],
+      "tier_name": "CorruptionItemFoundRarityIncrease1",
+      "display": "(10—15)% increased Rarity of Items found"
+    },
+    {
+      "text": "#% increased Damage",
+      "tags": [
+        "damage"
+      ],
+      "tier_name": "CorruptionAllDamage1",
+      "display": "(20—30)% increased Damage"
+    },
+    {
+      "text": "#% increased Skill Speed",
+      "tags": [
+        "speed"
+      ],
+      "tier_name": "CorruptionIncreasedSkillSpeed1",
+      "display": "(4—6)% increased Skill Speed"
+    },
+    {
+      "text": "#% increased Critical Damage Bonus",
+      "tags": [
+        "critical",
+        "damage"
+      ],
+      "tier_name": "CorruptionCriticalStrikeMultiplier1",
+      "display": "(15—20)% increased Critical Damage Bonus"
+    },
+    {
+      "text": "+# to Strength",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "CorruptionStrength1",
+      "display": "+(10—15) to Strength"
+    },
+    {
+      "text": "+# to Dexterity",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "CorruptionDexterity1",
+      "display": "+(10—15) to Dexterity"
+    },
+    {
+      "text": "+# to Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "CorruptionIntelligence1",
+      "display": "+(10—15) to Intelligence"
+    }
+  ]
+}

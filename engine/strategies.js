@@ -566,7 +566,7 @@ function fractureAnchor(ctx) {
  *   - Pool restricted to PREFIX type, conditioned on starting state.
  *   - Refill draws = (open prefix slots) prefix + 0 suffix.
  *   - Cost = open_prefix × (exalt_ex + omen_ex). Omen price is a placeholder
- *     until poe.ninja seeds in (~10 ex assumed).
+ *     until the poe2db Economy_Omen snapshot seeds in (~10 ex assumed).
  */
 function sideExaltFill(side) {
   const id = side === 'PREFIX' ? 'sinistral-exalt-fill' : 'dextral-exalt-fill';
@@ -574,7 +574,7 @@ function sideExaltFill(side) {
                                    : 'omen-of-dextral-exaltation';
   const label = side === 'PREFIX' ? 'Sinistral Exalt-fill (prefix-only)'
                                   : 'Dextral Exalt-fill (suffix-only)';
-  const omenPlaceholderEx = 10; // until poe.ninja seeds omen prices
+  const omenPlaceholderEx = 10; // until poe2db Economy_Omen seeds omen prices
   return function (ctx) {
     if (ctx.isAvailable && !ctx.isAvailable('omen', omenId)) {
       return { id, label, available: false, notes: `${omenId} is disabled (toggle it on under Crafting items)` };

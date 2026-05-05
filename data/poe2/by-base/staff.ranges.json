@@ -1,0 +1,210 @@
+{
+  "# to Intelligence": {
+    "8": "+(5—8) to Intelligence",
+    "7": "+(9—12) to Intelligence",
+    "6": "+(13—16) to Intelligence",
+    "5": "+(17—20) to Intelligence",
+    "4": "+(21—24) to Intelligence",
+    "3": "+(25—27) to Intelligence",
+    "2": "+(28—30) to Intelligence",
+    "1": "+(31—33) to Intelligence"
+  },
+  "#% reduced Attribute Requirements": {
+    "5": "15% reduced Attribute Requirements",
+    "4": "20% reduced Attribute Requirements",
+    "3": "25% reduced Attribute Requirements",
+    "2": "30% reduced Attribute Requirements",
+    "1": "35% reduced Attribute Requirements"
+  },
+  "#% increased Spell Damage": {
+    "8": "(50—68)% increased Spell Damage",
+    "7": "(69—88)% increased Spell Damage",
+    "6": "(89—108)% increased Spell Damage",
+    "5": "(109—128)% increased Spell Damage",
+    "4": "(129—148)% increased Spell Damage",
+    "3": "(149—188)% increased Spell Damage",
+    "2": "(189—208)% increased Spell Damage",
+    "1": "(209—238)% increased Spell Damage"
+  },
+  "#% increased Fire Damage": {
+    "8": "(50—68)% increased Fire Damage",
+    "7": "(69—88)% increased Fire Damage",
+    "6": "(89—108)% increased Fire Damage",
+    "5": "(109—128)% increased Fire Damage",
+    "4": "(129—148)% increased Fire Damage",
+    "3": "(149—188)% increased Fire Damage",
+    "2": "(189—208)% increased Fire Damage",
+    "1": "(209—238)% increased Fire Damage"
+  },
+  "#% increased Cold Damage": {
+    "8": "(50—68)% increased Cold Damage",
+    "7": "(69—88)% increased Cold Damage",
+    "6": "(89—108)% increased Cold Damage",
+    "5": "(109—128)% increased Cold Damage",
+    "4": "(129—148)% increased Cold Damage",
+    "3": "(149—188)% increased Cold Damage",
+    "2": "(189—208)% increased Cold Damage",
+    "1": "(209—238)% increased Cold Damage"
+  },
+  "#% increased Lightning Damage": {
+    "8": "(50—68)% increased Lightning Damage",
+    "7": "(69—88)% increased Lightning Damage",
+    "6": "(89—108)% increased Lightning Damage",
+    "5": "(109—128)% increased Lightning Damage",
+    "4": "(129—148)% increased Lightning Damage",
+    "3": "(149—188)% increased Lightning Damage",
+    "2": "(189—208)% increased Lightning Damage",
+    "1": "(209—238)% increased Lightning Damage"
+  },
+  "#% increased Chaos Damage": {
+    "8": "(50—68)% increased Chaos Damage",
+    "7": "(69—88)% increased Chaos Damage",
+    "6": "(89—108)% increased Chaos Damage",
+    "5": "(109—128)% increased Chaos Damage",
+    "4": "(129—148)% increased Chaos Damage",
+    "3": "(149—188)% increased Chaos Damage",
+    "2": "(189—208)% increased Chaos Damage",
+    "1": "(209—238)% increased Chaos Damage"
+  },
+  "#% increased Spell Physical Damage": {
+    "8": "(50—68)% increased Spell Physical Damage",
+    "7": "(69—88)% increased Spell Physical Damage",
+    "6": "(89—108)% increased Spell Physical Damage",
+    "5": "(109—128)% increased Spell Physical Damage",
+    "4": "(129—148)% increased Spell Physical Damage",
+    "3": "(149—188)% increased Spell Physical Damage",
+    "2": "(189—208)% increased Spell Physical Damage",
+    "1": "(209—238)% increased Spell Physical Damage"
+  },
+  "# to Level of all Spell Skills": {
+    "4": "+2 to Level of all Spell Skills",
+    "3": "+3 to Level of all Spell Skills",
+    "2": "+4 to Level of all Spell Skills",
+    "1": "+(5—6) to Level of all Spell Skills"
+  },
+  "# to Level of all Fire Spell Skills": {
+    "5": "+1 to Level of all Fire Spell Skills",
+    "4": "+2 to Level of all Fire Spell Skills",
+    "3": "+(3—4) to Level of all Fire Spell Skills",
+    "2": "+(5—6) to Level of all Fire Spell Skills",
+    "1": "+7 to Level of all Fire Spell Skills"
+  },
+  "# to Level of all Cold Spell Skills": {
+    "5": "+1 to Level of all Cold Spell Skills",
+    "4": "+2 to Level of all Cold Spell Skills",
+    "3": "+(3—4) to Level of all Cold Spell Skills",
+    "2": "+(5—6) to Level of all Cold Spell Skills",
+    "1": "+7 to Level of all Cold Spell Skills"
+  },
+  "# to Level of all Lightning Spell Skills": {
+    "5": "+1 to Level of all Lightning Spell Skills",
+    "4": "+2 to Level of all Lightning Spell Skills",
+    "3": "+(3—4) to Level of all Lightning Spell Skills",
+    "2": "+(5—6) to Level of all Lightning Spell Skills",
+    "1": "+7 to Level of all Lightning Spell Skills"
+  },
+  "# to Level of all Chaos Spell Skills": {
+    "5": "+1 to Level of all Chaos Spell Skills",
+    "4": "+2 to Level of all Chaos Spell Skills",
+    "3": "+(3—4) to Level of all Chaos Spell Skills",
+    "2": "+(5—6) to Level of all Chaos Spell Skills",
+    "1": "+7 to Level of all Chaos Spell Skills"
+  },
+  "# to Level of all Physical Spell Skills": {
+    "5": "+1 to Level of all Physical Spell Skills",
+    "4": "+2 to Level of all Physical Spell Skills",
+    "3": "+(3—4) to Level of all Physical Spell Skills",
+    "2": "+(5—6) to Level of all Physical Spell Skills",
+    "1": "+7 to Level of all Physical Spell Skills"
+  },
+  "Gain # Life per Enemy Killed": {
+    "8": "Gain (4—6) Life per enemy killed",
+    "7": "Gain (7—9) Life per enemy killed",
+    "6": "Gain (10—18) Life per enemy killed",
+    "5": "Gain (19—28) Life per enemy killed",
+    "4": "Gain (29—40) Life per enemy killed",
+    "3": "Gain (41—53) Life per enemy killed",
+    "2": "Gain (54—68) Life per enemy killed",
+    "1": "Gain (69—84) Life per enemy killed"
+  },
+  "Gain # Mana per Enemy Killed": {
+    "8": "Gain (2—3) Mana per enemy killed",
+    "7": "Gain (4—5) Mana per enemy killed",
+    "6": "Gain (6—9) Mana per enemy killed",
+    "5": "Gain (10—14) Mana per enemy killed",
+    "4": "Gain (15—20) Mana per enemy killed",
+    "3": "Gain (21—27) Mana per enemy killed",
+    "2": "Gain (28—35) Mana per enemy killed",
+    "1": "Gain (36—45) Mana per enemy killed"
+  },
+  "#% increased Cast Speed": {
+    "7": "(14—19)% increased Cast Speed",
+    "6": "(20—25)% increased Cast Speed",
+    "5": "(26—31)% increased Cast Speed",
+    "4": "(32—37)% increased Cast Speed",
+    "3": "(38—43)% increased Cast Speed",
+    "2": "(44—49)% increased Cast Speed",
+    "1": "(50—52)% increased Cast Speed"
+  },
+  "#% increased Critical Hit Chance for Spells": {
+    "6": "(40—49)% increased Critical Hit Chance for Spells",
+    "5": "(50—59)% increased Critical Hit Chance for Spells",
+    "4": "(60—69)% increased Critical Hit Chance for Spells",
+    "3": "(70—79)% increased Critical Hit Chance for Spells",
+    "2": "(80—89)% increased Critical Hit Chance for Spells",
+    "1": "(90—109)% increased Critical Hit Chance for Spells"
+  },
+  "#% increased Critical Spell Damage Bonus": {
+    "6": "(15—21)% increased Critical Spell Damage Bonus",
+    "5": "(23—29)% increased Critical Spell Damage Bonus",
+    "4": "(30—36)% increased Critical Spell Damage Bonus",
+    "3": "(38—44)% increased Critical Spell Damage Bonus",
+    "2": "(45—51)% increased Critical Spell Damage Bonus",
+    "1": "(53—59)% increased Critical Spell Damage Bonus"
+  },
+  "#% increased Flammability Magnitude": {
+    "5": "(51—60)% increased Flammability Magnitude",
+    "4": "(61—70)% increased Flammability Magnitude",
+    "3": "(71—80)% increased Flammability Magnitude",
+    "2": "(81—90)% increased Flammability Magnitude",
+    "1": "(91—100)% increased Flammability Magnitude"
+  },
+  "#% increased Freeze Buildup": {
+    "5": "(31—40)% increased Freeze Buildup",
+    "4": "(41—50)% increased Freeze Buildup",
+    "3": "(51—60)% increased Freeze Buildup",
+    "2": "(61—70)% increased Freeze Buildup",
+    "1": "(71—80)% increased Freeze Buildup"
+  },
+  "#% increased chance to Shock": {
+    "5": "(51—60)% increased chance to Shock",
+    "4": "(61—70)% increased chance to Shock",
+    "3": "(71—80)% increased chance to Shock",
+    "2": "(81—90)% increased chance to Shock",
+    "1": "(91—100)% increased chance to Shock"
+  },
+  "Gain #% of Damage as Extra Fire Damage": {
+    "6": "Gain (26—30)% of Damage as Extra Fire Damage",
+    "5": "Gain (31—36)% of Damage as Extra Fire Damage",
+    "4": "Gain (37—42)% of Damage as Extra Fire Damage",
+    "3": "Gain (43—48)% of Damage as Extra Fire Damage",
+    "2": "Gain (49—54)% of Damage as Extra Fire Damage",
+    "1": "Gain (55—60)% of Damage as Extra Fire Damage"
+  },
+  "Gain #% of Damage as Extra Cold Damage": {
+    "6": "Gain (26—30)% of Damage as Extra Cold Damage",
+    "5": "Gain (31—36)% of Damage as Extra Cold Damage",
+    "4": "Gain (37—42)% of Damage as Extra Cold Damage",
+    "3": "Gain (43—48)% of Damage as Extra Cold Damage",
+    "2": "Gain (49—54)% of Damage as Extra Cold Damage",
+    "1": "Gain (55—60)% of Damage as Extra Cold Damage"
+  },
+  "Gain #% of Damage as Extra Lightning Damage": {
+    "6": "Gain (26—30)% of Damage as Extra Lightning Damage",
+    "5": "Gain (31—36)% of Damage as Extra Lightning Damage",
+    "4": "Gain (37—42)% of Damage as Extra Lightning Damage",
+    "3": "Gain (43—48)% of Damage as Extra Lightning Damage",
+    "2": "Gain (49—54)% of Damage as Extra Lightning Damage",
+    "1": "Gain (55—60)% of Damage as Extra Lightning Damage"
+  }
+}

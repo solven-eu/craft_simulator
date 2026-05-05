@@ -50,7 +50,22 @@ export function solveMDP(input) {
   // ---- Normalise wishlist + target → bit indices ------------
   const wishlist = input.wishlist ?? [];
   const N = wishlist.length;
-  if (N > 8) throw new Error(`MDP-α supports up to 8 wished entries; got ${N}.`);
+  // Hard cap: state space grows as 2^N × (rarity × totalMods ×
+  // fracturedBit × irrFractured × boneMod × boneRevealed). At N=12
+  // the worst case is ~250k states × ~7 actions per state = manageable
+  // but slow to value-iterate. JS Number safely encodes the modMask
+  // up to N=53 (Number.MAX_SAFE_INTEGER bit width) so the bitmask
+  // itself isn't the limit; state-space size is. Lifting from 8 → 12
+  // covers most realistic wishlists; bump further only if you've
+  // confirmed solve performance is acceptable.
+  const MAX_WISHLIST_ENTRIES = 12;
+  if (N > MAX_WISHLIST_ENTRIES) {
+    throw new Error(
+      `MDP-α supports up to ${MAX_WISHLIST_ENTRIES} wished entries; got ${N}. `
+      + `State space grows as 2^N — beyond 12 the value iteration is slow. `
+      + `Consider splitting the wishlist or relaxing some entries to optional.`,
+    );
+  }
   const keyToBit = new Map();
   wishlist.forEach((w, i) => keyToBit.set(w.key, i));
   const wishlistWeights = wishlist.map((w) => w.weight ?? 0);
@@ -340,12 +355,22 @@ export function solveMDP(input) {
     iters,
     converged,
     warnings,
+    // Expose the per-state action applications + their outcome
+    // distributions so callers can sample trajectories through the
+    // optimal policy (engine/mdp/sample.js). Map<stateIdx,
+    // ActionApplication[]> where each application is
+    // { actionId, outcomes: [{ to, prob, costEx, costSec }] }.
+    appsPerState,
+    startIdx,
     // Per-orb actions excluded because their per-use cost is above the
     // user's `budgetEx`. UI surfaces this as "raise budget to ≥ X to
     // unlock orb Y" — addresses the case where a user is doing best-
     // effort under a tight budget and would benefit from knowing what
     // a budget bump would unlock (e.g. Perfect Exalt vs plain Exalt).
     budgetExcluded,
+    // Expose the budget cap as a sampler input, so trajectories can
+    // truncate when they exceed budget. Otherwise null = unbounded.
+    budgetCap,
   };
 }
 

@@ -1,0 +1,565 @@
+{
+  "desecrated": [
+    {
+      "text": "+#% to Fire and Chaos Resistances",
+      "tags": [
+        "amanamu_mod",
+        "chaos",
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "+(13—17)% to Fire and Chaos Resistances"
+    },
+    {
+      "text": "+# to Strength and Intelligence",
+      "tags": [
+        "amanamu_mod",
+        "attribute"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "+(9—15) to Strength and Intelligence"
+    },
+    {
+      "text": "#% increased Spirit Reservation Efficiency of Skills",
+      "tags": [
+        "amanamu_mod"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "(6—12)% increased Spirit Reservation Efficiency of Skills"
+    },
+    {
+      "text": "#% reduced effect of Curses on you",
+      "tags": [
+        "amanamu_mod",
+        "caster",
+        "curse"
+      ],
+      "tier_name": "of Amanamu",
+      "display": "(25—35)% reduced effect of Curses on you"
+    },
+    {
+      "text": "+#% to Cold and Chaos Resistances",
+      "tags": [
+        "chaos",
+        "cold",
+        "elemental",
+        "kurgal_mod",
+        "resistance"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "+(13—17)% to Cold and Chaos Resistances"
+    },
+    {
+      "text": "+# to Dexterity and Intelligence",
+      "tags": [
+        "attribute",
+        "kurgal_mod"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "+(9—15) to Dexterity and Intelligence"
+    },
+    {
+      "text": "#% of Damage taken Recouped as Mana",
+      "tags": [
+        "kurgal_mod",
+        "life",
+        "mana"
+      ],
+      "tier_name": "of Kurgal",
+      "display": "(10—20)% of Damage taken Recouped as Mana"
+    },
+    {
+      "text": "+#% to Lightning and Chaos Resistances",
+      "tags": [
+        "chaos",
+        "elemental",
+        "lightning",
+        "resistance",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "+(13—17)% to Lightning and Chaos Resistances"
+    },
+    {
+      "text": "+# to Strength and Dexterity",
+      "tags": [
+        "attribute",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "+(9—15) to Strength and Dexterity"
+    },
+    {
+      "text": "Hits have #% reduced Critical Hit Chance against you",
+      "tags": [
+        "critical",
+        "ulaman_mod"
+      ],
+      "tier_name": "of Ulaman",
+      "display": "Hits have (17—25)% reduced Critical Hit Chance against you"
+    }
+  ],
+  "essence": [
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "Lesser Essence of the Body",
+      "display": "+(30—39) to maximum Life"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Lesser Essence of Enhancement",
+      "display": "(27—42)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Lesser Essence of Enhancement",
+      "display": "(27—42)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Lesser Essence of Enhancement",
+      "display": "(27—42)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Lesser Essence of Enhancement",
+      "display": "(27—42)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Lesser Essence of Enhancement",
+      "display": "(27—42)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Lesser Essence of Enhancement",
+      "display": "(27—42)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Ruin",
+      "display": "+(4—7)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Lesser Essence of the Infinite",
+      "display": "+(9—12) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "Essence of the Body",
+      "display": "+(85—99) to maximum Life"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Essence of Enhancement",
+      "display": "(56—67)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Essence of Enhancement",
+      "display": "(56—67)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Essence of Enhancement",
+      "display": "(56—67)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Essence of Enhancement",
+      "display": "(56—67)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Essence of Enhancement",
+      "display": "(56—67)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Essence of Enhancement",
+      "display": "(56—67)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Essence of Ruin",
+      "display": "+(8—11)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Essence of the Infinite",
+      "display": "+(17—20) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "Greater Essence of the Body",
+      "display": "+(100—119) to maximum Life"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Greater Essence of Enhancement",
+      "display": "(68—79)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Greater Essence of Enhancement",
+      "display": "(68—79)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Greater Essence of Enhancement",
+      "display": "(68—79)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Greater Essence of Enhancement",
+      "display": "(68—79)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Greater Essence of Enhancement",
+      "display": "(68—79)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "#% increased Armour, Evasion or Energy Shield",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "Greater Essence of Enhancement",
+      "display": "(68—79)% increased Armour, Evasion or Energy Shield"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Ruin",
+      "display": "+(16—19)% to Chaos Resistance"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "+# to Strength, Dexterity or Intelligence",
+      "tags": [
+        "attribute"
+      ],
+      "tier_name": "Greater Essence of the Infinite",
+      "display": "+(25—27) to Strength, Dexterity or Intelligence"
+    },
+    {
+      "text": "# to # Physical Thorns damage",
+      "tags": [
+        "damage",
+        "physical"
+      ],
+      "tier_name": "Essence of Hysteria",
+      "display": "(64—97) to (97—145) Physical Thorns damage"
+    },
+    {
+      "text": "Allocates a random Notable Passive Skill",
+      "tags": [],
+      "tier_name": "Essence of Delirium",
+      "display": "Allocates a random Notable Passive Skill"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "Mark of the Abyssal Lord",
+      "tags": [],
+      "tier_name": "Essence of the Abyss",
+      "display": "Mark of the Abyssal Lord"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Insulation",
+      "display": "+(11—15)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Essence of Insulation",
+      "display": "+(21—25)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "tags": [
+        "elemental",
+        "fire",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Insulation",
+      "display": "+(31—35)% to Fire Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Thawing",
+      "display": "+(11—15)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Essence of Thawing",
+      "display": "+(21—25)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "tags": [
+        "cold",
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Thawing",
+      "display": "+(31—35)% to Cold Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Lesser Essence of Grounding",
+      "display": "+(11—15)% to Lightning Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Essence of Grounding",
+      "display": "+(21—25)% to Lightning Resistance"
+    },
+    {
+      "text": "+#% to Lightning Resistance",
+      "tags": [
+        "elemental",
+        "lightning",
+        "resistance"
+      ],
+      "tier_name": "Greater Essence of Grounding",
+      "display": "+(31—35)% to Lightning Resistance"
+    }
+  ],
+  "corrupted": [
+    {
+      "text": "#% increased Armour",
+      "tags": [
+        "defences"
+      ],
+      "tier_name": "CorruptionLocalIncreasedPhysicalDamageReductionRatingPercent1",
+      "display": "(15—25)% increased Armour"
+    },
+    {
+      "text": "#% reduced Attribute Requirements",
+      "tags": [],
+      "tier_name": "CorruptionReducedLocalAttributeRequirements1",
+      "display": "(10—20)% reduced Attribute Requirements"
+    },
+    {
+      "text": "#% additional Physical Damage Reduction",
+      "tags": [
+        "physical"
+      ],
+      "tier_name": "CorruptionAdditionalPhysicalDamageReduction1",
+      "display": "(3—5)% additional Physical Damage Reduction"
+    },
+    {
+      "text": "#% of Damage taken Recouped as Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "CorruptionDamageTakenGainedAsLife1",
+      "display": "(10—20)% of Damage taken Recouped as Life"
+    },
+    {
+      "text": "#% of Damage taken Recouped as Mana",
+      "tags": [
+        "life",
+        "mana"
+      ],
+      "tier_name": "CorruptionDamageTakenGainedAsMana1",
+      "display": "(10—20)% of Damage taken Recouped as Mana"
+    },
+    {
+      "text": "+#% to all Maximum Elemental Resistances",
+      "tags": [
+        "elemental",
+        "resistance"
+      ],
+      "tier_name": "CorruptionMaximumElementalResistance1",
+      "display": "+1% to all Maximum Elemental Resistances"
+    },
+    {
+      "text": "+# to maximum Life",
+      "tags": [
+        "life"
+      ],
+      "tier_name": "CorruptionIncreasedLife1",
+      "display": "+(30—40) to maximum Life"
+    },
+    {
+      "text": "#% increased Thorns damage",
+      "tags": [
+        "damage"
+      ],
+      "tier_name": "CorruptionThornsDamageIncrease1",
+      "display": "(40—50)% increased Thorns damage"
+    },
+    {
+      "text": "+#% to Chaos Resistance",
+      "tags": [
+        "chaos",
+        "resistance"
+      ],
+      "tier_name": "CorruptionChaosResistance1",
+      "display": "+(13—19)% to Chaos Resistance"
+    }
+  ]
+}

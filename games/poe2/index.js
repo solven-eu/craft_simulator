@@ -137,11 +137,12 @@ let ratesPromise = null;
  *
  * Returns:
  *   {
- *     byName: { "Exalted Orb": { exaltedPer, refCurrency, pricePerUnit,
- *                                trend7dPct, dailyVolume, imageUrl, fetchedAt },
- *               ... },
- *     bySlug: { "exalted": { … same … }, ... },
- *     fetchedAt: ISO string from any row (snapshot timestamp),
+ *     byName, bySlug:        per-row entries (see below)
+ *     fetchedAt:             ISO string from any row (snapshot timestamp)
+ *     region, league:        scrape provenance (`us` etc., league name if visible)
+ *     ageDays:               whole days since fetchedAt; null if unknown
+ *     staleness:             'fresh' (≤7d) | 'aging' (8–30d) | 'stale' (>30d) | 'unknown'
+ *     exaltedPerDivine, exaltedPerChaos: cross-rates derived from the table
  *   }
  *
  * The resolver is conservative: if the divine→exalted row is missing the
@@ -195,6 +196,8 @@ export function loadRates() {
         const byName = {};
         const bySlug = {};
         let fetchedAt = '';
+        let region = '';
+        let league = '';
         for (const r of rows) {
           const ref = r.ref_currency;
           const price = round4sig(parseFloat(r.price_per_unit));
@@ -216,10 +219,30 @@ export function loadRates() {
           byName[r.name] = entry;
           bySlug[r.slug] = entry;
           if (!fetchedAt) fetchedAt = r.fetched_at;
+          if (!region && r.region) region = r.region;
+          if (!league && r.league) league = r.league;
         }
-        return { byName, bySlug, fetchedAt, exaltedPerDivine, exaltedPerChaos };
+        // Staleness windows reflect typical PoE2 economy drift: prices
+        // jitter ±5% intraday, so a week-old snapshot is still mostly
+        // correct (fresh). Past 30d we're likely into a different patch
+        // / league phase; treat as stale and signal red.
+        let ageDays = null;
+        let ageHours = null;
+        let staleness = 'unknown';
+        if (fetchedAt) {
+          const ms = Date.now() - new Date(fetchedAt).getTime();
+          if (Number.isFinite(ms) && ms >= 0) {
+            ageHours = Math.floor(ms / (1000 * 60 * 60));
+            ageDays = Math.floor(ms / (1000 * 60 * 60 * 24));
+            staleness = ageDays <= 7 ? 'fresh' : ageDays <= 30 ? 'aging' : 'stale';
+          }
+        }
+        return { byName, bySlug, fetchedAt, region, league, ageDays, ageHours, staleness,
+                 exaltedPerDivine, exaltedPerChaos };
       })
-      .catch(() => ({ byName: {}, bySlug: {}, fetchedAt: '', exaltedPerDivine: null, exaltedPerChaos: null }));
+      .catch(() => ({ byName: {}, bySlug: {}, fetchedAt: '', region: '', league: '',
+                      ageDays: null, ageHours: null, staleness: 'unknown',
+                      exaltedPerDivine: null, exaltedPerChaos: null }));
   }
   return ratesPromise;
 }
@@ -239,6 +262,62 @@ export function loadExtraMods() {
   return extraModsPromise;
 }
 
+// --- Per-base partition ----------------------------------------------------
+// scripts/update-poe2-data.sh and update-poe2-tags.sh emit per-base files
+// under data/poe2/by-base/ alongside the consolidated JSONs. Runtime callers
+// can load just the active base on demand instead of paying ~2 MB of cold-
+// start for a single craft.
+//
+// Shape on disk per base <slug>:
+//   <slug>.mods.json    list of mod records (subset of mods.json)
+//   <slug>.tags.json    map of mod_name -> [tags]
+//   <slug>.ranges.json  map of mod_name -> { tier_str: display }
+//   <slug>.extra.json   { desecrated: [...], essence: [...], corrupted: [...] }
+//   index.json          { "BASE NAME": "slug" }
+//
+// Each loader is memoised per-base so repeated `loadBaseBundle("BOW")` from
+// different callers reuses one fetch. Missing files resolve to empty values
+// (some bases in the manifest don't have a poe2db scrape yet — see the
+// weapon-base coverage gap that motivated this split).
+
+let manifestPromise = null;
+export function loadBaseManifest() {
+  if (!manifestPromise) {
+    manifestPromise = fetch(new URL('../../data/poe2/by-base/index.json', import.meta.url))
+      .then((r) => (r.ok ? r.json() : {}))
+      .catch(() => ({}));
+  }
+  return manifestPromise;
+}
+
+const baseBundleCache = new Map();   // slug -> Promise<{mods,tags,ranges,extra}>
+
+function fetchJsonOr(url, fallback) {
+  return fetch(url).then((r) => (r.ok ? r.json() : fallback)).catch(() => fallback);
+}
+
+/**
+ * Fetch the four per-base files in parallel and return them merged. Pass the
+ * canonical base name (matches the manifest key, e.g. "BOW", "BOOTS (DEX)").
+ * Returns `{ mods, tags, ranges, extra }` with empty defaults when any file
+ * is missing, so callers can unconditionally spread the result.
+ */
+export async function loadBaseBundle(base) {
+  const manifest = await loadBaseManifest();
+  const slug = manifest[base];
+  if (!slug) return { mods: [], tags: {}, ranges: {}, extra: {} };
+  if (baseBundleCache.has(slug)) return baseBundleCache.get(slug);
+  const root = new URL('../../data/poe2/by-base/', import.meta.url);
+  const promise = Promise.all([
+    fetchJsonOr(new URL(`${slug}.mods.json`, root), []),
+    fetchJsonOr(new URL(`${slug}.tags.json`, root), {}),
+    fetchJsonOr(new URL(`${slug}.ranges.json`, root), {}),
+    fetchJsonOr(new URL(`${slug}.extra.json`, root), {}),
+  ]).then(([mods, tags, ranges, extra]) => ({ mods, tags, ranges, extra }));
+  baseBundleCache.set(slug, promise);
+  return promise;
+}
+
 export const game = {
   id: 'poe2',
   label: 'Path of Exile 2',
@@ -253,6 +332,8 @@ export const game = {
   loadModTags,
   loadModRanges,
   loadExtraMods,
+  loadBaseManifest,
+  loadBaseBundle,
   loadItemDescriptions,
   loadEssences,
   loadEssencePrices,

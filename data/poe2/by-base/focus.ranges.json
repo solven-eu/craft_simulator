@@ -1,0 +1,168 @@
+{
+  "# to Intelligence": {
+    "8": "+(5—8) to Intelligence",
+    "7": "+(9—12) to Intelligence",
+    "6": "+(13—16) to Intelligence",
+    "5": "+(17—20) to Intelligence",
+    "4": "+(21—24) to Intelligence",
+    "3": "+(25—27) to Intelligence",
+    "2": "+(28—30) to Intelligence",
+    "1": "+(31—33) to Intelligence"
+  },
+  "#% to Fire Resistance": {
+    "8": "+(6—10)% to Fire Resistance",
+    "7": "+(11—15)% to Fire Resistance",
+    "6": "+(16—20)% to Fire Resistance",
+    "5": "+(21—25)% to Fire Resistance",
+    "4": "+(26—30)% to Fire Resistance",
+    "3": "+(31—35)% to Fire Resistance",
+    "2": "+(36—40)% to Fire Resistance",
+    "1": "+(41—45)% to Fire Resistance"
+  },
+  "#% to Cold Resistance": {
+    "8": "+(6—10)% to Cold Resistance",
+    "7": "+(11—15)% to Cold Resistance",
+    "6": "+(16—20)% to Cold Resistance",
+    "5": "+(21—25)% to Cold Resistance",
+    "4": "+(26—30)% to Cold Resistance",
+    "3": "+(31—35)% to Cold Resistance",
+    "2": "+(36—40)% to Cold Resistance",
+    "1": "+(41—45)% to Cold Resistance"
+  },
+  "#% to Lightning Resistance": {
+    "8": "+(6—10)% to Lightning Resistance",
+    "7": "+(11—15)% to Lightning Resistance",
+    "6": "+(16—20)% to Lightning Resistance",
+    "5": "+(21—25)% to Lightning Resistance",
+    "4": "+(26—30)% to Lightning Resistance",
+    "3": "+(31—35)% to Lightning Resistance",
+    "2": "+(36—40)% to Lightning Resistance",
+    "1": "+(41—45)% to Lightning Resistance"
+  },
+  "#% to Chaos Resistance": {
+    "6": "+(4—7)% to Chaos Resistance",
+    "5": "+(8—11)% to Chaos Resistance",
+    "4": "+(12—15)% to Chaos Resistance",
+    "3": "+(16—19)% to Chaos Resistance",
+    "2": "+(20—23)% to Chaos Resistance",
+    "1": "+(24—27)% to Chaos Resistance"
+  },
+  "# to maximum Energy Shield": {
+    "10": "+(10—17) to maximum Energy Shield",
+    "9": "+(18—24) to maximum Energy Shield",
+    "8": "+(25—30) to maximum Energy Shield",
+    "7": "+(31—35) to maximum Energy Shield",
+    "6": "+(36—41) to maximum Energy Shield",
+    "5": "+(42—47) to maximum Energy Shield",
+    "4": "+(48—60) to maximum Energy Shield",
+    "3": "+(61—73) to maximum Energy Shield",
+    "2": "+(74—80) to maximum Energy Shield",
+    "1": "+(81—90) to maximum Energy Shield"
+  },
+  "#% increased Energy Shield": {
+    "7": "(15—26)% increased Energy Shield",
+    "6": "(27—42)% increased Energy Shield",
+    "5": "(43—55)% increased Energy Shield",
+    "4": "(56—67)% increased Energy Shield",
+    "3": "(68—79)% increased Energy Shield",
+    "2": "(80—91)% increased Energy Shield",
+    "1": "(92—100)% increased Energy Shield"
+  },
+  "#% reduced Attribute Requirements": {
+    "5": "15% reduced Attribute Requirements",
+    "4": "20% reduced Attribute Requirements",
+    "3": "25% reduced Attribute Requirements",
+    "2": "30% reduced Attribute Requirements",
+    "1": "35% reduced Attribute Requirements"
+  },
+  "#% increased Spell Damage": {
+    "6": "(25—34)% increased Spell Damage",
+    "5": "(35—44)% increased Spell Damage",
+    "4": "(45—54)% increased Spell Damage",
+    "3": "(55—64)% increased Spell Damage",
+    "2": "(65—74)% increased Spell Damage",
+    "1": "(75—89)% increased Spell Damage"
+  },
+  "#% increased Fire Damage": {
+    "6": "(25—34)% increased Fire Damage",
+    "5": "(35—44)% increased Fire Damage",
+    "4": "(45—54)% increased Fire Damage",
+    "3": "(55—64)% increased Fire Damage",
+    "2": "(65—74)% increased Fire Damage",
+    "1": "(75—89)% increased Fire Damage"
+  },
+  "#% increased Cold Damage": {
+    "6": "(25—34)% increased Cold Damage",
+    "5": "(35—44)% increased Cold Damage",
+    "4": "(45—54)% increased Cold Damage",
+    "3": "(55—64)% increased Cold Damage",
+    "2": "(65—74)% increased Cold Damage",
+    "1": "(75—89)% increased Cold Damage"
+  },
+  "#% increased Lightning Damage": {
+    "6": "(25—34)% increased Lightning Damage",
+    "5": "(35—44)% increased Lightning Damage",
+    "4": "(45—54)% increased Lightning Damage",
+    "3": "(55—64)% increased Lightning Damage",
+    "2": "(65—74)% increased Lightning Damage",
+    "1": "(75—89)% increased Lightning Damage"
+  },
+  "#% increased Chaos Damage": {
+    "6": "(25—34)% increased Chaos Damage",
+    "5": "(35—44)% increased Chaos Damage",
+    "4": "(45—54)% increased Chaos Damage",
+    "3": "(55—64)% increased Chaos Damage",
+    "2": "(65—74)% increased Chaos Damage",
+    "1": "(75—89)% increased Chaos Damage"
+  },
+  "#% increased Spell Physical Damage": {
+    "6": "(25—34)% increased Spell Physical Damage",
+    "5": "(35—44)% increased Spell Physical Damage",
+    "4": "(45—54)% increased Spell Physical Damage",
+    "3": "(55—64)% increased Spell Physical Damage",
+    "2": "(65—74)% increased Spell Physical Damage",
+    "1": "(75—89)% increased Spell Physical Damage"
+  },
+  "# to Level of all Spell Skills": {
+    "2": "+1 to Level of all Spell Skills",
+    "1": "+2 to Level of all Spell Skills"
+  },
+  "#% increased Mana Regeneration Rate": {
+    "6": "(10—19)% increased Mana Regeneration Rate",
+    "5": "(20—29)% increased Mana Regeneration Rate",
+    "4": "(30—39)% increased Mana Regeneration Rate",
+    "3": "(40—49)% increased Mana Regeneration Rate",
+    "2": "(50—59)% increased Mana Regeneration Rate",
+    "1": "(60—69)% increased Mana Regeneration Rate"
+  },
+  "#% increased Cast Speed": {
+    "6": "(9—12)% increased Cast Speed",
+    "5": "(13—16)% increased Cast Speed",
+    "4": "(17—20)% increased Cast Speed",
+    "3": "(21—24)% increased Cast Speed",
+    "2": "(25—28)% increased Cast Speed",
+    "1": "(29—32)% increased Cast Speed"
+  },
+  "#% increased Critical Hit Chance for Spells": {
+    "5": "(27—33)% increased Critical Hit Chance for Spells",
+    "4": "(34—39)% increased Critical Hit Chance for Spells",
+    "3": "(40—46)% increased Critical Hit Chance for Spells",
+    "2": "(47—53)% increased Critical Hit Chance for Spells",
+    "1": "(54—59)% increased Critical Hit Chance for Spells"
+  },
+  "#% increased Critical Spell Damage Bonus": {
+    "5": "(10—14)% increased Critical Spell Damage Bonus",
+    "4": "(15—19)% increased Critical Spell Damage Bonus",
+    "3": "(20—24)% increased Critical Spell Damage Bonus",
+    "2": "(25—29)% increased Critical Spell Damage Bonus",
+    "1": "(30—34)% increased Critical Spell Damage Bonus"
+  },
+  "#% faster start of Energy Shield Recharge": {
+    "6": "(26—30)% faster start of Energy Shield Recharge",
+    "5": "(31—35)% faster start of Energy Shield Recharge",
+    "4": "(36—40)% faster start of Energy Shield Recharge",
+    "3": "(41—45)% faster start of Energy Shield Recharge",
+    "2": "(46—50)% faster start of Energy Shield Recharge",
+    "1": "(51—55)% faster start of Energy Shield Recharge"
+  }
+}

@@ -240,11 +240,14 @@ Iterations from there:
 
 ## Data / scraping
 
-- **Live poe.ninja rates** — currently the rates panel is manual
-  (poe.ninja blocks fetch). The Playwright scrape script
-  (`scripts/fetch-poe-ninja-rates.mjs`) is wired but needs to be run
-  by hand. Consider a GitHub Action that produces a static JSON drop.
-- **Essence / omen prices** — same problem; placeholders are in use.
+- **Live rates refresh** — `scripts/update-poe2-rates.sh` snapshots
+  poe2db's Economy_* tables (server-rendered HTML; no Cloudflare
+  challenge). Consider a GitHub Action that runs it on a cron and
+  commits the resulting `data/poe2/rates.csv` so the live deploy
+  always carries a recent snapshot without manual intervention.
+- **Essence / omen prices** — pulled from the same poe2db Economy
+  pages where coverage exists; placeholders remain for the long tail
+  not yet listed in the Economy tables.
 - **Per-base spawn-weight overrides** — some bases gate certain mod
   *families* (e.g. only-corrupted, league-restricted). Today the data
   layer ignores these; user has to mentally subtract them.

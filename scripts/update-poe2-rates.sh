@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Snapshot PoE2 currency rates from poe2db's Economy_* tables. These tables
-# render server-side (no JS), so a plain curl + tbody parse suffices — no
-# Cloudflare-challenge headless browser like the previous poe.ninja flow.
+# render server-side (no JS), so a plain curl + tbody parse suffices.
 #
 # Each row in an Economy table has the form:
 #
@@ -30,6 +29,18 @@
 
 set -euo pipefail
 
+# Optional [REGION] arg picks which poe2db language path to scrape from
+# (us, cn, de, fr, ru, kr, tw, jp). PoE2's economy is cross-region — these
+# are language localisations, NOT separate regional servers — so prices
+# are identical across regions; the choice only affects item-name
+# language. We still record `region` in the CSV so the snapshot is
+# self-describing for future audits.
+REGION="${1:-us}"
+case "$REGION" in
+  us|cn|de|fr|ru|kr|tw|jp) ;;
+  *) echo "  ! unknown region '$REGION' — pick one of us cn de fr ru kr tw jp" >&2; exit 2 ;;
+esac
+
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 RAW="$ROOT/data/raw"
 OUT="$ROOT/data/poe2"
@@ -46,20 +57,20 @@ declare -a PAGES=(
   "Breach:catalyst"
 )
 
-echo "[1/2] Fetching ${#PAGES[@]} Economy_* pages …"
+echo "[1/2] Fetching ${#PAGES[@]} Economy_* pages from /$REGION/…"
 for spec in "${PAGES[@]}"; do
   page="${spec%%:*}"
   echo "  - Economy_$page"
-  curl -fsSL "https://poe2db.tw/us/Economy_$page" -o "$RAW/poe2db_economy_${page}.html"
+  curl -fsSL "https://poe2db.tw/$REGION/Economy_$page" -o "$RAW/poe2db_economy_${page}.html"
 done
 
 echo "[2/2] Parsing tables …"
-python3 - "$RAW" "$OUT" "${PAGES[@]}" <<'PY'
+python3 - "$RAW" "$OUT" "$REGION" "${PAGES[@]}" <<'PY'
 import csv, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-raw_dir, out_dir, *page_specs = sys.argv[1:]
+raw_dir, out_dir, region, *page_specs = sys.argv[1:]
 raw_dir, out_dir = Path(raw_dir), Path(out_dir)
 
 ROW_RE = re.compile(r'<tr[^>]*>(.*?)</tr>', re.DOTALL)
@@ -74,14 +85,25 @@ PAIR_RE = re.compile(
 )
 TREND_RE = re.compile(r'<span style="color: \w+">([+-]?\d+)%</span>')
 VOL_RE = re.compile(r'<div class="text-end">(\d+(?:\.\d+)?)\s*<img')
+# poe2db's economy header carries the league name in a <h1> like
+# "Economy Currency · Vaal" or in a select <option selected>. Best-effort
+# extraction; blank if the upstream layout shifts.
+LEAGUE_RE = re.compile(r'<option[^>]*selected[^>]*>([^<]+)</option>')
 
 REF_SLUGS = {'divine', 'chaos', 'exalted'}
 
 now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+league = ''
 records = []
 for spec in page_specs:
     page, kind = spec.split(':', 1)
     src = (raw_dir / f'poe2db_economy_{page}.html').read_text(encoding='utf-8', errors='ignore')
+    if not league:
+        # First-page-wins league capture; the value is consistent across all
+        # Economy_* pages on a given snapshot so any one of them is fine.
+        league_m = LEAGUE_RE.search(src)
+        if league_m:
+            league = league_m.group(1).strip()
     tbody_m = TBODY_RE.search(src)
     if not tbody_m:
         print(f'  ! Economy_{page}: no <tbody>')
@@ -131,16 +153,19 @@ out_csv = out_dir / 'rates.csv'
 with out_csv.open('w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)
     w.writerow(['name', 'slug', 'kind', 'ref_currency', 'price_per_unit',
-                'trend_7d_pct', 'daily_volume', 'image_url', 'fetched_at'])
+                'trend_7d_pct', 'daily_volume', 'image_url', 'fetched_at',
+                'region', 'league'])
     for r in records:
         # Round price to 4 significant digits — anything finer is below
-        # market noise (rates jitter ±5% intraday on poe.ninja). 4 sig
-        # digits keeps "187.2", "0.005650", "9684" — readable, comparable.
+        # market noise (rates jitter ±5% intraday). 4 sig digits keeps
+        # "187.2", "0.005650", "9684" — readable, comparable.
         w.writerow([r['name'], r['slug'], r['kind'], r['ref_currency'],
                     f"{r['price_per_unit']:.4g}", r['trend_7d_pct'],
-                    r['daily_volume'], r['image_url'], now])
+                    r['daily_volume'], r['image_url'], now,
+                    region, league])
 
 print(f'  wrote {len(records)} rows -> data/poe2/rates.csv')
+print(f'  region={region}  league={league or "?"}  fetched_at={now}')
 PY
 
 echo "Done."

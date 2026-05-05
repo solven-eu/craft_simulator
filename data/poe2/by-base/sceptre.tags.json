@@ -1,0 +1,73 @@
+{
+  "#% increased Spirit, # to maximum Mana": [
+    "mana"
+  ],
+  "Allies in your Presence deal # to # added Attack Cold Damage": [
+    "attack",
+    "cold",
+    "damage",
+    "elemental"
+  ],
+  "Allies in your Presence deal # to # added Attack Fire Damage": [
+    "attack",
+    "damage",
+    "elemental",
+    "fire"
+  ],
+  "Allies in your Presence deal # to # added Attack Lightning Damage": [
+    "attack",
+    "damage",
+    "elemental",
+    "lightning"
+  ],
+  "Allies in your Presence deal # to # added Attack Physical Damage": [
+    "attack",
+    "damage",
+    "physical"
+  ],
+  "Allies in your Presence deal #% increased Damage": [
+    "damage"
+  ],
+  "#% increased Mana Regeneration Rate, #% increased Light Radius": [
+    "mana"
+  ],
+  "#% increased Mana Regeneration Rate": [
+    "mana"
+  ],
+  "# to Intelligence": [
+    "attribute"
+  ],
+  "# to Level of all Minion Skills": [
+    "gem",
+    "minion"
+  ],
+  "# to Strength": [
+    "attribute"
+  ],
+  "Allies in your Presence have #% increased Attack Speed": [
+    "attack",
+    "speed"
+  ],
+  "Allies in your Presence have #% increased Cast Speed": [
+    "caster",
+    "speed"
+  ],
+  "Allies in your Presence have #% increased Critical Damage Bonus": [
+    "critical",
+    "damage"
+  ],
+  "Allies in your Presence have #% increased Critical Hit Chance": [
+    "critical"
+  ],
+  "Allies in your Presence have #% to all Elemental Resistances": [
+    "elemental",
+    "resistance"
+  ],
+  "Allies in your Presence Regenerate # Life per second": [
+    "life"
+  ],
+  "Minions have #% increased maximum Life": [
+    "life",
+    "minion"
+  ]
+}

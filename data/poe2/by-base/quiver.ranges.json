@@ -1,0 +1,131 @@
+{
+  "# to Dexterity": {
+    "8": "+(5—8) to Dexterity",
+    "7": "+(9—12) to Dexterity",
+    "6": "+(13—16) to Dexterity",
+    "5": "+(17—20) to Dexterity",
+    "4": "+(21—24) to Dexterity",
+    "3": "+(25—27) to Dexterity",
+    "2": "+(28—30) to Dexterity",
+    "1": "+(31—33) to Dexterity"
+  },
+  "Adds # to # Physical Damage to Attacks": {
+    "9": "Adds (1—2) to 3 Physical Damage to Attacks",
+    "8": "Adds (2—3) to (4—6) Physical Damage to Attacks",
+    "7": "Adds (2—4) to (5—8) Physical Damage to Attacks",
+    "6": "Adds (4—6) to (8—11) Physical Damage to Attacks",
+    "5": "Adds (5—7) to (9—13) Physical Damage to Attacks",
+    "4": "Adds (6—10) to (12—17) Physical Damage to Attacks",
+    "3": "Adds (7—11) to (14—20) Physical Damage to Attacks",
+    "2": "Adds (10—15) to (18—26) Physical Damage to Attacks",
+    "1": "Adds (12—19) to (22—32) Physical Damage to Attacks"
+  },
+  "Adds # to # Fire damage to Attacks": {
+    "9": "Adds (1—2) to 3 Fire damage to Attacks",
+    "8": "Adds (3—5) to (6—9) Fire damage to Attacks",
+    "7": "Adds (6—8) to (10—13) Fire damage to Attacks",
+    "6": "Adds (9—11) to (14—17) Fire damage to Attacks",
+    "5": "Adds (12—13) to (18—20) Fire damage to Attacks",
+    "4": "Adds (11—16) to (21—26) Fire damage to Attacks",
+    "3": "Adds (13—19) to (27—32) Fire damage to Attacks",
+    "2": "Adds (20—24) to (33—36) Fire damage to Attacks",
+    "1": "Adds (25—29) to (37—45) Fire damage to Attacks"
+  },
+  "Adds # to # Cold damage to Attacks": {
+    "9": "Adds 1 to (2—3) Cold damage to Attacks",
+    "8": "Adds (3—4) to (5—8) Cold damage to Attacks",
+    "7": "Adds (5—6) to (9—11) Cold damage to Attacks",
+    "6": "Adds (7—8) to (12—14) Cold damage to Attacks",
+    "5": "Adds (9—10) to (15—17) Cold damage to Attacks",
+    "4": "Adds (11—13) to (18—21) Cold damage to Attacks",
+    "3": "Adds (14—15) to (22—24) Cold damage to Attacks",
+    "2": "Adds (16—20) to (25—31) Cold damage to Attacks",
+    "1": "Adds (21—24) to (32—37) Cold damage to Attacks"
+  },
+  "Adds # to # Lightning damage to Attacks": {
+    "9": "Adds 1 to (4—6) Lightning damage to Attacks",
+    "8": "Adds 1 to (10—15) Lightning damage to Attacks",
+    "7": "Adds 1 to (16—22) Lightning damage to Attacks",
+    "6": "Adds 1 to (23—27) Lightning damage to Attacks",
+    "5": "Adds 1 to (28—32) Lightning damage to Attacks",
+    "4": "Adds (1—2) to (33—40) Lightning damage to Attacks",
+    "3": "Adds (1—2) to (41—47) Lightning damage to Attacks",
+    "2": "Adds (1—3) to (48—59) Lightning damage to Attacks",
+    "1": "Adds (1—4) to (60—71) Lightning damage to Attacks"
+  },
+  "# to Level of all Projectile Skills": {
+    "2": "+1 to Level of all Projectile Skills",
+    "1": "+2 to Level of all Projectile Skills"
+  },
+  "Gain # Life per Enemy Killed": {
+    "6": "Gain (4—6) Life per enemy killed",
+    "5": "Gain (7—9) Life per enemy killed",
+    "4": "Gain (10—18) Life per enemy killed",
+    "3": "Gain (19—28) Life per enemy killed",
+    "2": "Gain (29—40) Life per enemy killed",
+    "1": "Gain (41—53) Life per enemy killed"
+  },
+  "Gain # Mana per Enemy Killed": {
+    "6": "Gain (2—3) Mana per enemy killed",
+    "5": "Gain (4—5) Mana per enemy killed",
+    "4": "Gain (6—9) Mana per enemy killed",
+    "3": "Gain (10—14) Mana per enemy killed",
+    "2": "Gain (15—20) Mana per enemy killed",
+    "1": "Gain (21—27) Mana per enemy killed"
+  },
+  "#% increased Attack Speed": {
+    "4": "(5—7)% increased Attack Speed",
+    "3": "(8—10)% increased Attack Speed",
+    "2": "(11—13)% increased Attack Speed",
+    "1": "(14—16)% increased Attack Speed"
+  },
+  "# to Accuracy Rating": {
+    "9": "+(11—32) to Accuracy Rating",
+    "8": "+(33—60) to Accuracy Rating",
+    "7": "+(61—84) to Accuracy Rating",
+    "6": "+(85—123) to Accuracy Rating",
+    "5": "+(124—167) to Accuracy Rating",
+    "4": "+(168—236) to Accuracy Rating",
+    "3": "+(237—346) to Accuracy Rating",
+    "2": "+(347—450) to Accuracy Rating",
+    "1": "+(451—550) to Accuracy Rating"
+  },
+  "#% increased Critical Hit Chance for Attacks": {
+    "6": "(10—14)% increased Critical Hit Chance for Attacks",
+    "5": "(15—19)% increased Critical Hit Chance for Attacks",
+    "4": "(20—24)% increased Critical Hit Chance for Attacks",
+    "3": "(25—29)% increased Critical Hit Chance for Attacks",
+    "2": "(30—34)% increased Critical Hit Chance for Attacks",
+    "1": "(35—38)% increased Critical Hit Chance for Attacks"
+  },
+  "#% increased Critical Damage Bonus for Attack Damage": {
+    "6": "(10—14)% increased Critical Damage Bonus for Attack Damage",
+    "5": "(15—19)% increased Critical Damage Bonus for Attack Damage",
+    "4": "(20—24)% increased Critical Damage Bonus for Attack Damage",
+    "3": "(25—29)% increased Critical Damage Bonus for Attack Damage",
+    "2": "(30—34)% increased Critical Damage Bonus for Attack Damage",
+    "1": "(35—39)% increased Critical Damage Bonus for Attack Damage"
+  },
+  "#% chance to Pierce an Enemy": {
+    "5": "(12—14)% chance to Pierce an Enemy",
+    "4": "(15—17)% chance to Pierce an Enemy",
+    "3": "(18—20)% chance to Pierce an Enemy",
+    "2": "(21—23)% chance to Pierce an Enemy",
+    "1": "(24—26)% chance to Pierce an Enemy"
+  },
+  "#% increased Projectile Speed": {
+    "5": "(10—17)% increased Projectile Speed",
+    "4": "(18—25)% increased Projectile Speed",
+    "3": "(26—33)% increased Projectile Speed",
+    "2": "(34—41)% increased Projectile Speed",
+    "1": "(42—46)% increased Projectile Speed"
+  },
+  "#% increased Damage with Bow Skills": {
+    "6": "(11—20)% increased Damage with Bow Skills",
+    "5": "(21—30)% increased Damage with Bow Skills",
+    "4": "(31—36)% increased Damage with Bow Skills",
+    "3": "(37—42)% increased Damage with Bow Skills",
+    "2": "(43—50)% increased Damage with Bow Skills",
+    "1": "(51—59)% increased Damage with Bow Skills"
+  }
+}

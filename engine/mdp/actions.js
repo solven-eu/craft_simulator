@@ -114,11 +114,23 @@ function alchMaskDistribution(nDraws, env, actionId = 'alch') {
 // the irrelevant-pool weight comes from env.irrelevantWeightBySide
 // (precomputed by the adapter) and wished mods of the wrong type are
 // excluded.
-function singleDrawMaskDistribution(modMask, env, actionId, sideFilter = null) {
+function singleDrawMaskDistribution(modMask, env, actionId, sideFilter = null, prefixMods = 0, totalMods = 0) {
   const N = env.wishlistWeights.length;
   const pAccept = env.pTierAcceptable?.[actionId] ?? new Array(N).fill(1);
   const types = env.wishlistTypes ?? new Array(N).fill(null);
-  const sideMatch = (i) => !sideFilter || types[i] === sideFilter;
+  // Side-saturation gates: max 3 prefixes and 3 suffixes per the
+  // PoE2 game rule. When a side is full, the orb's pool excludes
+  // mods of that side (no slot to land in). Without these gates,
+  // prefixMods/suffixMods could exceed 3, blowing up the state
+  // space with unreachable-by-game configurations.
+  const prefixFull = prefixMods >= 3;
+  const suffixFull = (totalMods - prefixMods) >= 3;
+  const sideMatch = (i) => {
+    if (sideFilter && types[i] !== sideFilter) return false;
+    if (prefixFull && types[i] === 'PREFIX') return false;
+    if (suffixFull && types[i] === 'SUFFIX') return false;
+    return true;
+  };
   const onItemWeight = (() => {
     let s = 0;
     for (let i = 0; i < N; i++) {
@@ -126,9 +138,28 @@ function singleDrawMaskDistribution(modMask, env, actionId, sideFilter = null) {
     }
     return s;
   })();
-  const irrW = sideFilter
-    ? (env.irrelevantWeightBySide?.[sideFilter] ?? 0)
-    : env.irrelevantWeight;
+  // Irrelevant pool — restricted to sides that have room.
+  const irrPrefixRaw = (sideFilter === 'PREFIX')
+    ? (env.irrelevantWeightBySide?.PREFIX ?? 0)
+    : (sideFilter === 'SUFFIX' ? 0 : (env.irrelevantWeightBySide?.PREFIX ?? 0));
+  const irrSuffixRaw = (sideFilter === 'SUFFIX')
+    ? (env.irrelevantWeightBySide?.SUFFIX ?? 0)
+    : (sideFilter === 'PREFIX' ? 0 : (env.irrelevantWeightBySide?.SUFFIX ?? 0));
+  let irrPrefix = prefixFull ? 0 : irrPrefixRaw;
+  let irrSuffix = suffixFull ? 0 : irrSuffixRaw;
+  // Legacy fallback when side data is absent: lump all irr in suffix
+  // (as long as suffix isn't saturated, else prefix). Keeps engines
+  // without irrelevantWeightBySide self-consistent.
+  if (irrPrefix === 0 && irrSuffix === 0) {
+    const fallback = sideFilter
+      ? (env.irrelevantWeightBySide?.[sideFilter] ?? 0)
+      : (env.irrelevantWeight ?? 0);
+    if (fallback > 0) {
+      if (!suffixFull)      irrSuffix = fallback;
+      else if (!prefixFull) irrPrefix = fallback;
+    }
+  }
+  const irrW = irrPrefix + irrSuffix;
   // Side-filtered total pool: sum of wished weights matching the side
   // + irrelevant pool of that side.
   let sideTotal = irrW;
@@ -136,9 +167,27 @@ function singleDrawMaskDistribution(modMask, env, actionId, sideFilter = null) {
     if (sideMatch(i)) sideTotal += env.wishlistWeights[i];
   }
   const pool = sideTotal - onItemWeight;
-  if (pool <= 0) return new Map([[0, 1]]);
+  if (pool <= 0) {
+    // Empty-pool fallback: the orb deterministically lands an
+    // irrelevant slot. Respect side saturation — if suffix is full
+    // we must land prefix and vice versa. If both sides are full we
+    // return no outcomes so the orb effectively becomes a no-op
+    // rather than silently overflowing the affix cap.
+    if (!suffixFull) return new Map([['0|0', 1]]);
+    if (!prefixFull) return new Map([['0|1', 1]]);
+    return new Map();
+  }
+  // Outcome key: `${maskBit}|${prefixDelta}` so distinct (maskBit, side)
+  // tuples don't merge — a wished prefix and a wished suffix are
+  // separate outcomes; an irrelevant prefix and irrelevant suffix are
+  // separate outcomes. This is what surfaces "+ 1 P irrelevant" vs
+  // "+ 1 S irrelevant" branches in the chain.
   const out = new Map();
-  let subTierMass = 0;
+  const add = (maskBit, prefixDelta, prob) => {
+    if (prob <= 0) return;
+    const k = `${maskBit}|${prefixDelta}`;
+    out.set(k, (out.get(k) ?? 0) + prob);
+  };
   for (let i = 0; i < N; i++) {
     if (modMask & (1 << i)) continue;
     if (!sideMatch(i)) continue;
@@ -147,12 +196,12 @@ function singleDrawMaskDistribution(modMask, env, actionId, sideFilter = null) {
     const pOk = pAccept[i] ?? 1;
     const pSet = pHit * pOk;
     const pSubTier = pHit * (1 - pOk);
-    if (pSet > 0) out.set(1 << i, pSet);
-    if (pSubTier > 0) subTierMass += pSubTier;
+    const isPrefix = types[i] === 'PREFIX' ? 1 : 0;
+    add(1 << i, isPrefix, pSet);          // wished bit set, side intrinsic
+    add(0,      isPrefix, pSubTier);       // sub-tier — slot consumed, side intrinsic
   }
-  const pIrr = irrW / pool;
-  const pNoBit = pIrr + subTierMass;
-  if (pNoBit > 0) out.set(0, (out.get(0) ?? 0) + pNoBit);
+  add(0, 1, irrPrefix / pool);             // irrelevant prefix landed
+  add(0, 0, irrSuffix / pool);             // irrelevant suffix landed
   return out;
 }
 
@@ -163,15 +212,19 @@ function singleDrawMaskDistribution(modMask, env, actionId, sideFilter = null) {
 // look up the per-(orb, mod) tier-acceptance probabilities in
 // env.pTierAcceptable.
 function singleDrawTransitions(s, env, { actionId, targetRarity, costEx, costSec }) {
-  const dist = singleDrawMaskDistribution(s.modMask, env, actionId);
+  const dist = singleDrawMaskDistribution(s.modMask, env, actionId, null, s.prefixMods ?? 0, s.totalMods ?? 0);
   const out = [];
-  for (const [maskBit, prob] of dist) {
+  for (const [key, prob] of dist) {
+    const [maskBitStr, prefixDeltaStr] = key.split('|');
+    const maskBit = Number(maskBitStr);
+    const prefixDelta = Number(prefixDeltaStr);
     out.push({
       to: makeState({
         ...s,
         rarity: targetRarity,
         modMask: s.modMask | maskBit,
         totalMods: s.totalMods + 1,
+        prefixMods: (s.prefixMods ?? 0) + prefixDelta,
       }),
       prob,
       costEx,
@@ -190,14 +243,18 @@ function makeExaltedOrb(id, name) {
     id, name,
     applicable: (s, env) => s.rarity === 'rare' && s.totalMods < env.maxFilled,
     transitions: (s, env) => {
-      const dist = singleDrawMaskDistribution(s.modMask, env, id);
+      const dist = singleDrawMaskDistribution(s.modMask, env, id, null, s.prefixMods ?? 0, s.totalMods ?? 0);
       const out = [];
-      for (const [maskBit, prob] of dist) {
+      for (const [key, prob] of dist) {
+        const [maskBitStr, prefixDeltaStr] = key.split('|');
+        const maskBit = Number(maskBitStr);
+        const prefixDelta = Number(prefixDeltaStr);
         out.push({
           to: makeState({
             ...s,
             modMask: s.modMask | maskBit,
             totalMods: s.totalMods + 1,
+            prefixMods: (s.prefixMods ?? 0) + prefixDelta,
           }),
           prob,
           costEx: env.orbCosts[id] ?? 0,
@@ -227,41 +284,128 @@ function makeSingleDrawOrb(id, name, applicable, targetRarity) {
   };
 }
 
-// Bone-reveal factory. All variants share the same state transition
-// shape (boneMod=true && !boneRevealed → totalMods+=1, both flags
-// cleared so a fresh bone can be applied next — multi-bone-per-item).
-// Variants differ only in `hitsKey` (which env field provides the
-// per-wished hit probabilities — desecrated pool filtered by side
-// and/or doubled by re-roll mechanic).
-//   - reveal_bone:           plain 3-pick, full desecrated pool.
-//   - reveal_bone_sinistral: 3-pick, prefix-only pool (Sinistral
-//                             Necromancy omen).
-//   - reveal_bone_dextral:   3-pick, suffix-only pool (Dextral
-//                             Necromancy omen).
-//   - reveal_bone_abyssal:   6-pick (Abyssal Echoes omen, re-roll
-//                             once → 1 - (1-1/N)^6 vs 3-pick's 1 -
-//                             (1-1/N)^3).
-function makeRevealBoneOrb(id, name, hitsKey) {
+// Bone-reveal factory. Models the Well-of-Souls reveal step with
+// side allocation per project memory `project_bone_side_allocation`:
+//   - 6/6 full ⇒ remove + replace same-side (NOT modeled — apply_bone
+//     is gated on totalMods < maxFilled so this state is unreachable
+//     from a normal craft chain; if encountered, falls through to
+//     50/50 as a graceful degradation).
+//   - one side full (3 / <3) ⇒ forced opposite side; uses that side's
+//     filtered hit-prob pool (pBoneRevealHitPrefix / Suffix) and routes
+//     all irrelevant residual to the open side.
+//   - both sides have room ⇒ wished hits use the natural full-pool
+//     rate (each wished mod's intrinsic side determines which slot
+//     it lands in); the 50/50 coin only governs which open slot the
+//     IRRELEVANT residual consumes.
+//
+// Variants:
+//   - reveal_bone:           natural side rule, full 3-pick pool.
+//   - reveal_bone_sinistral: forced PREFIX (Sinistral Crystallisation
+//                             omen overrides natural rule); uses
+//                             pBoneRevealHitPrefix as hit pool.
+//   - reveal_bone_dextral:   forced SUFFIX (Dextral Crystallisation
+//                             omen).
+//   - reveal_bone_abyssal:   natural rule, uses pBoneRevealHitAbyssal.
+//                             NOTE on Abyssal Echoes mechanics: per
+//                             user clarification (2026-05-07), this
+//                             omen offers TWO sequential 3-picks. If
+//                             the first set is rejected, the second
+//                             set is rolled and the first is LOST
+//                             (not best-of-six). A naive 6-pick
+//                             best-of approximation overstates the
+//                             hit rate because the first set's
+//                             affixes can't be retroactively chosen.
+//                             A faithful model needs an extra state
+//                             flag "first-set-shown, decision pending"
+//                             so the policy can decide whether to
+//                             accept or reject. Today's engine treats
+//                             pBoneRevealHitAbyssal as a flat
+//                             single-step rate — adapter decides what
+//                             value to plug in. Modeling the
+//                             sequential-decision properly is a
+//                             follow-up (project memory:
+//                             abyssal_echoes_two_step).
+//
+// `forceSide`: 'PREFIX' | 'SUFFIX' | null (natural).
+// `hitsKey`:   env field used when natural-side or matching the
+//              forced side; for forced variants, points to the
+//              already-side-filtered hit array.
+function makeRevealBoneOrb(id, name, hitsKey, forceSide = null) {
+  const sideOpen = (s) => {
+    const p = s.prefixMods ?? 0;
+    return { prefixOpen: p < 3, suffixOpen: (s.totalMods - p) < 3 };
+  };
   return {
     id, name,
-    applicable: (s) => s.rarity === 'rare' && s.boneMod && !s.boneRevealed
-      && s.fracturedBit < 0 && !s.irrFractured,
+    applicable: (s, env) => {
+      if (!(s.rarity === 'rare' && s.boneMod && !s.boneRevealed
+            && s.fracturedBit < 0 && !s.irrFractured)) return false;
+      // Reveal bumps totalMods by 1; gate on totalMods < maxFilled so
+      // the bumped count stays within the affix cap. Without this gate,
+      // an exalt-after-apply_bone path can reach totalMods=6 with a
+      // pending bone, then reveal would push to 7 (invalid).
+      if (s.totalMods >= (env.maxFilled ?? 6)) return false;
+      const { prefixOpen, suffixOpen } = sideOpen(s);
+      if (forceSide === 'PREFIX') return prefixOpen;
+      if (forceSide === 'SUFFIX') return suffixOpen;
+      return prefixOpen || suffixOpen;
+    },
     transitions: (s, env) => {
       const N = env.wishlistWeights.length;
-      const pHits = env[hitsKey] ?? new Array(N).fill(0);
-      const out = [];
-      let pIrrelevant = 1;
+      const types = env.wishlistTypes ?? new Array(N).fill(null);
       const cost = env.orbCosts?.[id] ?? 0;
       const time = env.orbTimes?.[id] ?? 1;
+      const { prefixOpen, suffixOpen } = sideOpen(s);
+
+      // Resolve mode: 'PREFIX' | 'SUFFIX' | 'NATURAL'.
+      // Forced variants override the natural open-slot rule. The
+      // natural rule auto-forces when one side is full.
+      let mode;
+      if (forceSide === 'PREFIX')             mode = 'PREFIX';
+      else if (forceSide === 'SUFFIX')        mode = 'SUFFIX';
+      else if (prefixOpen && !suffixOpen)     mode = 'PREFIX';
+      else if (!prefixOpen && suffixOpen)     mode = 'SUFFIX';
+      else                                    mode = 'NATURAL';
+
+      // Hit pool + irrelevant-side allocation per mode.
+      // - Forced/auto-forced side → use that side's filtered hit
+      //   array (smaller pool ⇒ higher per-affix p).
+      // - Natural (both open) → use the configured hit pool
+      //   (full-pool 3-pick or 6-pick for Abyssal); irrelevant
+      //   residual splits 50/50.
+      let pHits, pIrrelevantPrefix;
+      if (mode === 'PREFIX') {
+        pHits = env.pBoneRevealHitPrefix ?? new Array(N).fill(0);
+        pIrrelevantPrefix = 1;
+      } else if (mode === 'SUFFIX') {
+        pHits = env.pBoneRevealHitSuffix ?? new Array(N).fill(0);
+        pIrrelevantPrefix = 0;
+      } else {
+        pHits = env[hitsKey] ?? new Array(N).fill(0);
+        pIrrelevantPrefix = 0.5;
+      }
+
+      const out = [];
+      let pIrrelevant = 1;
       for (let i = 0; i < N; i++) {
         if (s.modMask & (1 << i)) continue;
         const p = pHits[i] ?? 0;
         if (p > 0) {
+          // Wished mod's side is intrinsic — bumps prefixMods iff
+          // the affix is a PREFIX. (env.pBoneRevealHitPrefix is
+          // already side-filtered, so a SUFFIX wished mod has
+          // p=0 in PREFIX mode and won't reach this branch.)
+          const isPrefix = types[i] === 'PREFIX';
           out.push({
             to: makeState({ ...s,
               modMask: s.modMask | (1 << i),
               totalMods: s.totalMods + 1,
-              // Both flags cleared so apply_bone is applicable again.
+              prefixMods: (s.prefixMods ?? 0) + (isPrefix ? 1 : 0),
+              // Reveal stamps the affix with desecrated provenance —
+              // wished-bit-i is now a desecrated wished slot. Total
+              // and per-side desecrated counts derive from this mask
+              // + the irrelevant counts (state.js helpers).
+              desecratedWishedMask: (s.desecratedWishedMask ?? 0) | (1 << i),
               boneMod: false, boneRevealed: false,
             }),
             prob: p, costEx: cost, costSec: time,
@@ -270,18 +414,114 @@ function makeRevealBoneOrb(id, name, hitsKey) {
         }
       }
       if (pIrrelevant > 1e-12) {
-        out.push({
-          to: makeState({ ...s,
-            totalMods: s.totalMods + 1,
-            boneMod: false, boneRevealed: false,
-          }),
-          prob: pIrrelevant, costEx: cost, costSec: time,
-        });
+        const pIrrPrefix = pIrrelevant * pIrrelevantPrefix;
+        const pIrrSuffix = pIrrelevant - pIrrPrefix;
+        if (pIrrPrefix > 1e-12) {
+          out.push({
+            to: makeState({ ...s,
+              totalMods: s.totalMods + 1,
+              prefixMods: (s.prefixMods ?? 0) + 1,
+              desecratedIrrPrefix: (s.desecratedIrrPrefix ?? 0) + 1,
+              boneMod: false, boneRevealed: false,
+            }),
+            prob: pIrrPrefix, costEx: cost, costSec: time,
+          });
+        }
+        if (pIrrSuffix > 1e-12) {
+          out.push({
+            to: makeState({ ...s,
+              totalMods: s.totalMods + 1,
+              desecratedIrrSuffix: (s.desecratedIrrSuffix ?? 0) + 1,
+              boneMod: false, boneRevealed: false,
+            }),
+            prob: pIrrSuffix, costEx: cost, costSec: time,
+          });
+        }
       }
       return out;
     },
   };
 }
+
+// ── Annul-with-Omen-of-Light: scrub a desecrated mod ──────────────
+// Per PoE2 rule: Orb of Annulment + Omen of Light removes a desecrated
+// modifier (revealed bone-mod) uniformly at random from the desecrated
+// subset of mods on the item. Critical for the desecration cleanup
+// loop: apply_bone → reveal → (bad outcome) → omen-of-light annul →
+// retry.
+//
+// Outcome distribution (uniform over the `desecratedCount` desecrated
+// mods on the item, where desecratedCount is derived from
+// `popcount(desecratedWishedMask) + desecratedIrrPrefix + desecratedIrrSuffix`):
+//   - For each wished bit `i` in `desecratedWishedMask`:
+//       prob 1/desecratedCount → clear bit i, decrement totalMods,
+//       decrement prefixMods iff wished i is PREFIX.
+//   - Irrelevant desecrated prefix (prob desecratedIrrPrefix /
+//     desecratedCount): decrement desecratedIrrPrefix and prefixMods.
+//   - Irrelevant desecrated suffix (prob desecratedIrrSuffix /
+//     desecratedCount): decrement desecratedIrrSuffix.
+const annulOmenOfLight = {
+  id: 'annul_omen_of_light',
+  name: 'Orb of Annulment (Omen of Light)',
+  applicable: (s) => {
+    if (s.rarity !== 'rare' || s.boneMod) return false;
+    if (s.fracturedBit >= 0 || s.irrFractured) return false;
+    const total = popcount(s.desecratedWishedMask ?? 0)
+                + (s.desecratedIrrPrefix ?? 0)
+                + (s.desecratedIrrSuffix ?? 0);
+    return total > 0;
+  },
+  transitions: (s, env) => {
+    const N = env.wishlistWeights.length;
+    const types = env.wishlistTypes ?? new Array(N).fill(null);
+    const cost = env.orbCosts?.annul_omen_of_light ?? 0;
+    const time = env.orbTimes?.annul_omen_of_light ?? 1;
+    const desecWishedMask = s.desecratedWishedMask ?? 0;
+    const irrPrefix = s.desecratedIrrPrefix ?? 0;
+    const irrSuffix = s.desecratedIrrSuffix ?? 0;
+    const desecCount = popcount(desecWishedMask) + irrPrefix + irrSuffix;
+    const out = [];
+    if (desecCount === 0) return out;
+    // Per-wished desecrated bit removal.
+    for (let i = 0; i < N; i++) {
+      if (!(desecWishedMask & (1 << i))) continue;
+      const isPrefix = types[i] === 'PREFIX';
+      out.push({
+        to: makeState({ ...s,
+          modMask: s.modMask & ~(1 << i),
+          totalMods: s.totalMods - 1,
+          prefixMods: Math.max(0, (s.prefixMods ?? 0) - (isPrefix ? 1 : 0)),
+          desecratedWishedMask: desecWishedMask & ~(1 << i),
+        }),
+        prob: 1 / desecCount, costEx: cost, costSec: time,
+      });
+    }
+    // Irrelevant desecrated prefix removal — clamp prefixMods to ≥0
+    // so an upstream-stale state (prefixMods=0 but irrPrefix=1) can't
+    // cascade a -1 prefixMods through this transition.
+    if (irrPrefix > 0) {
+      out.push({
+        to: makeState({ ...s,
+          totalMods: s.totalMods - 1,
+          prefixMods: Math.max(0, (s.prefixMods ?? 0) - 1),
+          desecratedIrrPrefix: irrPrefix - 1,
+        }),
+        prob: irrPrefix / desecCount, costEx: cost, costSec: time,
+      });
+    }
+    // Irrelevant desecrated suffix removal.
+    if (irrSuffix > 0) {
+      out.push({
+        to: makeState({ ...s,
+          totalMods: s.totalMods - 1,
+          desecratedIrrSuffix: irrSuffix - 1,
+        }),
+        prob: irrSuffix / desecCount, costEx: cost, costSec: time,
+      });
+    }
+    return out;
+  },
+};
 
 // Chaos Orb factory. Models the "remove 1 random + add 1 random"
 // composite: pick a removable mod uniformly (denominator = totalMods,
@@ -319,15 +559,23 @@ function makeChaosOrb(id, name) {
       // single-draw distribution.
       const out = [];
       const emit = (postRemoveState, pRemove) => {
-        // Single-draw add from the post-removal state.
+        // Single-draw add from the post-removal state — outcomes are
+        // keyed `${maskBit}|${prefixDelta}` so prefix-side and
+        // suffix-side adds branch separately.
         const addDist = singleDrawMaskDistribution(
-          postRemoveState.modMask, env, id);
-        for (const [maskBit, pAdd] of addDist) {
+          postRemoveState.modMask, env, id, null,
+          postRemoveState.prefixMods ?? 0,
+          postRemoveState.totalMods ?? 0);
+        for (const [key, pAdd] of addDist) {
+          const [maskBitStr, prefixDeltaStr] = key.split('|');
+          const maskBit = Number(maskBitStr);
+          const prefixDelta = Number(prefixDeltaStr);
           out.push({
             to: makeState({
               ...postRemoveState,
               modMask: postRemoveState.modMask | maskBit,
               totalMods: postRemoveState.totalMods + 1, // restore
+              prefixMods: (postRemoveState.prefixMods ?? 0) + prefixDelta,
             }),
             prob: pRemove * pAdd,
             costEx: cost,
@@ -335,20 +583,74 @@ function makeChaosOrb(id, name) {
           });
         }
       };
+      const wTypes = env.wishlistTypes ?? [];
+      const desecMask = s.desecratedWishedMask ?? 0;
+      const irrPrefixDesec = s.desecratedIrrPrefix ?? 0;
+      const irrSuffixDesec = s.desecratedIrrSuffix ?? 0;
       for (const i of wishedOnItem) {
+        const isPrefix = wTypes[i] === 'PREFIX' ? 1 : 0;
         const removed = makeState({
           ...s,
           modMask: s.modMask & ~(1 << i),
           totalMods: s.totalMods - 1,
+          prefixMods: Math.max(0, (s.prefixMods ?? 0) - isPrefix),
+          // Removing a wished bit that was desecrated clears it from
+          // the wished-desec mask.
+          desecratedWishedMask: desecMask & ~(1 << i),
         });
         emit(removed, 1 / totalRemovable);
       }
       if (irrCount > 0) {
-        const removed = makeState({
-          ...s,
-          totalMods: s.totalMods - 1,
-        });
-        emit(removed, irrCount / totalRemovable);
+        // Count ALL prefix bits on item (wished + fractured) when
+        // sizing the irrelevant pool, mirroring the annul fix.
+        let prefixOnItem = 0;
+        for (let i = 0; i < (env.wishlistTypes ?? []).length; i++) {
+          if ((s.modMask & (1 << i)) && wTypes[i] === 'PREFIX') prefixOnItem++;
+        }
+        const irrPrefix = Math.max(0, (s.prefixMods ?? 0) - prefixOnItem);
+        const irrSuffix = Math.max(0, irrCount - irrPrefix);
+        // Branch each side's irrelevant removal into desec vs clean
+        // outcomes (mirrors annul). Without this, an irrelevant
+        // desecrated slot can be removed from the modMask side
+        // without decrementing the desecratedIrr counter, leaving
+        // `desecratedIrrPrefix=1` on a state with no prefix slots
+        // — which then propagates a -1 prefixMods downstream.
+        if (irrPrefix > 0) {
+          const irrPrefDesec = Math.min(irrPrefixDesec, irrPrefix);
+          const irrPrefClean = irrPrefix - irrPrefDesec;
+          if (irrPrefDesec > 0) {
+            emit(makeState({
+              ...s,
+              totalMods: s.totalMods - 1,
+              prefixMods: Math.max(0, (s.prefixMods ?? 0) - 1),
+              desecratedIrrPrefix: irrPrefixDesec - 1,
+            }), irrPrefDesec / totalRemovable);
+          }
+          if (irrPrefClean > 0) {
+            emit(makeState({
+              ...s,
+              totalMods: s.totalMods - 1,
+              prefixMods: Math.max(0, (s.prefixMods ?? 0) - 1),
+            }), irrPrefClean / totalRemovable);
+          }
+        }
+        if (irrSuffix > 0) {
+          const irrSufDesec = Math.min(irrSuffixDesec, irrSuffix);
+          const irrSufClean = irrSuffix - irrSufDesec;
+          if (irrSufDesec > 0) {
+            emit(makeState({
+              ...s,
+              totalMods: s.totalMods - 1,
+              desecratedIrrSuffix: irrSuffixDesec - 1,
+            }), irrSufDesec / totalRemovable);
+          }
+          if (irrSufClean > 0) {
+            emit(makeState({
+              ...s,
+              totalMods: s.totalMods - 1,
+            }), irrSufClean / totalRemovable);
+          }
+        }
       }
       // pAccept is consumed inside singleDrawMaskDistribution via
       // env.pTierAcceptable[id]; suppress unused-var lint
@@ -365,15 +667,19 @@ function makeSingleDrawOrbSide(id, name, applicable, targetRarity, sideFilter) {
   return {
     id, name, applicable,
     transitions: (s, env) => {
-      const dist = singleDrawMaskDistribution(s.modMask, env, id, sideFilter);
+      const dist = singleDrawMaskDistribution(s.modMask, env, id, sideFilter, s.prefixMods ?? 0, s.totalMods ?? 0);
       const out = [];
-      for (const [maskBit, prob] of dist) {
+      for (const [key, prob] of dist) {
+        const [maskBitStr, prefixDeltaStr] = key.split('|');
+        const maskBit = Number(maskBitStr);
+        const prefixDelta = Number(prefixDeltaStr);
         out.push({
           to: makeState({
             ...s,
             rarity: targetRarity,
             modMask: s.modMask | maskBit,
             totalMods: s.totalMods + 1,
+            prefixMods: (s.prefixMods ?? 0) + prefixDelta,
           }),
           prob,
           costEx: env.orbCosts[id] ?? 0,
@@ -424,12 +730,35 @@ export const ACTIONS = {
     transitions: (s, env) => {
       const dist = alchMaskDistribution(env.alchemyDraws, env, 'alch');
       const out = [];
+      const types = env.wishlistTypes ?? [];
+      const prefixWeight = env.irrelevantWeightBySide?.PREFIX ?? 0;
+      const suffixWeight = env.irrelevantWeightBySide?.SUFFIX ?? 0;
+      const irrTotalW = prefixWeight + suffixWeight;
+      // Prefix-share heuristic for the irrelevant slots: proportional
+      // to side weights when both are positive; else 50/50 fallback.
+      // This is a deterministic per-outcome side split — branching
+      // over (k prefix-irr, irrCount-k suffix-irr) for each k would
+      // be more accurate but multiplies the state space by ~5×.
+      const prefixShare = irrTotalW > 0 ? (prefixWeight / irrTotalW) : 0.5;
       for (const [mask, prob] of dist) {
+        let nPrefixWished = 0;
+        for (let i = 0; i < types.length; i++) {
+          if ((mask & (1 << i)) && types[i] === 'PREFIX') nPrefixWished++;
+        }
+        const irrCount = env.alchemyDraws - popcount(mask);
+        const nPrefixIrrRaw = Math.round(irrCount * prefixShare);
+        // Clamp to satisfy the 3-per-side game cap.
+        const nPrefixIrr = Math.max(
+          0,
+          Math.min(3 - nPrefixWished, nPrefixIrrRaw, irrCount),
+        );
+        const prefixMods = nPrefixWished + nPrefixIrr;
         out.push({
           to: makeState({
             rarity: 'rare',
             modMask: mask,
             totalMods: env.alchemyDraws,
+            prefixMods,
             fracturedBit: -1,
             irrFractured: false,
           }),
@@ -472,12 +801,23 @@ export const ACTIONS = {
         }];
       }
       const out = [];
+      const wTypes = env.wishlistTypes ?? [];
+      const desecMask = s.desecratedWishedMask ?? 0;
+      const irrPrefixDesec = s.desecratedIrrPrefix ?? 0;
+      const irrSuffixDesec = s.desecratedIrrSuffix ?? 0;
       for (const i of wishedRemovable) {
+        const isPrefix = wTypes[i] === 'PREFIX' ? 1 : 0;
+        const newPrefix = Math.max(0, (s.prefixMods ?? 0) - isPrefix);
+        // If wished bit i was desecrated, removing it clears the
+        // bit from desecratedWishedMask.
+        const newDesecMask = desecMask & ~(1 << i);
         out.push({
           to: makeState({
             ...s,
             modMask: s.modMask & ~(1 << i),
             totalMods: s.totalMods - 1,
+            prefixMods: newPrefix,
+            desecratedWishedMask: newDesecMask,
           }),
           prob: 1 / totalRemovable,
           costEx: env.orbCosts.annul ?? 0,
@@ -485,12 +825,75 @@ export const ACTIONS = {
         });
       }
       if (irrCount > 0) {
-        out.push({
-          to: makeState({ ...s, totalMods: s.totalMods - 1 }),
-          prob: irrCount / totalRemovable,
-          costEx: env.orbCosts.annul ?? 0,
-          costSec: env.orbTimes.annul ?? 0,
-        });
+        // Count ALL prefix bits currently on the item (wished AND
+        // fractured) to size the irrelevant-prefix pool — using
+        // `wishedRemovable` would exclude fractured bits and let
+        // annul's prefix-decrement underflow.
+        let prefixOnItem = 0;
+        for (let i = 0; i < N; i++) {
+          if ((s.modMask & (1 << i)) && wTypes[i] === 'PREFIX') prefixOnItem++;
+        }
+        const irrPrefix = Math.max(0, (s.prefixMods ?? 0) - prefixOnItem);
+        const irrSuffix = Math.max(0, irrCount - irrPrefix);
+        // Branch each side's irrelevant removal into desecrated vs
+        // non-desecrated outcomes — required so removing a desecrated
+        // slot also decrements the per-side desecrated-irr count.
+        // Without this, a state can carry a desecratedIrrPrefix=1
+        // counter that survives the only prefix slot being annulled,
+        // producing inconsistent downstream states.
+        if (irrPrefix > 0) {
+          const irrPrefDesec = Math.min(irrPrefixDesec, irrPrefix);
+          const irrPrefClean = irrPrefix - irrPrefDesec;
+          if (irrPrefDesec > 0) {
+            out.push({
+              to: makeState({
+                ...s,
+                totalMods: s.totalMods - 1,
+                prefixMods: (s.prefixMods ?? 0) - 1,
+                desecratedIrrPrefix: irrPrefixDesec - 1,
+              }),
+              prob: irrPrefDesec / totalRemovable,
+              costEx: env.orbCosts.annul ?? 0,
+              costSec: env.orbTimes.annul ?? 0,
+            });
+          }
+          if (irrPrefClean > 0) {
+            out.push({
+              to: makeState({
+                ...s,
+                totalMods: s.totalMods - 1,
+                prefixMods: (s.prefixMods ?? 0) - 1,
+              }),
+              prob: irrPrefClean / totalRemovable,
+              costEx: env.orbCosts.annul ?? 0,
+              costSec: env.orbTimes.annul ?? 0,
+            });
+          }
+        }
+        if (irrSuffix > 0) {
+          const irrSufDesec = Math.min(irrSuffixDesec, irrSuffix);
+          const irrSufClean = irrSuffix - irrSufDesec;
+          if (irrSufDesec > 0) {
+            out.push({
+              to: makeState({
+                ...s,
+                totalMods: s.totalMods - 1,
+                desecratedIrrSuffix: irrSuffixDesec - 1,
+              }),
+              prob: irrSufDesec / totalRemovable,
+              costEx: env.orbCosts.annul ?? 0,
+              costSec: env.orbTimes.annul ?? 0,
+            });
+          }
+          if (irrSufClean > 0) {
+            out.push({
+              to: makeState({ ...s, totalMods: s.totalMods - 1 }),
+              prob: irrSufClean / totalRemovable,
+              costEx: env.orbCosts.annul ?? 0,
+              costSec: env.orbTimes.annul ?? 0,
+            });
+          }
+        }
       }
       return out;
     },
@@ -508,13 +911,30 @@ export const ACTIONS = {
   apply_bone: {
     id: 'apply_bone',
     name: 'Apply Bone (desecrated)',
-    // Multi-bone-per-item: after a reveal, boneMod resets so a fresh
-    // bone can be applied — limited only by the maxFilled affix cap
-    // (each revealed bone-mod consumes a real slot; once totalMods
-    // reaches maxFilled, no more bones fit).
-    applicable: (s, env) => s.rarity === 'rare' && !s.boneMod
-      && s.fracturedBit < 0 && !s.irrFractured
-      && s.totalMods < env.maxFilled,
+    // PoE2 rule (user clarification 2026-05-07): an item that already
+    // carries a desecrated mod — REVEALED OR UNREVEALED — cannot be
+    // desecrated again. The desecrated provenance persists across
+    // reveal, so a previously-revealed bone-mod blocks future
+    // apply_bone calls. To unstick, the user must Annul-with-
+    // Omen-of-Light to scrub the desecrated affix (engine action
+    // for that loop is a follow-up). Net effect: the FINAL item can
+    // carry at most ONE desecrated mod under any path the engine
+    // currently models.
+    //
+    // Earlier comment incorrectly described "multi-bone-per-item:
+    // after a reveal, boneMod resets so a fresh bone can be applied."
+    // That contradicts the game rule and was a bug.
+    applicable: (s, env) => {
+      if (s.rarity !== 'rare' || s.boneMod) return false;
+      if (s.fracturedBit >= 0 || s.irrFractured) return false;
+      if (s.totalMods >= env.maxFilled) return false;
+      // Block apply_bone when ANY desecrated mod is on item — wished
+      // (in mask) or irrelevant (per side count).
+      if ((s.desecratedWishedMask ?? 0) !== 0) return false;
+      if ((s.desecratedIrrPrefix ?? 0) > 0) return false;
+      if ((s.desecratedIrrSuffix ?? 0) > 0) return false;
+      return true;
+    },
     transitions: (s, env) => [{
       to: makeState({ ...s, boneMod: true, boneRevealed: false }),
       prob: 1,
@@ -537,12 +957,15 @@ export const ACTIONS = {
   // engine's perspective (counts toward Fracture's lock pool, can be
   // annulled, etc.).
   reveal_bone:           makeRevealBoneOrb('reveal_bone',           'Reveal Bone-mod',                            'pBoneRevealHit'),
-  reveal_bone_sinistral: makeRevealBoneOrb('reveal_bone_sinistral', 'Reveal Bone-mod (Sinistral Necromancy)',     'pBoneRevealHitPrefix'),
-  reveal_bone_dextral:   makeRevealBoneOrb('reveal_bone_dextral',   'Reveal Bone-mod (Dextral Necromancy)',       'pBoneRevealHitSuffix'),
+  reveal_bone_sinistral: makeRevealBoneOrb('reveal_bone_sinistral', 'Reveal Bone-mod (Sinistral Necromancy)',     'pBoneRevealHitPrefix', 'PREFIX'),
+  reveal_bone_dextral:   makeRevealBoneOrb('reveal_bone_dextral',   'Reveal Bone-mod (Dextral Necromancy)',       'pBoneRevealHitSuffix', 'SUFFIX'),
   // Abyssal Echoes — reveal can re-roll once, effectively 6 picks
   // instead of 3. Uses the same pool as plain reveal_bone but with
   // a different precomputed hit-probability array (1 - (1-1/N)^6).
   reveal_bone_abyssal:   makeRevealBoneOrb('reveal_bone_abyssal',   'Reveal Bone-mod (Abyssal Echoes)',           'pBoneRevealHitAbyssal'),
+
+  // ── Annul + Omen of Light — desecrated cleanup ───────────────────
+  annul_omen_of_light: annulOmenOfLight,
 
   // ── Chaos Orb family ──────────────────────────────────────────
   // PoE2 Chaos Orb: "Rare: remove a random mod, add a random mod."
@@ -631,6 +1054,13 @@ export function makeEssenceAction(spec, keyToBit) {
     if (bit !== undefined) mask |= (1 << bit);
   }
   const pAcc = Number.isFinite(spec.pAcceptable) ? spec.pAcceptable : 1;
+  // Side delta for prefixMods: the new affix lands on the essence's
+  // natural side (PREFIX/SUFFIX as declared in the catalog row).
+  // Without this, post-essence states have a wished bit set but
+  // prefixMods=0 — and downstream annul/chaos try to remove the
+  // "phantom prefix," driving prefixMods negative and exploding the
+  // BFS state space.
+  const sidePrefixDelta = spec.side === 'PREFIX' ? 1 : 0;
   return {
     id: spec.id,
     name: spec.name ?? spec.id,
@@ -652,6 +1082,7 @@ export function makeEssenceAction(spec, keyToBit) {
             rarity: 'rare',
             modMask: s.modMask | newBits,
             totalMods: s.totalMods + 1,
+            prefixMods: (s.prefixMods ?? 0) + sidePrefixDelta,
           }),
           prob: pAcc,
           costEx: cost, costSec: time,
@@ -659,14 +1090,163 @@ export function makeEssenceAction(spec, keyToBit) {
       }
       const pNoBit = newBits !== 0 ? 1 - pAcc : 1;
       if (pNoBit > 0) {
+        // Sub-tier outcome — the rolled affix occupies a slot on the
+        // essence's natural side but the wished bit isn't set.
         out.push({
           to: makeState({ ...s,
             rarity: 'rare',
             totalMods: s.totalMods + 1,
+            prefixMods: (s.prefixMods ?? 0) + sidePrefixDelta,
           }),
           prob: pNoBit,
           costEx: cost, costSec: time,
         });
+      }
+      return out;
+    },
+  };
+}
+
+// ── Perfect-essence overwrite action ─────────────────────────────
+// Per project memory `project_perfect_essence_rules`, Perfect (and
+// Corrupted) essences apply on a RARE item and overwrite a
+// uniformly-random affix of the essence's natural side (PREFIX or
+// SUFFIX). Same-family overwrite is blocked: if the essence's affix
+// is already on the item, the action is inapplicable.
+//
+// State transition:
+//   - Pick a random target slot uniformly from `side`-side affixes.
+//   - Replace it: if target was a wished bit, clear it; then set the
+//     essence's matched bit(s) with prob `pAcceptable`.
+//   - totalMods unchanged (1-for-1 swap); side count unchanged.
+//
+// Side handling: when the essence's `side` is null (catalog entry
+// missing the column), we fall back to overwriting a random affix
+// from EITHER side — engine treats this as "approximate" and the
+// action's EV may be slightly off. Most catalog rows have side set.
+export function makePerfectEssenceOverwriteAction(spec, keyToBit, env) {
+  const matchedKeys = spec.matchedKeys ?? [];
+  let mask = 0;
+  for (const k of matchedKeys) {
+    const bit = keyToBit.get(k);
+    if (bit !== undefined) mask |= (1 << bit);
+  }
+  const pAcc = Number.isFinite(spec.pAcceptable) ? spec.pAcceptable : 1;
+  const side = spec.side ?? null; // 'PREFIX' | 'SUFFIX' | null
+  return {
+    id: spec.id,
+    name: spec.name ?? spec.id,
+    applicable: (s) => {
+      if (s.rarity !== 'rare' || s.totalMods < 1) return false;
+      if (s.fracturedBit >= 0 || s.irrFractured) return false;
+      if (s.boneMod) return false;
+      // Same-family-blocked: if all matched bits are already set,
+      // the essence has nothing new to add.
+      if ((mask & ~s.modMask) === 0) return false;
+      // Side gating only fires for the omen-augmented variants
+      // (Sinistral / Dextral Crystallisation), where `side` is set
+      // to PREFIX or SUFFIX. The base variant has side=null and
+      // accepts any rare with totalMods ≥ 1. For omen variants we
+      // need at least one affix on the forced side to overwrite.
+      if (side === 'PREFIX' && (s.prefixMods ?? 0) < 1) return false;
+      if (side === 'SUFFIX' && (s.totalMods - (s.prefixMods ?? 0)) < 1) return false;
+      return true;
+    },
+    transitions: (s) => {
+      const cost = spec.costEx;
+      const time = spec.timeSec ?? 1;
+      const newBits = mask & ~s.modMask;
+      const out = [];
+      // Side-restricted pick when an omen forces the side; otherwise
+      // uniform over all affixes (default Perfect-essence behaviour).
+      const sideCount = side === 'PREFIX' ? (s.prefixMods ?? 0)
+                      : side === 'SUFFIX' ? (s.totalMods - (s.prefixMods ?? 0))
+                      : s.totalMods;
+      if (sideCount <= 0) return [];
+      const wishedOnSide = [];
+      const wishlistTypes = env?.wishlistTypes ?? [];
+      for (let i = 0; i < wishlistTypes.length; i++) {
+        if (!(s.modMask & (1 << i))) continue;
+        if (side && wishlistTypes[i] !== side) continue;
+        wishedOnSide.push(i);
+      }
+      // Per-side breakdown of irrelevants in the picking pool — needed
+      // because removing an irrelevant prefix vs suffix produces a
+      // different prefixMods delta when the essence's affix is added
+      // back. Without this, modMask gets a wished prefix bit set but
+      // prefixMods isn't bumped, leaving the state inconsistent (a
+      // PREFIX wished mod present but prefixMods unchanged).
+      let irrPrefix = 0, irrSuffix = 0;
+      if (side === 'PREFIX')      irrPrefix = sideCount - wishedOnSide.length;
+      else if (side === 'SUFFIX') irrSuffix = sideCount - wishedOnSide.length;
+      else {
+        const wishedPrefixOnItem = wishedOnSide.filter((i) => wishlistTypes[i] === 'PREFIX').length;
+        const wishedSuffixOnItem = wishedOnSide.length - wishedPrefixOnItem;
+        irrPrefix = Math.max(0, (s.prefixMods ?? 0) - wishedPrefixOnItem);
+        irrSuffix = Math.max(0, (s.totalMods - (s.prefixMods ?? 0)) - wishedSuffixOnItem);
+      }
+      // The essence's affix occupies the picked slot's side AND
+      // carries the essence's natural side. When the picked slot's
+      // side ≠ essence's side, prefixMods shifts by the difference.
+      // Source the essence's natural side from spec.side (catalog
+      // row); when missing (legacy / under-spec'd row), fall back
+      // to the matched wishlist bit's type — the essence's affix
+      // IS that wishlist mod, so its side is the same.
+      let addPrefixDelta = 0;
+      if (spec.side === 'PREFIX')      addPrefixDelta = 1;
+      else if (spec.side === 'SUFFIX') addPrefixDelta = 0;
+      else {
+        // Fallback: use the first matched wishlist bit's type.
+        const firstMatchedBit = matchedKeys.length ? keyToBit.get(matchedKeys[0]) : null;
+        if (firstMatchedBit != null && wishlistTypes[firstMatchedBit] === 'PREFIX') addPrefixDelta = 1;
+      }
+      const recordOutcome = (postRemoveMask, postRemoveDesecMask, removedPrefixDelta, pickProb) => {
+        const newPrefixMods = Math.max(0, Math.min(3,
+          (s.prefixMods ?? 0) - removedPrefixDelta + addPrefixDelta));
+        if (newBits !== 0 && pAcc > 0) {
+          out.push({
+            to: makeState({ ...s,
+              modMask: postRemoveMask | newBits,
+              prefixMods: newPrefixMods,
+              desecratedWishedMask: postRemoveDesecMask,
+              // totalMods unchanged (1-for-1 overwrite). The new
+              // affix is NOT desecrated (essences are not the Well
+              // of Souls).
+            }),
+            prob: pickProb * pAcc,
+            costEx: cost, costSec: time,
+          });
+        }
+        const pNoBit = newBits !== 0 ? (1 - pAcc) : 1;
+        if (pNoBit > 0) {
+          // Sub-tier — new affix occupies the slot but the wished
+          // bit isn't set. Side delta still applies (the essence's
+          // affix family took the slot, even at sub-tier).
+          out.push({
+            to: makeState({ ...s,
+              modMask: postRemoveMask,
+              prefixMods: newPrefixMods,
+              desecratedWishedMask: postRemoveDesecMask,
+            }),
+            prob: pickProb * pNoBit,
+            costEx: cost, costSec: time,
+          });
+        }
+      };
+      // Removing a wished bit i (uniform 1/sideCount each).
+      for (const i of wishedOnSide) {
+        const postMask = s.modMask & ~(1 << i);
+        const postDesec = (s.desecratedWishedMask ?? 0) & ~(1 << i);
+        const removedPrefix = wishlistTypes[i] === 'PREFIX' ? 1 : 0;
+        recordOutcome(postMask, postDesec, removedPrefix, 1 / sideCount);
+      }
+      // Removing an irrelevant prefix.
+      if (irrPrefix > 0) {
+        recordOutcome(s.modMask, s.desecratedWishedMask ?? 0, 1, irrPrefix / sideCount);
+      }
+      // Removing an irrelevant suffix.
+      if (irrSuffix > 0) {
+        recordOutcome(s.modMask, s.desecratedWishedMask ?? 0, 0, irrSuffix / sideCount);
       }
       return out;
     },

@@ -525,16 +525,22 @@ test('budgetEx ⇒ chain nodes carry itemValue (backward induction, brick=0)', (
   const goalNodes = result.chain.states.filter((s) => s.kind === 'goal');
   assert.ok(goalNodes.length > 0, 'chain must contain at least one goal node');
   for (const g of goalNodes) {
-    assert.ok(g.label.includes(`value=${budgetEx}`),
-      `goal node should carry value=${budgetEx}; got label: ${g.label}`);
+    assert.ok(g.label.includes(`fromBudget=${budgetEx}`),
+      `goal node should carry fromBudget=${budgetEx}; got label: ${g.label}`);
   }
   // Post-fracture-success at totalMods=4 (key rare|1|4|0|0): deterministic
   // 3 annuls to goal. itemValue = budget − 3·annul.
-  const postFrac4 = result.chain.states.find((s) =>
-    /t=4/.test(s.label) && /bit 0/.test(s.label) && !/💀/.test(s.label));
+  // Resolve via the state index encoded in the chain node id, since
+  // `t=N` was dropped from the label (totalMods is implicit in the
+  // mod-list breakdown).
+  const postFrac4 = result.chain.states.find((s) => {
+    const idx = parseInt(s.id.replace(/^s/, ''), 10);
+    const st = result.states[idx]?.state;
+    return st && st.totalMods === 4 && st.fracturedBit === 0 && !st.irrFractured;
+  });
   assert.ok(postFrac4, 'expected post-fracture-success state (rare|w|4 fractured) in chain');
   const expectedPF4 = budgetEx - 3 * annul;
-  const m = postFrac4.label.match(/value=(-?[\d.]+)/);
+  const m = postFrac4.label.match(/fromBudget=(-?[\d.]+)/);
   assert.ok(m, `couldn't parse value from post-fracture-4 label: ${postFrac4.label}`);
   const parsed = parseFloat(m[1]);
   assert.ok(Math.abs(parsed - expectedPF4) < 1,
@@ -578,7 +584,7 @@ test('itemValue: pre-fracture node ≈ (budget − 3·annul)/4 − fracture (use
     return;
   }
   const expected = (budgetEx - 3 * annul) / 4 - fracture;
-  const m = chainNode.label.match(/value=(-?[\d.]+)/);
+  const m = chainNode.label.match(/fromBudget=(-?[\d.]+)/);
   assert.ok(m, `couldn't parse value from pre-fracture label: ${chainNode.label}`);
   const parsed = parseFloat(m[1]);
   if (expected > 0) {
@@ -589,10 +595,10 @@ test('itemValue: pre-fracture node ≈ (budget − 3·annul)/4 − fracture (use
   }
 });
 
-test('budgetEx ⇒ bricked / over-budget states render value=0 (never negative)', () => {
+test('budgetEx ⇒ bricked / over-budget states render fromBudget=0 (never negative)', () => {
   // An item is at worst worthless (drop it for free), never anti-
   // valuable. Pin: with a budget far smaller than V*(start), the
-  // start node should render value=0 (clamped), not a negative
+  // start node should render fromBudget=0 (clamped), not a negative
   // number. The "loss" the user has already incurred is sunk cost,
   // not item market value.
   const budgetEx = 10; // far below the bow-fracture V*(start) ≈ 30k+
@@ -604,7 +610,7 @@ test('budgetEx ⇒ bricked / over-budget states render value=0 (never negative)'
     orbTimes: { transmute: 1,      augment: 1,     regal: 1,     alch: 1,     exalt: 1, annul: 1,   fracturing: 3 },
   });
   for (const s of result.chain.states) {
-    const m = s.label.match(/value=(-?[\d∞−.]+)/);
+    const m = s.label.match(/fromBudget=(-?[\d∞−.]+)/);
     if (!m) continue;
     assert.ok(!m[1].startsWith('-') && !m[1].startsWith('−'),
       `chain node ${s.id} should never show negative value; got "${m[0]}" in label: ${s.label}`);
@@ -704,8 +710,8 @@ test('chain.breakevenBudgetEx is policy-property when budget covers all orbs', (
   // Sanity: at budgetEx = breakeven, itemValue(start) ≈ 0.
   const rBE = solveMDP({ ...baseline, budgetEx: be2 });
   const startNode = rBE.chain.states.find((s) => s.id === rBE.chain.start);
-  if (startNode && /value=/.test(startNode.label)) {
-    const m = startNode.label.match(/value=(-?[\d.]+)/);
+  if (startNode && /fromBudget=/.test(startNode.label)) {
+    const m = startNode.label.match(/fromBudget=(-?[\d.]+)/);
     if (m) {
       const parsed = parseFloat(m[1]);
       assert.ok(Math.abs(parsed) < 1,
@@ -936,7 +942,7 @@ test('budgetEx omitted ⇒ no value annotation on chain nodes (legacy behaviour)
     orbTimes: { transmute: 1,    augment: 1,    regal: 1,   alch: 1, exalt: 1, annul: 1,   fracturing: 3 },
   });
   for (const s of result.chain.states) {
-    assert.ok(!s.label.includes('value='),
+    assert.ok(!s.label.includes('fromBudget='),
       `without budgetEx, chain nodes must NOT include value annotation; got: ${s.label}`);
   }
 });

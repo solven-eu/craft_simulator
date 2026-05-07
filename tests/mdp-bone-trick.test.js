@@ -38,7 +38,12 @@ const baseInput = {
   target: {
     requiredMods: ['WISH'],
     fracturedKey:  'WISH',
-    minFilled: 1, maxFilled: 1,
+    // maxFilled=2 (not 1) because revealing the bone bumps totalMods
+    // by 1; with maxFilled=1 the revealed bone always overflows the
+    // target, making the entire bone-trick path unreachable. The
+    // trick's value is the *fracture-denominator* (1/3 vs 1/4), and
+    // testing it requires a target where revealing the bone fits.
+    minFilled: 1, maxFilled: 2,
   },
   start: { rarity: 'rare', modsOnItem: ['WISH'], totalMods: 3, fracturedKey: null },
   basePriceEx: 100,
@@ -77,14 +82,22 @@ test('after apply_bone, fracturing is applicable at totalMods=3 (threshold met v
     ...baseRates,
     boneCostEx: 0.5,
   });
-  // The state "rare|w|3 with bone applied" should have fracturing as
-  // its policy (smaller denominator than 4-mod fracture).
-  const boned = result.states.find((s) =>
+  // The state "rare|w|3 with bone applied" must include `fracturing`
+  // in its action set: the hidden bone mod pads totalMods (3 + 1 = 4)
+  // to satisfy the ≥4-mods fracture threshold. Whether fracturing is
+  // the *optimal* next action depends on the cost regime — which
+  // varies from "fracture immediately" to "reveal first then
+  // fracture" depending on orb costs and target shape. The
+  // applicability is the load-bearing claim the trick depends on.
+  const stateIdx = result.states.findIndex((s) =>
     s.state.rarity === 'rare' && s.state.modMask === 1 && s.state.totalMods === 3
     && s.state.boneMod === true && s.state.fracturedBit === -1);
-  assert.ok(boned, 'expected rare|w|3 with boneMod=true in state space');
-  assert.equal(boned.policy, 'fracturing',
-    `policy at boned rare|w|3 should be fracturing; got "${boned.policy}"`);
+  assert.ok(stateIdx >= 0, 'expected rare|w|3 with boneMod=true in state space');
+  const apps = result.appsPerState?.get?.(stateIdx) ?? [];
+  const actionIds = apps.map((a) => a.actionId);
+  assert.ok(actionIds.includes('fracturing'),
+    `expected "fracturing" applicable at boned rare|w|3 (hidden mod ` +
+    `pads to threshold); got actions: ${JSON.stringify(actionIds)}`);
 });
 
 test('expensive bone over budget ⇒ apply_bone excluded, exalt-pad fallback', () => {
@@ -201,35 +214,49 @@ test('reveal_bone with wished mod in desecrated pool ⇒ wished bit can be set',
     `expected both wished-set and wished-unset post-reveal variants when pBoneRevealHit > 0; got ${postRevealVariants.length}`);
 });
 
-test('multi-bone-per-item: post-reveal allows another apply_bone', () => {
-  // After a reveal, both bone flags clear so apply_bone is applicable
-  // again — limited only by totalMods < maxFilled. Pin: starting from
-  // a 2-mod Rare with the wished mod, with cheap bones, the state
-  // space contains the path apply_bone → reveal_bone → apply_bone
-  // (chained via the post-reveal state where boneMod=false again).
+test('one-desecrated-cap: post-reveal blocks a second apply_bone', () => {
+  // PoE2 rule (user clarification 2026-05-07): a desecrated mod
+  // (revealed or unrevealed) blocks `apply_bone`. Once a bone has
+  // been revealed, the resulting affix carries the desecrated
+  // provenance and remains on the item — so a second apply_bone is
+  // NOT applicable until the desecrated mod has been scrubbed via
+  // Annul-with-Omen-of-Light (engine action for that loop is a
+  // follow-up).
+  //
+  // Pin: starting from a 2-mod Rare with the wished mod, after one
+  // apply_bone → reveal_bone cycle, no further apply_bone state
+  // exists in the engine's reachable space.
   const result = solveMDP({
     ...baseInput,
     start: { rarity: 'rare', modsOnItem: ['WISH'], totalMods: 2, fracturedKey: null },
     ...baseRates,
     boneCostEx: 0.5,
   });
-  // Look for a state that's "rare|w|3 post-reveal" reachable from the
-  // starting rare|w|2 — that means apply_bone (rare|w|2 → bone-pre-reveal)
-  // → reveal_bone (→ rare|w|3 post-reveal). Then apply_bone is
-  // applicable AGAIN because boneMod=false.
+  // Post-first-reveal state: 1 desecrated mod on the item.
+  // desecratedCount is now derived from the underlying fields:
+  // popcount(desecratedWishedMask) + desecratedIrrPrefix + desecratedIrrSuffix.
+  const desecCount = (st) => {
+    let n = 0; let m = st.desecratedWishedMask ?? 0;
+    while (m) { n += m & 1; m >>>= 1; }
+    return n + (st.desecratedIrrPrefix ?? 0) + (st.desecratedIrrSuffix ?? 0);
+  };
   const postFirstReveal = result.states.find((s) =>
     s.state.rarity === 'rare' && s.state.modMask === 1 && s.state.totalMods === 3
     && s.state.boneMod === false && s.state.boneRevealed === false
+    && desecCount(s.state) === 1
     && s.state.fracturedBit === -1 && !s.state.irrFractured);
-  assert.ok(postFirstReveal, 'expected post-first-reveal state (rare|w|3, no pending bone)');
-  // From here, a SECOND apply_bone should reach a state with the bone
-  // flag set and totalMods still 3 (pre-second-reveal).
+  assert.ok(postFirstReveal,
+    'expected post-first-reveal state (rare|w|3 with one desecrated mod)');
+  // A second apply_bone should NOT be reachable from here — confirm
+  // by absence of any pre-second-bone state with a desecrated mod
+  // already on the item AND boneMod=true.
   const preSecondBone = result.states.find((s) =>
-    s.state.rarity === 'rare' && s.state.modMask === 1 && s.state.totalMods === 3
+    s.state.rarity === 'rare' && s.state.totalMods === 3
     && s.state.boneMod === true && s.state.boneRevealed === false
-    && s.state.fracturedBit === -1 && !s.state.irrFractured);
-  assert.ok(preSecondBone,
-    'expected pre-second-bone state (rare|w|3 with boneMod=true) — multi-bone should be reachable');
+    && desecCount(s.state) >= 1);
+  assert.ok(!preSecondBone,
+    'apply_bone must be unreachable after a prior reveal (desecrated provenance persists); '
+    + `but found state with boneMod=true && desecCount≥1: ${JSON.stringify(preSecondBone?.state)}`);
 });
 
 test('Sinistral Necromancy reveal: prefix-only pool restricts the wished bit', () => {

@@ -4,6 +4,10 @@ import { compareStrategies } from '../engine/strategies.js';
 import { readURLState, writeURLState, debounce, SHAREABLE_FIELDS } from '../lib/urlState.js';
 import { solveMDP } from '../engine/mdp/solve.js';
 import { ctxToMdpInput } from '../engine/mdp/adapter.js';
+import { modHelperActions } from './craft/mod-helpers.js';
+import { savedCraftActions, loadInitialSavedCrafts } from './craft/saved-crafts.js';
+import { targetGetters, targetActions } from './craft/target.js';
+import { poolGetters } from './craft/pool.js';
 
 // localStorage keys are game-scoped: `craft-simulator:<gameId>:<field>`.
 // This lets PoE2 / PoE1 / D4 each remember their own custom currency rates,
@@ -72,16 +76,6 @@ const EMPTY_SLOTS = () => ({
 /** Wishlist key — unique within a base. */
 const wlKey = (type, name) => `${type}:${name}`;
 
-/**
- * "BOOTS (INT/DEX)" -> { type: "BOOTS", spec: "INT/DEX" }
- * "RING"            -> { type: "RING",  spec: null }
- */
-function splitBase(base) {
-  const m = /^(.+?)\s*\(([^)]+)\)\s*$/.exec(base);
-  if (m) return { type: m[1].trim(), spec: m[2].trim() };
-  return { type: base, spec: null };
-}
-
 export const useCraftStore = defineStore('craft', {
   state: () => ({
     gameId: fromUrlOr('gameId', 'poe2'),
@@ -106,6 +100,12 @@ export const useCraftStore = defineStore('craft', {
      * base); auto-bumps to 'rare' once 3+ affixes are present.
      */
     startRarity: fromUrlOr('startRarity', 'normal'),
+    /** True iff the starting item has a pending unrevealed bone-mod
+     *  (applied but not yet reveled at the Well of Souls). The
+     *  unrevealed slot is its own mod kind — not a flag on a normal
+     *  affix — and is always desecrated by definition. Engine maps
+     *  to start.boneMod = true. */
+    startingBoneMod: fromUrlOr('startingBoneMod', false),
     /**
      * Acceptable affixes for the soft-wishlist cost estimator.
      * Keyed by `${type}:${name}` so prefixes/suffixes never collide.
@@ -233,6 +233,11 @@ export const useCraftStore = defineStore('craft', {
     modTags: {},
     /** Per-(base, mod, tier) display strings with actual value ranges. */
     modRanges: {},
+    /** Mod-id table loaded from data/poe2/mod_ids.json. Phase 1 of the
+     *  mod-identity refactor: canonicalises wishlist + pool keys so
+     *  spelling drift across sources (essence text vs base-pool name)
+     *  doesn't break matching. Shape: { _meta, name_to_id }. */
+    modIds: { name_to_id: {} },
     /** Map: item display name → { description, image_url, ... } from poe2db. */
     itemDescriptions: {},
     /**
@@ -246,6 +251,16 @@ export const useCraftStore = defineStore('craft', {
     rates: { byName: {}, bySlug: {}, fetchedAt: '', exaltedPerDivine: null, exaltedPerChaos: null },
     /** Loaded extra-bucket mods (desecrated, essence, corrupted) per base. */
     extraMods: {},
+    /** Prefix/suffix classification for desecrated mods, scraped from
+     *  poe2db (scripts/update-poe2-desecrated-sides.sh). Used by the UI
+     *  to resolve the side of mods that don't appear in the regular
+     *  pool (i.e. desecrated-only). Shape: { fetchedAt, mods: [...] }. */
+    desecratedSides: { mods: [] },
+    /** Curated side overrides for essence-only / meta affixes whose
+     *  side isn't derivable from the base mod registry (Mark of the
+     *  Abyssal Lord, Allocates a random Notable, etc.). Keyed by
+     *  essence row text. Shape: { overrides: { [text]: { side, source } } }. */
+    essenceSideOverrides: { overrides: {} },
     /**
      * Tag filter state. Keyed by tag name. Values:
      *   'include' = only mods carrying this tag pass.
@@ -311,13 +326,7 @@ export const useCraftStore = defineStore('craft', {
      *   { id, name, savedAt, snapshot: {<SHAREABLE_FIELDS subset>} }
      * Persisted to localStorage so they survive reloads.
      */
-    savedCrafts: (() => {
-      try {
-        const raw = typeof window !== 'undefined' ? window.localStorage?.getItem('savedCrafts') : null;
-        const parsed = raw ? JSON.parse(raw) : [];
-        return Array.isArray(parsed) ? parsed : [];
-      } catch { return []; }
-    })(),
+    savedCrafts: loadInitialSavedCrafts(),
   }),
   getters: {
     /** All target mod-entries (wished mods on the final item). */
@@ -334,278 +343,12 @@ export const useCraftStore = defineStore('craft', {
      *   this.isEntryEffectivelyRequired(entry)
      * which read the property (memoised by Pinia) and invoke the closure.
      */
-    isEntryEffectivelyRequired(state) {
-      return (entry) => {
-        if (entry?.kind !== 'mod') return false;
-        if (entry.disabled) return false;
-        // Required only when the user explicitly toggled it. Filling a side
-        // with 3 desired entries does NOT auto-promote them — the user may
-        // still want a soft target (e.g. "any 2 of these 3 is acceptable")
-        // expressed via desire score, not by forcing every entry required.
-        return (entry.requiredTier !== undefined && entry.requiredTier !== null)
-          || entry.required === true;
-      };
-    },
-    /**
-     * Factory-getter: returns `(entry) => boolean`.
-     * A desired entry is "shadowed" when its side already has 3 required
-     * mod-entries — those 3 fill every slot, so a 4th (desired) entry can
-     * never land on the item. Render it muted/disabled-looking.
-     */
-    isEntryShadowed(state) {
-      return (entry) => {
-        if (entry?.kind !== 'mod') return false;
-        if (entry.disabled) return false;
-        const isReq = (e) =>
-          (e.requiredTier !== undefined && e.requiredTier !== null) || e.required === true;
-        if (isReq(entry)) return false;
-        const reqOnSide = state.targetEntries.filter(
-          (e) => e.kind === 'mod' && e.type === entry.type && !e.disabled && isReq(e),
-        ).length;
-        return reqOnSide >= 3;
-      };
-    },
-    /**
-     * Factory-getter: returns `(entry, eligibleTiers) => { requiredTier, desiredTier, maxTier }`.
-     *
-     * Resolves the per-entry tier-band thresholds. New model fields take
-     * precedence; legacy `required`/`minTier` are migrated lazily on read.
-     *   requiredTier: int | null  — worst tier still satisfying the mandatory check
-     *   desiredTier:  int         — worst tier still earning desire-score
-     *   maxTier:      int         — highest tier index in `eligibleTiers` (1-based)
-     *
-     * Invariant the UI must preserve: `requiredTier` is null OR ≤ `desiredTier`.
-     */
-    tierBandFor() {
-      return (entry, eligibleTiers) => {
-        const tiers = (eligibleTiers ?? []).map((t) => Number(t.tier)).filter(Number.isFinite);
-        const maxTier = tiers.length ? Math.max(...tiers) : 1;
-        let desiredTier;
-        if (Number.isFinite(entry?.desiredTier)) {
-          desiredTier = Number(entry.desiredTier);
-        } else if (Number.isFinite(entry?.minTier)) {
-          desiredTier = Number(entry.minTier);
-        } else {
-          // Last resort: the worst tier with a non-zero score.
-          const scored = Object.entries(entry?.tierScores ?? {})
-            .filter(([, v]) => Number(v) > 0)
-            .map(([t]) => Number(t));
-          desiredTier = scored.length ? Math.max(...scored) : maxTier;
-        }
-        let requiredTier;
-        if (entry?.requiredTier === null) {
-          requiredTier = null;
-        } else if (Number.isFinite(entry?.requiredTier)) {
-          requiredTier = Number(entry.requiredTier);
-        } else if (entry?.required === true) {
-          // Legacy: required boolean + minTier ⇒ required band == minTier.
-          requiredTier = Number.isFinite(entry?.minTier) ? Number(entry.minTier) : desiredTier;
-        } else {
-          requiredTier = null;
-        }
-        // Clamp invariant: requiredTier ≤ desiredTier.
-        if (requiredTier != null && requiredTier > desiredTier) requiredTier = desiredTier;
-        return { requiredTier, desiredTier, maxTier };
-      };
-    },
-    /**
-     * Factory-getter: returns `(entry) => { reachable, minIlvlNeeded }`.
-     * Same factory pattern as `isEntryEffectivelyRequired` — Pinia getters
-     * are property accesses, so we return a closure that takes the entry.
-     */
-    targetEntryReachability(state) {
-      return (entry) => {
-        if (!entry || entry.kind !== 'mod') return { reachable: true, minIlvlNeeded: null };
-        // Read all tiers for this mod from the loaded mods.json.
-        const m = state.mods.find(
-          (x) => x.base === state.base && x.type === entry.type && x.name === entry.name,
-        );
-        if (!m || !m.tiers?.length) return { reachable: true, minIlvlNeeded: null };
-        // Reachability uses the *desired* band — anything beyond `desiredTier`
-        // is meaningless, so it doesn't matter if it's ilvl-locked.
-        const desired = Number.isFinite(entry.desiredTier) ? Number(entry.desiredTier)
-          : Number.isFinite(entry.minTier) ? Number(entry.minTier)
-          : Math.max(...m.tiers.map((t) => t.tier));
-        const acceptable = m.tiers.filter((t) => t.tier <= desired);
-        if (!acceptable.length) return { reachable: false, minIlvlNeeded: null };
-        const reachable = acceptable.some((t) => (t.ilvl ?? 0) <= state.itemLevel);
-        const minIlvlNeeded = reachable ? null
-          : acceptable.reduce(
-              (best, t) => (t.ilvl < (best ?? Infinity) ? t.ilvl : best),
-              null,
-            );
-        return { reachable, minIlvlNeeded };
-      };
-    },
-    /** Per-side counts: mod (= total), required (effective), desired, empty. */
-    targetSummary(state) {
-      const summary = {
-        prefixes: { mod: 0, required: 0, desired: 0, empty: 0 },
-        suffixes: { mod: 0, required: 0, desired: 0, empty: 0 },
-      };
-      const isEffReq = this.isEntryEffectivelyRequired;
-      for (const e of state.targetEntries) {
-        const bucket = e.type === 'PREFIX' ? summary.prefixes : summary.suffixes;
-        if (e.kind === 'mod') {
-          bucket.mod++;
-          if (e.disabled) continue;
-          if (isEffReq(e)) bucket.required++;
-          else bucket.desired++;
-        } else if (e.kind === 'empty') bucket.empty++;
-      }
-      return summary;
-    },
-    /** Total counts across both sides. */
-    targetTotals(state) {
-      const isEffReq = this.isEntryEffectivelyRequired;
-      let required = 0, desired = 0, empty = 0;
-      for (const e of state.targetEntries) {
-        if (e.kind === 'mod') {
-          if (isEffReq(e)) required++;
-          else desired++;
-        } else if (e.kind === 'empty') empty++;
-      }
-      return { required, desired, empty };
-    },
-    /** Target entries split by type for display. */
-    targetByType(state) {
-      const out = { PREFIX: [], SUFFIX: [] };
-      state.targetEntries.forEach((e, idx) => {
-        if (e.type === 'PREFIX') out.PREFIX.push({ ...e, idx });
-        else if (e.type === 'SUFFIX') out.SUFFIX.push({ ...e, idx });
-      });
-      return out;
-    },
-    /** List of selected wishlist entries, with their score. */
-    wishlistEntries(state) {
-      return Object.values(state.wishlist);
-    },
-    /**
-     * Maximum achievable desire score: per side (prefix/suffix) we can fit at
-     * most 3 affixes. So for each side we take the *top-K best per-entry
-     * scores* where K is the number of free affix slots on that side
-     * (3 minus explicit-empty entries). Entries whose tier-band has no
-     * achievable tier contribute 0.
-     */
-    maxDesireScore(state) {
-      // Tier-ilvl lookup so we only count tiers actually rollable at the
-      // current item level — a required T3 with ilvl-locked T1/T2 is pinned
-      // at T3 and should contribute 0 desire upside.
-      const ilvlOkSet = (e) => {
-        const mod = state.mods.find(
-          (m) => m.base === state.base && m.type === e.type && m.name === e.name,
-        );
-        const ok = new Set();
-        for (const t of mod?.tiers ?? []) {
-          if ((t.ilvl ?? 0) <= state.itemLevel) ok.add(Number(t.tier));
-        }
-        return ok;
-      };
-      const bestForEntry = (e) => {
-        const desired = Number.isFinite(e.desiredTier) ? Number(e.desiredTier)
-          : Number.isFinite(e.minTier) ? Number(e.minTier)
-          : Infinity;
-        const reachable = ilvlOkSet(e);
-        // Pass 1: max score across reachable tiers within the desired band.
-        let best = 0;
-        for (const [t, s] of Object.entries(e.tierScores ?? {})) {
-          const tn = Number(t);
-          const sn = Number(s) || 0;
-          if (tn <= desired && reachable.has(tn) && sn > best) best = sn;
-        }
-        // Pass 2: best tier number (= smallest, since T1 is best) attaining
-        // that max. With score ties (e.g. all tiers default-1), this picks
-        // the strictest top — required pinned there means zero upside.
-        let bestTierNum = Infinity;
-        for (const [t, s] of Object.entries(e.tierScores ?? {})) {
-          const tn = Number(t);
-          const sn = Number(s) || 0;
-          if (tn <= desired && reachable.has(tn) && sn === best && tn < bestTierNum) {
-            bestTierNum = tn;
-          }
-        }
-        // Required pinned at the best *reachable* tier → no desire upside left.
-        const reqTier = (e.requiredTier !== undefined && e.requiredTier !== null)
-          ? Number(e.requiredTier) : null;
-        if (reqTier != null && reqTier <= bestTierNum) return 0;
-        return best;
-      };
-      const sideTotal = (type) => {
-        const empties = state.targetEntries.filter(
-          (e) => e.kind === 'empty' && e.type === type,
-        ).length;
-        const slots = Math.max(0, 3 - empties);
-        const scores = state.targetEntries
-          .filter((e) => e.kind === 'mod' && e.type === type && !e.disabled)
-          .map(bestForEntry)
-          .sort((a, b) => b - a);
-        return scores.slice(0, slots).reduce((s, v) => s + v, 0);
-      };
-      return sideTotal('PREFIX') + sideTotal('SUFFIX');
-    },
-    /**
-     * Names of mods already on the starting item, by affix type. Used to
-     * approximate same-family exclusion (each `name` treated as its own
-     * family — correct for non-hybrid mods; ignores the rare hybrid case).
-     */
-    startingByType(state) {
-      const out = { PREFIX: new Set(), SUFFIX: new Set() };
-      for (const s of state.slots.prefixes) if (s) out.PREFIX.add(s.name);
-      for (const s of state.slots.suffixes) if (s) out.SUFFIX.add(s.name);
-      return out;
-    },
-    /** Counts of filled slots on the starting item. */
-    startingCounts() {
-      return {
-        prefixes: this.startingByType.PREFIX.size,
-        suffixes: this.startingByType.SUFFIX.size,
-      };
-    },
-    /** Number of wished mods already on the starting item. */
-    startingHits(state) {
-      let hits = 0;
-      for (const e of Object.values(state.wishlist)) {
-        const set = e.type === 'PREFIX'
-          ? this.startingByType.PREFIX : this.startingByType.SUFFIX;
-        if (set.has(e.name)) hits++;
-      }
-      return hits;
-    },
-    /** Pool conditioned on starting state: excludes mods already on item. */
-    conditionalPool() {
-      const { PREFIX, SUFFIX } = this.startingByType;
-      const out = [];
-      for (const m of this.availablePool.prefixes) {
-        if (!PREFIX.has(m.name)) out.push({
-          key: `PREFIX:${m.name}`, type: 'PREFIX', weight: m.totalWeight,
-          // Per-tier breakdown: needed by MDP-γ to compute pTierAcceptable
-          // exactly (Σ weights of tiers within the orb's mod-level filter
-          // ∩ user-accepted tiers / Σ weights of orb-eligible tiers).
-          // Each entry: { tier, weight, ilvl, spawnLvl, tierName }.
-          tiers: m.eligibleTiers ?? [],
-        });
-      }
-      for (const m of this.availablePool.suffixes) {
-        if (!SUFFIX.has(m.name)) out.push({
-          key: `SUFFIX:${m.name}`, type: 'SUFFIX', weight: m.totalWeight,
-          tiers: m.eligibleTiers ?? [],
-        });
-      }
-      return out;
-    },
-    /** Unconditional pool (all eligible mods at this base + ilvl). */
-    fullPool() {
-      return [
-        ...this.availablePool.prefixes.map((m) => ({
-          key: `PREFIX:${m.name}`, type: 'PREFIX', weight: m.totalWeight,
-          tiers: m.eligibleTiers ?? [],
-        })),
-        ...this.availablePool.suffixes.map((m) => ({
-          key: `SUFFIX:${m.name}`, type: 'SUFFIX', weight: m.totalWeight,
-          tiers: m.eligibleTiers ?? [],
-        })),
-      ];
-    },
+    // Target/desired-mods getters spread in from stores/craft/target.js.
+    ...targetGetters,
+    // Slot/pool getters spread in from stores/craft/pool.js — covers
+    // startingByType / startingCounts / startingHits / conditionalPool /
+    // fullPool / availablePool / basesForType.
+    ...poolGetters,
     /**
      * What-if warnings: lists items where the active state diverges from
      * the data default, split into two categories.
@@ -702,6 +445,11 @@ export const useCraftStore = defineStore('craft', {
           tierScores,
           requiredTier: w.requiredTier ?? tgt?.requiredTier ?? null,
           minTier: w.minTier ?? tgt?.minTier ?? null,
+          // Per-desired-mod desecration constraint plumbed through to
+          // the adapter (which converts to desecrationRequiredMask /
+          // desecrationForbiddenMask for the goal predicate).
+          desecrationConstraint: w.desecrationConstraint
+            ?? tgt?.desecrationConstraint ?? null,
         };
       });
       // Split startingHits into "required already on item" vs "soft already on item"
@@ -748,8 +496,25 @@ export const useCraftStore = defineStore('craft', {
       let startingFracturedKey = null;
       for (const s of state.slots.prefixes) if (s?.fractured) startingFracturedKey = `PREFIX:${s.name}`;
       for (const s of state.slots.suffixes) if (s?.fractured) startingFracturedKey = `SUFFIX:${s.name}`;
+      // Desecrated starting affix — at most one slot can be desecrated
+      // per the engine's one-cap rule. Capture both the typed key (for
+      // wished-mask plumbing) and the side (for the prefix-count
+      // bookkeeping in the engine).
+      let startingDesecratedKey = null;
+      let startingDesecratedSide = null;
+      for (const s of state.slots.prefixes) {
+        if (s?.desecrated) { startingDesecratedKey = `PREFIX:${s.name}`; startingDesecratedSide = 'PREFIX'; }
+      }
+      for (const s of state.slots.suffixes) {
+        if (s?.desecrated) { startingDesecratedKey = `SUFFIX:${s.name}`; startingDesecratedSide = 'SUFFIX'; }
+      }
 
       const ctx = {
+        // Mod-id name→id table; the adapter uses it to canonicalise
+        // wishlist + pool keys before matching, so spelling drift
+        // (e.g. essence text "+# to maximum Life" vs base-pool name
+        // "# to maximum Life") doesn't break the join.
+        modIds: this.modIds?.name_to_id ?? {},
         fullPool: this.fullPool,
         conditionalPool: this.conditionalPool,
         wishlist: wishlistInput,
@@ -761,6 +526,9 @@ export const useCraftStore = defineStore('craft', {
         startingWSoft,
         requiredFracturedKey,
         startingFracturedKey,
+        startingDesecratedKey,
+        startingDesecratedSide,
+        startingBoneMod: state.startingBoneMod,
         startingCounts: this.startingCounts,
         currencies: this.effectiveCurrencies,
         omenPrices: this.omenPrices,
@@ -883,6 +651,26 @@ export const useCraftStore = defineStore('craft', {
           rateFetchedAt: e.fetchedAt ?? '',
         };
       }
+      // Virtual "Player time" currency. Its rate is the
+      // `timeWeightExPerSec` knob — how many ex one second of
+      // wall-clock player time is worth, used by the engine to fold
+      // time into the unified cost objective. Surfacing it here lets
+      // users edit it from the same panel as orb prices, instead of a
+      // separate field. Tagged `__virtual: true` so setRate can route
+      // writes to setTimeWeightExPerSec rather than rateOverrides.
+      out['time:player'] = {
+        id: 'time:player',
+        name: 'Player time (1s)',
+        short: 'sec',
+        kind: 'meta',
+        exaltedPer: Number.isFinite(state.timeWeightExPerSec) ? state.timeWeightExPerSec : 0.1,
+        overridden: false,
+        live: false,
+        trend7dPct: null,
+        dailyVolume: null,
+        rateFetchedAt: '',
+        __virtual: 'time',
+      };
       return out;
     },
     /**
@@ -994,116 +782,17 @@ export const useCraftStore = defineStore('craft', {
     itemTypes(state) {
       return [...new Set(state.mods.map((m) => m.itemClass).filter(Boolean))].sort();
     },
-    /**
-     * Available mods for the current base + itemLevel, split by affix type.
-     * For each mod (one per `name`), keeps only tiers that can spawn at the
-     * current ilvl (tier.ilvl ≤ itemLevel) and reports:
-     *   - bestTier:     the highest available tier (lowest `tier` number),
-     *   - bestWeight:   that tier's weight (single-tier roll weight),
-     *   - totalWeight:  sum of weights across all available tiers (probability
-     *                   that this mod is rolled at all on the affix slot).
-     * Pool totals (returned alongside) drive per-mod probabilities.
-     */
-    availablePool(state) {
-      const empty = { prefixes: [], suffixes: [], totals: { prefix: 0, suffix: 0 } };
-      if (!state.base) return empty;
-      const out = { ...empty, prefixes: [], suffixes: [] };
-      // Pre-compute tag filters for cheap per-mod check.
-      const includes = Object.entries(state.tagFilters)
-        .filter(([, v]) => v === 'include').map(([t]) => t);
-      const excludes = Object.entries(state.tagFilters)
-        .filter(([, v]) => v === 'exclude').map(([t]) => t);
-      const tagsForMod = (mod) => {
-        // Direct lookup: tags for this exact (base, mod-name) pair.
-        const direct = state.modTags?.[mod.base]?.[mod.name];
-        if (direct?.length) return direct;
-        // Cross-base fallback: PoE2 mods carry the same name + same
-        // tags across most bases ("# to maximum Life" is `life` on
-        // every wearable). The mod_tags scraper is best-effort and
-        // didn't cover every base — for missing bases we search any
-        // populated base for the same mod name. This made tags
-        // disappear on Bow / Crossbow / Spear etc. where the scrape
-        // hasn't reached.
-        for (const baseMap of Object.values(state.modTags ?? {})) {
-          const tags = baseMap?.[mod.name];
-          if (tags?.length) return tags;
-        }
-        return [];
-      };
-      for (const mod of state.mods) {
-        if (mod.base !== state.base) continue;
-        if (!mod.tiers?.length) continue;
-        // Tag filters: keep the row in the list but flag it so the UI can
-        // render it disabled (greyed, no "+ wish") instead of hiding it.
-        const tags = tagsForMod(mod);
-        const includeFail = includes.length > 0 && !includes.some((t) => tags.includes(t));
-        const excludeFail = excludes.length > 0 && excludes.some((t) => tags.includes(t));
-        const tagFiltered = includeFail || excludeFail;
-        const eligible = mod.tiers.filter((t) => (t.ilvl ?? 0) <= state.itemLevel);
-        const ilvlOk = eligible.length > 0;
-        const allIlvls = mod.tiers.map((t) => t.ilvl ?? 0);
-        const requiredIlvl = Math.min(...allIlvls);    // lowest ilvl-req = minimum to roll any tier
-        // "best" is the highest-quality (lowest-tier-number) entry we'd pick;
-        // for ineligible mods, fall back to the highest-quality known tier
-        // for display purposes (greyed/strikethrough).
-        const pickBest = (list) => list.reduce((a, b) => (a.tier <= b.tier ? a : b));
-        const best = ilvlOk ? pickBest(eligible) : pickBest(mod.tiers);
-        const totalWeight = ilvlOk
-          ? eligible.reduce((s, t) => s + (t.weight ?? 0), 0) : 0;
-        const entry = {
-          base: mod.base,
-          type: mod.type,
-          name: mod.name,
-          bestTier: best.tier,
-          bestTierName: best.tierName,
-          bestWeight: ilvlOk ? (best.weight ?? 0) : 0,
-          totalWeight,
-          tiersAvailable: eligible.length,
-          tiersTotal: mod.tiers.length,
-          eligibleTiers: eligible.slice().sort((a, b) => a.tier - b.tier),
-          /** All tiers of this mod, with an `ilvlOk` flag per tier for the UI. */
-          allTiers: mod.tiers
-            .slice()
-            .sort((a, b) => a.tier - b.tier)
-            .map((t) => ({ ...t, ilvlOk: (t.ilvl ?? 0) <= state.itemLevel })),
-          ilvlOk,
-          requiredIlvl,
-          tags,
-          tagFiltered,
-        };
-        if (mod.type === 'PREFIX') {
-          out.prefixes.push(entry);
-          if (ilvlOk && !tagFiltered) out.totals.prefix += totalWeight;
-        } else if (mod.type === 'SUFFIX') {
-          out.suffixes.push(entry);
-          if (ilvlOk && !tagFiltered) out.totals.suffix += totalWeight;
-        }
-      }
-      // Stable ilvl-independent ordering: by requiredIlvl asc (lowest hurdle
-      // first), then by name. Eligibility/weight depend on the current ilvl,
-      // so sorting by them would reshuffle the list every time ilvl changes.
-      const order = (a, b) =>
-        (a.requiredIlvl - b.requiredIlvl) || a.name.localeCompare(b.name);
-      out.prefixes.sort(order);
-      out.suffixes.sort(order);
-      return out;
-    },
-    /** Distinct bases for the current itemType, with attribute spec parsed out. */
-    basesForType(state) {
-      if (!state.itemType) return [];
-      const seen = new Set();
-      const list = [];
-      for (const m of state.mods) {
-        if (m.itemClass !== state.itemType) continue;
-        if (seen.has(m.base)) continue;
-        seen.add(m.base);
-        list.push({ base: m.base, ...splitBase(m.base) });
-      }
-      list.sort((a, b) => (a.spec ?? '').localeCompare(b.spec ?? ''));
-      return list;
-    },
+    // availablePool / basesForType moved to stores/craft/pool.js (see
+    // `...poolGetters` spread above).
   },
   actions: {
+    // Spread-in extracted action modules. `this` inside their bodies
+    // binds to the Pinia store instance — same as if they were
+    // declared inline. Order: action methods on the same name later
+    // in the literal would override these, so spreads come first.
+    ...modHelperActions,
+    ...savedCraftActions,
+    ...targetActions,
     /**
      * Run the strategy comparison and cache the result. UI uses
      * `strategiesAnalytics` to read the cached value. Heavy synchronous
@@ -1155,75 +844,6 @@ export const useCraftStore = defineStore('craft', {
       }
     },
     clearMdp() { this.mdpResult = null; },
-    /**
-     * Snapshot the current craft and store it under the savedCrafts list.
-     * If no name is given, a default like "Bow ilvl 72" is auto-generated.
-     * Persists to localStorage.
-     */
-    saveCurrentCraft(name) {
-      const snapshot = {};
-      for (const f of SHAREABLE_FIELDS) {
-        if (f in this.$state) snapshot[f] = JSON.parse(JSON.stringify(this.$state[f]));
-      }
-      const auto = `${this.itemType ?? 'craft'}${this.base && this.base !== this.itemType ? ` (${this.base})` : ''} · ilvl ${this.itemLevel}`;
-      const entry = {
-        id: `c${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-        name: (name && name.trim()) || auto,
-        savedAt: new Date().toISOString(),
-        snapshot,
-      };
-      this.savedCrafts = [entry, ...this.savedCrafts];
-      this._persistSavedCrafts();
-      return entry;
-    },
-    /** Restore a previously-saved snapshot by id. Wipes current cache. */
-    loadSavedCraft(id) {
-      const entry = this.savedCrafts.find((c) => c.id === id);
-      if (!entry) return false;
-      for (const [k, v] of Object.entries(entry.snapshot)) {
-        // Don't overwrite gameId on restore — switching games is heavier
-        // and likely surprises the user.
-        if (k === 'gameId') continue;
-        this[k] = JSON.parse(JSON.stringify(v));
-      }
-      // Reset transient analytics so the user gets a fresh "Evaluate" cycle.
-      this.strategiesResults = null;
-      // Re-derive the constraint counts from the restored entries.
-      this._syncTargetConstraints?.();
-      return true;
-    },
-    deleteSavedCraft(id) {
-      this.savedCrafts = this.savedCrafts.filter((c) => c.id !== id);
-      this._persistSavedCrafts();
-    },
-    /** Replace the snapshot of an existing saved entry with the current
-     *  state, keeping the entry's id and name. Used by the per-row
-     *  "overwrite" button. */
-    overwriteSavedCraft(id) {
-      const entry = this.savedCrafts.find((c) => c.id === id);
-      if (!entry) return false;
-      const snapshot = {};
-      for (const f of SHAREABLE_FIELDS) {
-        if (f in this.$state) snapshot[f] = JSON.parse(JSON.stringify(this.$state[f]));
-      }
-      entry.snapshot = snapshot;
-      entry.savedAt = new Date().toISOString();
-      this._persistSavedCrafts();
-      return true;
-    },
-    renameSavedCraft(id, name) {
-      const entry = this.savedCrafts.find((c) => c.id === id);
-      if (!entry) return;
-      entry.name = name;
-      this._persistSavedCrafts();
-    },
-    _persistSavedCrafts() {
-      try {
-        if (typeof window !== 'undefined') {
-          window.localStorage?.setItem('savedCrafts', JSON.stringify(this.savedCrafts));
-        }
-      } catch { /* quota / disabled storage — best-effort */ }
-    },
     async selectGame(id) {
       this.loading = true;
       try {
@@ -1238,7 +858,16 @@ export const useCraftStore = defineStore('craft', {
           ? await mod.game.loadEssencePrices() : {};
         this.modTags = mod.game.loadModTags ? await mod.game.loadModTags() : {};
         this.modRanges = mod.game.loadModRanges ? await mod.game.loadModRanges() : {};
+        this.modIds = mod.game.loadModIds
+          ? await mod.game.loadModIds()
+          : { name_to_id: {} };
         this.extraMods = mod.game.loadExtraMods ? await mod.game.loadExtraMods() : {};
+        this.desecratedSides = mod.game.loadDesecratedSides
+          ? await mod.game.loadDesecratedSides()
+          : { mods: [] };
+        this.essenceSideOverrides = mod.game.loadEssenceSideOverrides
+          ? await mod.game.loadEssenceSideOverrides()
+          : { overrides: {} };
         this.itemDescriptions = mod.game.loadItemDescriptions
           ? await mod.game.loadItemDescriptions() : {};
         this.rates = mod.game.loadRates
@@ -1393,13 +1022,14 @@ export const useCraftStore = defineStore('craft', {
      * tier-picker flow for consistency.
      */
     wishWithMinTier(type, name, minTier, eligibleTiers) {
-      const k = wlKey(type, name);
+      const canon = this.canonicalModName(name);
+      const k = wlKey(type, canon);
       const base = 1;
       const tierScores = {};
       for (const t of eligibleTiers ?? []) {
         tierScores[t.tier] = t.tier <= minTier ? base : 0;
       }
-      this.wishlist[k] = { type, name, score: base, tierScores };
+      this.wishlist[k] = { type, name: canon, score: base, tierScores };
     },
     setScore(type, name, score) {
       const k = wlKey(type, name);
@@ -1442,215 +1072,8 @@ export const useCraftStore = defineStore('craft', {
      * No-op when the entries list is empty (legacy flat-wishlist mode keeps
      * the user's manual values).
      */
-    _syncTargetConstraints() {
-      if (!this.targetEntries.length) return;
-      const isEffReq = this.isEntryEffectivelyRequired;
-      let required = 0, desired = 0, emptyP = 0, emptyS = 0;
-      for (const e of this.targetEntries) {
-        if (e.kind === 'mod') {
-          if (e.disabled) continue; // disabled entries are excluded from analytics
-          if (isEffReq(e)) required++;
-          else desired++;
-        } else if (e.kind === 'empty') {
-          if (e.type === 'PREFIX') emptyP++;
-          else if (e.type === 'SUFFIX') emptyS++;
-        }
-      }
-      emptyP = Math.min(3, emptyP);
-      emptyS = Math.min(3, emptyS);
-      // v1 solver is hit-count based: threshold = effective required + all desired
-      // (= total mod entries). The "all desired must hit" interpretation is the
-      // strictest reading of the slot model when no extra threshold is exposed.
-      const total = required + desired;
-      this.requiredHits = total;
-      this.minFilled = total;
-      this.maxFilled = 6 - emptyP - emptyS;
-    },
-    /**
-     * Append a wished mod to the target list. Defaults to a desired-only band
-     * (`requiredTier: null, desiredTier: minTier`). Pass `required: true` to
-     * pre-set the required band to `minTier`.
-     */
-    addTargetMod(type, name, minTier, eligibleTiers, required = false) {
-      // Default per-tier scores to 1 across the board, including tiers that
-      // are currently ineligible at this ilvl — a wished high tier is still
-      // desired even if unreachable now. User can fine-tune any tier-score
-      // afterwards.
-      const tierScores = {};
-      const base = 1;
-      const t0 = Number(minTier);
-      const allTiers = this.mods.find((m) => m.base === this.base && m.type === type && m.name === name)?.tiers ?? eligibleTiers ?? [];
-      for (const t of allTiers) {
-        tierScores[t.tier] = base;
-      }
-      this.targetEntries.push({
-        kind: 'mod', type, name,
-        // New canonical fields:
-        requiredTier: required ? t0 : null,
-        desiredTier: t0,
-        tierScores,
-        // Legacy fields — written for now so any unconverted reader still works.
-        required, minTier: t0,
-      });
-      this.wishlist[wlKey(type, name)] = { type, name, score: base, tierScores };
-      this._syncTargetConstraints();
-      return true;
-    },
-    /** Set a per-tier score on a target mod entry. Empty/NaN clears to 0. */
-    setTargetEntryTierScore(index, tier, score) {
-      const entry = this.targetEntries[index];
-      if (!entry || entry.kind !== 'mod') return;
-      const tierScores = { ...(entry.tierScores ?? {}) };
-      const n = Number(score);
-      tierScores[tier] = Number.isFinite(n) && n >= 0 ? n : 0;
-      this.targetEntries[index] = { ...entry, tierScores };
-      // Mirror to legacy wishlist for the analytics solver.
-      const k = wlKey(entry.type, entry.name);
-      if (this.wishlist[k]) this.wishlist[k] = { ...this.wishlist[k], tierScores };
-    },
-    /**
-     * Disable / re-enable a target mod entry. Disabled entries stay in the
-     * list (visible, strikethrough) but are excluded from analytics — useful
-     * for parking a mod aside without losing its config.
-     */
-    setTargetEntryDisabled(index, disabled) {
-      const entry = this.targetEntries[index];
-      if (!entry || entry.kind !== 'mod') return;
-      this.targetEntries[index] = { ...entry, disabled: Boolean(disabled) };
-      // Mirror to legacy wishlist used by the analytics solver.
-      const k = wlKey(entry.type, entry.name);
-      if (disabled) {
-        delete this.wishlist[k];
-      } else {
-        this.wishlist[k] = { type: entry.type, name: entry.name, score: 1, tierScores: entry.tierScores };
-      }
-      this._syncTargetConstraints();
-    },
-    /** Set the required checkbox for a target mod entry. */
-    setTargetEntryRequired(index, required) {
-      const entry = this.targetEntries[index];
-      if (!entry || entry.kind !== 'mod') return;
-      // Cap explicit required at 3 per side.
-      if (required) {
-        const sideRequiredCount = this.targetEntries.filter(
-          (e, i) => i !== index && e.kind === 'mod' && e.type === entry.type
-            && (e.requiredTier != null || e.required === true),
-        ).length;
-        if (sideRequiredCount >= 3) return; // refuse — already at cap
-      }
-      // Mirror to new tier-band fields. When promoting to required, default
-      // the required band to the current desiredTier (= "must roll within
-      // the same band that earns score"). When demoting, drop requiredTier.
-      const desiredTier = Number.isFinite(entry.desiredTier) ? Number(entry.desiredTier)
-        : Number.isFinite(entry.minTier) ? Number(entry.minTier) : 1;
-      this.targetEntries[index] = {
-        ...entry,
-        required: Boolean(required),
-        requiredTier: required ? desiredTier : null,
-      };
-      this._syncTargetConstraints();
-    },
-    /**
-     * Set the per-entry tier band. `requiredTier` may be null (no required
-     * band) or an integer tier. `desiredTier` is the worst-tier still earning
-     * score. Enforces requiredTier ≤ desiredTier; clamps to [1, maxTier].
-     * Does NOT touch tierScores — those stay user-edited; tier rows above
-     * `desiredTier` are simply rendered as meaningless until the band widens.
-     */
-    setTargetEntryTierBand(index, requiredTier, desiredTier, maxTier) {
-      const entry = this.targetEntries[index];
-      if (!entry || entry.kind !== 'mod') return;
-      const cap = Number.isFinite(maxTier) ? Math.max(1, Number(maxTier)) : Infinity;
-      let dT = Math.max(1, Math.min(cap, Math.round(Number(desiredTier))));
-      if (!Number.isFinite(dT)) dT = 1;
-      let rT = requiredTier === null || requiredTier === undefined || requiredTier === ''
-        ? null : Math.round(Number(requiredTier));
-      if (rT != null) {
-        if (!Number.isFinite(rT)) rT = null;
-        else rT = Math.max(1, Math.min(cap, rT));
-        if (rT != null && rT > dT) rT = dT;
-      }
-      // Cap explicit required at 3 per side when promoting from null → int.
-      if (rT != null && (entry.requiredTier == null && entry.required !== true)) {
-        const sideRequiredCount = this.targetEntries.filter(
-          (e, i) => i !== index && e.kind === 'mod' && e.type === entry.type
-            && (e.requiredTier != null || e.required === true),
-        ).length;
-        if (sideRequiredCount >= 3) rT = null; // refuse — already at cap
-      }
-      this.targetEntries[index] = {
-        ...entry,
-        requiredTier: rT,
-        desiredTier: dT,
-        // Mirror to legacy fields so any unconverted reader (engine, etc.)
-        // still sees consistent data.
-        required: rT != null,
-        minTier: dT,
-      };
-      this._syncTargetConstraints();
-    },
-    /**
-     * Append an explicit-empty entry for a side. Caps at 3 per side, and
-     * also rejects when (required + empty) already fills the 3 affix slots —
-     * an additional empty would be unsatisfiable.
-     */
-    addTargetEmpty(type) {
-      const isReq = (e) =>
-        (e.requiredTier !== undefined && e.requiredTier !== null) || e.required === true;
-      const empties = this.targetEntries.filter((e) => e.kind === 'empty' && e.type === type).length;
-      const required = this.targetEntries.filter(
-        (e) => e.kind === 'mod' && e.type === type && !e.disabled && isReq(e),
-      ).length;
-      if (empties + required >= 3) return false;
-      this.targetEntries.push({ kind: 'empty', type });
-      this._syncTargetConstraints();
-      return true;
-    },
-    /** Remove a target entry by index. */
-    removeTargetEntry(index) {
-      const entry = this.targetEntries[index];
-      if (!entry) return;
-      if (entry.kind === 'mod') {
-        // Drop the legacy wishlist mirror if no other mod entry shares this name.
-        const stillUsed = this.targetEntries.some((e, i) =>
-          i !== index && e.kind === 'mod' && e.type === entry.type && e.name === entry.name);
-        if (!stillUsed) delete this.wishlist[wlKey(entry.type, entry.name)];
-      }
-      this.targetEntries.splice(index, 1);
-      this._syncTargetConstraints();
-    },
-    /**
-     * Legacy entry-point: update min-tier and bulk-reset per-tier scores.
-     * Kept for callers still hitting the old API; new UI uses
-     * `setTargetEntryTierBand` + `setTargetEntryTierScore`.
-     */
-    setTargetEntryMinTier(index, minTier, eligibleTiers) {
-      const entry = this.targetEntries[index];
-      if (!entry || entry.kind !== 'mod') return;
-      const t0 = Number(minTier);
-      const tierScores = {};
-      const base = 1;
-      for (const t of eligibleTiers ?? []) {
-        tierScores[t.tier] = t.tier <= t0 ? base : 0;
-      }
-      this.targetEntries[index] = {
-        ...entry,
-        minTier: t0,
-        tierScores,
-        desiredTier: t0,
-        // If the entry was already required, slide the required band to the
-        // new desired floor (preserves the "required = strictest" gameplay).
-        requiredTier: (entry.requiredTier != null || entry.required === true) ? t0 : null,
-      };
-      this.wishlist[wlKey(entry.type, entry.name)] = { type: entry.type, name: entry.name, score: base, tierScores };
-    },
-    clearTarget() {
-      this.targetEntries = [];
-      this.wishlist = {};
-    },
-    hasTargetSlots() {
-      return this.targetEntries.length > 0;
-    },
+    // Target/desired-mods action methods are spread in from
+    // stores/craft/target.js (see top-level `...targetActions`).
     setRequiredHits(n) {
       const v = Math.max(0, Math.floor(Number(n) || 0));
       this.requiredHits = v;
@@ -1662,10 +1085,6 @@ export const useCraftStore = defineStore('craft', {
     setMaxFilled(n) {
       const v = Math.max(0, Math.min(6, Math.floor(Number(n) || 0)));
       this.maxFilled = v;
-    },
-    setMinDesireScore(n) {
-      const v = Number(n);
-      this.minDesireScore = Number.isFinite(v) && v >= 0 ? v : 0;
     },
     /** 3-state cycle on a tag filter: neutral → include → exclude → neutral. */
     cycleTagFilter(tag) {
@@ -1768,54 +1187,18 @@ export const useCraftStore = defineStore('craft', {
       return [...seen].sort();
     },
     /**
-     * Display text for a specific (mod, tier) on the current base — returns
-     * the actual value range (e.g. "+(10—19) to maximum Life") if available,
-     * otherwise falls back to the canonical mod name (with "#" placeholder).
-     * Defined as an action-method (this section). Use parens at call sites:
-     *   craft.getModDisplay(name, tier)
-     */
-    getModDisplay(name, tier) {
-      const t = String(tier);
-      return this.modRanges?.[this.base]?.[name]?.[t] ?? name;
-    },
-    /**
-     * Eligible tiers (with names + ilvl) for a mod on the current base+ilvl.
-     * Returns [] if not found. Sorted ascending by tier number.
-     */
-    getEligibleTiers(type, name) {
-      if (!this.base) return [];
-      const m = this.mods.find((x) => x.base === this.base && x.type === type && x.name === name);
-      if (!m) return [];
-      return m.tiers
-        .filter((t) => (t.ilvl ?? 0) <= this.itemLevel)
-        .slice()
-        .sort((a, b) => a.tier - b.tier);
-    },
-    /**
-     * All tiers (eligible or not) for a mod, each with an `ilvlOk` flag.
-     * Used by UI dropdowns that show everything but disable out-of-reach tiers.
-     */
-    getAllTiers(type, name) {
-      if (!this.base) return [];
-      const m = this.mods.find((x) => x.base === this.base && x.type === type && x.name === name);
-      if (!m) return [];
-      return m.tiers.slice().sort((a, b) => a.tier - b.tier).map((t) => ({
-        ...t,
-        ilvlOk: (t.ilvl ?? 0) <= this.itemLevel,
-      }));
-    },
-    /**
      * Add a mod to the starting item at a specific tier (defaults to best).
      * Fills the first empty slot of the matching affix type.
      */
     addToStarting(mod) {
+      const canonName = this.canonicalModName(mod.name);
       const arr = mod.type === 'PREFIX' ? this.slots.prefixes : this.slots.suffixes;
-      if (arr.some((s) => s && s.name === mod.name)) return false;
+      if (arr.some((s) => s && s.name === canonName)) return false;
       const i = arr.findIndex((s) => s == null);
       if (i < 0) return false;
       const tier = mod.tier ?? mod.bestTier;
       const tierName = mod.tierName ?? mod.bestTierName;
-      arr[i] = { ...mod, tier, tierName, bestTier: tier, bestTierName: tierName };
+      arr[i] = { ...mod, name: canonName, tier, tierName, bestTier: tier, bestTierName: tierName };
       return true;
     },
     /** Change the tier of an affix already on the starting item. */
@@ -1838,6 +1221,47 @@ export const useCraftStore = defineStore('craft', {
       const slot = arr[index];
       if (!slot) return;
       arr[index] = { ...slot, fractured: Boolean(fractured) };
+    },
+    /**
+     * Mark / unmark a starting-item affix as desecrated. A desecrated
+     * mod was applied via Well-of-Souls reveal; it carries the
+     * desecrated provenance permanently and blocks `apply_bone` until
+     * scrubbed via Annul + Omen of Light. At most one desecrated mod
+     * fits on the item under the engine's current cleanup model — UI
+     * gates the chip so only one can be set at a time.
+     */
+    setStartingDesecrated(type, index, desecrated) {
+      const arr = type === 'PREFIX' ? this.slots.prefixes : this.slots.suffixes;
+      const slot = arr[index];
+      if (!slot) return;
+      if (desecrated) {
+        // Refuse a second desecrated chip — the engine's apply_bone
+        // gate enforces "no desecrated mod present" (one-cap rule).
+        const otherDesec = (a) => a.findIndex((s) => s && s.desecrated);
+        const pIdx = otherDesec(this.slots.prefixes);
+        const sIdx = otherDesec(this.slots.suffixes);
+        const alreadyHas = (pIdx >= 0 && !(type === 'PREFIX' && pIdx === index))
+                       || (sIdx >= 0 && !(type === 'SUFFIX' && sIdx === index));
+        if (alreadyHas) return;
+      }
+      arr[index] = { ...slot, desecrated: Boolean(desecrated) };
+    },
+    /** True iff any starting-item affix is desecrated. */
+    hasDesecratedStarting() {
+      return this.slots.prefixes.some((s) => s?.desecrated)
+          || this.slots.suffixes.some((s) => s?.desecrated);
+    },
+    /**
+     * Toggle the starting-item's pending unrevealed bone-mod. The
+     * unrevealed bone counts as a desecrated phantom slot (so it
+     * blocks `apply_bone` until revealed) but does NOT consume a
+     * normal prefix/suffix slot — the engine pads totalMods only
+     * after reveal. Setting this requires that no other desecrated
+     * mod already exists on the item (one-cap rule).
+     */
+    setStartingBoneMod(on) {
+      if (on && this.hasDesecratedStarting()) return; // refuse — one cap
+      this.startingBoneMod = Boolean(on);
     },
     /** True iff any affix on the starting item is fractured. */
     hasFractured() {
@@ -1865,6 +1289,38 @@ export const useCraftStore = defineStore('craft', {
     fracturedTargetIdx() {
       return this.targetEntries.findIndex((e) => e?.kind === 'mod' && e.fractured);
     },
+    /**
+     * Cycle the desecration constraint on a target mod entry through
+     * null → 'require' → 'forbid' → null. Mirrors the fracture toggle
+     * but supports three states (since "must be desecrated" and "must
+     * NOT be desecrated" are distinct intents). At most one target mod
+     * can be desecration-required (PoE2: only one desecrated mod fits
+     * on the final item under the engine's current cleanup model).
+     * Wishlist + targetEntries kept in sync so the adapter sees the
+     * constraint downstream.
+     */
+    cycleTargetEntryDesecration(index) {
+      const entry = this.targetEntries[index];
+      if (!entry || entry.kind !== 'mod') return;
+      const current = entry.desecrationConstraint ?? null;
+      const next = current === null ? 'require'
+                 : current === 'require' ? 'forbid'
+                 : null;
+      if (next === 'require') {
+        const otherRequired = this.targetEntries.findIndex(
+          (e, i) => i !== index && e.kind === 'mod' && e.desecrationConstraint === 'require',
+        );
+        if (otherRequired >= 0) return; // refuse — only one desecration-required allowed
+      }
+      this.targetEntries[index] = { ...entry, desecrationConstraint: next };
+      const k = `${entry.type}:${entry.name}`;
+      if (this.wishlist[k]) this.wishlist[k] = { ...this.wishlist[k], desecrationConstraint: next };
+    },
+    /** Index of the desecration-required target mod entry, or -1 if none. */
+    desecrationRequiredTargetIdx() {
+      return this.targetEntries.findIndex(
+        (e) => e?.kind === 'mod' && e.desecrationConstraint === 'require');
+    },
     removeFromStarting(type, index) {
       if (type === 'PREFIX') this.slots.prefixes[index] = null;
       else this.slots.suffixes[index] = null;
@@ -1877,6 +1333,15 @@ export const useCraftStore = defineStore('craft', {
     },
     /** Set or clear an override for a currency rate. Pass NaN/null to clear. */
     setRate(currencyId, exaltedPer) {
+      // Virtual "Player time" entry: write through to the dedicated
+      // setter, not into rateOverrides. Keeps timeWeightExPerSec the
+      // single source of truth for engine consumers while letting the
+      // rates panel act as the universal editor surface.
+      if (currencyId === 'time:player') {
+        const v = Number(exaltedPer);
+        if (Number.isFinite(v) && v > 0) this.setTimeWeightExPerSec(v);
+        return;
+      }
       const v = Number(exaltedPer);
       if (!Number.isFinite(v) || v <= 0) {
         delete this.rateOverrides[currencyId];

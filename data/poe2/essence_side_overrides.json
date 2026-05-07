@@ -1,0 +1,14 @@
+{
+  "_comment": "Hard-coded side classifications for essence-only / meta affixes whose side isn't reliably derivable from the base mod registry. Keyed by the essence row's `text` template (mirrors extra_mods.json essence entries). Add an entry whenever a poe2db essence row is calling a mod prefix/suffix and no base mod corroborates it.",
+  "_meta": {
+    "source": "Curated from poe2db essence pages and Path of Exile 2 wiki notes",
+    "abyss_kind": "ABYSS = neither prefix nor suffix; the affix replaces an existing slot whose side is determined by side-fill or Crystallisation omens. Rendered as a full-width row in the essence panel."
+  },
+  "overrides": {
+    "#% increased effect of Socketed Items":                          { "side": "SUFFIX", "source": "Essence of Horror" },
+    "Allocates a random Notable Passive Skill":                       { "side": "PREFIX", "source": "Essence of Delirium" },
+    "On Corruption, Item gains two Enchantments":                     { "side": "SUFFIX", "source": "Essence of Insanity" },
+    "#% of Physical Damage from Hits taken as Chaos Damage":          { "side": "PREFIX", "source": "Perfect Essence of Ruin" },
+    "Mark of the Abyssal Lord":                                       { "side": "ABYSS",  "source": "Essence of the Abyss — placeholder, inherits replaced affix's side" }
+  }
+}

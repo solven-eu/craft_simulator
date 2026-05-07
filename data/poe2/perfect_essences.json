@@ -1,0 +1,170 @@
+{
+  "Perfect Essence of Abrasion": [
+    {
+      "item_class_group": "One Handed Melee Weapon or Bow",
+      "text": "Gain #% of Damage as Extra Physical Damage",
+      "display": "Gain (15—20)% of Damage as Extra Physical Damage"
+    },
+    {
+      "item_class_group": "Two Handed Melee Weapon or Crossbow",
+      "text": "Gain #% of Damage as Extra Physical Damage",
+      "display": "Gain (25—33)% of Damage as Extra Physical Damage"
+    }
+  ],
+  "Perfect Essence of Alacrity": [
+    {
+      "item_class_group": "Focus or Wand",
+      "text": "#% increased Mana Cost Efficiency",
+      "display": "(18—20)% increased Mana Cost Efficiency"
+    },
+    {
+      "item_class_group": "Staff",
+      "text": "#% increased Mana Cost Efficiency",
+      "display": "(28—32)% increased Mana Cost Efficiency"
+    }
+  ],
+  "Perfect Essence of Battle": [
+    {
+      "item_class_group": "One Handed Melee Weapon or Bow",
+      "text": "+# to Level of all Attack Skills",
+      "display": "+3 to Level of all Attack Skills"
+    },
+    {
+      "item_class_group": "Two Handed Melee Weapon or Crossbow",
+      "text": "+# to Level of all Attack Skills",
+      "display": "+5 to Level of all Attack Skills"
+    }
+  ],
+  "Perfect Essence of Command": [
+    {
+      "item_class_group": "Sceptre",
+      "text": "Aura Skills have #% increased Magnitudes",
+      "display": "Aura Skills have (15—20)% increased Magnitudes"
+    }
+  ],
+  "Perfect Essence of Electricity": [
+    {
+      "item_class_group": "One Handed Melee Weapon or Bow",
+      "text": "Gain #% of Damage as Extra Lightning Damage",
+      "display": "Gain (15—20)% of Damage as Extra Lightning Damage"
+    },
+    {
+      "item_class_group": "Two Handed Melee Weapon or Crossbow",
+      "text": "Gain #% of Damage as Extra Lightning Damage",
+      "display": "Gain (25—33)% of Damage as Extra Lightning Damage"
+    }
+  ],
+  "Perfect Essence of Enhancement": [
+    {
+      "item_class_group": "Amulet",
+      "text": "#% increased Global Defences",
+      "display": "(20—30)% increased Global Defences"
+    }
+  ],
+  "Perfect Essence of Flames": [
+    {
+      "item_class_group": "One Handed Melee Weapon or Bow",
+      "text": "Gain #% of Damage as Extra Fire Damage",
+      "display": "Gain (15—20)% of Damage as Extra Fire Damage"
+    },
+    {
+      "item_class_group": "Two Handed Melee Weapon or Crossbow",
+      "text": "Gain #% of Damage as Extra Fire Damage",
+      "display": "Gain (25—33)% of Damage as Extra Fire Damage"
+    }
+  ],
+  "Perfect Essence of Grounding": [
+    {
+      "item_class_group": "Gloves",
+      "text": "#% of Lightning Damage taken Recouped as Life",
+      "display": "(26—30)% of Lightning Damage taken Recouped as Life"
+    }
+  ],
+  "Perfect Essence of Haste": [
+    {
+      "item_class_group": "Martial Weapon",
+      "text": "#% chance to gain Onslaught on Killing Hits with this Weapon",
+      "display": "(20—25)% chance to gain Onslaught on Killing Hits with this Weapon"
+    }
+  ],
+  "Perfect Essence of Ice": [
+    {
+      "item_class_group": "One Handed Melee Weapon or Bow",
+      "text": "Gain #% of Damage as Extra Cold Damage",
+      "display": "Gain (15—20)% of Damage as Extra Cold Damage"
+    },
+    {
+      "item_class_group": "Two Handed Melee Weapon or Crossbow",
+      "text": "Gain #% of Damage as Extra Cold Damage",
+      "display": "Gain (25—33)% of Damage as Extra Cold Damage"
+    }
+  ],
+  "Perfect Essence of Insulation": [
+    {
+      "item_class_group": "Belt",
+      "text": "#% of Fire Damage taken Recouped as Life",
+      "display": "(26—30)% of Fire Damage taken Recouped as Life"
+    }
+  ],
+  "Perfect Essence of Opulence": [
+    {
+      "item_class_group": "Gloves",
+      "text": "#% increased Quantity of Gold Dropped by Slain Enemies",
+      "display": "(10—15)% increased Quantity of Gold Dropped by Slain Enemies"
+    }
+  ],
+  "Perfect Essence of Ruin": [
+    {
+      "item_class_group": "Body Armour",
+      "text": "#% of Physical Damage from Hits taken as Chaos Damage",
+      "display": "(10—15)% of Physical Damage from Hits taken as Chaos Damage"
+    }
+  ],
+  "Perfect Essence of Seeking": [
+    {
+      "item_class_group": "Body Armour",
+      "text": "Hits against you have #% reduced Critical Damage Bonus",
+      "display": "Hits against you have (40—50)% reduced Critical Damage Bonus"
+    }
+  ],
+  "Perfect Essence of Sorcery": [
+    {
+      "item_class_group": "Wand",
+      "text": "+# to Level of all Spell Skills",
+      "display": "+3 to Level of all Spell Skills"
+    },
+    {
+      "item_class_group": "Staff",
+      "text": "+# to Level of all Spell Skills",
+      "display": "+5 to Level of all Spell Skills"
+    }
+  ],
+  "Perfect Essence of Thawing": [
+    {
+      "item_class_group": "Helmet",
+      "text": "#% of Cold Damage taken Recouped as Life",
+      "display": "(26—30)% of Cold Damage taken Recouped as Life"
+    }
+  ],
+  "Perfect Essence of the Body": [
+    {
+      "item_class_group": "Body Armour",
+      "text": "#% increased maximum Life",
+      "display": "(8—10)% increased maximum Life"
+    }
+  ],
+  "Perfect Essence of the Infinite": [
+    {
+      "item_class_group": "Amulet",
+      "text": "#% increased Strength, Dexterity or Intelligence",
+      "display": "(7—10)% increased Strength, Dexterity or Intelligence"
+    }
+  ],
+  "Perfect Essence of the Mind": [
+    {
+      "item_class_group": "Ring",
+      "text": "#% increased maximum Mana",
+      "display": "(4—6)% increased maximum Mana"
+    }
+  ]
+}

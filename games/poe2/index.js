@@ -108,6 +108,25 @@ export function loadModRanges() {
   return modRangesPromise;
 }
 
+let modIdsPromise = null;
+
+/**
+ * Lazy-load the mod-id table (Phase 1 of the mod-identity refactor).
+ * Returns the parsed { _meta, name_to_id } payload from
+ * data/poe2/mod_ids.json. Used by the engine adapter and UI store
+ * to canonicalise wishlist + pool keys so spelling drift between
+ * sources (e.g. essence text "+# to maximum Life" vs base-pool name
+ * "# to maximum Life") doesn't cause match failures.
+ */
+export function loadModIds() {
+  if (!modIdsPromise) {
+    modIdsPromise = fetch(new URL('../../data/poe2/mod_ids.json', import.meta.url))
+      .then((r) => (r.ok ? r.json() : { name_to_id: {} }))
+      .catch(() => ({ name_to_id: {} }));
+  }
+  return modIdsPromise;
+}
+
 let itemDescriptionsPromise = null;
 
 /**
@@ -262,6 +281,45 @@ export function loadExtraMods() {
   return extraModsPromise;
 }
 
+let essenceSideOverridesPromise = null;
+
+/**
+ * Lazy-load curated side classifications for essence-only / meta
+ * affixes (e.g. Mark of the Abyssal Lord, Allocates a random
+ * Notable, etc.) whose side isn't derivable from the base mod
+ * registry. Keyed by the essence row's `text` template.
+ *
+ * Returns { overrides: { [text]: { side: 'PREFIX' | 'SUFFIX' | 'ABYSS', source: string } } }.
+ */
+export function loadEssenceSideOverrides() {
+  if (!essenceSideOverridesPromise) {
+    essenceSideOverridesPromise = fetch(
+      new URL('../../data/poe2/essence_side_overrides.json', import.meta.url),
+    )
+      .then((r) => (r.ok ? r.json() : { overrides: {} }))
+      .catch(() => ({ overrides: {} }));
+  }
+  return essenceSideOverridesPromise;
+}
+
+let desecratedSidesPromise = null;
+
+/**
+ * Lazy-load the desecrated-mod prefix/suffix classification scraped
+ * from poe2db's #DesecratedMods tab (scripts/update-poe2-desecrated-sides.sh).
+ * Returns { fetchedAt, mods: [{text, side, family, level}] }.
+ */
+export function loadDesecratedSides() {
+  if (!desecratedSidesPromise) {
+    desecratedSidesPromise = fetch(
+      new URL('../../data/poe2/desecrated_sides.json', import.meta.url),
+    )
+      .then((r) => (r.ok ? r.json() : { mods: [] }))
+      .catch(() => ({ mods: [] }));
+  }
+  return desecratedSidesPromise;
+}
+
 // --- Per-base partition ----------------------------------------------------
 // scripts/update-poe2-data.sh and update-poe2-tags.sh emit per-base files
 // under data/poe2/by-base/ alongside the consolidated JSONs. Runtime callers
@@ -331,7 +389,9 @@ export const game = {
   loadMods,
   loadModTags,
   loadModRanges,
+  loadModIds,
   loadExtraMods,
+  loadDesecratedSides,
   loadBaseManifest,
   loadBaseBundle,
   loadItemDescriptions,

@@ -237,6 +237,99 @@ Iterations from there:
   coloring already shown in chains.
 - **Chain export** — PNG / SVG download of the rendered chain for
   blog posts, Discord shares, league-start guides.
+- **"Why not this orb?" per-step explanations** — at any non-terminal
+  state in the MDP chain, the policy picks one action; every other
+  applicable action was strictly worse by Q(s,a). The UI currently
+  shows only the chosen action. Surface the runners-up alongside —
+  e.g. "Greater Exalt selected (Q=12.4 ex); Perfect Exalt was 14.1 ex
+  because its higher per-orb cost outweighed the marginally better
+  tier-bias on this 2-mod state." Concrete number lets the user
+  understand *why* a Perfect orb might lose to a Greater orb in one
+  state and win in another, without re-running the MDP themselves.
+  Implementation: solver already computes Q(s,a) for every applicable
+  action during value iteration — just persist the top-K alternatives
+  per state and render on hover/click in the chain visualization.
+
+## Mod identity refactor
+
+**Problem.** Today every layer keys mods by display text:
+
+- Wishlist:           `PREFIX:+# to maximum Life`
+- Base pool:          `# to maximum Life`         (without `+`)
+- Essence catalog:    `+# to maximum Life`
+- Desecrated catalog: `+# to maximum Life`
+- URL serialised:     full text, repeated per wishlist entry / target
+                      entry / starting affix
+
+Two failure modes follow:
+
+1. **Name drift** — when the user adds a wishlist entry from the
+   essence panel, the key uses the essence-text spelling
+   (`+# to maximum Life`). The base pool catalogues the same mod as
+   `# to maximum Life`. The engine adapter does fuzzy/loose matching
+   to bridge them, but it's brittle and silently fails for some
+   spellings (regression: `tests/mdp-essence-multi-prefix.test.js`'s
+   essence-only-wished-mod test fails because the wished bit has zero
+   pool weight under its essence-text spelling, even though the
+   base pool DOES have it under the unprefixed name).
+
+2. **URL bloat** — each wishlist entry / target / saved-craft
+   slot stores the full mod text. Three required prefixes already
+   push the share URL past 1.5 KB. Mod ids would compress this to
+   ~3 chars per mod.
+
+**Proposal.** Introduce a stable mod-id per base mod, then key every
+layer on the id rather than the text:
+
+- `data/poe2/mods.json` gets an `id` field per mod (e.g. `LIFE_FLAT`,
+  `AES_DEFENCES`, `THORNS_PHYS`). Stable across patches; new ids
+  appended on data refresh. Existing tier/weight/ilvl rows
+  unchanged.
+- `data/poe2/extra_mods.json` (essence + desecrated rows) gets the
+  same `id` field, derived by matching the affix text against
+  `mods.json`. For essence-only / desecrated-only affixes that have
+  no base-pool counterpart (`Mark of the Abyssal Lord`, `On
+  Corruption…`), allocate a synthetic id under a reserved prefix
+  (e.g. `META_*`).
+- `data/poe2/essences.csv` (`target_affix`) gains `target_affix_id`.
+- The Pinia store keys wishlist / target slots / starting slots by
+  id. The display layer reads `mod.text` from the registry for
+  rendering.
+- URL serializer emits ids; deserializer resolves through the
+  registry (with a graceful fallback to text-keyed entries from
+  legacy URLs, valid for one transitional release).
+
+**Migration.**
+
+- Phase 0 — data: a one-shot script (`scripts/assign-mod-ids.py`)
+  reads `mods.json`, generates a deterministic id per mod (slugify
+  the name with a small dictionary of canonical roots:
+  `+# to maximum Life` → `LIFE_FLAT`), and writes them back. Run
+  once; check the diff; commit. The ids never change after this.
+- Phase 1 — engine: adapter accepts both id-keyed and text-keyed
+  inputs, prefers ids when present. Tests updated to use ids.
+- Phase 2 — UI: store + URL serializer switch to ids. localStorage
+  saved-crafts get a one-time migration on first load (parse text,
+  resolve to id, rewrite). Tag the migration version in localStorage
+  so it runs once.
+- Phase 3 — cleanup: drop the text-keyed fallback from the adapter.
+  At this point the entire pipeline is id-keyed.
+
+**Open questions to resolve before starting.**
+
+- Naming convention: short ASCII like `LIFE_FLAT` vs hashed like
+  `m1a3f`? Short ASCII is debuggable (URLs grep-able, regression
+  tests readable); hashed is shorter and never collides. Suggest
+  short ASCII with a 2-char base prefix (`p_LIFE_FLAT` for prefix
+  side, `s_RES_COLD` for suffix side) — keeps URLs ~30% shorter
+  than today and human-grep-able.
+- Synthetic-id namespace for essence/desecrated-only affixes: the
+  Mark / Corruption-Enchant / Allocates-Notable affixes have no
+  base-pool entries. Reserve `META_MARK_OF_ABYSSAL_LORD`,
+  `META_CORRUPTION_TWO_ENCHANTS`, `META_ALLOCATES_NOTABLE` etc.
+- Cross-base id stability: `# to maximum Life` is the same affix
+  on Body Armour and Boots — same id. The id is per-affix-name,
+  not per-(base, name) pair.
 
 ## Data / scraping
 

@@ -83,7 +83,13 @@ test('non-matching essence ⇒ never picked (no wished bit advance)', () => {
     essences: [{
       id: 'essence_nonmatching',
       name: 'Essence of Random Stat (non-matching)',
-      costEx: 0.01,                  // cheap — but useless
+      // Cost > regal so the non-matching essence is strictly worse:
+      // both produce a Rare with no wished bit (regal can also miss),
+      // but regal additionally has a chance to LAND the wished bit.
+      // Pricing the essence cheaper than regal would let it dominate
+      // as a "cheap rare upgrade" stepping stone — that's a different
+      // strategic question; this test pins the inferiority case only.
+      costEx: 10,
       timeSec: 1,
       matchedKeys: [],               // no wishlist match
       pAcceptable: 1,

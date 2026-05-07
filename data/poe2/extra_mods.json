@@ -4561,6 +4561,12 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Thawing",
+        "text": "#% of Cold Damage taken Recouped as Life",
+        "display": "(26—30)% of Cold Damage taken Recouped as Life",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -5181,6 +5187,12 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Thawing",
+        "text": "#% of Cold Damage taken Recouped as Life",
+        "display": "(26—30)% of Cold Damage taken Recouped as Life",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -5808,6 +5820,12 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Thawing",
+        "text": "#% of Cold Damage taken Recouped as Life",
+        "display": "(26—30)% of Cold Damage taken Recouped as Life",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -6428,6 +6446,12 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Thawing",
+        "text": "#% of Cold Damage taken Recouped as Life",
+        "display": "(26—30)% of Cold Damage taken Recouped as Life",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -7055,6 +7079,12 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Thawing",
+        "text": "#% of Cold Damage taken Recouped as Life",
+        "display": "(26—30)% of Cold Damage taken Recouped as Life",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -7682,6 +7712,12 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Thawing",
+        "text": "#% of Cold Damage taken Recouped as Life",
+        "display": "(26—30)% of Cold Damage taken Recouped as Life",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -8259,6 +8295,26 @@
         ],
         "tier_name": "Greater Essence of Grounding",
         "display": "+(31—35)% to Lightning Resistance"
+      },
+      {
+        "tier_name": "Perfect Essence of Ruin",
+        "text": "#% of Physical Damage from Hits taken as Chaos Damage",
+        "display": "(10—15)% of Physical Damage from Hits taken as Chaos Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Seeking",
+        "text": "Hits against you have #% reduced Critical Damage Bonus",
+        "display": "Hits against you have (40—50)% reduced Critical Damage Bonus",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of the Body",
+        "text": "#% increased maximum Life",
+        "display": "(8—10)% increased maximum Life",
+        "tags": [
+          "life"
+        ]
       }
     ],
     "corrupted": [
@@ -8824,6 +8880,26 @@
         ],
         "tier_name": "Greater Essence of Grounding",
         "display": "+(31—35)% to Lightning Resistance"
+      },
+      {
+        "tier_name": "Perfect Essence of Ruin",
+        "text": "#% of Physical Damage from Hits taken as Chaos Damage",
+        "display": "(10—15)% of Physical Damage from Hits taken as Chaos Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Seeking",
+        "text": "Hits against you have #% reduced Critical Damage Bonus",
+        "display": "Hits against you have (40—50)% reduced Critical Damage Bonus",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of the Body",
+        "text": "#% increased maximum Life",
+        "display": "(8—10)% increased maximum Life",
+        "tags": [
+          "life"
+        ]
       }
     ],
     "corrupted": [
@@ -9389,6 +9465,26 @@
         ],
         "tier_name": "Greater Essence of Grounding",
         "display": "+(31—35)% to Lightning Resistance"
+      },
+      {
+        "tier_name": "Perfect Essence of Ruin",
+        "text": "#% of Physical Damage from Hits taken as Chaos Damage",
+        "display": "(10—15)% of Physical Damage from Hits taken as Chaos Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Seeking",
+        "text": "Hits against you have #% reduced Critical Damage Bonus",
+        "display": "Hits against you have (40—50)% reduced Critical Damage Bonus",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of the Body",
+        "text": "#% increased maximum Life",
+        "display": "(8—10)% increased maximum Life",
+        "tags": [
+          "life"
+        ]
       }
     ],
     "corrupted": [
@@ -12327,6 +12423,12 @@
         ],
         "tier_name": "Greater Essence of Grounding",
         "display": "+(31—35)% to Lightning Resistance"
+      },
+      {
+        "tier_name": "Perfect Essence of Insulation",
+        "text": "#% of Fire Damage taken Recouped as Life",
+        "display": "(26—30)% of Fire Damage taken Recouped as Life",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -12906,6 +13008,14 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of the Mind",
+        "text": "#% increased maximum Mana",
+        "display": "(4—6)% increased maximum Mana",
+        "tags": [
+          "mana"
+        ]
       }
     ],
     "corrupted": [
@@ -13464,6 +13574,54 @@
         "tags": [],
         "tier_name": "Essence of the Abyss",
         "display": "Mark of the Abyssal Lord"
+      },
+      {
+        "tier_name": "Perfect Essence of Abrasion",
+        "text": "Gain #% of Damage as Extra Physical Damage",
+        "display": "Gain (15—20)% of Damage as Extra Physical Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Battle",
+        "text": "+# to Level of all Attack Skills",
+        "display": "+3 to Level of all Attack Skills",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Electricity",
+        "text": "Gain #% of Damage as Extra Lightning Damage",
+        "display": "Gain (15—20)% of Damage as Extra Lightning Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "lightning"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Flames",
+        "text": "Gain #% of Damage as Extra Fire Damage",
+        "display": "Gain (15—20)% of Damage as Extra Fire Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "fire"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Haste",
+        "text": "#% chance to gain Onslaught on Killing Hits with this Weapon",
+        "display": "(20—25)% chance to gain Onslaught on Killing Hits with this Weapon",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Ice",
+        "text": "Gain #% of Damage as Extra Cold Damage",
+        "display": "Gain (15—20)% of Damage as Extra Cold Damage",
+        "tags": [
+          "cold",
+          "damage",
+          "elemental"
+        ]
       }
     ],
     "corrupted": [
@@ -14027,6 +14185,54 @@
         "tags": [],
         "tier_name": "Essence of the Abyss",
         "display": "Mark of the Abyssal Lord"
+      },
+      {
+        "tier_name": "Perfect Essence of Abrasion",
+        "text": "Gain #% of Damage as Extra Physical Damage",
+        "display": "Gain (25—33)% of Damage as Extra Physical Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Battle",
+        "text": "+# to Level of all Attack Skills",
+        "display": "+5 to Level of all Attack Skills",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Electricity",
+        "text": "Gain #% of Damage as Extra Lightning Damage",
+        "display": "Gain (25—33)% of Damage as Extra Lightning Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "lightning"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Flames",
+        "text": "Gain #% of Damage as Extra Fire Damage",
+        "display": "Gain (25—33)% of Damage as Extra Fire Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "fire"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Haste",
+        "text": "#% chance to gain Onslaught on Killing Hits with this Weapon",
+        "display": "(20—25)% chance to gain Onslaught on Killing Hits with this Weapon",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Ice",
+        "text": "Gain #% of Damage as Extra Cold Damage",
+        "display": "Gain (25—33)% of Damage as Extra Cold Damage",
+        "tags": [
+          "cold",
+          "damage",
+          "elemental"
+        ]
       }
     ],
     "corrupted": [
@@ -14595,6 +14801,54 @@
         "tags": [],
         "tier_name": "Essence of the Abyss",
         "display": "Mark of the Abyssal Lord"
+      },
+      {
+        "tier_name": "Perfect Essence of Abrasion",
+        "text": "Gain #% of Damage as Extra Physical Damage",
+        "display": "Gain (15—20)% of Damage as Extra Physical Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Battle",
+        "text": "+# to Level of all Attack Skills",
+        "display": "+3 to Level of all Attack Skills",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Electricity",
+        "text": "Gain #% of Damage as Extra Lightning Damage",
+        "display": "Gain (15—20)% of Damage as Extra Lightning Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "lightning"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Flames",
+        "text": "Gain #% of Damage as Extra Fire Damage",
+        "display": "Gain (15—20)% of Damage as Extra Fire Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "fire"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Haste",
+        "text": "#% chance to gain Onslaught on Killing Hits with this Weapon",
+        "display": "(20—25)% chance to gain Onslaught on Killing Hits with this Weapon",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Ice",
+        "text": "Gain #% of Damage as Extra Cold Damage",
+        "display": "Gain (15—20)% of Damage as Extra Cold Damage",
+        "tags": [
+          "cold",
+          "damage",
+          "elemental"
+        ]
       }
     ],
     "corrupted": [
@@ -15133,6 +15387,54 @@
         "tags": [],
         "tier_name": "Essence of the Abyss",
         "display": "Mark of the Abyssal Lord"
+      },
+      {
+        "tier_name": "Perfect Essence of Abrasion",
+        "text": "Gain #% of Damage as Extra Physical Damage",
+        "display": "Gain (25—33)% of Damage as Extra Physical Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Battle",
+        "text": "+# to Level of all Attack Skills",
+        "display": "+5 to Level of all Attack Skills",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Electricity",
+        "text": "Gain #% of Damage as Extra Lightning Damage",
+        "display": "Gain (25—33)% of Damage as Extra Lightning Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "lightning"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Flames",
+        "text": "Gain #% of Damage as Extra Fire Damage",
+        "display": "Gain (25—33)% of Damage as Extra Fire Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "fire"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Haste",
+        "text": "#% chance to gain Onslaught on Killing Hits with this Weapon",
+        "display": "(20—25)% chance to gain Onslaught on Killing Hits with this Weapon",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Ice",
+        "text": "Gain #% of Damage as Extra Cold Damage",
+        "display": "Gain (25—33)% of Damage as Extra Cold Damage",
+        "tags": [
+          "cold",
+          "damage",
+          "elemental"
+        ]
       }
     ],
     "corrupted": [
@@ -15721,6 +16023,54 @@
         "tags": [],
         "tier_name": "Essence of the Abyss",
         "display": "Mark of the Abyssal Lord"
+      },
+      {
+        "tier_name": "Perfect Essence of Abrasion",
+        "text": "Gain #% of Damage as Extra Physical Damage",
+        "display": "Gain (25—33)% of Damage as Extra Physical Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Battle",
+        "text": "+# to Level of all Attack Skills",
+        "display": "+5 to Level of all Attack Skills",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Electricity",
+        "text": "Gain #% of Damage as Extra Lightning Damage",
+        "display": "Gain (25—33)% of Damage as Extra Lightning Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "lightning"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Flames",
+        "text": "Gain #% of Damage as Extra Fire Damage",
+        "display": "Gain (25—33)% of Damage as Extra Fire Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "fire"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Haste",
+        "text": "#% chance to gain Onslaught on Killing Hits with this Weapon",
+        "display": "(20—25)% chance to gain Onslaught on Killing Hits with this Weapon",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Ice",
+        "text": "Gain #% of Damage as Extra Cold Damage",
+        "display": "Gain (25—33)% of Damage as Extra Cold Damage",
+        "tags": [
+          "cold",
+          "damage",
+          "elemental"
+        ]
       }
     ],
     "corrupted": [
@@ -16309,6 +16659,54 @@
         "tags": [],
         "tier_name": "Essence of the Abyss",
         "display": "Mark of the Abyssal Lord"
+      },
+      {
+        "tier_name": "Perfect Essence of Abrasion",
+        "text": "Gain #% of Damage as Extra Physical Damage",
+        "display": "Gain (15—20)% of Damage as Extra Physical Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Battle",
+        "text": "+# to Level of all Attack Skills",
+        "display": "+3 to Level of all Attack Skills",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Electricity",
+        "text": "Gain #% of Damage as Extra Lightning Damage",
+        "display": "Gain (15—20)% of Damage as Extra Lightning Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "lightning"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Flames",
+        "text": "Gain #% of Damage as Extra Fire Damage",
+        "display": "Gain (15—20)% of Damage as Extra Fire Damage",
+        "tags": [
+          "damage",
+          "elemental",
+          "fire"
+        ]
+      },
+      {
+        "tier_name": "Perfect Essence of Haste",
+        "text": "#% chance to gain Onslaught on Killing Hits with this Weapon",
+        "display": "(20—25)% chance to gain Onslaught on Killing Hits with this Weapon",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Ice",
+        "text": "Gain #% of Damage as Extra Cold Damage",
+        "display": "Gain (15—20)% of Damage as Extra Cold Damage",
+        "tags": [
+          "cold",
+          "damage",
+          "elemental"
+        ]
       }
     ],
     "corrupted": [
@@ -16738,6 +17136,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(25—28)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(18—20)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+3 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -17169,6 +17579,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(25—28)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(18—20)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+3 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -17600,6 +18022,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(25—28)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(18—20)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+3 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -18031,6 +18465,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(25—28)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(18—20)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+3 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -18462,6 +18908,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(25—28)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(18—20)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+3 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -18893,6 +19351,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(25—28)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(18—20)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+3 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -19295,6 +19765,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(38—43)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(28—32)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+5 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -19697,6 +20179,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(38—43)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(28—32)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+5 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -20099,6 +20593,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(38—43)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(28—32)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+5 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -20501,6 +21007,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(38—43)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(28—32)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+5 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -20903,6 +21421,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(38—43)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(28—32)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+5 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -21305,6 +21835,18 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(38—43)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(28—32)% increased Mana Cost Efficiency",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Sorcery",
+        "text": "+# to Level of all Spell Skills",
+        "display": "+5 to Level of all Spell Skills",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -22046,6 +22588,12 @@
         ],
         "tier_name": "Greater Essence of Alacrity",
         "display": "(25—28)% increased Cast Speed"
+      },
+      {
+        "tier_name": "Perfect Essence of Alacrity",
+        "text": "#% increased Mana Cost Efficiency",
+        "display": "(18—20)% increased Mana Cost Efficiency",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -22199,6 +22747,12 @@
         ],
         "tier_name": "Greater Essence of Command",
         "display": "Allies in your Presence deal (75—89)% increased Damage"
+      },
+      {
+        "tier_name": "Perfect Essence of Command",
+        "text": "Aura Skills have #% increased Magnitudes",
+        "display": "Aura Skills have (15—20)% increased Magnitudes",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -23093,6 +23647,18 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Grounding",
+        "text": "#% of Lightning Damage taken Recouped as Life",
+        "display": "(26—30)% of Lightning Damage taken Recouped as Life",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Opulence",
+        "text": "#% increased Quantity of Gold Dropped by Slain Enemies",
+        "display": "(10—15)% increased Quantity of Gold Dropped by Slain Enemies",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -23737,6 +24303,18 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Grounding",
+        "text": "#% of Lightning Damage taken Recouped as Life",
+        "display": "(26—30)% of Lightning Damage taken Recouped as Life",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Opulence",
+        "text": "#% increased Quantity of Gold Dropped by Slain Enemies",
+        "display": "(10—15)% increased Quantity of Gold Dropped by Slain Enemies",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -24371,6 +24949,18 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Grounding",
+        "text": "#% of Lightning Damage taken Recouped as Life",
+        "display": "(26—30)% of Lightning Damage taken Recouped as Life",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Opulence",
+        "text": "#% increased Quantity of Gold Dropped by Slain Enemies",
+        "display": "(10—15)% increased Quantity of Gold Dropped by Slain Enemies",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -25015,6 +25605,18 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Grounding",
+        "text": "#% of Lightning Damage taken Recouped as Life",
+        "display": "(26—30)% of Lightning Damage taken Recouped as Life",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Opulence",
+        "text": "#% increased Quantity of Gold Dropped by Slain Enemies",
+        "display": "(10—15)% increased Quantity of Gold Dropped by Slain Enemies",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -25649,6 +26251,18 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Grounding",
+        "text": "#% of Lightning Damage taken Recouped as Life",
+        "display": "(26—30)% of Lightning Damage taken Recouped as Life",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Opulence",
+        "text": "#% increased Quantity of Gold Dropped by Slain Enemies",
+        "display": "(10—15)% increased Quantity of Gold Dropped by Slain Enemies",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -26283,6 +26897,18 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Grounding",
+        "text": "#% of Lightning Damage taken Recouped as Life",
+        "display": "(26—30)% of Lightning Damage taken Recouped as Life",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Opulence",
+        "text": "#% increased Quantity of Gold Dropped by Slain Enemies",
+        "display": "(10—15)% increased Quantity of Gold Dropped by Slain Enemies",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -26917,6 +27543,18 @@
         "tags": [],
         "tier_name": "Greater Essence of Opulence",
         "display": "(15—18)% increased Rarity of Items found"
+      },
+      {
+        "tier_name": "Perfect Essence of Enhancement",
+        "text": "#% increased Global Defences",
+        "display": "(20—30)% increased Global Defences",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of the Infinite",
+        "text": "#% increased Strength, Dexterity or Intelligence",
+        "display": "(7—10)% increased Strength, Dexterity or Intelligence",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -27488,6 +28126,12 @@
         "tags": [],
         "tier_name": "Essence of the Abyss",
         "display": "Mark of the Abyssal Lord"
+      },
+      {
+        "tier_name": "Perfect Essence of Haste",
+        "text": "#% chance to gain Onslaught on Killing Hits with this Weapon",
+        "display": "(20—25)% chance to gain Onslaught on Killing Hits with this Weapon",
+        "tags": []
       }
     ],
     "corrupted": [
@@ -28078,6 +28722,26 @@
         ],
         "tier_name": "Greater Essence of Grounding",
         "display": "+(31—35)% to Lightning Resistance"
+      },
+      {
+        "tier_name": "Perfect Essence of Ruin",
+        "text": "#% of Physical Damage from Hits taken as Chaos Damage",
+        "display": "(10—15)% of Physical Damage from Hits taken as Chaos Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Seeking",
+        "text": "Hits against you have #% reduced Critical Damage Bonus",
+        "display": "Hits against you have (40—50)% reduced Critical Damage Bonus",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of the Body",
+        "text": "#% increased maximum Life",
+        "display": "(8—10)% increased maximum Life",
+        "tags": [
+          "life"
+        ]
       }
     ],
     "corrupted": [
@@ -28659,6 +29323,26 @@
         ],
         "tier_name": "Greater Essence of Grounding",
         "display": "+(31—35)% to Lightning Resistance"
+      },
+      {
+        "tier_name": "Perfect Essence of Ruin",
+        "text": "#% of Physical Damage from Hits taken as Chaos Damage",
+        "display": "(10—15)% of Physical Damage from Hits taken as Chaos Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Seeking",
+        "text": "Hits against you have #% reduced Critical Damage Bonus",
+        "display": "Hits against you have (40—50)% reduced Critical Damage Bonus",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of the Body",
+        "text": "#% increased maximum Life",
+        "display": "(8—10)% increased maximum Life",
+        "tags": [
+          "life"
+        ]
       }
     ],
     "corrupted": [
@@ -29224,6 +29908,26 @@
         ],
         "tier_name": "Greater Essence of Grounding",
         "display": "+(31—35)% to Lightning Resistance"
+      },
+      {
+        "tier_name": "Perfect Essence of Ruin",
+        "text": "#% of Physical Damage from Hits taken as Chaos Damage",
+        "display": "(10—15)% of Physical Damage from Hits taken as Chaos Damage",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of Seeking",
+        "text": "Hits against you have #% reduced Critical Damage Bonus",
+        "display": "Hits against you have (40—50)% reduced Critical Damage Bonus",
+        "tags": []
+      },
+      {
+        "tier_name": "Perfect Essence of the Body",
+        "text": "#% increased maximum Life",
+        "display": "(8—10)% increased maximum Life",
+        "tags": [
+          "life"
+        ]
       }
     ],
     "corrupted": [

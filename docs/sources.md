@@ -18,6 +18,7 @@ explicit "feeds X" notes pointing at the destination file/module:
 | poe2db `/us/Modifiers#Acronym` | Currency wording + icons → `data/poe2/item_descriptions.csv` | `scripts/update-poe2-item-descriptions.sh` |
 | poe2db `/us/<base>#ModifiersCalc` | Per-affix tags → `data/poe2/mod_tags.json` | `scripts/update-poe2-tags.sh` |
 | poe2db `/us/Desecrated_Modifiers#AbyssalifyRef` | Desecration consumables → `data/poe2/desecrated.csv` | `scripts/update-poe2-desecrated.sh` |
+| poe2db `/us/Desecrated_Modifiers#DesecratedMods` | Per-mod prefix/suffix classification → `data/poe2/desecrated_sides.json` | `scripts/update-poe2-desecrated-sides.sh` |
 | poe2db `/us/Essence` | Essence catalog → `data/poe2/essences.csv` | `scripts/update-poe2-essences.sh` |
 | poe2db `/us/Economy_*` | Currency / omen / essence / catalyst rates → `data/poe2/rates.csv` | `scripts/update-poe2-rates.sh` |
 | Krakenbul Sheet (`/spreadsheets/d/1QSAu0A-…/edit`) | Mod weights / ilvls / spawn levels → `data/poe2/mods.json` (via `update-poe2-data.sh`) | `scripts/update-poe2-data.sh` |

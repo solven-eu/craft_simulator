@@ -35,20 +35,36 @@ function nodeDecl(state) {
   }
 }
 
-// Edge styles per kind, applied via `linkStyle` after the chart body.
-// Indexes are 1:1 with edges in declaration order.
-const EDGE_STYLE = {
+// Edge color/dash per kind. `stroke-width` is computed per-edge from
+// the transition probability so high-prob branches read at a glance
+// as the dominant path. Indexes are 1:1 with edges in declaration
+// order when applied via `linkStyle`.
+const EDGE_COLOR = {
   // Outcome-quality coloring: success (reaches goal) is the boldest green,
   // `improving` is a softer green for "item got better but not yet at the
   // goal", `fail` is dashed-red for degrading transitions, `internal` is
   // gray for flat / no-op transitions.
-  success:   'stroke:#4caf50,stroke-width:2.8px,color:#9be3a8',
-  improving: 'stroke:#7bc481,stroke-width:1.8px,color:#bde7c0',
-  fail:      'stroke:#e07a5f,stroke-width:1.5px,stroke-dasharray:4 3,color:#f5b09c',
-  reset:     'stroke:#d97a4a,stroke-width:3px,color:#ffd0b0',
-  orb:       'stroke:#5cb,stroke-width:2px,color:#cfeaff',
-  internal:  'stroke:#888,stroke-width:1px,color:#aaa',
+  success:   'stroke:#4caf50,color:#9be3a8',
+  improving: 'stroke:#7bc481,color:#bde7c0',
+  fail:      'stroke:#e07a5f,stroke-dasharray:4 3,color:#f5b09c',
+  reset:     'stroke:#d97a4a,color:#ffd0b0',
+  orb:       'stroke:#5cb,color:#cfeaff',
+  internal:  'stroke:#888,color:#aaa',
 };
+
+// Map a transition probability ∈ [0, 1] to a stroke-width in px.
+// Edges without a probability (e.g. deterministic orb steps) fall
+// back to a default mid-width. The scale is non-linear: a prob=0.05
+// tail still gets a visible 1px line; a prob=0.5 reads ~2.5px;
+// prob=1 (deterministic) caps at 4.5px so the chart doesn't get
+// dominated by buy_base reset arrows.
+function strokeWidthForProb(prob) {
+  if (!Number.isFinite(prob)) return 2;
+  const p = Math.max(0, Math.min(1, prob));
+  // Sqrt scale: emphasises low-prob edges enough to remain visible,
+  // while still giving a clear visual lead to the dominant outcomes.
+  return (0.6 + 3.9 * Math.sqrt(p)).toFixed(2);
+}
 
 const NODE_STYLE = {
   start:     'fill:#1e3a5f,stroke:#5db,color:#cfeaff',
@@ -212,8 +228,10 @@ export function chainToMermaid(chain) {
   // `invisibleEdgeIdx.length`.
   const offset = invisibleEdgeIdx.length;
   chain.edges.forEach((e, i) => {
-    const style = EDGE_STYLE[e.kind ?? 'internal'];
-    if (style) lines.push(`  linkStyle ${offset + i} ${style}`);
+    const color = EDGE_COLOR[e.kind ?? 'internal'];
+    if (!color) return;
+    const width = strokeWidthForProb(e.prob);
+    lines.push(`  linkStyle ${offset + i} ${color},stroke-width:${width}px`);
   });
   // Invisible edges in legend/wishlist subgraphs: hide them entirely.
   for (const idx of invisibleEdgeIdx) {

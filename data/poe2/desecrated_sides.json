@@ -1,0 +1,1033 @@
+{
+  "fetched_at": "2026-05-05T21:01:06Z",
+  "source": "https://poe2db.tw/us/Desecrated_Modifiers#DesecratedMods",
+  "count": 171,
+  "mods": [
+    {
+      "text": "# to # Fire Thorns damage per 100 maximum Life",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% chance for Charms you use to not consume Charges",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Area of Effect for Attacks",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Armour from Equipped Body Armour",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Curse Magnitudes",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Damage against Enemies with Fully Broken Armour",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Elemental Damage",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Fire Damage#% increased Ignite Magnitude",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Global Defences",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Grenade Damage#% increased Grenade Duration",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Magnitude of Ignite if you've consumed an Endurance Charge Recently",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Spell Damage with Spells that cost Life",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Spell DamageMinions deal #% increased Damage",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "+# to Spirit",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "Attacks with this Weapon Penetrate #% Fire Resistance",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "Charms gain # charges per Second",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "Companions deal #% increased Damage#% increased Damage while your Companion is in your Presence",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "Grenade Skills have +# Cooldown Use",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "Minions deal #% increased Damage if you've Hit Recently",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "Offering Skills have #% increased Buff effect",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "Projectiles deal #% increased Damage with Hits against Enemies within 2m",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "Remnants have #% increased effect",
+      "side": "PREFIX",
+      "family": "Amanamu's",
+      "level": 65
+    },
+    {
+      "text": "#% chance for Flasks you use to not consume Charges",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Cold Damage#% increased Freeze Buildup",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Energy Shield from Equipped Body Armour",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Freeze Buildup if you've consumed an Power Charge Recently",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Melee Damage if you've dealt a Projectile Attack Hit in the past eight seconds",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Physical Damage#% reduced Attack Speed",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Spell Damage per 100 maximum Mana",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Spell Damage while on Full Energy Shield",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% increased bonuses gained from Equipped Quiver",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "+# to maximum number of Elemental Infusions",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Attacks with this Weapon Penetrate #% Cold Resistance",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Empowered Attacks deal #% increased Damage",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Gain #% of Maximum Mana as Armour",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Invocated Spells deal #% increased Damage",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Invocated Spells have #% chance to consume half as much Energy",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Mana Flasks gain # charges per Second",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Projectiles deal #% increased Damage with Hits against Enemies further than 6m",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Projectiles have #% chance to Chain an additional time from terrain",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Spell Skills have #% increased Area of Effect",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "Warcries Empower an additional Attack",
+      "side": "PREFIX",
+      "family": "Kurgal's",
+      "level": 65
+    },
+    {
+      "text": "#% chance for Skills to retain 40% of Glory on use",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Attack Damage while on Low Life",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Damage while you have a Totem",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Deflection Rating",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Evasion Rating from Equipped Body Armour",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Life Regeneration rate during Effect of any Life Flask",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Lightning Damage#% increased Magnitude of Shock you inflict",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Magnitude of Bleeding you inflict",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Magnitude of Damaging Ailments you inflict",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Magnitude of Shock if you've consumed a Frenzy Charge Recently",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Spell Damage per 100 Maximum Life",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% increased Spell Damage while wielding a Melee Weapon",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "+# to maximum number of Summoned Ballista Totems",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "Attacks with this Weapon Penetrate #% Lightning Resistance",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "Gain #% of Damage as Extra Physical Damage",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "Increases and Reductions to Projectile Speed also apply to Damage with Bows",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "Life Flasks gain # charges per Second",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "Melee Attack Skills have +# to maximum number of Summoned Totems",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "Spell Skills have +# to maximum number of Summoned Totems",
+      "side": "PREFIX",
+      "family": "Ulaman's",
+      "level": 65
+    },
+    {
+      "text": "#% chance for Mace Slam Skills you use yourself to cause an additional Aftershock",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% chance to Daze on Hit",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% chance to Pierce an Enemy",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% chance to build an additional Combo on Hit",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% faster Curse Activation",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Archon Buff duration",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Area of Effect of Curses",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Attack SpeedCompanions have #% increased Attack Speed",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Cost Efficiency#% of Spell Mana Cost Converted to Life Cost",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Glory generation",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Immobilisation buildup",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Presence Area of Effect",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Skill Effect Duration",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased Spirit Reservation Efficiency of Skills",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% increased amount of Life Leeched",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% of Damage taken Recouped as Life",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% of Leech is Instant",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% of Spell Mana Cost Converted to Life Cost",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% reduced Ignite Duration on you",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% reduced Slowing Potency of Debuffs on You",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "#% reduced effect of Curses on you",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "+# metres to Dodge Roll distance",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "+# to Level of all Minion Skills",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "+# to Strength and Intelligence",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "+#% to Block chance",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "+#% to Fire and Chaos Resistances",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "+#% to Thorns Critical Hit Chance",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "+#% to all maximum Resistances",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Aura Skills have #% increased Magnitudes",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Break Armour equal to #% of Physical Damage dealt",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Enemies Hindered by you take #% increased Elemental Damage",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Equipment and Skill Gems have #% reduced Attribute Requirements",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Grenades have #% chance to activate a second time",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Hits with Shield Skills which Heavy Stun enemies break fully Break Armour",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Projectiles have #% increased Critical Damage Bonus against Enemies within 2m",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Remnants can be collected from #% further away",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Skills which create Fissures have a #% chance to create an additional Fissure",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "Your Heavy Stun buildup empties #% faster",
+      "side": "SUFFIX",
+      "family": "of Amanamu",
+      "level": 65
+    },
+    {
+      "text": "# Mana gained when you Block",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% chance to Gain Arcane Surge when you deal a Critical Hit",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% chance when collecting an Elemental Infusion to gain anadditional Elemental Infusion of the same type",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% chance when you Reload a Crossbow to be immediate",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Cast Speed for each different Non-Instant Spell you've Cast Recently",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Cast Speed when on Full Life",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Cast Speed while on Full Mana",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Cooldown Recovery Rate",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Cost Efficiency of Attacks",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Critical Hit Chance against Marked Enemies",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Energy Shield Recharge Rate if you've Blocked Recently",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Exposure Effect",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Mana Cost Efficiency",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Mana Cost Efficiency if you have Dodge Rolled Recently",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Mana Regeneration Rate",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Mana Regeneration Rate while stationary",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Reload Speed",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased Warcry Cooldown Recovery Rate",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased amount of Mana Leeched",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% increased effect of Arcane Surge on you",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% of Damage is taken from Mana before Life",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% of Damage taken Recouped as Mana",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% of Elemental Damage taken Recouped as Energy Shield",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% reduced Duration of Bleeding on You",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "+# to Dexterity and Intelligence",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "+#% of Armour also applies to Chaos Damage",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "+#% to Cold and Chaos Resistances",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "+#% to Quality of all Skills",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "Archon recovery period expires #% faster",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "Enemies Hindered by you take #% increased Chaos Damage",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "Minions have #% increased Cooldown Recovery Rate",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "Projectiles have #% increased Critical Hit Chance against Enemies further than 6m",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "Recover #% of Maximum Mana when you expend at least 10 Combo",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "Recover #% of maximum Mana on Kill",
+      "side": "SUFFIX",
+      "family": "of Kurgal",
+      "level": 65
+    },
+    {
+      "text": "#% chance for Attack Hits to apply Incision",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% chance for Spell Skills to fire 2 additional Projectiles",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Attack Speed#% increased Attack Speed while your Companion is in your Presence",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Cast Speed when on Low Life",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Critical Damage Bonus",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Life Cost Efficiency",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Life Regeneration Rate while moving",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Magnitude of Ailments you inflict",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Parried Debuff Duration",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Parried Debuff Magnitude",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Reservation Efficiency of Companion Skills",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Reservation Efficiency of Herald Skills",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Skill Speed",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Skill Speed if you've consumed a Frenzy Charge Recently",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased Totem Placement speed",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased chance to Poison",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% increased chance to inflict Bleeding",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% of Skill Mana Costs Converted to Life Costs",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% reduced Movement Speed Penalty from using Skills while moving",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% reduced Poison Duration on you",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "#% reduced Slowing Potency of Debuffs on You if you've used a Charm Recently",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "+# to Level of all Skills",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "+# to Strength and Dexterity",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "+#% to Lightning and Chaos Resistances",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "+#% to maximum Block chance",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Attacks Chain an additional time",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Break #% increased Armour",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Break Armour on Critical Hit with Spells equal to #% of Physical Damage dealt",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Corrupted Blood cannot be inflicted on you",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Enemies Hindered by you take #% increased Physical Damage",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Enemies you Mark take #% increased Damage",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Gain # Rage on Melee Hit",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Hits have #% reduced Critical Hit Chance against you",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Prevent +#% of Damage from Deflected Hits",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Projectile Attacks have a #% chance to fire two additional Projectiles while moving",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Recover #% of Maximum Life when you expend at least 10 Combo",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "Recover #% of maximum Life on Kill",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    },
+    {
+      "text": "You take #% of damage from Blocked Hits with a raised Shield#% of Physical Damage taken as Lightning while your Shield is raised",
+      "side": "SUFFIX",
+      "family": "of Ulaman",
+      "level": 65
+    }
+  ]
+}

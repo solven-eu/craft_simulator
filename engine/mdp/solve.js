@@ -42,8 +42,8 @@
 //     pSucceedWithinBudget?:   number              // future
 //   }
 
-import { ACTIONS, makeEssenceAction } from './actions.js';
-import { makeState, stateKey, isGoalState, isBrickedByFracture } from './state.js';
+import { ACTIONS, makeEssenceAction, makePerfectEssenceOverwriteAction } from './actions.js';
+import { makeState, stateKey, isGoalState, isBrickedByFracture, popcount } from './state.js';
 import { buildStateSpace, valueIterate } from './value-iteration.js';
 
 export function solveMDP(input) {
@@ -78,9 +78,19 @@ export function solveMDP(input) {
   }, 0);
   const fracturedBit = input.target?.fracturedKey != null
     ? (keyToBit.get(input.target.fracturedKey) ?? -1) : -1;
+  // Translate per-wished desecration-constraint key lists into
+  // bitmasks. Goal predicate consumes these to enforce
+  // "must / must-not be desecrated" on each affix.
+  const buildMask = (keys) => (keys ?? []).reduce((m, k) => {
+    const bit = keyToBit.get(k);
+    if (bit === undefined) return m;
+    return m | (1 << bit);
+  }, 0);
   const target = {
     requiredMask,
     fracturedBit,
+    desecrationRequiredMask:  buildMask(input.target?.desecrationRequiredMods),
+    desecrationForbiddenMask: buildMask(input.target?.desecrationForbiddenMods),
     // Optional acceptance bounds on final totalMods. Distinct from
     // env.maxFilled (the game-rule cap on what a Rare can carry during
     // crafting). See isGoalState for semantics.
@@ -98,12 +108,49 @@ export function solveMDP(input) {
   }
   const startFracBit = input.start?.fracturedKey != null
     ? (keyToBit.get(input.start.fracturedKey) ?? -1) : -1;
+  // Starting desecrated provenance: at most one slot is desecrated
+  // (engine one-cap rule). When the desecrated key matches a wishlist
+  // entry, set its bit in desecratedWishedMask; the prefix/suffix
+  // count is bumped only for the prefix-side case.
+  const startDesecKey = input.start?.desecratedKey ?? null;
+  const startDesecSide = input.start?.desecratedSide ?? null;
+  let startDesecratedWishedMask = 0;
+  let startDesecratedIrrPrefix = 0;
+  let startDesecratedIrrSuffix = 0;
+  if (startDesecKey) {
+    const bit = keyToBit.get(startDesecKey);
+    if (bit !== undefined) {
+      // Starting desecrated affix matches a wished bit — record it
+      // as a wished-desecrated.
+      startDesecratedWishedMask |= (1 << bit);
+    } else if (startDesecSide === 'PREFIX') {
+      // Starting desecrated affix is irrelevant prefix-side.
+      startDesecratedIrrPrefix = 1;
+    } else {
+      // Default: irrelevant suffix-side.
+      startDesecratedIrrSuffix = 1;
+    }
+  }
+  // Pending unrevealed bone-mod on the starting item. When the user
+  // checks "the item has an applied-but-not-revealed bone affix", we
+  // start at boneMod=true so the engine offers reveal_bone as the
+  // first action. The bone itself is a phantom slot — apply_bone's
+  // own gate (boneMod=false AND no desecrated mod on item) prevents
+  // a second bone, regardless of whether the desecrated counters
+  // already register the pending one.
+  const startBoneMod = !!input.start?.boneMod;
   const start = makeState({
     rarity: input.start?.rarity ?? 'normal',
     modMask: startMask,
     totalMods: input.start?.totalMods ?? startMods.length,
+    prefixMods: input.start?.prefixMods ?? 0,
+    desecratedWishedMask: startDesecratedWishedMask,
+    desecratedIrrPrefix: startDesecratedIrrPrefix,
+    desecratedIrrSuffix: startDesecratedIrrSuffix,
     fracturedBit: startFracBit,
     irrFractured: false,
+    boneMod: startBoneMod,
+    boneRevealed: false,
   });
 
   // ---- Env (immutable, passed to every transition) ----------
@@ -242,6 +289,26 @@ export function solveMDP(input) {
       actionList.push(action);
       continue;
     }
+    // annul_omen_of_light: same bone-availability gate as reveal_bone
+    // (the cleanup loop only matters when desecration is on the
+    // table). Cost = base annul + omen-of-light. Silently skipped if
+    // the priced cost is missing (no Omen of Light rate) — engine
+    // gracefully degrades to "no cleanup tool, one-cap is hard."
+    if (action.id === 'annul_omen_of_light') {
+      if (!Number.isFinite(env.boneCostEx)) continue;
+      const c = env.orbCosts[action.id];
+      if (!Number.isFinite(c)) continue;
+      if (budgetCap != null && c > budgetCap) {
+        budgetExcluded.push({ actionId: action.id, costEx: c });
+        warnings.push(
+          `Action "annul_omen_of_light" excluded: per-use cost ${c.toFixed(2)} ex `
+          + `exceeds budget ${budgetCap.toFixed(2)} ex.`,
+        );
+        continue;
+      }
+      actionList.push(action);
+      continue;
+    }
     const cost = env.orbCosts[action.id];
     if (!Number.isFinite(cost)) {
       // Greater / Perfect orb variants are optional — silently skip
@@ -306,7 +373,16 @@ export function solveMDP(input) {
       );
       continue;
     }
-    actionList.push(makeEssenceAction(ess, keyToBit));
+    // Two essence shapes:
+    //   - 'magic_to_rare' (default — Lesser/Normal/Greater): upgrades
+    //     a Magic item to Rare with the affix guaranteed.
+    //   - 'rare_overwrite' (Perfect/Corrupted): overwrites a random
+    //     affix on a Rare item with the essence's affix.
+    if (ess.mode === 'rare_overwrite') {
+      actionList.push(makePerfectEssenceOverwriteAction(ess, keyToBit, env));
+    } else {
+      actionList.push(makeEssenceAction(ess, keyToBit));
+    }
   }
 
   // ---- Build state space + solve via value iteration -------
@@ -337,6 +413,8 @@ export function solveMDP(input) {
     isBricked: isBrickedByFracture(s, target),
   }));
   const chain = buildChain({ states, appsPerState, vStar, policy, target, startIdx,
+    wishlist,
+    basePriceEx: input.basePriceEx ?? 0,
     budgetEx: input.budgetEx ?? null,
     timeWeightExPerSec: input.timeWeightExPerSec ?? 0,
     // Toggle for step-id prefix on node labels. Default on so debug
@@ -344,6 +422,19 @@ export function solveMDP(input) {
     // can set false when the chart is too dense and the prefix
     // adds visual noise.
     showStepIds: input.showStepIds ?? true });
+
+  // Surface chain-node label collisions as warnings on the top-level
+  // result. Each duplicate group means two distinct chain nodes
+  // render the same text — a hint that a state-rendering or BFS
+  // dedup bug is hiding behind otherwise-clean output.
+  if (chain?.duplicateLabels?.length) {
+    for (const dup of chain.duplicateLabels) {
+      warnings.push(
+        `Duplicate chain-node labels (${dup.ids.length} nodes): `
+        + `${dup.ids.join(', ')} — label="${dup.label.replace(/\n/g, ' \\n ')}"`,
+      );
+    }
+  }
 
   return {
     vStar: vStar[startIdx],
@@ -389,7 +480,7 @@ export function solveMDP(input) {
 //   - Strict-bricked states (goal-unreachable under any action) keep
 //     the same `bricked` kind too — the renderer doesn't need to
 //     distinguish "near-trap" from "strict trap" for this purpose.
-function buildChain({ states, appsPerState, vStar, policy, target, startIdx, budgetEx, timeWeightExPerSec, showStepIds = true }) {
+function buildChain({ states, appsPerState, vStar, policy, target, startIdx, budgetEx, timeWeightExPerSec, showStepIds = true, wishlist = [], basePriceEx = 0 }) {
   // Percentages read more naturally for orb-outcome odds. Below 0.01% use
   // scientific so 1e-6-class outcomes stay visible.
   const fmtP = (p) => {
@@ -466,6 +557,65 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       queue.push(o.to);
     }
   }
+  // ---- Forward-pass secondary value: `valueFromBase` ----
+  // Per user direction (corrected 2026-05-07):
+  //   fromBase(start) = basePriceEx
+  //   fromBase(s)     = min over incoming (parent → s, prob, cost)
+  //                     of [fromBase(parent) / prob + cost]
+  //
+  // Reading: the in-progress item carries an expected "market value"
+  // proportional to how rare it is. Each transition INFLATES the
+  // parent's value by 1/prob (a 10% branch landed multiplies the
+  // sunk cost by 10× — replicating this state in expectation
+  // requires that many average attempts), then adds the orb cost
+  // paid at this step. The MIN over incoming edges picks the
+  // cheapest-to-replicate estimate.
+  //
+  // Note: low-probability transitions amplify fromBase super-
+  // linearly. A chain of 1% branches makes fromBase explode — which
+  // correctly reflects how rare the resulting item is.
+  //
+  // Complementary to the existing `fromBudget=...ex` line
+  // (= pSuccess(s) × budgetEx + bExpected(s), backward induction
+  // from goal):
+  //   - `fromBudget` = forward-going expected payoff under π*
+  //                    (what this state is worth, given budget)
+  //   - `fromBase`   = expected sunk-cost replicate-value
+  //                    (what an in-expectation copy of this state
+  //                     would cost to produce from base)
+  const valueFromBase = new Map();
+  valueFromBase.set(startIdx, basePriceEx);
+  const unifiedCostFwd = (ex, sec) => ex + sec * (timeWeightExPerSec ?? 0);
+  for (let iter = 0; iter < 64; iter++) {
+    let changed = false;
+    for (const i of reachable) {
+      if (isGoalState(states[i], target)) continue;
+      const a = policy[i];
+      if (!a || a === 'buy_base') continue;
+      if (isBrickedByFracture(states[i], target)) continue;
+      const apps = appsPerState.get(i) ?? [];
+      const app = apps.find((x) => x.actionId === a);
+      if (!app) continue;
+      const parentVal = valueFromBase.get(i);
+      if (parentVal == null) continue;
+      const stepCost = unifiedCostFwd(app.outcomes[0].costEx ?? 0, app.outcomes[0].costSec ?? 0);
+      for (const o of app.outcomes) {
+        if (o.to === i) continue;       // skip self-loops
+        if (!(o.prob > 0)) continue;    // unreachable branch — guard against /0
+        // Replicate-value form: parent fromBase divided by branch
+        // probability (the "luck multiplier" needed in expectation
+        // to land this branch), plus the orb cost paid at this step.
+        const candidate = parentVal / o.prob + stepCost;
+        const prev = valueFromBase.get(o.to);
+        if (prev == null || candidate < prev) {
+          valueFromBase.set(o.to, candidate);
+          changed = true;
+        }
+      }
+    }
+    if (!changed) break;
+  }
+
   // ---- itemValueAlt via backward induction over the reachable chain ----
   // Cycles in the chain DAG are rare but possible (e.g. an annul-no-op
   // self-loop on a state where every removable mod is fractured). We
@@ -541,6 +691,77 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
   const bStart = bExpected.get(startIdx) ?? 0;
   const breakevenBudgetEx = pStart > 1e-9 ? (-bStart / pStart) : null;
 
+  // Mod-name shortener — same shape as closed-form chains
+  // (chaos-spam, exalt-annul-cycle) so labels read consistently
+  // across all chart variants.
+  //   "PREFIX:#% increased Evasion Rating" → "P:Evasion Rating"
+  const shortName = (key) => {
+    const [side, rest] = key.split(/:(.+)/);
+    const tag = side === 'PREFIX' ? 'P' : side === 'SUFFIX' ? 'S' : '';
+    const trim = (rest ?? '').replace(/[#%,]/g, '').replace(/\s+/g, ' ').trim();
+    return `${tag}:${trim.slice(0, 26)}`;
+  };
+  // Build a per-state mod list label: one line per wished bit on the
+  // item (★ if required, · if soft-wished), plus an irrelevant-count
+  // line. Replaces the cryptic `mask=00000101` representation.
+  const wIsReq = wishlist.map((w) => !!w.required);
+  const wKeys  = wishlist.map((w) => w.key);
+  const wTypes = wishlist.map((w) => w.type ?? null);
+  const desecBit = (s, i) => !!((s.desecratedWishedMask ?? 0) & (1 << i));
+  const stateModListLabel = (s) => {
+    const onBits = [];
+    for (let i = 0; i < wKeys.length; i++) {
+      if (s.modMask & (1 << i)) onBits.push(i);
+    }
+    // Per-side wished counts (drives the irrelevant split below).
+    let wishedPrefix = 0, wishedSuffix = 0;
+    for (const i of onBits) {
+      if (wTypes[i] === 'PREFIX') wishedPrefix++;
+      else if (wTypes[i] === 'SUFFIX') wishedSuffix++;
+    }
+    const totalPrefix = s.prefixMods ?? 0;
+    const totalSuffix = s.totalMods - totalPrefix;
+    // Independent of the side split: exact total of irrelevant slots.
+    const irrTotal  = s.totalMods - onBits.length;
+    // Side-split — relies on prefixMods which isn't maintained by
+    // every action; can be inaccurate.
+    const irrPrefix = Math.max(0, totalPrefix - wishedPrefix);
+    const irrSuffix = Math.max(0, totalSuffix - wishedSuffix);
+    const sideUnknown = irrTotal > 0 && (irrPrefix + irrSuffix) === 0;
+    const lines = [];
+    for (const i of onBits) {
+      const tag = wIsReq[i] ? '★' : '·';
+      const desecMark = desecBit(s, i) ? ' 🦴' : '';
+      lines.push(`${tag} ${shortName(wKeys[i])}${desecMark}`);
+    }
+    if (irrTotal > 0) {
+      // Reuse the same `P:` / `S:` side-tag convention as wished
+      // mods so the rendered list reads uniformly. The 🦴 mark
+      // tracks how many of the irrelevant slots came from a Well-
+      // of-Souls reveal (desecrated provenance) — read directly
+      // from the per-side fields, no derivation needed.
+      const desecPrefixIrr = s.desecratedIrrPrefix ?? 0;
+      const desecSuffixIrr = s.desecratedIrrSuffix ?? 0;
+      const pMark = desecPrefixIrr > 0 ? ` 🦴×${desecPrefixIrr}` : '';
+      const sMark = desecSuffixIrr > 0 ? ` 🦴×${desecSuffixIrr}` : '';
+      if (sideUnknown) {
+        const allMark = (desecPrefixIrr + desecSuffixIrr) > 0
+          ? ` 🦴×${desecPrefixIrr + desecSuffixIrr}` : '';
+        lines.push(`· ?: ${irrTotal} irrelevant${allMark}`);
+      } else {
+        if (irrPrefix > 0) lines.push(`· P: ${irrPrefix} irrelevant${pMark}`);
+        if (irrSuffix > 0) lines.push(`· S: ${irrSuffix} irrelevant${sMark}`);
+      }
+    }
+    // (Per-side fingerprint footer like `(2P + 1S = 3)` was
+    // surfaced earlier as a debug aid while we were chasing
+    // state-consistency bugs — it's hidden by default now that
+    // those bugs are fixed. Re-enable here if a future state
+    // representation makes two distinct states share a label.)
+    if (!lines.length) lines.push('(empty)');
+    return lines.join('\n');
+  };
+
   const chainStates = [];
   const chainEdges = [];
   const present = (i) => reachable.has(i);
@@ -559,10 +780,38 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     // chain-mermaid.js NODE_STYLE per-rarity entries. Dropped from
     // the label since the colour cue is more glance-able than a text
     // field and saves a line of vertical space per node.
+    // Mod list (one line per wished mod on the item, plus a count
+    // line for irrelevant slots split by side). Reads at a glance
+    // what the item carries — replaces the cryptic `mask=00000101`
+    // binary representation. The total mod count (`t=...`) is no
+    // longer surfaced — it's redundant with the per-line breakdown
+    // (sum the wished + irrelevant lines).
     let label = (showStepIds ? `[${`s${i}`}] ` : '')
-              + `mask=${s.modMask.toString(2).padStart(8, '0')}\nt=${s.totalMods}`;
-    if (s.fracturedBit >= 0) label += `\n🔒 bit ${s.fracturedBit}`;
+              + stateModListLabel(s);
+    // Fractured wished bit — render as the mod name (via shortName)
+    // rather than a bare bit index, so two goals fractured on
+    // different mods are visually distinguishable.
+    if (s.fracturedBit >= 0 && wKeys[s.fracturedBit] != null) {
+      label += `\n🔒 ${shortName(wKeys[s.fracturedBit])}`;
+    } else if (s.fracturedBit >= 0) {
+      label += `\n🔒 bit ${s.fracturedBit}`;
+    }
     if (s.irrFractured) label += `\n💀 irr-fractured`;
+    // Total desecrated count — surfaces even when there are no
+    // irrelevant slots (in which case the per-irrelevant-line
+    // appendix can't fire). Two goals that differ only in desec
+    // would otherwise render identically. Derived from
+    // `popcount(desecratedWishedMask) + irrPrefix + irrSuffix`.
+    const totalDesec = popcount(s.desecratedWishedMask ?? 0)
+      + (s.desecratedIrrPrefix ?? 0) + (s.desecratedIrrSuffix ?? 0);
+    if (totalDesec > 0) {
+      label += `\n🦴 desecrated×${totalDesec}`;
+    }
+    // Post-reveal flag distinguishes "bone was applied + revealed"
+    // from "bone was never applied" when the wished bits coincide.
+    if (s.boneRevealed && !s.boneMod) {
+      label += `\n✓ bone revealed`;
+    }
     // Unrevealed bone-mod is a special "phantom slot" — pads the
     // fracture-threshold check, can't be picked by Fracture/Annul,
     // and is a key crafting trick (the bone-trick + multi-bone
@@ -587,7 +836,12 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     if (budgetEx != null && Number.isFinite(budgetEx)) {
       const raw = itemValueAlt.get(i);
       const val = Number.isFinite(raw) ? Math.max(0, raw) : 0;
-      label += `\nvalue=${fmtVal(val)} ex`;
+      // `fromBudget`: backward-induction value from goal under π*
+      // = pSuccess(s) × budgetEx + bExpected(s). Reads as "what this
+      // state is worth going forward, given the user's budget cap."
+      // Renamed from generic `value` to make the contrast with the
+      // forward-pass `fromBase` explicit in the label.
+      label += `\nfromBudget=${fmtVal(val)} ex`;
       // P_reach annotation: probability of landing here when following
       // π* from start. Useful alongside itemValue to compute "weighted
       // contribution to outcome." Skip on start (P=1) and goal
@@ -595,6 +849,15 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       const p = pReach.get(i) ?? 0;
       if (i !== startIdx && !isGoal && p > 0 && p < 1) {
         label += `\nP_reach=${fmtP(p)}`;
+      }
+    }
+    // Secondary value: forward-pass value from base item (basePriceEx
+    // × min cumulative probability through the chain). Always shown
+    // when basePriceEx > 0 — it doesn't depend on budget.
+    if (basePriceEx > 0) {
+      const fv = valueFromBase.get(i);
+      if (Number.isFinite(fv)) {
+        label += `\nfromBase=${fmtVal(fv)} ex`;
       }
     }
     chainStates.push({
@@ -649,9 +912,34 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
         from: `s${i}`, to: `s${o.to}`,
         label: `${a}\n${fmtP(o.prob)}`,
         kind,
+        // Raw transition probability, exposed so the renderer can
+        // scale edge stroke-width by likelihood (high-prob outcomes
+        // appear thick; tail outcomes appear thin).
+        prob: o.prob,
       });
     }
   }
+  // Duplicate-label detector: distinct chain states should render
+  // distinct labels. When two nodes share the same label modulo the
+  // `[sN] ` step-id prefix, either (a) the BFS produced two indices
+  // for genuinely-equivalent states (a dedupe bug — `stateKey`
+  // should have collapsed them), or (b) the label rendering hides a
+  // distinguishing field. Surface as a warning so debugging starts
+  // with the offending node ids in hand.
+  const labelGroups = new Map();
+  for (const cs of chainStates) {
+    // Strip the leading "[sN] " prefix so node IDs don't make every
+    // label trivially unique.
+    const stripped = cs.label.replace(/^\[s\d+\]\s*/, '');
+    const arr = labelGroups.get(stripped) ?? [];
+    arr.push(cs.id);
+    labelGroups.set(stripped, arr);
+  }
+  const duplicateLabels = [];
+  for (const [label, ids] of labelGroups) {
+    if (ids.length > 1) duplicateLabels.push({ label, ids });
+  }
+
   return {
     states: chainStates,
     edges: chainEdges,
@@ -665,5 +953,10 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     pSuccessStart: pStart,
     bExpectedStart: bStart,
     breakevenBudgetEx,
+    // Diagnostic: groups of chain nodes whose labels collide
+    // (excluding the step-id prefix). Each entry is
+    // { label, ids: [stepId...] }. Empty array means every node
+    // is visually distinct.
+    duplicateLabels,
   };
 }

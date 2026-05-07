@@ -2,7 +2,7 @@
 // wheel-zoom / drag-pan and a near-fullscreen modal toggle. Mermaid is
 // loaded lazily on first render via importmap (no build step).
 
-import { ref, watchEffect, onMounted, onUnmounted, nextTick } from 'vue';
+import { ref, computed, watchEffect, onMounted, onUnmounted, nextTick } from 'vue';
 import { chainToMermaid } from '../engine/strategies/chain-mermaid.js';
 
 let mermaidInstance = null;
@@ -234,12 +234,31 @@ export default {
       el?.querySelector('svg')?._panZoomFit?.();
     };
 
-    return { svg, error, loading, fullscreen, inlineRef, fsRef, reset, fit };
+    // Embed link: build a `mdp-embed` URL from the current
+    // location's hash (which carries the `?s=...` craft state).
+    // Lets the user open the headless graph view in a new tab —
+    // useful for iframe sharing or for opening multiple craft
+    // variants side-by-side without losing the planner context.
+    const embedHref = computed(() => {
+      if (typeof window === 'undefined') return null;
+      const hash = window.location.hash || '#/poe2';
+      // hash looks like `#/poe2?s=xxx` — extract the game segment +
+      // query and rebuild as `#/<game>/mdp-embed?s=xxx`.
+      const m = /^#\/([^/?]+)(.*)$/.exec(hash);
+      if (!m) return null;
+      const game = m[1];
+      const rest = m[2] ?? '';
+      return `${window.location.pathname}#/${game}/mdp-embed${rest}`;
+    });
+
+    return { svg, error, loading, fullscreen, inlineRef, fsRef, reset, fit, embedHref };
   },
   template: `
     <div class="mermaid-chain-wrap">
       <div class="mermaid-chain-toolbar">
         <button class="link" @click="fullscreen = true" :disabled="!svg">⤢ Open fullscreen</button>
+        <a v-if="embedHref" class="link" :href="embedHref" target="_blank" rel="noopener"
+           title="Open headless mermaid view in new tab — iframe-friendly, F5-safe">↗ Embed</a>
         <button class="link" @click="fit" :disabled="!svg" title="Fit to viewport">⤡ Fit</button>
         <button class="link" @click="reset" :disabled="!svg" title="Reset zoom">↺ 1:1</button>
         <span class="hint">Ctrl/Cmd + scroll to zoom · drag to pan</span>

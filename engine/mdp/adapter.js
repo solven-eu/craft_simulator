@@ -5,6 +5,8 @@
 // Output is the input shape consumed by `solveMDP(input)`. Pure function;
 // no store / DOM / async.
 
+import { resolveTypedKey } from '../mod-ids.js';
+
 /**
  * @param {object} ctx                Strategy context (see strategiesAnalytics).
  * @returns input for solveMDP, or null if the problem is degenerate
@@ -13,18 +15,42 @@
 export function ctxToMdpInput(ctx) {
   if (!ctx?.wishlist?.length) return null;
 
+  // Phase 1 of the mod-identity refactor: canonicalise every typed
+  // key (PREFIX:..., SUFFIX:...) via resolveTypedKey so wishlist
+  // entries spelled with the essence-text form (`+# to maximum Life`)
+  // resolve to the same id as the base-pool entry (`# to maximum
+  // Life`). Without this, `find(m => m.key === w.key)` silently
+  // misses, the wished bit gets weight 0, and the engine reports the
+  // craft as unreachable.
+  const modIds = ctx.modIds ?? {};
+  const canonKey = (k) => resolveTypedKey(k, modIds);
+
+  // Index the pool by canonical key for O(1) match.
+  const poolByCanon = new Map();
+  for (const m of (ctx.fullPool ?? [])) {
+    poolByCanon.set(canonKey(m.key), m);
+  }
+
   // Build wishlist with pool weights. Use the *full* pool (not conditional)
   // since the MDP models alchemy-from-scratch where prior item state is
   // irrelevant; exalt's per-state pool exclusion is computed separately
   // inside the action's transitions.
   const wishlist = ctx.wishlist.map((w) => {
-    const poolEntry = (ctx.fullPool ?? []).find((m) => m.key === w.key);
+    const wKey = canonKey(w.key);
+    const poolEntry = poolByCanon.get(wKey);
     return {
-      key: w.key,
+      key: wKey,
       type: w.type ?? poolEntry?.type ?? null, // PREFIX | SUFFIX
       weight: poolEntry?.weight ?? 0,
       required: !!w.required,
       fractured: !!w.fractured,
+      // Per-desired-mod desecration constraint (mirror of fracture
+      // toggle). 'require' ⇒ this affix MUST be on the final item
+      // with desecrated provenance. 'forbid' ⇒ this affix must NOT
+      // be desecrated (e.g. user reserves the one-desecrated slot
+      // for a different mod). null ⇒ MDP is free to use desecration
+      // strategies or not.
+      desecrationConstraint: w.desecrationConstraint ?? null,
       tierScores: w.tierScores ?? null,
       requiredTier: pickFiniteMin(w.requiredTier, w.minTier),
       tiers: poolEntry?.tiers ?? [],
@@ -49,10 +75,11 @@ export function ctxToMdpInput(ctx) {
 
   const requiredMods = wishlist.filter((w) => w.required).map((w) => w.key);
   // Fractured target: prefer an explicit user flag; fall back to the
-  // store-level `requiredFracturedKey` if plumbed.
+  // store-level `requiredFracturedKey` if plumbed. Canonicalise via
+  // the id table so it matches the wishlist entries' canonical keys.
   const fracturedKey = ctx.requiredFracturedKey
-    ?? wishlist.find((w) => w.fractured && w.required)?.key
-    ?? null;
+    ? canonKey(ctx.requiredFracturedKey)
+    : (wishlist.find((w) => w.fractured && w.required)?.key ?? null);
 
   // Map every MDP action to its game-orb costs/times. Missing any key
   // here causes the action to be silently dropped — that's what bit us
@@ -169,6 +196,10 @@ export function ctxToMdpInput(ctx) {
     exalt_greater:     safeCost('exaltedGreater',   ctx),
     exalt_perfect:     safeCost('exaltedPerfect',   ctx),
     annul:             safeCost('annulment',        ctx),
+    // Annul + Omen of Light — desecrated cleanup. Cost = annul price
+    // plus omen-of-light price; both must be priced for the cleanup
+    // loop to be available.
+    annul_omen_of_light: sumCost(safeCost('annulment', ctx), omenCost('omen-of-light')),
     chaos:             safeCost('chaos',            ctx),
     chaos_greater:     safeCost('chaosGreater',     ctx),
     chaos_perfect:     safeCost('chaosPerfect',     ctx),
@@ -277,7 +308,8 @@ export function ctxToMdpInput(ctx) {
     if (wIsReq[i] && placedR < startR)        { startMods.push(wishlist[i].key); placedR++; }
     else if (!wIsReq[i] && placedW < startWS) { startMods.push(wishlist[i].key); placedW++; }
   }
-  const startingFracturedKey = ctx.startingFracturedKey ?? null;
+  const startingFracturedKey = ctx.startingFracturedKey
+    ? canonKey(ctx.startingFracturedKey) : null;
   const startTotal = (ctx.startingCounts?.prefixes ?? 0) + (ctx.startingCounts?.suffixes ?? 0);
 
   return {
@@ -290,18 +322,40 @@ export function ctxToMdpInput(ctx) {
     irrelevantWeightBySide,
     target: {
       requiredMods,
+      // Per-wished desecration-constraint mod keys. Solver translates
+      // these to bitmasks (desecrationRequiredMask /
+      // desecrationForbiddenMask) using the wishlist→bit mapping.
+      desecrationRequiredMods: wishlist
+        .filter((w) => w.desecrationConstraint === 'require').map((w) => w.key),
+      desecrationForbiddenMods: wishlist
+        .filter((w) => w.desecrationConstraint === 'forbid').map((w) => w.key),
       fracturedKey,
       // Acceptance bounds (game-target shape, NOT crafting cap).
       minFilled: ctx.minFilled ?? null,
       maxFilled: ctx.maxFilled ?? null,
     },
     start: {
-      // Rough rarity inference: any starting mods ⇒ Rare; else Normal.
-      // Normal is the cleanest place for the solver to begin.
-      rarity: startTotal === 0 ? 'normal' : 'rare',
+      // Rough rarity inference: any starting mods OR a pending
+      // unrevealed bone-mod ⇒ Rare (apply_bone requires rare, so the
+      // user must have a rare item to be in the pre-reveal state);
+      // else Normal.
+      rarity: (startTotal === 0 && !ctx.startingBoneMod) ? 'normal' : 'rare',
       modsOnItem: startMods,
       totalMods: startTotal,
+      // Prefix-side count drives bone-reveal side allocation (3P/0S ⇒
+      // forced suffix etc.). Suffix count derived as totalMods - prefixMods.
+      prefixMods: ctx.startingCounts?.prefixes ?? 0,
       fracturedKey: startingFracturedKey,
+      // Starting desecrated affix (max 1 per the one-cap rule). The
+      // typed key is canonicalised so the wished-mask machinery can
+      // line it up with a wishlist bit if applicable.
+      desecratedKey: ctx.startingDesecratedKey ? canonKey(ctx.startingDesecratedKey) : null,
+      desecratedSide: ctx.startingDesecratedSide ?? null,
+      // Pending unrevealed bone-mod on the starting item. Maps to
+      // engine state.boneMod = true (boneRevealed = false). Note: the
+      // engine convention is that totalMods does NOT include the
+      // unrevealed slot — it pads the fracture-threshold check only.
+      boneMod: !!ctx.startingBoneMod,
     },
     orbCosts, orbTimes, pTierAcceptable,
     boneCostEx,
@@ -309,7 +363,7 @@ export function ctxToMdpInput(ctx) {
     pBoneRevealHitPrefix,
     pBoneRevealHitSuffix,
     pBoneRevealHitAbyssal,
-    essences: buildEssenceSpecs(ctx, wishlist),
+    essences: buildEssenceSpecs(ctx, wishlist, { omenCost, sumCost }),
     basePriceEx: ctx.basePriceEx ?? 0,
     // Default 60 sec — see solve.js note. Adapter reads from ctx if
     // the user surfaces a per-base-source override (e.g. hideout
@@ -372,26 +426,61 @@ function safeCost(orbId, ctx) {
 // Refinement deferred to MDP-ε v2; for v1 the binary check works for
 // "user wants ≤ T2 ⇒ Greater/Perfect essences are acceptable, Lesser
 // isn't" — the most common case.
-function buildEssenceSpecs(ctx, wishlist) {
+function buildEssenceSpecs(ctx, wishlist, helpers = {}) {
+  const omenCost = helpers.omenCost ?? (() => NaN);
+  const sumCost  = helpers.sumCost  ?? ((...vs) => vs.reduce((a, b) => a + b, 0));
   const out = [];
   const essences = ctx.essences ?? [];
   const prices = ctx.essencePrices ?? {};
   const itemClass = ctx.itemClass ?? null;
-  // Map wishlist mod-name → wishlist key for fast lookup.
+  const modIds = ctx.modIds ?? {};
+  // Mod-name canonicaliser: looks up the id, returns the wishlist
+  // key it's already paired with (since wishlist keys were
+  // canonicalised earlier via resolveTypedKey). Without this,
+  // essence catalog spellings ("+# to maximum Life") don't match
+  // canonicalised wishlist keys ("# to maximum Life") and the
+  // essence is silently skipped.
+  const idForName = (n) => modIds[n] ?? n;
+  // Map wishlist canonical mod-name → wishlist key (fast lookup).
   const nameToKey = new Map();
+  const idToKey = new Map();
   for (const w of wishlist) {
     const name = w.key.split(':').slice(1).join(':');
     nameToKey.set(name, w.key);
+    idToKey.set(idForName(name), w.key);
   }
   const tierOrdinal = { Lesser: 5, Normal: 4, Greater: 2, Perfect: 1, Corrupted: 1 };
   for (const ess of essences) {
     // Item-class filter — essences carry pipe-separated `item_classes`.
     const classes = (ess.item_classes ?? '').split('|').map((s) => s.trim()).filter(Boolean);
     if (itemClass && classes.length > 0 && !classes.includes(itemClass)) continue;
-    // Match the essence's `matched_mods` (pipe-separated mod names)
-    // against the wishlist. Skip essences with no overlap.
-    const matchedNames = (ess.matched_mods ?? '').split('|').map((s) => s.trim()).filter(Boolean);
-    const matchedKeys = matchedNames.map((n) => nameToKey.get(n)).filter(Boolean);
+    // Match the essence's `matched_mods` against the wishlist via:
+    //   1) exact name (covers cases where catalog spelling already
+    //      matches the canonical wishlist spelling), then
+    //   2) canonical id (handles "+# to maximum Life" essence text vs
+    //      canonical "# to maximum Life" wishlist).
+    //
+    // Fallback: when `matched_mods` is empty (it's an optional column
+    // and many CSV rows leave it blank), derive a candidate name from
+    // `target_affix` by stripping the value-range pattern. E.g.
+    //   "(27—42)% increased Armour, Evasion or Energy Shield"
+    //   → "#% increased Armour, Evasion or Energy Shield"
+    //   "+(25—34) to maximum Mana" → "+# to maximum Mana"
+    // Then run the same canonical-id lookup. Without this fallback,
+    // every essence with empty matched_mods is silently dropped and
+    // the MDP reports the craft unreachable.
+    const stripRangeToHash = (s) => (s ?? '')
+      .replace(/\+?\((-?\d+(?:\.\d+)?)\s*[—–-]\s*(-?\d+(?:\.\d+)?)\)/g, (m) =>
+        m.startsWith('+') ? '+#' : '#');
+    let matchedNames = (ess.matched_mods ?? '').split('|').map((s) => s.trim()).filter(Boolean);
+    if (matchedNames.length === 0 && ess.target_affix) {
+      matchedNames = [stripRangeToHash(ess.target_affix).trim()];
+    }
+    const matchedKeys = [];
+    for (const n of matchedNames) {
+      const key = nameToKey.get(n) ?? idToKey.get(idForName(n));
+      if (key && !matchedKeys.includes(key)) matchedKeys.push(key);
+    }
     if (matchedKeys.length === 0) continue;
     // Price lookup (essence_prices.csv via ctx.essencePrices map).
     const priceEntry = prices[ess.name];
@@ -401,24 +490,95 @@ function buildEssenceSpecs(ctx, wishlist) {
     // wished mod's requiredTier. If the essence's tier ordinal is
     // ≤ the wished's requiredTier, the rolled affix is at acceptable
     // tier ⇒ pAcc=1; else 0.
+    //
+    // Exception: when the wished mod is essence-only (zero base-pool
+    // weight), the user's "requiredTier" doesn't correspond to a
+    // base-pool tier hierarchy — the synthesised UI tiers map T1 to
+    // "best available essence variant," T2 to next, etc. In that
+    // case the tier check is meaningless and we accept every essence
+    // variant that matches. Without this branch, an affix that only
+    // has Lesser Essence of Foo would never reach the user's
+    // requiredTier=1 wish, the engine reports the craft as
+    // unreachable, and V*=∞.
     const essenceTier = tierOrdinal[ess.tier] ?? 5;
     let pAcceptable = 1;
     for (const k of matchedKeys) {
       const w = wishlist.find((x) => x.key === k);
       const required = w?.requiredTier;
+      const essenceOnly = (w?.weight ?? 0) === 0;
+      if (essenceOnly) continue;
       if (Number.isFinite(required) && essenceTier > required) {
         pAcceptable = 0; // essence's tier band is below the user's bar
         break;
       }
     }
+    // Perfect-essence overwrite mechanic: per project memory
+    // `project_perfect_essence_rules`, Perfect essences apply on a
+    // RARE item and overwrite a uniformly-random affix (across both
+    // sides, modulo Sinistral/Dextral Crystallisation omens which
+    // force the side; the same-family-blocked rule prevents
+    // overwriting an existing same-family affix). Lower-tier
+    // essences (Lesser/Normal/Greater) upgrade Magic→Rare.
+    const isPerfect = (ess.tier === 'Perfect') || (ess.tier === 'Corrupted');
+    const baseSlug = ess.poe2db_slug ?? ess.name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+    const baseSide = ess.side === 'PREFIX' || ess.side === 'SUFFIX' ? ess.side : null;
     out.push({
-      id: `essence_${ess.poe2db_slug ?? ess.name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
+      id: `essence_${baseSlug}`,
       name: ess.name,
       costEx,
       timeSec: 1,
       matchedKeys,
       pAcceptable,
+      // Side filter from the essence's catalog row (PREFIX | SUFFIX |
+      // null). For the BASE variant of a Perfect-essence overwrite,
+      // null means "pick from any side" — Sinistral/Dextral Crystal-
+      // lisation omens are emitted as separate variants below to
+      // force the side. For Magic→Rare essences the side is just
+      // informational (the new affix lands in the matching empty
+      // slot regardless).
+      side: isPerfect ? null : baseSide,
+      mode: isPerfect ? 'rare_overwrite' : 'magic_to_rare',
     });
+    // Crystallisation omen variants — only meaningful for the rare-
+    // overwrite mechanic. Sinistral forces PREFIX-side overwrite,
+    // Dextral forces SUFFIX. CRITICAL: the omen's side must MATCH
+    // the essence's natural side — otherwise the new affix has
+    // nowhere to land (e.g. PREFIX-essence + Dextral-suffix-only
+    // would have to put a PREFIX affix into a suffix slot, which
+    // the game doesn't allow). Only emit the matching variant.
+    // Each variant's cost = essence + omen. Silently skipped when
+    // the omen has no rate (NaN propagates and the engine's
+    // optional-variant skip kicks in).
+    if (isPerfect && baseSide === 'PREFIX') {
+      const sinCost = sumCost(costEx, omenCost('omen-of-sinistral-crystallisation'));
+      if (Number.isFinite(sinCost)) {
+        out.push({
+          id: `essence_${baseSlug}_sinistral`,
+          name: `${ess.name} (Sinistral Crystallisation)`,
+          costEx: sinCost,
+          timeSec: 1,
+          matchedKeys,
+          pAcceptable,
+          side: 'PREFIX',
+          mode: 'rare_overwrite',
+        });
+      }
+    }
+    if (isPerfect && baseSide === 'SUFFIX') {
+      const dexCost = sumCost(costEx, omenCost('omen-of-dextral-crystallisation'));
+      if (Number.isFinite(dexCost)) {
+        out.push({
+          id: `essence_${baseSlug}_dextral`,
+          name: `${ess.name} (Dextral Crystallisation)`,
+          costEx: dexCost,
+          timeSec: 1,
+          matchedKeys,
+          pAcceptable,
+          side: 'SUFFIX',
+          mode: 'rare_overwrite',
+        });
+      }
+    }
   }
   return out;
 }

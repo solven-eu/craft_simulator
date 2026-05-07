@@ -56,22 +56,22 @@ Greater Essence of Grounding,Greater,+(31—35)% to Lightning Resistance,SUFFIX,
 Greater Essence of Alacrity,Greater,(25—28)% increased Cast Speed (Focus/Wand) or (38—43)% (Staff),SUFFIX,guaranteed,Spell weapons,Amulet|Focus|Ring|Staff|Wand,,Greater_Essence_of_Alacrity
 Greater Essence of Opulence,Greater,(15—18)% increased Rarity of Items found,UNKNOWN,guaranteed,"Boots, Gloves, Helmet or Jewellery",Amulet|Boots|Gloves|Helmet|Ring,,Greater_Essence_of_Opulence
 Greater Essence of Command,Greater,(75—89)% increased Damage for Allies in your Presence,UNKNOWN,guaranteed,Sceptre only,,,Greater_Essence_of_Command
-Perfect Essence of the Body,Perfect,(8—10)% increased maximum Life,PREFIX,guaranteed,Body Armour only; removes random modifier,Amulet,,Perfect_Essence_of_the_Body
-Perfect Essence of the Mind,Perfect,(4—6)% increased maximum Mana,PREFIX,guaranteed,Ring only; removes random modifier,Amulet,,Perfect_Essence_of_the_Mind
-Perfect Essence of Enhancement,Perfect,(20—30)% increased Global Defences,UNKNOWN,guaranteed,Amulet only; removes random modifier,,,Perfect_Essence_of_Enhancement
+Perfect Essence of the Body,Perfect,(8—10)% increased maximum Life,PREFIX,guaranteed,Body Armour only; removes random modifier,Body Armour,,Perfect_Essence_of_the_Body
+Perfect Essence of the Mind,Perfect,(4—6)% increased maximum Mana,PREFIX,guaranteed,Ring only; removes random modifier,Ring,,Perfect_Essence_of_the_Mind
+Perfect Essence of Enhancement,Perfect,(20—30)% increased Global Defences,UNKNOWN,guaranteed,Amulet only; removes random modifier,Amulet,,Perfect_Essence_of_Enhancement
 Perfect Essence of Abrasion,Perfect,(15—20)% of Damage as Extra Physical (one-handed) or (25—33)% (two-handed),UNKNOWN,guaranteed,Weapons; removes random modifier,,,Perfect_Essence_of_Abrasion
 Perfect Essence of Flames,Perfect,(15—20)% of Damage as Extra Fire (one-handed) or (25—33)% (two-handed),UNKNOWN,guaranteed,Weapons; removes random modifier,,,Perfect_Essence_of_Flames
 Perfect Essence of Ice,Perfect,(15—20)% of Damage as Extra Cold (one-handed) or (25—33)% (two-handed),UNKNOWN,guaranteed,Weapons; removes random modifier,,,Perfect_Essence_of_Ice
 Perfect Essence of Electricity,Perfect,(15—20)% of Damage as Extra Lightning (one-handed) or (25—33)% (two-handed),UNKNOWN,guaranteed,Weapons; removes random modifier,,,Perfect_Essence_of_Electricity
-Perfect Essence of Ruin,Perfect,(10—15)% of Physical Damage from Hits taken as Chaos Damage,UNKNOWN,guaranteed,Body Armour; removes random modifier,,,Perfect_Essence_of_Ruin
+Perfect Essence of Ruin,Perfect,(10—15)% of Physical Damage from Hits taken as Chaos Damage,UNKNOWN,guaranteed,Body Armour; removes random modifier,Body Armour,,Perfect_Essence_of_Ruin
 Perfect Essence of Battle,Perfect,+3 to Level of all Attack Skills (one-handed) or +5 (two-handed),UNKNOWN,guaranteed,Weapons; removes random modifier,,,Perfect_Essence_of_Battle
 Perfect Essence of Sorcery,Perfect,+3 to Level of all Spell Skills (Wand) or +5 (Staff),UNKNOWN,guaranteed,Spell weapons; removes random modifier,,,Perfect_Essence_of_Sorcery
 Perfect Essence of Haste,Perfect,(20—25)% chance to gain Onslaught on Killing Hits with Weapon,UNKNOWN,guaranteed,Martial Weapons; removes random modifier,,,Perfect_Essence_of_Haste
-Perfect Essence of the Infinite,Perfect,"(7—10)% increased Strength, Dexterity or Intelligence",UNKNOWN,guaranteed,Amulet; removes random modifier,,,Perfect_Essence_of_the_Infinite
-Perfect Essence of Seeking,Perfect,(40—50)% reduced Critical Damage Bonus,SUFFIX,guaranteed,Body Armour; removes random modifier,Shield,,Perfect_Essence_of_Seeking
-Perfect Essence of Insulation,Perfect,(26—30)% of Fire Damage taken Recouped as Life,UNKNOWN,guaranteed,Belt; removes random modifier,,,Perfect_Essence_of_Insulation
-Perfect Essence of Thawing,Perfect,(26—30)% of Cold Damage taken Recouped as Life,UNKNOWN,guaranteed,Helmet; removes random modifier,,,Perfect_Essence_of_Thawing
-Perfect Essence of Grounding,Perfect,(26—30)% of Lightning Damage taken Recouped as Life,UNKNOWN,guaranteed,Gloves; removes random modifier,,,Perfect_Essence_of_Grounding
+Perfect Essence of the Infinite,Perfect,"(7—10)% increased Strength, Dexterity or Intelligence",UNKNOWN,guaranteed,Amulet; removes random modifier,Amulet,,Perfect_Essence_of_the_Infinite
+Perfect Essence of Seeking,Perfect,(40—50)% reduced Critical Damage Bonus,SUFFIX,guaranteed,Body Armour; removes random modifier,Body Armour,,Perfect_Essence_of_Seeking
+Perfect Essence of Insulation,Perfect,(26—30)% of Fire Damage taken Recouped as Life,UNKNOWN,guaranteed,Belt; removes random modifier,Belt,,Perfect_Essence_of_Insulation
+Perfect Essence of Thawing,Perfect,(26—30)% of Cold Damage taken Recouped as Life,UNKNOWN,guaranteed,Helmet; removes random modifier,Helmet,,Perfect_Essence_of_Thawing
+Perfect Essence of Grounding,Perfect,(26—30)% of Lightning Damage taken Recouped as Life,UNKNOWN,guaranteed,Gloves; removes random modifier,Gloves,,Perfect_Essence_of_Grounding
 Perfect Essence of Alacrity,Perfect,(18—20)% increased Mana Cost Efficiency (Focus/Wand) or (28—32)% (Staff),UNKNOWN,guaranteed,Spell weapons; removes random modifier,,,Perfect_Essence_of_Alacrity
 Perfect Essence of Opulence,Perfect,(10—15)% increased Quantity of Gold Dropped by Slain Enemies,UNKNOWN,guaranteed,Gloves; removes random modifier,,,Perfect_Essence_of_Opulence
 Perfect Essence of Command,Perfect,(15—20)% increased Magnitudes for Aura Skills,UNKNOWN,guaranteed,Sceptre; removes random modifier,,,Perfect_Essence_of_Command

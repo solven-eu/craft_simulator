@@ -17,6 +17,63 @@ body {
   text-align: left;
 }
 
+/* Embed mode: drop the planner header (title + nav) and stretch the
+   chain to near-fullscreen. Footer is preserved (legal / report-issue
+   / disclaimer link) since it's small and useful even inside iframes.
+   Used by the `/:game/mdp-embed` route. */
+.app.embed-mode {
+  max-width: none;
+  padding: 0.25rem 0.5rem 0;
+}
+.app.embed-mode .mdp-embed {
+  min-height: calc(100vh - 4rem);
+}
+.app.embed-mode .mdp-embed .mermaid-chain-wrap {
+  height: 100%;
+  /* Constrain to viewport width — wide graphs would otherwise burst
+     past the right edge with a horizontal scrollbar. The inline-svg's
+     ResizeObserver in MermaidChain.js fits the SVG to this width. */
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.app.embed-mode .mdp-embed .mermaid-chain {
+  min-height: calc(100vh - 6rem);
+  max-width: 100%;
+}
+.app.embed-mode .mdp-embed .mermaid-chain svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Loading state for the embed view: centered spinner + status
+   text. Visible whenever the game data, ctx, or MDP result is
+   not yet ready. Hidden once the chain renders. */
+.mdp-embed-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: calc(100vh - 8rem);
+  padding: 2rem;
+}
+.mdp-embed-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(180, 200, 255, 0.18);
+  border-top-color: #6cf;
+  border-radius: 50%;
+  animation: mdp-embed-spin 0.9s linear infinite;
+}
+.mdp-embed-status {
+  font-size: 0.95rem;
+  color: #8aa;
+  margin: 0;
+}
+@keyframes mdp-embed-spin {
+  to { transform: rotate(360deg); }
+}
+
 header {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -313,11 +370,13 @@ nav a.router-link-active {
   /* Note attached via title attribute — no extra DOM needed. */
 }
 
-.pool tr.tag-filtered {
+.pool tr.tag-filtered,
+.extra-pool-table tr.tag-filtered {
   opacity: 0.4;
   filter: grayscale(0.6);
 }
-.pool tr.tag-filtered .mname {
+.pool tr.tag-filtered .mname,
+.extra-pool-table tr.tag-filtered .mname {
   text-decoration: line-through;
   text-decoration-color: rgba(140, 180, 255, 0.6);
 }
@@ -525,7 +584,12 @@ select.tier-select option:disabled {
   white-space: nowrap;
 }
 
-.pool .wishcell { width: 5rem; white-space: nowrap; }
+.pool .wishcell,
+.extra-pool-table .wishcell {
+  width: 5rem;
+  white-space: nowrap;
+  text-align: right;
+}
 
 .state-panels {
   display: flex;
@@ -662,6 +726,22 @@ select.tier-select option:disabled {
   border-radius: 3px;
 }
 
+/* Empty starting-slot rows render no inner content (no placeholder
+   text), so collapse them entirely — no padding, no gap impact, no
+   visible row. Filled / explicit / fractured affix rows keep the
+   standard padding. The slot count is conveyed by the per-side
+   "(K/3 empty)" header text already, so the empty rows themselves
+   carry no information. */
+.prefix-col > .affix:not(.filled):not(.explicit):not(.fractured),
+.suffix-col > .affix:not(.filled):not(.explicit):not(.fractured) {
+  display: none;
+}
+.affix .empty {
+  font-size: 0.78em;
+  opacity: 0.55;
+  font-style: italic;
+}
+
 .affix.filled { background: rgba(255, 215, 130, 0.10); }
 
 .affix.fractured {
@@ -698,6 +778,30 @@ select.tier-select option:disabled {
 .fracture-btn.active {
   opacity: 1;
   filter: drop-shadow(0 0 2px rgba(120, 180, 255, 0.8));
+}
+
+/* Desecration constraint button: 3-state cycle (null / require / forbid).
+   Mirrors fracture-btn shape but uses a 🦴 emoji glyph. Active = required
+   (green tinted); forbidden = red strikethrough. */
+.desec-btn {
+  font-size: 0.85rem;
+  opacity: 0.35;
+  padding: 0 0.15rem;
+  margin-right: 0.2rem;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+}
+.desec-btn:hover { opacity: 0.8; }
+.desec-btn.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px rgba(180, 220, 140, 0.85));
+}
+.desec-btn.forbidden {
+  opacity: 0.85;
+  filter: grayscale(0.6);
+  text-decoration: line-through !important;
+  color: #d97070;
 }
 
 .affix.fractured .name {
@@ -862,6 +966,12 @@ select.tier-select option:disabled {
   font-weight: 600;
   opacity: 0.85;
   min-width: 2.2rem;
+}
+.tier-band-row .tier-implies {
+  font-size: 0.78em;
+  opacity: 0.7;
+  margin-left: 0.4rem;
+  white-space: nowrap;
 }
 
 /* Tier-score row label whose tier is outside the desired band — the score
@@ -1860,6 +1970,146 @@ button.link:hover { opacity: 1; }
 .extra-pool-cols .pool-column h3 { display: flex; align-items: baseline; gap: 0.4em; }
 .extra-pool-cols .pool-column h3 small { opacity: 0.6; font-weight: 400; }
 .extra-pool-unknown { margin-top: 0.5rem; opacity: 0.85; }
+
+details.analytics > summary {
+  cursor: pointer;
+  list-style: revert;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 1.05em;
+  font-weight: 600;
+  padding: 0.2rem 0;
+}
+details.analytics > summary .strategies-header-text { flex: 1; }
+details.analytics > summary small { font-weight: 400; opacity: 0.7; margin-left: 0.4em; }
+
+/* Secondary (closed-form) panel: muted styling so the eye lands on the
+   MDP "primary" panel first. The closed-form comparison is useful for
+   sanity-checking individual strategies but isn't where the headline
+   cost number comes from. */
+details.analytics.secondary > summary { opacity: 0.78; }
+.secondary-tag {
+  display: inline-block;
+  margin-right: 0.4em;
+  padding: 0.05em 0.5em;
+  font-size: 0.7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(150, 170, 200, 0.15);
+  border: 1px solid rgba(150, 170, 200, 0.3);
+  border-radius: 999px;
+  color: #b0c0d0;
+}
+
+/* Primary (MDP) panel: a soft accent border + tag so the user sees
+   it as the headline. */
+.analytics.mdp-panel.headline {
+  border-left: 3px solid rgba(120, 200, 160, 0.55);
+  padding-left: 0.85rem;
+  margin: 0.4rem 0;
+}
+.primary-tag {
+  display: inline-block;
+  margin-right: 0.4em;
+  padding: 0.05em 0.55em;
+  font-size: 0.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(120, 200, 160, 0.18);
+  border: 1px solid rgba(120, 200, 160, 0.55);
+  border-radius: 999px;
+  color: #9fdcb8;
+}
+.evaluate-strategies-btn.primary-cta {
+  border: 1px solid rgba(120, 200, 160, 0.85);
+  background: rgba(80, 160, 110, 0.85);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.25em 0.9em;
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+.evaluate-strategies-btn.primary-cta:hover {
+  background: rgba(95, 180, 130, 0.95);
+  border-color: rgba(140, 220, 180, 1);
+}
+.evaluate-strategies-btn.primary-cta:disabled {
+  opacity: 0.6;
+  background: rgba(80, 120, 100, 0.6);
+}
+
+.budget-input-row { display: inline-flex; align-items: center; gap: 0.4rem; }
+.budget-input-row .unit-toggle {
+  font-size: 0.78em;
+  padding: 0.05em 0.45em;
+  border: 1px solid rgba(150, 170, 200, 0.35);
+  border-radius: 3px;
+  background: rgba(150, 170, 200, 0.08);
+  color: #aac6f0;
+  text-transform: uppercase;
+}
+
+.desire-score-cap-notice {
+  margin: 0.4rem 0 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(220, 80, 80, 0.10);
+  border: 1px solid rgba(220, 80, 80, 0.4);
+  border-radius: 4px;
+  color: #f0c0c0;
+  font-size: 0.85em;
+  line-height: 1.35;
+}
+.desire-score-cap-notice strong { color: #ff8080; }
+
+.mdp-impossible {
+  margin: 0.5rem 0;
+  padding: 0.6rem 0.9rem;
+  background: rgba(220, 80, 80, 0.12);
+  border: 1px solid rgba(220, 80, 80, 0.45);
+  border-radius: 4px;
+  color: #f0c0c0;
+}
+.mdp-impossible strong { color: #ff8080; }
+.mdp-impossible ul { margin: 0.35rem 0 0 1.1rem; }
+
+.mdp-summary {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 0.75rem;
+}
+.mdp-summary th, .mdp-summary td {
+  text-align: right;
+  padding: 0.35rem 0.6rem;
+  border-bottom: 1px solid rgba(150, 170, 200, 0.18);
+}
+.mdp-summary th {
+  font-weight: 500;
+  opacity: 0.7;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+.mdp-summary td.primary { color: #cfe0f3; }
+
+.essence-mod-row td { border-top: 1px solid rgba(150, 170, 200, 0.18); padding-bottom: 0.15rem; }
+.essence-family-row td { border-top: 0; padding-top: 0; padding-bottom: 0.4rem; opacity: 0.85; font-size: 0.85em; }
+.essence-family-row .tname { padding-left: 0.4rem; }
+
+.abyss-row { margin: 0.5rem 0; }
+.abyss-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(180, 130, 220, 0.35);
+  background: linear-gradient(90deg, rgba(80, 50, 110, 0.18), rgba(40, 20, 60, 0.05));
+  border-radius: 4px;
+}
+.abyss-banner .abyss-icon { font-size: 1.2rem; opacity: 0.85; }
+.abyss-banner .abyss-meta { flex: 1; min-width: 0; }
+.abyss-banner .mname { font-weight: 600; }
 
 .disclosure { display: inline-block; width: 0.9em; opacity: 0.65; margin-right: 0.15em; }
 

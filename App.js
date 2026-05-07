@@ -25,11 +25,17 @@ export default {
     /** Game-aware label for the page heading. */
     const gameLabel = computed(() => games[game.value]?.label ?? game.value);
 
-    return { game, gameLabel, games };
+    /** Embed mode hides the chrome (title + nav) so the chain
+     *  can claim near-fullscreen — designed for iframes. The
+     *  footer (legal / report-issue / disclaimer link) stays.
+     *  Triggered by the `mdp-embed` route. */
+    const embedMode = computed(() => route.name === 'mdp-embed');
+
+    return { game, gameLabel, games, embedMode };
   },
   template: `
-    <main class="app">
-      <header>
+    <main class="app" :class="{ 'embed-mode': embedMode }">
+      <header v-if="!embedMode">
         <h1>Craft Simulator <small class="game-tag">{{ gameLabel }}</small></h1>
         <nav>
           <router-link :to="'/' + game">Plan</router-link>

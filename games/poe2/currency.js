@@ -118,6 +118,7 @@ export const CURRENCY_KINDS = [
   { id: 'desecrated', label: 'Desecration (Bones / Skulls / Gazes)', appliesAlways: false, poedbEconomy: 'Soul_Cores' },
   { id: 'omen',       label: 'Omens',                appliesAlways: false, poedbEconomy: 'Omen' },
   { id: 'other',      label: 'Other',                appliesAlways: true,  poedbEconomy: null },
+  { id: 'meta',       label: 'Meta (player time)',   appliesAlways: true,  poedbEconomy: null },
 ];
 
 /**

@@ -50,3 +50,26 @@ mods" vs `orbs.js` saying ≥4), trust the user's domain knowledge —
 they're the PoE2 expert. Update both the code and any tests to match,
 and document the canonical value in one place (typically the game
 catalog file).
+
+## Ask for missing data, don't work around it
+
+When a UI element or computation depends on data that isn't in our
+sources, **surface the gap and ask the user to provide it** instead
+of:
+
+- silently omitting the affordance (hides the feature without
+  explanation),
+- substituting a heuristic that *might* be right (looks correct, is
+  unverifiable, erodes trust),
+- showing the affordance for every row indiscriminately because we
+  can't tell which row should have it (worse than no signal).
+
+Concretely: list the missing entries (which families / tiers / bases),
+state what fields are needed and where they live in the PoE2 source
+(usually a poe2db page), and let the user decide whether to provide
+the data, write a scraper, or accept the gap explicitly.
+
+The same rule applies to *unverified* data: if a derivation could be
+right but we haven't verified the assumption (e.g. "essence display
+range matches base mod tier range exactly"), say so, ask for
+confirmation, then implement — don't ship the assumption silently.

@@ -119,7 +119,35 @@ export default {
       const order = ['Alchemy','Transmute','Augment','Regal','Exalt','Annul','Chaos','Fracture','Vaal','Divine','Chance','Jeweller','Other'];
       return order.filter((f) => groups.has(f)).map((f) => ({ family: f, orbs: groups.get(f) }));
     });
-    return { craft, status, isLoading, chainRenderer, setRenderer, copyChainDump, orbsByFamily };
+    const orbIconForId = (id) => {
+      const a = String(id ?? '');
+      if (a.includes('fractur')) return '🔒';
+      if (a.includes('annul')) return '❌';
+      if (a.includes('exalt')) return '⭐';
+      if (a.includes('chaos')) return '🟠';
+      if (a.includes('regal')) return '🟣';
+      if (a.includes('alch')) return '🟡';
+      if (a.includes('augment')) return '🟢';
+      if (a.includes('transmute')) return '🔵';
+      if (a.includes('divine')) return '💎';
+      if (a.includes('vaal')) return '🔴';
+      if (a.includes('chance')) return '🎲';
+      if (a.includes('jeweller') || a === 'artificer') return '💠';
+      return '·';
+    };
+    const orbRateEx = (orb) => {
+      const c = craft.effectiveCurrencies?.[orb.priceCurrency];
+      const r = c?.exaltedPer;
+      return Number.isFinite(r) ? r : null;
+    };
+    const fmtRate = (r) => {
+      if (r == null) return '—';
+      if (r >= 100) return `${r.toFixed(0)} ex`;
+      if (r >= 1) return `${r.toFixed(2)} ex`;
+      if (r >= 0.01) return `${r.toFixed(3)} ex`;
+      return `${r.toExponential(1)} ex`;
+    };
+    return { craft, status, isLoading, chainRenderer, setRenderer, copyChainDump, orbsByFamily, orbIconForId, orbRateEx, fmtRate };
   },
   template: `
     <div class="mdp-embed">
@@ -143,25 +171,30 @@ export default {
             @click.stop.prevent="craft.resetOrbDisabled(); craft.solveMdp();"
             title="Re-enable every orb">reset</button>
         </summary>
-        <div class="orb-disable-families">
-          <div v-for="g in orbsByFamily" :key="'fam-'+g.family" class="orb-disable-family">
-            <h6>
-              <label class="orb-disable-family-toggle"
-                :title="'Toggle all ' + g.family + ' variants at once'">
-                <input type="checkbox"
-                  :checked="g.orbs.every(o => !(craft.disabledOrbs ?? {})[o.id])"
-                  :indeterminate.prop="g.orbs.some(o => (craft.disabledOrbs ?? {})[o.id]) && g.orbs.some(o => !(craft.disabledOrbs ?? {})[o.id])"
-                  @change="g.orbs.forEach(o => craft.setOrbDisabled(o.id, !$event.target.checked)); craft.solveMdp();" />
-                {{ g.family }}
-              </label>
+        <div class="ccy-chip-families">
+          <div v-for="g in orbsByFamily" :key="'fam-'+g.family" class="ccy-chip-family">
+            <h6 :title="'Toggle all ' + g.family + ' variants at once'"
+              @click="g.orbs.forEach(o => craft.setOrbDisabled(o.id, g.orbs.every(x => !(craft.disabledOrbs ?? {})[x.id]))); craft.solveMdp();">
+              {{ g.family }}
+              <small v-if="g.orbs.some(o => (craft.disabledOrbs ?? {})[o.id])" class="hint">
+                ({{ g.orbs.filter(o => !(craft.disabledOrbs ?? {})[o.id]).length }}/{{ g.orbs.length }})
+              </small>
             </h6>
-            <div class="orb-disable-grid">
-              <label v-for="o in g.orbs" :key="'orb-'+o.id" class="orb-disable-row">
-                <input type="checkbox"
-                  :checked="!(craft.disabledOrbs ?? {})[o.id]"
-                  @change="craft.setOrbDisabled(o.id, !$event.target.checked); craft.solveMdp();" />
-                <span>{{ o.name }}</span>
-              </label>
+            <div class="ccy-chip-row">
+              <button v-for="o in g.orbs" :key="'orb-'+o.id" type="button"
+                class="ccy-chip has-tip"
+                :class="{ disabled: (craft.disabledOrbs ?? {})[o.id] }"
+                @click="craft.setOrbDisabled(o.id, !(craft.disabledOrbs ?? {})[o.id]); craft.solveMdp();">
+                <span class="ccy-chip-icon">{{ orbIconForId(o.id) }}</span>
+                <span class="ccy-chip-name">{{ o.name.replace(/^Orb of /, '').replace(/ Orb$/, '') }}</span>
+                <span class="ccy-chip-rate">{{ fmtRate(orbRateEx(o)) }}</span>
+                <span class="tip-popup">
+                  <strong>{{ o.name }}</strong>
+                  <span class="tip-rate">{{ fmtRate(orbRateEx(o)) }}</span>
+                  <span v-if="o.effect" class="tip-effect">{{ o.effect }}</span>
+                  <em class="tip-hint">click to {{ (craft.disabledOrbs ?? {})[o.id] ? 'enable' : 'disable' }}</em>
+                </span>
+              </button>
             </div>
           </div>
         </div>

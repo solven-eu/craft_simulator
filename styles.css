@@ -88,6 +88,26 @@ body {
   animation: mdp-embed-spin 0.7s linear infinite;
   vertical-align: middle;
 }
+/* Live progress for the async MDP solve. The bar fraction is a
+   log-scaled estimate (delta toward tol), so it advances quickly
+   then slows — the small text shows the underlying iter / δ for the
+   user who wants to know "is it stuck or just slow?". */
+.mdp-progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+.mdp-progress progress {
+  width: 140px;
+  height: 8px;
+}
+.mdp-progress small {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78em;
+  color: rgba(255, 255, 255, 0.55);
+}
 
 header {
   text-align: center;
@@ -350,8 +370,14 @@ nav a.router-link-active {
   font-size: 0.78rem;
 }
 
-.pool tr.wished {
+.pool tr.wished,
+.extra-pool-table tr.essence-mod-row.wished {
   background: rgba(255, 200, 60, 0.12);
+}
+/* The essence rows are paired (mod-row + family-row); tint the family
+   row too so the visual band stays unbroken across both. */
+.extra-pool-table tr.essence-mod-row.wished + tr.essence-family-row {
+  background: rgba(255, 200, 60, 0.06);
 }
 
 .pool tr.on-item {
@@ -985,6 +1011,202 @@ select.tier-select option:disabled {
 }
 .orb-disable-family-toggle input { margin: 0; }
 .orb-disable-family .orb-disable-grid { grid-template-columns: 1fr; }
+
+/* Currency chip: unified pill that shows icon + name + live rate, click
+   toggles disable. Replaces the family-grouped checkbox grid. */
+.ccy-chip-families {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+  margin-top: 0.4rem;
+}
+.ccy-chip-family { min-width: 180px; }
+.ccy-chip-family h6 {
+  margin: 0 0 0.2rem 0;
+  font-size: 0.78em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  user-select: none;
+}
+.ccy-chip-family h6:hover { color: rgba(255, 255, 255, 0.95); }
+.ccy-chip-family h6 small { font-weight: normal; text-transform: none; letter-spacing: 0; }
+.ccy-chip-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: stretch;
+}
+.ccy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  font: inherit;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, opacity 0.12s;
+  white-space: nowrap;
+}
+.ccy-chip:hover { background: rgba(255, 255, 255, 0.10); border-color: rgba(255, 255, 255, 0.25); }
+.ccy-chip.disabled {
+  opacity: 0.35;
+  text-decoration: line-through;
+  background: rgba(255, 255, 255, 0.015);
+}
+.ccy-chip.disabled:hover { opacity: 0.7; }
+/* Display-only chip: same visual language but no toggle behaviour
+   (used by scenario "orb spend" lists). */
+.ccy-chip.readonly { cursor: default; }
+.ccy-chip.readonly:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+/* When chips are inline-flowing (scenario orb-spend) instead of a
+   stacked column, allow them to wrap horizontally. */
+.scenario-orb-spend {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.4rem;
+  margin-top: 0.3rem;
+}
+.ccy-chip-icon { flex: 0 0 auto; }
+.ccy-chip-name { flex: 1 1 auto; }
+.ccy-chip-rate {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Hover tooltip on `.ccy-chip.has-tip`. CSS-only — instant, no JS,
+   no native-tooltip OS delay. Anchored above the chip; viewport
+   clamping is left to the browser via `max-width` and the chip
+   layout's `flex-wrap` (the popup never escapes the row when the
+   chip is near the right edge — it just wraps onto two lines). */
+.ccy-chip.has-tip { position: relative; }
+.tip-popup {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 180px;
+  max-width: 320px;
+  padding: 0.45rem 0.6rem;
+  background: #1a1f2a;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  font-size: 0.78rem;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  z-index: 1000;
+  pointer-events: none;
+}
+.ccy-chip.has-tip:hover .tip-popup { display: flex; }
+.tip-popup strong { color: #fff; font-weight: 600; }
+.tip-popup .tip-rate {
+  font-variant-numeric: tabular-nums;
+  color: rgba(180, 220, 255, 0.85);
+}
+.tip-popup .tip-effect {
+  color: rgba(255, 255, 255, 0.75);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.25rem;
+  margin-top: 0.15rem;
+}
+.tip-popup .tip-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+  font-size: 0.92em;
+  margin-top: 0.15rem;
+}
+
+/* Materials synthesis line under the MDP-α metrics table. Visually
+   distinct from the table so the user can grab the "stockpile this
+   much before crafting" headline at a glance. */
+.mdp-materials-synthesis {
+  margin: 0.4rem 0 0.4rem 0;
+  padding: 0.4rem 0.6rem;
+  border-left: 3px solid rgba(120, 200, 160, 0.55);
+  background: rgba(120, 200, 160, 0.06);
+  border-radius: 2px;
+}
+.mdp-materials-synthesis .mdp-materials-headline {
+  margin: 0 0 0.35rem 0;
+  font-size: 0.95em;
+}
+.mdp-materials-synthesis strong { font-weight: 600; }
+.mdp-materials-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88em;
+  margin-top: 0.3rem;
+}
+.mdp-materials-table th,
+.mdp-materials-table td {
+  padding: 0.2rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.18);
+}
+.mdp-materials-table th { font-weight: 600; opacity: 0.75; }
+.mdp-materials-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.mdp-materials-table tfoot td {
+  border-bottom: none;
+  border-top: 1px solid rgba(128, 128, 128, 0.4);
+  padding-top: 0.3rem;
+}
+
+/* Collapsible glossary under the MDP-α metrics table. Closed by
+   default — only opens when the user explicitly wants the
+   definitions. Theme-agnostic: uses opacity instead of explicit
+   colors so the panel reads correctly in both light and dark
+   `color-scheme` modes. */
+.mdp-metrics-glossary {
+  margin: 0.4rem 0 0.8rem 0;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+.mdp-metrics-glossary summary {
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+}
+.metrics-glossary {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.3rem 1rem;
+  margin: 0.5rem 0 0 0;
+}
+.metrics-glossary dt {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.metrics-glossary dd {
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.4;
+}
+.metrics-glossary dd code {
+  font-size: 0.92em;
+  background: rgba(128, 128, 128, 0.15);
+  padding: 0 0.2rem;
+  border-radius: 2px;
+}
 .cytoscape-chain {
   width: 100%;
   height: 600px;

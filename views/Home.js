@@ -42,15 +42,15 @@ export default {
     };
 
     /**
-     * Format a cost in Exalted; auto-switches to Divine when the cost
-     * exceeds `craft.divThresholdDiv` divines. Threshold configurable in
-     * Display preferences. Returns "X ex" or "X.X div".
+     * Format a cost. Picks unit from `craft.displayUnit` ('ex' or
+     * 'div'); the panel renders every cost in that single unit so
+     * cross-panel comparisons stay cognitively cheap.
      */
     const fmtCost = (costEx) => {
       if (!Number.isFinite(costEx)) return '∞';
       const divPer = craft.effectiveCurrencies?.divine?.exaltedPer;
-      if (Number.isFinite(divPer) && divPer > 0
-          && costEx > (craft.divThresholdDiv ?? 3) * divPer) {
+      const hasDiv = Number.isFinite(divPer) && divPer > 0;
+      if ((craft.displayUnit ?? 'ex') === 'div' && hasDiv) {
         return `${fmt.num(costEx / divPer)} div`;
       }
       return `${fmt.num(costEx)} ex`;
@@ -62,18 +62,12 @@ export default {
       return div && Number.isFinite(div.exaltedPer) ? div.exaltedPer : null;
     });
 
-    // Unit selector for the Total-budget input. 'auto' picks div above
-    // ~5 div and ex below — the user's stated cutoff. 'ex' / 'div'
-    // override that. The override sticks for the session; auto is the
-    // default so newcomers see numbers in whichever unit reads
-    // naturally given their current budget.
-    const budgetUnitChoice = ref('auto');
+    // Unit for the Total-budget input. Derived from `craft.displayUnit`
+    // so the budget follows the same currency-pref toggle the rest of
+    // the panel obeys — no separate per-input override.
     const budgetUnit = computed(() => {
-      if (budgetUnitChoice.value !== 'auto') return budgetUnitChoice.value;
-      const ex = craft.totalBudgetEx;
-      const dEx = divToEx.value;
-      if (!Number.isFinite(ex) || !dEx) return 'ex';
-      return ex / dEx >= 5 ? 'div' : 'ex';
+      if ((craft.displayUnit ?? 'ex') === 'div' && divToEx.value) return 'div';
+      return 'ex';
     });
     const budgetDisplayValue = computed(() => {
       const ex = craft.totalBudgetEx;
@@ -91,11 +85,6 @@ export default {
       }
       const ex = budgetUnit.value === 'div' && divToEx.value ? v * divToEx.value : v;
       craft.setTotalBudgetEx(ex);
-    };
-    const cycleBudgetUnit = () => {
-      const order = ['auto', 'ex', 'div'];
-      const i = order.indexOf(budgetUnitChoice.value);
-      budgetUnitChoice.value = order[(i + 1) % order.length];
     };
 
     /**
@@ -735,6 +724,39 @@ export default {
         .filter((f) => groups.has(f))
         .map((f) => ({ family: f, orbs: groups.get(f) }));
     });
+    // Per-orb icon: substring-matched on the orb id so the same emoji
+    // covers Greater/Perfect variants without a per-id table.
+    const orbIconForId = (id) => {
+      const a = String(id ?? '');
+      if (a.includes('fractur')) return '🔒';
+      if (a.includes('annul')) return '❌';
+      if (a.includes('exalt')) return '⭐';
+      if (a.includes('chaos')) return '🟠';
+      if (a.includes('regal')) return '🟣';
+      if (a.includes('alch')) return '🟡';
+      if (a.includes('augment')) return '🟢';
+      if (a.includes('transmute')) return '🔵';
+      if (a.includes('divine')) return '💎';
+      if (a.includes('vaal')) return '🔴';
+      if (a.includes('chance')) return '🎲';
+      if (a.includes('jeweller') || a === 'artificer') return '💠';
+      return '·';
+    };
+    // Currency rate (in exalted) for a given orb. Reads
+    // effectiveCurrencies — same source the engine uses — so the chip
+    // shows the live rate including user overrides.
+    const orbRateEx = (orb) => {
+      const c = craft.effectiveCurrencies?.[orb.priceCurrency];
+      const r = c?.exaltedPer;
+      return Number.isFinite(r) ? r : null;
+    };
+    const fmtRate = (r) => {
+      if (r == null) return '—';
+      if (r >= 100) return `${r.toFixed(0)} ex`;
+      if (r >= 1) return `${r.toFixed(2)} ex`;
+      if (r >= 0.01) return `${r.toFixed(3)} ex`;
+      return `${r.toExponential(1)} ex`;
+    };
     const copyChainDump = async () => {
       const chain = craft.mdpResult?.chain;
       if (!chain) return;
@@ -834,6 +856,163 @@ export default {
         icon: orbIconFor(action),
       }));
     };
+    // Map an action id (e.g. "exalt_perfect", "regal_dextral") to the
+    // closest matching orb in `craft.game.orbs`, so the scenario
+    // orb-spend chip can show a friendly name + effect string in its
+    // hover popup. Returns null for actions with no orb counterpart
+    // (essence_*, omen_*, apply_bone, buy_base) — caller falls back
+    // to the raw action id.
+    const orbForAction = (actionId) => {
+      const orbs = craft.game?.orbs;
+      if (!actionId || !orbs) return null;
+      const a = String(actionId);
+      if (orbs[a]) return orbs[a];
+      // Action prefixes that don't match the orb id directly.
+      const aliases = { exalt: 'exalted', alch: 'alchemy', annul: 'annulment' };
+      const cap = (s) => s ? s[0].toUpperCase() + s.slice(1) : '';
+      const tryVariant = (base, rest) => {
+        const candidate = base + cap(rest);
+        return orbs[candidate] ?? orbs[base] ?? null;
+      };
+      for (const [aliasFrom, aliasTo] of Object.entries(aliases)) {
+        if (a === aliasFrom) return orbs[aliasTo];
+        if (a.startsWith(aliasFrom + '_')) return tryVariant(aliasTo, a.slice(aliasFrom.length + 1));
+      }
+      for (const base of ['transmute', 'augment', 'regal', 'chaos', 'divine', 'vaal', 'chance', 'fracturing']) {
+        if (a.startsWith(base + '_')) return tryVariant(base, a.slice(base.length + 1));
+      }
+      if (a === 'apply_bone' || a === 'reveal_bone' || a.startsWith('reveal_bone_')) {
+        const itemClass = craft.itemType ?? null;
+        let cheapest = null;
+        for (const c of Object.values(craft.effectiveCurrencies ?? {})) {
+          if (c.kind !== 'desecrated') continue;
+          if (itemClass && c.appliesToItemClasses && !c.appliesToItemClasses.includes(itemClass)) continue;
+          if (!Number.isFinite(c.exaltedPer)) continue;
+          if (!cheapest || c.exaltedPer < cheapest.exaltedPer) cheapest = c;
+        }
+        if (cheapest) {
+          return {
+            name: cheapest.name,
+            priceCurrency: cheapest.id,
+            effect: a === 'apply_bone'
+              ? 'Apply a Bone to a Rare item — pads totalMods toward fracture-eligibility'
+              : 'Reveal the bone-mod (3-pick from the desecrated pool)',
+          };
+        }
+      }
+      return null;
+    };
+    // Chip-display formatters for the orb-spend chips: friendly
+    // name including count ("Exalted × 5"), and consolidated rate
+    // ("5 × 32.4 ex = 162 ex"). Mirror the rate-format used by the
+    // action-set chip.
+    const orbSpendChipName = (line) => {
+      const orb = orbForAction(line.action);
+      const base = orb?.name?.replace(/^Orb of /, '').replace(/ Orb$/, '') ?? line.action;
+      return line.count > 1 ? `${base} × ${line.count}` : base;
+    };
+    const orbSpendChipRate = (line) => {
+      if (line.count <= 1) return fmtCost(line.costEx);
+      return `${line.count} × ${fmtCost(line.perOrbEx)} = ${fmtCost(line.costEx)}`;
+    };
+    // Shopping list for "stockpile before crafting" planning. For N
+    // runs at the user's confidence target, sum expected per-orb uses
+    // across the chain (P_reach × policy → expected uses per attempt)
+    // and multiply by N. `buy_base` collapses into one entry — every
+    // run consumes one base — and gets the basePriceEx unit cost.
+    const materialsShoppingList = computed(() => {
+      const chain = craft.mdpResult?.chain;
+      if (!chain?.states?.length) return null;
+      const p = chain.pSuccessStart;
+      if (!Number.isFinite(p) || p <= 0) return null;
+      const target = craft.successProbTarget ?? 0.95;
+      const N = Math.ceil(Math.log(1 - target) / Math.log(1 - p));
+      // expectedVisits is now the engine's full visit-count
+      // (self-loops applied) rather than just inflow. Sum across
+      // chain states grouped by their policy action to get expected
+      // per-attempt orb counts.
+      const expected = new Map();
+      for (const s of chain.states) {
+        const a = s.meta?.policy;
+        if (!a) continue;
+        if (a === 'buy_base') continue;
+        const visits = Number.isFinite(s.expectedVisits)
+          ? s.expectedVisits
+          : (s.pReach ?? 0);
+        expected.set(a, (expected.get(a) ?? 0) + visits);
+      }
+      const orbs = craft.game?.orbs ?? {};
+      const lines = [];
+      const basePriceEx = craft.mdpResult.basePriceEx ?? 0;
+      // Bases first: one per run.
+      lines.push({
+        action: 'buy_base',
+        icon: '🛒',
+        count: N,
+        perEx: basePriceEx,
+        totalEx: N * basePriceEx,
+        expectedPerAttempt: 1,
+        orb: null,
+      });
+      const orbForActionLocal = (a) => {
+        if (orbs[a]) return orbs[a];
+        const aliases = { exalt: 'exalted', alch: 'alchemy', annul: 'annulment' };
+        const cap = (s) => s ? s[0].toUpperCase() + s.slice(1) : '';
+        const tryVariant = (base, rest) => orbs[base + cap(rest)] ?? orbs[base] ?? null;
+        for (const [from, to] of Object.entries(aliases)) {
+          if (a === from) return orbs[to];
+          if (a.startsWith(from + '_')) return tryVariant(to, a.slice(from.length + 1));
+        }
+        for (const base of ['transmute', 'augment', 'regal', 'chaos', 'divine', 'vaal', 'chance', 'fracturing']) {
+          if (a.startsWith(base + '_')) return tryVariant(base, a.slice(base.length + 1));
+        }
+        // Bone actions (apply_bone, reveal_bone, reveal_bone_*) consume
+        // a desecrated currency. Resolve to the cheapest item-class-
+        // applicable bone in effectiveCurrencies — same rule the engine
+        // uses (engine/mdp/adapter.js boneCostEx). Without this, the
+        // shopping list would label the row "apply_bone" with no price.
+        if (a === 'apply_bone' || a === 'reveal_bone' || a.startsWith('reveal_bone_')) {
+          const itemClass = craft.itemType ?? null;
+          let cheapest = null;
+          for (const c of Object.values(craft.effectiveCurrencies ?? {})) {
+            if (c.kind !== 'desecrated') continue;
+            if (itemClass && c.appliesToItemClasses && !c.appliesToItemClasses.includes(itemClass)) continue;
+            if (!Number.isFinite(c.exaltedPer)) continue;
+            if (!cheapest || c.exaltedPer < cheapest.exaltedPer) cheapest = c;
+          }
+          if (cheapest) {
+            return {
+              name: cheapest.name,
+              priceCurrency: cheapest.id,
+              effect: a === 'apply_bone'
+                ? 'Apply a Bone to a Rare item — pads totalMods toward fracture-eligibility'
+                : 'Reveal the bone-mod (3-pick from the desecrated pool)',
+            };
+          }
+        }
+        return null;
+      };
+      for (const [action, perAtt] of expected.entries()) {
+        if (perAtt <= 1e-9) continue;
+        const totalCountRaw = N * perAtt;
+        const count = Math.ceil(totalCountRaw);
+        const orb = orbForActionLocal(action);
+        const perEx = orb ? (craft.effectiveCurrencies?.[orb.priceCurrency]?.exaltedPer ?? NaN) : NaN;
+        const totalEx = Number.isFinite(perEx) ? count * perEx : NaN;
+        lines.push({
+          action,
+          icon: orbIconFor(action),
+          count,
+          perEx,
+          totalEx,
+          expectedPerAttempt: perAtt,
+          orb,
+        });
+      }
+      lines.sort((a, b) => (b.totalEx || 0) - (a.totalEx || 0));
+      const grandTotalEx = lines.reduce((s, l) => s + (Number.isFinite(l.totalEx) ? l.totalEx : 0), 0);
+      return { N, target, lines, grandTotalEx };
+    });
     // Trajectory probability: Π step.sampledProb. Useful as a
     // "how rare was this exact path" heatmap — a 100k-ex scenario
     // with p=10⁻⁶ is *expected* to be extreme, while one with
@@ -925,20 +1104,32 @@ export default {
       const budgetEx = (Number.isFinite(craft.totalBudgetEx) && craft.totalBudgetEx > 0)
         ? craft.totalBudgetEx : null;
       let successWithinBudget = 0;
-      if (budgetEx != null) {
-        for (const s of dist.samples) {
-          if (s.reachedGoal && Number.isFinite(s.totalEx) && s.totalEx <= budgetEx) {
-            successWithinBudget += 1;
+      // Single-base success: trajectories that reached goal WITHOUT
+      // ever restarting (buyBaseEvents === 0). Models the "I have one
+      // physical item, no restock" scenario. Compute both the
+      // unconditional rate and the budget-restricted rate.
+      let successSingleBase = 0;
+      let successSingleBaseAtBudget = 0;
+      for (const s of dist.samples) {
+        if (s.reachedGoal && Number.isFinite(s.totalEx)) {
+          if (budgetEx != null && s.totalEx <= budgetEx) successWithinBudget += 1;
+          if ((s.buyBaseEvents ?? 0) === 0) {
+            successSingleBase += 1;
+            if (budgetEx != null && s.totalEx <= budgetEx) successSingleBaseAtBudget += 1;
           }
         }
       }
       const pSuccessAtBudget = budgetEx != null ? successWithinBudget / n : null;
+      const pSuccessSingleBase = successSingleBase / n;
+      const pSuccessSingleBaseAtBudget = budgetEx != null ? successSingleBaseAtBudget / n : null;
       return {
         n, min, max, mean, median,
         p75, p9375,
         p75over2p50, p9375over2p75,
         successCount, failCount,
         budgetEx, successWithinBudget, pSuccessAtBudget,
+        successSingleBase, pSuccessSingleBase,
+        successSingleBaseAtBudget, pSuccessSingleBaseAtBudget,
         binWidth, bins, binSuccess, binFail, peakBin, cdf,
       };
     });
@@ -1044,7 +1235,7 @@ export default {
     };
 
     return { craft, showSpecStep, fmt, toRef, fmtTime, fmtCost, divToEx,
-             budgetUnit, budgetUnitChoice, budgetDisplayValue, setBudgetFromInput, cycleBudgetUnit,
+             budgetUnit, budgetDisplayValue, setBudgetFromInput,
              prefixesFull, suffixesFull,
              expand, collapse, isExpanded, confirmTier,
              selectedMod, openModModal, closeModModal, tagStyle,
@@ -1064,6 +1255,8 @@ export default {
              orbIconFor, scenarioActionLines, scenarioProbability, fmtProbability,
              distributionStats, distributionPlot,
              chainRenderer, setChainRenderer, copyChainDump, orbsByFamily,
+             orbIconForId, orbRateEx, fmtRate,
+             orbForAction, orbSpendChipName, orbSpendChipRate, materialsShoppingList,
              copyScenarioToClipboard, sendScenarioToDivineBench };
   },
   template: `
@@ -1142,7 +1335,7 @@ export default {
                 <input
                   type="range" min="1" max="86" step="1"
                   :value="craft.itemLevel"
-                  @input="craft.setItemLevel($event.target.value)"
+                  @change="craft.setItemLevel($event.target.value)"
                   class="ilvl-slider"
                 />
                 <input
@@ -1307,7 +1500,7 @@ export default {
                 <input type="range" min="0" :max="craft.maxDesireScore || 0" step="0.5"
                   :value="Math.min(craft.minDesireScore, craft.maxDesireScore || 0)"
                   :disabled="!craft.maxDesireScore"
-                  @input="craft.setMinDesireScore($event.target.value)" />
+                  @change="craft.setMinDesireScore($event.target.value)" />
                 <input type="number" min="0" :max="craft.maxDesireScore || 0" step="0.5"
                   class="desire-score-number"
                   :value="craft.minDesireScore"
@@ -1380,7 +1573,7 @@ export default {
                     <input type="range" min="1" :max="craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).maxTier" step="1" class="tier-slider"
                       :class="{ required: craft.isEntryEffectivelyRequired(e) }"
                       :value="craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).desiredTier"
-                      @input="craft.setTargetEntryTierBand(e.idx, craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).requiredTier == null ? null : Number($event.target.value), Number($event.target.value), craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).maxTier)" />
+                      @change="craft.setTargetEntryTierBand(e.idx, craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).requiredTier == null ? null : Number($event.target.value), Number($event.target.value), craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).maxTier)" />
                     <span class="band-summary">T{{ craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).desiredTier }}</span>
                     <button v-if="e.fractured || craft.fracturedTargetIdx() === -1"
                       class="link fracture-btn"
@@ -1482,7 +1675,7 @@ export default {
                     <input type="range" min="1" :max="craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).maxTier" step="1" class="tier-slider"
                       :class="{ required: craft.isEntryEffectivelyRequired(e) }"
                       :value="craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).desiredTier"
-                      @input="craft.setTargetEntryTierBand(e.idx, craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).requiredTier == null ? null : Number($event.target.value), Number($event.target.value), craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).maxTier)" />
+                      @change="craft.setTargetEntryTierBand(e.idx, craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).requiredTier == null ? null : Number($event.target.value), Number($event.target.value), craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).maxTier)" />
                     <span class="band-summary">T{{ craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).desiredTier }}</span>
                     <button v-if="e.fractured || craft.fracturedTargetIdx() === -1"
                       class="link fracture-btn"
@@ -1736,7 +1929,7 @@ export default {
                 <thead><tr><th></th><th>Modifier</th><th></th></tr></thead>
                 <tbody>
                   <template v-for="(row, i) in essencesBySide.PREFIX" :key="row.key">
-                  <tr class="essence-mod-row" :class="{ 'tag-filtered': row.tagFiltered }">
+                  <tr class="essence-mod-row" :class="{ 'tag-filtered': row.tagFiltered, wished: craft.isWished('PREFIX', row.text) }">
                     <td class="add-cell">
                       <button class="link"
                         :disabled="row.tagFiltered || prefixesFull || craft.isOnStarting('PREFIX', row.text)"
@@ -1787,7 +1980,7 @@ export default {
                 <thead><tr><th></th><th>Modifier</th><th></th></tr></thead>
                 <tbody>
                   <template v-for="(row, i) in essencesBySide.SUFFIX" :key="row.key">
-                  <tr class="essence-mod-row" :class="{ 'tag-filtered': row.tagFiltered }">
+                  <tr class="essence-mod-row" :class="{ 'tag-filtered': row.tagFiltered, wished: craft.isWished('SUFFIX', row.text) }">
                     <td class="add-cell">
                       <button class="link"
                         :disabled="row.tagFiltered || suffixesFull || craft.isOnStarting('SUFFIX', row.text)"
@@ -2029,21 +2222,10 @@ export default {
           <div class="base-pricing" v-if="craft.targetEntries.length || Object.keys(craft.wishlist).length">
             <label class="field inline">
               <span>Total budget ({{ budgetUnit === 'div' ? 'Div' : 'Ex' }})</span>
-              <span class="budget-input-row">
-                <input type="number" min="0" step="any"
-                  :value="budgetDisplayValue"
-                  placeholder="∞"
-                  @input="setBudgetFromInput($event.target.value)" />
-                <button type="button" class="link unit-toggle"
-                  :title="budgetUnitChoice === 'auto'
-                    ? 'Unit auto-picks (div above ~5 div, ex below). Click to lock to ex.'
-                    : budgetUnitChoice === 'ex'
-                      ? 'Locked to ex. Click to lock to div.'
-                      : 'Locked to div. Click to switch back to auto.'"
-                  @click="cycleBudgetUnit()">
-                  {{ budgetUnitChoice === 'auto' ? 'auto' : budgetUnitChoice }}
-                </button>
-              </span>
+              <input type="number" min="0" step="any"
+                :value="budgetDisplayValue"
+                placeholder="∞"
+                @input="setBudgetFromInput($event.target.value)" />
               <small class="hint">
                 default 1,870 ex ≈ 10 div · stop-loss for most players
                 <span v-if="divToEx && Number.isFinite(craft.totalBudgetEx)">
@@ -2210,25 +2392,30 @@ export default {
                   @click.stop.prevent="craft.resetOrbDisabled(); craft.solveMdp();"
                   title="Re-enable every orb">reset</button>
               </summary>
-              <div class="orb-disable-families">
-                <div v-for="g in orbsByFamily" :key="'fam-'+g.family" class="orb-disable-family">
-                  <h6>
-                    <label class="orb-disable-family-toggle"
-                      :title="'Toggle all ' + g.family + ' variants at once'">
-                      <input type="checkbox"
-                        :checked="g.orbs.every(o => !(craft.disabledOrbs ?? {})[o.id])"
-                        :indeterminate.prop="g.orbs.some(o => (craft.disabledOrbs ?? {})[o.id]) && g.orbs.some(o => !(craft.disabledOrbs ?? {})[o.id])"
-                        @change="g.orbs.forEach(o => craft.setOrbDisabled(o.id, !$event.target.checked)); craft.solveMdp();" />
-                      {{ g.family }}
-                    </label>
+              <div class="ccy-chip-families">
+                <div v-for="g in orbsByFamily" :key="'fam-'+g.family" class="ccy-chip-family">
+                  <h6 :title="'Toggle all ' + g.family + ' variants at once'"
+                    @click="g.orbs.forEach(o => craft.setOrbDisabled(o.id, g.orbs.every(x => !(craft.disabledOrbs ?? {})[x.id]))); craft.solveMdp();">
+                    {{ g.family }}
+                    <small v-if="g.orbs.some(o => (craft.disabledOrbs ?? {})[o.id])" class="hint">
+                      ({{ g.orbs.filter(o => !(craft.disabledOrbs ?? {})[o.id]).length }}/{{ g.orbs.length }})
+                    </small>
                   </h6>
-                  <div class="orb-disable-grid">
-                    <label v-for="o in g.orbs" :key="'orb-'+o.id" class="orb-disable-row">
-                      <input type="checkbox"
-                        :checked="!(craft.disabledOrbs ?? {})[o.id]"
-                        @change="craft.setOrbDisabled(o.id, !$event.target.checked); craft.solveMdp();" />
-                      <span>{{ o.name }}</span>
-                    </label>
+                  <div class="ccy-chip-row">
+                    <button v-for="o in g.orbs" :key="'orb-'+o.id" type="button"
+                      class="ccy-chip has-tip"
+                      :class="{ disabled: (craft.disabledOrbs ?? {})[o.id] }"
+                      @click="craft.setOrbDisabled(o.id, !(craft.disabledOrbs ?? {})[o.id]); craft.solveMdp();">
+                      <span class="ccy-chip-icon">{{ orbIconForId(o.id) }}</span>
+                      <span class="ccy-chip-name">{{ o.name.replace(/^Orb of /, '').replace(/ Orb$/, '') }}</span>
+                      <span class="ccy-chip-rate">{{ fmtRate(orbRateEx(o)) }}</span>
+                      <span class="tip-popup">
+                        <strong>{{ o.name }}</strong>
+                        <span class="tip-rate">{{ fmtRate(orbRateEx(o)) }}</span>
+                        <span v-if="o.effect" class="tip-effect">{{ o.effect }}</span>
+                        <em class="tip-hint">click to {{ (craft.disabledOrbs ?? {})[o.id] ? 'enable' : 'disable' }}</em>
+                      </span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2244,9 +2431,24 @@ export default {
               </button>
               <button v-if="craft.mdpEvaluating" class="link"
                 @click="craft.cancelMdp()"
-                title="Cancel the in-flight solve. The synchronous core can't be interrupted mid-iteration but the spinner clears immediately and any new state-space-cap exception will discard the result.">
+                title="Cancel the in-flight solve. The async value-iteration loop checks the cancel signal each yield, so this stops within a few ms.">
                 ✖ Cancel
               </button>
+              <span v-if="craft.mdpEvaluating && craft.mdpProgress" class="mdp-progress"
+                :title="craft.mdpProgress.phase === 'iterate'
+                  ? ('value iteration · sweep ' + craft.mdpProgress.iters + ' · δ=' + (craft.mdpProgress.delta != null ? craft.mdpProgress.delta.toExponential(2) : '—') + ' · ' + craft.mdpProgress.states + ' states')
+                  : (craft.mdpProgress.phase === 'build' ? ('building state space · ' + craft.mdpProgress.states + ' states') : 'preparing…')">
+                <progress :value="craft.mdpProgress.fraction ?? 0" max="1"></progress>
+                <small class="hint">
+                  <span v-if="craft.mdpProgress.phase === 'iterate'">
+                    iter {{ craft.mdpProgress.iters }} · δ {{ craft.mdpProgress.delta != null ? craft.mdpProgress.delta.toExponential(1) : '—' }}
+                  </span>
+                  <span v-else-if="craft.mdpProgress.phase === 'build'">
+                    {{ craft.mdpProgress.states }} states
+                  </span>
+                  <span v-else>preparing…</span>
+                </small>
+              </span>
               <label class="hint" style="margin-left: 0.6rem; font-weight: normal;"
                 title="Prefix every chain node with its step id (e.g. [s5]) so you can refer to a specific node when discussing the policy. Disable when the chart gets too dense.">
                 <input type="checkbox"
@@ -2322,11 +2524,12 @@ export default {
                 <thead>
                   <tr>
                     <th title="Probability that one committed attempt reaches the goal before bricking, under the optimal policy">P(success / attempt)</th>
-                    <th title="Expected number of committed attempts to first success (geometric)">E[attempts]</th>
-                    <th title="Expected orb spending along one committed attempt (success or brick), under the optimal policy. The engine stores this as bExpectedStart ≤ 0 — the negated expected cost — and we flip the sign for display.">E[cost / attempt]</th>
+                    <th :title="'Expected attempts (geometric mean = 1/p) and N_p: bases needed to be at least ' + Math.round((craft.successProbTarget ?? 0.95) * 100) + '% confident of one success — a more practical figure for low-volume PoE2 crafting (configurable in Display preferences).'">E[attempts] · N<sub>{{ Math.round((craft.successProbTarget ?? 0.95) * 100) }}</sub></th>
+                    <th title="Expected total cost of one committed attempt (success or brick), under the optimal policy. Includes both the orb spending along the path AND the base's purchase price (paid up-front for each fresh base). Lets P(within budget) and Breakeven budget reflect the full cash outlay per attempt rather than orbs only.">E[cost / attempt]</th>
                     <th title="V*(start) — total expected cost to satisfy the wishlist with restarts, given the current total-budget cap">V* (total)</th>
+                    <th title="Probability of success with exactly 1 base — same as P(success/attempt). Shown explicitly so the user can compare 'one shot, no restart' to the multi-attempt within-budget figure. Assumes your total budget covers any single attempt's orb spend (rarely binding).">P(1 base)</th>
                     <th v-if="Number.isFinite(craft.totalBudgetEx)"
-                        title="P(reach goal within the total budget) = 1 − (1 − p)^N where N = ⌊budget / E[cost/attempt]⌋">P(within budget)</th>
+                        title="P(reach goal within the total budget) = 1 − (1 − p)^N where N = ⌊budget / E[cost/attempt]⌋. Multi-attempt: each brick triggers a fresh-base restart until budget runs out.">P(within budget)</th>
                     <th title="Budget at which committing to one attempt has non-negative expected return; below this, V*(start) clamps to 0">Breakeven budget</th>
                   </tr>
                 </thead>
@@ -2335,68 +2538,142 @@ export default {
                     <td class="num primary">
                       <strong>{{ fmt.pct(craft.mdpResult.chain.pSuccessStart) }}</strong>
                     </td>
-                    <td class="num">
-                      {{ craft.mdpResult.chain.pSuccessStart > 0
-                          ? fmt.num(1 / craft.mdpResult.chain.pSuccessStart)
-                          : '∞' }}
+                    <td class="num"
+                        :title="craft.mdpResult.chain.pSuccessStart > 0
+                          ? ('mean = 1/p = ' + (1 / craft.mdpResult.chain.pSuccessStart).toFixed(2) + ' · N_p = ⌈log(' + (1 - (craft.successProbTarget ?? 0.95)).toFixed(3) + ') / log(1−p)⌉ = ' + Math.ceil(Math.log(1 - (craft.successProbTarget ?? 0.95)) / Math.log(1 - craft.mdpResult.chain.pSuccessStart)))
+                          : 'unreachable'">
+                      <span v-if="craft.mdpResult.chain.pSuccessStart > 0">
+                        {{ fmt.num(1 / craft.mdpResult.chain.pSuccessStart) }}
+                        <small class="hint">· N<sub>{{ Math.round((craft.successProbTarget ?? 0.95) * 100) }}</sub> {{ Math.ceil(Math.log(1 - (craft.successProbTarget ?? 0.95)) / Math.log(1 - craft.mdpResult.chain.pSuccessStart)) }}</small>
+                      </span>
+                      <span v-else>∞</span>
                     </td>
-                    <td class="num">{{ fmtCost(-craft.mdpResult.chain.bExpectedStart) }}</td>
+                    <td class="num"
+                        :title="'orbs ' + fmtCost(-craft.mdpResult.chain.bExpectedStart) + ' + base ' + fmtCost(craft.mdpResult.basePriceEx ?? 0) + ' = ' + fmtCost(-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0))">
+                      {{ fmtCost(-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0)) }}
+                    </td>
                     <td class="num">
                       {{ Number.isFinite(craft.mdpResult.vStar)
                           ? fmtCost(craft.mdpResult.vStar) : '∞' }}
                     </td>
-                    <td v-if="Number.isFinite(craft.totalBudgetEx)" class="num">
-                      <span v-if="-craft.mdpResult.chain.bExpectedStart > 0">
+                    <td class="num"
+                        :title="'P(success) on a single base, no restart — ' + fmt.pct(craft.mdpResult.chain.pSuccessStart) + '. Same as P(success/attempt); shown next to P(within budget) for direct comparison: '
+                          + 'one-shot ' + fmt.pct(craft.mdpResult.chain.pSuccessStart)
+                          + ' vs multi-attempt under budget.'">
+                      {{ fmt.pct(craft.mdpResult.chain.pSuccessStart) }}
+                    </td>
+                    <td v-if="Number.isFinite(craft.totalBudgetEx)" class="num"
+                        :title="(-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0)) > 0
+                          ? ('budget ' + fmtCost(craft.totalBudgetEx) + ' ÷ E[cost/attempt] ' + fmtCost(-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0)) + ' = ' + Math.floor(craft.totalBudgetEx / (-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0))) + ' attempts within budget')
+                          : '—'">
+                      <span v-if="(-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0)) > 0">
                         {{ fmt.pct(
                           1 - Math.pow(
                             1 - craft.mdpResult.chain.pSuccessStart,
-                            Math.floor(craft.totalBudgetEx / (-craft.mdpResult.chain.bExpectedStart)),
+                            Math.floor(craft.totalBudgetEx / (-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0))),
                           )
                         ) }}
+                        <small class="hint">·
+                          {{ Math.floor(craft.totalBudgetEx / (-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0))) }} attempts
+                        </small>
                       </span>
                       <span v-else class="hint">—</span>
                     </td>
                     <td class="num">
-                      <span v-if="Number.isFinite(craft.mdpResult.chain.breakevenBudgetEx)">
-                        {{ fmtCost(craft.mdpResult.chain.breakevenBudgetEx) }}
+                      <span v-if="craft.mdpResult.chain.pSuccessStart > 0">
+                        {{ fmtCost((-craft.mdpResult.chain.bExpectedStart + (craft.mdpResult.basePriceEx ?? 0)) / craft.mdpResult.chain.pSuccessStart) }}
                       </span>
                       <span v-else class="hint">∞</span>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <p class="hint">
-                <strong title="Optimal value: the minimum total expected cost (in exalted, with time folded in via timeWeightExPerSec) to reach a goal state from the start, assuming the optimal action is chosen at every step. V*(s) at any state s already accounts for ALL downstream actions and brick risks — comparing actions means comparing per-state Q(s,a) = cost(a) + Σ p·V*(s'), which is what value iteration solves.">V* (start)</strong>
-                = {{ Number.isFinite(craft.mdpResult.vStar) ? craft.mdpResult.vStar.toFixed(2) : '∞' }} ex
-                · <strong>{{ craft.mdpResult.states.length }}</strong> reachable states
+              <div v-if="materialsShoppingList" class="mdp-materials-synthesis">
+                <p class="mdp-materials-headline">
+                  <strong>Stockpile for {{ Math.round(materialsShoppingList.target * 100) }}% confidence:</strong>
+                  {{ materialsShoppingList.N }} runs
+                  <small class="hint">·</small>
+                  <strong>≈ {{ fmtCost(materialsShoppingList.grandTotalEx) }}</strong>
+                  <small class="hint">total cash outlay</small>
+                </p>
+                <table class="mdp-materials-table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Currency</th>
+                      <th class="num" title="Total units to buy: ⌈expected per run × N runs⌉">Count</th>
+                      <th class="num">Unit price</th>
+                      <th class="num">Stockpile cost</th>
+                      <th class="num" title="Expected uses per single run, summed across the optimal-policy chain">per run</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="line in materialsShoppingList.lines" :key="line.action">
+                      <td class="num"><span class="orb-icon-glyph">{{ line.icon }}</span></td>
+                      <td :title="line.action === 'buy_base' ? 'One fresh base per run' : (line.orb?.effect ?? line.action)">
+                        {{ line.action === 'buy_base'
+                            ? 'Base'
+                            : (line.orb?.name ?? line.action) }}
+                      </td>
+                      <td class="num">{{ line.count }}</td>
+                      <td class="num">{{ Number.isFinite(line.perEx) ? fmtCost(line.perEx) : '—' }}</td>
+                      <td class="num"><strong>{{ Number.isFinite(line.totalEx) ? fmtCost(line.totalEx) : '—' }}</strong></td>
+                      <td class="num hint">{{ line.expectedPerAttempt.toFixed(2) }}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td><strong>Total</strong></td>
+                      <td></td>
+                      <td></td>
+                      <td class="num"><strong>{{ fmtCost(materialsShoppingList.grandTotalEx) }}</strong></td>
+                      <td></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <details class="mdp-metrics-glossary">
+                <summary>📖 What do these metrics mean?</summary>
+                <dl class="metrics-glossary">
+                  <dt>Attempt</dt>
+                  <dd>One full crafting run on a <em>single</em> base, ending when the wishlist is met (success) <strong>or</strong> the optimal policy declares the item bricked (must restart). It is not capped by orb count or by clicks — only by reaching one of those two terminals.</dd>
+
+                  <dt>P(success / attempt)</dt>
+                  <dd>Probability one single-base attempt reaches the goal under the optimal policy.</dd>
+
+                  <dt>E[attempts]</dt>
+                  <dd>Geometric mean — over many crafts, the <em>average</em> number of bases consumed before one succeeds. Equals <code>1 / P(success)</code>.</dd>
+
+                  <dt>N₉₅ (attempts for 95%)</dt>
+                  <dd>The smallest <em>N</em> such that <code>1 − (1−p)^N ≥ 95%</code>. PoE2 players typically craft 1–2 items, so the geometric mean misleads: half the time you'll need <em>more</em> attempts than the mean. N₉₅ answers "how many bases do I need to set aside to be 95% confident?".</dd>
+
+                  <dt>E[cost / attempt]</dt>
+                  <dd>Average <em>total</em> spending during one attempt (mixing the success and brick paths): orbs along the path <strong>plus</strong> the base's purchase price. Hover the cell to see the orb / base split.</dd>
+
+                  <dt>V* (total)</dt>
+                  <dd>The engine's full cost-to-success across all attempts to first success. Equals <code>E[attempts] × E[cost/attempt]</code>.</dd>
+
+                  <dt>P(1 base)</dt>
+                  <dd>Probability of success with exactly one base, no restart — same value as <em>P(success / attempt)</em>, shown next to <em>P(within budget)</em> for direct comparison: "one-shot" vs "multi-attempt under budget". Assumes the total budget covers a single attempt's orb spend (rarely binding for realistic budgets).</dd>
+
+                  <dt>P(within budget)</dt>
+                  <dd>Probability of at least one success when allowed to <em>restart</em> on brick, capped by your total budget: <code>1 − (1−p)^N</code> with <code>N = ⌊budget / E[cost/attempt]⌋</code>. The cell also shows <em>N</em> directly so the implied "attempts permitted by your budget" is visible.</dd>
+
+                  <dt>Breakeven budget</dt>
+                  <dd>The trade-equivalent value at which one single-base attempt has zero expected profit: <code>E[cost/attempt] / P(success)</code>. If a successful goal-item sells for more than this, the craft is profitable in expectation. <em>Not</em> the budget required to finish a craft.</dd>
+
+                  <dt>V* (s)</dt>
+                  <dd>The expected total cost (ex, with wall-clock time folded in via <code>timeWeightExPerSec</code>) to reach a goal state from <em>any</em> state <em>s</em> under the optimal policy. Already accounts for every downstream orb, every brick + restart, every cycle risk — no need to add per-step costs by hand. Two actions are compared via <code>Q(s,a) = cost(a) + Σ p · V*(s')</code>; the solver picks the action with the smallest <em>Q</em>. The table's <em>V* (total)</em> is <code>V*(start)</code>.</dd>
+
+                  <dt>P_reach (s)</dt>
+                  <dd>Probability that one execution of the optimal policy <em>visits</em> state <em>s</em>, starting from the start node. Marginal visit probability under π* — accumulated by walking the policy graph and multiplying outcome probabilities along each followed edge. <code>buy_base</code> / bricked / goal nodes are absorbing (successors not propagated), so a downstream node's P_reach answers "given that the policy reaches a non-terminal step here, with what probability does the fan land on this branch?" — <strong>not</strong> "given any history, what's the chance this state ever appears?" and <strong>not</strong> "P(success from here)".</dd>
+                </dl>
+              </details>
+              <p class="hint mdp-meta-line">
+                <strong>{{ craft.mdpResult.states.length }}</strong> reachable states
                 · {{ craft.mdpResult.iters }} value-iteration sweeps
                 · optimal start action = <code>{{ craft.mdpResult.policy.get(craft.mdpResult.start.stateKey) ?? '(none)' }}</code>
-              </p>
-              <p class="hint mdp-vstar-explainer">
-                <em>V\*</em> = expected total cost (ex) to reach the goal from
-                a given state under the optimal policy. It already includes
-                every downstream orb, every brick + restart, every annul-cycle
-                risk — no need to add per-step costs by hand. Two actions are
-                compared via <code>Q(s,a) = cost(a) + Σ p·V*(s')</code>; the
-                solver picks the action with the smallest <em>Q</em>.
-              </p>
-              <p class="hint mdp-vstar-explainer">
-                <em>P_reach</em> = probability that one execution of the
-                optimal policy <em>visits</em> this state, starting from
-                the start node. It is the marginal visit probability
-                under π* — accumulated by walking the policy graph from
-                start (P=1), multiplying outcome probabilities along
-                each followed edge. <code>buy_base</code> / bricked /
-                goal nodes are treated as absorbing (their successors
-                aren't propagated), so a downstream node's
-                <em>P_reach</em> is "given that the policy reaches a
-                non-terminal step here, with what probability does the
-                fan land on this branch?" — <strong>not</strong>
-                "given any history, what's the chance this state ever
-                appears?" and <strong>not</strong> "P(success from
-                here)". Use it alongside V* to compute weighted
-                contributions, e.g. expected itemValue = Σ P_reach ·
-                (B − V*) over goal-adjacent leaves.
               </p>
               <ul v-if="craft.mdpResult.warnings?.length" class="hint" style="color:#d96">
                 <li v-for="w in craft.mdpResult.warnings" :key="w">⚠ {{ w }}</li>
@@ -2474,6 +2751,16 @@ export default {
                   </strong>
                   <small class="hint">
                     ({{ distributionStats.successWithinBudget }} / {{ distributionStats.n }})
+                  </small>
+                </p>
+                <p class="dist-headline"
+                   :title="'Fraction of sampled trajectories that reached the goal WITHOUT ever restarting (zero buy_base events)' + (distributionStats.budgetEx != null ? ' AND stayed within ' + fmtCost(distributionStats.budgetEx) : '') + '. Answers \\'I have a single base, what\\'s P(success)?\\' under the current policy. Lower than the with-restart number because every brick now counts as failure.'">
+                  P(success | single base{{ distributionStats.budgetEx != null ? ', budget ' + fmtCost(distributionStats.budgetEx) : '' }}) =
+                  <strong :style="(distributionStats.pSuccessSingleBaseAtBudget ?? distributionStats.pSuccessSingleBase) >= 0.9 ? 'color:#5d9' : ((distributionStats.pSuccessSingleBaseAtBudget ?? distributionStats.pSuccessSingleBase) >= 0.5 ? 'color:#cd6' : 'color:#d96')">
+                    {{ ((distributionStats.pSuccessSingleBaseAtBudget ?? distributionStats.pSuccessSingleBase) * 100).toFixed(1) }}%
+                  </strong>
+                  <small class="hint">
+                    ({{ distributionStats.successSingleBaseAtBudget ?? distributionStats.successSingleBase }} / {{ distributionStats.n }})
                   </small>
                 </p>
                 <div class="dist-summary hint">
@@ -2610,17 +2897,37 @@ export default {
                   </div>
                   <details>
                     <summary>orb spend</summary>
-                    <ul class="hint orb-spend-list">
-                      <li v-for="line in scenarioActionLines(s)" :key="line.action">
-                        <span class="orb-icon-glyph" aria-hidden="true">{{ line.icon }}</span>
-                        <code>{{ line.action }}</code> × {{ line.count }}
-                        <span class="orb-line-cost"
-                          :title="line.perOrbEx.toFixed(3) + ' ex / use × ' + line.count">
-                          · {{ line.costEx.toFixed(2) }} ex
-                          <small v-if="line.count > 1">({{ line.perOrbEx.toFixed(2) }} ex/each)</small>
-                        </span>
-                      </li>
-                    </ul>
+                    <table class="mdp-materials-table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Currency</th>
+                          <th class="num">Count</th>
+                          <th class="num">Unit price</th>
+                          <th class="num">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="line in scenarioActionLines(s)" :key="line.action">
+                          <td class="num"><span class="orb-icon-glyph">{{ line.icon }}</span></td>
+                          <td :title="orbForAction(line.action)?.effect ?? line.action">
+                            {{ orbForAction(line.action)?.name ?? line.action }}
+                          </td>
+                          <td class="num">{{ line.count }}</td>
+                          <td class="num">{{ fmtCost(line.perOrbEx) }}</td>
+                          <td class="num"><strong>{{ fmtCost(line.costEx) }}</strong></td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td></td>
+                          <td><strong>Total</strong></td>
+                          <td></td>
+                          <td></td>
+                          <td class="num"><strong>{{ fmtCost(scenarioActionLines(s).reduce((sum, l) => sum + (Number.isFinite(l.costEx) ? l.costEx : 0), 0)) }}</strong></td>
+                        </tr>
+                      </tfoot>
+                    </table>
                   </details>
                   <details>
                     <summary>final item ({{ s.traj.concreteItem?.rarity ?? '—' }} · {{ s.traj.concreteItem?.affixCount ?? 0 }} affix)</summary>
@@ -2679,7 +2986,7 @@ export default {
             </button>
           </p>
           <template v-for="kind in (craft.game?.CURRENCY_KINDS ?? [])" :key="kind.id">
-          <details v-if="(craft.currenciesByKind[kind.id] ?? []).length"
+          <details v-if="!kind.hiddenInRatesPanel && (craft.currenciesByKind[kind.id] ?? []).length"
                    class="rates-group">
             <summary>
               {{ kind.label }}
@@ -2808,12 +3115,20 @@ export default {
             <small class="hint">Inverts comparison symbols on tier dropdowns. Stored per-share via URL.</small>
           </label>
           <label class="field inline">
-            <span>Switch cost to Divine when above</span>
-            <input type="number" min="0" step="any"
-              :value="craft.divThresholdDiv"
-              @input="craft.setDivThresholdDiv($event.target.value)" />
-            <span>div</span>
-            <small class="hint">Strategy table costs render in ex by default; auto-switches to div above this threshold.</small>
+            <span>Cost display unit</span>
+            <select :value="craft.displayUnit ?? 'ex'"
+                    @change="craft.setDisplayUnit($event.target.value)">
+              <option value="ex">Exalted</option>
+              <option value="div">Divine</option>
+            </select>
+            <small class="hint">Every cost in this panel renders in the chosen currency.</small>
+          </label>
+          <label class="field inline">
+            <span>Success-probability target (N_p column)</span>
+            <input type="number" min="0.5" max="0.999" step="0.01"
+              :value="craft.successProbTarget ?? 0.95"
+              @input="craft.setSuccessProbTarget($event.target.value)" />
+            <small class="hint">PoE2 players typically craft 1–2 items, so the geometric mean misleads. N_p shows the bases needed for ≥ this success probability.</small>
           </label>
         </div>
       </details>

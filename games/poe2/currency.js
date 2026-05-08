@@ -111,9 +111,14 @@ export const currencies = {
 // those orbs manage sockets/links, not mods, so they're irrelevant to the
 // crafting cost analytics this tool produces. Currencies of `kind: 'jeweller'`
 // remain in the catalog but no section renders them in the rates panel.
+//
+// `catalyst` stays in the catalog (so the rates feed resolves cleanly) but
+// is flagged `hiddenInRatesPanel: true` — catalysts boost existing tagged
+// affixes without adding/removing/rerolling mods, so they don't participate
+// in the crafting MDP and don't need a rates row the user might tweak.
 export const CURRENCY_KINDS = [
   { id: 'orb',        label: 'Orbs (rarity & mod)', appliesAlways: true,  poedbEconomy: 'Currency' },
-  { id: 'catalyst',   label: 'Catalysts',            appliesAlways: false, poedbEconomy: 'Catalyst' },
+  { id: 'catalyst',   label: 'Catalysts',            appliesAlways: false, poedbEconomy: 'Catalyst', hiddenInRatesPanel: true },
   { id: 'essence',    label: 'Essences',             appliesAlways: false, poedbEconomy: 'Essences' },
   { id: 'desecrated', label: 'Desecration (Bones / Skulls / Gazes)', appliesAlways: false, poedbEconomy: 'Soul_Cores' },
   { id: 'omen',       label: 'Omens',                appliesAlways: false, poedbEconomy: 'Omen' },

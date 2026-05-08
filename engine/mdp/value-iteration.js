@@ -155,3 +155,65 @@ export function valueIterate({ states, appsPerState, target, timeWeightExPerSec,
   }
   return { vStar, policy, iters, converged, lastDelta };
 }
+
+/**
+ * Async sibling of `valueIterate` that yields to the event loop every
+ * `yieldEvery` sweeps and fires `onProgress({ iters, delta })` on each
+ * sweep. Useful for the UI: lets the spinner repaint and lets the
+ * progress bar advance while the engine is still working. Same return
+ * shape as `valueIterate`. Tests should keep using the sync version.
+ */
+export async function valueIterateAsync({
+  states, appsPerState, target, timeWeightExPerSec,
+  tol = 1e-6, maxIters = 50000,
+  yieldEvery = 20, onProgress = null,
+  shouldCancel = null,
+}) {
+  const n = states.length;
+  const V_INIT = 1e9;
+  const vStar = new Array(n).fill(V_INIT);
+  const policy = new Array(n).fill(null);
+  for (let i = 0; i < n; i++) {
+    if (isGoalState(states[i], target)) vStar[i] = 0;
+  }
+  const unified = (ex, sec) => ex + sec * (timeWeightExPerSec ?? 0);
+  let iters = 0;
+  let lastDelta = Infinity;
+  let converged = false;
+  let cancelled = false;
+  for (; iters < maxIters; iters++) {
+    let maxDelta = 0;
+    for (let i = 0; i < n; i++) {
+      if (isGoalState(states[i], target)) continue;
+      const apps = appsPerState.get(i) ?? [];
+      if (!apps.length) continue;
+      let bestQ = Infinity;
+      let bestA = null;
+      for (const app of apps) {
+        let q = 0;
+        for (const o of app.outcomes) {
+          q += o.prob * (unified(o.costEx, o.costSec) + vStar[o.to]);
+        }
+        if (q < bestQ) { bestQ = q; bestA = app.actionId; }
+      }
+      if (bestQ < vStar[i] - tol) {
+        maxDelta = Math.max(maxDelta, vStar[i] - bestQ);
+        vStar[i] = bestQ;
+        policy[i] = bestA;
+      } else if (bestA) {
+        policy[i] = bestA;
+      }
+    }
+    lastDelta = maxDelta;
+    if (onProgress) onProgress({ iters: iters + 1, delta: maxDelta });
+    if (maxDelta < tol) { converged = true; iters += 1; break; }
+    if ((iters % yieldEvery) === yieldEvery - 1) {
+      await new Promise((r) => setTimeout(r, 0));
+      if (shouldCancel?.()) { cancelled = true; iters += 1; break; }
+    }
+  }
+  for (let i = 0; i < n; i++) {
+    if (vStar[i] >= V_INIT * 0.5) vStar[i] = Infinity;
+  }
+  return { vStar, policy, iters, converged, lastDelta, cancelled };
+}

@@ -44,7 +44,7 @@
 
 import { ACTIONS, makeEssenceAction, makePerfectEssenceOverwriteAction } from './actions.js';
 import { makeState, stateKey, isGoalState, isBrickedByFracture, popcount } from './state.js';
-import { buildStateSpace, valueIterate } from './value-iteration.js';
+import { buildStateSpace, valueIterate, valueIterateAsync } from './value-iteration.js';
 
 export function solveMDP(input) {
   // ---- Normalise wishlist + target → bit indices ------------
@@ -398,21 +398,12 @@ export function solveMDP(input) {
   const { states, stateIdx, appsPerState, startIdx } = buildStateSpace({
     start, actions: actionList, env, target,
   });
-  const { vStar, policy, iters, converged, lastDelta } = valueIterate({
-    states, appsPerState, target,
-    timeWeightExPerSec: input.timeWeightExPerSec ?? 0,
-  });
-  if (!converged) {
-    warnings.push(
-      `value iteration hit maxIters (${iters}) without converging — ` +
-      `lastDelta=${lastDelta?.toExponential(2)}. V* values are partial; ` +
-      `optimal policy may flip if maxIters is raised. Often signals a ` +
-      `near-impossible scenario (very low per-attempt success and ` +
-      `expensive recovery — slow contraction toward fixed point).`,
-    );
-  }
-
+  // Both code paths (sync and async value-iteration) feed into the
+  // same post-iterate body, defined as the inner function below.
+  // Closures over `states`, `startIdx`, `target`, `warnings`,
+  // `wishlist`, `budgetExcluded`, `budgetCap`, `start`, `input`.
   // ---- Output: per-state value + chain ----------
+  function _finishOutput({ vStar, policy, iters, converged }) {
   const stateRows = states.map((s, i) => ({
     key: stateKey(s),
     state: s,
@@ -496,6 +487,43 @@ export function solveMDP(input) {
     basePriceEx: input.basePriceEx ?? 0,
     basePriceSec: input.basePriceSec ?? 60,
   };
+  } // end _finishOutput
+
+  // Shared between sync and async paths: take a value-iteration
+  // result and run the convergence check + output build.
+  const finish = (vi) => {
+    const { vStar, policy, iters, converged, lastDelta } = vi;
+    if (!converged) {
+      warnings.push(
+        `value iteration hit maxIters (${iters}) without converging — ` +
+        `lastDelta=${lastDelta?.toExponential(2)}. V* values are partial; ` +
+        `optimal policy may flip if maxIters is raised. Often signals a ` +
+        `near-impossible scenario (very low per-attempt success and ` +
+        `expensive recovery — slow contraction toward fixed point).`,
+      );
+    }
+    return _finishOutput({ vStar, policy, iters, converged });
+  };
+  // Caller supplied a progress callback (or a cancel signal): take
+  // the async path so the value-iteration loop yields to the event
+  // loop and the UI can repaint a progress bar. Synchronous callers
+  // (tests, CLI use) skip the await and pay no overhead.
+  if (input.onProgress || input.shouldCancel) {
+    input.onProgress?.({ phase: 'build', states: states.length });
+    return valueIterateAsync({
+      states, appsPerState, target,
+      timeWeightExPerSec: input.timeWeightExPerSec ?? 0,
+      onProgress: input.onProgress
+        ? (p) => input.onProgress({ phase: 'iterate', states: states.length, ...p })
+        : null,
+      yieldEvery: input.yieldEvery ?? 20,
+      shouldCancel: input.shouldCancel ?? null,
+    }).then((vi) => vi.cancelled ? { cancelled: true } : finish(vi));
+  }
+  return finish(valueIterate({
+    states, appsPerState, target,
+    timeWeightExPerSec: input.timeWeightExPerSec ?? 0,
+  }));
 }
 
 // ---- Chain serialiser (compatible with the existing Mermaid renderer)
@@ -590,8 +618,18 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
   const pReach = new Map();
   pReach.set(startIdx, 1);
   for (const i of reachable) if (i !== startIdx) pReach.set(i, 0);
-  // Pre-collect inbound edges per reachable state under π*.
+  // Pre-collect inbound edges per reachable state under π* AND
+  // per-state self-loop probability. Self-loops are skipped from the
+  // fixed-point sweep (they'd just hold pReach equal to itself), but
+  // we re-introduce them analytically after convergence: with a
+  // self-loop probability `pSelf(s)`, expected total visits to s =
+  // inflow(s) / (1 − pSelf(s)) — the geometric series. Skipping
+  // self-loops without that correction (the previous behaviour) caused
+  // chaos-spam states' visit counts to be silently truncated, which
+  // showed up as under-counted orbs in the user-facing materials
+  // stockpile.
   const inbound = new Map();
+  const selfLoop = new Map();
   for (const i of reachable) inbound.set(i, []);
   for (const i of reachable) {
     if (isGoalState(states[i], target)) continue;
@@ -602,7 +640,10 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     const app = apps.find((x) => x.actionId === a);
     if (!app) continue;
     for (const o of app.outcomes) {
-      if (o.to === i) continue; // self-loop
+      if (o.to === i) {
+        selfLoop.set(i, (selfLoop.get(i) ?? 0) + o.prob);
+        continue;
+      }
       const arr = inbound.get(o.to);
       if (arr) arr.push({ from: i, prob: o.prob });
     }
@@ -613,13 +654,30 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       if (i === startIdx) continue;
       let next = 0;
       for (const inEdge of inbound.get(i) ?? []) {
-        next += (pReach.get(inEdge.from) ?? 0) * inEdge.prob;
+        // Inbound from a state with a self-loop: each visit to the
+        // parent contributes `prob` to inflow, but the parent is
+        // visited 1/(1 − pSelf(parent)) times in expectation. Apply
+        // that geometric scaling here so child states inherit the
+        // upstream loop multiplier rather than just the single-pass
+        // probability.
+        const parentLoop = selfLoop.get(inEdge.from) ?? 0;
+        const parentScale = parentLoop > 0 && parentLoop < 1 ? 1 / (1 - parentLoop) : 1;
+        next += (pReach.get(inEdge.from) ?? 0) * inEdge.prob * parentScale;
       }
       const delta = Math.abs(next - (pReach.get(i) ?? 0));
       if (delta > maxDelta) maxDelta = delta;
       pReach.set(i, next);
     }
     if (maxDelta < 1e-9) break;
+  }
+  // After convergence, multiply each state's pReach by its own
+  // self-loop multiplier so the value reflects expected visits
+  // (inflow + self-recurrences) rather than just inflow.
+  for (const i of reachable) {
+    const sl = selfLoop.get(i) ?? 0;
+    if (sl > 0 && sl < 1) {
+      pReach.set(i, (pReach.get(i) ?? 0) / (1 - sl));
+    }
   }
   // ---- Forward-pass secondary value: `valueFromBase` ----
   // Per user direction (corrected 2026-05-07):
@@ -1228,31 +1286,41 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     // side-allocation collapse rule).
     const canonAttrs = (s, opts = {}) => {
       const attrs = {};
-      // Wished bits → equiv-class count map. Keys are equiv-class
-      // strings (e.g., "SUFFIX|7000|3|1"); values are counts. Two
-      // states with same per-class count are interchangeable for the
-      // wished portion (cold/fire mirrors collapse here).
-      const wishedCounts = {};
-      for (let i = 0; i < wishedEquivClass.length; i++) {
-        if (s.modMask & (1 << i)) {
-          const cls = wishedEquivClass[i];
-          wishedCounts[cls] = (wishedCounts[cls] ?? 0) + 1;
+      // Default classification: bucketed total affix count (NOT
+      // separated into wished vs irrelevant). User report (2026-05-08):
+      // "after transmute we always apply augment — post-transmute
+      // states are mergeable, label should say `magic with 1 affix`
+      // regardless of wished/irrelevant split."
+      // Buckets: 0 / 1 / 2 / ≥3. Exact counts for the early states
+      // (where the user genuinely cares about "what affix did I
+      // just gain"), bucketed for later states (where the engine's
+      // exalt-spam doesn't depend on the precise count). Set
+      // opts.exactTotalMods=true to disable bucketing.
+      const tm = s.totalMods ?? 0;
+      attrs.totalMods = opts.exactTotalMods
+        ? tm
+        : (tm <= 2 ? tm : '≥3');
+      // opts.showWished=true brings back the wished-class-count
+      // breakdown when a future scenario needs to separate "1 wished
+      // + 0 irr" from "0 wished + 1 irr" states whose downstream
+      // policy chains might genuinely diverge.
+      if (opts.showWished) {
+        const wishedCounts = {};
+        for (let i = 0; i < wishedEquivClass.length; i++) {
+          if (s.modMask & (1 << i)) {
+            const cls = wishedEquivClass[i];
+            wishedCounts[cls] = (wishedCounts[cls] ?? 0) + 1;
+          }
         }
+        attrs.wished = wishedCounts;
       }
-      attrs.wished = wishedCounts;
-      // Irrelevant slots: bucketed to "0" / "≥1" by default. Drops
-      // the exact count so chains of annul-spam states (5 irr → 4 irr
-      // → 3 irr → ...) merge. Set opts.exactIrr=true to keep exact.
-      const irrTotal = s.totalMods - popcount(s.modMask) - (s.irrFractured ? 1 : 0);
-      attrs.irr = opts.exactIrr ? irrTotal : (irrTotal > 0 ? '≥1' : 0);
       // Side allocation: NOT included by default — mirrors the
       // previous collapse rule that excluded prefixMods. Set
       // opts.showSide=true to differentiate by which side has irrs.
       if (opts.showSide) attrs.prefixMods = s.prefixMods ?? 0;
-      // Fractured: by default record only "is something fractured"
-      // (a boolean), since the SPECIFIC bit is wished-class-mapped
-      // via fracturedClassOf elsewhere. Set opts.exactFracture=true
-      // to keep the specific bit's class.
+      // Fractured: record "is something fractured" since the specific
+      // bit is wished-class-mapped via fracturedClassOf. Set
+      // opts.exactFracture=true to keep the specific bit's class.
       attrs.fractured = (s.fracturedBit >= 0)
         ? (opts.exactFracture ? wishedEquivClass[s.fracturedBit] : '?')
         : (s.irrFractured ? 'irr' : '-');

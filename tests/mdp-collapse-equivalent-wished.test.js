@@ -74,7 +74,17 @@ test('cold-only and fire-only branches collapse into a single representative per
       .replace(/\n+/g, '\n')
       .trim();
     const policy = s.meta?.policy ?? '-';
-    const key = `${s.kind}|${policy}|${canon}`;
+    // The engine's canonical-attrs partition uses bucketed totalMods
+    // (0 / 1 / 2 / ≥3). Two states with same loose canonical label
+    // but different totalMods buckets legitimately stay separate
+    // — e.g. tm=1 and tm=2 both render "· ≥1 irrelevant" after the
+    // post-collapse rewriter folds the per-side counts. Look up the
+    // underlying engine state via the rep's id to get the exact
+    // bucket the engine used.
+    const idx = parseInt(s.id.replace(/^s/, ''), 10);
+    const tm = result.states[idx]?.state?.totalMods ?? 0;
+    const tmBucket = tm <= 2 ? `tm=${tm}` : 'tm≥3';
+    const key = `${s.kind}|${policy}|${canon}|${tmBucket}`;
     const arr = buckets.get(key) ?? [];
     arr.push(s.id);
     buckets.set(key, arr);

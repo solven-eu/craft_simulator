@@ -301,7 +301,20 @@ export const useCraftStore = defineStore('craft', {
      * exceeds this many Divines. Default 3 — at 187 ex/div, costs above ~561 ex
      * read more naturally as `3.0 div` than `561 ex`.
      */
-    divThresholdDiv: fromUrlOr('divThresholdDiv', 3),
+    /**
+     * Currency unit for cost display: 'ex' renders every cost in
+     * Exalted, 'div' renders every cost in Divine. One unit per panel
+     * keeps comparisons cognitively cheap; the live exalted-per-divine
+     * rate from the rates panel handles the conversion.
+     */
+    displayUnit: fromUrlOr('displayUnit', 'ex'),
+    /**
+     * Confidence level for the practical "how many attempts to succeed
+     * with high probability" column (N_p). 0.95 by default — PoE2
+     * players craft 1–2 items, so the geometric mean is misleading;
+     * N_p answers "how many bases do I need to set aside?"
+     */
+    successProbTarget: fromUrlOr('successProbTarget', 0.95),
     /**
      * How tier comparison operators read.
      *  'gameplay' (default): T1 is "best"; "this tier or better" reads as `≥ T3`.
@@ -333,6 +346,13 @@ export const useCraftStore = defineStore('craft', {
      */
     mdpResult: null,
     mdpEvaluating: false,
+    /**
+     * Live progress from an in-flight solve. `null` when idle. Shape:
+     *   { phase: 'build'|'iterate', states, iters, delta, fraction }
+     * `fraction` is a heuristic 0..1 (log of delta vs convergence
+     * tolerance) — not exact, but monotonic, useful for a progress bar.
+     */
+    mdpProgress: null,
     /**
      * Sampled trajectory scenarios — each click of "🎲 Simulate"
      * appends one. Cleared by `clearMdpScenarios`.
@@ -898,29 +918,69 @@ export const useCraftStore = defineStore('craft', {
     solveMdp() {
       // Cancel any in-flight solve — the user clicked Re-solve while
       // a previous run was still going. Bumping the token causes the
-      // prior microtask-yielding loop to abort on its next yield.
+      // prior async loop's `shouldCancel` check to fire on its next
+      // yield, and the current task's bookkeeping is short-circuited.
       this._mdpSolveToken = (this._mdpSolveToken ?? 0) + 1;
       const myToken = this._mdpSolveToken;
       this.mdpEvaluating = true;
       this.mdpResult = null;
+      this.mdpProgress = { phase: 'starting', states: 0, iters: 0, delta: null, fraction: 0 };
       // Re-solving invalidates any cached distribution from prior MDP.
       this.mdpDistribution = null;
-      // Yield once to the event loop so the spinner paints before we
-      // start the heavy synchronous work. Without this, on a large
-      // craft the user would click and see the disabled-button state
-      // only after the 1–5s solve completes — looking frozen. Browser
-      // doesn't repaint inside a synchronous JS run.
-      Promise.resolve().then(() => new Promise((r) => setTimeout(r, 0))).then(() => {
-        if (this._mdpSolveToken !== myToken) return; // cancelled
+      // Yield once so the spinner paints before solveMDP begins
+      // synchronous setup work (state-space build, etc.).
+      Promise.resolve().then(() => new Promise((r) => setTimeout(r, 0))).then(async () => {
+        if (this._mdpSolveToken !== myToken) return;
         try {
+          // Force the strategiesResults computed property to evaluate
+          // — its side-effect populates `_lastStrategyCtx`, which the
+          // adapter below depends on. Without this read we'd silently
+          // bail at the next `if (!ctx)` and leave mdpResult as null.
           // eslint-disable-next-line no-unused-vars
           const _ = this._computeStrategies;
           const ctx = this._lastStrategyCtx;
           if (!ctx) return;
           const input = ctxToMdpInput(ctx);
           if (!input) return;
-          if (this._mdpSolveToken !== myToken) return; // cancelled mid-prep
-          this.mdpResult = solveMDP(input);
+          if (this._mdpSolveToken !== myToken) return;
+          // Track the first delta we see to estimate progress fraction
+          // as log(initialDelta / currentDelta) / log(initialDelta / tol).
+          // The convergence tolerance is engine-internal (1e-6); use
+          // that as the denominator scale.
+          let initialDelta = null;
+          let lastProgressAt = 0;
+          const TOL = 1e-6;
+          // Yield every 200 sweeps. Browsers clamp setTimeout(0) to
+          // ~4ms after a few levels of nesting, so K=10 with a 50000
+          // maxIters cap could spend ~20s just yielding. K=200 keeps
+          // the cap-bounded yield budget under 1s while still leaving
+          // the UI responsive between yields. Progress callback is
+          // rate-limited to 4 Hz so reactivity churn stays modest.
+          this.mdpResult = await solveMDP({
+            ...input,
+            yieldEvery: 200,
+            shouldCancel: () => this._mdpSolveToken !== myToken,
+            onProgress: (p) => {
+              if (this._mdpSolveToken !== myToken) return;
+              if (p.phase === 'iterate' && Number.isFinite(p.delta) && p.delta > 0) {
+                if (initialDelta == null || p.delta > initialDelta) initialDelta = p.delta;
+              }
+              const now = Date.now();
+              if (now - lastProgressAt < 250 && p.phase === 'iterate') return;
+              lastProgressAt = now;
+              if (p.phase === 'iterate' && Number.isFinite(p.delta) && p.delta > 0) {
+                const num = Math.log10(initialDelta / Math.max(p.delta, TOL));
+                const den = Math.log10(initialDelta / TOL);
+                const fraction = den > 0 ? Math.max(0, Math.min(1, num / den)) : 0;
+                this.mdpProgress = { ...p, fraction };
+              } else {
+                this.mdpProgress = { ...p, fraction: 0 };
+              }
+            },
+          });
+          if (this.mdpResult?.cancelled) {
+            this.mdpResult = null;
+          }
         } catch (e) {
           if (this._mdpSolveToken === myToken) {
             this.mdpResult = { error: String(e?.message ?? e) };
@@ -928,6 +988,7 @@ export const useCraftStore = defineStore('craft', {
         } finally {
           if (this._mdpSolveToken === myToken) {
             this.mdpEvaluating = false;
+            this.mdpProgress = null;
           }
         }
       });
@@ -1107,10 +1168,18 @@ export const useCraftStore = defineStore('craft', {
       } catch { /* per-base file may not exist for this base — fall back to consolidated data */ }
     },
     isWished(type, name) {
-      return Boolean(this.wishlist[wlKey(type, name)]);
+      // Canonicalise so a wish added from the base-pool panel (stored
+      // under the registry's canonical spelling) matches when the
+      // essence panel queries with its own essence-text spelling.
+      // Without this, "+# to maximum Life" (base) and "# to maximum
+      // Life" (essence) would hash to different wishlist keys and the
+      // ★ wished badge wouldn't surface in the essence row.
+      const canon = this.canonicalModName(name);
+      return Boolean(this.wishlist[wlKey(type, canon)] || this.wishlist[wlKey(type, name)]);
     },
     getScore(type, name) {
-      return this.wishlist[wlKey(type, name)]?.score ?? 1;
+      const canon = this.canonicalModName(name);
+      return (this.wishlist[wlKey(type, canon)] || this.wishlist[wlKey(type, name)])?.score ?? 1;
     },
     toggleWish(type, name) {
       const k = wlKey(type, name);
@@ -1200,9 +1269,20 @@ export const useCraftStore = defineStore('craft', {
     setTierComparisonMode(mode) {
       if (mode === 'gameplay' || mode === 'math') this.tierComparisonMode = mode;
     },
-    setDivThresholdDiv(n) {
-      const v = Number(n);
-      this.divThresholdDiv = Number.isFinite(v) && v >= 0 ? v : 3;
+    setDisplayUnit(u) {
+      if (u !== 'ex' && u !== 'div') return;
+      this.displayUnit = u;
+      // Keep `referenceCurrency` in lockstep — same concept, two
+      // legacy property names. The rates panel's "report cost in"
+      // select used to be independent; we now treat the displayUnit
+      // toggle as the single source of truth.
+      this.referenceCurrency = u === 'div' ? 'divine' : 'exalted';
+    },
+    setSuccessProbTarget(p) {
+      const v = Number(p);
+      // Clamp to [0.5, 0.999]: below 50% the "high-probability"
+      // framing breaks down; above 99.9% N_p explodes for low-p crafts.
+      this.successProbTarget = Number.isFinite(v) ? Math.max(0.5, Math.min(0.999, v)) : 0.95;
     },
     /** Returns true if `name` is already on the starting item under `type`. */
     isOnStarting(type, name) {
@@ -1502,6 +1582,9 @@ export const useCraftStore = defineStore('craft', {
     setReferenceCurrency(id) {
       this.referenceCurrency = id;
       saveReference(this.gameId, id);
+      // Mirror onto displayUnit so the rates-panel select and the
+      // Display-preferences toggle stay one canonical value.
+      this.displayUnit = id === 'divine' ? 'div' : 'ex';
     },
     /** Set or clear a per-orb time override (in seconds). */
     setTime(orbId, seconds) {

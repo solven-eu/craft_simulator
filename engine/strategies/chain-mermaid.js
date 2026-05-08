@@ -94,16 +94,18 @@ const RARITY_STROKE = {
   rare:   'stroke:#dcdc6e,stroke-width:3px',  // Yellow (Rare)
 };
 
-export function chainToMermaid(chain) {
+export function chainToMermaid(chain, options = {}) {
   if (!chain || !Array.isArray(chain.states) || !Array.isArray(chain.edges)) {
     return 'flowchart LR\n  NoChain["(no chain)"]';
   }
-  // Top-to-bottom layout: matches normal HTML reading order (start at
-  // top, goal at bottom) and avoids the wide-aspect issue LR creates
-  // for chains with many sequential states. Wishlist + Legend
-  // subgraphs sit above the main graph (still side-by-side via their
-  // own LR-direction inner row).
-  const lines = ['flowchart TD'];
+  // Layout direction is configurable: TD (top-down) is the default
+  // since it matches normal HTML reading order (start at top, goal
+  // at bottom) and avoids the wide-aspect issue LR creates for
+  // long chains. LR / RL / BT exposed for users who prefer a
+  // horizontal flow or reverse axes.
+  const dir = options.direction ?? 'TD';
+  const validDir = ['TD', 'TB', 'LR', 'RL', 'BT'].includes(dir) ? dir : 'TD';
+  const lines = [`flowchart ${validDir}`];
   // Track invisible edges so we can hide them after declaration. Mermaid's
   // nested `direction TB` is unreliable inside a flowchart-LR parent, so we
   // chain items vertically with invisible edges. Keep their indices to apply
@@ -207,8 +209,102 @@ export function chainToMermaid(chain) {
       invisibleEdgeIdx.push(edgeIdx++);
     }
   }
-  // Nodes
+  // Importance-based opacity. Goal: rare side branches recede
+  // visually while the dominant policy path + chaos-loop states
+  // stay vivid. Importance score:
+  //   I = pReach × max(1, log(1 + expectedVisits))
+  // The visits term keeps loop-prone states bright even when their
+  // per-step pReach is moderate. Mapping I → opacity is normalised
+  // against the chain's max. Floor at 0.60 (was 0.30) — the lower
+  // floor made low-P state text genuinely hard to read on the dark
+  // theme; this keeps the hierarchy but preserves legibility per
+  // user request (2026-05-08). Terminals (start/goal/bricked/
+  // near-trap) are always full opacity — they're narrative anchors.
+  const ALWAYS_VIVID = new Set(['start', 'goal', 'bricked', 'near-trap']);
+  const TIERS = [0.60, 0.68, 0.76, 0.84, 0.92, 1.00];
+  const importanceOf = (s) => {
+    if (ALWAYS_VIVID.has(s.kind)) return Infinity;
+    const p = Number.isFinite(s.pReach) ? s.pReach : 0;
+    const v = Number.isFinite(s.expectedVisits) ? s.expectedVisits : p;
+    if (p <= 0) return 0;
+    return p * Math.max(1, Math.log(1 + v));
+  };
+  let maxImportance = 0;
   for (const s of chain.states) {
+    if (ALWAYS_VIVID.has(s.kind)) continue;
+    const I = importanceOf(s);
+    if (Number.isFinite(I) && I > maxImportance) maxImportance = I;
+  }
+  const tierForState = (s) => {
+    if (ALWAYS_VIVID.has(s.kind) || maxImportance <= 0) return TIERS.length - 1;
+    const I = importanceOf(s);
+    if (!Number.isFinite(I) || I === Infinity) return TIERS.length - 1;
+    const norm = Math.max(0, Math.min(1, I / maxImportance));
+    const idx = Math.floor(norm * TIERS.length);
+    return Math.min(TIERS.length - 1, idx);
+  };
+  // Stamp opacity onto each state in-place so edges can inherit it
+  // (no second pass over states needed when we render edges below).
+  for (const s of chain.states) {
+    s._renderOpacity = TIERS[tierForState(s)];
+  }
+  // Inner-loop boxing. `chain.loops` (built by solve.js Tarjan SCC
+  // → action-bundle sub-partition) groups states whose policy
+  // traverses them cyclically. Two-level rendering:
+  //  - Outer subgraph per SCC (when the SCC contains ≥2 bundle-loops):
+  //    visualises "this is one cycle in graph terms, with multiple
+  //    micro-phases inside". Title summarises the macro structure.
+  //  - Inner subgraph per bundle-loop: titled by dominant actions
+  //    (e.g. "annul + exalt loop · ~2.1× visits"). Always rendered.
+  // SCCs containing a single loop render flat — no useless outer wrap.
+  const loops = Array.isArray(chain.loops) ? chain.loops : [];
+  const loopByNode = new Map();
+  loops.forEach((loop, i) => {
+    for (const id of loop.nodes) loopByNode.set(id, i);
+  });
+  // Group loops by their parent SCC.
+  const loopsBySccIndex = new Map();
+  loops.forEach((loop, i) => {
+    const k = Number.isInteger(loop.sccIndex) ? loop.sccIndex : -i; // unique fallback per loop
+    if (!loopsBySccIndex.has(k)) loopsBySccIndex.set(k, []);
+    loopsBySccIndex.get(k).push({ loop, idx: i });
+  });
+  const loopStateById = new Map(chain.states.map((s) => [s.id, s]));
+  // Helper to emit a bundle-loop subgraph at a given indent.
+  const emitLoop = (loop, idx, indent) => {
+    const visitsTag = Number.isFinite(loop.totalVisits)
+      ? ` · ~${loop.totalVisits.toFixed(1)}× visits`
+      : '';
+    const actionList = (loop.dominantActions || []).slice(0, 3).join(' + ');
+    const title = actionList
+      ? `${actionList} loop${visitsTag}`
+      : `loop${visitsTag}`;
+    lines.push(`${indent}subgraph loop_${idx} ["${escapeLabel(title)}"]`);
+    for (const id of loop.nodes) {
+      const s = loopStateById.get(id);
+      if (s) lines.push(`${indent}  ${nodeDecl(s)}`);
+    }
+    lines.push(`${indent}end`);
+  };
+  for (const [sccKey, group] of loopsBySccIndex) {
+    if (group.length >= 2 && sccKey >= 0) {
+      // Outer SCC wrap: aggregate visits + dominant bundles for the
+      // macro title. Bundles list is short (~2-3 entries), reads as
+      // "exalt+annul / chaos cycle".
+      const totalVisits = group.reduce((a, g) => a + (g.loop.totalVisits ?? 0), 0);
+      const bundles = [...new Set(group.map((g) => g.loop.bundle).filter(Boolean))];
+      const macroTitle = `${bundles.join(' / ')} cycle · ~${totalVisits.toFixed(1)}× visits`;
+      lines.push(`  subgraph scc_${sccKey} ["${escapeLabel(macroTitle)}"]`);
+      for (const { loop, idx } of group) emitLoop(loop, idx, '    ');
+      lines.push('  end');
+    } else {
+      // Single-loop SCC (or unparented loop): render flat.
+      for (const { loop, idx } of group) emitLoop(loop, idx, '  ');
+    }
+  }
+  // Non-loop nodes declared at top level.
+  for (const s of chain.states) {
+    if (loopByNode.has(s.id)) continue;
     lines.push(`  ${nodeDecl(s)}`);
   }
   // Edges (with labels). Mermaid supports `A -- "label" --> B` for labeled
@@ -227,11 +323,23 @@ export function chainToMermaid(chain) {
   // the legend / wishlist subgraphs, so chain edges are offset by
   // `invisibleEdgeIdx.length`.
   const offset = invisibleEdgeIdx.length;
+  // Quick lookup for source-state importance so edges leaving a faded
+  // state fade with it. (Built up once below; harmless if no states
+  // have importance signals — every edge then renders at full opacity.)
+  const stateById = new Map(chain.states.map((s) => [s.id, s]));
   chain.edges.forEach((e, i) => {
     const color = EDGE_COLOR[e.kind ?? 'internal'];
     if (!color) return;
     const width = strokeWidthForProb(e.prob);
-    lines.push(`  linkStyle ${offset + i} ${color},stroke-width:${width}px`);
+    let style = `${color},stroke-width:${width}px`;
+    // Inherit opacity from the source state's importance bucket so
+    // edges from a faded peripheral state read as faded too. Avoids
+    // the visual artefact of dim nodes connected by bright edges.
+    const fromState = stateById.get(e.from);
+    if (fromState && Number.isFinite(fromState._renderOpacity)) {
+      style += `,opacity:${fromState._renderOpacity.toFixed(2)}`;
+    }
+    lines.push(`  linkStyle ${offset + i} ${style}`);
   });
   // Invisible edges in legend/wishlist subgraphs: hide them entirely.
   for (const idx of invisibleEdgeIdx) {
@@ -260,6 +368,23 @@ export function chainToMermaid(chain) {
   }
   for (const [rarity, ids] of Object.entries(byRarity)) {
     lines.push(`  class ${ids.join(',')} rarity_${rarity}`);
+  }
+  // Importance opacity classDefs: bucket states into discrete tiers
+  // so we emit O(buckets) classDefs instead of O(states). 6 tiers
+  // between 0.30 and 1.00 give the eye enough resolution to read
+  // "main path / common / occasional / rare side branch" at a glance.
+  // The actual tier values are defined above (TIERS); mirroring is
+  // intentional so this section reads standalone for the renderer
+  // pass without scrolling back to the importance computation.
+  for (let t = 0; t < TIERS.length; t++) {
+    lines.push(`  classDef imp_${t} opacity:${TIERS[t].toFixed(2)}`);
+  }
+  const byTier = {};
+  for (const s of chain.states) {
+    (byTier[tierForState(s)] ||= []).push(sid(s.id));
+  }
+  for (const [t, ids] of Object.entries(byTier)) {
+    lines.push(`  class ${ids.join(',')} imp_${t}`);
   }
   return lines.join('\n');
 }

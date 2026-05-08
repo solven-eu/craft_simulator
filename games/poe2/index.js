@@ -2,7 +2,7 @@
 
 import { actions } from './actions.js';
 import { orbs } from './orbs.js';
-import { loadEssences } from './essences.js';
+import { loadEssences, loadEssenceModSides } from './essences.js';
 import { currencies, convert, CURRENCY_KINDS } from './currency.js';
 
 let omensPromise = null;
@@ -397,6 +397,8 @@ export const game = {
   loadItemDescriptions,
   loadEssences,
   loadEssencePrices,
+  loadEssenceSideOverrides,
+  loadEssenceModSides,
   loadOmens,
   loadRates,
 };

@@ -96,6 +96,9 @@ export function solveMDP(input) {
     // crafting). See isGoalState for semantics.
     minFilled: input.target?.minFilled ?? null,
     maxFilled: input.target?.maxFilled ?? null,
+    // Allow goal states to carry a pending unrevealed bone-mod —
+    // user opt-in for "stop at bone applied, defer reveal."
+    allowBonePending: !!input.target?.allowBonePending,
   };
 
   // ---- Build the start state ------------
@@ -139,6 +142,8 @@ export function solveMDP(input) {
   // a second bone, regardless of whether the desecrated counters
   // already register the pending one.
   const startBoneMod = !!input.start?.boneMod;
+  const startBoneSide = (input.start?.boneSide === 'PREFIX' || input.start?.boneSide === 'SUFFIX')
+    ? input.start.boneSide : null;
   const start = makeState({
     rarity: input.start?.rarity ?? 'normal',
     modMask: startMask,
@@ -151,6 +156,10 @@ export function solveMDP(input) {
     irrFractured: false,
     boneMod: startBoneMod,
     boneRevealed: false,
+    // Bone side carries through only when there's actually a pending
+    // bone — otherwise the field is meaningless and should stay null
+    // for clean state-key dedup.
+    boneSide: startBoneMod ? startBoneSide : null,
   });
 
   // ---- Env (immutable, passed to every transition) ----------
@@ -417,6 +426,11 @@ export function solveMDP(input) {
     basePriceEx: input.basePriceEx ?? 0,
     budgetEx: input.budgetEx ?? null,
     timeWeightExPerSec: input.timeWeightExPerSec ?? 0,
+    // Whether to collapse states that differ only by side allocation
+    // (irrelevant prefix vs suffix split, when behaviorally equivalent
+    // for the chain reader). Default on — large chains shrink
+    // significantly without losing user-relevant information.
+    collapseEquivalent: input.collapseEquivalent !== false,
     // Toggle for step-id prefix on node labels. Default on so debug
     // conversations can refer to "step s5" unambiguously; callers
     // can set false when the chart is too dense and the prefix
@@ -432,6 +446,18 @@ export function solveMDP(input) {
       warnings.push(
         `Duplicate chain-node labels (${dup.ids.length} nodes): `
         + `${dup.ids.join(', ')} — label="${dup.label.replace(/\n/g, ' \\n ')}"`,
+      );
+    }
+  }
+  // Surface outgoing-probability mismatches as warnings. When a node
+  // has outgoing edges that don't sum to 1.0, an outcome was dropped
+  // — the user will see "annul 66%" without the missing 33% sibling.
+  if (chain?.incompleteEdges?.length) {
+    for (const inc of chain.incompleteEdges) {
+      warnings.push(
+        `Chain node ${inc.from} action "${inc.action}": outgoing edges sum `
+        + `to ${(inc.total * 100).toFixed(1)}% (missing ${(inc.missing * 100).toFixed(1)}%). `
+        + `Visible edges: ${inc.edges.map((e) => `→${e.to} (${(e.prob * 100).toFixed(1)}%)`).join(', ')}`,
       );
     }
   }
@@ -462,6 +488,13 @@ export function solveMDP(input) {
     // Expose the budget cap as a sampler input, so trajectories can
     // truncate when they exceed budget. Otherwise null = unbounded.
     budgetCap,
+    // Initial-base acquisition cost. Restart-buy_base events are
+    // already accounted for as MDP transitions, but the FIRST base
+    // (acquiring the white item before any crafting) isn't a step in
+    // the trajectory walker — it's a pre-condition. Surfaced here so
+    // sampleTrajectory can prepend it to totalEx.
+    basePriceEx: input.basePriceEx ?? 0,
+    basePriceSec: input.basePriceSec ?? 60,
   };
 }
 
@@ -480,7 +513,7 @@ export function solveMDP(input) {
 //   - Strict-bricked states (goal-unreachable under any action) keep
 //     the same `bricked` kind too — the renderer doesn't need to
 //     distinguish "near-trap" from "strict trap" for this purpose.
-function buildChain({ states, appsPerState, vStar, policy, target, startIdx, budgetEx, timeWeightExPerSec, showStepIds = true, wishlist = [], basePriceEx = 0 }) {
+function buildChain({ states, appsPerState, vStar, policy, target, startIdx, budgetEx, timeWeightExPerSec, showStepIds = true, wishlist = [], basePriceEx = 0, collapseEquivalent = true }) {
   // Percentages read more naturally for orb-outcome odds. Below 0.01% use
   // scientific so 1e-6-class outcomes stay visible.
   const fmtP = (p) => {
@@ -526,19 +559,13 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
   // P_reach × itemValue if that framing is what they want, while we
   // keep the in-state itemValue = budget − V*(s) as the headline
   // number.
+  // Reachable-set discovery (BFS) is independent of the pReach
+  // computation — each state visited at most once here.
   const reachable = new Set();
-  const pReach = new Map();
-  pReach.set(startIdx, 1);
-  // BFS in topological-ish order: process state, push successors with
-  // accumulated probability. Cycles (e.g. annul-no-op self-loops) are
-  // safe because a state's pReach can only increase; we cap iterations
-  // by a node-visit count.
-  const queue = [startIdx];
-  const visited = new Array(states.length).fill(0);
-  while (queue.length) {
-    const i = queue.shift();
-    if (visited[i] > 16) continue; // safety: bounded re-visits on cycles
-    visited[i]++;
+  const reachQueue = [startIdx];
+  while (reachQueue.length) {
+    const i = reachQueue.shift();
+    if (reachable.has(i)) continue;
     reachable.add(i);
     if (isGoalState(states[i], target)) continue;
     const a = policy[i];
@@ -547,15 +574,52 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     const apps = appsPerState.get(i) ?? [];
     const app = apps.find((x) => x.actionId === a);
     if (!app) continue;
-    const piHere = pReach.get(i) ?? 0;
     for (const o of app.outcomes) {
-      // Self-loop (annul on no-removable): skip pReach accumulation,
-      // it would double-count without changing anything.
       if (o.to === i) continue;
-      const prev = pReach.get(o.to) ?? 0;
-      pReach.set(o.to, prev + piHere * o.prob);
-      queue.push(o.to);
+      reachQueue.push(o.to);
     }
+  }
+  // pReach computation via fixed-point iteration. The previous BFS-
+  // accumulator approach added to successors' pReach on every
+  // revisit, capped at 16 per state — producing up to 16× over-
+  // count when cycles or fan-in pulled the same state through the
+  // queue repeatedly. Fixed-point iteration is structurally correct:
+  // pReach(s) = Σ over (parent → s, prob_p→s) of pReach(parent) × p,
+  // computed by sweeping until no value changes. Self-loops are
+  // skipped (they don't change the inflow).
+  const pReach = new Map();
+  pReach.set(startIdx, 1);
+  for (const i of reachable) if (i !== startIdx) pReach.set(i, 0);
+  // Pre-collect inbound edges per reachable state under π*.
+  const inbound = new Map();
+  for (const i of reachable) inbound.set(i, []);
+  for (const i of reachable) {
+    if (isGoalState(states[i], target)) continue;
+    const a = policy[i];
+    if (!a || a === 'buy_base') continue;
+    if (isBrickedByFracture(states[i], target)) continue;
+    const apps = appsPerState.get(i) ?? [];
+    const app = apps.find((x) => x.actionId === a);
+    if (!app) continue;
+    for (const o of app.outcomes) {
+      if (o.to === i) continue; // self-loop
+      const arr = inbound.get(o.to);
+      if (arr) arr.push({ from: i, prob: o.prob });
+    }
+  }
+  for (let iter = 0; iter < 200; iter++) {
+    let maxDelta = 0;
+    for (const i of reachable) {
+      if (i === startIdx) continue;
+      let next = 0;
+      for (const inEdge of inbound.get(i) ?? []) {
+        next += (pReach.get(inEdge.from) ?? 0) * inEdge.prob;
+      }
+      const delta = Math.abs(next - (pReach.get(i) ?? 0));
+      if (delta > maxDelta) maxDelta = delta;
+      pReach.set(i, next);
+    }
+    if (maxDelta < 1e-9) break;
   }
   // ---- Forward-pass secondary value: `valueFromBase` ----
   // Per user direction (corrected 2026-05-07):
@@ -821,7 +885,20 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     if (s.boneMod && !s.boneRevealed) label += `\n🦴 unrevealed bone-mod`;
     let kind = 'transient';
     if (isGoal) kind = 'goal';
-    else if (strictBricked || policyBricked) kind = 'bricked';
+    // Two distinct senses of "the engine doesn't progress here":
+    //   - strictBricked: truly stuck (fracture wrong-bit, or
+    //     irrelevant-fractured + fracture target on goal). No
+    //     in-place action can ever reach goal — restart is the only
+    //     option. Rendered in red 'bricked' style.
+    //   - policyBricked: engine's optimal action is `buy_base`
+    //     because V*(restart) < V*(any in-place action). Not stuck;
+    //     just unprofitable to continue. Rendered in orange-amber
+    //     'near-trap' so the user can distinguish "give up, restart"
+    //     from "literally cannot continue." Particularly important
+    //     for states where annul or chaos COULD recover but the
+    //     expected cost (over outcomes) makes restart cheaper.
+    else if (strictBricked) kind = 'bricked';
+    else if (policyBricked) kind = 'near-trap';
     // Render bricked V* as ∞: the displayed value should match the
     // visual cue. The internal V*(s) under our action set is finite
     // (buy_base = 100 + V*(start) is always available), but a bricked
@@ -830,9 +907,18 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     // restart edge. Showing finite V* alongside the red-skull styling
     // confused the user into thinking "wait, this isn't actually dead?"
     // — which it is, modulo paying for a fresh base.
-    label += kind === 'bricked'
-      ? `\nV*=∞ (restart costs ${fmtV(vStar[i])})`
-      : `\nV*=${fmtV(vStar[i])}`;
+    if (kind === 'bricked') {
+      label += `\nV*=∞ (restart costs ${fmtV(vStar[i])})`;
+    } else if (kind === 'near-trap') {
+      // Engine prefers restart, but the state is recoverable in
+      // principle. Show the actual V* (=cost of buy_base) plus a
+      // hint so the reader knows annul/chaos COULD work, just not
+      // optimally. The "Why this orb?" alternatives panel exposes
+      // each in-place option's Q-value for comparison.
+      label += `\nV*=${fmtV(vStar[i])} (restart preferred)`;
+    } else {
+      label += `\nV*=${fmtV(vStar[i])}`;
+    }
     if (budgetEx != null && Number.isFinite(budgetEx)) {
       const raw = itemValueAlt.get(i);
       const val = Number.isFinite(raw) ? Math.max(0, raw) : 0;
@@ -842,13 +928,26 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       // Renamed from generic `value` to make the contrast with the
       // forward-pass `fromBase` explicit in the label.
       label += `\nfromBudget=${fmtVal(val)} ex`;
-      // P_reach annotation: probability of landing here when following
-      // π* from start. Useful alongside itemValue to compute "weighted
-      // contribution to outcome." Skip on start (P=1) and goal
-      // (implicit terminal state).
+      // Reach metrics: two distinct quantities sourced from the
+      // same fixed-point iteration over expected visits.
+      //   P_reach   = approximate probability the trajectory passes
+      //               through this state at least once. Clamped at
+      //               100%. For terminals (goal/bricked, absorbing)
+      //               this equals exactly E[visits]; for cycle-
+      //               prone non-terminals it's an upper-bound proxy.
+      //   visits    = expected number of times the trajectory
+      //               passes through this state per attempt. Shown
+      //               only when > 1 (i.e. the state is inside a
+      //               loop — annul-then-refill, chaos cycle, etc.)
+      //               so the user can distinguish "lands here once
+      //               with high prob" from "iterates here several
+      //               times".
       const p = pReach.get(i) ?? 0;
-      if (i !== startIdx && !isGoal && p > 0 && p < 1) {
-        label += `\nP_reach=${fmtP(p)}`;
+      if (i !== startIdx && p > 0) {
+        label += `\nP_reach=${fmtP(Math.min(1, p))}`;
+        if (p > 1 + 1e-3) {
+          label += `\nvisits=${p < 10 ? p.toFixed(2) : p.toFixed(1)}×`;
+        }
       }
     }
     // Secondary value: forward-pass value from base item (basePriceEx
@@ -860,6 +959,49 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
         label += `\nfromBase=${fmtVal(fv)} ex`;
       }
     }
+    // Per-state alternatives: every applicable action's Q-value
+    // (= cost + Σ p · V*(s')) plus a delta vs the chosen policy.
+    // Answers "why not <orb>?" — the action with the lowest Q is
+    // the one π* picked; the rest are sorted by ascending Q so the
+    // closest-runner-up surfaces first. Bricked actions (V*=∞ on
+    // every outcome) get qValue=Infinity and stay at the bottom.
+    const alternatives = [];
+    if (!isGoal && !strictBricked) {
+      const apps = appsPerState.get(i) ?? [];
+      const stateUnifiedCost = (ex, sec) => ex + sec * (timeWeightExPerSec ?? 0);
+      for (const app of apps) {
+        const cost = stateUnifiedCost(
+          app.outcomes[0]?.costEx ?? 0,
+          app.outcomes[0]?.costSec ?? 0,
+        );
+        let q = cost;
+        let bricked = false;
+        for (const o of app.outcomes) {
+          const v = vStar[o.to];
+          if (!Number.isFinite(v)) { bricked = true; break; }
+          q += o.prob * v;
+        }
+        alternatives.push({
+          actionId: app.actionId,
+          costEx: cost,
+          qValue: bricked ? Infinity : q,
+        });
+      }
+      alternatives.sort((a, b) => a.qValue - b.qValue);
+      // Annotate Δ vs the optimal action so consumers can render
+      // "annul: Q=12.5 ex (+0)" / "exalt: Q=18.7 ex (+6.2)".
+      const best = alternatives.length ? alternatives[0].qValue : 0;
+      for (const a of alternatives) {
+        a.deltaQ = Number.isFinite(a.qValue) ? a.qValue - best : Infinity;
+      }
+    }
+    // Importance signals for the renderer: `pReach` is the raw
+    // fixed-point value (capped at 1.0 = "always visited", > 1 means
+    // expected revisits — the chaos-loop case). `expectedVisits` is
+    // the same value uncapped; we store both because the importance
+    // formula `pReach × max(1, log(1+visits))` keeps loop states
+    // visually prominent even when their per-step probability is low.
+    const pReachRaw = pReach.get(i) ?? 0;
     chainStates.push({
       id: `s${i}`,
       label,
@@ -867,7 +1009,9 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       // Rarity flows separately so the renderer can apply per-rarity
       // border colour (white/blue/yellow) without parsing the label.
       rarity: s.rarity,
-      meta: { vStar: vStar[i], policy: policy[i] },
+      pReach: Math.min(1, pReachRaw),
+      expectedVisits: pReachRaw,
+      meta: { vStar: vStar[i], policy: policy[i], alternatives },
     });
   }
   // Edges: only outbound from non-bricked, non-goal states.
@@ -886,19 +1030,29 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     // no information beyond the V* annotation already on the nodes.
     // Probabilistic actions colour each outcome by ΔV* delta.
     const isDeterministic = app.outcomes.length === 1;
+    // First pass: collapse outcomes that share the same destination
+    // state into one bucket per (to). Mermaid renders parallel edges
+    // (multiple lines between the same node pair) by stacking them
+    // visually — only the topmost is reliably visible. Two annul
+    // outcomes both landing at the same post-state would otherwise
+    // appear as a single edge labelled with one of the two probs,
+    // hiding the rest of the mass. Sum probs per destination so the
+    // edge label reads e.g. `annul / 99%` (combined) instead of just
+    // `annul / 66%` with the 33% sibling invisible.
+    const byDest = new Map();
     for (const o of app.outcomes) {
       if (!present(o.to)) continue; // shouldn't happen — BFS already pulled it in
+      const key = o.to;
+      const cur = byDest.get(key) ?? { to: o.to, prob: 0 };
+      cur.prob += o.prob;
+      byDest.set(key, cur);
+    }
+    for (const o of byDest.values()) {
       // Edge kind reflects how much closer the outcome gets us to the
       // goal — quantified by ΔV* = V*(s) - V*(s'). All four buckets show
       // up inside a single orb's outcome fan (e.g. transmute: hit wished
       // ⇒ big V* drop = success; hit irrelevant ⇒ small drop = improving;
       // brick ⇒ V* spikes = fail; nothing changed ⇒ flat = internal).
-      // Threshold is tight (0.01%) on purpose: even a small V* uptick on
-      // an irrelevant-mod hit (e.g. transmute on Normal landing a useless
-      // affix and now you're stuck on a 1-mod Magic) deserves the `fail`
-      // colour — the user reads outcome colours to spot which branch is
-      // the lucky one. Equal-V* loops (rare in practice — usually means
-      // the action is genuinely a no-op for that branch) stay `internal`.
       let kind = 'internal';
       if (!isDeterministic) {
         const v0 = vStar[i], v1 = vStar[o.to];
@@ -919,6 +1073,260 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       });
     }
   }
+
+  // Equivalence-class collapse: states that differ ONLY by side
+  // allocation (prefixMods, desecratedIrrPrefix, desecratedIrrSuffix)
+  // — i.e. how irrelevant slots distribute across prefix/suffix —
+  // and that landed on the same chosen action are presentationally
+  // identical for the chain reader. Merging them shrinks large
+  // chains without hiding meaningful policy decisions. The
+  // underlying engine state space stays untouched (the engine still
+  // distinguishes for downstream side-aware actions like
+  // bone-reveal); collapse is purely a chart-rendering simplification.
+  let collapsedNotice = null;
+  if (collapseEquivalent && chainStates.length > 1) {
+    // Equivalence key: every state-key field EXCEPT the side-split
+    // counters, plus the chosen-action id. Two states with the same
+    // key are presentationally interchangeable.
+    const eqKey = (cs) => {
+      const idx = parseInt(cs.id.replace(/^s/, ''), 10);
+      // Inside buildChain the `states` param IS the raw state array
+      // from buildStateSpace (each entry is a state object directly,
+      // NOT a wrapper with `.state`). Earlier draft used `?.state`
+      // which silently produced undefined and fell back to the id —
+      // making every group of size 1 and the collapse a no-op.
+      const s = states[idx];
+      if (!s) return cs.id;
+      return [
+        s.rarity, s.modMask, s.totalMods,
+        s.desecratedWishedMask ?? 0,
+        s.fracturedBit, s.irrFractured ? 1 : 0,
+        s.boneMod ? 1 : 0, s.boneRevealed ? 1 : 0,
+        s.boneSide ?? '-',
+        cs.kind,
+        cs.meta?.policy ?? '-',
+      ].join('|');
+    };
+    const groups = new Map();
+    for (const cs of chainStates) {
+      const k = eqKey(cs);
+      const arr = groups.get(k) ?? [];
+      arr.push(cs);
+      groups.set(k, arr);
+    }
+    // Build a redirect map: every chain id → canonical id (the first
+    // state in each group becomes the representative).
+    const redirect = new Map();
+    let collapsedCount = 0;
+    for (const arr of groups.values()) {
+      const rep = arr[0];
+      for (const cs of arr) redirect.set(cs.id, rep.id);
+      if (arr.length > 1) collapsedCount += arr.length - 1;
+    }
+    if (collapsedCount > 0) {
+      // Filter chainStates to representatives only.
+      const representatives = new Set();
+      for (const id of redirect.values()) representatives.add(id);
+      const newChainStates = chainStates.filter((cs) => representatives.has(cs.id));
+      // For per-(from, action) probability renormalisation: when
+      // collapse merges multiple source states into a representative,
+      // each source contributed outgoing edges that summed to 1.0.
+      // Naively summing across sources can drive the representative's
+      // outgoing total past 1.0 (e.g. 0.6 + 0.5 to the same dest →
+      // 1.1). Compute per-source outgoing totals BEFORE merging so
+      // we can renormalise after.
+      const sourceCount = new Map();
+      for (const arr of groups.values()) {
+        sourceCount.set(arr[0].id, arr.length);
+      }
+      // Re-label representatives whose group had >1 member: the side
+      // breakdown is no longer meaningful (the collapsed siblings had
+      // different prefix/suffix splits), so replace per-side
+      // irrelevant lines with a single `· N irrelevant` line.
+      const groupSize = new Map();
+      for (const arr of groups.values()) {
+        if (arr.length > 1) groupSize.set(arr[0].id, arr.length);
+      }
+      for (const cs of newChainStates) {
+        if (!groupSize.has(cs.id)) continue;
+        // Strip per-side irrelevant lines and emit a single
+        // side-agnostic line. Keeps any 🦴 desecrated×N marker
+        // attached at the end so provenance info isn't lost.
+        const lines = cs.label.split('\n');
+        let totalIrr = 0;
+        let desecMark = '';
+        const kept = [];
+        for (const ln of lines) {
+          const m = /^· [PS\?]: (\d+) irrelevant(.*)$/.exec(ln);
+          if (m) {
+            totalIrr += Number(m[1]);
+            if (m[2] && /🦴×/.test(m[2]) && !desecMark) desecMark = m[2];
+          } else {
+            kept.push(ln);
+          }
+        }
+        if (totalIrr > 0) {
+          // Insert the merged line in the same position the first
+          // per-side line occupied (after the wished-bit lines, before
+          // the V*/fromBudget/etc. footer).
+          const insertAt = kept.findIndex((l) => /^V\*=|^fromBudget=|^fromBase=|^P_reach=/.test(l));
+          const mergedLine = `· ${totalIrr} irrelevant${desecMark}`;
+          if (insertAt >= 0) kept.splice(insertAt, 0, mergedLine);
+          else kept.push(mergedLine);
+        }
+        cs.label = kept.join('\n');
+      }
+      // Rewrite edge endpoints + merge parallel edges (same from/to/action).
+      // Self-loops (from === to after redirect) used to be dropped here —
+      // but that silently lost probability mass when an outcome's
+      // destination state happened to redirect to the same representative
+      // as the source. User report (2026-05-08): "from s72 I see 2 edges
+      // for annul, 50% + 33% = 83% — where's the other 17%?" — that 17%
+      // was a chaos outcome whose destination collapsed back into s72's
+      // equivalence class. Keeping self-loops makes the missing mass
+      // visible (rendered as a curve from the node back to itself);
+      // the per-(from, action) renormalisation below handles the math.
+      const edgeKey = (e) => `${e.from}→${e.to}|${e.label.split('\n')[0]}`;
+      const merged = new Map();
+      for (const e of chainEdges) {
+        const from = redirect.get(e.from) ?? e.from;
+        const to   = redirect.get(e.to)   ?? e.to;
+        const action = (e.label ?? '').split('\n')[0];
+        const k = `${from}→${to}|${action}`;
+        const cur = merged.get(k);
+        if (cur) {
+          cur.prob = (cur.prob ?? 0) + (e.prob ?? 0);
+          cur.label = `${action}\n${fmtP(cur.prob)}`;
+        } else {
+          merged.set(k, { ...e, from, to });
+        }
+      }
+      // Renormalise per (from, action) so the representative's
+      // outgoing edges sum to 1.0. When N sources collapse into the
+      // representative, each contributed outgoing mass of 1.0; the
+      // naive sum is N. Divide by N (the source count) to get the
+      // average outgoing distribution. Equivalent to: compute per
+      // (from, action) group total, then if total > 1, scale all
+      // edges in the group by 1 / N.
+      const mergedArr = [...merged.values()];
+      const groupTotals = new Map();
+      for (const e of mergedArr) {
+        const k = `${e.from}|${(e.label ?? '').split('\n')[0]}`;
+        groupTotals.set(k, (groupTotals.get(k) ?? 0) + (e.prob ?? 0));
+      }
+      for (const e of mergedArr) {
+        const action = (e.label ?? '').split('\n')[0];
+        const total = groupTotals.get(`${e.from}|${action}`) ?? 1;
+        // If total exceeds 1.0 due to N-way source collapse, divide
+        // by N (= source count) so the representative's outgoing
+        // probability is the AVERAGE over collapsed sources rather
+        // than their SUM. Tolerance 1e-6 — floating-point summing of
+        // probabilities can produce 1.0000001 even without collapse.
+        if (total > 1 + 1e-6) {
+          const n = sourceCount.get(e.from) ?? 1;
+          if (n > 1) {
+            e.prob = (e.prob ?? 0) / n;
+            e.label = `${action}\n${fmtP(e.prob)}`;
+          }
+        }
+      }
+      // Re-compute the representative's P_reach as the SUM of the
+      // merged sources' P_reach values, then rewrite the label so
+      // the displayed P_reach reflects the collapsed-group total
+      // rather than just the first source's individual pReach.
+      // Without this fix, e.g. an irrelevant-landed magic|0|1 group
+      // whose 4 sources each had pReach≈25% would display 25% on
+      // the representative — the user expects 97.4% (the sum).
+      for (const cs of newChainStates) {
+        const arr = groups.get(eqKey(cs));
+        if (!arr || arr.length <= 1) continue;
+        let totalReach = 0;
+        const distinctPrefixCounts = new Set();
+        for (const sib of arr) {
+          const idx = parseInt(sib.id.replace(/^s/, ''), 10);
+          totalReach += pReach.get(idx) ?? 0;
+          const sibState = states[idx];
+          if (sibState) distinctPrefixCounts.add(sibState.prefixMods ?? 0);
+        }
+        // Rewrite the P_reach + visits annotations to reflect the
+        // group total (matching the split-line scheme used for
+        // uncollapsed states above).
+        if (totalReach > 0) {
+          const reachLine  = `P_reach=${fmtP(Math.min(1, totalReach))}`;
+          const visitsLine = totalReach > 1 + 1e-3
+            ? `visits=${totalReach < 10 ? totalReach.toFixed(2) : totalReach.toFixed(1)}×`
+            : null;
+          // Strip any prior P_reach / visits lines, then re-append.
+          let stripped = cs.label
+            .replace(/\nP_reach=[^\n]*/, '')
+            .replace(/\nvisits=[^\n]*/, '');
+          stripped += `\n${reachLine}`;
+          if (visitsLine) stripped += `\n${visitsLine}`;
+          cs.label = stripped;
+          // Sync pReach / expectedVisits on the merged representative
+          // too — the renderer's importance formula reads these
+          // directly, so leaving them at the original (non-merged)
+          // single-source value would understate loop-prone collapsed
+          // groups.
+          cs.pReach = Math.min(1, totalReach);
+          cs.expectedVisits = totalReach;
+        }
+        // Side-agnostic irrelevant label when the group merges states
+        // with different prefixMods. Without this, a representative
+        // whose siblings include both 1P+0S and 0P+1S still renders
+        // as one specific side ("· P: 1 irrelevant" or "· S: 1 ...")
+        // — and an outgoing edge to a "2 suffix" representative looks
+        // like an impossible "1 prefix → 2 suffix" transition under
+        // exalt-greater (which can't move existing affixes).
+        // Replace the per-side lines with a single combined line so
+        // the rendered transition reads honestly: "1 irrelevant → 2
+        // irrelevant via exalt_greater" (with the side allocation
+        // intentionally hidden, matching the eqKey's collapse rule).
+        if (distinctPrefixCounts.size > 1) {
+          const lines = cs.label.split('\n');
+          const PRE_RE = /^· P: (\d+) irrelevant(.*)$/;
+          const SUF_RE = /^· S: (\d+) irrelevant(.*)$/;
+          let totalIrr = 0;
+          let trailingTags = '';
+          let kept = [];
+          for (const ln of lines) {
+            const mp = ln.match(PRE_RE);
+            const ms = ln.match(SUF_RE);
+            if (mp) { totalIrr += parseInt(mp[1], 10); trailingTags += mp[2] || ''; }
+            else if (ms) { totalIrr += parseInt(ms[1], 10); trailingTags += ms[2] || ''; }
+            else kept.push(ln);
+          }
+          if (totalIrr > 0) {
+            // Splice the combined line back where the first per-side
+            // line used to be (typically just below the wished mods),
+            // so the layout stays visually consistent.
+            const insertAt = kept.findIndex((ln) => /^P_reach|^visits|^V\*|^fromBudget|^fromBase/.test(ln));
+            const combined = `· ${totalIrr} irrelevant${trailingTags}`;
+            if (insertAt >= 0) kept.splice(insertAt, 0, combined);
+            else kept.push(combined);
+            cs.label = kept.join('\n');
+          }
+        }
+      }
+      chainStates.length = 0;
+      chainStates.push(...newChainStates);
+      chainEdges.length = 0;
+      chainEdges.push(...mergedArr);
+      // Re-classify edges whose from-group is now size 1 (single
+      // outcome after collapse) as `internal` — matches the
+      // pre-collapse convention that probabilistic kinds (success /
+      // improving / fail) only apply to branching outcomes.
+      const fromCounts = new Map();
+      for (const e of chainEdges) {
+        fromCounts.set(e.from, (fromCounts.get(e.from) ?? 0) + 1);
+      }
+      for (const e of chainEdges) {
+        if (fromCounts.get(e.from) === 1) e.kind = 'internal';
+      }
+      collapsedNotice = `chain collapsed: merged ${collapsedCount} equivalent state(s) by side-allocation`;
+    }
+  }
+
   // Duplicate-label detector: distinct chain states should render
   // distinct labels. When two nodes share the same label modulo the
   // `[sN] ` step-id prefix, either (a) the BFS produced two indices
@@ -940,11 +1348,218 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     if (ids.length > 1) duplicateLabels.push({ label, ids });
   }
 
+  // Outgoing-probability completeness check. For every chain node
+  // that has outgoing edges (i.e. isn't a terminal goal / brick /
+  // buy_base), the probabilities along the chosen action's outcomes
+  // should sum to 1.0. When they don't, an outcome was dropped —
+  // either filtered out somewhere in the BFS (e.g. destination not
+  // in `reachable`) or the action's `transitions` returned an
+  // incomplete distribution. Surface as a warning so the user
+  // doesn't see "annul 66%" without the complementary 33% sibling.
+  const incompleteEdges = [];
+  const outByFrom = new Map();
+  for (const e of chainEdges) {
+    const arr = outByFrom.get(e.from) ?? [];
+    arr.push(e);
+    outByFrom.set(e.from, arr);
+  }
+  for (const [from, edges] of outByFrom) {
+    // Group by action label so a single node with multiple chosen
+    // actions (shouldn't happen under a deterministic policy, but
+    // safe-guard) gets per-action totals.
+    const byAction = new Map();
+    for (const e of edges) {
+      const action = (e.label ?? '').split('\n')[0];
+      const arr = byAction.get(action) ?? [];
+      arr.push(e);
+      byAction.set(action, arr);
+    }
+    for (const [action, es] of byAction) {
+      const total = es.reduce((s, e) => s + (e.prob ?? 0), 0);
+      if (Math.abs(total - 1.0) > 1e-6) {
+        incompleteEdges.push({
+          from,
+          action,
+          total,
+          missing: 1 - total,
+          edges: es.map((e) => ({ to: e.to, prob: e.prob })),
+        });
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────
+  // Inner-loop detection. Strongly-connected components of size ≥ 2
+  // in the chain edge graph are "inner loops" — cycles the user
+  // walks repeatedly under π* (typical: exalt-then-annul, chaos-spam,
+  // fracture-roulette). Surfaced as `chain.loops` so the renderer
+  // can box them as Mermaid subgraphs, making the chain's high-level
+  // structure ("phase 1 → loop A → phase 2 → loop B → goal") visible
+  // at a glance instead of requiring the reader to trace edges.
+  //
+  // Iterative Tarjan's SCC (recursion would blow the stack on the
+  // larger chains). Standard textbook implementation; the per-edge
+  // outer-loop is O(V + E).
+  // ─────────────────────────────────────────────────────────
+  const loops = (() => {
+    const adj = new Map();
+    for (const cs of chainStates) adj.set(cs.id, []);
+    for (const e of chainEdges) {
+      if (!adj.has(e.from) || !adj.has(e.to)) continue;
+      adj.get(e.from).push({ to: e.to, prob: e.prob ?? 0, action: (e.label ?? '').split('\n')[0] });
+    }
+    const indexMap = new Map();
+    const lowlink = new Map();
+    const onStack = new Set();
+    const stack = [];
+    let nextIndex = 0;
+    const sccs = [];
+    // Iterative Tarjan's: each frame stores (node, neighbour-iterator,
+    // childReturn). When `childReturn` is set, the parent updates
+    // lowlink with the child's lowlink (post-recursion bookkeeping).
+    for (const root of adj.keys()) {
+      if (indexMap.has(root)) continue;
+      const callStack = [{ node: root, iter: 0, childRet: null }];
+      indexMap.set(root, nextIndex);
+      lowlink.set(root, nextIndex);
+      nextIndex++;
+      stack.push(root);
+      onStack.add(root);
+      while (callStack.length) {
+        const frame = callStack[callStack.length - 1];
+        const { node, iter, childRet } = frame;
+        if (childRet != null) {
+          // Returning from a child — update parent's lowlink.
+          lowlink.set(node, Math.min(lowlink.get(node), lowlink.get(childRet)));
+          frame.childRet = null;
+        }
+        const neighbours = adj.get(node) ?? [];
+        if (iter < neighbours.length) {
+          const w = neighbours[iter].to;
+          frame.iter = iter + 1;
+          if (!indexMap.has(w)) {
+            indexMap.set(w, nextIndex);
+            lowlink.set(w, nextIndex);
+            nextIndex++;
+            stack.push(w);
+            onStack.add(w);
+            callStack.push({ node: w, iter: 0, childRet: null });
+          } else if (onStack.has(w)) {
+            lowlink.set(node, Math.min(lowlink.get(node), indexMap.get(w)));
+          }
+        } else {
+          // Done iterating; if root of an SCC, pop the component.
+          if (lowlink.get(node) === indexMap.get(node)) {
+            const comp = [];
+            while (stack.length) {
+              const w = stack.pop();
+              onStack.delete(w);
+              comp.push(w);
+              if (w === node) break;
+            }
+            if (comp.length >= 2) sccs.push(comp);
+          }
+          callStack.pop();
+          if (callStack.length) callStack[callStack.length - 1].childRet = node;
+        }
+      }
+    }
+    // Sub-partition each SCC by ACTION BUNDLE. Tarjan returns ONE
+    // big SCC whenever annul ↔ exalt edges connect the entire
+    // forward+backward range — but the user mentally groups exalt
+    // + annul as the SAME phase (forward / reverse of in-place
+    // fill). Per-bundle sub-partitioning produces "exalt+annul
+    // phase", "chaos phase", "regal phase", etc. — matching the
+    // user's mental model.
+    // (User report 2026-05-08: "I see one big subgraph; expected
+    // two — 4-6 mods and 3-4 mods.")
+    const ACTION_BUNDLE = (a) => {
+      if (!a) return null;
+      if (/^exalt/.test(a) || a === 'annul') return 'exalt+annul';
+      if (/^chaos/.test(a)) return 'chaos';
+      if (/^regal/.test(a)) return 'regal';
+      if (/^transmute/.test(a) || /^augment/.test(a)) return 'magic';
+      if (a === 'alch') return 'alch';
+      if (/^fractur/.test(a)) return 'fracture';
+      if (/bone/.test(a)) return 'bone';
+      return a; // unknown action stays in its own bundle
+    };
+    const stateById = new Map(chainStates.map((cs) => [cs.id, cs]));
+    const out = [];
+    for (let sccIndex = 0; sccIndex < sccs.length; sccIndex++) {
+      const comp = sccs[sccIndex];
+      // Group members by their action bundle. States without a
+      // policy (terminals) get a null bundle and are filtered.
+      const byBundle = new Map();
+      for (const id of comp) {
+        const policy = stateById.get(id)?.meta?.policy;
+        const bundle = ACTION_BUNDLE(policy);
+        if (!bundle) continue;
+        if (!byBundle.has(bundle)) byBundle.set(bundle, []);
+        byBundle.get(bundle).push(id);
+      }
+      const memberSet = new Set(comp);
+      for (const [bundle, nodes] of byBundle) {
+        let totalVisits = 0;
+        for (const id of nodes) {
+          const cs = stateById.get(id);
+          if (cs && Number.isFinite(cs.expectedVisits)) totalVisits += cs.expectedVisits;
+        }
+        // Drop low-traffic sub-bands. ≥ 1 visit threshold so trivial
+        // oscillations don't get boxed; the user wants the
+        // structurally-interesting phases.
+        if (totalVisits < 1 - 1e-6) continue;
+        // dominantActions: the actual action(s) used by states in
+        // this bundle, ordered by aggregate transition probability
+        // mass. Surfacing both "exalt" and "annul" lets the renderer
+        // title the box "exalt + annul loop" naturally.
+        const actionMass = new Map();
+        for (const id of nodes) {
+          for (const nb of adj.get(id) ?? []) {
+            if (!memberSet.has(nb.to)) continue;
+            // Only count transitions whose action is part of this
+            // bundle, so cross-bundle edges (e.g. annul → buy_base)
+            // don't pollute the title.
+            if (ACTION_BUNDLE(nb.action) !== bundle) continue;
+            actionMass.set(nb.action, (actionMass.get(nb.action) ?? 0) + nb.prob);
+          }
+        }
+        const dominantActions = [...actionMass.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .map(([a]) => a)
+          .filter(Boolean);
+        // Fallback: if no internal-bundle edges (rare — happens when
+        // a sub-band only has cross-bundle outgoing edges), just
+        // list the policies of the member states.
+        if (!dominantActions.length) {
+          const seen = new Set();
+          for (const id of nodes) {
+            const p = stateById.get(id)?.meta?.policy;
+            if (p && !seen.has(p)) { seen.add(p); dominantActions.push(p); }
+          }
+        }
+        out.push({
+          nodes,
+          bundle,
+          dominantActions,
+          totalVisits,
+          sccIndex,
+        });
+      }
+    }
+    return out;
+  })();
+
   return {
     states: chainStates,
     edges: chainEdges,
     start: `s${startIdx}`,
     goals: chainStates.filter((c) => c.kind === 'goal').map((c) => c.id),
+    // Strongly-connected components of size ≥ 2 in the chain edge
+    // graph — "inner loops" the policy traverses repeatedly. Each
+    // entry: { nodes: [stateId...], dominantActions: [actionId...],
+    // totalVisits: number }. Empty when the chain has no cycles.
+    loops,
     // No-restart-formula decomposition exposed for UI:
     // itemValue(start, B) = pSuccessStart · B + bExpectedStart, so the
     // home view can compute itemValue at any candidate budget without
@@ -958,5 +1573,11 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
     // { label, ids: [stepId...] }. Empty array means every node
     // is visually distinct.
     duplicateLabels,
+    collapsedNotice,
+    // Diagnostic: chain nodes whose outgoing edges' probabilities
+    // don't sum to 1.0. Each entry is `{ from, action, total,
+    // missing, edges }`. Empty array means every action's outcomes
+    // are accounted for.
+    incompleteEdges,
   };
 }

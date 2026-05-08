@@ -345,6 +345,13 @@ function makeRevealBoneOrb(id, name, hitsKey, forceSide = null) {
       // an exalt-after-apply_bone path can reach totalMods=6 with a
       // pending bone, then reveal would push to 7 (invalid).
       if (s.totalMods >= (env.maxFilled ?? 6)) return false;
+      // Pre-declared bone side (e.g., starting craft with a known
+      // already-applied bone): a forced-side variant must match the
+      // bone's known side, and the plain reveal_bone is disabled
+      // because the bone's side is already pinned.
+      if (s.boneSide) {
+        if (forceSide && forceSide !== s.boneSide) return false;
+      }
       const { prefixOpen, suffixOpen } = sideOpen(s);
       if (forceSide === 'PREFIX') return prefixOpen;
       if (forceSide === 'SUFFIX') return suffixOpen;
@@ -358,11 +365,17 @@ function makeRevealBoneOrb(id, name, hitsKey, forceSide = null) {
       const { prefixOpen, suffixOpen } = sideOpen(s);
 
       // Resolve mode: 'PREFIX' | 'SUFFIX' | 'NATURAL'.
-      // Forced variants override the natural open-slot rule. The
-      // natural rule auto-forces when one side is full.
+      // Precedence: omen-forced > known-bone-side > open-slot rule
+      //   > 50/50 (both open).
+      // The known-bone-side override (state.boneSide) reflects a bone
+      // applied with a Crystallisation omen OR a starting bone whose
+      // slot the user has already observed; either way the reveal
+      // must use the matching side's hit pool.
       let mode;
       if (forceSide === 'PREFIX')             mode = 'PREFIX';
       else if (forceSide === 'SUFFIX')        mode = 'SUFFIX';
+      else if (s.boneSide === 'PREFIX')       mode = 'PREFIX';
+      else if (s.boneSide === 'SUFFIX')       mode = 'SUFFIX';
       else if (prefixOpen && !suffixOpen)     mode = 'PREFIX';
       else if (!prefixOpen && suffixOpen)     mode = 'SUFFIX';
       else                                    mode = 'NATURAL';
@@ -386,10 +399,25 @@ function makeRevealBoneOrb(id, name, hitsKey, forceSide = null) {
       }
 
       const out = [];
+      // Pre-normalise per-wished hit probabilities so they don't sum
+      // past 1.0. The closed-form `1 - (1 - 1/N)^3` per-wished is an
+      // approximation that overcounts when several wished mods are
+      // in the desecrated pool (each treated independently, ignoring
+      // that they compete for the same 3 picks). When `Σ pHits > 1`,
+      // we scale every entry down proportionally so the irrelevant
+      // tail `1 - Σ pHits` stays ≥ 0 — otherwise pIrrelevant goes
+      // negative, the irrelevant branch is skipped, and the action's
+      // outgoing prob mass exceeds 1, propagating into pSuccess > 1.
+      let pHitsSum = 0;
+      for (let i = 0; i < N; i++) {
+        if (s.modMask & (1 << i)) continue;
+        pHitsSum += pHits[i] ?? 0;
+      }
+      const pHitsScale = pHitsSum > 1 ? (1 / pHitsSum) : 1;
       let pIrrelevant = 1;
       for (let i = 0; i < N; i++) {
         if (s.modMask & (1 << i)) continue;
-        const p = pHits[i] ?? 0;
+        const p = (pHits[i] ?? 0) * pHitsScale;
         if (p > 0) {
           // Wished mod's side is intrinsic — bumps prefixMods iff
           // the affix is a PREFIX. (env.pBoneRevealHitPrefix is
@@ -406,13 +434,14 @@ function makeRevealBoneOrb(id, name, hitsKey, forceSide = null) {
               // and per-side desecrated counts derive from this mask
               // + the irrelevant counts (state.js helpers).
               desecratedWishedMask: (s.desecratedWishedMask ?? 0) | (1 << i),
-              boneMod: false, boneRevealed: false,
+              boneMod: false, boneRevealed: false, boneSide: null,
             }),
             prob: p, costEx: cost, costSec: time,
           });
           pIrrelevant -= p;
         }
       }
+      pIrrelevant = Math.max(0, pIrrelevant);
       if (pIrrelevant > 1e-12) {
         const pIrrPrefix = pIrrelevant * pIrrelevantPrefix;
         const pIrrSuffix = pIrrelevant - pIrrPrefix;
@@ -422,7 +451,7 @@ function makeRevealBoneOrb(id, name, hitsKey, forceSide = null) {
               totalMods: s.totalMods + 1,
               prefixMods: (s.prefixMods ?? 0) + 1,
               desecratedIrrPrefix: (s.desecratedIrrPrefix ?? 0) + 1,
-              boneMod: false, boneRevealed: false,
+              boneMod: false, boneRevealed: false, boneSide: null,
             }),
             prob: pIrrPrefix, costEx: cost, costSec: time,
           });
@@ -432,7 +461,7 @@ function makeRevealBoneOrb(id, name, hitsKey, forceSide = null) {
             to: makeState({ ...s,
               totalMods: s.totalMods + 1,
               desecratedIrrSuffix: (s.desecratedIrrSuffix ?? 0) + 1,
-              boneMod: false, boneRevealed: false,
+              boneMod: false, boneRevealed: false, boneSide: null,
             }),
             prob: pIrrSuffix, costEx: cost, costSec: time,
           });
@@ -734,38 +763,85 @@ export const ACTIONS = {
       const prefixWeight = env.irrelevantWeightBySide?.PREFIX ?? 0;
       const suffixWeight = env.irrelevantWeightBySide?.SUFFIX ?? 0;
       const irrTotalW = prefixWeight + suffixWeight;
-      // Prefix-share heuristic for the irrelevant slots: proportional
-      // to side weights when both are positive; else 50/50 fallback.
-      // This is a deterministic per-outcome side split — branching
-      // over (k prefix-irr, irrCount-k suffix-irr) for each k would
-      // be more accurate but multiplies the state space by ~5×.
+      // Prefix-share for irrelevant slots: proportional to side
+      // weights when both are positive; else 50/50 fallback.
       const prefixShare = irrTotalW > 0 ? (prefixWeight / irrTotalW) : 0.5;
+      const binC = (n, k) => {
+        if (k < 0 || k > n) return 0;
+        let c = 1;
+        for (let i = 0; i < k; i++) c = c * (n - i) / (i + 1);
+        return c;
+      };
       for (const [mask, prob] of dist) {
         let nPrefixWished = 0;
         for (let i = 0; i < types.length; i++) {
           if ((mask & (1 << i)) && types[i] === 'PREFIX') nPrefixWished++;
         }
         const irrCount = env.alchemyDraws - popcount(mask);
-        const nPrefixIrrRaw = Math.round(irrCount * prefixShare);
-        // Clamp to satisfy the 3-per-side game cap.
-        const nPrefixIrr = Math.max(
-          0,
-          Math.min(3 - nPrefixWished, nPrefixIrrRaw, irrCount),
-        );
-        const prefixMods = nPrefixWished + nPrefixIrr;
-        out.push({
-          to: makeState({
-            rarity: 'rare',
-            modMask: mask,
-            totalMods: env.alchemyDraws,
-            prefixMods,
-            fracturedBit: -1,
-            irrFractured: false,
-          }),
-          prob,
-          costEx: env.orbCosts.alch ?? 0,
-          costSec: env.orbTimes.alch ?? 0,
-        });
+        // Branch the irrelevant-side allocation by k = 0..irrCount,
+        // weighted Binomial(irrCount, prefixShare). Each branch is a
+        // separate outcome state with its own prefixMods. Replaces
+        // the earlier deterministic round-to-most-likely-k heuristic.
+        //
+        // Two-pass: first compute valid (k, weight) pairs respecting
+        // the 3-per-side cap, then RENORMALISE so the surviving
+        // branches sum to the input `prob` mass. Without
+        // renormalisation, dropping invalid branches (e.g. k=0 →
+        // 4 suffixes which exceeds the suffix cap) shrinks alch's
+        // outgoing mass below 1.0 — the engine treats the lost mass
+        // as "free outcome" and under-counts alch's expected cost,
+        // making it look artificially attractive.
+        const branches = [];
+        let weightSum = 0;
+        for (let k = 0; k <= irrCount; k++) {
+          const newPrefix = nPrefixWished + k;
+          const newSuffix = env.alchemyDraws - newPrefix;
+          if (newPrefix > 3 || newSuffix > 3) continue;
+          const w = binC(irrCount, k)
+            * Math.pow(prefixShare, k)
+            * Math.pow(1 - prefixShare, irrCount - k);
+          if (w <= 0) continue;
+          branches.push({ newPrefix, w });
+          weightSum += w;
+        }
+        if (weightSum <= 0) {
+          // Degenerate side share (e.g. prefixShare=0 with 4 draws —
+          // the would-be all-suffix outcome violates the 3-per-side
+          // cap and every binomial branch with non-zero weight is
+          // invalid). Fall back to the round-to-nearest-valid-k
+          // heuristic so alch remains a usable action in these
+          // skewed-pool fixtures rather than disappearing entirely
+          // and forcing the engine into a different policy branch.
+          const targetK = Math.round(irrCount * prefixShare);
+          let bestK = -1, bestDist = Infinity;
+          for (let k = 0; k <= irrCount; k++) {
+            const newPrefix = nPrefixWished + k;
+            const newSuffix = env.alchemyDraws - newPrefix;
+            if (newPrefix > 3 || newSuffix > 3) continue;
+            const dist = Math.abs(k - targetK);
+            if (dist < bestDist) { bestDist = dist; bestK = k; }
+          }
+          if (bestK < 0) continue; // truly no valid branch — skip mask
+          branches.push({ newPrefix: nPrefixWished + bestK, w: 1 });
+          weightSum = 1;
+        }
+        for (const { newPrefix, w } of branches) {
+          const branchProb = prob * (w / weightSum);
+          if (branchProb <= 1e-12) continue;
+          out.push({
+            to: makeState({
+              rarity: 'rare',
+              modMask: mask,
+              totalMods: env.alchemyDraws,
+              prefixMods: newPrefix,
+              fracturedBit: -1,
+              irrFractured: false,
+            }),
+            prob: branchProb,
+            costEx: env.orbCosts.alch ?? 0,
+            costSec: env.orbTimes.alch ?? 0,
+          });
+        }
       }
       return out;
     },
@@ -1233,20 +1309,49 @@ export function makePerfectEssenceOverwriteAction(spec, keyToBit, env) {
           });
         }
       };
-      // Removing a wished bit i (uniform 1/sideCount each).
+      // Removing a wished bit i (uniform 1/sideCount each). Clears
+      // the bit from desecratedWishedMask if the bit was desecrated.
       for (const i of wishedOnSide) {
         const postMask = s.modMask & ~(1 << i);
         const postDesec = (s.desecratedWishedMask ?? 0) & ~(1 << i);
         const removedPrefix = wishlistTypes[i] === 'PREFIX' ? 1 : 0;
         recordOutcome(postMask, postDesec, removedPrefix, 1 / sideCount);
       }
-      // Removing an irrelevant prefix.
-      if (irrPrefix > 0) {
-        recordOutcome(s.modMask, s.desecratedWishedMask ?? 0, 1, irrPrefix / sideCount);
+      // Per-side irrelevant removal — branch into desecrated vs clean
+      // outcomes so the per-side desecrated-irr count is decremented
+      // when the removed slot is the desecrated one (mirrors the
+      // annul / chaos fix). Without the branch, e.g. overwriting the
+      // only irrelevant prefix on an item whose `desecratedIrrPrefix=1`
+      // leaves the counter pointing at a slot that no longer exists.
+      const irrPrefDesec = Math.min(s.desecratedIrrPrefix ?? 0, irrPrefix);
+      const irrPrefClean = irrPrefix - irrPrefDesec;
+      const irrSufDesec  = Math.min(s.desecratedIrrSuffix ?? 0, irrSuffix);
+      const irrSufClean  = irrSuffix - irrSufDesec;
+      if (irrPrefDesec > 0) {
+        // recordOutcome doesn't know about per-side desec counts —
+        // patch the resulting state's `desecratedIrrPrefix` after.
+        const before = out.length;
+        recordOutcome(s.modMask, s.desecratedWishedMask ?? 0, 1, irrPrefDesec / sideCount);
+        for (let i = before; i < out.length; i++) {
+          out[i].to = makeState({ ...out[i].to,
+            desecratedIrrPrefix: (s.desecratedIrrPrefix ?? 0) - 1,
+          });
+        }
       }
-      // Removing an irrelevant suffix.
-      if (irrSuffix > 0) {
-        recordOutcome(s.modMask, s.desecratedWishedMask ?? 0, 0, irrSuffix / sideCount);
+      if (irrPrefClean > 0) {
+        recordOutcome(s.modMask, s.desecratedWishedMask ?? 0, 1, irrPrefClean / sideCount);
+      }
+      if (irrSufDesec > 0) {
+        const before = out.length;
+        recordOutcome(s.modMask, s.desecratedWishedMask ?? 0, 0, irrSufDesec / sideCount);
+        for (let i = before; i < out.length; i++) {
+          out[i].to = makeState({ ...out[i].to,
+            desecratedIrrSuffix: (s.desecratedIrrSuffix ?? 0) - 1,
+          });
+        }
+      }
+      if (irrSufClean > 0) {
+        recordOutcome(s.modMask, s.desecratedWishedMask ?? 0, 0, irrSufClean / sideCount);
       }
       return out;
     },

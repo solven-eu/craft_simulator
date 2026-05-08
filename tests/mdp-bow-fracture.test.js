@@ -617,13 +617,16 @@ test('budgetEx ⇒ bricked / over-budget states render fromBudget=0 (never negat
   }
 });
 
-test('budgetEx ⇒ chain nodes carry P_reach annotation for non-start non-goal states', () => {
+test('budgetEx ⇒ chain nodes carry P_reach annotation for non-start states', () => {
   // P_reach(s) = probability of landing at s when following π* from
   // start. Lets the user compute "expected contribution" =
   // P_reach × value, the framing they used to estimate pre-fracture
   // post-success state at (budget − 2*annul) × P(success-of-fracture).
-  // Pin: at least one chain node carries `P_reach=` (non-start, non-
-  // goal states with P < 1). Start node and goal nodes don't.
+  // Pin: at least one chain node carries `P_reach=` (non-start state).
+  // Start node doesn't (its P_reach is implicitly 1).
+  // Goal/bricked terminals DO get P_reach (per user direction
+  // 2026-05-07 — multiple terminals are common, and the user wants
+  // to see the share of attempts landing in each).
   const result = solveMDP({
     ...baseInput,
     budgetEx: 10000,
@@ -634,14 +637,9 @@ test('budgetEx ⇒ chain nodes carry P_reach annotation for non-start non-goal s
   const startNode = result.chain.states.find((s) => s.id === result.chain.start);
   assert.ok(startNode && !/P_reach=/.test(startNode.label),
     `start node must NOT carry P_reach (P=1 is implicit); got: ${startNode?.label}`);
-  const goalNodes = result.chain.states.filter((s) => s.kind === 'goal');
-  for (const g of goalNodes) {
-    assert.ok(!/P_reach=/.test(g.label),
-      `goal node ${g.id} must NOT carry P_reach annotation; got: ${g.label}`);
-  }
   const withPReach = result.chain.states.filter((s) => /P_reach=/.test(s.label));
   assert.ok(withPReach.length > 0,
-    `expected at least one transient/bricked state with P_reach annotation`);
+    `expected at least one non-start state with P_reach annotation`);
 });
 
 test('deterministic actions ⇒ single-outcome edges rendered as internal (gray)', () => {

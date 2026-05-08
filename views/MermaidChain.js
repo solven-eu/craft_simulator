@@ -89,7 +89,18 @@ function attachPanZoom(container) {
   }
   const setScale = (newScale, anchorClientX, anchorClientY) => {
     userOverrode = true; // user just zoomed — stop auto-fitting on resize
-    const next = Math.max(0.05, Math.min(8, newScale));
+    // Lower bound = the scale at which the WHOLE graph just fits the
+    // container (both axes). Zooming out beyond this is meaningless
+    // (the chart shrinks but stays fully visible — the user gains
+    // nothing). Falls back to the absolute floor of 0.05 when the
+    // container hasn't been measured yet.
+    const cw = container.clientWidth;
+    const ch = container.clientHeight;
+    let minScale = 0.05;
+    if (intrinsicW > 0 && intrinsicH > 0 && cw > 0 && ch > 0) {
+      minScale = Math.max(0.05, Math.min(cw / intrinsicW, ch / intrinsicH));
+    }
+    const next = Math.max(minScale, Math.min(8, newScale));
     if (next === scale) return;
     const rect = container.getBoundingClientRect();
     // Anchor point in SVG-content coordinates (intrinsic), at current scale.
@@ -171,6 +182,11 @@ export default {
     const error = ref(null);
     const loading = ref(false);
     const fullscreen = ref(false);
+    // Layout direction for the Mermaid flowchart. Default 'TD'
+    // (top-down) matches the chain's "start above, goal below"
+    // reading order; users can switch to horizontal (LR / RL) or
+    // bottom-up (BT) when the graph shape favours a different axis.
+    const layoutDirection = ref('TD');
     const inlineRef = ref(null);
     const fsRef = ref(null);
     const id = nextId();
@@ -184,7 +200,7 @@ export default {
       error.value = null;
       try {
         const mermaid = await loadMermaid();
-        const src = chainToMermaid(props.chain);
+        const src = chainToMermaid(props.chain, { direction: layoutDirection.value });
         const result = await mermaid.render(`${id}-${Date.now()}`, src);
         if (!alive) return;
         svg.value = result.svg;
@@ -193,6 +209,20 @@ export default {
         cleanupFs();
         if (inlineRef.value) cleanupInline = attachPanZoom(inlineRef.value);
         if (fsRef.value)     cleanupFs     = attachPanZoom(fsRef.value);
+        // Re-fit on the next animation frame: `attachPanZoom` runs
+        // synchronously after the SVG insert, but the container's
+        // post-layout `clientWidth` isn't always settled yet (notably
+        // in the embed view, where the chain mounts inside a
+        // freshly-shown layout box). Without this kick, wide graphs
+        // don't auto-fit on first render and overflow horizontally.
+        if (typeof requestAnimationFrame !== 'undefined') {
+          requestAnimationFrame(() => {
+            const inlineFit = inlineRef.value?.querySelector?.('svg')?._panZoomFit;
+            if (inlineFit) inlineFit();
+            const fsFit = fsRef.value?.querySelector?.('svg')?._panZoomFit;
+            if (fsFit) fsFit();
+          });
+        }
       } catch (e) {
         if (alive) error.value = String(e?.message ?? e);
       } finally {
@@ -203,6 +233,7 @@ export default {
     onMounted(() => {
       watchEffect(() => {
         void props.chain;
+        void layoutDirection.value;   // re-render when user picks a new direction
         render();
       });
     });
@@ -251,7 +282,26 @@ export default {
       return `${window.location.pathname}#/${game}/mdp-embed${rest}`;
     });
 
-    return { svg, error, loading, fullscreen, inlineRef, fsRef, reset, fit, embedHref };
+    // Per-state alternatives: which actions does the engine consider
+    // at each chain node, and what's their Q-value? Surfaced as a
+    // selector + table beneath the chain. Default to the start node.
+    const selectedNodeId = ref(null);
+    const selectedAlternatives = computed(() => {
+      const states = props.chain?.states ?? [];
+      if (!selectedNodeId.value && states.length) selectedNodeId.value = states[0].id;
+      const node = states.find((s) => s.id === selectedNodeId.value);
+      return node?.meta?.alternatives ?? [];
+    });
+    const selectedNodePolicy = computed(() => {
+      const node = (props.chain?.states ?? []).find((s) => s.id === selectedNodeId.value);
+      return node?.meta?.policy ?? null;
+    });
+
+    return {
+      svg, error, loading, fullscreen, inlineRef, fsRef, reset, fit, embedHref,
+      selectedNodeId, selectedAlternatives, selectedNodePolicy,
+      layoutDirection,
+    };
   },
   template: `
     <div class="mermaid-chain-wrap">
@@ -261,11 +311,51 @@ export default {
            title="Open headless mermaid view in new tab — iframe-friendly, F5-safe">↗ Embed</a>
         <button class="link" @click="fit" :disabled="!svg" title="Fit to viewport">⤡ Fit</button>
         <button class="link" @click="reset" :disabled="!svg" title="Reset zoom">↺ 1:1</button>
+        <label class="hint" title="Mermaid flowchart direction. TD = top-down (default), LR = left-right, RL = right-left, BT = bottom-up.">
+          dir:
+          <select v-model="layoutDirection" style="margin-left: 0.2rem; font-size: 0.78rem;">
+            <option value="TD">↓ TD</option>
+            <option value="LR">→ LR</option>
+            <option value="RL">← RL</option>
+            <option value="BT">↑ BT</option>
+          </select>
+        </label>
         <span class="hint">Ctrl/Cmd + scroll to zoom · drag to pan</span>
         <span v-if="loading" class="hint">Rendering chain…</span>
       </div>
       <p v-if="error" class="hint" style="color:#d96">Mermaid error: {{ error }}</p>
       <div class="mermaid-chain" ref="inlineRef" v-html="svg"></div>
+
+      <details v-if="chain?.states?.length" class="chain-alternatives">
+        <summary>
+          Why this orb? — per-state action Q-values
+          <small class="hint">(click to inspect alternatives at any chain node)</small>
+        </summary>
+        <div class="chain-alt-controls">
+          <label>Node:
+            <select v-model="selectedNodeId">
+              <option v-for="cs in chain.states" :key="cs.id" :value="cs.id">
+                {{ cs.id }} ({{ cs.kind }})
+              </option>
+            </select>
+          </label>
+        </div>
+        <p v-if="!selectedAlternatives.length" class="hint">
+          No alternatives — this node is terminal (goal / bricked / buy_base).
+        </p>
+        <table v-else class="chain-alt-table">
+          <thead><tr><th>Action</th><th>Q (ex)</th><th>Δ vs optimal</th><th>Cost (ex)</th></tr></thead>
+          <tbody>
+            <tr v-for="a in selectedAlternatives" :key="a.actionId"
+                :class="{ optimal: a.actionId === selectedNodePolicy }">
+              <td>{{ a.actionId === selectedNodePolicy ? '★ ' + a.actionId : a.actionId }}</td>
+              <td>{{ Number.isFinite(a.qValue) ? a.qValue.toFixed(2) : '∞' }}</td>
+              <td>{{ Number.isFinite(a.deltaQ) ? '+' + a.deltaQ.toFixed(2) : '∞' }}</td>
+              <td>{{ a.costEx?.toFixed?.(2) ?? a.costEx }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
 
       <div v-if="fullscreen" class="mermaid-fullscreen-backdrop" @click.self="fullscreen = false">
         <div class="mermaid-fullscreen">

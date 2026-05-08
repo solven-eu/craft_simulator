@@ -20,6 +20,39 @@ Whenever we encounter a bug, the workflow is:
 The "lax" part: not every change needs a test (UI tweaks, refactors
 under existing test coverage, doc changes). But every bug fix does.
 
+## Transformations on labeled values need numerical tests
+
+When code transforms a value that's surfaced to the user (chain
+labels, annotations, summaries — anything the user reads as a
+number), add a regression test that pins the transformation's
+output, not just "the transformation runs without error."
+
+Examples of transformations that need pinned numerical tests:
+- **State-merging operations** (e.g. equivalence-class collapse):
+  pin that the merged value reflects the aggregation rule (sum,
+  min, max, mean) rather than inheriting one source's value.
+- **Probability re-normalisation**: pin that the post-transform
+  total stays within the expected bound (≤ 1.0 for probabilities,
+  no negatives, etc.).
+- **Display clamping** (e.g. capping P_reach at 100%): pin that
+  the truncation marker fires when the value exceeds the cap, AND
+  the underlying value isn't lost by the clamp.
+- **Per-side / per-tier / per-mod redistribution**: pin a known
+  input → known output mapping for at least one canonical case.
+
+A "smoke test" that checks the function runs without throwing is
+NOT sufficient for transformations — those bugs (label inherits
+wrong value, sums to >100%, drops mass) only surface as numerical
+mismatches. The bug only became visible when a user spotted a
+label looking wrong; a numerical test would have caught it on the
+PR that introduced the regression.
+
+Concretely: if you write code that does `merged.value = source.value`,
+ask "could this `=` be wrong (sum-vs-pick-one, average-vs-sum, etc.)?"
+and add a test pinning the choice. If you write code that does
+`Math.min(1, p)` or `Math.max(0, x)`, ask "could the underlying
+value differ from the displayed value?" and pin both.
+
 ## Testable contract
 
 The engine layer follows an "input → output" architecture so tests can

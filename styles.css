@@ -30,19 +30,19 @@ body {
 }
 .app.embed-mode .mdp-embed .mermaid-chain-wrap {
   height: 100%;
-  /* Constrain to viewport width — wide graphs would otherwise burst
-     past the right edge with a horizontal scrollbar. The inline-svg's
-     ResizeObserver in MermaidChain.js fits the SVG to this width. */
   max-width: 100%;
-  overflow-x: hidden;
 }
 .app.embed-mode .mdp-embed .mermaid-chain {
   min-height: calc(100vh - 6rem);
   max-width: 100%;
-}
-.app.embed-mode .mdp-embed .mermaid-chain svg {
-  max-width: 100%;
-  height: auto;
+  /* `overflow: auto` (inherited from the base .mermaid-chain rule)
+     lets the user pan/scroll once they zoom in — required for
+     attachPanZoom's wheel-zoom + drag-pan to surface content that
+     extends past the container. Caps on the inner svg's width were
+     intentionally NOT added here; the panZoom helper drives
+     `svg.style.width` directly via setScale, and a CSS `max-width`
+     on the svg silently fights it (zoom-in becomes a no-op).
+     attachPanZoom's `fitToWidth()` handles first-render overflow. */
 }
 
 /* Loading state for the embed view: centered spinner + status
@@ -72,6 +72,21 @@ body {
 }
 @keyframes mdp-embed-spin {
   to { transform: rotate(360deg); }
+}
+
+/* Inline spinner shown next to the Re-solve button while the MDP is
+   computing. Visually pairs with the disabled-state button so the
+   user has unambiguous feedback that the click registered. */
+.mdp-solve-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 0.4rem;
+  border: 2px solid rgba(180, 200, 255, 0.2);
+  border-top-color: #6cf;
+  border-radius: 50%;
+  animation: mdp-embed-spin 0.7s linear infinite;
+  vertical-align: middle;
 }
 
 header {
@@ -732,8 +747,8 @@ select.tier-select option:disabled {
    standard padding. The slot count is conveyed by the per-side
    "(K/3 empty)" header text already, so the empty rows themselves
    carry no information. */
-.prefix-col > .affix:not(.filled):not(.explicit):not(.fractured),
-.suffix-col > .affix:not(.filled):not(.explicit):not(.fractured) {
+.prefix-col > .affix:not(.filled):not(.explicit):not(.fractured):not(.bone-pending),
+.suffix-col > .affix:not(.filled):not(.explicit):not(.fractured):not(.bone-pending) {
   display: none;
 }
 .affix .empty {
@@ -816,6 +831,111 @@ select.tier-select option:disabled {
   font-style: italic;
 }
 .affix.shadowed .name { text-decoration: line-through; }
+
+/* Pending unrevealed bone-mod — mirrors how the in-game tooltip shows
+   it: a glowing green block of "encrypted" glyphs you can't read until
+   the Well of Souls reveals it. */
+.affix.bone-pending {
+  background: rgba(60, 200, 100, 0.14);
+  border-left: 3px solid rgba(80, 220, 120, 0.85);
+  padding-left: 0.4rem;
+  /* Keep the gibberish + controls (⇄, ×) on one row even when the
+     column is narrow. Override the parent's flex-wrap:wrap so the
+     swap/remove buttons can never spill onto a second line. */
+  flex-wrap: nowrap;
+}
+.affix.bone-pending .name {
+  font-family: 'Menlo', 'Consolas', monospace;
+  color: rgba(140, 240, 170, 0.9);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 4px rgba(80, 220, 120, 0.45);
+  user-select: none;
+  /* Single line; ellipsize if the column is too narrow. min-width:0 +
+     flex:1 1 auto lets the name shrink instead of pushing controls
+     into the next row. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.affix.bone-pending .affix-controls {
+  flex: 0 0 auto;
+}
+.bone-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px dashed rgba(80, 220, 120, 0.4);
+  background: transparent;
+  color: rgba(140, 240, 170, 0.85);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  opacity: 0.75;
+}
+.bone-add-btn:hover:not(:disabled) {
+  opacity: 1;
+  background: rgba(60, 200, 100, 0.08);
+}
+.bone-add-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-style: dotted;
+}
+.bone-swap-btn {
+  font-size: 0.9rem;
+  padding: 0 0.25rem;
+  background: transparent;
+  border: none;
+  color: rgba(140, 240, 170, 0.85);
+  cursor: pointer;
+}
+.bone-swap-btn:hover:not(:disabled) {
+  color: rgba(160, 255, 190, 1);
+  filter: drop-shadow(0 0 3px rgba(120, 230, 150, 0.6));
+}
+.bone-swap-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* Per-orb breakdown in scenario panels: glyph + name + line cost. */
+.orb-spend-list { list-style: none; padding-left: 0.25rem; }
+.orb-spend-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.05rem 0;
+}
+.orb-icon-glyph {
+  display: inline-block;
+  min-width: 1.2em;
+  text-align: center;
+}
+.orb-line-cost { color: rgba(255, 255, 255, 0.55); }
+.orb-line-cost small { opacity: 0.7; }
+
+/* Cost-distribution panel: histogram + CDF over batch-sampled runs. */
+.mdp-distribution {
+  margin-top: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+.mdp-distribution h5 { margin: 0 0 0.3rem 0; }
+.dist-headline {
+  margin: 0.2rem 0 0.4rem 0;
+  font-size: 0.95em;
+  padding: 0.35rem 0.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+.dist-headline strong { font-size: 1.1em; }
+.dist-summary { display: flex; flex-wrap: wrap; gap: 0.15rem 0.35rem; font-size: 0.85em; }
+.dist-svg { display: block; width: 100%; max-width: 100%; height: auto; margin-top: 0.4rem; }
+.dist-legend { font-size: 0.85em; margin-top: 0.2rem; }
 
 .target-sides-grid {
   display: grid;
@@ -1355,6 +1475,44 @@ button.link:hover { opacity: 1; }
    min-width and horizontal scroll, since wide Markov grids (20+ states)
    need room to be legible. */
 .mermaid-chain-wrap { margin-top: 0.5rem; }
+
+/* Per-state alternatives panel — answers "why this orb?" by listing
+   every applicable action's Q-value at any chain node. The optimal
+   action is highlighted; runners-up sort by ΔQ ascending. */
+.chain-alternatives {
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(180, 180, 200, 0.15);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+.chain-alternatives summary {
+  cursor: pointer;
+  user-select: none;
+}
+.chain-alt-controls {
+  margin: 0.5rem 0;
+}
+.chain-alt-controls select {
+  margin-left: 0.4rem;
+  font-size: 0.85rem;
+}
+.chain-alt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.chain-alt-table th, .chain-alt-table td {
+  padding: 0.25rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(180, 180, 200, 0.08);
+}
+.chain-alt-table th { font-weight: 600; color: #aac; }
+.chain-alt-table tr.optimal {
+  background: rgba(76, 175, 80, 0.08);
+  font-weight: 600;
+}
 .mermaid-chain-toolbar {
   display: flex; align-items: center; gap: 0.6rem;
   margin-bottom: 0.3rem; font-size: 0.78rem;

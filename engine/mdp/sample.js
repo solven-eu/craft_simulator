@@ -40,14 +40,53 @@ export function sampleTrajectory(mdpResult, opts = {}) {
   const startIdx = mdpResult.startIdx ?? 0;
   let i = startIdx;
   const steps = [];
-  let totalEx = 0;
-  let totalSec = 0;
+  // Seed the trajectory with the initial-base acquisition so totalEx
+  // matches V*(start). Without this, the displayed scenario cost is
+  // missing one base price — a noticeable gap when the base is
+  // expensive (e.g. trade-bought fractured anchor at hundreds of ex).
+  // Synthetic step: action='buy_base', deterministic prob=1, no `to`
+  // since this happens BEFORE entering the MDP. Counted in
+  // orbCounts['buy_base'] but NOT in buyBaseEvents (which tracks
+  // restart loops, not the initial acquisition).
+  const basePriceEx = Number.isFinite(mdpResult.basePriceEx) ? mdpResult.basePriceEx : 0;
+  const basePriceSec = Number.isFinite(mdpResult.basePriceSec) ? mdpResult.basePriceSec : 0;
+  let totalEx = basePriceEx;
+  let totalSec = basePriceSec;
   let buyBaseEvents = 0;
   const orbCounts = {};
+  if (basePriceEx > 0 || basePriceSec > 0) {
+    steps.push({
+      from: '∅',
+      action: 'buy_base',
+      costEx: basePriceEx,
+      costSec: basePriceSec,
+      to: mdpResult.states[startIdx]?.key,
+      sampledProb: 1,
+      initial: true,
+    });
+    orbCounts.buy_base = 1;
+  }
+  // Trajectory-level budget cap: when the user sets `budgetEx` on
+  // the solver input, the engine excludes per-action costs above
+  // that, but until now the trajectory walker still ran unbounded —
+  // a craft could rack up many cheap orbs and far exceed budgetEx
+  // in total. Enforce the budget here so the histogram's cost axis
+  // actually respects the user's "stop after N ex" constraint.
+  // `opts.budgetEx` overrides the MDP's stored budgetCap when set;
+  // null/undefined falls back to the cap; null cap = unbounded.
+  const budgetCap = Number.isFinite(opts.budgetEx)
+    ? opts.budgetEx
+    : (Number.isFinite(mdpResult.budgetCap) ? mdpResult.budgetCap : null);
   let reachedGoal = false;
   let truncated = false;
+  // Initial-buy may already exceed budget if budget is tighter than
+  // the base price; truncate immediately rather than entering the
+  // MDP loop with an over-budget state.
+  if (budgetCap != null && totalEx > budgetCap) {
+    truncated = true;
+  }
 
-  for (let step = 0; step < maxSteps; step++) {
+  for (let step = 0; step < maxSteps && !truncated; step++) {
     const stateRow = mdpResult.states[i];
     if (!stateRow) break;
     if (stateRow.isGoal) { reachedGoal = true; break; }
@@ -58,16 +97,43 @@ export function sampleTrajectory(mdpResult, opts = {}) {
     if (!app) break;
     const outcome = sampleOutcome(app.outcomes, rng);
     if (!outcome) break;
+    const stepCostEx = outcome.costEx ?? 0;
+    const stepCostSec = outcome.costSec ?? 0;
+    // Budget guard: if this step would push us over the cap, refuse
+    // to take it. Truncate at the cap value (cost = budgetCap) so the
+    // user-facing histogram piles up cleanly at the right edge rather
+    // than scattering above the line.
+    if (budgetCap != null && totalEx + stepCostEx > budgetCap) {
+      truncated = true;
+      // Charge the partial cost up to the cap so totalEx == budgetCap
+      // for any over-budget abandonment. Without this, two over-budget
+      // truncations at different points produce different totalEx
+      // values and the right-edge bar smears.
+      const partial = Math.max(0, budgetCap - totalEx);
+      steps.push({
+        from: stateRow.key,
+        action,
+        costEx: partial,
+        costSec: stepCostSec,
+        to: null,
+        sampledProb: outcome.prob,
+        budgetTruncated: true,
+      });
+      totalEx += partial;
+      totalSec += stepCostSec;
+      orbCounts[action] = (orbCounts[action] ?? 0) + 1;
+      break;
+    }
     steps.push({
       from: stateRow.key,
       action,
-      costEx: outcome.costEx ?? 0,
-      costSec: outcome.costSec ?? 0,
+      costEx: stepCostEx,
+      costSec: stepCostSec,
       to: mdpResult.states[outcome.to]?.key,
       sampledProb: outcome.prob,
     });
-    totalEx += outcome.costEx ?? 0;
-    totalSec += outcome.costSec ?? 0;
+    totalEx += stepCostEx;
+    totalSec += stepCostSec;
     orbCounts[action] = (orbCounts[action] ?? 0) + 1;
     if (action === 'buy_base') {
       buyBaseEvents++;

@@ -149,9 +149,42 @@ export function ctxToMdpInput(ctx) {
   const desecratedNamesSuffix  = new Set(desecPoolSuffix.map((d) => d.text));
 
   // 3-pick hit prob (plain reveal): user picks best of 3 random affixes.
-  // 6-pick hit prob (Abyssal Echoes): re-roll once = 6 effective picks.
   const hit3 = (poolSize) => poolSize > 0 ? 1 - Math.pow(1 - 1/poolSize, 3) : 0;
-  const hit6 = (poolSize) => poolSize > 0 ? 1 - Math.pow(1 - 1/poolSize, 6) : 0;
+  // Abyssal Echoes 2-step hit prob (per user clarification 2026-05-07):
+  // the omen offers TWO sequential 3-picks. The user sees the first 3
+  // and chooses to ACCEPT one or REJECT the whole set; on rejection
+  // the first set is LOST and a fresh 3-pick is drawn (must accept
+  // from second set).
+  //
+  // Optimal user policy: accept the first set iff at least one wished
+  // mod appears in it; otherwise reject and take whatever lands in
+  // the second set.
+  //
+  // Closed-form per-wished hit prob:
+  //   P(land i) = P(i in first set)
+  //             + P(no wished in first set) × P(i in second set)
+  //   = p_first_i + (1 - p_first_any) × p_second_i
+  // where p_first_i = p_second_i = 1 - (1 - 1/N)^3 (same per-pick odds
+  // for first and second draws — i.i.d. for the model). p_first_any
+  // applies only to wished mods that COULD appear in the desecrated
+  // pool — wished mods absent from the pool can never be in either
+  // set, so they contribute 0 to both terms.
+  // p_first_any = 1 - Π_i (1 - p_i_per_pick)^3 over wished mods in pool
+  //             = 1 - (1 - K/N)^3
+  // where K = number of wished mods in the desecrated pool, N = pool size.
+  const hitAbyssal = (wInPool, poolSize, kWishedInPool) => {
+    if (!wInPool || poolSize <= 0) return 0;
+    const pPerPick = 1 / poolSize;
+    const pFirstI  = 1 - Math.pow(1 - pPerPick, 3);
+    const kSharePerPick = (kWishedInPool ?? 0) / poolSize;
+    const pFirstAny = 1 - Math.pow(1 - kSharePerPick, 3);
+    return pFirstI + (1 - pFirstAny) * pFirstI;
+  };
+  // Count of wished mods present in each desecrated sub-pool — the
+  // `K` in the formula above. Computed once, used for every wished
+  // entry's Abyssal odds.
+  const wishedNamesInPool = wishlist.map((w) => w.key.split(':').slice(1).join(':'));
+  const kInFullPool = wishedNamesInPool.filter((n) => desecratedNames.has(n)).length;
 
   const pBoneRevealHit        = wishlist.map((w) => {
     const name = w.key.split(':').slice(1).join(':');
@@ -169,7 +202,7 @@ export function ctxToMdpInput(ctx) {
   });
   const pBoneRevealHitAbyssal = wishlist.map((w) => {
     const name = w.key.split(':').slice(1).join(':');
-    return desecratedNames.has(name) ? hit6(desecratedPoolSize) : 0;
+    return hitAbyssal(desecratedNames.has(name), desecratedPoolSize, kInFullPool);
   });
   const orbCosts = {
     transmute:         safeCost('transmute',        ctx),
@@ -333,6 +366,12 @@ export function ctxToMdpInput(ctx) {
       // Acceptance bounds (game-target shape, NOT crafting cap).
       minFilled: ctx.minFilled ?? null,
       maxFilled: ctx.maxFilled ?? null,
+      // Allow the goal state to carry a pending unrevealed bone-mod.
+      // Default false: a pending bone is treated as "step still
+      // pending" and the state isn't goal until reveal completes.
+      // True: the user wants to STOP at "bone applied, awaiting
+      // reveal" — useful for deferring the Well of Souls decision.
+      allowBonePending: !!ctx.targetBoneMod,
     },
     start: {
       // Rough rarity inference: any starting mods OR a pending
@@ -356,6 +395,10 @@ export function ctxToMdpInput(ctx) {
       // engine convention is that totalMods does NOT include the
       // unrevealed slot — it pads the fracture-threshold check only.
       boneMod: !!ctx.startingBoneMod,
+      // Optional pre-declared side for the unrevealed bone. When set
+      // ('PREFIX' or 'SUFFIX'), the reveal action uses the matching
+      // side's hit pool. Null = natural open-slot allocation at reveal.
+      boneSide: ctx.startingBoneSide ?? null,
     },
     orbCosts, orbTimes, pTierAcceptable,
     boneCostEx,

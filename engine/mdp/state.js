@@ -62,12 +62,21 @@ export function makeState({
   irrFractured = false,
   boneMod = false,
   boneRevealed = false,
+  // Side of the pending unrevealed bone-mod, when known. Null means
+  // "natural side allocation at reveal time" (per the open-slot rule
+  // — prefixMods=3 forces suffix, etc.). Set to 'PREFIX' or 'SUFFIX'
+  // when the user has declared which side the bone slot occupies
+  // (e.g., starting craft with an already-applied bone where the
+  // user can see the slot's position). The reveal_bone action uses
+  // the matching side's hit pool when this is set, overriding the
+  // natural allocation rule.
+  boneSide = null,
 } = {}) {
-  return Object.freeze({ rarity, modMask, totalMods, prefixMods, desecratedWishedMask, desecratedIrrPrefix, desecratedIrrSuffix, fracturedBit, irrFractured, boneMod, boneRevealed });
+  return Object.freeze({ rarity, modMask, totalMods, prefixMods, desecratedWishedMask, desecratedIrrPrefix, desecratedIrrSuffix, fracturedBit, irrFractured, boneMod, boneRevealed, boneSide });
 }
 
 export function stateKey(s) {
-  return `${s.rarity}|${s.modMask}|${s.totalMods}|${s.prefixMods ?? 0}|${s.desecratedWishedMask ?? 0}|${s.desecratedIrrPrefix ?? 0}|${s.desecratedIrrSuffix ?? 0}|${s.fracturedBit}|${s.irrFractured ? 1 : 0}|${s.boneMod ? 1 : 0}|${s.boneRevealed ? 1 : 0}`;
+  return `${s.rarity}|${s.modMask}|${s.totalMods}|${s.prefixMods ?? 0}|${s.desecratedWishedMask ?? 0}|${s.desecratedIrrPrefix ?? 0}|${s.desecratedIrrSuffix ?? 0}|${s.fracturedBit}|${s.irrFractured ? 1 : 0}|${s.boneMod ? 1 : 0}|${s.boneRevealed ? 1 : 0}|${s.boneSide ?? '-'}`;
 }
 
 export function popcount(n) {
@@ -132,7 +141,11 @@ export function isGoalState(s, target) {
   // mod-mask in ways the goal check hasn't accounted for. Treat the
   // pre-reveal state as not-yet-goal — the reveal is still a pending
   // step the policy needs to take.
-  if (s.boneMod && !s.boneRevealed) return false;
+  // Opt-out: when `target.allowBonePending` is true, a pending bone
+  // is acceptable as the final state (user wants to STOP at "bone
+  // applied, defer the reveal" — symmetric to the starting-bone
+  // toggle for in-progress crafts).
+  if (s.boneMod && !s.boneRevealed && !target.allowBonePending) return false;
   // Per-desired-mod desecration constraint:
   //   target.desecrationRequiredMask: every bit here must be a
   //     desecrated wished bit on the item (the user explicitly wants

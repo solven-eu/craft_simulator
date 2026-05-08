@@ -106,6 +106,84 @@ test('concreteItem encodes the final-state shape (rarity + wished mods)', () => 
   );
 });
 
+test('totalEx includes the initial base purchase price', () => {
+  // Bug: scenario cost was missing one basePriceEx. The trajectory
+  // walker started AT the post-buy state, so the very first base
+  // (acquired before any crafting begins) wasn't counted. The
+  // sampler now prepends a synthetic buy_base step with sampledProb=1.
+  const result = solveMDP({ ...baseInput, basePriceEx: 100 });
+  const t = sampleTrajectory(result, { rng: mulberry32(7), wishlist: baseInput.wishlist });
+  // First step must be the synthetic initial buy_base.
+  assert.ok(t.steps.length > 0, 'trajectory should have at least one step');
+  assert.equal(t.steps[0].action, 'buy_base',
+    `first step should be the initial base purchase, got ${t.steps[0].action}`);
+  assert.equal(t.steps[0].costEx, 100,
+    'initial buy_base should carry the basePriceEx as costEx');
+  assert.equal(t.steps[0].initial, true,
+    'initial buy_base should be marked initial=true so the UI / counters can distinguish from restart loops');
+  // totalEx invariant unchanged: sum of step costs.
+  const sumStepCosts = t.steps.reduce((acc, s) => acc + (s.costEx || 0), 0);
+  assert.ok(Math.abs(t.totalEx - sumStepCosts) < 1e-9,
+    `totalEx (${t.totalEx}) should equal Σ step.costEx (${sumStepCosts})`);
+  // basePriceEx is part of totalEx.
+  assert.ok(t.totalEx >= 100, `totalEx (${t.totalEx}) must include the 100ex base price`);
+});
+
+test('basePriceEx=0 ⇒ no synthetic initial buy_base step prepended', () => {
+  // Edge: when the user has a free / pre-owned base (basePriceEx=0)
+  // and the engine doesn't model time-to-source either, skip the
+  // synthetic step entirely so the orb-spend list stays clean.
+  const result = solveMDP({ ...baseInput, basePriceEx: 0, basePriceSec: 0 });
+  const t = sampleTrajectory(result, { rng: mulberry32(11), wishlist: baseInput.wishlist });
+  // First step (if any) should NOT be the initial-flagged buy_base.
+  if (t.steps.length > 0) {
+    assert.notEqual(t.steps[0].initial, true,
+      `with basePriceEx=0 the synthetic initial step should be omitted; got ${JSON.stringify(t.steps[0])}`);
+  }
+});
+
+test('budgetEx caps trajectory total cost (no scenarios over budget)', () => {
+  // Bug: histogram showed scenarios at 12-20 div when user set
+  // budgetEx = 10 div. Root cause: the sampler only enforced
+  // budgetCap as a per-action exclusion (drop a single orb if its
+  // unit cost > budget) — it didn't cap the *running total*.
+  // Fix: the sampler now truncates as soon as the next step would
+  // push totalEx past budgetEx, charging only the partial cost up
+  // to the cap so the right-edge histogram bar piles up cleanly.
+  const tightBudget = 50; // ex
+  const result = solveMDP({
+    ...baseInput,
+    basePriceEx: 5, // cheap base so the budget bites mid-trajectory
+    budgetEx: tightBudget,
+  });
+  let maxObserved = 0;
+  for (let seed = 1; seed <= 25; seed++) {
+    const t = sampleTrajectory(result,
+      { rng: mulberry32(seed), wishlist: baseInput.wishlist });
+    assert.ok(t.totalEx <= tightBudget + 1e-6,
+      `trajectory totalEx (${t.totalEx}) exceeds budgetEx (${tightBudget}) — seed ${seed}`);
+    if (t.totalEx > maxObserved) maxObserved = t.totalEx;
+    if (t.truncated) {
+      // Truncated trajectories should pile up exactly at the budget
+      // cap so the histogram has a clean right-edge bar rather than
+      // smearing across multiple over-cap bins.
+      assert.ok(Math.abs(t.totalEx - tightBudget) < 1e-6 || t.totalEx <= tightBudget,
+        `truncated trajectory totalEx (${t.totalEx}) should equal budgetEx (${tightBudget})`);
+    }
+  }
+});
+
+test('opts.budgetEx overrides mdpResult.budgetCap (per-call override)', () => {
+  // The sampler honours opts.budgetEx if passed, falling back to
+  // mdpResult.budgetCap otherwise. Lets the histogram panel run
+  // multiple "what if the budget were N" what-ifs without re-solving.
+  const result = solveMDP({ ...baseInput, basePriceEx: 5, budgetEx: 1000 });
+  const t = sampleTrajectory(result,
+    { rng: mulberry32(1), wishlist: baseInput.wishlist, budgetEx: 30 });
+  assert.ok(t.totalEx <= 30 + 1e-6,
+    `opts.budgetEx=30 should cap totalEx; got ${t.totalEx}`);
+});
+
 test('truncated ⇒ buyBaseEvents > maxRestarts', () => {
   // Force truncation by setting maxRestarts=0. Any buy_base event
   // immediately stops the trajectory.

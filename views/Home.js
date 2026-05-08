@@ -182,7 +182,7 @@ export default {
       for (const m of list) if (m.text) out.add(m.text);
       return out;
     });
-    // The essence-able set is consumed by `essenceableNames.has(name)`
+    // The essence-able set is consumed by `essenceableNamesBySide.{PREFIX,SUFFIX}.has(name)`
     // checks throughout the UI (live item, base-pool tables, target
     // tier rows). Mod-name conventions don't always match between
     // sources: `extra_mods.json` essence rows use `+# to maximum Life`
@@ -190,20 +190,43 @@ export default {
     // `# to maximum Life` (without). We index both forms so a chip
     // lights up regardless of which side of the `+` quirk the caller
     // hands us. Same loose-key idea used in `modSideByName`.
-    const essenceableNames = computed(() => {
-      const out = new Set();
-      const add = (name) => {
+    // Side-keyed essence-name index. Used by the green 🟢 chip on
+    // prefix/suffix pool tables: the chip should only light up when
+    // an essence ON THAT SIDE can guarantee the affix. A bug where
+    // the chip lit up on Helmet's PREFIX-side "Rarity of Items found"
+    // (because Opulence — a SUFFIX essence — guarantees rarity)
+    // was the catalyst for splitting this from the old flat set.
+    // Resolution mirror of essenceableTiers + groupedEssences:
+    //   override JSON → per-mod side map → CSV by name → null.
+    // Rows with side=null (couldn't resolve) and side=ABYSS go into
+    // both sets so the chip stays informative for unclassified rows.
+    const essenceableNamesBySide = computed(() => {
+      const out = { PREFIX: new Set(), SUFFIX: new Set() };
+      const overrides = craft.essenceSideOverrides?.overrides || {};
+      const perModSides = craft.essenceModSides?.mod_sides || {};
+      const csvByName = new Map();
+      for (const r of (craft.essences ?? [])) {
+        if (r?.name && r.side && r.side !== 'UNKNOWN') csvByName.set(r.name, r.side);
+      }
+      const sideFor = (m) =>
+        overrides[m.text]?.side
+        || perModSides[m.tier_name]?.[m.text]
+        || csvByName.get(m.tier_name)
+        || null;
+      const addTo = (set, name) => {
         if (!name) return;
-        out.add(name);
-        // Strip leading `+` and `+#` → `#` to match unprefixed registry
-        // names. Also store the canonical (digits-collapsed, lowercase)
-        // form so the loose-match in modSideByName has a peer for
-        // chip-rendering.
+        set.add(name);
         const loose = name.replace(/^\+/, '').replace(/\+#/g, '#').trim();
-        if (loose && loose !== name) out.add(loose);
+        if (loose && loose !== name) set.add(loose);
       };
       const list = craft.extraMods?.[craft.base]?.essence ?? [];
-      for (const m of list) add(m.text);
+      for (const m of list) {
+        if (!m.text) continue;
+        const side = sideFor(m);
+        if (side === 'PREFIX') addTo(out.PREFIX, m.text);
+        else if (side === 'SUFFIX') addTo(out.SUFFIX, m.text);
+        else { addTo(out.PREFIX, m.text); addTo(out.SUFFIX, m.text); }
+      }
       return out;
     });
 
@@ -368,6 +391,36 @@ export default {
       return out;
     });
 
+    // CSV-driven side index: keyed by full essence name (matches
+    // m.tier_name in extra_mods.json). Source: data/poe2/essences.csv,
+    // which is now resolved authoritatively from poe2db's own Pre/Suf
+    // table by scripts/update-poe2-essences.sh. Trumps the base-mod
+    // registry because it covers essence-only affixes (no base-pool
+    // peer to match against, e.g. "(20—30)% increased Global Defences").
+    const essenceSidesByName = computed(() => {
+      const map = new Map();
+      for (const r of (craft.essences ?? [])) {
+        if (r?.name && r.side && r.side !== 'UNKNOWN') {
+          map.set(r.name, r.side);
+        }
+      }
+      return map;
+    });
+    // Per-essence per-mod side index: handles multi-mod essences
+    // (Hysteria) where the unanimous-side rule in essences.csv falls
+    // through to UNKNOWN. Source: data/poe2/essence_mod_sides.json,
+    // auto-generated from poe2db's per-class Pre/Suf rows. Lookup is
+    // (essenceName, canonicalText) → side.
+    const essenceModSides = computed(() => {
+      const ms = craft.essenceModSides?.mod_sides || {};
+      // Wrap in a Map for O(1) per-essence lookup; values stay plain objects.
+      const out = new Map();
+      for (const [name, perMod] of Object.entries(ms)) {
+        out.set(name, perMod);
+      }
+      return out;
+    });
+
     const groupedEssences = computed(() => {
       const list = craft.extraMods?.[craft.base]?.essence ?? [];
       const map = new Map();
@@ -377,17 +430,45 @@ export default {
         const key = family + ' ' + (m.text || '');
         let row = map.get(key);
         if (!row) {
-          row = { key, family, text: m.text, tags: m.tags || [], tiers: {} };
+          row = { key, family, text: m.text, tags: m.tags || [], tiers: {}, _tierNames: [] };
           map.set(key, row);
+        }
+        if (m.tier_name && !row._tierNames.includes(m.tier_name)) {
+          row._tierNames.push(m.tier_name);
         }
         row.tiers[tier] = m.display || m.text;
       }
       const sides = modSideByName.value;
+      const csvSides = essenceSidesByName.value;
+      const perModSides = essenceModSides.value;
+      const sideFromPerMod = (r) => {
+        // For multi-mod essences (Hysteria), the per-mod map is the
+        // most specific source — it knows that "+# to Stun Threshold"
+        // is SUFFIX while "#% increased Movement Speed" is PREFIX
+        // even though both are emitted by the same essence.
+        for (const tn of (r._tierNames || [])) {
+          const perMod = perModSides.get(tn);
+          if (perMod && perMod[r.text]) return perMod[r.text];
+        }
+        return null;
+      };
+      const sideFromCSV = (r) => {
+        for (const tn of (r._tierNames || [])) {
+          const s = csvSides.get(tn);
+          if (s) return s;
+        }
+        return null;
+      };
       const rows = Array.from(map.values()).map((r) => ({
         ...r,
-        // Resolution order: hard-coded override → registry/loose/canon/fuzzy
-        // → 'unknown'.
-        side: essenceSideOverrides.value[r.text] || sides.get(r.text) || 'unknown',
+        // Resolution order: manual override JSON → per-mod side map
+        // (multi-mod essences) → essences.csv (single-side essences) →
+        // base-mod registry → 'unknown'.
+        side: essenceSideOverrides.value[r.text]
+          || sideFromPerMod(r)
+          || sideFromCSV(r)
+          || sides.get(r.text)
+          || 'unknown',
       }));
       return rows.sort((a, b) => {
         if (a.family !== b.family) return a.family.localeCompare(b.family);
@@ -501,6 +582,41 @@ export default {
     const desecratedBySide = computed(() => splitBySide(filteredDesecrated.value));
     const essencesBySide   = computed(() => splitBySide(filteredEssences.value));
 
+    // ─────────────────────────────────────────────────────────
+    // Pending-bone-mod helpers (rendered inline as a green-glow
+    // "encrypted-glyph" affix slot, matching the in-game tooltip).
+    // ─────────────────────────────────────────────────────────
+    const BONE_GIBBERISH = '⡳⣟⢾⠿⢿⣽⣟⠾⡶';
+    const startingFreeSlotsBySide = computed(() => ({
+      PREFIX: craft.slots.prefixes.filter((s) => !s).length,
+      SUFFIX: craft.slots.suffixes.filter((s) => !s).length,
+    }));
+    const canAddStartingBone = (side) => {
+      if (craft.startingBoneMod) return false;
+      if (craft.hasDesecratedStarting()) return false;
+      return startingFreeSlotsBySide.value[side] > 0;
+    };
+    const canSwapStartingBone = computed(() => {
+      if (!craft.startingBoneMod || !craft.startingBoneSide) return false;
+      const other = craft.startingBoneSide === 'PREFIX' ? 'SUFFIX' : 'PREFIX';
+      return startingFreeSlotsBySide.value[other] > 0;
+    });
+    const targetFreeSlotsBySide = computed(() => ({
+      PREFIX: Math.max(0, 3 - (craft.targetSummary?.prefixes?.required ?? 0)
+                            - (craft.targetSummary?.prefixes?.empty ?? 0)),
+      SUFFIX: Math.max(0, 3 - (craft.targetSummary?.suffixes?.required ?? 0)
+                            - (craft.targetSummary?.suffixes?.empty ?? 0)),
+    }));
+    const canAddTargetBone = (side) => {
+      if (craft.targetBoneMod) return false;
+      return targetFreeSlotsBySide.value[side] > 0;
+    };
+    const canSwapTargetBone = computed(() => {
+      if (!craft.targetBoneMod || !craft.targetBoneSide) return false;
+      const other = craft.targetBoneSide === 'PREFIX' ? 'SUFFIX' : 'PREFIX';
+      return targetFreeSlotsBySide.value[other] > 0;
+    });
+
     /** Currently-open modifier modal — null when no modal is shown. */
     const selectedMod = ref(null);
     const openModModal = (m) => { selectedMod.value = m; };
@@ -603,6 +719,234 @@ export default {
       }
     };
 
+    // ─────────────────────────────────────────────────────────
+    // Scenario panel helpers: orb icon, per-action subtotal,
+    // overall trajectory probability.
+    // ─────────────────────────────────────────────────────────
+    // Emoji map for action IDs in `traj.orbCounts`. Matched in order
+    // (substring-based) so it covers Greater/Perfect variants and
+    // omen-coupled forms (regal_sinistral etc.) without listing every
+    // permutation. Falls back to a neutral bullet when nothing matches.
+    const orbIconFor = (action) => {
+      if (!action) return '·';
+      const a = String(action);
+      if (a.startsWith('essence')) return '🟢';
+      if (a.startsWith('omen')) return '✨';
+      if (a.includes('fractur')) return '🔒';
+      if (a.includes('annul')) return '❌';
+      if (a.includes('exalt')) return '⭐';
+      if (a.includes('chaos')) return '🟠';
+      if (a.includes('regal')) return '🟣';
+      if (a.includes('alch')) return '🟡';
+      if (a.includes('augment')) return '🟢';
+      if (a.includes('transmute')) return '🔵';
+      if (a.includes('divine')) return '💎';
+      if (a.includes('vaal')) return '🔴';
+      if (a.includes('chance')) return '🎲';
+      if (a.includes('bone')) return '🦴';
+      if (a === 'buy_base') return '🛒';
+      return '·';
+    };
+    // Per-action breakdown: sum step.costEx by action so the panel
+    // can show "alch × 5 · 7.2 ex (1.4 ex/each)". Iterates the steps
+    // (which carry the actual incurred cost) rather than re-deriving
+    // from craft.orbCosts — keeps display + simulation in sync if the
+    // user tweaked rates between solve and sample.
+    const scenarioActionLines = (s) => {
+      const out = new Map();
+      for (const st of (s?.traj?.steps ?? [])) {
+        const row = out.get(st.action) ?? { count: 0, costEx: 0 };
+        row.count += 1;
+        row.costEx += Number.isFinite(st.costEx) ? st.costEx : 0;
+        out.set(st.action, row);
+      }
+      return Array.from(out.entries()).map(([action, r]) => ({
+        action,
+        count: r.count,
+        costEx: r.costEx,
+        perOrbEx: r.count > 0 ? r.costEx / r.count : 0,
+        icon: orbIconFor(action),
+      }));
+    };
+    // Trajectory probability: Π step.sampledProb. Useful as a
+    // "how rare was this exact path" heatmap — a 100k-ex scenario
+    // with p=10⁻⁶ is *expected* to be extreme, while one with
+    // p=0.4 means the planner thinks this is the typical run.
+    const scenarioProbability = (s) => {
+      const steps = s?.traj?.steps ?? [];
+      let p = 1;
+      for (const st of steps) {
+        if (Number.isFinite(st.sampledProb)) p *= st.sampledProb;
+      }
+      return p;
+    };
+    const fmtProbability = (p) => {
+      if (!Number.isFinite(p) || p <= 0) return '—';
+      if (p >= 0.01) return `${(p * 100).toFixed(2)}%`;
+      if (p >= 1e-6) return `${(p * 100).toPrecision(2)}%`;
+      return p.toExponential(1);
+    };
+
+    // ─────────────────────────────────────────────────────────
+    // Distribution panel: histogram + CDF over batch-sampled cost.
+    // ─────────────────────────────────────────────────────────
+    // Bin the totalEx values into a fixed-count histogram (40 bins).
+    // Failure paths (truncated / not goal-reached) are kept — they
+    // naturally land at the expensive end since their costs include
+    // restart loops + base re-buys before truncation.
+    const HIST_BINS = 40;
+    const distributionStats = computed(() => {
+      const dist = craft.mdpDistribution;
+      if (!dist?.samples?.length) return null;
+      const xs = dist.samples.map((s) => s.totalEx).filter(Number.isFinite);
+      if (!xs.length) return null;
+      xs.sort((a, b) => a - b);
+      const n = xs.length;
+      const min = xs[0];
+      const max = xs[n - 1];
+      const mean = xs.reduce((a, b) => a + b, 0) / n;
+      const median = xs[Math.floor(n / 2)];
+      const q = (p) => xs[Math.max(0, Math.min(n - 1, Math.floor(p * (n - 1))))];
+      // The "doubling chain": for a strategy with per-attempt success
+      // rate s at cost ≤ c, k restarts achieve 1-(1-s)^k success at
+      // cost ≤ k·c. So the user's expectation chain is:
+      //   p50 ≤ c0       (one attempt)
+      //   p75 ≤ 2·p50    (k=2 from s=0.5; 1-(1-0.5)²=0.75)
+      //   p93.75 ≤ 2·p75 (k=2 from s=0.75; 1-(1-0.75)²=0.9375)
+      // If the engine is restart-savvy these inequalities should hold;
+      // a violation means the policy is leaving doubling-better restart
+      // wins on the table.
+      const p75    = q(0.75);
+      const p9375  = q(0.9375);
+      const successCount = dist.samples.filter((s) => s.reachedGoal).length;
+      const failCount = n - successCount;
+      // Histogram: linear bins from min..max. Edge case min===max: one bin.
+      const binWidth = max > min ? (max - min) / HIST_BINS : 1;
+      const bins = new Array(HIST_BINS).fill(0);
+      const binSuccess = new Array(HIST_BINS).fill(0);
+      const binFail = new Array(HIST_BINS).fill(0);
+      for (const s of dist.samples) {
+        if (!Number.isFinite(s.totalEx)) continue;
+        let idx = max > min ? Math.floor((s.totalEx - min) / binWidth) : 0;
+        if (idx >= HIST_BINS) idx = HIST_BINS - 1;
+        if (idx < 0) idx = 0;
+        bins[idx] += 1;
+        if (s.reachedGoal) binSuccess[idx] += 1;
+        else binFail[idx] += 1;
+      }
+      const peakBin = Math.max(...bins, 1);
+      // CDF: monotone non-decreasing curve over the same x-axis.
+      const cdf = new Array(HIST_BINS + 1);
+      let cum = 0;
+      for (let i = 0; i < HIST_BINS; i++) {
+        cum += bins[i];
+        cdf[i + 1] = cum / n;
+      }
+      cdf[0] = 0;
+      // Doubling-chain ratios. If the policy is restart-savvy these
+      // should hold:  p75 ≤ 2·p50  and  p93.75 ≤ 2·p75. Excess > 1
+      // means the histogram has cost mass that smarter stop-and-restart
+      // would have avoided — i.e. evidence the engine's expected-cost
+      // objective is leaving stop-loss wins on the table.
+      const p75over2p50    = (median > 0)            ? p75   / (2 * median) : null;
+      const p9375over2p75  = (Number.isFinite(p75) && p75 > 0) ? p9375 / (2 * p75)    : null;
+      // Headline chance-constrained statistic: P(success | budget B)
+      // under the current MDP-optimal-by-E[cost] policy. This is the
+      // primary number the user actually wants when they say "I have
+      // a 10-div budget." It's a lower bound on what a chance-
+      // constrained MDP solver could achieve — but if it's already
+      // ≥0.9, building one isn't worth the effort.
+      const budgetEx = (Number.isFinite(craft.totalBudgetEx) && craft.totalBudgetEx > 0)
+        ? craft.totalBudgetEx : null;
+      let successWithinBudget = 0;
+      if (budgetEx != null) {
+        for (const s of dist.samples) {
+          if (s.reachedGoal && Number.isFinite(s.totalEx) && s.totalEx <= budgetEx) {
+            successWithinBudget += 1;
+          }
+        }
+      }
+      const pSuccessAtBudget = budgetEx != null ? successWithinBudget / n : null;
+      return {
+        n, min, max, mean, median,
+        p75, p9375,
+        p75over2p50, p9375over2p75,
+        successCount, failCount,
+        budgetEx, successWithinBudget, pSuccessAtBudget,
+        binWidth, bins, binSuccess, binFail, peakBin, cdf,
+      };
+    });
+
+    // Build SVG path data for the bars + CDF line. Renders inside an
+    // 800×220 viewBox; the parent CSS scales it responsively.
+    const SVG_W = 800, SVG_H = 220, PAD_L = 50, PAD_R = 30, PAD_T = 14, PAD_B = 36;
+    const plotX = (frac) => PAD_L + frac * (SVG_W - PAD_L - PAD_R);
+    const plotY = (frac) => SVG_H - PAD_B - frac * (SVG_H - PAD_T - PAD_B);
+    const distributionPlot = computed(() => {
+      const stats = distributionStats.value;
+      if (!stats) return null;
+      const innerW = SVG_W - PAD_L - PAD_R;
+      const barW = innerW / HIST_BINS;
+      const bars = [];
+      for (let i = 0; i < HIST_BINS; i++) {
+        const x = PAD_L + i * barW;
+        const totalH = (stats.bins[i] / stats.peakBin) * (SVG_H - PAD_T - PAD_B);
+        const failH = (stats.binFail[i] / stats.peakBin) * (SVG_H - PAD_T - PAD_B);
+        const successH = totalH - failH;
+        const xMid = stats.min + (i + 0.5) * stats.binWidth;
+        bars.push({
+          xLeft: x, w: barW - 1,
+          successY: SVG_H - PAD_B - successH,
+          successH,
+          failY: SVG_H - PAD_B - successH - failH,
+          failH,
+          count: stats.bins[i],
+          successCount: stats.binSuccess[i],
+          failCount: stats.binFail[i],
+          xMid,
+        });
+      }
+      // CDF polyline: (xLeft of bin i, cdf[i]) for i=0..HIST_BINS,
+      // ending at (xRight of last bin, 1).
+      const cdfPoints = [];
+      for (let i = 0; i <= HIST_BINS; i++) {
+        const x = PAD_L + i * barW;
+        const y = plotY(stats.cdf[i]);
+        cdfPoints.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+      }
+      const cdfPath = 'M' + cdfPoints.join(' L');
+      // X-axis tick labels (5 ticks).
+      const ticks = [];
+      for (let i = 0; i <= 5; i++) {
+        const frac = i / 5;
+        const v = stats.min + frac * (stats.max - stats.min);
+        ticks.push({ x: plotX(frac), label: fmtCost(v) });
+      }
+      // Quantile markers (median, p90).
+      const markerLine = (qVal, label, color) => {
+        if (!Number.isFinite(qVal) || stats.max === stats.min) return null;
+        const frac = (qVal - stats.min) / (stats.max - stats.min);
+        return { x: plotX(frac), label, color };
+      };
+      const markers = [
+        markerLine(stats.median, `p50 ${fmtCost(stats.median)}`,    '#5d9'),
+        markerLine(stats.p75,    `p75 ${fmtCost(stats.p75)}`,       '#cd6'),
+        markerLine(stats.p9375,  `p93.75 ${fmtCost(stats.p9375)}`,  '#d96'),
+      ].filter(Boolean);
+      // Budget marker — heavier line so it stands out from the
+      // quantile guides. Only drawn when the budget falls within the
+      // x-axis range of the histogram (otherwise the marker would
+      // overshoot the chart).
+      const budgetMarker = (() => {
+        const B = stats.budgetEx;
+        if (!Number.isFinite(B) || stats.max === stats.min) return null;
+        if (B < stats.min || B > stats.max) return null;
+        const frac = (B - stats.min) / (stats.max - stats.min);
+        return { x: plotX(frac), label: `budget ${fmtCost(B)}`, color: '#fff' };
+      })();
+      return { bars, cdfPath, ticks, markers, budgetMarker, SVG_W, SVG_H, PAD_L, PAD_R, PAD_T, PAD_B };
+    });
+
     // Scenario serialization + handoff to Divine Bench. Lazy-imports
     // the concrete-item DSL serializer so the engine module isn't on
     // the Home view's hot path.
@@ -638,7 +982,7 @@ export default {
              prefixesFull, suffixesFull,
              expand, collapse, isExpanded, confirmTier,
              selectedMod, openModModal, closeModModal, tagStyle,
-             essenceableNames, desecratedNames,
+             essenceableNamesBySide, desecratedNames,
              groupedEssences, filteredEssences, essencesBySide,
              groupedDesecrated, filteredDesecrated, desecratedBySide,
              desecratedFamilyTags,
@@ -649,6 +993,10 @@ export default {
              ratesSnapshotLabel, ratesSnapshotTitle,
              promptSaveCraft, confirmDeleteCraft, confirmOverwriteCraft, attemptMeaning,
              recipeText, recipeStatus, recipeExport, recipeImport,
+             BONE_GIBBERISH, canAddStartingBone, canSwapStartingBone,
+             canAddTargetBone, canSwapTargetBone,
+             orbIconFor, scenarioActionLines, scenarioProbability, fmtProbability,
+             distributionStats, distributionPlot,
              copyScenarioToClipboard, sendScenarioToDivineBench };
   },
   template: `
@@ -785,6 +1133,24 @@ export default {
                   </span>
                 </template>
               </div>
+              <div v-if="craft.startingBoneMod && craft.startingBoneSide === 'PREFIX'"
+                   class="affix prefix bone-pending"
+                   title="Pending unrevealed bone-mod — applied but awaiting Well of Souls reveal. The mod identity is hidden in-game until reveal.">
+                <span class="name">🦴 {{ BONE_GIBBERISH }}</span>
+                <span class="affix-controls">
+                  <button class="bone-swap-btn"
+                    :disabled="!canSwapStartingBone"
+                    :title="canSwapStartingBone ? 'Move pending bone to suffix side' : 'No free suffix slot to swap into'"
+                    @click="craft.setStartingBoneSide('SUFFIX')">⇄</button>
+                  <button class="link"
+                    title="Remove the pending bone-mod"
+                    @click="craft.setStartingBoneMod(false)">×</button>
+                </span>
+              </div>
+              <button v-if="!craft.startingBoneMod" class="bone-add-btn"
+                :disabled="!canAddStartingBone('PREFIX')"
+                :title="canAddStartingBone('PREFIX') ? 'Add a pending unrevealed bone-mod to the prefix side' : (craft.hasDesecratedStarting() ? 'A starting affix is already desecrated — clear it first (one-cap rule)' : 'No free prefix slot')"
+                @click="craft.setStartingBoneSide('PREFIX')">🦴 + bone</button>
               </div>
               <div class="suffix-col">
               <div v-for="(slot, i) in craft.slots.suffixes" :key="'s'+i" class="affix suffix" :class="{ filled: slot, fractured: slot?.fractured, desecrated: slot?.desecrated }">
@@ -809,6 +1175,24 @@ export default {
                   </span>
                 </template>
               </div>
+              <div v-if="craft.startingBoneMod && craft.startingBoneSide === 'SUFFIX'"
+                   class="affix suffix bone-pending"
+                   title="Pending unrevealed bone-mod — applied but awaiting Well of Souls reveal. The mod identity is hidden in-game until reveal.">
+                <span class="name">🦴 {{ BONE_GIBBERISH }}</span>
+                <span class="affix-controls">
+                  <button class="bone-swap-btn"
+                    :disabled="!canSwapStartingBone"
+                    :title="canSwapStartingBone ? 'Move pending bone to prefix side' : 'No free prefix slot to swap into'"
+                    @click="craft.setStartingBoneSide('PREFIX')">⇄</button>
+                  <button class="link"
+                    title="Remove the pending bone-mod"
+                    @click="craft.setStartingBoneMod(false)">×</button>
+                </span>
+              </div>
+              <button v-if="!craft.startingBoneMod" class="bone-add-btn"
+                :disabled="!canAddStartingBone('SUFFIX')"
+                :title="canAddStartingBone('SUFFIX') ? 'Add a pending unrevealed bone-mod to the suffix side' : (craft.hasDesecratedStarting() ? 'A starting affix is already desecrated — clear it first (one-cap rule)' : 'No free suffix slot')"
+                @click="craft.setStartingBoneSide('SUFFIX')">🦴 + bone</button>
               </div>
             </div>
             <div class="start-pricing">
@@ -818,15 +1202,6 @@ export default {
                   :value="craft.basePriceEx"
                   @input="craft.setBasePriceEx($event.target.value)" />
                 <small class="hint">cost to acquire this item — covers white bases, drop value, OR a pre-fractured trade-buy (whichever applies)</small>
-              </label>
-            </div>
-            <div class="bone-pending-row">
-              <label class="field inline" :title="craft.hasDesecratedStarting() ? 'A starting affix is already desecrated — clear it first to apply a pending bone (one-cap rule).' : 'Mark the item as having a pending unrevealed bone-mod (Bone applied, awaiting Well-of-Souls reveal).'">
-                <input type="checkbox"
-                  :checked="craft.startingBoneMod"
-                  :disabled="!craft.startingBoneMod && craft.hasDesecratedStarting()"
-                  @change="craft.setStartingBoneMod($event.target.checked)" />
-                <span>🦴 Pending unrevealed bone-mod</span>
               </label>
             </div>
             <div class="card-tag-row" v-if="craft.tagsOnStarting().length">
@@ -902,6 +1277,10 @@ export default {
                   :disabled="craft.targetSummary.prefixes.empty + craft.targetSummary.prefixes.required >= 3"
                   @click="craft.addTargetEmpty('PREFIX')"
                   :title="craft.targetSummary.prefixes.empty + craft.targetSummary.prefixes.required >= 3 ? 'No prefix slot left — required + empty already fill 3/3' : 'Require an empty prefix slot'">+ empty prefix</button>
+                <button v-if="!craft.targetBoneMod" class="bone-add-btn"
+                  :disabled="!canAddTargetBone('PREFIX')"
+                  :title="canAddTargetBone('PREFIX') ? 'Allow a pending unrevealed bone-mod on the prefix side at goal time' : 'No free prefix slot'"
+                  @click="craft.setTargetBoneSide('PREFIX')">🦴 + bone</button>
               </h4>
               <div v-if="craft.targetByType.PREFIX.length === 0" class="empty-list">— add wished prefixes via <em>+ wish</em> in the pool below —</div>
               <div v-for="e in craft.targetByType.PREFIX" :key="'tep'+e.idx" class="affix prefix"
@@ -921,21 +1300,6 @@ export default {
                     class="restriction-chip violated clickable"
                     :title="'Raise item level to ' + craft.targetEntryReachability(e).minIlvlNeeded + ' to unlock this tier'"
                     @click="craft.setItemLevel(craft.targetEntryReachability(e).minIlvlNeeded)">ilvl ≥ {{ craft.targetEntryReachability(e).minIlvlNeeded }}</button>
-                  <button v-if="e.fractured || craft.fracturedTargetIdx() === -1"
-                    class="link fracture-btn"
-                    :class="{ active: e.fractured }"
-                    :title="e.fractured ? 'fractured target (locked) — click to unmark' : 'mark this as the fractured target (only one allowed per item)'"
-                    @click="craft.setTargetEntryFractured(e.idx, !e.fractured)"><img src="./assets/fracturing-orb.svg" alt="fractured" class="orb-icon" /></button>
-                  <button v-if="(e.desecrationConstraint ?? null) !== null || craft.desecrationRequiredTargetIdx() === -1 || (e.desecrationConstraint === 'require')"
-                    class="link desec-btn"
-                    :class="{ active: e.desecrationConstraint === 'require', forbidden: e.desecrationConstraint === 'forbid' }"
-                    :title="e.desecrationConstraint === 'require' ? 'desecration REQUIRED — click to forbid'
-                          : e.desecrationConstraint === 'forbid'  ? 'desecration FORBIDDEN — click to clear'
-                          :                                          'click to require desecrated provenance (max one per item)'"
-                    @click="craft.cycleTargetEntryDesecration(e.idx)">🦴</button>
-                  <button class="pause-chip" :class="{ paused: e.disabled }"
-                    :title="e.disabled ? 'Resume — re-include in analytics' : 'Pause — keep entry but exclude from analytics'"
-                    @click="craft.setTargetEntryDisabled(e.idx, !e.disabled)">{{ e.disabled ? '▶' : '⏸' }}</button>
                   <button class="link remove-btn" @click="craft.removeTargetEntry(e.idx)" title="remove">×</button>
                   <div v-if="!e.disabled && !craft.isEntryShadowed(e)" class="tier-band-row"
                        :title="'Slider: minimal acceptable tier. Tiers worse than this are meaningless. Click the req/des badge to toggle required vs desired.'">
@@ -951,10 +1315,26 @@ export default {
                       :value="craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).desiredTier"
                       @input="craft.setTargetEntryTierBand(e.idx, craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).requiredTier == null ? null : Number($event.target.value), Number($event.target.value), craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).maxTier)" />
                     <span class="band-summary">T{{ craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).desiredTier }}</span>
-                    <small class="tier-implies hint" :title="'Worst-case roll at the chosen minimum tier — i.e. the floor any acceptable item must clear.'">
-                      ≥ {{ craft.minRollAtTier(e.name, craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).desiredTier) }}
-                    </small>
+                    <button v-if="e.fractured || craft.fracturedTargetIdx() === -1"
+                      class="link fracture-btn"
+                      :class="{ active: e.fractured }"
+                      :title="e.fractured ? 'fractured target (locked) — click to unmark' : 'mark this as the fractured target (only one allowed per item)'"
+                      @click="craft.setTargetEntryFractured(e.idx, !e.fractured)"><img src="./assets/fracturing-orb.svg" alt="fractured" class="orb-icon" /></button>
+                    <button v-if="(e.desecrationConstraint ?? null) !== null || craft.desecrationRequiredTargetIdx() === -1 || (e.desecrationConstraint === 'require')"
+                      class="link desec-btn"
+                      :class="{ active: e.desecrationConstraint === 'require', forbidden: e.desecrationConstraint === 'forbid' }"
+                      :title="e.desecrationConstraint === 'require' ? 'desecration REQUIRED — click to forbid'
+                            : e.desecrationConstraint === 'forbid'  ? 'desecration FORBIDDEN — click to clear'
+                            :                                          'click to require desecrated provenance (max one per item)'"
+                      @click="craft.cycleTargetEntryDesecration(e.idx)">🦴</button>
+                    <button class="pause-chip" :class="{ paused: e.disabled }"
+                      :title="e.disabled ? 'Resume — re-include in analytics' : 'Pause — keep entry but exclude from analytics'"
+                      @click="craft.setTargetEntryDisabled(e.idx, !e.disabled)">{{ e.disabled ? '▶' : '⏸' }}</button>
                   </div>
+                  <small v-if="!e.disabled && !craft.isEntryShadowed(e)" class="tier-implies hint"
+                         :title="'Worst-case roll at the chosen minimum tier — i.e. the floor any acceptable item must clear.'">
+                    ≥ {{ craft.minRollAtTier(e.name, craft.tierBandFor(e, craft.getAllTiers('PREFIX', e.name)).desiredTier) }}
+                  </small>
                   <div v-if="!e.disabled && !craft.isEntryShadowed(e)" class="tier-score-row">
                     <span class="hint">score per tier:</span>
                     <label v-for="t in craft.getAllTiers('PREFIX', e.name)" :key="'tps'+e.idx+t.tier"
@@ -977,6 +1357,20 @@ export default {
                   <button class="link remove-btn" @click="craft.removeTargetEntry(e.idx)" title="remove">×</button>
                 </template>
               </div>
+              <div v-if="craft.targetBoneMod && craft.targetBoneSide === 'PREFIX'"
+                   class="affix prefix bone-pending"
+                   title="Goal-state allows a pending unrevealed bone-mod on this side. The Well of Souls reveal step is optional.">
+                <span class="name">🦴 {{ BONE_GIBBERISH }}</span>
+                <span class="affix-controls">
+                  <button class="bone-swap-btn"
+                    :disabled="!canSwapTargetBone"
+                    :title="canSwapTargetBone ? 'Move pending bone to suffix side' : 'No free suffix slot to swap into'"
+                    @click="craft.setTargetBoneSide('SUFFIX')">⇄</button>
+                  <button class="link"
+                    title="Remove the goal-state pending bone allowance"
+                    @click="craft.setTargetBoneMod(false)">×</button>
+                </span>
+              </div>
             </div>
             <div class="target-side">
               <h4>Suffixes
@@ -985,6 +1379,10 @@ export default {
                   :disabled="craft.targetSummary.suffixes.empty + craft.targetSummary.suffixes.required >= 3"
                   @click="craft.addTargetEmpty('SUFFIX')"
                   :title="craft.targetSummary.suffixes.empty + craft.targetSummary.suffixes.required >= 3 ? 'No suffix slot left — required + empty already fill 3/3' : 'Require an empty suffix slot'">+ empty suffix</button>
+                <button v-if="!craft.targetBoneMod" class="bone-add-btn"
+                  :disabled="!canAddTargetBone('SUFFIX')"
+                  :title="canAddTargetBone('SUFFIX') ? 'Allow a pending unrevealed bone-mod on the suffix side at goal time' : 'No free suffix slot'"
+                  @click="craft.setTargetBoneSide('SUFFIX')">🦴 + bone</button>
               </h4>
               <div v-if="craft.targetByType.SUFFIX.length === 0" class="empty-list">— add wished suffixes via <em>+ wish</em> in the pool below —</div>
               <div v-for="e in craft.targetByType.SUFFIX" :key="'tes'+e.idx" class="affix suffix"
@@ -1004,21 +1402,6 @@ export default {
                     class="restriction-chip violated clickable"
                     :title="'Raise item level to ' + craft.targetEntryReachability(e).minIlvlNeeded + ' to unlock this tier'"
                     @click="craft.setItemLevel(craft.targetEntryReachability(e).minIlvlNeeded)">ilvl ≥ {{ craft.targetEntryReachability(e).minIlvlNeeded }}</button>
-                  <button v-if="e.fractured || craft.fracturedTargetIdx() === -1"
-                    class="link fracture-btn"
-                    :class="{ active: e.fractured }"
-                    :title="e.fractured ? 'fractured target (locked) — click to unmark' : 'mark this as the fractured target (only one allowed per item)'"
-                    @click="craft.setTargetEntryFractured(e.idx, !e.fractured)"><img src="./assets/fracturing-orb.svg" alt="fractured" class="orb-icon" /></button>
-                  <button v-if="(e.desecrationConstraint ?? null) !== null || craft.desecrationRequiredTargetIdx() === -1 || (e.desecrationConstraint === 'require')"
-                    class="link desec-btn"
-                    :class="{ active: e.desecrationConstraint === 'require', forbidden: e.desecrationConstraint === 'forbid' }"
-                    :title="e.desecrationConstraint === 'require' ? 'desecration REQUIRED — click to forbid'
-                          : e.desecrationConstraint === 'forbid'  ? 'desecration FORBIDDEN — click to clear'
-                          :                                          'click to require desecrated provenance (max one per item)'"
-                    @click="craft.cycleTargetEntryDesecration(e.idx)">🦴</button>
-                  <button class="pause-chip" :class="{ paused: e.disabled }"
-                    :title="e.disabled ? 'Resume — re-include in analytics' : 'Pause — keep entry but exclude from analytics'"
-                    @click="craft.setTargetEntryDisabled(e.idx, !e.disabled)">{{ e.disabled ? '▶' : '⏸' }}</button>
                   <button class="link remove-btn" @click="craft.removeTargetEntry(e.idx)" title="remove">×</button>
                   <div v-if="!e.disabled && !craft.isEntryShadowed(e)" class="tier-band-row"
                        :title="'Slider: minimal acceptable tier. Tiers worse than this are meaningless. Click the req/des badge to toggle required vs desired.'">
@@ -1034,10 +1417,26 @@ export default {
                       :value="craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).desiredTier"
                       @input="craft.setTargetEntryTierBand(e.idx, craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).requiredTier == null ? null : Number($event.target.value), Number($event.target.value), craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).maxTier)" />
                     <span class="band-summary">T{{ craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).desiredTier }}</span>
-                    <small class="tier-implies hint" :title="'Worst-case roll at the chosen minimum tier — i.e. the floor any acceptable item must clear.'">
-                      ≥ {{ craft.minRollAtTier(e.name, craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).desiredTier) }}
-                    </small>
+                    <button v-if="e.fractured || craft.fracturedTargetIdx() === -1"
+                      class="link fracture-btn"
+                      :class="{ active: e.fractured }"
+                      :title="e.fractured ? 'fractured target (locked) — click to unmark' : 'mark this as the fractured target (only one allowed per item)'"
+                      @click="craft.setTargetEntryFractured(e.idx, !e.fractured)"><img src="./assets/fracturing-orb.svg" alt="fractured" class="orb-icon" /></button>
+                    <button v-if="(e.desecrationConstraint ?? null) !== null || craft.desecrationRequiredTargetIdx() === -1 || (e.desecrationConstraint === 'require')"
+                      class="link desec-btn"
+                      :class="{ active: e.desecrationConstraint === 'require', forbidden: e.desecrationConstraint === 'forbid' }"
+                      :title="e.desecrationConstraint === 'require' ? 'desecration REQUIRED — click to forbid'
+                            : e.desecrationConstraint === 'forbid'  ? 'desecration FORBIDDEN — click to clear'
+                            :                                          'click to require desecrated provenance (max one per item)'"
+                      @click="craft.cycleTargetEntryDesecration(e.idx)">🦴</button>
+                    <button class="pause-chip" :class="{ paused: e.disabled }"
+                      :title="e.disabled ? 'Resume — re-include in analytics' : 'Pause — keep entry but exclude from analytics'"
+                      @click="craft.setTargetEntryDisabled(e.idx, !e.disabled)">{{ e.disabled ? '▶' : '⏸' }}</button>
                   </div>
+                  <small v-if="!e.disabled && !craft.isEntryShadowed(e)" class="tier-implies hint"
+                         :title="'Worst-case roll at the chosen minimum tier — i.e. the floor any acceptable item must clear.'">
+                    ≥ {{ craft.minRollAtTier(e.name, craft.tierBandFor(e, craft.getAllTiers('SUFFIX', e.name)).desiredTier) }}
+                  </small>
                   <div v-if="!e.disabled && !craft.isEntryShadowed(e)" class="tier-score-row">
                     <span class="hint">score per tier:</span>
                     <label v-for="t in craft.getAllTiers('SUFFIX', e.name)" :key="'tss'+e.idx+t.tier"
@@ -1059,6 +1458,20 @@ export default {
                   <span class="empty-explicit">— must be empty —</span>
                   <button class="link remove-btn" @click="craft.removeTargetEntry(e.idx)" title="remove">×</button>
                 </template>
+              </div>
+              <div v-if="craft.targetBoneMod && craft.targetBoneSide === 'SUFFIX'"
+                   class="affix suffix bone-pending"
+                   title="Goal-state allows a pending unrevealed bone-mod on this side. The Well of Souls reveal step is optional.">
+                <span class="name">🦴 {{ BONE_GIBBERISH }}</span>
+                <span class="affix-controls">
+                  <button class="bone-swap-btn"
+                    :disabled="!canSwapTargetBone"
+                    :title="canSwapTargetBone ? 'Move pending bone to prefix side' : 'No free prefix slot to swap into'"
+                    @click="craft.setTargetBoneSide('PREFIX')">⇄</button>
+                  <button class="link"
+                    title="Remove the goal-state pending bone allowance"
+                    @click="craft.setTargetBoneMod(false)">×</button>
+                </span>
               </div>
             </div>
             </div>
@@ -1128,7 +1541,7 @@ export default {
                   <td>
                     <button class="mname mod-link" :title="'Click for tier details (T1..T' + m.tiersTotal + ')'"
                       @click="openModModal(m)">{{ m.name }}</button>
-                    <span v-if="essenceableNames.has(m.name)" class="essence-chip" title="An Essence consumable can guarantee this mod">🟢</span>
+                    <span v-if="essenceableNamesBySide.PREFIX.has(m.name)" class="essence-chip" title="An Essence consumable can guarantee this mod on the prefix side">🟢</span>
                     <span v-if="desecratedNames.has(m.name)" class="desecrated-chip" title="Also rollable via Desecrated currencies (Bones)">💀</span>
                     <button v-if="!m.ilvlOk" class="restriction-chip violated clickable"
                       :title="'Raise item level to ' + m.requiredIlvl + ' to unlock this modifier'"
@@ -1195,7 +1608,7 @@ export default {
                   <td>
                     <button class="mname mod-link" :title="'Click for tier details (T1..T' + m.tiersTotal + ')'"
                       @click="openModModal(m)">{{ m.name }}</button>
-                    <span v-if="essenceableNames.has(m.name)" class="essence-chip" title="An Essence consumable can guarantee this mod">🟢</span>
+                    <span v-if="essenceableNamesBySide.SUFFIX.has(m.name)" class="essence-chip" title="An Essence consumable can guarantee this mod on the suffix side">🟢</span>
                     <span v-if="desecratedNames.has(m.name)" class="desecrated-chip" title="Also rollable via Desecrated currencies (Bones)">💀</span>
                     <button v-if="!m.ilvlOk" class="restriction-chip violated clickable"
                       :title="'Raise item level to ' + m.requiredIlvl + ' to unlock this modifier'"
@@ -1748,7 +2161,13 @@ export default {
               <button class="link evaluate-strategies-btn primary-cta"
                 :disabled="craft.mdpEvaluating"
                 @click="craft.solveMdp()">
+                <span v-if="craft.mdpEvaluating" class="mdp-solve-spinner" aria-hidden="true"></span>
                 {{ craft.mdpEvaluating ? 'Solving…' : (craft.mdpResult ? '↻ Re-solve' : '▶ Solve MDP') }}
+              </button>
+              <button v-if="craft.mdpEvaluating" class="link"
+                @click="craft.cancelMdp()"
+                title="Cancel the in-flight solve. The synchronous core can't be interrupted mid-iteration but the spinner clears immediately and any new state-space-cap exception will discard the result.">
+                ✖ Cancel
               </button>
               <label class="hint" style="margin-left: 0.6rem; font-weight: normal;"
                 title="Prefix every chain node with its step id (e.g. [s5]) so you can refer to a specific node when discussing the policy. Disable when the chart gets too dense.">
@@ -1757,15 +2176,28 @@ export default {
                   @change="craft.setShowMdpStepIds($event.target.checked); craft.solveMdp();" />
                 show step ids
               </label>
-              <button class="link" :disabled="!craft.mdpResult" @click="craft.simulateMdp()"
+              <button v-if="craft.mdpResult" class="link" @click="craft.simulateMdp()"
                 title="Sample one trajectory through the optimal policy. Click multiple times to stack scenarios."
                 style="margin-left: 0.6rem;">
                 🎲 Simulate one craft
+              </button>
+              <button v-if="craft.mdpResult" class="link"
+                :disabled="craft.mdpDistributionEvaluating"
+                @click="craft.simulateMdpBatch(1000)"
+                title="Run 1000 sampled trajectories and plot the cost distribution (histogram + CDF). Failure paths are kept and pile up at the expensive tail."
+                style="margin-left: 0.4rem;">
+                <span v-if="craft.mdpDistributionEvaluating">⏳ sampling…</span>
+                <span v-else>📊 1000-run distribution</span>
               </button>
               <button v-if="craft.mdpScenarios.length" class="link"
                 @click="craft.clearMdpScenarios()" style="margin-left: 0.4rem;"
                 title="Remove all simulated scenarios.">
                 clear scenarios
+              </button>
+              <button v-if="craft.mdpDistribution" class="link"
+                @click="craft.clearMdpDistribution()" style="margin-left: 0.4rem;"
+                title="Remove the distribution panel.">
+                clear distribution
               </button>
             </h4>
             <p v-if="!craft.mdpResult" class="hint">
@@ -1940,6 +2372,129 @@ export default {
                    button serializes the affixes via the concrete-item
                    DSL and stages them on the store for the Divine
                    Bench tab to pick up. -->
+              <!-- Cost distribution panel: histogram + CDF over N
+                   batch-sampled trajectories. Shows variance / tail
+                   risk that a single 🎲 Simulate-one-craft button
+                   can't convey. -->
+              <div v-if="distributionStats" class="mdp-distribution">
+                <h5>📊 Cost distribution ({{ distributionStats.n }} runs)</h5>
+                <p v-if="distributionStats.pSuccessAtBudget != null" class="dist-headline"
+                   :title="'Fraction of sampled trajectories that reached the goal AND stayed within ' + fmtCost(distributionStats.budgetEx) + '. This is what \\'P(success under budget)\\' means under the current expected-cost-optimal policy. A budget-aware solver could in principle do better, but if this number is already ≥0.9 the gain is marginal.'">
+                  P(success | budget {{ fmtCost(distributionStats.budgetEx) }}) =
+                  <strong :style="distributionStats.pSuccessAtBudget >= 0.9 ? 'color:#5d9' : (distributionStats.pSuccessAtBudget >= 0.5 ? 'color:#cd6' : 'color:#d96')">
+                    {{ (distributionStats.pSuccessAtBudget * 100).toFixed(1) }}%
+                  </strong>
+                  <small class="hint">
+                    ({{ distributionStats.successWithinBudget }} / {{ distributionStats.n }})
+                  </small>
+                </p>
+                <div class="dist-summary hint">
+                  <span><strong>p50</strong> {{ fmtCost(distributionStats.median) }}</span>
+                  <span>· <strong>p75</strong> {{ fmtCost(distributionStats.p75) }}</span>
+                  <span>· <strong>p93.75</strong> {{ fmtCost(distributionStats.p9375) }}</span>
+                  <span>· <strong>mean</strong> {{ fmtCost(distributionStats.mean) }}</span>
+                  <span>· <strong>min</strong> {{ fmtCost(distributionStats.min) }}</span>
+                  <span>· <strong>max</strong> {{ fmtCost(distributionStats.max) }}</span>
+                  <span v-if="distributionStats.p75over2p50 != null"
+                        :title="'p75 / (2·p50). Doubling-chain check: with a stop-and-restart strategy at p50, two attempts achieve 75% success at cost ≤ 2·p50. Ratio ≤ 1 means the policy already exploits this. Ratio > 1 means the histogram has cost mass that a stop-loss + restart would avoid.'"
+                        :style="distributionStats.p75over2p50 > 1 ? 'color:#d96' : 'color:#5d9'">
+                    · <strong>p75 / 2·p50</strong> {{ distributionStats.p75over2p50.toFixed(2) }}×
+                  </span>
+                  <span v-if="distributionStats.p9375over2p75 != null"
+                        :title="'p93.75 / (2·p75). Iterating the doubling chain one more time: stop+restart at p75, two attempts achieve 93.75% success at cost ≤ 2·p75. Ratio > 1 means the deep tail leaks through.'"
+                        :style="distributionStats.p9375over2p75 > 1 ? 'color:#d96' : 'color:#5d9'">
+                    · <strong>p93.75 / 2·p75</strong> {{ distributionStats.p9375over2p75.toFixed(2) }}×
+                  </span>
+                  <span>·
+                    <span style="color:#5d9">{{ distributionStats.successCount }} ✓</span>
+                    /
+                    <span :style="distributionStats.failCount > 0 ? 'color:#d96' : 'color:#888'">{{ distributionStats.failCount }} ✗</span>
+                  </span>
+                </div>
+                <svg v-if="distributionPlot" class="dist-svg"
+                     :viewBox="'0 0 ' + distributionPlot.SVG_W + ' ' + distributionPlot.SVG_H"
+                     preserveAspectRatio="xMidYMid meet">
+                  <!-- axis -->
+                  <line :x1="distributionPlot.PAD_L"
+                        :x2="distributionPlot.SVG_W - distributionPlot.PAD_R"
+                        :y1="distributionPlot.SVG_H - distributionPlot.PAD_B"
+                        :y2="distributionPlot.SVG_H - distributionPlot.PAD_B"
+                        stroke="#666" stroke-width="1" />
+                  <line :x1="distributionPlot.PAD_L" :x2="distributionPlot.PAD_L"
+                        :y1="distributionPlot.PAD_T"
+                        :y2="distributionPlot.SVG_H - distributionPlot.PAD_B"
+                        stroke="#666" stroke-width="1" />
+                  <!-- right Y axis (CDF 0..1) -->
+                  <line :x1="distributionPlot.SVG_W - distributionPlot.PAD_R"
+                        :x2="distributionPlot.SVG_W - distributionPlot.PAD_R"
+                        :y1="distributionPlot.PAD_T"
+                        :y2="distributionPlot.SVG_H - distributionPlot.PAD_B"
+                        stroke="#666" stroke-width="1" stroke-dasharray="2 3" />
+                  <!-- bars: success (green) stacked under fail (amber) -->
+                  <g class="dist-bars">
+                    <g v-for="(b, i) in distributionPlot.bars" :key="'bar'+i">
+                      <rect v-if="b.successH > 0"
+                        :x="b.xLeft" :y="b.successY" :width="b.w" :height="b.successH"
+                        fill="rgba(80, 200, 130, 0.55)" stroke="rgba(80, 200, 130, 0.9)" stroke-width="0.5">
+                        <title>{{ fmtCost(b.xMid) }} · {{ b.count }} runs ({{ b.successCount }} ✓ / {{ b.failCount }} ✗)</title>
+                      </rect>
+                      <rect v-if="b.failH > 0"
+                        :x="b.xLeft" :y="b.failY" :width="b.w" :height="b.failH"
+                        fill="rgba(220, 130, 80, 0.65)" stroke="rgba(220, 130, 80, 0.95)" stroke-width="0.5">
+                        <title>{{ fmtCost(b.xMid) }} · {{ b.count }} runs ({{ b.successCount }} ✓ / {{ b.failCount }} ✗)</title>
+                      </rect>
+                    </g>
+                  </g>
+                  <!-- CDF polyline -->
+                  <path :d="distributionPlot.cdfPath"
+                        fill="none" stroke="rgba(180, 200, 255, 0.9)" stroke-width="1.6" />
+                  <!-- quantile markers -->
+                  <g v-for="(m, i) in distributionPlot.markers" :key="'mk'+i">
+                    <line :x1="m.x" :x2="m.x"
+                          :y1="distributionPlot.PAD_T"
+                          :y2="distributionPlot.SVG_H - distributionPlot.PAD_B"
+                          :stroke="m.color" stroke-width="1" stroke-dasharray="3 3" opacity="0.7" />
+                    <text :x="m.x + 3" :y="distributionPlot.PAD_T + 10"
+                          :fill="m.color" font-size="10">{{ m.label }}</text>
+                  </g>
+                  <!-- budget marker — heavier solid white line so it stands out -->
+                  <g v-if="distributionPlot.budgetMarker">
+                    <line :x1="distributionPlot.budgetMarker.x" :x2="distributionPlot.budgetMarker.x"
+                          :y1="distributionPlot.PAD_T"
+                          :y2="distributionPlot.SVG_H - distributionPlot.PAD_B"
+                          :stroke="distributionPlot.budgetMarker.color" stroke-width="1.6" opacity="0.85" />
+                    <text :x="distributionPlot.budgetMarker.x + 3"
+                          :y="distributionPlot.SVG_H - distributionPlot.PAD_B - 4"
+                          :fill="distributionPlot.budgetMarker.color" font-size="10" font-weight="600">
+                      {{ distributionPlot.budgetMarker.label }}
+                    </text>
+                  </g>
+                  <!-- x-axis tick labels -->
+                  <g class="dist-ticks">
+                    <text v-for="(t, i) in distributionPlot.ticks" :key="'tk'+i"
+                          :x="t.x" :y="distributionPlot.SVG_H - distributionPlot.PAD_B + 14"
+                          fill="#aaa" font-size="10" text-anchor="middle">{{ t.label }}</text>
+                  </g>
+                  <!-- y-axis labels: left=count, right=CDF 0..1 -->
+                  <text :x="distributionPlot.PAD_L - 6" :y="distributionPlot.PAD_T + 4"
+                        fill="#aaa" font-size="10" text-anchor="end">runs</text>
+                  <text :x="distributionPlot.SVG_W - distributionPlot.PAD_R + 6"
+                        :y="distributionPlot.PAD_T + 4"
+                        fill="#aaa" font-size="10" text-anchor="start">CDF</text>
+                  <text :x="distributionPlot.SVG_W - distributionPlot.PAD_R + 6"
+                        :y="distributionPlot.SVG_H - distributionPlot.PAD_B + 4"
+                        fill="#aaa" font-size="10" text-anchor="start">0</text>
+                  <text :x="distributionPlot.SVG_W - distributionPlot.PAD_R + 6"
+                        :y="distributionPlot.PAD_T + 4"
+                        fill="#aaa" font-size="10" text-anchor="start">1</text>
+                </svg>
+                <p class="hint dist-legend">
+                  <span style="color:rgba(80,200,130,0.95)">■</span> goal reached
+                  <span style="margin-left:1rem;color:rgba(220,130,80,0.95)">■</span> truncated / failed
+                  <span style="margin-left:1rem;color:rgba(180,200,255,0.9)">—</span> CDF (right axis 0..1)
+                </p>
+              </div>
+
               <div v-if="craft.mdpScenarios.length" class="mdp-scenarios">
                 <h5>🎲 Simulated scenarios ({{ craft.mdpScenarios.length }})</h5>
                 <div v-for="s in craft.mdpScenarios" :key="s.id" class="scenario-card">
@@ -1949,6 +2504,9 @@ export default {
                       {{ s.traj.steps.length }} step(s) ·
                       {{ s.traj.totalEx.toFixed(0) }} ex ·
                       {{ (s.traj.totalSec / 60).toFixed(1) }} min ·
+                      <span :title="'Joint probability of this exact trajectory: Π of each step\\'s sampledProb. Lower = rarer outcome path.'">
+                        p ≈ {{ fmtProbability(scenarioProbability(s)) }}
+                      </span> ·
                       <span :style="s.traj.reachedGoal ? 'color:#5d9' : 'color:#d96'">
                         {{ s.traj.reachedGoal ? '✓ goal reached' : (s.traj.truncated ? '⚠ truncated' : '— stopped') }}
                       </span>
@@ -1964,9 +2522,15 @@ export default {
                   </div>
                   <details>
                     <summary>orb spend</summary>
-                    <ul class="hint">
-                      <li v-for="(n, action) in s.traj.orbCounts" :key="action">
-                        <code>{{ action }}</code> × {{ n }}
+                    <ul class="hint orb-spend-list">
+                      <li v-for="line in scenarioActionLines(s)" :key="line.action">
+                        <span class="orb-icon-glyph" aria-hidden="true">{{ line.icon }}</span>
+                        <code>{{ line.action }}</code> × {{ line.count }}
+                        <span class="orb-line-cost"
+                          :title="line.perOrbEx.toFixed(3) + ' ex / use × ' + line.count">
+                          · {{ line.costEx.toFixed(2) }} ex
+                          <small v-if="line.count > 1">({{ line.perOrbEx.toFixed(2) }} ex/each)</small>
+                        </span>
                       </li>
                     </ul>
                   </details>

@@ -106,6 +106,22 @@ export const useCraftStore = defineStore('craft', {
      *  affix — and is always desecrated by definition. Engine maps
      *  to start.boneMod = true. */
     startingBoneMod: fromUrlOr('startingBoneMod', false),
+    /** Side of the pending unrevealed bone-mod, when known. null
+     *  means natural side allocation at reveal time; 'PREFIX' or
+     *  'SUFFIX' tells the engine which side the bone slot occupies
+     *  (e.g., observed from the in-game item). */
+    startingBoneSide: fromUrlOr('startingBoneSide', null),
+    /** True iff the desired/target item is allowed to end with a
+     *  pending unrevealed bone-mod. Mirrors `startingBoneMod` for the
+     *  goal side — useful when the user wants to plan a craft that
+     *  STOPS at "bone applied, not yet revealed" (defer the Well of
+     *  Souls decision). Engine relaxes the goal predicate's
+     *  `boneMod && !boneRevealed ⇒ not goal` check when this is true. */
+    targetBoneMod: fromUrlOr('targetBoneMod', false),
+    /** Side of the goal-state pending unrevealed bone-mod, when known.
+     *  Mirrors `startingBoneSide`. Used purely for UI affordance — the
+     *  goal predicate currently only checks the boolean. */
+    targetBoneSide: fromUrlOr('targetBoneSide', null),
     /**
      * Acceptable affixes for the soft-wishlist cost estimator.
      * Keyed by `${type}:${name}` so prefixes/suffixes never collide.
@@ -261,6 +277,9 @@ export const useCraftStore = defineStore('craft', {
      *  Abyssal Lord, Allocates a random Notable, etc.). Keyed by
      *  essence row text. Shape: { overrides: { [text]: { side, source } } }. */
     essenceSideOverrides: { overrides: {} },
+    /** Per-essence per-mod side map for multi-mod essences (Hysteria
+     *  primarily). Shape: { mod_sides: { [essenceName]: { [canonicalText]: side } } }. */
+    essenceModSides: { mod_sides: {} },
     /**
      * Tag filter state. Keyed by tag name. Values:
      *   'include' = only mods carrying this tag pass.
@@ -315,6 +334,17 @@ export const useCraftStore = defineStore('craft', {
     mdpScenarios: [],
     /** Auto-incrementing scenario id; private. */
     _scenarioCounter: 0,
+    /**
+     * Distribution of trajectory costs from N independent samples.
+     * Populated by `simulateMdpBatch`; cleared whenever the MDP
+     * solution changes. Shape:
+     *   { samples: [{ totalEx, totalSec, reachedGoal, truncated, steps }],
+     *     at: ISOTimestamp,
+     *     n: number }
+     * `null` when no batch has been run yet.
+     */
+    mdpDistribution: null,
+    mdpDistributionEvaluating: false,
     /**
      * One-shot handoff slot for the Plan view's "→ Divine Bench"
      * button. Set by `sendScenarioToDivineBench`; the Divine Bench
@@ -529,6 +559,8 @@ export const useCraftStore = defineStore('craft', {
         startingDesecratedKey,
         startingDesecratedSide,
         startingBoneMod: state.startingBoneMod,
+        startingBoneSide: state.startingBoneSide,
+        targetBoneMod: state.targetBoneMod,
         startingCounts: this.startingCounts,
         currencies: this.effectiveCurrencies,
         omenPrices: this.omenPrices,
@@ -818,30 +850,51 @@ export const useCraftStore = defineStore('craft', {
      * cap (e.g. user widened the wishlist beyond 8 entries).
      */
     solveMdp() {
+      // Cancel any in-flight solve — the user clicked Re-solve while
+      // a previous run was still going. Bumping the token causes the
+      // prior microtask-yielding loop to abort on its next yield.
+      this._mdpSolveToken = (this._mdpSolveToken ?? 0) + 1;
+      const myToken = this._mdpSolveToken;
       this.mdpEvaluating = true;
       this.mdpResult = null;
-      try {
-        // ALWAYS rebuild ctx — `_lastStrategyCtx` is a cache from a
-        // previous strategy-comparator run and can be stale if the user
-        // loaded a different item / changed the wishlist / toggled rates
-        // since. Earlier we gated on `!this._lastStrategyCtx`, which
-        // meant Re-solve after an item swap silently solved the OLD
-        // problem and re-rendered the OLD chain. Touching the
-        // `_computeStrategies` getter unconditionally forces a fresh
-        // ctx; solveMDP itself is the expensive part anyway so the
-        // strategies recomputation is in the noise.
-        // eslint-disable-next-line no-unused-vars
-        const _ = this._computeStrategies;
-        const ctx = this._lastStrategyCtx;
-        if (!ctx) return;
-        const input = ctxToMdpInput(ctx);
-        if (!input) return;
-        this.mdpResult = solveMDP(input);
-      } catch (e) {
-        this.mdpResult = { error: String(e?.message ?? e) };
-      } finally {
-        this.mdpEvaluating = false;
-      }
+      // Re-solving invalidates any cached distribution from prior MDP.
+      this.mdpDistribution = null;
+      // Yield once to the event loop so the spinner paints before we
+      // start the heavy synchronous work. Without this, on a large
+      // craft the user would click and see the disabled-button state
+      // only after the 1–5s solve completes — looking frozen. Browser
+      // doesn't repaint inside a synchronous JS run.
+      Promise.resolve().then(() => new Promise((r) => setTimeout(r, 0))).then(() => {
+        if (this._mdpSolveToken !== myToken) return; // cancelled
+        try {
+          // eslint-disable-next-line no-unused-vars
+          const _ = this._computeStrategies;
+          const ctx = this._lastStrategyCtx;
+          if (!ctx) return;
+          const input = ctxToMdpInput(ctx);
+          if (!input) return;
+          if (this._mdpSolveToken !== myToken) return; // cancelled mid-prep
+          this.mdpResult = solveMDP(input);
+        } catch (e) {
+          if (this._mdpSolveToken === myToken) {
+            this.mdpResult = { error: String(e?.message ?? e) };
+          }
+        } finally {
+          if (this._mdpSolveToken === myToken) {
+            this.mdpEvaluating = false;
+          }
+        }
+      });
+    },
+    /** Cancel the in-flight MDP solve. Bumps the solve token so any
+     *  microtask-deferred work checks `myToken !== _mdpSolveToken`
+     *  and bails out before applying the result. The synchronous
+     *  inner solveMDP() call can't be interrupted mid-iteration
+     *  (no abort point inside value-iteration), but the surrounding
+     *  bookkeeping is short-circuited and the spinner clears. */
+    cancelMdp() {
+      this._mdpSolveToken = (this._mdpSolveToken ?? 0) + 1;
+      this.mdpEvaluating = false;
     },
     clearMdp() { this.mdpResult = null; },
     async selectGame(id) {
@@ -868,6 +921,9 @@ export const useCraftStore = defineStore('craft', {
         this.essenceSideOverrides = mod.game.loadEssenceSideOverrides
           ? await mod.game.loadEssenceSideOverrides()
           : { overrides: {} };
+        this.essenceModSides = mod.game.loadEssenceModSides
+          ? await mod.game.loadEssenceModSides()
+          : { mod_sides: {} };
         this.itemDescriptions = mod.game.loadItemDescriptions
           ? await mod.game.loadItemDescriptions() : {};
         this.rates = mod.game.loadRates
@@ -1259,9 +1315,40 @@ export const useCraftStore = defineStore('craft', {
      * after reveal. Setting this requires that no other desecrated
      * mod already exists on the item (one-cap rule).
      */
+    /** Toggle whether the desired/target item allows a pending
+     *  unrevealed bone-mod end-state (mirror of setStartingBoneMod). */
+    setTargetBoneMod(on) {
+      this.targetBoneMod = Boolean(on);
+      if (!on) this.targetBoneSide = null;
+    },
+    /** Set the side of the goal-state pending unrevealed bone-mod.
+     *  Setting a non-null side implies targetBoneMod = true. */
+    setTargetBoneSide(side) {
+      const valid = side === 'PREFIX' || side === 'SUFFIX' || side == null;
+      if (!valid) return;
+      this.targetBoneSide = side;
+      if (side != null && !this.targetBoneMod) this.targetBoneMod = true;
+    },
     setStartingBoneMod(on) {
       if (on && this.hasDesecratedStarting()) return; // refuse — one cap
       this.startingBoneMod = Boolean(on);
+      // Clear the side when the bone toggle is turned off — the field
+      // is meaningless without an active bone.
+      if (!on) this.startingBoneSide = null;
+    },
+    /**
+     * Set the side of the pending unrevealed bone-mod.
+     * Accepts null (natural allocation), 'PREFIX', or 'SUFFIX'.
+     * Implies startingBoneMod = true when a non-null side is set.
+     */
+    setStartingBoneSide(side) {
+      const valid = side === 'PREFIX' || side === 'SUFFIX' || side == null;
+      if (!valid) return;
+      this.startingBoneSide = side;
+      // Setting a side implies the bone exists.
+      if (side != null && !this.startingBoneMod && !this.hasDesecratedStarting()) {
+        this.startingBoneMod = true;
+      }
     },
     /** True iff any affix on the starting item is fractured. */
     hasFractured() {
@@ -1437,6 +1524,51 @@ export const useCraftStore = defineStore('craft', {
       return scenario;
     },
     clearMdpScenarios() { this.mdpScenarios = []; },
+    /**
+     * Run N trajectory samples and store the cost distribution.
+     * Visualised as a histogram + CDF in the Plan view; helps the
+     * user gauge variance / tail risk rather than relying on a
+     * single sampled trajectory. Failure paths (truncated /
+     * goal-not-reached) are kept and naturally pile up at the
+     * expensive end of the histogram — the user explicitly asked
+     * for that bar to be visible. Default N=1000; clamps to
+     * [50, 50000] to keep the call snappy.
+     */
+    async simulateMdpBatch(n = 1000) {
+      if (!this.mdpResult || this.mdpDistributionEvaluating) return null;
+      this.mdpDistributionEvaluating = true;
+      // Yield once so the loading spinner paints before we start the
+      // synchronous sampling loop. Same trick as solveMdp uses for its
+      // spinner — without this the user sees "click → click sticks
+      // → 800ms freeze → result" instead of "click → spinner → result".
+      await new Promise((r) => setTimeout(r, 0));
+      try {
+        const N = Math.max(50, Math.min(50000, Math.floor(n) || 1000));
+        const { sampleTrajectory } = await import('../engine/mdp/sample.js');
+        const wishlist = this._lastStrategyCtx?.wishlist ?? [];
+        const samples = new Array(N);
+        for (let i = 0; i < N; i++) {
+          const t = sampleTrajectory(this.mdpResult, { wishlist });
+          samples[i] = {
+            totalEx: t.totalEx,
+            totalSec: t.totalSec,
+            reachedGoal: t.reachedGoal,
+            truncated: t.truncated,
+            steps: t.steps.length,
+            buyBaseEvents: t.buyBaseEvents,
+          };
+        }
+        this.mdpDistribution = {
+          samples,
+          n: N,
+          at: new Date().toISOString(),
+        };
+        return this.mdpDistribution;
+      } finally {
+        this.mdpDistributionEvaluating = false;
+      }
+    },
+    clearMdpDistribution() { this.mdpDistribution = null; },
     removeMdpScenario(id) {
       this.mdpScenarios = this.mdpScenarios.filter((s) => s.id !== id);
     },

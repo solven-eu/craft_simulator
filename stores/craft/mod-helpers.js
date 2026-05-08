@@ -106,19 +106,58 @@ export const modHelperActions = {
     if (!this.base || !name) return new Set();
     const out = new Set();
     const extra = this.extraMods?.[this.base] ?? {};
+    // Side-resolution mirror of views/Home.js groupedEssences:
+    // override JSON → per-mod side map → essences.csv by name. Used
+    // to filter out essence rows that *don't* grant the asked-for
+    // side (e.g. Opulence's rarity-of-items mod is SUFFIX, so the
+    // green chip must NOT light up on PREFIX target rows).
+    const overrides = this.essenceSideOverrides?.overrides || {};
+    const perModSides = this.essenceModSides?.mod_sides || {};
+    const csvByName = new Map();
+    for (const r of (this.essences ?? [])) {
+      if (r?.name && r.side && r.side !== 'UNKNOWN') csvByName.set(r.name, r.side);
+    }
+    const sideFor = (e) => {
+      const fromOv = overrides[e.text]?.side;
+      if (fromOv) return fromOv;
+      const fromPerMod = perModSides[e.tier_name]?.[e.text];
+      if (fromPerMod) return fromPerMod;
+      return csvByName.get(e.tier_name) || null;
+    };
     const essRows = (extra.essence ?? []).filter((e) => {
       if (!e.text) return false;
-      if (e.text === name) return true;
-      // Loose-key match (`+# to maximum Life` essence vs `# to
-      // maximum Life` base): strip leading `+`, collapse `+#` → `#`.
-      const loose = e.text.replace(/^\+/, '').replace(/\+#/g, '#').trim();
-      return loose === name;
+      // Text match (with the existing loose-key forgiveness).
+      let matches = e.text === name;
+      if (!matches) {
+        const loose = e.text.replace(/^\+/, '').replace(/\+#/g, '#').trim();
+        matches = loose === name;
+      }
+      if (!matches) return false;
+      // Side gate: drop rows whose essence-side disagrees with the
+      // asked-for `type`. ABYSS is side-neutral (replaces either),
+      // so it's accepted. UNKNOWN/null falls through (lenient — old
+      // behaviour for un-classified rows).
+      const side = sideFor(e);
+      if (!side || side === 'ABYSS' || side === 'UNKNOWN') return true;
+      return side === type;
     });
     if (!essRows.length) return out;
     const ranges = this.modRanges?.[this.base] ?? {};
     // Try both base-name forms (with/without leading `+`).
     const tierMap = ranges[name] ?? ranges['+' + name] ?? ranges[name.replace(/^\+/, '')] ?? null;
-    if (!tierMap) return out;
+    if (!tierMap) {
+      // Essence-only mod (no base-pool entry → no `mod_ranges`
+      // tier table). The synthesised tier rows in `getAllTiers`
+      // come 1:1 from the essence variants themselves, so EVERY
+      // synthesised tier IS essence-grantable by construction.
+      // Mark them all so the chip lights up uniformly. (Without
+      // this fallback, ~60% of essence rows in the live data
+      // produce no chip because their affix has no base-pool
+      // counterpart in `mod_ranges`.)
+      const synthesisedTiers = this.getAllTiers(type, name);
+      for (const t of synthesisedTiers) out.add(t.tier);
+      return out;
+    }
     // Parse "(N—M)" or "+(N—M)" → [N, M]. Returns null if no range.
     const parseRange = (s) => {
       const m = /\(\s*(-?\d+(?:\.\d+)?)\s*[—–-]\s*(-?\d+(?:\.\d+)?)\s*\)/.exec(s ?? '');

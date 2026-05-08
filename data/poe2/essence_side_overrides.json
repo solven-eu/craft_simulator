@@ -5,10 +5,14 @@
     "abyss_kind": "ABYSS = neither prefix nor suffix; the affix replaces an existing slot whose side is determined by side-fill or Crystallisation omens. Rendered as a full-width row in the essence panel."
   },
   "overrides": {
-    "#% increased effect of Socketed Items":                          { "side": "SUFFIX", "source": "Essence of Horror" },
-    "Allocates a random Notable Passive Skill":                       { "side": "PREFIX", "source": "Essence of Delirium" },
-    "On Corruption, Item gains two Enchantments":                     { "side": "SUFFIX", "source": "Essence of Insanity" },
-    "#% of Physical Damage from Hits taken as Chaos Damage":          { "side": "PREFIX", "source": "Perfect Essence of Ruin" },
-    "Mark of the Abyssal Lord":                                       { "side": "ABYSS",  "source": "Essence of the Abyss — placeholder, inherits replaced affix's side" }
+    "60% increased effect of Socketed Items":                          { "side": "SUFFIX", "source": "Essence of Horror" },
+    "#% increased effect of Socketed Items":                           { "side": "SUFFIX", "source": "Essence of Horror — display-text alias" },
+    "Allocates a random Notable Passive Skill":                        { "side": "PREFIX", "source": "Essence of Delirium" },
+    "On Corruption, Item gains two Enchantments":                      { "side": "SUFFIX", "source": "Essence of Insanity" },
+    "(10—15)% of Physical Damage from Hits taken as Chaos Damage":     { "side": "PREFIX", "source": "Perfect Essence of Ruin" },
+    "#% of Physical Damage from Hits taken as Chaos Damage":           { "side": "PREFIX", "source": "Perfect Essence of Ruin — display-text alias" },
+    "(20—30)% increased Global Defences":                              { "side": "PREFIX", "source": "Perfect Essence of Enhancement" },
+    "(7—10)% increased Strength, Dexterity or Intelligence":           { "side": "SUFFIX", "source": "Perfect Essence of the Infinite" },
+    "Mark of the Abyssal Lord":                                        { "side": "ABYSS",  "source": "Essence of the Abyss — placeholder, inherits replaced affix's side" }
   }
 }

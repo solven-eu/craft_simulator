@@ -443,6 +443,11 @@ export function ctxToMdpInput(ctx) {
 }
 
 function safeCost(orbId, ctx) {
+  // User-disabled orbs (per-orb checkbox in the rates panel): return
+  // NaN so the engine's missing-cost gate excludes the action from
+  // its policy. Cheaper than a separate "disabled action" code path
+  // through the solver — NaN propagates naturally.
+  if (ctx.disabledOrbs && ctx.disabledOrbs[orbId]) return NaN;
   const orb = ctx.orbs?.[orbId];
   if (!orb) return NaN;
   const ccy = ctx.currencies?.[orb.priceCurrency];
@@ -495,8 +500,16 @@ function buildEssenceSpecs(ctx, wishlist, helpers = {}) {
   const tierOrdinal = { Lesser: 5, Normal: 4, Greater: 2, Perfect: 1, Corrupted: 1 };
   for (const ess of essences) {
     // Item-class filter — essences carry pipe-separated `item_classes`.
+    // Engine uses singular ("Amulet"); CSV uses plural ("Amulets").
+    // Normalise both sides by stripping trailing 's' so "Amulet"
+    // matches "Amulets", "Body Armour" matches "Body Armours", etc.
     const classes = (ess.item_classes ?? '').split('|').map((s) => s.trim()).filter(Boolean);
-    if (itemClass && classes.length > 0 && !classes.includes(itemClass)) continue;
+    if (itemClass && classes.length > 0) {
+      const norm = (s) => s.toLowerCase().replace(/s$/, '');
+      const wantedNorm = norm(itemClass);
+      const matchClass = classes.some((c) => norm(c) === wantedNorm);
+      if (!matchClass) continue;
+    }
     // Match the essence's `matched_mods` against the wishlist via:
     //   1) exact name (covers cases where catalog spelling already
     //      matches the canonical wishlist spelling), then
@@ -515,12 +528,25 @@ function buildEssenceSpecs(ctx, wishlist, helpers = {}) {
     const stripRangeToHash = (s) => (s ?? '')
       .replace(/\+?\((-?\d+(?:\.\d+)?)\s*[—–-]\s*(-?\d+(?:\.\d+)?)\)/g, (m) =>
         m.startsWith('+') ? '+#' : '#');
-    let matchedNames = (ess.matched_mods ?? '').split('|').map((s) => s.trim()).filter(Boolean);
-    if (matchedNames.length === 0 && ess.target_affix) {
-      matchedNames = [stripRangeToHash(ess.target_affix).trim()];
+    const candidateNames = [];
+    for (const n of (ess.matched_mods ?? '').split('|')) {
+      const t = n.trim();
+      if (t) candidateNames.push(t);
+    }
+    // Always also try `target_affix` (range-stripped) — covers two
+    // cases: (a) `matched_mods` empty, (b) `matched_mods` populated
+    // with junk that doesn't map to any wishlist key (e.g. the
+    // scraper writing "detail-page Pre/Suf table → SUFFIX" into the
+    // column instead of leaving it blank). Without this, every
+    // essence with non-empty-but-unrecognised matched_mods is
+    // silently dropped from the action set. User report
+    // (2026-05-08): "Essence of Thawing missing from `Why this orb?`
+    // even though it guarantees the wishlist mod."
+    if (ess.target_affix) {
+      candidateNames.push(stripRangeToHash(ess.target_affix).trim());
     }
     const matchedKeys = [];
-    for (const n of matchedNames) {
+    for (const n of candidateNames) {
       const key = nameToKey.get(n) ?? idToKey.get(idForName(n));
       if (key && !matchedKeys.includes(key)) matchedKeys.push(key);
     }

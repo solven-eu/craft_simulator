@@ -915,6 +915,85 @@ select.tier-select option:disabled {
 .orb-line-cost { color: rgba(255, 255, 255, 0.55); }
 .orb-line-cost small { opacity: 0.7; }
 
+/* Chain renderer toggle. Sits at the top of the chain panel so users
+   can flip between Mermaid (dagre, layered) and Cytoscape (fcose,
+   force-directed) when one engine lays out a particular chain better. */
+.chain-renderer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.4rem 0;
+  flex-wrap: wrap;
+}
+.chain-renderer-toggle select { padding: 0.15rem 0.4rem; }
+/* Cytoscape mount: contain its canvas explicitly. The library
+   sizes its inner <canvas> elements in pixels matched to the
+   container's clientWidth/Height, and on a fresh mount the
+   ResizeObserver + auto-fit cycle can feed back into a widening
+   loop if the parent has no overflow guard. `overflow:hidden`
+   breaks the loop; `box-sizing:border-box` keeps the explicit
+   600px height stable as the SVG content grows. */
+.cytoscape-chain-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Orb-disable panel: a collapsible <details> with a checkbox per orb
+   so users can simplify the action set when reproducing bugs. */
+.orb-disable-panel {
+  margin: 0.4rem 0;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+.orb-disable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.15rem 0.6rem;
+  margin-top: 0.4rem;
+}
+.orb-disable-row {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9em;
+}
+.orb-disable-row input { margin: 0; }
+.orb-disable-families {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+  margin-top: 0.4rem;
+}
+.orb-disable-family { min-width: 180px; }
+.orb-disable-family h6 {
+  margin: 0 0 0.15rem 0;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.orb-disable-family-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+.orb-disable-family-toggle input { margin: 0; }
+.orb-disable-family .orb-disable-grid { grid-template-columns: 1fr; }
+.cytoscape-chain {
+  width: 100%;
+  height: 600px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
 /* Cost-distribution panel: histogram + CDF over batch-sampled runs. */
 .mdp-distribution {
   margin-top: 0.8rem;

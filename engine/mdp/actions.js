@@ -1002,8 +1002,15 @@ export const ACTIONS = {
     // That contradicts the game rule and was a bug.
     applicable: (s, env) => {
       if (s.rarity !== 'rare' || s.boneMod) return false;
-      if (s.fracturedBit >= 0 || s.irrFractured) return false;
-      if (s.totalMods >= env.maxFilled) return false;
+      // Per game rule (user clarification 2026-05-08): on a full
+      // 6/6 item, applying a Bone removes a random non-fractured
+      // mod and replaces it with the bone-phantom. So 6/6 is
+      // applicable as long as there's at least one non-fractured
+      // mod to displace. Fully-fractured items still block.
+      if (s.totalMods >= env.maxFilled) {
+        const removable = s.totalMods - (s.fracturedBit >= 0 ? 1 : 0) - (s.irrFractured ? 1 : 0);
+        if (removable <= 0) return false;
+      }
       // Block apply_bone when ANY desecrated mod is on item — wished
       // (in mask) or irrelevant (per side count).
       if ((s.desecratedWishedMask ?? 0) !== 0) return false;
@@ -1011,12 +1018,96 @@ export const ACTIONS = {
       if ((s.desecratedIrrSuffix ?? 0) > 0) return false;
       return true;
     },
-    transitions: (s, env) => [{
-      to: makeState({ ...s, boneMod: true, boneRevealed: false }),
-      prob: 1,
-      costEx: env.boneCostEx ?? 0,
-      costSec: env.boneTimeSec ?? env.orbTimes.apply_bone ?? 1,
-    }],
+    transitions: (s, env) => {
+      // Open-slot case: no removal needed. Bone-phantom takes the
+      // implicit slot, totalMods unchanged.
+      if (s.totalMods < env.maxFilled) {
+        return [{
+          to: makeState({ ...s, boneMod: true, boneRevealed: false }),
+          prob: 1,
+          costEx: env.boneCostEx ?? 0,
+          costSec: env.boneTimeSec ?? env.orbTimes.apply_bone ?? 1,
+        }];
+      }
+      // Full-item case: pick one non-fractured mod uniformly, remove
+      // it, then place the bone-phantom in its slot. totalMods drops
+      // by 1 (the removed mod is gone; the bone is a phantom that
+      // doesn't count). Mirror of annul's removal logic.
+      const N = env.wishlistWeights.length;
+      const wishedRemovable = [];
+      for (let i = 0; i < N; i++) {
+        if ((s.modMask & (1 << i)) && i !== s.fracturedBit) wishedRemovable.push(i);
+      }
+      const irrCount = s.totalMods - popcount(s.modMask) - (s.irrFractured ? 1 : 0);
+      const totalRemovable = wishedRemovable.length + irrCount;
+      if (totalRemovable === 0) {
+        // Fully-fractured 6/6 — no removable mod. (Defensive: the
+        // applicable gate already excludes this, but keep the
+        // transition self-consistent.)
+        return [{
+          to: s, prob: 1,
+          costEx: env.boneCostEx ?? 0,
+          costSec: env.boneTimeSec ?? env.orbTimes.apply_bone ?? 1,
+        }];
+      }
+      const out = [];
+      const wTypes = env.wishlistTypes ?? [];
+      const desecMask = s.desecratedWishedMask ?? 0;
+      const cost = env.boneCostEx ?? 0;
+      const time = env.boneTimeSec ?? env.orbTimes.apply_bone ?? 1;
+      // Wished-bit removals: one outcome per wished bit on item.
+      for (const i of wishedRemovable) {
+        const isPrefix = wTypes[i] === 'PREFIX' ? 1 : 0;
+        const newPrefix = Math.max(0, (s.prefixMods ?? 0) - isPrefix);
+        const newDesecMask = desecMask & ~(1 << i);
+        out.push({
+          to: makeState({
+            ...s,
+            modMask: s.modMask & ~(1 << i),
+            totalMods: s.totalMods - 1,
+            prefixMods: newPrefix,
+            desecratedWishedMask: newDesecMask,
+            boneMod: true, boneRevealed: false,
+          }),
+          prob: 1 / totalRemovable,
+          costEx: cost, costSec: time,
+        });
+      }
+      // Irrelevant removals: count prefix-irr / suffix-irr separately
+      // since they decrement different counters.
+      if (irrCount > 0) {
+        let prefixOnItem = 0;
+        for (let i = 0; i < N; i++) {
+          if ((s.modMask & (1 << i)) && wTypes[i] === 'PREFIX') prefixOnItem++;
+        }
+        const irrPrefix = Math.max(0, (s.prefixMods ?? 0) - prefixOnItem);
+        const irrSuffix = Math.max(0, irrCount - irrPrefix);
+        if (irrPrefix > 0) {
+          out.push({
+            to: makeState({
+              ...s,
+              totalMods: s.totalMods - 1,
+              prefixMods: (s.prefixMods ?? 0) - 1,
+              boneMod: true, boneRevealed: false,
+            }),
+            prob: irrPrefix / totalRemovable,
+            costEx: cost, costSec: time,
+          });
+        }
+        if (irrSuffix > 0) {
+          out.push({
+            to: makeState({
+              ...s,
+              totalMods: s.totalMods - 1,
+              boneMod: true, boneRevealed: false,
+            }),
+            prob: irrSuffix / totalRemovable,
+            costEx: cost, costSec: time,
+          });
+        }
+      }
+      return out;
+    },
   },
 
   // ── Desecration phase 2: reveal the Bone-mod ──────────────────

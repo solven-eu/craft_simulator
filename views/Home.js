@@ -1,6 +1,7 @@
 import { onMounted, computed, ref } from 'vue';
 import { useCraftStore } from '../stores/craft.js';
 import MermaidChain from './MermaidChain.js';
+import CytoscapeChain from './CytoscapeChain.js';
 
 const fmt = {
   pct: (p) => Number.isFinite(p) ? (100 * p).toFixed(2) + '%' : '—',
@@ -15,7 +16,7 @@ const fmt = {
 };
 
 export default {
-  components: { MermaidChain },
+  components: { MermaidChain, CytoscapeChain },
   setup() {
     const craft = useCraftStore();
     onMounted(() => { if (!craft.game) craft.selectGame(craft.gameId); });
@@ -690,6 +691,71 @@ export default {
       }
     };
 
+    // Renderer toggle for the strategy chain. Mermaid (dagre) is the
+    // default; cytoscape (fcose) is an alternative for cyclic chains
+    // where dagre routes long unnecessary edges. Persisted per-tab via
+    // localStorage so users keep their preference between solves.
+    const chainRenderer = ref(
+      (typeof localStorage !== 'undefined' && localStorage.getItem('chainRenderer')) || 'mermaid',
+    );
+    const setChainRenderer = (v) => {
+      chainRenderer.value = v;
+      try { localStorage.setItem('chainRenderer', v); } catch {}
+    };
+    // Group orbs by family for the action-set panel. Family ≈ "what
+    // does this orb do conceptually" — so quality variants
+    // (Greater/Perfect) sit alongside their base and the user can
+    // disable them as a unit. Falls back to "other" for anything
+    // unrecognised so no orb disappears from the list.
+    const orbFamilyOf = (id) => {
+      if (/^transmute/.test(id)) return 'Transmute';
+      if (/^augment/.test(id))   return 'Augment';
+      if (/^regal/.test(id))     return 'Regal';
+      if (/^alch/.test(id))      return 'Alchemy';
+      if (/^chaos/.test(id))     return 'Chaos';
+      if (/^exalt/.test(id))     return 'Exalt';
+      if (/^annul/.test(id))     return 'Annul';
+      if (/^fractur/.test(id))   return 'Fracture';
+      if (/^vaal/.test(id))      return 'Vaal';
+      if (/^divine/.test(id))    return 'Divine';
+      if (/^chance/.test(id))    return 'Chance';
+      if (/^jeweller/.test(id) || id === 'artificer') return 'Jeweller';
+      return 'Other';
+    };
+    const orbsByFamily = computed(() => {
+      const groups = new Map();
+      for (const [id, o] of Object.entries(craft.game?.orbs ?? {})) {
+        const f = orbFamilyOf(id);
+        if (!groups.has(f)) groups.set(f, []);
+        groups.get(f).push({ id, ...o });
+      }
+      // Stable family order: dominant orbs first, niche last.
+      const order = ['Alchemy','Transmute','Augment','Regal','Exalt','Annul','Chaos','Fracture','Vaal','Divine','Chance','Jeweller','Other'];
+      return order
+        .filter((f) => groups.has(f))
+        .map((f) => ({ family: f, orbs: groups.get(f) }));
+    });
+    const copyChainDump = async () => {
+      const chain = craft.mdpResult?.chain;
+      if (!chain) return;
+      const lines = [
+        `# chain (${chain.states.length} states, ${chain.edges.length} edges)`,
+        '',
+        '## states',
+      ];
+      for (const s of chain.states) {
+        lines.push(`### ${s.id} [kind=${s.kind} policy=${s.meta?.policy ?? '-'}]`);
+        lines.push(s.label.split('\n').map((l) => '  ' + l).join('\n'));
+      }
+      lines.push('', '## edges');
+      for (const e of chain.edges) {
+        lines.push(`${e.from} → ${e.to} | ${e.label.replace(/\n/g, ' / ')} | prob=${e.prob ?? '?'} | kind=${e.kind}`);
+      }
+      const text = lines.join('\n');
+      try { await navigator.clipboard.writeText(text); }
+      catch (err) { console.log(text); }
+    };
+
     // Recipe DSL panel state. `recipeText` mirrors the textarea;
     // `recipeStatus` shows ephemeral feedback (success / error)
     // after an Import or Export click.
@@ -997,6 +1063,7 @@ export default {
              canAddTargetBone, canSwapTargetBone,
              orbIconFor, scenarioActionLines, scenarioProbability, fmtProbability,
              distributionStats, distributionPlot,
+             chainRenderer, setChainRenderer, copyChainDump, orbsByFamily,
              copyScenarioToClipboard, sendScenarioToDivineBench };
   },
   template: `
@@ -2032,31 +2099,11 @@ export default {
                headline cost number; the closed-form table was
                sanity-check noise users didn't need. To bring it back,
                restore the markup from git history. -->
-          <div v-if="false">
-            <summary>
-              <span class="strategies-header-text">
-                <small class="secondary-tag">comparison</small>
-                Whole-game strategies <small>(closed-form, sanity check vs the MDP below)</small>
-              </span>
-              <button class="link evaluate-strategies-btn"
-                :disabled="craft.strategiesEvaluating"
-                @click.stop.prevent="craft.evaluateStrategies()">
-                {{ craft.strategiesEvaluating ? 'Evaluating…' : (craft.strategiesResults ? '↻ Re-evaluate' : '▶ Evaluate strategies') }}
-              </button>
-            </summary>
-            <p class="hint" style="margin: 0.25rem 0 0.6rem">
-              Each row models one strategy as a <em>whole-game commitment</em>
-              (alch-spam, fracture-anchor, …). The MDP solver below picks the
-              best action <em>per state</em>, mixing strategies as needed —
-              its V* is a tighter lower bound. Use this table to compare a
-              specific strategy in isolation; use the MDP for the headline
-              cost.
-            </p>
-            <p v-if="!craft.strategiesResults" class="hint" style="margin-top: 0.4rem">
-              Strategy analytics aren't computed reactively (Markov solves are heavy).
-              Click <em>Evaluate strategies</em> when your wishlist + item state are settled.
-            </p>
-          </div>
+          <!-- Strategies header / Evaluate button block intentionally
+               removed (was inside v-if="false"); the markup contained
+               an orphan <summary> outside any <details>, which Vue
+               warned about at compile time. Restore from git history
+               if the closed-form panel ever returns. -->
           <div class="analytics" v-if="craft.strategiesResults">
             <h4 style="display:none">Compare strategies</h4>
 
@@ -2104,7 +2151,8 @@ export default {
                       <p v-if="s.notes" class="strategy-notes-detail">{{ s.notes }}</p>
                       <details v-if="s.chain" class="chain-detail">
                         <summary>▶ Markov chain ({{ s.chain.states.length }} states · {{ s.chain.edges.length }} edges)</summary>
-                        <MermaidChain :chain="s.chain" />
+                        <CytoscapeChain v-if="chainRenderer === 'cytoscape'" :chain="s.chain" />
+                        <MermaidChain v-else :chain="s.chain" />
                       </details>
                     </details>
                     <strong v-else>{{ s.label }}</strong>
@@ -2155,6 +2203,36 @@ export default {
           <!-- closed-form comparison table.                                -->
           <!-- ============================================================ -->
           <div class="analytics mdp-panel headline" v-if="craft.targetEntries.length || Object.keys(craft.wishlist).length">
+            <details open class="orb-disable-panel">
+              <summary>
+                🔧 Action set <small class="hint">— untick to exclude an orb from the engine ({{ Object.keys(craft.disabledOrbs ?? {}).length }} disabled)</small>
+                <button v-if="Object.keys(craft.disabledOrbs ?? {}).length" class="link"
+                  @click.stop.prevent="craft.resetOrbDisabled(); craft.solveMdp();"
+                  title="Re-enable every orb">reset</button>
+              </summary>
+              <div class="orb-disable-families">
+                <div v-for="g in orbsByFamily" :key="'fam-'+g.family" class="orb-disable-family">
+                  <h6>
+                    <label class="orb-disable-family-toggle"
+                      :title="'Toggle all ' + g.family + ' variants at once'">
+                      <input type="checkbox"
+                        :checked="g.orbs.every(o => !(craft.disabledOrbs ?? {})[o.id])"
+                        :indeterminate.prop="g.orbs.some(o => (craft.disabledOrbs ?? {})[o.id]) && g.orbs.some(o => !(craft.disabledOrbs ?? {})[o.id])"
+                        @change="g.orbs.forEach(o => craft.setOrbDisabled(o.id, !$event.target.checked)); craft.solveMdp();" />
+                      {{ g.family }}
+                    </label>
+                  </h6>
+                  <div class="orb-disable-grid">
+                    <label v-for="o in g.orbs" :key="'orb-'+o.id" class="orb-disable-row">
+                      <input type="checkbox"
+                        :checked="!(craft.disabledOrbs ?? {})[o.id]"
+                        @change="craft.setOrbDisabled(o.id, !$event.target.checked); craft.solveMdp();" />
+                      <span>{{ o.name }}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </details>
             <h4>
               <small class="primary-tag">primary</small>
               Optimal MDP policy <small>(mixed-policy value-iteration)</small>
@@ -2360,7 +2438,17 @@ export default {
               </p>
               <details class="chain-detail">
                 <summary>▶ Optimal policy chain ({{ craft.mdpResult.chain.states.length }} states · {{ craft.mdpResult.chain.edges.length }} edges)</summary>
-                <MermaidChain :chain="craft.mdpResult.chain" />
+                <div class="chain-renderer-toggle">
+                  <label class="hint">renderer:</label>
+                  <select :value="chainRenderer" @change="setChainRenderer($event.target.value)">
+                    <option value="mermaid">Mermaid (dagre, layered)</option>
+                    <option value="cytoscape">Cytoscape (fcose, force-directed)</option>
+                  </select>
+                  <button class="link" @click="copyChainDump" title="Copy a text dump of every state label + edge to the clipboard.">📋 copy chain</button>
+                  <small class="hint">— fcose handles cycles + minimises edge length; dagre is faster on small DAGs.</small>
+                </div>
+                <CytoscapeChain v-if="chainRenderer === 'cytoscape'" :chain="craft.mdpResult.chain" />
+                <MermaidChain v-else :chain="craft.mdpResult.chain" />
               </details>
 
               <!-- Stacked scenarios from the 🎲 Simulate button. Each
@@ -2592,7 +2680,7 @@ export default {
           </p>
           <template v-for="kind in (craft.game?.CURRENCY_KINDS ?? [])" :key="kind.id">
           <details v-if="(craft.currenciesByKind[kind.id] ?? []).length"
-                   class="rates-group" open>
+                   class="rates-group">
             <summary>
               {{ kind.label }}
               <small v-if="craft.currenciesByKind[kind.id]">
@@ -2607,7 +2695,7 @@ export default {
                  @click.stop>↗ poe2db</a>
             </summary>
             <table class="rates-table">
-              <thead><tr><th>Currency</th><th class="num">1 ↔ Exalted</th><th class="num" title="Time per single use, in seconds">Time (s)</th><th></th></tr></thead>
+              <thead><tr><th>Currency</th><th class="num">1 ↔ Exalted</th><th class="num" title="Time per single use, in seconds">Time (s)</th><th title="Untick to exclude from the engine's policy">Available</th><th></th></tr></thead>
               <tbody>
                 <tr v-for="c in (craft.currenciesByKind[kind.id] ?? [])" :key="c.id"
                     :class="{ overridden: c.overridden, 'not-applicable': !c.applicable }"
@@ -2640,15 +2728,23 @@ export default {
                       @input="craft.setRate(c.id, $event.target.value)" />
                   </td>
                   <td class="num" :class="{ overridden: c.timeOverridden, 'time-synced': !!c.timeBaseOrb }">
-                    <input v-if="Number.isFinite(c.timeSeconds)"
+                    <span v-if="c.timeBaseOrb" class="hint"
+                      :title="'Synced with ' + (craft.game?.orbs?.[c.timeBaseOrb]?.name ?? c.timeBaseOrb)">
+                      ↑
+                    </span>
+                    <input v-else-if="Number.isFinite(c.timeSeconds)"
                       type="number" min="1" step="1"
                       :value="c.timeSeconds"
-                      :readonly="!!c.timeBaseOrb"
-                      :title="c.timeBaseOrb
-                        ? ('Synced with ' + (craft.game?.orbs?.[c.timeBaseOrb]?.name ?? c.timeBaseOrb) + ' — edit that row to change')
-                        : ('Time factor to use one ' + c.name + ' (seconds — at least 1s to glance at the outcome)')"
-                      @input="!c.timeBaseOrb && craft.setTime(c.id, $event.target.value)" />
+                      :title="'Time factor to use one ' + c.name + ' (seconds — at least 1s to glance at the outcome)'"
+                      @input="craft.setTime(c.id, $event.target.value)" />
                     <span v-else class="hint">—</span>
+                  </td>
+                  <td class="num">
+                    <input v-if="craft.game?.orbs?.[c.id]"
+                      type="checkbox"
+                      :checked="!(craft.disabledOrbs ?? {})[c.id]"
+                      @change="craft.setOrbDisabled(c.id, !$event.target.checked); craft.solveMdp();"
+                      title="Untick to exclude this orb from the MDP's action set (re-solves automatically)" />
                   </td>
                   <td>
                     <button v-if="c.overridden" class="link" @click="craft.setRate(c.id, NaN)" title="reset rate">↺ rate</button>

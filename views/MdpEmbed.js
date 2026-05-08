@@ -9,14 +9,25 @@
 // Path: /:game/mdp-embed?s=<base64-uri-encoded-state>
 // (the same `?s=` codec the planner uses to share craft state).
 
-import { computed, watch, onMounted } from 'vue';
+import { computed, ref, watch, onMounted } from 'vue';
 import { useCraftStore } from '../stores/craft.js';
 import MermaidChain from './MermaidChain.js';
+import CytoscapeChain from './CytoscapeChain.js';
 
 export default {
-  components: { MermaidChain },
+  components: { MermaidChain, CytoscapeChain },
   setup() {
     const craft = useCraftStore();
+    // URL-driven renderer toggle: ?renderer=cytoscape switches engines.
+    // Falls back to localStorage preference, then 'mermaid'.
+    const params = typeof window !== 'undefined'
+      ? new URLSearchParams(window.location.hash.split('?')[1] || '')
+      : new URLSearchParams();
+    const chainRenderer = ref(
+      params.get('renderer')
+      || (typeof localStorage !== 'undefined' && localStorage.getItem('chainRenderer'))
+      || 'mermaid',
+    );
 
     async function init() {
       // Ensure the game data is loaded — the URL state is decoded
@@ -45,7 +56,70 @@ export default {
     const isLoading = computed(() =>
       !craft.game || craft.mdpEvaluating || (!craft.mdpResult?.error && !craft.mdpResult?.chain));
 
-    return { craft, status, isLoading };
+    const setRenderer = (v) => {
+      chainRenderer.value = v;
+      try { localStorage.setItem('chainRenderer', v); } catch {}
+    };
+    // Copy a textual dump of the chain's states + edges to the clipboard
+    // so users can paste it into a debug session. Mermaid's SVG text
+    // doesn't select cleanly, and the user explicitly asked for a way
+    // to grab state labels (cold/fire mirror-pair debugging needs the
+    // exact text on each node).
+    const copyChainDump = async () => {
+      const chain = craft.mdpResult?.chain;
+      if (!chain) return;
+      const lines = [
+        `# chain (${chain.states.length} states, ${chain.edges.length} edges)`,
+        '',
+        '## states',
+      ];
+      for (const s of chain.states) {
+        lines.push(`### ${s.id} [kind=${s.kind} policy=${s.meta?.policy ?? '-'}]`);
+        lines.push(s.label.split('\n').map((l) => '  ' + l).join('\n'));
+      }
+      lines.push('', '## edges');
+      for (const e of chain.edges) {
+        lines.push(`${e.from} → ${e.to} | ${e.label.replace(/\n/g, ' / ')} | prob=${e.prob ?? '?'} | kind=${e.kind}`);
+      }
+      const text = lines.join('\n');
+      try {
+        await navigator.clipboard.writeText(text);
+        console.log(`[copy-chain] copied ${text.length} chars to clipboard`);
+      } catch (e) {
+        console.error('[copy-chain] failed:', e);
+        // Fallback: log to console so the user can copy from there.
+        console.log(text);
+      }
+    };
+    // Group orbs by family for the action-set panel — same logic as
+    // Home.js. (Inlined here rather than factored into a shared
+    // module to keep the embed view dependency-light.)
+    const orbFamilyOf = (id) => {
+      if (/^transmute/.test(id)) return 'Transmute';
+      if (/^augment/.test(id))   return 'Augment';
+      if (/^regal/.test(id))     return 'Regal';
+      if (/^alch/.test(id))      return 'Alchemy';
+      if (/^chaos/.test(id))     return 'Chaos';
+      if (/^exalt/.test(id))     return 'Exalt';
+      if (/^annul/.test(id))     return 'Annul';
+      if (/^fractur/.test(id))   return 'Fracture';
+      if (/^vaal/.test(id))      return 'Vaal';
+      if (/^divine/.test(id))    return 'Divine';
+      if (/^chance/.test(id))    return 'Chance';
+      if (/^jeweller/.test(id) || id === 'artificer') return 'Jeweller';
+      return 'Other';
+    };
+    const orbsByFamily = computed(() => {
+      const groups = new Map();
+      for (const [id, o] of Object.entries(craft.game?.orbs ?? {})) {
+        const f = orbFamilyOf(id);
+        if (!groups.has(f)) groups.set(f, []);
+        groups.get(f).push({ id, ...o });
+      }
+      const order = ['Alchemy','Transmute','Augment','Regal','Exalt','Annul','Chaos','Fracture','Vaal','Divine','Chance','Jeweller','Other'];
+      return order.filter((f) => groups.has(f)).map((f) => ({ family: f, orbs: groups.get(f) }));
+    });
+    return { craft, status, isLoading, chainRenderer, setRenderer, copyChainDump, orbsByFamily };
   },
   template: `
     <div class="mdp-embed">
@@ -54,7 +128,46 @@ export default {
         <p class="mdp-embed-status">{{ status }}</p>
       </div>
       <p v-else-if="status" class="hint">{{ status }}</p>
-      <MermaidChain v-if="craft.mdpResult?.chain" :chain="craft.mdpResult.chain" />
+      <div v-if="craft.mdpResult?.chain" class="chain-renderer-toggle">
+        <label class="hint">renderer:</label>
+        <select :value="chainRenderer" @change="setRenderer($event.target.value)">
+          <option value="mermaid">Mermaid (dagre, layered)</option>
+          <option value="cytoscape">Cytoscape (fcose, force-directed)</option>
+        </select>
+        <button class="link" @click="copyChainDump" title="Copy a textual dump of every state's label and edge to the clipboard. Paste into chat / a bug report so labels can be inspected without DOM-fighting Mermaid's SVG selection.">📋 copy chain</button>
+      </div>
+      <details open v-if="craft.mdpResult?.chain && craft.game" class="orb-disable-panel">
+        <summary>
+          🔧 Action set <small class="hint">— untick to exclude ({{ Object.keys(craft.disabledOrbs ?? {}).length }} disabled)</small>
+          <button v-if="Object.keys(craft.disabledOrbs ?? {}).length" class="link"
+            @click.stop.prevent="craft.resetOrbDisabled(); craft.solveMdp();"
+            title="Re-enable every orb">reset</button>
+        </summary>
+        <div class="orb-disable-families">
+          <div v-for="g in orbsByFamily" :key="'fam-'+g.family" class="orb-disable-family">
+            <h6>
+              <label class="orb-disable-family-toggle"
+                :title="'Toggle all ' + g.family + ' variants at once'">
+                <input type="checkbox"
+                  :checked="g.orbs.every(o => !(craft.disabledOrbs ?? {})[o.id])"
+                  :indeterminate.prop="g.orbs.some(o => (craft.disabledOrbs ?? {})[o.id]) && g.orbs.some(o => !(craft.disabledOrbs ?? {})[o.id])"
+                  @change="g.orbs.forEach(o => craft.setOrbDisabled(o.id, !$event.target.checked)); craft.solveMdp();" />
+                {{ g.family }}
+              </label>
+            </h6>
+            <div class="orb-disable-grid">
+              <label v-for="o in g.orbs" :key="'orb-'+o.id" class="orb-disable-row">
+                <input type="checkbox"
+                  :checked="!(craft.disabledOrbs ?? {})[o.id]"
+                  @change="craft.setOrbDisabled(o.id, !$event.target.checked); craft.solveMdp();" />
+                <span>{{ o.name }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </details>
+      <CytoscapeChain v-if="craft.mdpResult?.chain && chainRenderer === 'cytoscape'" :chain="craft.mdpResult.chain" />
+      <MermaidChain v-else-if="craft.mdpResult?.chain" :chain="craft.mdpResult.chain" />
     </div>
   `,
 };

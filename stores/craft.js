@@ -122,6 +122,12 @@ export const useCraftStore = defineStore('craft', {
      *  Mirrors `startingBoneSide`. Used purely for UI affordance — the
      *  goal predicate currently only checks the boolean. */
     targetBoneSide: fromUrlOr('targetBoneSide', null),
+    /** Per-orb enable/disable toggle — keyed by orb id. Disabled
+     *  orbs are excluded from the MDP's action set (cost = Infinity)
+     *  so the engine plans without them. Useful for reproducing
+     *  bug reports against a simplified action set, or for
+     *  "what-if I only had transmute + augment" exploration. */
+    disabledOrbs: fromUrlOr('disabledOrbs', {}),
     /**
      * Acceptable affixes for the soft-wishlist cost estimator.
      * Keyed by `${type}:${name}` so prefixes/suffixes never collide.
@@ -507,8 +513,17 @@ export const useCraftStore = defineStore('craft', {
         const override = state.timeOverrides[id];
         return Number.isFinite(override) ? override : o.timeSeconds;
       };
+      // Disabled-orbs filter: when the user has unticked an orb, set
+      // its priceAmount to Infinity so the adapter's safeCost returns
+      // NaN, the action's per-use cost exceeds budget, and the engine
+      // excludes it from the policy. Lets users reproduce bugs
+      // against a simplified action set or do "what-if I only had X
+      // and Y" exploration.
+      const disabled = state.disabledOrbs ?? {};
       for (const [k, o] of Object.entries(baseOrbs)) {
-        orbs[k] = { ...o, timeSeconds: effectiveTime(k) };
+        const overrideTime = effectiveTime(k);
+        const priceAmount = disabled[k] ? Infinity : o.priceAmount;
+        orbs[k] = { ...o, priceAmount, timeSeconds: overrideTime };
       }
       // Fracture state plumbed through ctx so strategies can:
       //   - gate themselves out when the user requires a fracture but the
@@ -571,6 +586,13 @@ export const useCraftStore = defineStore('craft', {
         extraMods: state.extraMods,
         base: state.base,
         orbs,
+        // User-set disable flags (per-orb checkbox in rates panel).
+        // Adapter reads this in safeCost to return NaN for disabled
+        // orbs, which in turn excludes the action from the engine's
+        // policy. Setting priceAmount=Infinity above isn't sufficient
+        // — safeCost reads the currency-to-exalted rate, not the
+        // priceAmount, so the disable wouldn't bite without this.
+        disabledOrbs: state.disabledOrbs ?? {},
         isAvailable: (kind, id) => this.isMechanicEnabled(kind, id),
         essences: state.essences,
         essencePrices: state.essencePrices,
@@ -664,12 +686,35 @@ export const useCraftStore = defineStore('craft', {
       // rates panel). Use the live slug as the synthetic id; skip
       // anything that already collided on name.
       const seenNames = new Set(Object.values(out).map((c) => c.name));
+      // Build a name → essence-row index from the loaded essences.csv
+      // so live-loaded essence entries can pick up their item-class
+      // restrictions. Without this, every essence shows as
+      // "applicable to current item" in the rates panel even when
+      // its item_classes (from the CSV) explicitly excludes the
+      // user's current base. Normalisation strips trailing 's' so
+      // "Amulets" → "Amulet" matches state.itemType.
+      const essenceByName = new Map();
+      for (const e of (state.essences ?? [])) {
+        if (e?.name) essenceByName.set(e.name, e);
+      }
+      const normClass = (s) => String(s || '').toLowerCase().replace(/s$/, '');
+      const expandClass = (s) => s.charAt(0).toUpperCase() + s.slice(1); // "amulet" → "Amulet"
       for (const [name, e] of Object.entries(live)) {
         if (seenNames.has(name)) continue;
         const id = `live:${e.slug || name}`;
         const override = state.rateOverrides[id];
         const exaltedPer = Number.isFinite(override) ? override
           : (Number.isFinite(e.exaltedPer) ? e.exaltedPer : NaN);
+        // Pick up `item_classes` for essences from the loaded CSV.
+        let appliesToItemClasses;
+        const essRow = essenceByName.get(name);
+        if (essRow?.item_classes) {
+          // CSV uses "Amulets|Belts|…"; engine + UI use "Amulet" /
+          // "Belt" (singular). Normalise to singular for the
+          // applicability chip's containment check.
+          const csvClasses = essRow.item_classes.split('|').map((s) => s.trim()).filter(Boolean);
+          appliesToItemClasses = csvClasses.map((c) => expandClass(normClass(c)));
+        }
         out[id] = {
           id,
           name: e.name,
@@ -681,6 +726,7 @@ export const useCraftStore = defineStore('craft', {
           trend7dPct: e.trend7dPct ?? null,
           dailyVolume: e.dailyVolume ?? null,
           rateFetchedAt: e.fetchedAt ?? '',
+          appliesToItemClasses,
         };
       }
       // Virtual "Player time" currency. Its rate is the
@@ -1336,6 +1382,18 @@ export const useCraftStore = defineStore('craft', {
       // is meaningless without an active bone.
       if (!on) this.startingBoneSide = null;
     },
+    /** Toggle a specific orb on/off. When disabled, the engine
+     *  excludes this orb from its action set. Used to reproduce
+     *  bug reports against a simplified action set. */
+    setOrbDisabled(orbId, disabled) {
+      if (!orbId) return;
+      const next = { ...this.disabledOrbs };
+      if (disabled) next[orbId] = true;
+      else           delete next[orbId];
+      this.disabledOrbs = next;
+    },
+    /** Re-enable every orb (for "reset to default action set"). */
+    resetOrbDisabled() { this.disabledOrbs = {}; },
     /**
      * Set the side of the pending unrevealed bone-mod.
      * Accepts null (natural allocation), 'PREFIX', or 'SUFFIX'.

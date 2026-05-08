@@ -69,6 +69,39 @@ test('collapsed state with mixed prefix/suffix members renders as `· N irreleva
     `Side-specific labels still present: ${JSON.stringify(sideSpecific.slice(0, 3))}`);
 });
 
+test('merged irrelevant lines preserve the common per-side floor (no information loss)', () => {
+  // User report (2026-05-08): from s40 we transit to s9 (label
+  // "3 irrelevants" — merged) and s7 (label "1P + 2S irrelevant" —
+  // not merged). The merged label loses information: members of
+  // the s9 group all had at least N irrelevants on one side, but
+  // we collapsed it to a fully-side-agnostic count. The new label
+  // should surface the FLOOR (min count per side across members)
+  // and only mark the residual mass as "(either side)".
+  //
+  // Concretely, after the fix:
+  //   - "· 3 irrelevant" alone is invalid (no qualifier).
+  //   - "· N irrelevant (either side)" is valid (variable mass).
+  //   - "· P: M irrelevant" + "· N irrelevant (either side)" is
+  //     valid (M-prefix floor + N variable).
+  const result = solveMDP(baseInput);
+  const offenders = [];
+  for (const cs of result.chain.states) {
+    // Match ANY irrelevant line on the label.
+    const lines = cs.label.split('\n');
+    for (const ln of lines) {
+      // Reject the bare side-agnostic line ("· N irrelevant" without
+      // "(either side)" qualifier and without "P:" / "S:" prefix).
+      if (/^· \d+ irrelevant(\s+🦴×\d+)?$/.test(ln)) {
+        offenders.push({ id: cs.id, line: ln });
+      }
+    }
+  }
+  assert.equal(offenders.length, 0,
+    `expected merged irrelevant labels to use either per-side floors or the "(either side)" qualifier. ` +
+    `Bare "· N irrelevant" lines lose information:\n  ` +
+    offenders.slice(0, 5).map((o) => `${o.id}: "${o.line}"`).join('\n  '));
+});
+
 test('no chain transition crosses incompatible side counts (e.g. 1 prefix → 2 suffix)', () => {
   // Walk every edge: extract the prefix/suffix breakdown from the
   // FROM and TO labels (counting "· P: N", "· S: N", and the
@@ -103,6 +136,12 @@ test('no chain transition crosses incompatible side counts (e.g. 1 prefix → 2 
     // agnostic shortcut above).
     if (e.kind === 'reset') continue;  // buy_base resets the item
     if (Math.abs(t.total - f.total) > 1) continue;  // alch / multi-affix rolls
+    // Skip multi-affix-replacement actions where the source's affixes
+    // don't survive: alch (white→rare), chaos (one mod replaced), and
+    // their tier variants. These can flip side counts even with a
+    // total-mod delta of ≤1 because the existing affixes get lost.
+    const action = (e.label ?? '').split('\n')[0];
+    if (/^(alch|chaos|vaal)/i.test(action)) continue;
     if (t.total === f.total + 1) {
       // Exactly one new affix — it must've gone to one specific side
       // unless we lost side info via collapse.

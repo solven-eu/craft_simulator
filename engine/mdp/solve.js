@@ -1359,14 +1359,58 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       if (!outBy.has(e.from)) outBy.set(e.from, []);
       outBy.get(e.from).push(e);
     }
-    // Initial classes by (kind, policy, canonical-label).
+    // Initial classes by (kind, policy) only — the user-suggested
+    // merge-by-next-action strategy. Two states with the same kind
+    // and the same optimal action are presentationally equivalent;
+    // any covering label difference (e.g. one shows `1 S irrelevant`,
+    // another shows `≥1 irrelevant`) is reconciled by the rewriter
+    // below and by the disambiguation post-pass that adds attribute
+    // breakdowns where needed. Previously the partition included
+    // `canonLabel` (= canonAttrs string), which kept fragmenting
+    // groups that should have merged — e.g. s14 (totalMods=2 with
+    // 1S+1unknown irrelevant) vs s22 (totalMods varying with ≥1
+    // irrelevant) under the same exalt policy stayed separate even
+    // though they describe overlapping sets of concrete items.
     let classIds = new Array(chainStates.length);
     {
       const initToCls = new Map();
       let nextCls = 0;
+      // Partition attributes (in order, all required in the key):
+      //
+      //   kind, policy   — coarse shape (transient / goal / brick)
+      //                    + chosen action.
+      //   fractured      — fracture state is irreversible; mixing
+      //                    fractured & unfractured states would
+      //                    silently lose behavioural info.
+      //   totalMods      — exact, per user direction (2026-05-09):
+      //                    "each concrete item should fit exactly
+      //                    one rep." Bucketing tm leaks ambiguity
+      //                    (an item with tm=4 fits both `tm=2–4`
+      //                    and `tm=3–5` rep labels). Including the
+      //                    exact value forces each rep to cover a
+      //                    single tm — labels become precise without
+      //                    needing disc-line ranges.
+      //
+      // Trade-off: chain has more reps. User explicitly accepts this
+      // ("acceptable to split into 2 nodes with same action, as long
+      // as it enables readable graph"). The disambiguation post-pass
+      // still handles residual collisions on attrs not in the
+      // partition (bone, prefixMods, etc.).
+      const fracturedClassFor = (cs) => {
+        const idx = parseInt((cs.id ?? '').replace(/^s/, ''), 10);
+        const s = states[idx];
+        if (!s) return '-';
+        if (s.fracturedBit >= 0) return wishedEquivClass[s.fracturedBit] ?? '?';
+        return s.irrFractured ? 'irr' : '-';
+      };
+      const totalModsFor = (cs) => {
+        const idx = parseInt((cs.id ?? '').replace(/^s/, ''), 10);
+        const s = states[idx];
+        return s?.totalMods ?? 0;
+      };
       for (let i = 0; i < chainStates.length; i++) {
         const cs = chainStates[i];
-        const k = `${cs.kind ?? '-'}|${cs.meta?.policy ?? '-'}|${canonLabel(cs)}`;
+        const k = `${cs.kind ?? '-'}|${cs.meta?.policy ?? '-'}|${fracturedClassFor(cs)}|tm=${totalModsFor(cs)}`;
         if (!initToCls.has(k)) initToCls.set(k, nextCls++);
         classIds[i] = initToCls.get(k);
       }
@@ -1406,6 +1450,20 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       const representatives = new Set();
       for (const id of redirect.values()) representatives.add(id);
       const newChainStates = chainStates.filter((cs) => representatives.has(cs.id));
+      // Attach the collapsed-group member state-indices to each rep
+      // so the downstream label-disambiguation pass can introspect
+      // per-attribute distributions (totalMods, fractured, bone, ...)
+      // without having to re-derive grouping. _underlyingIdxs lives
+      // on the chain state object as an internal aid; it's preserved
+      // through serialisation but not part of the public API.
+      const idxFromCsId = (id) => {
+        const m = /^s(\d+)$/.exec(id ?? '');
+        return m ? Number(m[1]) : null;
+      };
+      for (const cs of newChainStates) {
+        const arr = groups.get(eqKey(cs)) ?? [];
+        cs._underlyingIdxs = arr.map((m) => idxFromCsId(m.id)).filter((x) => x != null);
+      }
       // For per-(from, action) probability renormalisation: when
       // collapse merges multiple source states into a representative,
       // each source contributed outgoing edges that summed to 1.0.
@@ -1742,6 +1800,278 @@ function buildChain({ states, appsPerState, vStar, policy, target, startIdx, bud
       if (typeof console !== 'undefined' && console.log) {
         console.log(`[chain collapse] ${collapsedCount} state(s) merged ` +
           `(${chainStates.length + collapsedCount} → ${chainStates.length})`);
+      }
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────
+  // Label disambiguation pass.
+  //
+  // After collapse, two distinct chain reps can render with very
+  // similar BODY labels (everything except the trailing `next: <action>`
+  // line). The user complained: "I can't differentiate s21 and s22 —
+  // both `≥ 1 irrelevant`, only the action differs." Strategy
+  // (suggested 2026-05-09): merge by next action, label with the
+  // most-specific covering of the group's members, then split until
+  // labels are distinct. Implementation:
+  //
+  //   1. Strip volatile + next-line annotations to get a "body
+  //      fingerprint" per rep.
+  //   2. Group reps by body fingerprint.
+  //   3. For any fingerprint with >1 rep (collision), walk a list of
+  //      candidate discriminator attributes. The cheapest disjoint
+  //      one (where rep A's value-set and rep B's value-set don't
+  //      overlap) gets promoted to the body of EVERY colliding rep —
+  //      so the user can read each rep's label and immediately see
+  //      the differentiator.
+  //
+  // Doesn't change the chain partition; just enriches labels.
+  // ─────────────────────────────────────────────────────────
+  {
+    const idxFromCsId = (id) => {
+      const m = /^s(\d+)$/.exec(id ?? '');
+      return m ? Number(m[1]) : null;
+    };
+    const memberIdxsOf = (cs) => {
+      if (Array.isArray(cs._underlyingIdxs) && cs._underlyingIdxs.length) {
+        return cs._underlyingIdxs;
+      }
+      const i = idxFromCsId(cs.id);
+      return i != null ? [i] : [];
+    };
+    // Strip step-id prefix, volatile annotations, and the next-action
+    // line. What remains is the structural part of the label — if two
+    // reps match on this, the user can't tell them apart visually
+    // beyond the action.
+    const bodyFingerprint = (label) => label
+      .replace(/^\[s\d+\]\s*/, '')
+      .split('\n')
+      .filter((ln) => !/^V\*=|^fromBudget=|^fromBase=|^P_reach=|^visits=|^next:/.test(ln))
+      .join('\n');
+    // Per-state attribute extractors — return a stable comparable
+    // value (number / string) so the "disjoint sets" check is just
+    // a Set intersection.
+    // Default extractor list. Ordered by typical "discrimination
+    // utility": totalMods + prefixMods are the highest-signal axes;
+    // fractured + bone are categorical and useful when the case
+    // calls for them. `wishedCount` and `desecrated` were removed
+    // (2026-05-09): wishedCount renders as range like `0–1` which
+    // is confusing (the high-end value implies a final state) and
+    // is largely redundant with totalMods minus irrelevant; desec
+    // count rarely discriminates in practice. The user can re-add
+    // them if a future scenario needs the breakdown.
+    const attrExtractors = [
+      { name: 'rarity', label: 'rarity', get: (s) => s.rarity ?? '-' },
+      { name: 'tm', label: 'totalMods', get: (s) => s.totalMods ?? 0 },
+      { name: 'prefixMods', label: 'prefix mods', get: (s) => s.prefixMods ?? 0 },
+      {
+        name: 'fractured',
+        label: 'fractured',
+        get: (s) => s.fracturedBit >= 0 ? 'wished'
+                   : s.irrFractured ? 'irr' : '-',
+      },
+      {
+        name: 'bone',
+        label: 'bone',
+        get: (s) => s.boneMod ? (s.boneRevealed ? 'rev' : 'unrev') : '-',
+      },
+    ];
+    // Cap on the number of disc lines added per rep. The user's
+    // direction (2026-05-09): "if a covering representation needs
+    // many attrs, it's acceptable to split the partition rather
+    // than emit a 5-line label." With the cap, brute-force picks
+    // the best subset of size ≤ MAX, even if it doesn't fully
+    // disambiguate; remaining ambiguity surfaces as a duplicate-
+    // label warning. Keeps labels readable.
+    const MAX_DISC_LINES = 2;
+    // Returns the set of distinct values an attribute takes across the
+    // rep's underlying member states. Used to decide if two reps are
+    // "disjoint" on this attribute.
+    const valueSetForRep = (cs, attr) => {
+      const out = new Set();
+      for (const idx of memberIdxsOf(cs)) {
+        const s = states[idx];
+        if (!s) continue;
+        out.add(attr.get(s));
+      }
+      return out;
+    };
+    // Joint-disjoint discriminator selection (brute-force minimum
+    // subset).
+    //
+    // The naive approach (pick attrs whose VALUE-SETS differ across
+    // reps) lets overlapping ranges through: rep A with totalMods
+    // {2,3,4} and rep B with {3,4,5} render as `2–4` vs `3–5` — two
+    // distinct strings, but a concrete item with totalMods=4 fits
+    // both labels and the user can't tell which rep it belongs to.
+    //
+    // Fix (per user direction 2026-05-09): require JOINT disjointness.
+    // Build per-rep tuple sets `{(attr1_val, attr2_val, …) for each
+    // member state}` and find the smallest attribute SUBSET such that
+    // every pair of reps has empty tuple-set intersection. Each
+    // concrete item then maps to exactly one rep's tuple — no
+    // ambiguity. We still render each attr's value-set on its own
+    // line (independent ranges read better than tuple lists), but
+    // the SELECTION ensures the joint information is sufficient.
+    //
+    // Pure greedy fails when no single attr improves the score:
+    // tm covers {2,3,4} vs {3,4,5} alone is overlapping, prefix is
+    // also overlapping, but their JOINT (tm, prefix) tuples ARE
+    // disjoint. Greedy stops too early. Brute-force enumerates all
+    // 2^|attrs| subsets (typically 2^6 = 64) and picks the smallest
+    // that achieves full pairwise disjointness — guaranteed minimum.
+    const greedyDiscriminators = (reps) => {
+      const renderForRep = (cs, attr) => fmtValueSet(valueSetForRep(cs, attr));
+      const memberStatesOf = (cs) => memberIdxsOf(cs)
+        .map((i) => states[i])
+        .filter(Boolean);
+      const tuplesForRep = (cs, attrs) => {
+        const out = new Set();
+        for (const s of memberStatesOf(cs)) {
+          out.add(attrs.map((a) => JSON.stringify(a.get(s))).join('|'));
+        }
+        return out;
+      };
+      const disjointPairScore = (attrs) => {
+        const tuples = reps.map((cs) => tuplesForRep(cs, attrs));
+        let pairs = 0;
+        for (let i = 0; i < tuples.length; i++) {
+          for (let j = i + 1; j < tuples.length; j++) {
+            let overlap = false;
+            for (const v of tuples[i]) if (tuples[j].has(v)) { overlap = true; break; }
+            if (!overlap) pairs += 1;
+          }
+        }
+        return pairs;
+      };
+      const totalPairs = reps.length * (reps.length - 1) / 2;
+      // Brute-force enumeration. attrExtractors.length ≤ 6 → 2^6 = 64
+      // subsets, each O(reps × members) — trivially fast.
+      const N = attrExtractors.length;
+      const cap = Math.min(MAX_DISC_LINES, N);
+      let chosen = null;
+      // Iterate by subset SIZE (k = 1, …, cap) so we find the
+      // minimum-size subset first. Capped at MAX_DISC_LINES so labels
+      // never blow up to 5 disc lines.
+      outer: for (let k = 1; k <= cap; k++) {
+        for (let mask = 0; mask < (1 << N); mask++) {
+          if (popcount(mask) !== k) continue;
+          const subset = [];
+          for (let b = 0; b < N; b++) if (mask & (1 << b)) subset.push(attrExtractors[b]);
+          if (disjointPairScore(subset) === totalPairs) {
+            chosen = subset;
+            break outer;
+          }
+        }
+      }
+      // Fallback: no size-≤cap subset achieves full disjointness.
+      // Pick the size-cap subset with the best disjoint-pair score
+      // — labels stay short, residual ambiguity surfaces via the
+      // duplicate-label warning.
+      if (!chosen) {
+        let bestScore = -1;
+        for (let mask = 0; mask < (1 << N); mask++) {
+          if (popcount(mask) > cap) continue;
+          const subset = [];
+          for (let b = 0; b < N; b++) if (mask & (1 << b)) subset.push(attrExtractors[b]);
+          const score = disjointPairScore(subset);
+          if (score > bestScore) {
+            bestScore = score;
+            chosen = subset;
+          }
+        }
+      }
+      if (!chosen) chosen = [];
+      // Filter the chosen subset to attributes whose rendered value-
+      // sets differ across reps. The brute-force picks for JOINT
+      // disjointness — i.e. the (attr1, attr2, …) tuples partition
+      // each rep's covered concrete states cleanly. But sometimes a
+      // chosen attribute renders identically across all reps (e.g.
+      // both reps cover prefix mods 0–3, just with different
+      // (tm, prefix) joint distributions). Emitting that line adds
+      // visual noise without helping the reader. Only show attrs
+      // whose rendered range actually varies — the user accepts
+      // residual range overlap (`tm=2–5` vs `tm=1–4` covers tm=4
+      // for both) as the cost of a readable label.
+      const visualAttrs = chosen.filter((attr) => {
+        const renders = new Set(reps.map((cs) => renderForRep(cs, attr)));
+        return renders.size > 1;
+      });
+      const emit = visualAttrs.length > 0 ? visualAttrs : chosen;
+      return reps.map((cs) =>
+        emit.map((attr) => ({
+          attr,
+          render: renderForRep(cs, attr),
+        })),
+      );
+    };
+    // Format a value-set for label inclusion. Single value renders
+    // bare ("3"); two values render as "3,4"; broader sets render as
+    // a range when numeric ("3–6"), else as "{a,b,c}".
+    const fmtValueSet = (set) => {
+      const arr = [...set];
+      if (arr.length === 1) return String(arr[0]);
+      if (arr.every((v) => typeof v === 'number')) {
+        const sorted = [...arr].sort((a, b) => a - b);
+        const min = sorted[0], max = sorted[sorted.length - 1];
+        return min === max ? String(min) : `${min}–${max}`;
+      }
+      return `{${arr.sort().join(',')}}`;
+    };
+    // Insertion: drop a `· <attr label>=<value>` line into the body,
+    // before the volatile-annotation block (V*, fromBudget, …) so the
+    // line stays grouped with the structural body.
+    const insertDisambiguator = (cs, line) => {
+      const stepIdMatch = /^(\[s\d+\])\s*/.exec(cs.label);
+      const stepIdPrefix = stepIdMatch ? stepIdMatch[1] : '';
+      const body = stepIdMatch ? cs.label.slice(stepIdMatch[0].length) : cs.label;
+      const lines = body.split('\n');
+      const insertAt = lines.findIndex((ln) =>
+        /^V\*=|^fromBudget=|^fromBase=|^P_reach=|^visits=|^next:/.test(ln));
+      if (insertAt >= 0) lines.splice(insertAt, 0, line);
+      else lines.push(line);
+      const joined = lines.join('\n');
+      cs.label = stepIdPrefix
+        ? (joined.startsWith('\n') ? `${stepIdPrefix}${joined}` : `${stepIdPrefix} ${joined}`)
+        : joined;
+    };
+    // Single pass: detect body collisions, then for each colliding
+    // group run the greedy set-cover to produce the smallest set of
+    // disambiguators that makes every rep's body distinct.
+    const byBody = new Map();
+    for (const cs of chainStates) {
+      const fp = bodyFingerprint(cs.label);
+      const arr = byBody.get(fp) ?? [];
+      arr.push(cs);
+      byBody.set(fp, arr);
+    }
+    for (const reps of byBody.values()) {
+      if (reps.length <= 1) continue;
+      const perRep = greedyDiscriminators(reps);
+      for (let i = 0; i < reps.length; i++) {
+        const lines = perRep[i];
+        if (!lines.length) continue;
+        // Strip the natural `· ≥1 irrelevant` / `· N irrelevant
+        // (either side)` summary lines when a totalMods disc line
+        // is being added — they convey overlapping info and would
+        // make the label redundant. The user's complaint
+        // (2026-05-09): "≥1 irrelevant is on all 3 nodes; if it
+        // doesn't discriminate, drop it."
+        if (lines.some(({ attr }) => attr.name === 'tm')) {
+          const cs = reps[i];
+          const stepIdMatch = /^(\[s\d+\])\s*/.exec(cs.label);
+          const stepIdPrefix = stepIdMatch ? stepIdMatch[1] : '';
+          const body = stepIdMatch ? cs.label.slice(stepIdMatch[0].length) : cs.label;
+          const filtered = body.split('\n').filter((ln) =>
+            !/^· (≥?\d+ irrelevant|\d+ irrelevant \(either side\)|[PS\?]: \d+ irrelevant)/.test(ln));
+          const joined = filtered.join('\n');
+          cs.label = stepIdPrefix
+            ? (joined.startsWith('\n') ? `${stepIdPrefix}${joined}` : `${stepIdPrefix} ${joined}`)
+            : joined;
+        }
+        for (const { attr, render } of lines) {
+          insertDisambiguator(reps[i], `· ${attr.label}=${render}`);
+        }
       }
     }
   }

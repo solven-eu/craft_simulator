@@ -315,6 +315,36 @@ export const targetActions = {
     this._syncTargetConstraints();
   },
 
+  /**
+   * Bulk-flip every wished mod to "required" (or back to "desired").
+   * Respects the per-side 3-cap: if the requested operation would
+   * exceed 3 required mods on either side, it is refused with a
+   * no-op (UI gates the button accordingly).
+   */
+  markAllTargetEntriesRequired(required) {
+    const wanted = Boolean(required);
+    if (wanted) {
+      let pCount = 0, sCount = 0;
+      for (const e of this.targetEntries) {
+        if (e?.kind !== 'mod') continue;
+        if (e.type === 'PREFIX') pCount++;
+        else if (e.type === 'SUFFIX') sCount++;
+      }
+      if (pCount > 3 || sCount > 3) return; // can't promote — would overflow side cap
+    }
+    this.targetEntries = this.targetEntries.map((e) => {
+      if (e?.kind !== 'mod') return e;
+      const desiredTier = Number.isFinite(e.desiredTier) ? Number(e.desiredTier)
+        : Number.isFinite(e.minTier) ? Number(e.minTier) : 1;
+      return {
+        ...e,
+        required: wanted,
+        requiredTier: wanted ? desiredTier : null,
+      };
+    });
+    this._syncTargetConstraints();
+  },
+
   /** Set the required checkbox for a target mod entry. */
   setTargetEntryRequired(index, required) {
     const entry = this.targetEntries[index];

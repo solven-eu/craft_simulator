@@ -266,6 +266,71 @@ function makeExaltedOrb(id, name) {
   };
 }
 
+// Exalt-with-Greater-Exaltation: PoE2 omen "your next Exalted Orb
+// will add two random modifiers". Applicability: same as base exalt
+// but requires 2 free slots (totalMods + 2 ≤ maxFilled). Outcomes:
+// composition of two consecutive single-draws over the same pool —
+// the second draw sees the post-first state (one extra mod on item,
+// possibly tripping a side cap that the first draw didn't).
+//
+// Cost = base orb price + omen price (both flow through env.orbCosts;
+// the variant's id is used to look up the OMEN cost only — base
+// orb cost is added at transition time via baseId).
+function makeExaltedDoubleOrb(id, name, baseId) {
+  return {
+    id, name,
+    applicable: (s, env) => s.rarity === 'rare'
+      && (s.totalMods + 2) <= env.maxFilled
+      // Need 2 affix slots somewhere: at least one side has room
+      // for both, OR each side has at least one slot. Conservative
+      // gate; the singleDraw machinery handles per-side saturation
+      // correctly mid-transition.
+      && (s.prefixMods ?? 0) < 3
+      && (s.totalMods - (s.prefixMods ?? 0)) < 3,
+    transitions: (s, env) => {
+      const cost = (env.orbCosts[baseId] ?? 0) + (env.orbCosts[id] ?? 0);
+      const time = (env.orbTimes[baseId] ?? 0);
+      const dist1 = singleDrawMaskDistribution(s.modMask, env, baseId, null, s.prefixMods ?? 0, s.totalMods ?? 0);
+      const merged = new Map();
+      for (const [k1, p1] of dist1) {
+        const [m1Str, dp1Str] = k1.split('|');
+        const m1 = Number(m1Str);
+        const dp1 = Number(dp1Str);
+        const newMask1   = s.modMask | m1;
+        const newPrefix1 = (s.prefixMods ?? 0) + dp1;
+        const newTotal1  = (s.totalMods ?? 0) + 1;
+        const dist2 = singleDrawMaskDistribution(newMask1, env, baseId, null, newPrefix1, newTotal1);
+        for (const [k2, p2] of dist2) {
+          const [m2Str, dp2Str] = k2.split('|');
+          const m2 = Number(m2Str);
+          const dp2 = Number(dp2Str);
+          const finalMask   = newMask1 | m2;
+          const finalPrefix = newPrefix1 + dp2;
+          const finalTotal  = newTotal1 + 1;
+          const sk = `${finalMask}|${finalPrefix}|${finalTotal}`;
+          merged.set(sk, (merged.get(sk) ?? 0) + p1 * p2);
+        }
+      }
+      const out = [];
+      for (const [k, prob] of merged) {
+        const [maskStr, prefixStr, totalStr] = k.split('|');
+        out.push({
+          to: makeState({
+            ...s,
+            modMask: Number(maskStr),
+            prefixMods: Number(prefixStr),
+            totalMods: Number(totalStr),
+          }),
+          prob,
+          costEx: cost,
+          costSec: time,
+        });
+      }
+      return out;
+    },
+  };
+}
+
 // Build a single-draw orb action (transmute/augment/regal/exalt) with
 // optional Greater/Perfect tier-bias. The only thing that varies
 // between plain and quality variants is `id` (used to look up
@@ -720,6 +785,43 @@ function makeSingleDrawOrbSide(id, name, applicable, targetRarity, sideFilter) {
   };
 }
 
+// Apply-bone with Sinistral/Dextral Necromancy. Same transition
+// shape as plain apply_bone but pins post-state.boneSide so the
+// reveal phase uses the matching-side pool. Applicability requires
+// an open slot on the chosen side (modelling the simple case; the
+// "remove a prefix to make room" branch isn't exercised by the user
+// flows we've seen).
+function makeApplyBoneOmenVariant(id, name, side) {
+  const sideOpen = (s) => {
+    const p = s.prefixMods ?? 0;
+    return side === 'PREFIX' ? p < 3 : (s.totalMods - p) < 3;
+  };
+  return {
+    id, name,
+    applicable: (s, env) => {
+      if (s.rarity !== 'rare' || s.boneMod) return false;
+      if (s.totalMods >= env.maxFilled) return false; // open-slot only
+      if (!sideOpen(s)) return false;
+      if ((s.desecratedWishedMask ?? 0) !== 0) return false;
+      if ((s.desecratedIrrPrefix ?? 0) > 0) return false;
+      if ((s.desecratedIrrSuffix ?? 0) > 0) return false;
+      return true;
+    },
+    transitions: (s, env) => {
+      const cost = (env.boneCostEx ?? 0) + (env.orbCosts?.[id] ?? 0);
+      const time = env.boneTimeSec ?? env.orbTimes?.[id] ?? env.orbTimes?.apply_bone ?? 1;
+      return [{
+        to: makeState({ ...s, boneMod: true, boneRevealed: false, boneSide: side }),
+        prob: 1, costEx: cost, costSec: time,
+      }];
+    },
+  };
+}
+
+// Adding / removing / renaming a key in ACTIONS requires a matching
+// edit in `docs/actions-coverage.md`. The bidirectional sync is
+// enforced by `tests/actions-coverage-doc.test.js` — the test fails
+// when the two lists drift.
 export const ACTIONS = {
   transmute:         makeSingleDrawOrb('transmute',         'Orb of Transmutation',          (s) => s.rarity === 'normal' && s.totalMods === 0, 'magic'),
   // Greater / Perfect Transmutation: same applicability, higher
@@ -850,6 +952,13 @@ export const ACTIONS = {
   exalt:           makeExaltedOrb('exalt',         'Exalted Orb'),
   exalt_greater:   makeExaltedOrb('exalt_greater', 'Greater Exalted Orb'),
   exalt_perfect:   makeExaltedOrb('exalt_perfect', 'Perfect Exalted Orb'),
+
+  // Greater-Exaltation omen variants — adds 2 mods in one cast.
+  // Per-tier so the engine can compare base/Greater/Perfect flavours
+  // when paired with the omen.
+  exalt_double:         makeExaltedDoubleOrb('exalt_double',         'Exalted Orb (Greater Exaltation)',         'exalt'),
+  exalt_greater_double: makeExaltedDoubleOrb('exalt_greater_double', 'Greater Exalted Orb (Greater Exaltation)', 'exalt_greater'),
+  exalt_perfect_double: makeExaltedDoubleOrb('exalt_perfect_double', 'Perfect Exalted Orb (Greater Exaltation)', 'exalt_perfect'),
 
   annul: {
     id: 'annul',
@@ -1110,6 +1219,24 @@ export const ACTIONS = {
     },
   },
 
+  // ── Apply Bone with Sinistral/Dextral Necromancy ─────────────
+  // PoE2 omen: "your next Desecration attempt will add only prefix
+  // modifiers" (or suffix). Effect: the bone-phantom is committed
+  // to the chosen side, which propagates to plain reveal_bone via
+  // state.boneSide so the matching-side hit pool is used.
+  //
+  // Cost = boneCostEx + omen price (flows through env.orbCosts[id]).
+  //
+  // Applicability: same as plain apply_bone, but additionally
+  // requires the chosen side to have an open slot — Necromancy can't
+  // force a prefix on a 3/3-prefix item without first removing a
+  // prefix, and the engine doesn't currently model that "remove from
+  // forced side" branch (could be added if observed in real play).
+  apply_bone_sinistral: makeApplyBoneOmenVariant('apply_bone_sinistral',
+    'Apply Bone (Sinistral Necromancy)', 'PREFIX'),
+  apply_bone_dextral:   makeApplyBoneOmenVariant('apply_bone_dextral',
+    'Apply Bone (Dextral Necromancy)',   'SUFFIX'),
+
   // ── Desecration phase 2: reveal the Bone-mod ──────────────────
   // The desecration UI shows 3 random affixes from the bone's pool
   // and the user picks one. Modelled as a single draw with effective
@@ -1124,8 +1251,17 @@ export const ACTIONS = {
   // engine's perspective (counts toward Fracture's lock pool, can be
   // annulled, etc.).
   reveal_bone:           makeRevealBoneOrb('reveal_bone',           'Reveal Bone-mod',                            'pBoneRevealHit'),
-  reveal_bone_sinistral: makeRevealBoneOrb('reveal_bone_sinistral', 'Reveal Bone-mod (Sinistral Necromancy)',     'pBoneRevealHitPrefix', 'PREFIX'),
-  reveal_bone_dextral:   makeRevealBoneOrb('reveal_bone_dextral',   'Reveal Bone-mod (Dextral Necromancy)',       'pBoneRevealHitSuffix', 'SUFFIX'),
+  // Side-forcing on bone reveal is NOT a separate omen — it's a
+  // consequence of having applied the bone with Sinistral/Dextral
+  // Crystallisation at desecration time. The state's `boneSide`
+  // flag (set by adapter.js when Crystallisation was used at
+  // apply_bone) drives plain reveal_bone to use the matching side
+  // pool automatically. Earlier this engine carried separate
+  // `reveal_bone_sinistral` / `reveal_bone_dextral` actions
+  // referencing a non-existent "Omen of Sinistral/Dextral
+  // Necromancy" — that omen doesn't exist in PoE2; the user
+  // confirmed (2026-05-11) the side is set at desecration time, so
+  // these variants were removed.
   // Abyssal Echoes — reveal can re-roll once, effectively 6 picks
   // instead of 3. Uses the same pool as plain reveal_bone but with
   // a different precomputed hit-probability array (1 - (1-1/N)^6).

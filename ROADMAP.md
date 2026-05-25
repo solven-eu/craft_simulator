@@ -250,6 +250,43 @@ Iterations from there:
   action during value iteration — just persist the top-K alternatives
   per state and render on hover/click in the chain visualization.
 
+- **Paste-from-clipboard import of an in-game item** — Path of Exile 2
+  exposes Ctrl-C copy of an item to a structured text blob (rarity,
+  base, item level, affix list with values). A paste box on the chain
+  view would parse that blob, project it onto the chain's state-space
+  (which rep covers this exact item?), and highlight the leftover
+  work — i.e. the sub-chain from the matched rep to the goal. Two
+  big payoffs:
+  1. **No more guessing where you are.** The user identifies their
+     state by paste, not by squinting at chain labels. This sharply
+     reduces the need for the disambiguator pass (see
+     `docs/chain-rendering.md`) — overlapping label ranges become
+     much less of a problem because the label is no longer the
+     primary "which node am I on?" signal. Many of the merge-vs-
+     split tradeoffs in chain rendering can simplify once paste is
+     the canonical "tell me where I am" affordance.
+  2. **Trade-site lookup for cheaper intermediates.** From the
+     matched rep, walk the *upstream* sub-chain — every reachable
+     ancestor state is a candidate "intermediate item" the user
+     could buy on the trade site. If the market price for some
+     ancestor is lower than the expected cost to craft from start
+     to that ancestor, prefer buying. This generalises the
+     fractured-anchor purchase logic in `project_base_pricing`
+     memory to every chain node, not just the start state.
+
+  Implementation sketch:
+  - Parser for the PoE2 clipboard format (~1 day; format is
+    line-based and well-known).
+  - `findRepForConcreteItem(chain, item)` — match the item's affix
+    set + fracture state + tm + rarity against rep label envelopes;
+    return the unique rep id (G2 of the chain-rendering spec).
+  - "Continue from here" view: chain rendered with the matched rep
+    as a new visual root; pre-rep work greyed out.
+  - Trade-site integration: per-ancestor-rep, query
+    pathofexile.com/trade for items matching the rep's affix set;
+    overlay the cheapest match's price next to the rep's
+    `fromBase=…` annotation. Optional, deferred sub-feature.
+
 ## Mod identity refactor
 
 **Problem.** Today every layer keys mods by display text:

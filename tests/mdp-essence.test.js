@@ -133,7 +133,13 @@ test('Lesser essence below requiredTier ⇒ pAcceptable=0 ⇒ never sets wished 
   }
 });
 
-test('expensive essence over budget ⇒ excluded with budget warning', () => {
+test('expensive essence over budget ⇒ engine considers but routes around when alternative is cheaper', () => {
+  // Per the budget-redesign (2026-05-10): total budget no longer
+  // pre-filters actions. The engine considers the expensive essence
+  // alongside cheaper orbs and chooses based on Q-values. A 5000-ex
+  // essence vs cheap orb-roll alternatives ⇒ orb roll wins on cost.
+  // budgetExcluded only fires when the optimal policy actually
+  // recommends an over-budget action.
   const result = solveMDP({
     ...baseInput,
     ...baseRates,
@@ -149,10 +155,13 @@ test('expensive essence over budget ⇒ excluded with budget warning', () => {
   });
   const policies = new Set([...result.policy.values()].filter(Boolean));
   assert.ok(!policies.has('essence_expensive'),
-    `expensive essence should be excluded by budget; got: ${[...policies]}`);
+    `cheap orb-roll alternative dominates 5000-ex essence on Q; ` +
+    `expensive essence must NOT be in optimal policy; got: ${[...policies]}`);
+  // Engine routed around it ⇒ NOT in budgetExcluded.
   const excluded = result.budgetExcluded.find((e) => e.actionId === 'essence_expensive');
-  assert.ok(excluded,
-    `expensive essence should appear in budgetExcluded; got: ${JSON.stringify(result.budgetExcluded)}`);
+  assert.ok(!excluded,
+    `essence is unused by the policy ⇒ should NOT appear in budgetExcluded; ` +
+    `got: ${JSON.stringify(result.budgetExcluded)}`);
 });
 
 test('multiple essences ⇒ cheapest acceptable-tier one wins', () => {

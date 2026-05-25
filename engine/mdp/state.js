@@ -36,47 +36,58 @@
 export function makeState({
   rarity = 'normal',
   modMask = 0,
-  totalMods = 0,
-  // Number of mods on the prefix side (suffix count = totalMods - prefixMods).
-  // Needed for bone-reveal side allocation (3P/0S forces suffix etc.) and
-  // any future side-aware orb. Defaults to 0 for backward compatibility,
-  // but actions that change totalMods should keep this in sync.
+  // Symmetric side counts: prefixMods + suffixMods = totalMods.
+  // We track BOTH explicitly — the previous representation stored
+  // `(totalMods, prefixMods)` and derived `suffixMods = total -
+  // prefix`, but that's asymmetric and let total drift from the
+  // sum of the two sides on partial updates. Now totalMods is a
+  // computed convenience field on the returned state object so
+  // every read is the live sum.
   prefixMods = 0,
-  // Bitmask (subset of modMask) — which WISHED bits were filled by a
-  // desecrated source (Well-of-Souls reveal). Needed for:
-  //   (a) per-desired-mod `desecrationConstraint: require | forbid`
-  //       checked at goal time;
-  //   (b) `annul_omen_of_light` outcome distribution — picking a
-  //       desecrated mod uniformly at random distinguishes wished vs
-  //       irrelevant desecrated removals.
+  suffixMods = null, // null ⇒ derive from totalMods if provided (legacy callers)
+  totalMods = null,  // legacy: when suffixMods is omitted, suffixMods = totalMods - prefixMods.
   desecratedWishedMask = 0,
-  // Counts of IRRELEVANT desecrated mods per side. (Wished-bit
-  // desecration is captured by `desecratedWishedMask`; the irrelevant
-  // counts are stored separately so total / per-side counts can be
-  // derived without redundant state — preventing the consistency
-  // drift the previous `desecratedCount`/`desecratedPrefixCount`
-  // representation allowed.)
   desecratedIrrPrefix = 0,
   desecratedIrrSuffix = 0,
   fracturedBit = -1,
   irrFractured = false,
   boneMod = false,
   boneRevealed = false,
-  // Side of the pending unrevealed bone-mod, when known. Null means
-  // "natural side allocation at reveal time" (per the open-slot rule
-  // — prefixMods=3 forces suffix, etc.). Set to 'PREFIX' or 'SUFFIX'
-  // when the user has declared which side the bone slot occupies
-  // (e.g., starting craft with an already-applied bone where the
-  // user can see the slot's position). The reveal_bone action uses
-  // the matching side's hit pool when this is set, overriding the
-  // natural allocation rule.
   boneSide = null,
 } = {}) {
-  return Object.freeze({ rarity, modMask, totalMods, prefixMods, desecratedWishedMask, desecratedIrrPrefix, desecratedIrrSuffix, fracturedBit, irrFractured, boneMod, boneRevealed, boneSide });
+  // Resolve suffixMods. Priority order:
+  //   1. totalMods passed → suffix = total - prefix (legacy actions
+  //      pass `{...s, totalMods: s.totalMods + 1, prefixMods: …}`;
+  //      the spread brings along the OLD suffixMods, but the
+  //      override of totalMods is the caller's intent — derive
+  //      suffix from total to keep the sum consistent).
+  //   2. suffixMods passed (new-style callers): use as-is.
+  //   3. Neither passed:                      suffix = 0.
+  let pref = prefixMods | 0;
+  let suff;
+  if (totalMods != null) {
+    suff = Math.max(0, (totalMods | 0) - pref);
+  } else if (suffixMods != null) {
+    suff = suffixMods | 0;
+  } else {
+    suff = 0;
+  }
+  const total = pref + suff;
+  return Object.freeze({
+    rarity, modMask,
+    prefixMods: pref, suffixMods: suff, totalMods: total,
+    desecratedWishedMask, desecratedIrrPrefix, desecratedIrrSuffix,
+    fracturedBit, irrFractured, boneMod, boneRevealed, boneSide,
+  });
 }
 
 export function stateKey(s) {
-  return `${s.rarity}|${s.modMask}|${s.totalMods}|${s.prefixMods ?? 0}|${s.desecratedWishedMask ?? 0}|${s.desecratedIrrPrefix ?? 0}|${s.desecratedIrrSuffix ?? 0}|${s.fracturedBit}|${s.irrFractured ? 1 : 0}|${s.boneMod ? 1 : 0}|${s.boneRevealed ? 1 : 0}|${s.boneSide ?? '-'}`;
+  // Key by (rarity, modMask, prefixMods, suffixMods, …) — totalMods is
+  // intentionally omitted because it's prefixMods + suffixMods. Two
+  // states with the same per-side breakdown have the same total by
+  // definition, so dropping totalMods removes the redundant axis from
+  // the partition without losing information.
+  return `${s.rarity}|${s.modMask}|${s.prefixMods ?? 0}|${s.suffixMods ?? 0}|${s.desecratedWishedMask ?? 0}|${s.desecratedIrrPrefix ?? 0}|${s.desecratedIrrSuffix ?? 0}|${s.fracturedBit}|${s.irrFractured ? 1 : 0}|${s.boneMod ? 1 : 0}|${s.boneRevealed ? 1 : 0}|${s.boneSide ?? '-'}`;
 }
 
 export function popcount(n) {

@@ -1090,7 +1090,7 @@ select.tier-select option:disabled {
    clamping is left to the browser via `max-width` and the chip
    layout's `flex-wrap` (the popup never escapes the row when the
    chip is near the right edge — it just wraps onto two lines). */
-.ccy-chip.has-tip { position: relative; }
+.ccy-chip.has-tip, .has-tip { position: relative; }
 .tip-popup {
   position: absolute;
   bottom: calc(100% + 6px);
@@ -1115,7 +1115,7 @@ select.tier-select option:disabled {
   z-index: 1000;
   pointer-events: none;
 }
-.ccy-chip.has-tip:hover .tip-popup { display: flex; }
+.ccy-chip.has-tip:hover .tip-popup, .has-tip:hover .tip-popup { display: flex; }
 .tip-popup strong { color: #fff; font-weight: 600; }
 .tip-popup .tip-rate {
   font-variant-numeric: tabular-nums;
@@ -1923,6 +1923,11 @@ button.link:hover { opacity: 1; }
   opacity: 0.85;
 }
 .essence-chip:hover, .desecrated-chip:hover { opacity: 1; }
+.essence-chip.tier-mismatch {
+  filter: grayscale(0.6);
+  opacity: 0.55;
+  text-decoration: line-through;
+}
 
 /* Stacked simulator scenarios in the MDP panel. */
 .mdp-scenarios {

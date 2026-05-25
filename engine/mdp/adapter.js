@@ -109,6 +109,7 @@ export function ctxToMdpInput(ctx) {
   // rates loaded, boneCostEx stays NaN and the engine silently
   // excludes apply_bone.
   let boneCostEx = NaN;
+  let boneName = null;
   const itemClass = ctx.itemClass ?? null;
   for (const c of Object.values(ctx.currencies ?? {})) {
     if (c.kind !== 'desecrated') continue;
@@ -121,6 +122,7 @@ export function ctxToMdpInput(ctx) {
     if (!Number.isFinite(c.exaltedPer)) continue;
     if (!Number.isFinite(boneCostEx) || c.exaltedPer < boneCostEx) {
       boneCostEx = c.exaltedPer;
+      boneName = c.name ?? null;
     }
   }
   // Per-wished P(reveal lands wished mod i). The bone REVEAL step
@@ -216,18 +218,35 @@ export function ctxToMdpInput(ctx) {
     regal_perfect:     safeCost('regalPerfect',     ctx),
     regal_sinistral:   sumCost(safeCost('regal', ctx), omenCost('omen-of-sinistral-coronation')),
     regal_dextral:     sumCost(safeCost('regal', ctx), omenCost('omen-of-dextral-coronation')),
-    // Bone reveal omens — cost is just the omen (in-game reveal is
-    // a free confirm step). Plain reveal is free (cost=0). When the
-    // omen has no rate loaded the variant's cost is NaN; the engine
-    // silently skips it.
+    // Apply-bone with Sinistral/Dextral Necromancy — pins the
+    // bone-phantom's side. Cost paid here is the OMEN ONLY; the
+    // bone's currency cost is sourced separately via env.boneCostEx
+    // (the action's transitions sum the two). Stored as orbCosts so
+    // the budget-warning post-hoc check picks it up.
+    apply_bone_sinistral:  omenCost('omen-of-sinistral-necromancy'),
+    apply_bone_dextral:    omenCost('omen-of-dextral-necromancy'),
+    // Bone reveal — cost is 0 (in-game reveal is a free confirm
+    // step). Side-forcing is NOT a reveal-time omen; the bone's
+    // side is set earlier via Necromancy (above) which pins
+    // state.boneSide. Plain reveal_bone then uses the matching side
+    // pool automatically.
+    //
+    // Abyssal Echoes IS a reveal-time omen (extra re-roll ⇒ 6
+    // picks instead of 3).
     reveal_bone:           0,
-    reveal_bone_sinistral: omenCost('omen-of-sinistral-necromancy'),
-    reveal_bone_dextral:   omenCost('omen-of-dextral-necromancy'),
     reveal_bone_abyssal:   omenCost('omen-of-abyssal-echoes'),
     alch:              safeCost('alchemy',          ctx),
     exalt:             safeCost('exalted',          ctx),
     exalt_greater:     safeCost('exaltedGreater',   ctx),
     exalt_perfect:     safeCost('exaltedPerfect',   ctx),
+    // Greater-Exaltation omen — paired with each exalt tier. Cost
+    // stored here is the OMEN ONLY; the base orb cost is added at
+    // transition time (the action sums env.orbCosts[baseId] +
+    // env.orbCosts[id]). NaN ⇒ omen unpriced ⇒ engine excludes the
+    // variant with a warning (see solve.js admit block).
+    exalt_double:         omenCost('omen-of-greater-exaltation'),
+    exalt_greater_double: omenCost('omen-of-greater-exaltation'),
+    exalt_perfect_double: omenCost('omen-of-greater-exaltation'),
     annul:             safeCost('annulment',        ctx),
     // Annul + Omen of Light — desecrated cleanup. Cost = annul price
     // plus omen-of-light price; both must be priced for the cleanup
@@ -344,6 +363,12 @@ export function ctxToMdpInput(ctx) {
   const startingFracturedKey = ctx.startingFracturedKey
     ? canonKey(ctx.startingFracturedKey) : null;
   const startTotal = (ctx.startingCounts?.prefixes ?? 0) + (ctx.startingCounts?.suffixes ?? 0);
+  // Collected by buildEssenceSpecs when an essence applicable to this
+  // craft has no price in the live rates. Pushed onto the engine
+  // input as `warnings`; solveMDP merges them into `result.warnings`
+  // so the UI can show "you'd want Lesser Essence of X but it's not
+  // priced in rates.csv — refresh or list it."
+  const unpricedEssences = [];
 
   return {
     // Live UI: opt into partial-rate mode so a missing rate surfaces as
@@ -402,11 +427,12 @@ export function ctxToMdpInput(ctx) {
     },
     orbCosts, orbTimes, pTierAcceptable,
     boneCostEx,
+    boneName,
     pBoneRevealHit,
     pBoneRevealHitPrefix,
     pBoneRevealHitSuffix,
     pBoneRevealHitAbyssal,
-    essences: buildEssenceSpecs(ctx, wishlist, { omenCost, sumCost }),
+    essences: buildEssenceSpecs(ctx, wishlist, { omenCost, sumCost, unpriced: unpricedEssences }),
     basePriceEx: ctx.basePriceEx ?? 0,
     // Default 60 sec — see solve.js note. Adapter reads from ctx if
     // the user surfaces a per-base-source override (e.g. hideout
@@ -423,6 +449,7 @@ export function ctxToMdpInput(ctx) {
     // chain node labels. Default true so debug conversations can
     // refer to "step s5" unambiguously.
     showStepIds: ctx.showStepIds ?? true,
+    mergeStrategy: ctx.mergeStrategy ?? 'top-down',
     timeWeightExPerSec: ctx.timeWeightExPerSec ?? 0,
     // Game-rule cap on a Rare's affix count during crafting — NOT the
     // user's target final-mod count. ctx.maxFilled is plumbed separately
@@ -439,6 +466,21 @@ export function ctxToMdpInput(ctx) {
     // we duplicated them here and a stale `minModsToFracture: 4` shadowed
     // the engine's correct default of 3, silently disabling fracturing
     // on 3-mod Rares.)
+    // Surface unpriced essences as engine-level warnings so they reach
+    // result.warnings (and the UI's warning banner) rather than being
+    // silently dropped. Cleared in the adapter return shape; solveMDP
+    // is wired to merge `input.warnings` into its own warnings list.
+    warnings: unpricedEssences.length ? [
+      `Missing essence prices in rates.csv (${[...new Set(unpricedEssences)].sort().join(', ')}). ` +
+      `These essences are EXCLUDED from the action set. ` +
+      `Refresh rates via scripts/update-poe2-rates.sh, or list each missing essence on poe2db.`,
+    ] : [],
+    // Structured list (parallel to the human-readable warning above) so
+    // the UI can render per-essence links to poe2db's detail page —
+    // most missing essences are missing because they have no recent
+    // trade volume on poe2db's Economy_Essences table, and the detail
+    // page is the only way for the user to verify "no price history."
+    unpricedEssences: [...new Set(unpricedEssences)].sort(),
   };
 }
 
@@ -551,10 +593,19 @@ function buildEssenceSpecs(ctx, wishlist, helpers = {}) {
       if (key && !matchedKeys.includes(key)) matchedKeys.push(key);
     }
     if (matchedKeys.length === 0) continue;
-    // Price lookup (essence_prices.csv via ctx.essencePrices map).
+    // Price lookup. Source: live rates.csv via ctx.essencePrices.
+    // Missing prices are NOT papered over — we record the gap so the
+    // adapter caller can surface a warning. Don't ask the engine to
+    // guess: tell the user to refresh rates or list the missing
+    // essence on poe2db (per user direction 2026-05-10:
+    // "missing rates should lead to a WARN or a failure, not a
+    // workaround").
     const priceEntry = prices[ess.name];
     const costEx = Number.isFinite(priceEntry?.priceEx) ? priceEntry.priceEx : NaN;
-    if (!Number.isFinite(costEx)) continue;
+    if (!Number.isFinite(costEx)) {
+      if (helpers.unpriced) helpers.unpriced.push(ess.name);
+      continue;
+    }
     // Per-essence tier acceptance: binary check vs each matched
     // wished mod's requiredTier. If the essence's tier ordinal is
     // ≤ the wished's requiredTier, the rolled affix is at acceptable

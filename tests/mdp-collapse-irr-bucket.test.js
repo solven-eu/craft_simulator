@@ -37,35 +37,37 @@ const fixture = {
   orbTimes: { transmute: 1, augment: 1, regal: 1, alch: 1, exalt: 1, annul: 1, fracturing: 3, chaos: 1 },
 };
 
-test('multiple irr-only states with same policy collapse into one rep', () => {
-  // The chain has multiple states differing only by exact irrelevant
-  // count (e.g., 0-wished + 2 irr, 0-wished + 3 irr, etc.) using
-  // the same policy. After the loose-irrelevant rule, they should
-  // merge.
+test('irr-only states with same policy stay distinct when totalMods differs (G2 invariant)', () => {
+  // Per chain-rendering spec §3, the partition includes `totalMods`
+  // exactly so each concrete item maps to a unique rep. Irr-only
+  // states at different totalMods (e.g. 0-wished + 2 irr vs 0-wished
+  // + 3 irr) are GENUINELY different items — collapsing them would
+  // violate G2 (an item with tm=3 fits both reps' label envelopes).
+  // The previous test asserted the OPPOSITE (loose-irr bucket merge
+  // across totalMods) under an older partition design; the spec
+  // shifted to favor disambiguity over fewer nodes.
   const result = solveMDP(fixture);
-  // Bucket states by (kind, policy, modMask, wished count) — these
-  // should map to a single rep after loose-irr merging. If multiple
-  // reps share the same bucket, the loose-irr rule didn't fire.
   const bucketByPolicy = new Map();
   for (const s of result.chain.states) {
     const policy = s.meta?.policy ?? '-';
-    if (policy === '-' || policy === 'buy_base') continue; // skip terminals / restart
-    // Strip exact irr counts from the label to canonicalise.
-    const labelIrrCount = (s.label.match(/^· (\d+) irr/m) ?? [])[1];
-    if (!labelIrrCount) continue; // not an irr-bearing state
-    // Only consider purely-irr states (no wished bits in label).
+    if (policy === '-' || policy === 'buy_base') continue;
+    // Only purely-irr states (no wished bits in label).
     if (/★/.test(s.label)) continue;
+    const labelIrrCount = (s.label.match(/^· (\d+) irr/m) ?? [])[1];
+    if (!labelIrrCount) continue;
     const k = `${s.kind}|${policy}|irr-only`;
     const arr = bucketByPolicy.get(k) ?? [];
     arr.push({ id: s.id, irrCount: parseInt(labelIrrCount, 10) });
     bucketByPolicy.set(k, arr);
   }
+  // Within each bucket, all reps must have DIFFERENT irrCounts —
+  // otherwise we have two reps representing the same concrete item
+  // shape, which IS the bug we want to flag.
   for (const [k, arr] of bucketByPolicy) {
-    if (arr.length <= 1) continue;
-    assert.fail(
-      `expected loose-irr merge: states ${arr.map(a => a.id + '(' + a.irrCount + ')').join(', ')} ` +
-      `share kind+policy+wished-pattern but stayed separate. Bucket: ${k}`,
-    );
+    const counts = arr.map((a) => a.irrCount);
+    const uniqueCounts = new Set(counts);
+    assert.equal(uniqueCounts.size, counts.length,
+      `duplicate irrCounts within bucket ${k}: ${arr.map(a => a.id + '(' + a.irrCount + ')').join(', ')}`);
   }
 });
 

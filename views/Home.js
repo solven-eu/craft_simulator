@@ -1,4 +1,4 @@
-import { onMounted, computed, ref } from 'vue';
+import { onMounted, computed, ref, watch } from 'vue';
 import { useCraftStore } from '../stores/craft.js';
 import MermaidChain from './MermaidChain.js';
 import CytoscapeChain from './CytoscapeChain.js';
@@ -20,6 +20,27 @@ export default {
   setup() {
     const craft = useCraftStore();
     onMounted(() => { if (!craft.game) craft.selectGame(craft.gameId); });
+
+    // "Browse all affixes" panel — collapse-by-default heuristic
+    // applies only on initial page load: if the user landed with a
+    // non-empty wishlist (URL state, saved craft), assume they're
+    // here to *solve* a craft, not to add more mods. Earlier this
+    // was reactively bound to wishlistCounts.total, which made the
+    // panel snap shut every time the user added a wish — annoying.
+    // Now the value is a one-shot snapshot taken after store
+    // hydration; subsequent toggles stick to the user's choice.
+    const allAffixesPanelOpen = ref(true);
+    let allAffixesInitialised = false;
+    watch(
+      () => [craft.loading, craft.wishlistCounts?.total, craft.base],
+      ([loading, total]) => {
+        if (allAffixesInitialised) return;
+        if (loading) return;
+        allAffixesInitialised = true;
+        allAffixesPanelOpen.value = !total;
+      },
+      { immediate: true },
+    );
 
     const showSpecStep = computed(
       () => craft.itemType && craft.basesForType.length > 1,
@@ -219,6 +240,47 @@ export default {
       }
       return out;
     });
+
+    // Per-(side, name) annotation: when a mod is wished AND the
+    // essences targeting it can only land at tier ordinals BELOW the
+    // user's `requiredTier`, the 🟢 chip is misleading on its own —
+    // an essence is "available" but its outcome is automatically
+    // rejected by the tier bar. Surface the mismatch so the user can
+    // either lower the bar (the chip exposes a one-click action) or
+    // ignore the essence path altogether.
+    const essenceTierMismatch = computed(() => {
+      const out = { PREFIX: new Map(), SUFFIX: new Map() };
+      for (const e of (craft.targetEntries ?? [])) {
+        if (e?.kind !== 'mod') continue;
+        if (!Number.isFinite(e.requiredTier)) continue;
+        const reachable = craft.essenceableTiers(e.type, e.name);
+        if (!reachable || !reachable.size) continue;
+        let bestEssT = Infinity;
+        for (const t of reachable) if (t < bestEssT) bestEssT = t;
+        if (Number.isFinite(bestEssT) && bestEssT > e.requiredTier) {
+          out[e.type]?.set(e.name, { bestEssT, requiredT: e.requiredTier });
+        }
+      }
+      return out;
+    });
+
+    // One-click affordance on the mismatch chip: relax requiredTier
+    // (and desiredTier, since required ≤ desired) to the best tier
+    // an essence can land. Mirrors the ilvl chip pattern (clickable
+    // restriction → applies the relaxation).
+    const lowerRequiredTierForEssence = (side, name) => {
+      const info = essenceTierMismatch.value[side]?.get(name);
+      if (!info) return;
+      const idx = craft.targetEntries.findIndex(
+        (e) => e?.kind === 'mod' && e.type === side && e.name === name,
+      );
+      if (idx < 0) return;
+      const allTiers = craft.getAllTiers(side, name) || [];
+      const maxTier = allTiers.length || 8;
+      const cur = craft.targetEntries[idx];
+      const desired = Math.max(info.bestEssT, Number(cur.desiredTier) || info.bestEssT);
+      craft.setTargetEntryTierBand(idx, info.bestEssT, desired, maxTier);
+    };
 
     // Group essence rows so that the same affix doesn't appear three
     // times (once per Lesser / normal / Greater tier). Each group keys
@@ -926,7 +988,12 @@ export default {
       const p = chain.pSuccessStart;
       if (!Number.isFinite(p) || p <= 0) return null;
       const target = craft.successProbTarget ?? 0.95;
-      const N = Math.ceil(Math.log(1 - target) / Math.log(1 - p));
+      // N attempts to be `target` confident of one success.
+      // Closed form: N = ⌈log(1-target) / log(1-p)⌉. Edge case:
+      // p=1 ⇒ log(0)=-∞ ⇒ ratio → 0 ⇒ ceil(0)=0 — but you still
+      // need to *acquire* one base / take one shot to materialise
+      // the success, so floor at 1 (user report 2026-05-11).
+      const N = Math.max(1, Math.ceil(Math.log(1 - target) / Math.log(1 - p)));
       // expectedVisits is now the engine's full visit-count
       // (self-loops applied) rather than just inflow. Sum across
       // chain states grouped by their policy action to get expected
@@ -1239,7 +1306,9 @@ export default {
              prefixesFull, suffixesFull,
              expand, collapse, isExpanded, confirmTier,
              selectedMod, openModModal, closeModModal, tagStyle,
-             essenceableNamesBySide, desecratedNames,
+             allAffixesPanelOpen,
+             essenceableNamesBySide, essenceTierMismatch, lowerRequiredTierForEssence,
+             desecratedNames,
              groupedEssences, filteredEssences, essencesBySide,
              groupedDesecrated, filteredDesecrated, desecratedBySide,
              desecratedFamilyTags,
@@ -1494,6 +1563,18 @@ export default {
                 :disabled="!craft.hasTargetSlots()"
                 @click="craft.clearTarget()" title="Remove every required/desired/empty target entry">Reset</button>
             </header>
+            <p v-if="craft.targetTotals.required === 0
+                       && craft.minDesireScore === 0
+                       && (craft.targetTotals.desired + craft.targetTotals.required) > 0"
+               class="hint" style="color:#d96; padding: 0.4rem 0.6rem; border-left: 3px solid #d96; background: rgba(217,150,0,0.08); margin: 0.4rem 0;">
+              ⚠ Goal is trivially satisfiable: 0 required mods and
+              minimum desire score = 0. Any item — including a White
+              base — satisfies the goal as written, so the engine will
+              report V*(start) ≈ 0 and "do nothing". Either
+              <button class="link" @click="craft.markAllTargetEntriesRequired(true)"
+                title="Promote every desired mod to required (must be present at the listed tier)">mark all desired as required</button>,
+              or raise the minimum desire score below.
+            </p>
             <div class="desire-score-row" v-if="craft.targetTotals.desired || craft.targetTotals.required">
               <label class="field inline desire-score-slider">
                 <span>Min desire score</span>
@@ -1506,11 +1587,28 @@ export default {
                   :value="craft.minDesireScore"
                   @input="craft.setMinDesireScore($event.target.value)" />
                 <small class="hint">
-                  / {{ craft.maxDesireScore }} max —
-                  required mods must always be present; desired mods + tier
+                  / {{ craft.maxDesireScore }} max ·
+                  <strong>{{ craft.targetTotals.required }}</strong> required +
+                  <strong>{{ craft.targetTotals.desired }}</strong> desired.
+                  Required mods must always be present; desired mods + tier
                   upgrades feed this soft pool. <em>(Score-aware solver pending — the strategy table currently approximates with a hit-count threshold.)</em>
                 </small>
               </label>
+              <div class="bulk-required-toggle" style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+                <button v-if="craft.targetTotals.desired > 0 && craft.targetTotals.required === 0"
+                  class="link"
+                  :disabled="craft.targetSummary.prefixes.desired > 3 || craft.targetSummary.suffixes.desired > 3"
+                  :title="craft.targetSummary.prefixes.desired > 3 || craft.targetSummary.suffixes.desired > 3 ? 'Per-side required cap is 3 — cannot promote all desired mods' : 'Promote every desired mod to required'"
+                  @click="craft.markAllTargetEntriesRequired(true)">
+                  ☑ Mark all required ({{ craft.targetTotals.desired }})
+                </button>
+                <button v-if="craft.targetTotals.required > 0 && craft.targetTotals.desired === 0"
+                  class="link"
+                  title="Demote every required mod to desired-only (soft constraint)"
+                  @click="craft.markAllTargetEntriesRequired(false)">
+                  ☐ Mark all desired ({{ craft.targetTotals.required }})
+                </button>
+              </div>
               <p v-if="craft.minDesireScore > (craft.maxDesireScore || 0)"
                  class="desire-score-cap-notice">
                 <strong>⚠ Desire-score cap applied.</strong>
@@ -1764,7 +1862,16 @@ export default {
             class="link" @click="craft.clearTagFilters()">reset all</button>
         </div>
 
-        <div v-if="craft.base" class="pool">
+        <details v-if="craft.base" class="all-affixes-panel"
+          :open="allAffixesPanelOpen"
+          @toggle="allAffixesPanelOpen = $event.target.open">
+          <summary>
+            📚 Browse all affixes
+            <small v-if="!allAffixesPanelOpen && craft.wishlistCounts.total">— collapsed; expand to add more (you have {{ craft.wishlistCounts.total }} wished mod(s))</small>
+            <small v-else-if="!allAffixesPanelOpen">— pick mods to wish for</small>
+          </summary>
+
+        <div class="pool">
           <div class="pool-column" :class="{ 'side-full': prefixesFull }">
             <h3>
               Available prefixes
@@ -1801,7 +1908,16 @@ export default {
                   <td>
                     <button class="mname mod-link" :title="'Click for tier details (T1..T' + m.tiersTotal + ')'"
                       @click="openModModal(m)">{{ m.name }}</button>
-                    <span v-if="essenceableNamesBySide.PREFIX.has(m.name)" class="essence-chip" title="An Essence consumable can guarantee this mod on the prefix side">🟢</span>
+                    <span v-if="essenceableNamesBySide.PREFIX.has(m.name)"
+                      class="essence-chip"
+                      :class="{ 'tier-mismatch': essenceTierMismatch.PREFIX.has(m.name) }"
+                      :title="essenceTierMismatch.PREFIX.has(m.name)
+                        ? 'Essence reaches T' + essenceTierMismatch.PREFIX.get(m.name).bestEssT + ' but you require T' + essenceTierMismatch.PREFIX.get(m.name).requiredT + ' or better — essence cannot satisfy this wish'
+                        : 'An Essence consumable can guarantee this mod on the prefix side'">🟢</span>
+                    <button v-if="essenceTierMismatch.PREFIX.has(m.name)"
+                      class="restriction-chip violated clickable"
+                      :title="'Click to lower required tier to T' + essenceTierMismatch.PREFIX.get(m.name).bestEssT + ' (the best tier the essence can reach)'"
+                      @click="lowerRequiredTierForEssence('PREFIX', m.name)">tier ≤ T{{ essenceTierMismatch.PREFIX.get(m.name).bestEssT }}</button>
                     <span v-if="desecratedNames.has(m.name)" class="desecrated-chip" title="Also rollable via Desecrated currencies (Bones)">💀</span>
                     <button v-if="!m.ilvlOk" class="restriction-chip violated clickable"
                       :title="'Raise item level to ' + m.requiredIlvl + ' to unlock this modifier'"
@@ -1868,7 +1984,16 @@ export default {
                   <td>
                     <button class="mname mod-link" :title="'Click for tier details (T1..T' + m.tiersTotal + ')'"
                       @click="openModModal(m)">{{ m.name }}</button>
-                    <span v-if="essenceableNamesBySide.SUFFIX.has(m.name)" class="essence-chip" title="An Essence consumable can guarantee this mod on the suffix side">🟢</span>
+                    <span v-if="essenceableNamesBySide.SUFFIX.has(m.name)"
+                      class="essence-chip"
+                      :class="{ 'tier-mismatch': essenceTierMismatch.SUFFIX.has(m.name) }"
+                      :title="essenceTierMismatch.SUFFIX.has(m.name)
+                        ? 'Essence reaches T' + essenceTierMismatch.SUFFIX.get(m.name).bestEssT + ' but you require T' + essenceTierMismatch.SUFFIX.get(m.name).requiredT + ' or better — essence cannot satisfy this wish'
+                        : 'An Essence consumable can guarantee this mod on the suffix side'">🟢</span>
+                    <button v-if="essenceTierMismatch.SUFFIX.has(m.name)"
+                      class="restriction-chip violated clickable"
+                      :title="'Click to lower required tier to T' + essenceTierMismatch.SUFFIX.get(m.name).bestEssT + ' (the best tier the essence can reach)'"
+                      @click="lowerRequiredTierForEssence('SUFFIX', m.name)">tier ≤ T{{ essenceTierMismatch.SUFFIX.get(m.name).bestEssT }}</button>
                     <span v-if="desecratedNames.has(m.name)" class="desecrated-chip" title="Also rollable via Desecrated currencies (Bones)">💀</span>
                     <button v-if="!m.ilvlOk" class="restriction-chip violated clickable"
                       :title="'Raise item level to ' + m.requiredIlvl + ' to unlock this modifier'"
@@ -2175,6 +2300,7 @@ export default {
             </ul>
           </details>
         </details>
+        </details>
 
         <!-- ─── Recipe DSL (paste-able human-readable target spec) ─── -->
         <!-- Round-trips with the rest of the UI: Export fills the box
@@ -2412,7 +2538,8 @@ export default {
                       <span class="tip-popup">
                         <strong>{{ o.name }}</strong>
                         <span class="tip-rate">{{ fmtRate(orbRateEx(o)) }}</span>
-                        <span v-if="o.effect" class="tip-effect">{{ o.effect }}</span>
+                        <span v-if="craft.itemDescriptions?.[o.name]?.description" class="tip-effect">{{ craft.itemDescriptions[o.name].description }}</span>
+                        <span v-else-if="o.effect" class="tip-effect">{{ o.effect }}</span>
                         <em class="tip-hint">click to {{ (craft.disabledOrbs ?? {})[o.id] ? 'enable' : 'disable' }}</em>
                       </span>
                     </button>
@@ -2455,6 +2582,17 @@ export default {
                   :checked="craft.showMdpStepIds"
                   @change="craft.setShowMdpStepIds($event.target.checked); craft.solveMdp();" />
                 show step ids
+              </label>
+              <label class="hint" style="margin-left: 0.6rem; font-weight: normal;"
+                title="Chain merge strategy. See docs/chain-rendering.md.&#10;• none — one chain node per engine state (raw view).&#10;• per-action — group every state by next-action; high-level overview.&#10;• top-down — partition by (kind, policy, fractured, totalMods) + disambiguator.&#10;• bottom-up — sibling-merge: A→B and A→C with same next ⇒ merge.">
+                merge:
+                <select :value="craft.mdpMergeStrategy"
+                  @change="craft.setMdpMergeStrategy($event.target.value); craft.solveMdp();">
+                  <option value="none">none (raw)</option>
+                  <option value="per-action">per-action</option>
+                  <option value="top-down">top-down</option>
+                  <option value="bottom-up">bottom-up</option>
+                </select>
               </label>
               <button v-if="craft.mdpResult" class="link" @click="craft.simulateMdp()"
                 title="Sample one trajectory through the optimal policy. Click multiple times to stack scenarios."
@@ -2540,11 +2678,11 @@ export default {
                     </td>
                     <td class="num"
                         :title="craft.mdpResult.chain.pSuccessStart > 0
-                          ? ('mean = 1/p = ' + (1 / craft.mdpResult.chain.pSuccessStart).toFixed(2) + ' · N_p = ⌈log(' + (1 - (craft.successProbTarget ?? 0.95)).toFixed(3) + ') / log(1−p)⌉ = ' + Math.ceil(Math.log(1 - (craft.successProbTarget ?? 0.95)) / Math.log(1 - craft.mdpResult.chain.pSuccessStart)))
+                          ? ('mean = 1/p = ' + (1 / craft.mdpResult.chain.pSuccessStart).toFixed(2) + ' · N_p = max(1, ⌈log(' + (1 - (craft.successProbTarget ?? 0.95)).toFixed(3) + ') / log(1−p)⌉) = ' + Math.max(1, Math.ceil(Math.log(1 - (craft.successProbTarget ?? 0.95)) / Math.log(1 - craft.mdpResult.chain.pSuccessStart))))
                           : 'unreachable'">
                       <span v-if="craft.mdpResult.chain.pSuccessStart > 0">
                         {{ fmt.num(1 / craft.mdpResult.chain.pSuccessStart) }}
-                        <small class="hint">· N<sub>{{ Math.round((craft.successProbTarget ?? 0.95) * 100) }}</sub> {{ Math.ceil(Math.log(1 - (craft.successProbTarget ?? 0.95)) / Math.log(1 - craft.mdpResult.chain.pSuccessStart)) }}</small>
+                        <small class="hint">· N<sub>{{ Math.round((craft.successProbTarget ?? 0.95) * 100) }}</sub> {{ Math.max(1, Math.ceil(Math.log(1 - (craft.successProbTarget ?? 0.95)) / Math.log(1 - craft.mdpResult.chain.pSuccessStart))) }}</small>
                       </span>
                       <span v-else>∞</span>
                     </td>
@@ -2610,10 +2748,17 @@ export default {
                   <tbody>
                     <tr v-for="line in materialsShoppingList.lines" :key="line.action">
                       <td class="num"><span class="orb-icon-glyph">{{ line.icon }}</span></td>
-                      <td :title="line.action === 'buy_base' ? 'One fresh base per run' : (line.orb?.effect ?? line.action)">
-                        {{ line.action === 'buy_base'
-                            ? 'Base'
-                            : (line.orb?.name ?? line.action) }}
+                      <td>
+                        <span v-if="line.action === 'buy_base'" title="One fresh base per run">Base</span>
+                        <span v-else class="has-tip">
+                          {{ line.orb?.name ?? line.action }}
+                          <span class="tip-popup">
+                            <strong>{{ line.orb?.name ?? line.action }}</strong>
+                            <span v-if="Number.isFinite(line.perEx)" class="tip-rate">{{ fmtCost(line.perEx) }} / unit</span>
+                            <span v-if="craft.itemDescriptions?.[line.orb?.name]?.description" class="tip-effect">{{ craft.itemDescriptions[line.orb.name].description }}</span>
+                            <span v-else-if="line.orb?.effect" class="tip-effect">{{ line.orb.effect }}</span>
+                          </span>
+                        </span>
                       </td>
                       <td class="num">{{ line.count }}</td>
                       <td class="num">{{ Number.isFinite(line.perEx) ? fmtCost(line.perEx) : '—' }}</td>
@@ -2664,7 +2809,10 @@ export default {
                   <dd>The trade-equivalent value at which one single-base attempt has zero expected profit: <code>E[cost/attempt] / P(success)</code>. If a successful goal-item sells for more than this, the craft is profitable in expectation. <em>Not</em> the budget required to finish a craft.</dd>
 
                   <dt>V* (s)</dt>
-                  <dd>The expected total cost (ex, with wall-clock time folded in via <code>timeWeightExPerSec</code>) to reach a goal state from <em>any</em> state <em>s</em> under the optimal policy. Already accounts for every downstream orb, every brick + restart, every cycle risk — no need to add per-step costs by hand. Two actions are compared via <code>Q(s,a) = cost(a) + Σ p · V*(s')</code>; the solver picks the action with the smallest <em>Q</em>. The table's <em>V* (total)</em> is <code>V*(start)</code>.</dd>
+                  <dd>The expected total cost (ex, with wall-clock time folded in via <code>timeWeightExPerSec</code>) to reach a goal state from <em>any</em> state <em>s</em> under the optimal policy. Already accounts for every downstream orb, every brick + restart, every cycle risk — no need to add per-step costs by hand. The table's <em>V* (total)</em> is <code>V*(start)</code>.</dd>
+
+                  <dt>Q(s, a)</dt>
+                  <dd>The expected total cost from state <em>s</em> if you take action <em>a</em> at this step and follow the optimal policy thereafter: <code>Q(s, a) = cost(a) + Σ p(s' | s, a) · V*(s')</code>. The "Why this orb?" panel lists Q-values for every applicable action at the clicked state; the engine picks the action with the smallest Q. <strong>ΔQ</strong> is the gap between this action's Q and the chosen action's Q — small ΔQ means the alternative is nearly as good (e.g. a 1-ex gap between essence and augment), large ΔQ means it's strictly worse.</dd>
 
                   <dt>P_reach (s)</dt>
                   <dd>Probability that one execution of the optimal policy <em>visits</em> state <em>s</em>, starting from the start node. Marginal visit probability under π* — accumulated by walking the policy graph and multiplying outcome probabilities along each followed edge. <code>buy_base</code> / bricked / goal nodes are absorbing (successors not propagated), so a downstream node's P_reach answers "given that the policy reaches a non-terminal step here, with what probability does the fan land on this branch?" — <strong>not</strong> "given any history, what's the chance this state ever appears?" and <strong>not</strong> "P(success from here)".</dd>
@@ -2678,31 +2826,59 @@ export default {
               <ul v-if="craft.mdpResult.warnings?.length" class="hint" style="color:#d96">
                 <li v-for="w in craft.mdpResult.warnings" :key="w">⚠ {{ w }}</li>
               </ul>
+              <p v-if="craft.mdpResult.unpricedEssences?.length"
+                 class="hint" style="color:#d96">
+                <small>
+                  Likely cause: poe2db's Economy_Essences table only lists
+                  essences with recent trades. Click through to confirm
+                  "no price history" upstream:
+                  <span v-for="(name, i) in craft.mdpResult.unpricedEssences" :key="name">
+                    <a :href="'https://poe2db.tw/us/' + name.replace(/ /g, '_')"
+                       target="_blank" rel="noopener">{{ name }} ↗</a>{{ i < craft.mdpResult.unpricedEssences.length - 1 ? ', ' : '' }}
+                  </span>.
+                </small>
+              </p>
               <p v-if="craft.mdpResult.budgetExcluded?.length"
                  class="hint" style="color:#d96">
-                🚫 Excluded by budget ({{ craft.totalBudgetEx }} ex):
+                ⚠ The optimal policy recommends an orb whose unit price exceeds
+                your budget ({{ craft.totalBudgetEx }} ex):
                 <span v-for="(ex, i) in craft.mdpResult.budgetExcluded" :key="ex.actionId">
                   <code>{{ ex.actionId }}</code> ({{ ex.costEx.toFixed(0) }} ex){{ i < craft.mdpResult.budgetExcluded.length - 1 ? ', ' : '' }}
                 </span>.
-                Crafting is currently a best-effort under-budget run.
+                You can either raise the budget to afford it, or disable the orb
+                so the solver re-plans without it.
+                <br>
                 <button class="link"
                   @click="craft.setTotalBudgetEx(Math.ceil(Math.max(...craft.mdpResult.budgetExcluded.map(e => e.costEx)))); craft.solveMdp();">
-                  Set budget to {{ Math.ceil(Math.max(...craft.mdpResult.budgetExcluded.map(e => e.costEx))) }} ex
+                  Raise budget to {{ Math.ceil(Math.max(...craft.mdpResult.budgetExcluded.map(e => e.costEx))) }} ex
                 </button>
-                to unlock all of them.
+                <span v-for="(ex, i) in craft.mdpResult.budgetExcluded" :key="'dis'+ex.actionId">
+                  ·
+                  <button class="link"
+                    @click="craft.setOrbDisabled(ex.actionId, true); craft.solveMdp();">
+                    Disable <code>{{ ex.actionId }}</code>
+                  </button>
+                </span>
               </p>
               <p v-if="craft.mdpResult.chain?.breakevenBudgetEx != null
                        && craft.totalBudgetEx < craft.mdpResult.chain.breakevenBudgetEx"
                  class="hint" style="color:#d96">
-                💸 Current budget = <strong>{{ craft.totalBudgetEx }} ex</strong> is below the
-                <strong>breakeven budget</strong> of
-                <strong>{{ craft.mdpResult.chain.breakevenBudgetEx.toFixed(0) }} ex</strong>
-                (= expected orb spending / P(success-on-one-attempt)
-                = {{ (-craft.mdpResult.chain.bExpectedStart).toFixed(0) }} ex spent ÷
-                {{ (craft.mdpResult.chain.pSuccessStart * 100).toFixed(2) }}% success).
-                At any budget below this, the optimal item value clamps to 0 — the
-                expected return on a single committed attempt is negative.
-                <button class="link" @click="craft.setTotalBudgetEx(Math.ceil(craft.mdpResult.chain.breakevenBudgetEx)); craft.solveMdp();">Set budget to {{ Math.ceil(craft.mdpResult.chain.breakevenBudgetEx) }} ex</button>
+                💸 This craft loses ex on average. Producing one finished item
+                costs about
+                <strong>{{ craft.mdpResult.chain.breakevenBudgetEx.toFixed(0) }} ex</strong> in orbs
+                (= {{ (-craft.mdpResult.chain.bExpectedStart).toFixed(0) }} ex per attempt
+                ÷ {{ (craft.mdpResult.chain.pSuccessStart * 100).toFixed(2) }}% success).
+                Your budget ({{ craft.totalBudgetEx }} ex) is below that, so you're
+                paying more than the item is worth — on average.
+                <br>
+                <small>
+                  Raising your budget <em>doesn't fix this</em>: each item still costs
+                  ~{{ craft.mdpResult.chain.breakevenBudgetEx.toFixed(0) }} ex on average — a
+                  bigger budget just lets you keep paying. To actually make
+                  this craft profitable, either <em>relax the wishlist</em> (cheaper
+                  attempts and/or higher success rate), <em>pick a different
+                  target</em>, or <em>accept the loss</em> as the cost of trying.
+                </small>
               </p>
               <p v-else-if="craft.mdpResult.chain?.breakevenBudgetEx == null
                             && craft.mdpResult.chain?.pSuccessStart === 0
@@ -2910,8 +3086,16 @@ export default {
                       <tbody>
                         <tr v-for="line in scenarioActionLines(s)" :key="line.action">
                           <td class="num"><span class="orb-icon-glyph">{{ line.icon }}</span></td>
-                          <td :title="orbForAction(line.action)?.effect ?? line.action">
-                            {{ orbForAction(line.action)?.name ?? line.action }}
+                          <td>
+                            <span class="has-tip">
+                              {{ orbForAction(line.action)?.name ?? line.action }}
+                              <span class="tip-popup">
+                                <strong>{{ orbForAction(line.action)?.name ?? line.action }}</strong>
+                                <span v-if="Number.isFinite(line.perOrbEx)" class="tip-rate">{{ fmtCost(line.perOrbEx) }} / unit</span>
+                                <span v-if="craft.itemDescriptions?.[orbForAction(line.action)?.name]?.description" class="tip-effect">{{ craft.itemDescriptions[orbForAction(line.action).name].description }}</span>
+                                <span v-else-if="orbForAction(line.action)?.effect" class="tip-effect">{{ orbForAction(line.action).effect }}</span>
+                              </span>
+                            </span>
                           </td>
                           <td class="num">{{ line.count }}</td>
                           <td class="num">{{ fmtCost(line.perOrbEx) }}</td>

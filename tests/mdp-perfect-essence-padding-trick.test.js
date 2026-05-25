@@ -111,11 +111,18 @@ test('engine pads BEFORE applying Perfect-overwrite essence (avoids 1/3 destroy-
   // would burn 33% of attempts. It must be a padding action (exalt
   // / apply_bone / chaos) to dilute the irrelevant pool first.
   const postEssAStateKey = [...result.policy.keys()].find((k) => {
-    // State key format:
-    // rarity|modMask|totalMods|prefixMods|desecCount|desecWishedMask|desecPrefixCount|fracturedBit|irrFractured|boneMod|boneRevealed
+    // State key format (post 2026-05-09 symmetric-side refactor):
+    // rarity|modMask|prefixMods|suffixMods|desecMask|desecPref|desecSuf|fracBit|irrFrac|boneMod|boneRev|boneSide
+    // totalMods is not in the key (= prefixMods + suffixMods).
     const parts = k.split('|');
-    return parts[0] === 'rare' && parts[1] === '1' && parts[2] === '3'
-        && parts[4] === '0' && parts[7] === '-1' && parts[9] === '0';
+    if (parts[0] !== 'rare') return false;
+    if (parts[1] !== '1') return false; // modMask = WISH_A
+    const total = (parseInt(parts[2], 10) || 0) + (parseInt(parts[3], 10) || 0);
+    if (total !== 3) return false;
+    if (parts[4] !== '0') return false; // desecratedWishedMask
+    if (parts[7] !== '-1') return false; // fracturedBit
+    if (parts[8] !== '0') return false;  // irrFractured
+    return true;
   });
   assert.ok(postEssAStateKey,
     `expected a reachable rare|modMask=1|totalMods=3 state in the policy`);

@@ -718,12 +718,14 @@ test('chain.breakevenBudgetEx is policy-property when budget covers all orbs', (
   }
 });
 
-test('budgetEx below per-orb cost ⇒ that action is excluded with a budgetExcluded entry', () => {
-  // Pin: with budgetEx=100 and fracturing costing 9684 ex/use, the
-  // user can't afford to fracture even once. The engine should drop
-  // fracturing from the action set entirely (better than half-baked
-  // "well, you could try once and brick" semantics) and surface the
-  // exclusion so the UI can recommend a budget bump.
+test('fracture-required target + budget below fracture cost ⇒ policy uses fracture, surfaced in budgetExcluded', () => {
+  // Pin (post 2026-05-10 redesign): total budget no longer
+  // pre-filters actions. With a fracture-required target, the engine
+  // MUST use fracturing — it's the only way to satisfy the goal.
+  // The budgetExcluded list is now a post-hoc check: actions on the
+  // optimal policy whose unit cost exceeds budgetEx. UI surfaces it
+  // as "policy uses fracture (~9684 ex), above your 100 ex budget —
+  // raise budget or disable the orb to re-plan."
   const result = solveMDP({
     ...baseInput,
     target: {
@@ -737,17 +739,16 @@ test('budgetEx below per-orb cost ⇒ that action is excluded with a budgetExclu
     orbTimes: { transmute: 1,      augment: 1,     regal: 1,     alch: 1,     exalt: 1, annul: 1,   fracturing: 3 },
   });
   assert.ok(Array.isArray(result.budgetExcluded), 'budgetExcluded must be an array');
+  // Policy MUST recommend fracturing (target is fracture-required).
+  const policies = new Set([...result.policy.values()].filter(Boolean));
+  assert.ok(policies.has('fracturing'),
+    `fracture-required target ⇒ fracturing must appear in policy; got: ${[...policies]}`);
+  // budgetExcluded MUST surface fracture (cost 9684 > budget 100).
   const fractureExclusion = result.budgetExcluded.find((b) => b.actionId === 'fracturing');
   assert.ok(fractureExclusion,
-    `fracturing must be in budgetExcluded; got: ${JSON.stringify(result.budgetExcluded)}`);
+    `policy uses fracture and cost > budget ⇒ must appear in budgetExcluded; ` +
+    `got: ${JSON.stringify(result.budgetExcluded)}`);
   assert.equal(fractureExclusion.costEx, 9684, 'cost in budgetExcluded should match input rate');
-  // Policy must NEVER include fracturing.
-  const policies = new Set([...result.policy.values()].filter(Boolean));
-  assert.ok(!policies.has('fracturing'),
-    `fracturing must NOT appear in optimal policy; got policies: ${[...policies]}`);
-  // pSuccess must be 0 (target requires fracture, fracture excluded).
-  assert.equal(result.chain.pSuccessStart, 0,
-    `with fracture-required target and fracture excluded, pSuccess must be 0; got ${result.chain.pSuccessStart}`);
 });
 
 test('budgetEx ≥ all per-orb costs ⇒ no budgetExcluded entries (full action set available)', () => {

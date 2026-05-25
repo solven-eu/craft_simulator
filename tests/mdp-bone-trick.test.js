@@ -100,7 +100,13 @@ test('after apply_bone, fracturing is applicable at totalMods=3 (threshold met v
     `pads to threshold); got actions: ${JSON.stringify(actionIds)}`);
 });
 
-test('expensive bone over budget ⇒ apply_bone excluded, exalt-pad fallback', () => {
+test('expensive bone (over budget) ⇒ engine routes around it via cheaper exalt-pad', () => {
+  // Per the budget-redesign (2026-05-10): total budget no longer
+  // pre-filters actions. The engine considers apply_bone alongside
+  // exalt-pad and chooses based on Q-values. With a 1 M-ex bone vs
+  // 5-ex exalt, exalt-pad dominates by cost ⇒ optimal policy avoids
+  // apply_bone naturally. The orb stays in the action set; it just
+  // never wins on cost-effectiveness.
   const result = solveMDP({
     ...baseInput,
     ...baseRates,
@@ -108,10 +114,14 @@ test('expensive bone over budget ⇒ apply_bone excluded, exalt-pad fallback', (
   });
   const policies = new Set([...result.policy.values()].filter(Boolean));
   assert.ok(!policies.has('apply_bone'),
-    `expensive bone over budget should be excluded; got policies: ${[...policies]}`);
+    `optimal policy should route around 1 M-ex bone via cheaper exalt-pad; ` +
+    `got policies: ${[...policies]}`);
+  // budgetExcluded reports actions the OPTIMAL policy uses whose unit
+  // cost > budget — apply_bone should NOT be in it (engine avoided it).
   const excluded = result.budgetExcluded.find((e) => e.actionId === 'apply_bone');
-  assert.ok(excluded,
-    `apply_bone should appear in budgetExcluded; got: ${JSON.stringify(result.budgetExcluded)}`);
+  assert.ok(!excluded,
+    `apply_bone is unused by the policy ⇒ should NOT appear in budgetExcluded; ` +
+    `got: ${JSON.stringify(result.budgetExcluded)}`);
 });
 
 test('no bone pricing (NaN) ⇒ apply_bone silently absent from action set', () => {

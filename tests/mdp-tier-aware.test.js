@@ -103,7 +103,14 @@ test('plain orbs tier=0 + Perfect Exalt tier=1 ⇒ Perfect Exalt in optimal poli
     `exalt_perfect should appear in optimal policy when plain orbs can't reach acceptable tier; got: ${[...policies]}`);
 });
 
-test('Perfect Exalt over budget ⇒ excluded, NOT in optimal policy', () => {
+test('Perfect Exalt over budget ⇒ engine routes around it via cheaper plain Exalt', () => {
+  // Per the budget-redesign (2026-05-10): total budget no longer
+  // pre-filters actions. Plain exalt (cost 1, geometric retry @ 0.5
+  // acceptance ⇒ ~2 ex per success) dominates exalt_perfect (cost 200
+  // for guaranteed-acceptable). The engine routes around the
+  // expensive variant on Q, not because of budget. budgetExcluded
+  // only fires when the optimal policy actually depends on the
+  // over-budget action.
   const result = solveMDP({
     ...baseInput,
     budgetEx: 100,
@@ -124,10 +131,13 @@ test('Perfect Exalt over budget ⇒ excluded, NOT in optimal policy', () => {
   });
   const policies = new Set([...result.policy.values()].filter(Boolean));
   assert.ok(!policies.has('exalt_perfect'),
-    `exalt_perfect should be excluded by budget; got policies: ${[...policies]}`);
+    `cheaper plain exalt dominates on Q ⇒ exalt_perfect must NOT be in policy; ` +
+    `got policies: ${[...policies]}`);
+  // Engine routed around it ⇒ NOT in budgetExcluded.
   const excluded = result.budgetExcluded.find((e) => e.actionId === 'exalt_perfect');
-  assert.ok(excluded,
-    `exalt_perfect should appear in budgetExcluded; got: ${JSON.stringify(result.budgetExcluded)}`);
+  assert.ok(!excluded,
+    `exalt_perfect is unused by the policy ⇒ should NOT appear in budgetExcluded; ` +
+    `got: ${JSON.stringify(result.budgetExcluded)}`);
 });
 
 test('Perfect Regal preferred when its tier-acceptance dominates plain Regal', () => {

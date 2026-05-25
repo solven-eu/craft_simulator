@@ -6,6 +6,243 @@
 // arguments and returns the same chain shape.
 
 import { isGoalState, isBrickedByFracture, stateKey, popcount } from './state.js';
+import { detectLoops } from './chain-loops.js';
+
+// ─────────────────────────────────────────────────────────
+// Simple merge strategies (per docs/chain-rendering.md §3 / §8).
+// These mutate `chainStates` and `chainEdges` in place.
+// Labels for merged reps stay as the first member's natural label —
+// no rewriting / disambiguator pass. The user accepts that labels
+// are "off" for these strategies; the merge is the contribution.
+// ─────────────────────────────────────────────────────────
+
+/**
+ * Generic key-based merge: every state gets a key, states sharing a
+ * key collapse to one rep (the first state in BFS order). Edges
+ * rewritten to point at reps; parallel edges with the same action
+ * sum their probabilities. When a rep covers N members, outgoing
+ * probability is averaged across the N source distributions.
+ */
+function applyKeyMerge(chainStates, chainEdges, keyOf) {
+  // Probability formatter — mirrors the per-state edge labeller in
+  // buildChain (line ~36). Used here to keep edge labels in sync
+  // with `prob` after merge / renormalisation; otherwise the
+  // renderer shows stale percentages while `e.prob` is correct
+  // (user-visible bug 2026-05-09: "s28 has 2 edges each at 100%").
+  const fmtP = (p) => {
+    const pct = p * 100;
+    if (pct < 0.01) return `${pct.toExponential(1)}%`;
+    if (pct < 1)    return `${pct.toFixed(2)}%`;
+    return `${pct.toFixed(1)}%`;
+  };
+  const updateLabel = (edge, action) => {
+    edge.label = `${action}\n${fmtP(edge.prob)}`;
+  };
+  const keyMap = new Map(); // key → rep id
+  const redirect = new Map(); // any id → rep id
+  for (const cs of chainStates) {
+    const k = keyOf(cs);
+    if (!keyMap.has(k)) keyMap.set(k, cs.id);
+    redirect.set(cs.id, keyMap.get(k));
+  }
+  const sourceCount = new Map();
+  for (const cs of chainStates) {
+    const rep = redirect.get(cs.id);
+    sourceCount.set(rep, (sourceCount.get(rep) ?? 0) + 1);
+  }
+  const repIds = new Set(redirect.values());
+  const repFiltered = chainStates.filter((cs) => repIds.has(cs.id));
+  chainStates.length = 0;
+  chainStates.push(...repFiltered);
+  const merged = new Map();
+  for (const e of chainEdges) {
+    const from = redirect.get(e.from) ?? e.from;
+    const to = redirect.get(e.to) ?? e.to;
+    const action = (e.label ?? '').split('\n')[0];
+    const k = `${from}|${to}|${action}`;
+    const cur = merged.get(k);
+    if (cur) {
+      cur.prob = (cur.prob ?? 0) + (e.prob ?? 0);
+      updateLabel(cur, action);
+    } else {
+      merged.set(k, { ...e, from, to });
+    }
+  }
+  const groupTotals = new Map();
+  for (const e of merged.values()) {
+    const action = (e.label ?? '').split('\n')[0];
+    const k = `${e.from}|${action}`;
+    groupTotals.set(k, (groupTotals.get(k) ?? 0) + (e.prob ?? 0));
+  }
+  for (const e of merged.values()) {
+    const action = (e.label ?? '').split('\n')[0];
+    const total = groupTotals.get(`${e.from}|${action}`) ?? 1;
+    if (total > 1 + 1e-6) {
+      const n = sourceCount.get(e.from) ?? 1;
+      if (n > 1) {
+        e.prob = (e.prob ?? 0) / n;
+        updateLabel(e, action);
+      }
+    }
+  }
+  chainEdges.length = 0;
+  chainEdges.push(...merged.values());
+}
+
+/**
+ * Bottom-up merge (spec §8). Iterative: each pass collects merge
+ * candidates from a small set of rules, unions them via union-find,
+ * applies the merge, repeats until no rule fires.
+ *
+ * Rules currently in play:
+ *
+ *   (R1) Sibling merge — when parent A's outgoing edges under one
+ *        action α reach children B, C, … with the same next-action,
+ *        merge those children. Spec §8.1.
+ *
+ *   (R2) Linear-chain merge — when A→B and both A and B have the
+ *        same next-action α, merge A and B. Captures the case where
+ *        a single orb-spam phase produces a long linear chain of
+ *        states (e.g. annul-then-annul-then-annul before reaching
+ *        a state where the policy switches). Iteratively collapses
+ *        the whole linear segment into one rep.
+ *
+ *   (R3) Reverse-sibling merge (mirror of R1) — when B→A and C→A,
+ *        both via the same action α, merge B and C. Sibling-by-
+ *        destination: two predecessors that converge to the same
+ *        successor under the same action are presentationally
+ *        interchangeable (the user's view: "no matter where you
+ *        started, this orb lands you at A").
+ *
+ * Termination: each pass either reduces |chainStates| (a successful
+ * union shrinks the state count by ≥ 1) or fires no rule and breaks.
+ * The state count is monotonically non-increasing, so the loop
+ * terminates in at most |chainStates_initial| passes. Safety cap of
+ * 1024 catches a hypothetical bug where union-find claims progress
+ * but the merge doesn't take effect; we emit a console.warn on hit
+ * so the bug surfaces visibly instead of just clipping the output.
+ */
+export function applyBottomUpSiblingMerge(chainStates, chainEdges) {
+  // Union-find with path compression — one parent map per pass,
+  // populated by collecting merge candidates from each rule and
+  // unioning them.
+  const unionFind = (size) => {
+    const parent = new Map();
+    const find = (x) => {
+      let cur = x;
+      while (parent.has(cur) && parent.get(cur) !== cur) cur = parent.get(cur);
+      // Compress along the original path.
+      let p = x;
+      while (parent.has(p) && parent.get(p) !== p) {
+        const nxt = parent.get(p);
+        parent.set(p, cur);
+        p = nxt;
+      }
+      return cur;
+    };
+    const ensure = (x) => { if (!parent.has(x)) parent.set(x, x); };
+    const union = (a, b) => {
+      ensure(a); ensure(b);
+      const ra = find(a), rb = find(b);
+      if (ra === rb) return false;
+      // Stable rep: lowest numeric id wins, so passing the same
+      // chain through the same rules deterministically picks the
+      // same rep regardless of insertion order.
+      const ai = parseInt(ra.replace(/^s/, ''), 10);
+      const bi = parseInt(rb.replace(/^s/, ''), 10);
+      if (ai <= bi) parent.set(rb, ra); else parent.set(ra, rb);
+      return true;
+    };
+    return { find, union, ensure };
+  };
+
+  const SAFETY_CAP = 1024;
+  for (let pass = 0; pass < SAFETY_CAP; pass++) {
+    if (pass === SAFETY_CAP - 1 && typeof console !== 'undefined' && console.warn) {
+      console.warn(
+        `[chain bottom-up merge] hit ${SAFETY_CAP}-pass safety cap. ` +
+        `Each pass should monotonically reduce state count, so this either ` +
+        `means the chain is genuinely larger than 1024 states OR a rule is ` +
+        `claiming progress without shrinking the state space. ` +
+        `Current state count: ${chainStates.length}.`,
+      );
+    }
+    const stateById = new Map(chainStates.map((cs) => [cs.id, cs]));
+    const uf = unionFind(chainStates.length);
+    for (const cs of chainStates) uf.ensure(cs.id);
+
+    // Build outgoing-edges map once per pass.
+    const outgoing = new Map();
+    for (const e of chainEdges) {
+      if (!outgoing.has(e.from)) outgoing.set(e.from, []);
+      outgoing.get(e.from).push(e);
+    }
+
+    let anyUnion = false;
+
+    // R1: sibling merge.
+    for (const [from, edges] of outgoing) {
+      const byPair = new Map();
+      for (const e of edges) {
+        if (e.to === from) continue;
+        const childPolicy = stateById.get(e.to)?.meta?.policy ?? '-';
+        const parentAction = (e.label ?? '').split('\n')[0];
+        const key = `${parentAction}|${childPolicy}`;
+        if (!byPair.has(key)) byPair.set(key, []);
+        byPair.get(key).push(e.to);
+      }
+      for (const [, ids] of byPair) {
+        if (ids.length < 2) continue;
+        const seed = ids[0];
+        for (let i = 1; i < ids.length; i++) {
+          if (uf.union(seed, ids[i])) anyUnion = true;
+        }
+      }
+    }
+
+    // R2: linear-chain merge — A→B with same next-action.
+    for (const e of chainEdges) {
+      if (e.from === e.to) continue; // self-loop
+      const aPolicy = stateById.get(e.from)?.meta?.policy;
+      const bPolicy = stateById.get(e.to)?.meta?.policy;
+      // Both endpoints must have a policy AND it must match. Skip
+      // when either side has no policy (terminals: goal / brick) —
+      // those aren't part of a same-action linear segment.
+      if (!aPolicy || !bPolicy) continue;
+      if (aPolicy !== bPolicy) continue;
+      if (uf.union(e.from, e.to)) anyUnion = true;
+    }
+
+    // R3: reverse-sibling merge — B→A and C→A both via action α
+    // (and B, C policies are α since the chain only emits policy
+    // edges). Group edges by (to, action); any group with ≥2 distinct
+    // sources → merge those sources.
+    const incomingByPair = new Map();
+    for (const e of chainEdges) {
+      if (e.from === e.to) continue;
+      const action = (e.label ?? '').split('\n')[0];
+      const key = `${e.to}|${action}`;
+      if (!incomingByPair.has(key)) incomingByPair.set(key, new Set());
+      incomingByPair.get(key).add(e.from);
+    }
+    for (const [, sources] of incomingByPair) {
+      if (sources.size < 2) continue;
+      const arr = [...sources];
+      const seed = arr[0];
+      for (let i = 1; i < arr.length; i++) {
+        if (uf.union(seed, arr[i])) anyUnion = true;
+      }
+    }
+
+    if (!anyUnion) break;
+
+    // Apply: keyOf returns the union-find root, so the existing
+    // applyKeyMerge plumbing handles state filtering, edge merge,
+    // probability renormalisation, and label sync.
+    applyKeyMerge(chainStates, chainEdges, (cs) => uf.find(cs.id));
+  }
+}
+// ─────────────────────────────────────────────────────────
 
 // ---- Chain serialiser (compatible with the existing Mermaid renderer)
 //
@@ -22,7 +259,17 @@ import { isGoalState, isBrickedByFracture, stateKey, popcount } from './state.js
 //   - Strict-bricked states (goal-unreachable under any action) keep
 //     the same `bricked` kind too — the renderer doesn't need to
 //     distinguish "near-trap" from "strict trap" for this purpose.
-export function buildChain({ states, appsPerState, vStar, policy, target, startIdx, budgetEx, timeWeightExPerSec, showStepIds = true, wishlist = [], basePriceEx = 0, collapseEquivalent = true }) {
+export function buildChain({ states, appsPerState, vStar, policy, target, startIdx, budgetEx, timeWeightExPerSec, showStepIds = true, wishlist = [], basePriceEx = 0, collapseEquivalent = true, mergeStrategy = 'top-down', policyEquivClassMap = null, actionDisplayMap: actionDisplayMapInput = null }) {
+  // Stored on the chain output so external renderers (MermaidChain
+  // alternatives table) can resolve action ids to friendly names —
+  // mirrors what the engine uses internally for edge labels.
+  const actionDisplayMap = actionDisplayMapInput;
+  // Display-name lookup: replace generic action ids (e.g. `apply_bone`)
+  // with the concrete name the adapter resolved (e.g. "Gnawed Jawbone")
+  // when assembling the edge labels. Falls back to the raw id when no
+  // mapping is provided or the id isn't in the map.
+  const displayAction = (a) =>
+    (actionDisplayMap && actionDisplayMap[a]) ? actionDisplayMap[a] : a;
   // Percentages read more naturally for orb-outcome odds. Below 0.01% use
   // scientific so 1e-6-class outcomes stay visible.
   const fmtP = (p) => {
@@ -290,8 +537,25 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
   // itemValue(start) ≥ 0 under the "no-restart" formula). null if
   // pSuccess(start) = 0 (no path to goal under π*) — in that case no
   // budget makes crafting profitable.
-  const pStart = pSuccess.get(startIdx) ?? 0;
+  let pStart = pSuccess.get(startIdx) ?? 0;
+  let pSuccessOverflow = null;
   const bStart = bExpected.get(startIdx) ?? 0;
+  // Defensive clamp: pSuccess is a probability in [0, 1] by construction
+  // (it's a weighted sum of [0, 1] values where the weights are
+  // outcome probabilities that should sum to ≤ 1). Anything > 1.0 +
+  // epsilon means an engine bug — outcome mass exceeded 1, the most
+  // common cause being a transition function emitting probabilities
+  // that don't sum exactly to 1 due to a stale/missing branch. Clamp
+  // for display correctness AND surface the discrepancy as a warning
+  // so the bug stays visible (downstream `Math.log(1 - pStart)` goes
+  // NaN when pStart > 1, propagating NaN into the materials
+  // shopping list — bug 2026-05-11).
+  if (pStart > 1 + 1e-6) {
+    pSuccessOverflow = pStart;  // surfaced via build-chain caller below
+    pStart = 1;
+  } else if (pStart > 1) {
+    pStart = 1; // tolerate ε floating-point drift silently
+  }
   const breakevenBudgetEx = pStart > 1e-9 ? (-bStart / pStart) : null;
 
   // Mod-name shortener — same shape as closed-form chains
@@ -363,13 +627,20 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
       const desecSuffixIrr = s.desecratedIrrSuffix ?? 0;
       const pMark = desecPrefixIrr > 0 ? ` 🦴×${desecPrefixIrr}` : '';
       const sMark = desecSuffixIrr > 0 ? ` 🦴×${desecSuffixIrr}` : '';
+      // Single-line side signature with the ↕ glyph for "either side"
+      // sandwiched between Prefix and Suffix counts: `P×n ↕×k S×m`.
+      // The ↕ visually conveys "this slot can land prefix or suffix"
+      // without spelling out the words. Order P → ↕ → S keeps the
+      // variable portion central, mirroring its meaning.
       if (sideUnknown) {
         const allMark = (desecPrefixIrr + desecSuffixIrr) > 0
           ? ` 🦴×${desecPrefixIrr + desecSuffixIrr}` : '';
-        lines.push(`· ?: ${irrTotal} irrelevant${allMark}`);
+        lines.push(`· irr: ↕×${irrTotal}${allMark}`);
       } else {
-        if (irrPrefix > 0) lines.push(`· P: ${irrPrefix} irrelevant${pMark}`);
-        if (irrSuffix > 0) lines.push(`· S: ${irrSuffix} irrelevant${sMark}`);
+        const parts = [];
+        if (irrPrefix > 0) parts.push(`P×${irrPrefix}${pMark}`);
+        if (irrSuffix > 0) parts.push(`S×${irrSuffix}${sMark}`);
+        if (parts.length) lines.push(`· irr: ${parts.join(' ')}`);
       }
     }
     // (Per-side fingerprint footer like `(2P + 1S = 3)` was
@@ -533,11 +804,16 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
       const apps = appsPerState.get(i) ?? [];
       const stateUnifiedCost = (ex, sec) => ex + sec * (timeWeightExPerSec ?? 0);
       for (const app of apps) {
-        const cost = stateUnifiedCost(
-          app.outcomes[0]?.costEx ?? 0,
-          app.outcomes[0]?.costSec ?? 0,
-        );
-        let q = cost;
+        const unitEx  = app.outcomes[0]?.costEx  ?? 0;
+        const unitSec = app.outcomes[0]?.costSec ?? 0;
+        // Unified cost (ex + time × weight) drives Q. Per-action
+        // breakdown (raw monetary + raw seconds) is also surfaced so
+        // the renderer can show both — labelling unified cost as
+        // "Cost (ex)" was confusing users (e.g. transmute shows up
+        // as 450.01 ex with timeWeight=5/sec × 90s = 450 of "time
+        // money"; the raw orb price is 0.01).
+        const unifiedCost = stateUnifiedCost(unitEx, unitSec);
+        let q = unifiedCost;
         let bricked = false;
         for (const o of app.outcomes) {
           const v = vStar[o.to];
@@ -546,7 +822,9 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
         }
         alternatives.push({
           actionId: app.actionId,
-          costEx: cost,
+          costEx: unitEx,
+          costSec: unitSec,
+          unifiedCostEx: unifiedCost,
           qValue: bricked ? Infinity : q,
         });
       }
@@ -627,7 +905,14 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
       }
       chainEdges.push({
         from: `s${i}`, to: `s${o.to}`,
-        label: `${a}\n${fmtP(o.prob)}`,
+        label: `${displayAction(a)}\n${fmtP(o.prob)}`,
+        // Raw action id preserved alongside the display label so
+        // renderers can classify edges (e.g. essence ⇒ purple stroke)
+        // without regex-parsing the user-facing label, which now
+        // carries the friendly name (e.g. "Lesser Essence of
+        // Insulation") rather than the engine id (e.g.
+        // "essence_Lesser_Essence_of_Insulation").
+        actionId: a,
         kind,
         // Raw transition probability, exposed so the renderer can
         // scale edge stroke-width by likelihood (high-prob outcomes
@@ -651,7 +936,19 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
   // UI can introspect how the merge happened. Empty when collapse
   // didn't run.
   const diagnostics = {};
-  if (collapseEquivalent && chainStates.length > 1) {
+  // Strategy selector. 'none' skips collapse entirely; 'per-action'
+  // and 'bottom-up' run separate (simpler) merge passes; 'top-down'
+  // is the existing default. Spec: docs/chain-rendering.md (§3 for
+  // the top-down approach, §8 for bottom-up). The legacy
+  // `collapseEquivalent: false` knob still works as an alias for
+  // 'none'.
+  const strategy = collapseEquivalent === false ? 'none' : mergeStrategy;
+  if (strategy === 'per-action' && chainStates.length > 1) {
+    applyKeyMerge(chainStates, chainEdges,
+      (cs) => `${cs.kind ?? '-'}|${cs.meta?.policy ?? '-'}`);
+  } else if (strategy === 'bottom-up' && chainStates.length > 1) {
+    applyBottomUpSiblingMerge(chainStates, chainEdges);
+  } else if (strategy === 'top-down' && chainStates.length > 1) {
     // Equivalence-class collapse with TWO levels of merging:
     // 1. Side allocation: states differing only in prefix/suffix
     //    split (prefixMods, desecratedIrrPrefix, desecratedIrrSuffix)
@@ -889,9 +1186,40 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
         const s = states[idx];
         return s?.totalMods ?? 0;
       };
+      // Wished count must be in the partition. Otherwise two states
+      // with the same (kind, policy, fractured, totalMods) but
+      // different #wished collapse into one rep — and the rep's
+      // label only reflects ONE member's wished bits, hiding the
+      // rest. User report (2026-05-09): on Amulet ilvl=72 + cold/fire
+      // wishlist + Greater Transmute, the 5%-wished and 95%-irrelevant
+      // outcomes both had the same optimal next-action (augment_greater)
+      // and same totalMods=1 → same partition → merged into one rep
+      // labelled `★ S:{cold|fire}` only. The rendered chain showed
+      // s0 → merged-rep at 100%, with the irrelevant branch invisible.
+      // Including wishedCount in the partition splits them back into
+      // a wished-rep and an irrelevant-rep, exposing both branches.
+      const wishedCountFor = (cs) => {
+        const idx = parseInt((cs.id ?? '').replace(/^s/, ''), 10);
+        const s = states[idx];
+        return popcount(s?.modMask ?? 0);
+      };
+      // Canonicalize policy via the equiv-class map (if provided). For
+      // essence actions targeting wished mods in the same equiv-class,
+      // the map collapses them to one canonical string, so e.g.
+      // "essence_Greater_Insulation (cold)" and "essence_Greater_
+      // Thawing (fire)" share one partition class when cold and fire
+      // are mirror wished mods. Without the map, falls back to the
+      // raw action id.
+      const canonicalPolicy = (cs) => {
+        const p = cs.meta?.policy ?? '-';
+        if (policyEquivClassMap && policyEquivClassMap.has(p)) {
+          return policyEquivClassMap.get(p);
+        }
+        return p;
+      };
       for (let i = 0; i < chainStates.length; i++) {
         const cs = chainStates[i];
-        const k = `${cs.kind ?? '-'}|${cs.meta?.policy ?? '-'}|${fracturedClassFor(cs)}|tm=${totalModsFor(cs)}`;
+        const k = `${cs.kind ?? '-'}|${canonicalPolicy(cs)}|${fracturedClassFor(cs)}|tm=${totalModsFor(cs)}|w=${wishedCountFor(cs)}`;
         if (!initToCls.has(k)) initToCls.set(k, nextCls++);
         classIds[i] = initToCls.get(k);
       }
@@ -985,10 +1313,16 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
         let desecMark = '';
         const kept = [];
         for (const ln of lines) {
-          const m = /^· [PS\?]: (\d+) irrelevant(.*)$/.exec(ln);
-          if (m) {
-            totalIrr += Number(m[1]);
-            if (m[2] && /🦴×/.test(m[2]) && !desecMark) desecMark = m[2];
+          // Match the new compact `· irr: P×N S×M ?×K` line so we can
+          // re-emit it post-collapse with the merged group's floor +
+          // variable breakdown. Total = sum of N + M + K parsed out.
+          const irrMatch = /^· irr: (.*)$/.exec(ln);
+          if (irrMatch) {
+            const sig = irrMatch[1];
+            // Sum any digit run preceded by P×, S×, or ?×.
+            for (const m of sig.matchAll(/[PS?]×(\d+)/g)) totalIrr += Number(m[1]);
+            const desecMatch = sig.match(/🦴×\d+/);
+            if (desecMatch && !desecMark) desecMark = ' ' + desecMatch[0];
           } else {
             kept.push(ln);
           }
@@ -1008,17 +1342,20 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
           if (!Number.isFinite(minS)) minS = 0;
           const variable = Math.max(0, totalIrr - minP - minS);
           const insertAt = kept.findIndex((l) => /^V\*=|^fromBudget=|^fromBase=|^P_reach=/.test(l));
+          // Single-line tight signature `P×n ↕×k S×m` so reps with
+          // the same total irrelevant count but different side
+          // allocations are scannable side-by-side. The ↕ glyph
+          // (instead of `?`) conveys "this slot can land prefix or
+          // suffix" with the up/down arrow visually mirroring the
+          // semantics, sandwiched between the fixed P and S counts.
           const insertLines = [];
-          if (minP > 0) insertLines.push(`· P: ${minP} irrelevant`);
-          if (minS > 0) insertLines.push(`· S: ${minS} irrelevant`);
-          if (variable > 0) insertLines.push(`· ${variable} irrelevant (either side)${desecMark}`);
-          // If the floor accounts for everything (variable === 0),
-          // there's no need for the (either side) line — but the
-          // floor lines lost the desec mark since they're per-side
-          // and we don't know which side carries it. Re-attach to
-          // the larger side for visibility.
-          if (variable === 0 && desecMark && insertLines.length > 0) {
-            insertLines[insertLines.length - 1] += desecMark;
+          if (totalIrr > 0) {
+            const parts = [];
+            if (minP > 0)     parts.push(`P×${minP}`);
+            if (variable > 0) parts.push(`↕×${variable}`);
+            if (minS > 0)     parts.push(`S×${minS}`);
+            const signature = parts.length ? parts.join(' ') : `${totalIrr}`;
+            insertLines.push(`· irr: ${signature}${desecMark}`);
           }
           if (insertAt >= 0) kept.splice(insertAt, 0, ...insertLines);
           else kept.push(...insertLines);
@@ -1039,20 +1376,56 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
       // equivalence class. Keeping self-loops makes the missing mass
       // visible (rendered as a curve from the node back to itself);
       // the per-(from, action) renormalisation below handles the math.
-      const edgeKey = (e) => `${e.from}→${e.to}|${e.label.split('\n')[0]}`;
+      // Canonical action key: when two actions are policy-equivalent
+      // (mirror essences targeting wished mods in the same equiv-class
+      // and at the same cost), edges to the same destination via either
+      // action collapse into one edge. Without this, a merged rep
+      // (e.g. one that absorbed s18=Insulation and s28=Thawing) ends
+      // up with two parallel edges to the goal, one per essence —
+      // misleading because the user sees "two distinct policy options"
+      // when really it's one option modulo the wished-mod swap.
+      const canonAction = (a) => {
+        if (policyEquivClassMap && policyEquivClassMap.has(a)) {
+          return policyEquivClassMap.get(a);
+        }
+        return a;
+      };
       const merged = new Map();
+      const actionsByKey = new Map(); // canonical-key → Set<raw action ids>
       for (const e of chainEdges) {
         const from = redirect.get(e.from) ?? e.from;
         const to   = redirect.get(e.to)   ?? e.to;
-        const action = (e.label ?? '').split('\n')[0];
-        const k = `${from}→${to}|${action}`;
+        // Use the raw action id (stable engine identifier) for both
+        // canonicalisation and the joined-mirror label, NOT the
+        // user-facing label — labels are now display names like
+        // "Essence of Cold" and don't survive canonicalisation
+        // (the policyEquivClassMap is keyed by raw ids).
+        const aId = e.actionId ?? (e.label ?? '').split('\n')[0];
+        const cAction = canonAction(aId);
+        const k = `${from}→${to}|${cAction}`;
+        if (!actionsByKey.has(k)) actionsByKey.set(k, new Set());
+        actionsByKey.get(k).add(aId);
         const cur = merged.get(k);
         if (cur) {
           cur.prob = (cur.prob ?? 0) + (e.prob ?? 0);
-          cur.label = `${action}\n${fmtP(cur.prob)}`;
         } else {
           merged.set(k, { ...e, from, to });
         }
+      }
+      // Render the merged label using all original raw action ids
+      // that contributed (joined with `|` for the multi-action case).
+      // For a single-action edge the displayAction map is applied so
+      // the user sees e.g. "Essence of Cold" rather than the raw id;
+      // for joined mirrors the raw ids stay so the equiv-class
+      // collapse remains explicit (e.g.
+      // "essence_cold|essence_fire / 50.0%").
+      for (const [k, e] of merged) {
+        const ids = [...(actionsByKey.get(k) ?? [])].sort();
+        const labelAction = ids.length > 1
+          ? ids.join('|')
+          : displayAction(ids[0]);
+        e.actionId = ids.length === 1 ? ids[0] : ids.join('|');
+        e.label = `${labelAction}\n${fmtP(e.prob)}`;
       }
       // Renormalise per (from, action) so the representative's
       // outgoing edges sum to 1.0. When N sources collapse into the
@@ -1167,7 +1540,17 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
           let label = cs.label;
           for (const [cls, names] of namesByClass) {
             if (names.size <= 1) continue;
-            const joined = [...names].sort().join(' | ');
+            // Render the equiv-class collapse so it CLEARLY reads as
+            // "one mod, alternate names" rather than "two mods listed
+            // together." Format: keep the side tag (S: / P:) once,
+            // then drop into curly braces for the name alternation.
+            // Example: ★ S:{cold|fire} vs the prior ambiguous
+            // ★ S:cold | S:fire (which read as two separate mods).
+            const sortedNames = [...names].sort();
+            const sideMatch = /^([PS]):/.exec(sortedNames[0]);
+            const sideTag = sideMatch ? sideMatch[1] + ':' : '';
+            const stripped = sortedNames.map((n) => n.replace(/^[PS]:/, ''));
+            const joined = `${sideTag}{${stripped.join('|')}}`;
             // Replace ANY of the alternate names with the joined form.
             // Use the first occurrence's surrounding context (★ or ·)
             // to preserve the required-vs-desired tag.
@@ -1543,8 +1926,7 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
           const stepIdMatch = /^(\[s\d+\])\s*/.exec(cs.label);
           const stepIdPrefix = stepIdMatch ? stepIdMatch[1] : '';
           const body = stepIdMatch ? cs.label.slice(stepIdMatch[0].length) : cs.label;
-          const filtered = body.split('\n').filter((ln) =>
-            !/^· (≥?\d+ irrelevant|\d+ irrelevant \(either side\)|[PS\?]: \d+ irrelevant)/.test(ln));
+          const filtered = body.split('\n').filter((ln) => !/^· irr: /.test(ln));
           const joined = filtered.join('\n');
           cs.label = stepIdPrefix
             ? (joined.startsWith('\n') ? `${stepIdPrefix}${joined}` : `${stepIdPrefix} ${joined}`)
@@ -1618,167 +2000,12 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
     }
   }
 
-  // ─────────────────────────────────────────────────────────
-  // Inner-loop detection. Strongly-connected components of size ≥ 2
-  // in the chain edge graph are "inner loops" — cycles the user
-  // walks repeatedly under π* (typical: exalt-then-annul, chaos-spam,
-  // fracture-roulette). Surfaced as `chain.loops` so the renderer
-  // can box them as Mermaid subgraphs, making the chain's high-level
-  // structure ("phase 1 → loop A → phase 2 → loop B → goal") visible
-  // at a glance instead of requiring the reader to trace edges.
-  //
-  // Iterative Tarjan's SCC (recursion would blow the stack on the
-  // larger chains). Standard textbook implementation; the per-edge
-  // outer-loop is O(V + E).
-  // ─────────────────────────────────────────────────────────
-  const loops = (() => {
-    const adj = new Map();
-    for (const cs of chainStates) adj.set(cs.id, []);
-    for (const e of chainEdges) {
-      if (!adj.has(e.from) || !adj.has(e.to)) continue;
-      adj.get(e.from).push({ to: e.to, prob: e.prob ?? 0, action: (e.label ?? '').split('\n')[0] });
-    }
-    const indexMap = new Map();
-    const lowlink = new Map();
-    const onStack = new Set();
-    const stack = [];
-    let nextIndex = 0;
-    const sccs = [];
-    // Iterative Tarjan's: each frame stores (node, neighbour-iterator,
-    // childReturn). When `childReturn` is set, the parent updates
-    // lowlink with the child's lowlink (post-recursion bookkeeping).
-    for (const root of adj.keys()) {
-      if (indexMap.has(root)) continue;
-      const callStack = [{ node: root, iter: 0, childRet: null }];
-      indexMap.set(root, nextIndex);
-      lowlink.set(root, nextIndex);
-      nextIndex++;
-      stack.push(root);
-      onStack.add(root);
-      while (callStack.length) {
-        const frame = callStack[callStack.length - 1];
-        const { node, iter, childRet } = frame;
-        if (childRet != null) {
-          // Returning from a child — update parent's lowlink.
-          lowlink.set(node, Math.min(lowlink.get(node), lowlink.get(childRet)));
-          frame.childRet = null;
-        }
-        const neighbours = adj.get(node) ?? [];
-        if (iter < neighbours.length) {
-          const w = neighbours[iter].to;
-          frame.iter = iter + 1;
-          if (!indexMap.has(w)) {
-            indexMap.set(w, nextIndex);
-            lowlink.set(w, nextIndex);
-            nextIndex++;
-            stack.push(w);
-            onStack.add(w);
-            callStack.push({ node: w, iter: 0, childRet: null });
-          } else if (onStack.has(w)) {
-            lowlink.set(node, Math.min(lowlink.get(node), indexMap.get(w)));
-          }
-        } else {
-          // Done iterating; if root of an SCC, pop the component.
-          if (lowlink.get(node) === indexMap.get(node)) {
-            const comp = [];
-            while (stack.length) {
-              const w = stack.pop();
-              onStack.delete(w);
-              comp.push(w);
-              if (w === node) break;
-            }
-            if (comp.length >= 2) sccs.push(comp);
-          }
-          callStack.pop();
-          if (callStack.length) callStack[callStack.length - 1].childRet = node;
-        }
-      }
-    }
-    // Sub-partition each SCC by ACTION BUNDLE. Tarjan returns ONE
-    // big SCC whenever annul ↔ exalt edges connect the entire
-    // forward+backward range — but the user mentally groups exalt
-    // + annul as the SAME phase (forward / reverse of in-place
-    // fill). Per-bundle sub-partitioning produces "exalt+annul
-    // phase", "chaos phase", "regal phase", etc. — matching the
-    // user's mental model.
-    // (User report 2026-05-08: "I see one big subgraph; expected
-    // two — 4-6 mods and 3-4 mods.")
-    const ACTION_BUNDLE = (a) => {
-      if (!a) return null;
-      if (/^exalt/.test(a) || a === 'annul') return 'exalt+annul';
-      if (/^chaos/.test(a)) return 'chaos';
-      if (/^regal/.test(a)) return 'regal';
-      if (/^transmute/.test(a) || /^augment/.test(a)) return 'magic';
-      if (a === 'alch') return 'alch';
-      if (/^fractur/.test(a)) return 'fracture';
-      if (/bone/.test(a)) return 'bone';
-      return a; // unknown action stays in its own bundle
-    };
-    const stateById = new Map(chainStates.map((cs) => [cs.id, cs]));
-    const out = [];
-    for (let sccIndex = 0; sccIndex < sccs.length; sccIndex++) {
-      const comp = sccs[sccIndex];
-      // Group members by their action bundle. States without a
-      // policy (terminals) get a null bundle and are filtered.
-      const byBundle = new Map();
-      for (const id of comp) {
-        const policy = stateById.get(id)?.meta?.policy;
-        const bundle = ACTION_BUNDLE(policy);
-        if (!bundle) continue;
-        if (!byBundle.has(bundle)) byBundle.set(bundle, []);
-        byBundle.get(bundle).push(id);
-      }
-      const memberSet = new Set(comp);
-      for (const [bundle, nodes] of byBundle) {
-        let totalVisits = 0;
-        for (const id of nodes) {
-          const cs = stateById.get(id);
-          if (cs && Number.isFinite(cs.expectedVisits)) totalVisits += cs.expectedVisits;
-        }
-        // Drop low-traffic sub-bands. ≥ 1 visit threshold so trivial
-        // oscillations don't get boxed; the user wants the
-        // structurally-interesting phases.
-        if (totalVisits < 1 - 1e-6) continue;
-        // dominantActions: the actual action(s) used by states in
-        // this bundle, ordered by aggregate transition probability
-        // mass. Surfacing both "exalt" and "annul" lets the renderer
-        // title the box "exalt + annul loop" naturally.
-        const actionMass = new Map();
-        for (const id of nodes) {
-          for (const nb of adj.get(id) ?? []) {
-            if (!memberSet.has(nb.to)) continue;
-            // Only count transitions whose action is part of this
-            // bundle, so cross-bundle edges (e.g. annul → buy_base)
-            // don't pollute the title.
-            if (ACTION_BUNDLE(nb.action) !== bundle) continue;
-            actionMass.set(nb.action, (actionMass.get(nb.action) ?? 0) + nb.prob);
-          }
-        }
-        const dominantActions = [...actionMass.entries()]
-          .sort((a, b) => b[1] - a[1])
-          .map(([a]) => a)
-          .filter(Boolean);
-        // Fallback: if no internal-bundle edges (rare — happens when
-        // a sub-band only has cross-bundle outgoing edges), just
-        // list the policies of the member states.
-        if (!dominantActions.length) {
-          const seen = new Set();
-          for (const id of nodes) {
-            const p = stateById.get(id)?.meta?.policy;
-            if (p && !seen.has(p)) { seen.add(p); dominantActions.push(p); }
-          }
-        }
-        out.push({
-          nodes,
-          bundle,
-          dominantActions,
-          totalVisits,
-          sccIndex,
-        });
-      }
-    }
-    return out;
-  })();
+  // Sub-graph (loop) detection. Implementation lives in
+  // engine/mdp/chain-loops.js — a self-contained pure function over
+  // the post-collapse chain. Spec: docs/chain-rendering.md §7.
+  // Singleton self-loops count; the title is the orb action ids on
+  // intra-SCC edges (no static bundle map). Threshold is E[visits] ≥ 3.
+  const loops = detectLoops({ states: chainStates, edges: chainEdges });
 
   return {
     states: chainStates,
@@ -1798,6 +2025,15 @@ export function buildChain({ states, appsPerState, vStar, policy, target, startI
     pSuccessStart: pStart,
     bExpectedStart: bStart,
     breakevenBudgetEx,
+    // actionId → display name (e.g. apply_bone → "Preserved Rib").
+    // Surfaced so per-action UI can show the same friendly name the
+    // engine baked into edge labels.
+    actionDisplayMap,
+    // Set when raw pSuccess(start) exceeded 1.0 + 1e-6 (engine bug
+    // — outcome mass over 1). The reported pSuccessStart is clamped
+    // to 1 above; this field carries the raw value so the UI can
+    // warn the user.
+    pSuccessOverflow,
     // Diagnostic: groups of chain nodes whose labels collide
     // (excluding the step-id prefix). Each entry is
     // { label, ids: [stepId...] }. Empty array means every node

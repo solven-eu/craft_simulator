@@ -49,12 +49,12 @@ function parseCsv(text) {
 }
 
 const essences = parseCsv(readFileSync(join(ROOT, 'data/poe2/essences.csv'), 'utf8'));
-const priceRows = parseCsv(readFileSync(join(ROOT, 'data/poe2/essence_prices.csv'), 'utf8'));
-const essencePrices = {};
-for (const r of priceRows) {
-  const px = parseFloat(r.priceEx);
-  if (Number.isFinite(px)) essencePrices[r.name] = { priceEx: px };
-}
+// essence_prices.csv was retired; rates.csv is the only source of
+// truth. Stub a uniform price so the adapter can price every essence
+// — this test pins label uniqueness, not pricing accuracy.
+const essencePrices = Object.fromEntries(
+  essences.map((r) => [r.name, { priceEx: 1 }]),
+);
 const modIds = JSON.parse(readFileSync(join(ROOT, 'data/poe2/mod_ids.json'), 'utf8')).name_to_id ?? {};
 
 test('live data: 2 PREFIX essence-only mods, no duplicate chain-node labels', () => {

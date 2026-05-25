@@ -57,12 +57,15 @@ function parseCsv(text) {
 }
 
 const essences = parseCsv(readFileSync(join(ROOT, 'data/poe2/essences.csv'), 'utf8'));
-const priceRows = parseCsv(readFileSync(join(ROOT, 'data/poe2/essence_prices.csv'), 'utf8'));
-const essencePrices = {};
-for (const r of priceRows) {
-  const px = parseFloat(r.priceEx ?? r.price ?? r['priceEx '] ?? '');
-  if (Number.isFinite(px)) essencePrices[r.name] = { priceEx: px };
-}
+// Essence prices used to live in a static essence_prices.csv; the
+// rates.csv is now the only source of truth (per project policy
+// 2026-05-08: missing rates surface as warnings, never silent
+// fallbacks). For this test we provide a minimal stub so the adapter
+// can price every essence — the test focuses on side invariance,
+// not on the per-essence price.
+const essencePrices = Object.fromEntries(
+  essences.map((r) => [r.name, { priceEx: 1 }]),
+);
 const modIds = JSON.parse(readFileSync(join(ROOT, 'data/poe2/mod_ids.json'), 'utf8')).name_to_id ?? {};
 
 function checkSideInvariant(result, wishlistTypes, label) {

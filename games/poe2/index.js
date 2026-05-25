@@ -45,21 +45,10 @@ export function loadOmens() {
   return omensPromise;
 }
 
-let essencePricesPromise = null;
-export function loadEssencePrices() {
-  if (!essencePricesPromise) {
-    essencePricesPromise = fetch(new URL('../../data/poe2/essence_prices.csv', import.meta.url))
-      .then((r) => {
-        if (!r.ok) throw new Error(`Failed to load essence_prices.csv (${r.status})`);
-        return r.text();
-      })
-      .then(parseCSV)
-      .then((rows) => Object.fromEntries(
-        rows.map((r) => [r.name, { priceEx: parseFloat(r.price_ex), source: r.source }]),
-      ));
-  }
-  return essencePricesPromise;
-}
+// `essence_prices.csv` was removed (2026-05-10) — the live `rates.csv`
+// snapshot is now the single source for essence prices. Missing
+// entries surface as warnings rather than silently falling back to
+// placeholders. See `effectiveEssencePrices` in stores/craft.js.
 
 let modsPromise = null;
 
@@ -396,7 +385,6 @@ export const game = {
   loadBaseBundle,
   loadItemDescriptions,
   loadEssences,
-  loadEssencePrices,
   loadEssenceSideOverrides,
   loadEssenceModSides,
   loadOmens,

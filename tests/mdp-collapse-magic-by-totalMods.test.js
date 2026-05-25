@@ -1,11 +1,13 @@
-// Magic-state merging by totalMods alone: when two states have the
-// same kind, same policy, and same total affix count — but one has
-// the wished mod and the other has only irrelevant — they should
-// still merge into one chain rep. User report (2026-05-08): "after
-// transmute we always apply augment, so post-transmute states (1
-// wished or 1 irrelevant, both magic) are eligible for merging.
-// Rendering may state `magic with 1 affix` without specifying
-// wished vs irrelevant."
+// Magic-state merging — supersedes the 2026-05-08 design.
+// Earlier, the policy was "merge 1-wished and 1-irr magic states
+// when they share the same next-action; render as `magic with 1
+// affix`." The user reverted this on 2026-05-09 after a
+// transmute_greater chain showed `s0 → ★ S:{cold|fire} / 100%` —
+// the wished and irr branches collapsed to one rep, hiding the
+// 95% irrelevant outcome entirely. Spec §3 now requires
+// `wishedCount` in the partition: two magic-tm=1 states differing
+// in wished bits are GENUINELY different (per G2: each item maps
+// to one rep). This test now pins the new rule.
 
 import { strict as assert } from 'node:assert';
 import { solveMDP } from '../engine/mdp/solve.js';
@@ -33,36 +35,54 @@ const fixture = {
   orbTimes: { transmute: 1, augment: 1, regal: 1, alch: 1, exalt: 1, annul: 1, fracturing: 3, chaos: 1 },
 };
 
-test('1-wished and 1-irrelevant magic states with same policy merge into one rep', () => {
+test('1-wished magic and 1-irrelevant magic stay distinct under same policy (G2)', () => {
+  // Each concrete item must map to ONE rep label. A 1-wished magic
+  // and a 1-irrelevant magic are different items even when their
+  // optimal next-action coincides — collapsing them produces a
+  // misleading rep where the label only reflects one branch.
   const result = solveMDP(fixture);
-  // Group by (kind, policy). Within each group, count the distinct
-  // 1-affix-magic representatives. There should be at most ONE rep
-  // per (kind, policy) for any given totalMods bucket — even if the
-  // group's members include both "1 wished" and "1 irrelevant".
+  // Bucket strictly by (kind, policy, totalMods, wishedCount). Each
+  // bucket should hold at most one rep.
+  const popcount = (n) => { let c = 0; for (n = n | 0; n; n &= n - 1) c++; return c; };
   const buckets = new Map();
   for (const s of result.chain.states) {
     const policy = s.meta?.policy ?? '-';
     if (policy === '-' || policy === 'buy_base') continue;
-    // The label-parsing heuristic conflates "tm=1 with ≥1 irr" with
-    // "tm=2 with `· 1 irrelevant` line" — both render as one ★/· line.
-    // Use the underlying engine state for an accurate total.
     const idx = parseInt(s.id.replace(/^s/, ''), 10);
-    const tm = result.states[idx]?.state?.totalMods ?? 0;
-    if (tm !== 1) continue;
-    const k = `${s.kind}|${policy}|totalMods=1`;
+    const st = result.states[idx]?.state;
+    if (!st) continue;
+    if (st.totalMods !== 1) continue;
+    const w = popcount(st.modMask ?? 0);
+    const k = `${s.kind}|${policy}|tm=1|w=${w}`;
     const arr = buckets.get(k) ?? [];
     arr.push(s);
     buckets.set(k, arr);
   }
   const offenders = [...buckets.entries()].filter(([, arr]) => arr.length > 1);
-  if (offenders.length > 0) {
-    const sample = offenders.slice(0, 3).map(([k, arr]) =>
-      `${k}: ${arr.map((s) => s.id + '(' + s.label.split('\\n')[0].replace(/\[s\d+\]\s*/, '').slice(0,30) + ')').join(', ')}`,
-    ).join('\n  ');
-    assert.fail(
-      `expected 1-affix magic states with same policy to merge into ONE rep:\n  ${sample}`,
-    );
+  assert.equal(offenders.length, 0,
+    `expected each (kind, policy, totalMods, wishedCount) bucket to hold ≤1 rep; ` +
+    `offenders: ${offenders.map(([k, arr]) => `${k}: ${arr.map(s => s.id).join(',')}`).join('; ')}`);
+});
+
+test('post-transmute split: 1-wished branch and 0-wished+1-irr branch are SEPARATE reps', () => {
+  // The user-reported regression (2026-05-09): on a craft where
+  // transmute leads to two outcomes (wished cold/fire OR irrelevant),
+  // both with the same optimal next-action, those outcomes must NOT
+  // merge into a single rep. Pin the property: at totalMods=1 magic,
+  // we expect AT LEAST one wished-bearing rep AND one irr-only rep.
+  const result = solveMDP(fixture);
+  const popcount = (n) => { let c = 0; for (n = n | 0; n; n &= n - 1) c++; return c; };
+  let hasWishedTm1 = false, hasIrrTm1 = false;
+  for (const s of result.chain.states) {
+    const idx = parseInt(s.id.replace(/^s/, ''), 10);
+    const st = result.states[idx]?.state;
+    if (!st || st.totalMods !== 1 || st.rarity !== 'magic') continue;
+    const w = popcount(st.modMask ?? 0);
+    if (w >= 1) hasWishedTm1 = true;
+    if (w === 0) hasIrrTm1 = true;
   }
+  assert.ok(hasWishedTm1, 'expected at least one wished-bearing tm=1 magic rep');
+  assert.ok(hasIrrTm1, 'expected at least one irr-only tm=1 magic rep (got merged with wished?)');
 });
 
 console.log(`\n${passed} passed · ${failed} failed`);

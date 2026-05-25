@@ -4,6 +4,7 @@
 
 import { ref, computed, watchEffect, onMounted, onUnmounted, nextTick } from 'vue';
 import { chainToMermaid } from '../engine/strategies/chain-mermaid.js';
+import { useCraftStore } from '../stores/craft.js';
 
 let mermaidInstance = null;
 let mermaidLoading = null;
@@ -178,6 +179,76 @@ export default {
     chain: { type: Object, default: null },
   },
   setup(props) {
+    // Pull the active game from the craft store so the alternatives
+    // table can decorate each action with the matching orb chip
+    // (icon + name + tooltip showing effect / unit price). Mirrors
+    // the helpers in views/Home.js to keep this component self-
+    // contained — MermaidChain is also embedded in headless contexts
+    // where Home isn't mounted.
+    const craft = useCraftStore();
+    const orbIconForId = (id) => {
+      const a = String(id ?? '');
+      if (a.includes('fractur')) return '🔒';
+      if (a.includes('annul')) return '❌';
+      if (a.includes('exalt')) return '⭐';
+      if (a.includes('chaos')) return '🟠';
+      if (a.includes('regal')) return '🟣';
+      if (a.includes('alch')) return '🟡';
+      if (a.includes('augment')) return '🟢';
+      if (a.includes('transmute')) return '🔵';
+      if (a.includes('divine')) return '💎';
+      if (a.includes('vaal')) return '🔴';
+      if (a.includes('chance')) return '🎲';
+      if (a.includes('bone')) return '🦴';
+      if (a.startsWith('essence')) return '🟢';
+      if (a.startsWith('omen')) return '🔮';
+      return '·';
+    };
+    const orbForAction = (actionId) => {
+      const orbs = craft.game?.orbs;
+      if (!actionId || !orbs) return null;
+      const a = String(actionId);
+      if (orbs[a]) return orbs[a];
+      const aliases = { exalt: 'exalted', alch: 'alchemy', annul: 'annulment' };
+      const cap = (s) => s ? s[0].toUpperCase() + s.slice(1) : '';
+      const tryVariant = (base, rest) =>
+        orbs[base + cap(rest)] ?? orbs[base] ?? null;
+      for (const [aliasFrom, aliasTo] of Object.entries(aliases)) {
+        if (a === aliasFrom) return orbs[aliasTo];
+        if (a.startsWith(aliasFrom + '_')) return tryVariant(aliasTo, a.slice(aliasFrom.length + 1));
+      }
+      const m = a.match(/^([a-z]+)_(.+)$/);
+      if (m) return tryVariant(m[1], m[2]);
+      return null;
+    };
+    // Resolve the friendly display name for an action id, mirroring
+    // what the engine uses on edge labels. Falls back to:
+    //   1. chain.actionDisplayMap (e.g. apply_bone → "Preserved Rib")
+    //   2. orbForAction(id).name  (the catalog name)
+    //   3. raw action id
+    const displayNameForAction = (actionId) => {
+      const fromMap = props.chain?.actionDisplayMap?.[actionId];
+      if (fromMap) return fromMap;
+      const orb = orbForAction(actionId);
+      if (orb?.name) return orb.name;
+      return actionId;
+    };
+    // Look up the canonical poe2db description for an action id.
+    // `craft.itemDescriptions` is keyed by display name (e.g.
+    // "Preserved Rib" → "Desecrates a Rare Armour"). Prefers the
+    // poe2db description over the catalog's `effect` field, since
+    // the catalog's wording can drift over time while the scraped
+    // descriptions are pinned to a snapshot date in
+    // data/poe2/item_descriptions.csv.
+    const descriptionForAction = (actionId) => {
+      const name = displayNameForAction(actionId);
+      const fromPoe2db = craft.itemDescriptions?.[name]?.description;
+      if (fromPoe2db) return fromPoe2db;
+      return orbForAction(actionId)?.effect ?? null;
+    };
+    const fmtCostEx = (v) =>
+      Number.isFinite(v) ? (v < 0.01 ? v.toExponential(1) : v.toFixed(2)) + ' ex' : '—';
+
     const svg = ref('');
     const error = ref(null);
     const loading = ref(false);
@@ -301,6 +372,7 @@ export default {
       svg, error, loading, fullscreen, inlineRef, fsRef, reset, fit, embedHref,
       selectedNodeId, selectedAlternatives, selectedNodePolicy,
       layoutDirection,
+      orbIconForId, orbForAction, displayNameForAction, descriptionForAction, fmtCostEx,
     };
   },
   template: `
@@ -344,14 +416,33 @@ export default {
           No alternatives — this node is terminal (goal / bricked / buy_base).
         </p>
         <table v-else class="chain-alt-table">
-          <thead><tr><th>Action</th><th>Q (ex)</th><th>Δ vs optimal</th><th>Cost (ex)</th></tr></thead>
+          <thead><tr>
+            <th>Action</th>
+            <th title="Q(s,a) = unified cost going forward (ex + time-weighted seconds), assuming optimal policy after this action.">Q (ex)</th>
+            <th title="Q − Q* — gap vs the engine's chosen action.">Δ vs optimal</th>
+            <th title="Per-use orb price in exalted, as paid per click.">Cost (ex)</th>
+            <th title="Per-use wall-clock cost in seconds; multiplied by your time-weight to enter the unified Q.">Time (s)</th>
+          </tr></thead>
           <tbody>
             <tr v-for="a in selectedAlternatives" :key="a.actionId"
                 :class="{ optimal: a.actionId === selectedNodePolicy }">
-              <td>{{ a.actionId === selectedNodePolicy ? '★ ' + a.actionId : a.actionId }}</td>
+              <td>
+                <span class="has-tip" style="display: inline-flex; align-items: center; gap: 0.3rem;">
+                  <span v-if="a.actionId === selectedNodePolicy" title="Engine's chosen action at this node">★</span>
+                  <span class="ccy-chip-icon">{{ orbIconForId(a.actionId) }}</span>
+                  <span>{{ displayNameForAction(a.actionId) }}</span>
+                  <span class="tip-popup">
+                    <strong>{{ displayNameForAction(a.actionId) }}</strong>
+                    <span v-if="Number.isFinite(a.costEx)" class="tip-rate">{{ fmtCostEx(a.costEx) }} / use</span>
+                    <span v-if="descriptionForAction(a.actionId)" class="tip-effect">{{ descriptionForAction(a.actionId) }}</span>
+                    <em v-if="!orbForAction(a.actionId) && !chain?.actionDisplayMap?.[a.actionId]" class="tip-hint">action id: {{ a.actionId }}</em>
+                  </span>
+                </span>
+              </td>
               <td>{{ Number.isFinite(a.qValue) ? a.qValue.toFixed(2) : '∞' }}</td>
               <td>{{ Number.isFinite(a.deltaQ) ? '+' + a.deltaQ.toFixed(2) : '∞' }}</td>
               <td>{{ a.costEx?.toFixed?.(2) ?? a.costEx }}</td>
+              <td>{{ a.costSec?.toFixed?.(0) ?? a.costSec ?? '—' }}</td>
             </tr>
           </tbody>
         </table>

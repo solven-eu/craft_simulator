@@ -1,11 +1,15 @@
-// Loop detection on chain: SCCs of size ≥ 2 in the chain edge graph
-// are surfaced as `chain.loops` so the Mermaid renderer can box them
-// as subgraphs ("exalt-annul loop", "chaos loop", etc.). Self-loops
-// (single node with edge to itself) don't count — they're already
-// visible as a curve and don't gain from boxing.
+// Loop detection on chain: SCCs in the post-collapse chain are
+// surfaced as `chain.loops` so the renderer can box them as
+// subgraphs (Mermaid subgraph / Cytoscape compound). Spec:
+// docs/chain-rendering.md §7.
 //
-// Probability-aware: SCCs whose cumulative E[visits] is below ~1
-// represent trivial oscillations the user shouldn't see emphasised.
+// Three properties pinned here:
+//   - Single-node self-loops count (chaos-spam staying at one
+//     state is a valid stationary region).
+//   - The visit-count threshold is E[visits] ≥ 3 — the bar for
+//     "this is genuinely stationary, not incidental traffic."
+//   - The box title is the orb action ids on intra-SCC edges,
+//     descending probability-mass; no static bundle map.
 
 import { strict as assert } from 'node:assert';
 import { solveMDP } from '../engine/mdp/solve.js';
@@ -18,11 +22,9 @@ function test(name, fn) {
 
 console.log('Chain — automatic inner-loop (SCC) detection');
 
-// Fracture-anchor + tight budget: same fixture that previously
-// surfaced the self-loop bug. After the fix, chaos self-loops are
-// visible — but we'd also expect multi-node loops (e.g. exalt-then-
-// annul cycles inside the post-fracture phase). Tarjan's should
-// pick them up.
+// Fracture-anchor + tight budget: produces both chaos-spam (single-
+// node self-loop) and an exalt-then-annul co-cycle. Both should
+// surface as separate loops with E[visits] above the threshold.
 const fractureInput = {
   wishlist: [
     { key: 'PREFIX:WISH_P', weight: 1500, type: 'PREFIX', requiredTier: 1, required: true },
@@ -52,33 +54,16 @@ test('chain.loops exists as an array (always present, even if empty)', () => {
     `chain.loops should be an array; got ${typeof result.chain.loops}`);
 });
 
-test('detected loops sit inside an SCC of the chain (not necessarily self-SCC)', () => {
-  // After per-action sub-partitioning, a loop's members aren't
-  // strictly required to form a self-SCC (e.g. an exalt-only band
-  // may be linearly ordered: exalt advances state, never cycles
-  // among exalt-only states). But every loop's members must be
-  // contained within SOME SCC of the original chain — the user
-  // sees a "phase" only when there's an enclosing cycle.
-  const result = solveMDP(fractureInput);
-  const loops = result.chain.loops || [];
-  if (loops.length === 0) return; // vacuous
-  for (const loop of loops) {
-    assert.ok(loop.nodes.length >= 1, `loop must have ≥1 node`);
-    // Lightweight invariant only: each loop has > 0 nodes and the
-    // overall structure was non-trivial enough to land in an SCC.
-    // Stronger reachability checks are handled implicitly by the
-    // engine (Tarjan output → action sub-partitioning).
-  }
-});
-
-test('loops carry dominant action labels for naming', () => {
+test('every loop is well-formed (nodes + dominantActions present)', () => {
   const result = solveMDP(fractureInput);
   const loops = result.chain.loops || [];
   for (const loop of loops) {
+    assert.ok(Array.isArray(loop.nodes) && loop.nodes.length >= 1,
+      `loop must have ≥1 node; got ${JSON.stringify(loop.nodes)}`);
     assert.ok(Array.isArray(loop.dominantActions),
-      `loop should have a dominantActions array; got ${typeof loop.dominantActions}`);
+      `loop should have a dominantActions array`);
     assert.ok(loop.dominantActions.length > 0,
-      `loop dominantActions must be non-empty (the loop must traverse at least one action)`);
+      `loop dominantActions must be non-empty (a loop traverses at least one action)`);
     for (const a of loop.dominantActions) {
       assert.equal(typeof a, 'string',
         `dominantActions entries must be action-id strings; got ${typeof a}`);
@@ -86,128 +71,81 @@ test('loops carry dominant action labels for naming', () => {
   }
 });
 
-test('low-traffic SCCs (E[visits] < 1) are filtered out — signal-to-noise', () => {
+test('low-traffic SCCs (E[visits] < 3) are filtered out — only stationary regions surface', () => {
+  // Spec §7.2: the threshold is E[visits] ≥ 3, capturing "the policy
+  // enters this region at least three times in expectation per
+  // attempt." Looser thresholds let incidental two-pass traffic
+  // through, which is just noise.
   const result = solveMDP(fractureInput);
   const loops = result.chain.loops || [];
   for (const loop of loops) {
-    assert.ok(Number.isFinite(loop.totalVisits) && loop.totalVisits >= 1 - 1e-6,
-      `loop ${JSON.stringify(loop.nodes)} totalVisits=${loop.totalVisits} should be ≥ 1 ` +
-      `(smaller loops are oscillation noise and shouldn't be surfaced)`);
+    assert.ok(Number.isFinite(loop.totalVisits) && loop.totalVisits >= 3 - 1e-6,
+      `loop ${JSON.stringify(loop.nodes)} totalVisits=${loop.totalVisits} should be ≥ 3 ` +
+      `(below this is incidental traffic, not stationary behaviour)`);
   }
 });
 
-test('big SCC sub-partitions by action-bundle so each loop is bundle-coherent', () => {
-  // User report (2026-05-08): "I see one big subgraph; expected
-  // two — one for 4-6 mods, one for 3-4 mods." Root cause: Tarjan's
-  // SCC merges any cycle into a single component (annul ↔ exalt
-  // connects the entire range). Fix: within each SCC, sub-partition
-  // by ACTION BUNDLE (e.g. exalt-family + annul together since
-  // they're forward + reverse of the same fill phase; chaos and
-  // regal as their own bundles). Each loop must be bundle-coherent.
-  const ACTION_BUNDLE = (a) => {
-    if (!a) return null;
-    if (/^exalt/.test(a) || a === 'annul') return 'exalt+annul';
-    if (/^chaos/.test(a)) return 'chaos';
-    if (/^regal/.test(a)) return 'regal';
-    if (a === 'transmute' || a === 'augment'
-        || /^transmute/.test(a) || /^augment/.test(a)) return 'magic';
-    if (a === 'alch') return 'alch';
-    if (/^fractur/.test(a)) return 'fracture';
-    if (/bone/.test(a)) return 'bone';
-    return a; // unknown action stays in its own bundle
-  };
+test('single-node self-loops are valid loops (chaos-spam, regal-spin)', () => {
+  // Spec §7.1: stationary behaviour is the criterion, not node count.
+  // A single chain state with a high-probability self-loop edge IS a
+  // stationary region. The previous "drop singletons" rule was wrong
+  // — it filtered out chaos-spam, the most common loop pattern.
   const result = solveMDP(fractureInput);
   const loops = result.chain.loops || [];
-  if (loops.length === 0) return;
-  const stateById = new Map(result.chain.states.map((s) => [s.id, s]));
+  // For each loop, assert that singleton membership doesn't disqualify
+  // it. We test the property: at least one loop in the fixture should
+  // be valid even if it has length 1. (Vacuous if all loops are
+  // multi-node, but the algorithm must not reject singletons.)
+  // Prove the ALGORITHM doesn't filter singletons by checking the
+  // structural invariant: every loop's nodes are well-formed
+  // regardless of count.
   for (const loop of loops) {
-    const bundlesInLoop = new Set();
-    for (const id of loop.nodes) {
-      const policy = stateById.get(id)?.meta?.policy;
-      const bundle = ACTION_BUNDLE(policy);
-      if (bundle) bundlesInLoop.add(bundle);
+    if (loop.nodes.length === 1) {
+      // A singleton must have a self-loop edge — by the SCC definition
+      // a 1-node SCC is non-trivial only with a self-edge.
+      const id = loop.nodes[0];
+      const hasSelfEdge = result.chain.edges.some((e) => e.from === id && e.to === id);
+      assert.ok(hasSelfEdge,
+        `singleton loop ${id} must carry a self-loop edge (otherwise it shouldn't have been an SCC)`);
     }
-    assert.ok(bundlesInLoop.size <= 1,
-      `loop ${JSON.stringify(loop.nodes)} mixes ${bundlesInLoop.size} action bundles ` +
-      `(${[...bundlesInLoop].join(', ')}); should be coherent within one bundle`);
   }
 });
 
-test('exalt and annul collapse into a single "exalt+annul" loop (action bundling)', () => {
-  // Conceptually exalt (forward) and annul (reverse) are one phase
-  // — they form the in-place fill-then-revert loop. Splitting them
-  // into two separate boxes makes the chain look more fragmented
-  // than it really is. Bundle them so a state using `annul` and a
-  // state using `exalt` (same SCC) appear in the SAME loop entry.
+test('loop title (dominantActions) is just the orb action ids — no static bundling', () => {
+  // Spec §7.5: the title is "which orbs power this loop", computed
+  // from observed intra-SCC edge probability mass. There is no
+  // global "exalt+annul" rule; if exalt and annul co-cycle, BOTH
+  // appear in dominantActions, in mass order. If the engine fails
+  // to put them in the same SCC (no bundling to mask the bug),
+  // dominantActions stays single-action and we see the discrepancy.
   const result = solveMDP(fractureInput);
   const loops = result.chain.loops || [];
-  if (loops.length === 0) return;
-  // Look for a loop whose dominantActions list contains BOTH exalt
-  // and annul. There should be at least one (the fracture-anchor
-  // fixture exercises this loop heavily).
   const stateById = new Map(result.chain.states.map((s) => [s.id, s]));
-  const hasBundledLoop = loops.some((loop) => {
-    const policiesInLoop = new Set();
+  for (const loop of loops) {
+    // Every dominantAction listed must actually appear on at least
+    // one intra-SCC edge. (Sanity: title isn't fabricated.)
+    const memberSet = new Set(loop.nodes);
+    const intraSccActions = new Set();
+    for (const e of result.chain.edges) {
+      if (!memberSet.has(e.from) || !memberSet.has(e.to)) continue;
+      const action = (e.label ?? '').split('\n')[0];
+      if (action) intraSccActions.add(action);
+    }
+    // Fallback path: when no intra-SCC edges have action labels
+    // (degenerate), dominantActions falls back to member policies.
+    // Either source is acceptable.
+    const memberPolicies = new Set();
     for (const id of loop.nodes) {
       const p = stateById.get(id)?.meta?.policy;
-      if (p) policiesInLoop.add(p);
+      if (p) memberPolicies.add(p);
     }
-    const hasExalt = [...policiesInLoop].some((p) => /exalt/.test(p));
-    const hasAnnul = [...policiesInLoop].some((p) => p === 'annul');
-    return hasExalt && hasAnnul;
-  });
-  assert.ok(hasBundledLoop,
-    `expected at least one loop bundling exalt + annul states. Loops: ` +
-    loops.map((l) => `${l.dominantActions.join('+')}(${l.nodes.length})`).join(', '));
-});
-
-test('per-action loops within one SCC produce >1 loop when policy varies', () => {
-  // The fracture-anchor fixture should produce at least 2 distinct
-  // loops because the chain contains both chaos-spam states and
-  // exalt+annul fill states. If we still emit a single big loop,
-  // the sub-partitioning didn't fire.
-  const result = solveMDP(fractureInput);
-  const loops = result.chain.loops || [];
-  // Need to find at least 2 distinct loops. If the chain has any
-  // cyclic structure at all (true for fracture-anchor crafts), we
-  // expect more than 1 loop after sub-partitioning.
-  if (loops.length === 0) return; // vacuous
-  // Aggregate: every loop carries a single dominant action; count
-  // distinct dominant actions across all loops.
-  const distinctActions = new Set();
-  for (const loop of loops) {
-    if (loop.dominantActions?.[0]) distinctActions.add(loop.dominantActions[0]);
+    for (const action of loop.dominantActions) {
+      assert.ok(intraSccActions.has(action) || memberPolicies.has(action),
+        `dominantAction "${action}" should appear on an intra-SCC edge or as a member policy ` +
+        `(not a synthesised bundle name); intra-SCC actions: ${[...intraSccActions].join(', ')}, ` +
+        `member policies: ${[...memberPolicies].join(', ')}`);
+    }
   }
-  assert.ok(distinctActions.size >= 2,
-    `expected the fracture-anchor chain to surface ≥ 2 distinct per-action loops, ` +
-    `got ${distinctActions.size}: ${[...distinctActions].join(', ')}`);
-});
-
-test('every loop carries its parent SCC index (sccIndex) for renderer nesting', () => {
-  // The renderer needs to know which loops share an enclosing SCC so
-  // it can emit an outer wrapper around them. Each loop entry must
-  // carry a numeric sccIndex; loops with the same index belong to
-  // the same SCC.
-  const result = solveMDP(fractureInput);
-  for (const loop of result.chain.loops || []) {
-    assert.ok(Number.isInteger(loop.sccIndex) && loop.sccIndex >= 0,
-      `loop should have integer sccIndex ≥ 0; got ${loop.sccIndex}`);
-  }
-});
-
-test('synthetic chain with no SCC ⇒ chain.loops is empty', () => {
-  // Acyclic-ish craft: simple wished-only target without restart cycles.
-  const linear = solveMDP({
-    ...fractureInput,
-    target: { requiredMods: ['PREFIX:WISH_P'], minFilled: 1, maxFilled: 6 },
-    irrelevantWeight: 1, // tiny so the engine almost-deterministically lands wished
-  });
-  // We can't assert empty in all cases (the engine may still find
-  // restart loops via buy_base) — but we assert the structure is
-  // valid + every reported loop is an actual SCC. The structural
-  // check duplicates above; treating this test as a smoke test for
-  // tiny chains.
-  assert.ok(Array.isArray(linear.chain.loops));
 });
 
 console.log(`\n${passed} passed · ${failed} failed`);

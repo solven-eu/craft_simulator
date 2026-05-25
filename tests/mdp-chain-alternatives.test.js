@@ -3,7 +3,11 @@
 // Q. Answers "why this orb over the others?" at any node in the
 // chain (and lets the UI render a "next-best alternative" annotation).
 //
-// Each alternative entry: { actionId, costEx, qValue, deltaQ }
+// Each alternative entry: { actionId, costEx, costSec, unifiedCostEx, qValue, deltaQ }
+//   - costEx: per-use orb price (raw monetary cost), as paid per click.
+//   - costSec: per-use wall-clock cost in seconds.
+//   - unifiedCostEx: costEx + costSec × timeWeightExPerSec — the value
+//     that actually enters the qValue summation.
 //   - qValue = cost + Σ outcome.prob · V*(outcome.to). Infinite when
 //     any outcome leads to a bricked state.
 //   - deltaQ = qValue - bestQ at this state. The optimal action has

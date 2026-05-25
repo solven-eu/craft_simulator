@@ -244,9 +244,11 @@ export function solveMDP(input) {
   // user is broke), and we surface each excluded action so the UI can
   // recommend a budget bump that would unlock it.
   const allowMissing = !!input.allowMissingRates;
-  const warnings = [];
+  // Seed with caller-supplied warnings (e.g. adapter-level "missing
+  // essence price" notices). Engine-internal pushes append to the
+  // same array so result.warnings is the union.
+  const warnings = Array.isArray(input.warnings) ? [...input.warnings] : [];
   const missing = [];
-  const budgetExcluded = [];
   const actionList = [];
   const budgetCap = (input.budgetEx != null && Number.isFinite(input.budgetEx))
     ? input.budgetEx : null;
@@ -269,13 +271,27 @@ export function solveMDP(input) {
     // the orb-rate list. Optional: silent skip if no bone is priced.
     if (action.id === 'apply_bone') {
       if (!Number.isFinite(env.boneCostEx)) continue;
-      if (budgetCap != null && env.boneCostEx > budgetCap) {
-        budgetExcluded.push({ actionId: action.id, costEx: env.boneCostEx });
+      // Total budget is NOT used to pre-filter actions. The user's
+      // policy is "solve optimally, warn afterward if the policy
+      // recommends an over-budget orb" (2026-05-10) — pre-filtering
+      // produced noise when the excluded orb wouldn't have been used
+      // anyway. The over-budget post-hoc check runs once policy is
+      // solved (search for `overBudget` later in this file).
+      actionList.push(action);
+      continue;
+    }
+    if (action.id === 'apply_bone_sinistral' || action.id === 'apply_bone_dextral') {
+      if (!Number.isFinite(env.boneCostEx)) continue;
+      // Necromancy variant — needs a priced omen. Per project
+      // policy "ask, don't guess" surface a warning when the omen
+      // has no rate, then exclude (no silent cost-zero fallback).
+      if (!Number.isFinite(env.orbCosts[action.id])) {
+        const omenLabel = action.id === 'apply_bone_sinistral'
+          ? 'Omen of Sinistral Necromancy'
+          : 'Omen of Dextral Necromancy';
         warnings.push(
-          `Action "apply_bone" excluded: per-use cost ${env.boneCostEx.toFixed(2)} ex `
-          + `exceeds budget ${budgetCap.toFixed(2)} ex. Raise budget to ≥ `
-          + `${env.boneCostEx.toFixed(2)} ex to unlock.`,
-        );
+          `Action "${action.id}" excluded: missing rate for ${omenLabel}. ` +
+          `Refresh rates via scripts/update-poe2-rates.sh, or list the omen on poe2db.`);
         continue;
       }
       actionList.push(action);
@@ -288,14 +304,26 @@ export function solveMDP(input) {
     // skipped if the adapter didn't compute their hit probabilities
     // (typically because the corresponding omen has no rate, or
     // because the desecrated pool is empty for this base).
-    if (/^reveal_bone(?:_(?:sinistral|dextral|abyssal))?$/.test(action.id)) {
+    if (/^reveal_bone(?:_abyssal)?$/.test(action.id)) {
       if (!Number.isFinite(env.boneCostEx)) continue;
-      // Plain reveal_bone is always available alongside apply_bone.
-      // Omen variants require a non-empty hit-prob array AND a
-      // priced reveal action (cost = omen price). When the cost
-      // entry is missing entirely we still admit the action with
-      // cost=0 fallback — the engine will quickly drop it via Q-
-      // value comparison if the omen rule provides no benefit.
+      // Plain reveal_bone has cost 0 (the in-game "confirm" step).
+      // Omen-augmented variants (currently only abyssal) need a
+      // priced omen — if the omen has no rate, the action's cost is
+      // NaN, which used to be silently fallback-zeroed and produced
+      // NaN Q-values displaying as Infinity in the alternatives
+      // panel (user report 2026-05-11). Per project policy "missing
+      // rates ⇒ WARN, never silent fallback": surface a warning
+      // naming the missing omen, then exclude the action.
+      if (action.id !== 'reveal_bone' && !Number.isFinite(env.orbCosts[action.id])) {
+        const omenLabel = {
+          reveal_bone_abyssal: 'Omen of Abyssal Echoes',
+        }[action.id] ?? action.id;
+        warnings.push(
+          `Action "${action.id}" excluded: missing rate for ${omenLabel}. ` +
+          `Refresh rates via scripts/update-poe2-rates.sh, or list the omen `
+          + `on poe2db.`);
+        continue;
+      }
       actionList.push(action);
       continue;
     }
@@ -308,14 +336,6 @@ export function solveMDP(input) {
       if (!Number.isFinite(env.boneCostEx)) continue;
       const c = env.orbCosts[action.id];
       if (!Number.isFinite(c)) continue;
-      if (budgetCap != null && c > budgetCap) {
-        budgetExcluded.push({ actionId: action.id, costEx: c });
-        warnings.push(
-          `Action "annul_omen_of_light" excluded: per-use cost ${c.toFixed(2)} ex `
-          + `exceeds budget ${budgetCap.toFixed(2)} ex.`,
-        );
-        continue;
-      }
       actionList.push(action);
       continue;
     }
@@ -340,19 +360,20 @@ export function solveMDP(input) {
       // / alch / annul / fracturing) is still a real config gap and
       // raises in strict mode.
       const isOptionalVariant = /^chaos(?:_greater|_perfect)?$/.test(action.id)
-        || /_(?:greater|perfect|sinistral|dextral)$/.test(action.id);
-      if (isOptionalVariant) continue;
+        || /_(?:greater|perfect|sinistral|dextral|double)$/.test(action.id);
+      if (isOptionalVariant) {
+        // Greater-Exaltation omen variants are silently skipped when
+        // unpriced (consistent with other omen variants), but emit a
+        // warning so the user knows why the strategy is unavailable.
+        if (/_double$/.test(action.id)) {
+          warnings.push(
+            `Action "${action.id}" excluded: missing rate for Omen of Greater Exaltation. ` +
+            `Refresh rates via scripts/update-poe2-rates.sh or list the omen on poe2db.`);
+        }
+        continue;
+      }
       missing.push(`orbCosts.${action.id}`);
       if (allowMissing) warnings.push(`Action "${action.id}" excluded: missing rate (orbCosts.${action.id}).`);
-      continue;
-    }
-    if (budgetCap != null && cost > budgetCap) {
-      budgetExcluded.push({ actionId: action.id, costEx: cost });
-      warnings.push(
-        `Action "${action.id}" excluded: per-orb cost ${cost.toFixed(2)} ex `
-        + `exceeds budget ${budgetCap.toFixed(2)} ex. Raise budget to ≥ `
-        + `${cost.toFixed(2)} ex to unlock.`,
-      );
       continue;
     }
     actionList.push(action);
@@ -374,15 +395,6 @@ export function solveMDP(input) {
   // actions; missing/NaN cost is silently skipped.
   for (const ess of (input.essences ?? [])) {
     if (!ess?.id || !Number.isFinite(ess.costEx)) continue;
-    if (budgetCap != null && ess.costEx > budgetCap) {
-      budgetExcluded.push({ actionId: ess.id, costEx: ess.costEx });
-      warnings.push(
-        `Action "${ess.id}" excluded: per-orb cost ${ess.costEx.toFixed(2)} ex `
-        + `exceeds budget ${budgetCap.toFixed(2)} ex. Raise budget to ≥ `
-        + `${ess.costEx.toFixed(2)} ex to unlock.`,
-      );
-      continue;
-    }
     // Two essence shapes:
     //   - 'magic_to_rare' (default — Lesser/Normal/Greater): upgrades
     //     a Magic item to Rare with the affix guaranteed.
@@ -393,6 +405,44 @@ export function solveMDP(input) {
     } else {
       actionList.push(makeEssenceAction(ess, keyToBit));
     }
+  }
+
+  // Policy equiv-class map: actionId → canonical class string. Used
+  // by the chain partition to merge presentationally-interchangeable
+  // policies. Two actions are in the same class if they're mirror
+  // versions of each other under the wishlist's wished-equiv-class
+  // swap. Concretely:
+  //   - For essence actions targeting a wished mod whose equiv-class
+  //     is C, with cost X: class = `essence|C|X`. Greater Essence of
+  //     Insulation (targets cold) and Greater Essence of Thawing
+  //     (targets fire) collapse to the same class when cold and fire
+  //     share an equiv-class.
+  //   - For non-essence actions: class = action id (no canonicalization
+  //     — those orbs don't have wished-mod-specific variants).
+  // This mirrors the wishedEquivClass merge for state mods at the
+  // action axis, so e.g. "1-wished cold + Insulation" and "1-wished
+  // fire + Thawing" merge into one rep — they're symmetric routes
+  // through the same craft phase.
+  const wishedEquivClassForBit = wishlist.map((w) =>
+    `${w.type ?? '?'}|${w.weight ?? 0}|${w.requiredTier ?? '-'}|${w.required ? 1 : 0}`,
+  );
+  const policyEquivClassMap = new Map();
+  for (const ess of (input.essences ?? [])) {
+    if (!ess?.id) continue;
+    const matchedBits = (ess.matchedKeys ?? [])
+      .map((k) => keyToBit.get(k))
+      .filter((b) => b !== undefined);
+    if (!matchedBits.length) continue;
+    const matchedClasses = matchedBits
+      .map((b) => wishedEquivClassForBit[b])
+      .sort()
+      .join(',');
+    const costClass = Number.isFinite(ess.costEx) ? ess.costEx.toFixed(2) : '?';
+    const mode = ess.mode === 'rare_overwrite' ? 'overwrite' : 'magic_to_rare';
+    policyEquivClassMap.set(
+      ess.id,
+      `essence|${mode}|${matchedClasses}|cost=${costClass}`,
+    );
   }
 
   // ---- Build state space + solve via value iteration -------
@@ -423,6 +473,38 @@ export function solveMDP(input) {
     // for the chain reader). Default on — large chains shrink
     // significantly without losing user-relevant information.
     collapseEquivalent: input.collapseEquivalent !== false,
+    // Merge strategy for the chain (see docs/chain-rendering.md).
+    //   'none'       — no merging; one chain node per engine state.
+    //   'per-action' — merge all states with the same (kind, policy).
+    //   'top-down'   — current default (partition by (kind, policy,
+    //                  fractured, totalMods) then disambiguator).
+    //   'bottom-up'  — iterative sibling-merge: when A→B and A→C and
+    //                  B.next == C.next, merge B and C. Repeat.
+    mergeStrategy: input.mergeStrategy ?? 'top-down',
+    // actionId → canonical class string. Lets the partition treat
+    // action variants like "Greater Essence of Insulation (cold)" and
+    // "Greater Essence of Thawing (fire)" as one class when their
+    // matched wished mods share an equiv-class.
+    policyEquivClassMap,
+    // actionId → display name. Lets the renderer show "Gnawed Jawbone"
+    // instead of the generic "apply_bone" id (the engine has one
+    // apply_bone action; the actual bone is whichever cheapest
+    // applicable one the adapter picked).
+    actionDisplayMap: (() => {
+      // Build the action-id → display-name map used by chain edge
+      // labels and the alternatives table. Each essence action's
+      // engine id is `essence_<slug>` (e.g.
+      // `essence_Lesser_Essence_of_Insulation`) — surfacing the
+      // raw id was confusing because the slug already contains
+      // "Essence" (user report 2026-05-11). Mapped to `ess.name`
+      // ("Lesser Essence of Insulation"), the chain reads cleanly.
+      const map = {};
+      if (input.boneName) map.apply_bone = input.boneName;
+      for (const ess of (input.essences ?? [])) {
+        if (ess?.id && ess?.name) map[ess.id] = ess.name;
+      }
+      return Object.keys(map).length ? map : null;
+    })(),
     // Toggle for step-id prefix on node labels. Default on so debug
     // conversations can refer to "step s5" unambiguously; callers
     // can set false when the chart is too dense and the prefix
@@ -453,6 +535,19 @@ export function solveMDP(input) {
       );
     }
   }
+  if (Number.isFinite(chain?.pSuccessOverflow)) {
+    // Symptom of a bug where outcome mass exceeded 1.0 (transition
+    // function emitted probabilities summing > 1). The displayed
+    // pSuccessStart is clamped to 1; this warning surfaces the raw
+    // engine value so the upstream defect doesn't get hidden by
+    // the clamp.
+    warnings.push(
+      `pSuccess(start) raw value = ${(chain.pSuccessOverflow * 100).toFixed(2)}% (clamped to 100%). `
+      + `Outcome mass exceeded 1.0 — likely an engine bug where a transition `
+      + `function emits branch probabilities summing > 1. Inspect the chain's `
+      + `incompleteEdges diagnostic to locate the offending action.`,
+    );
+  }
 
   return {
     vStar: vStar[startIdx],
@@ -471,12 +566,43 @@ export function solveMDP(input) {
     // { actionId, outcomes: [{ to, prob, costEx, costSec }] }.
     appsPerState,
     startIdx,
-    // Per-orb actions excluded because their per-use cost is above the
-    // user's `budgetEx`. UI surfaces this as "raise budget to ≥ X to
-    // unlock orb Y" — addresses the case where a user is doing best-
-    // effort under a tight budget and would benefit from knowing what
-    // a budget bump would unlock (e.g. Perfect Exalt vs plain Exalt).
-    budgetExcluded,
+    // Post-hoc check: actions the OPTIMAL policy actually
+    // recommends (i.e. assigned to at least one reachable state)
+    // whose per-use cost exceeds the user's `budgetEx`. UI surfaces
+    // this as "the optimal policy uses orb X (~Y ex) which is above
+    // your budget — raise budget or disable this orb".
+    //
+    // Replaces the earlier pre-filtering behaviour, which dropped
+    // expensive orbs from the action set up front and warned
+    // regardless of whether the policy would have used them. The
+    // post-hoc check produces a warning ONLY when the optimal
+    // policy genuinely depends on the over-budget orb.
+    budgetExcluded: (() => {
+      if (budgetCap == null) return [];
+      const seen = new Map();
+      // Walk the policy: for every reachable state, look up the
+      // recommended action's unit cost and compare to budgetCap.
+      for (let i = 0; i < states.length; i++) {
+        const aId = policy[i];
+        if (!aId || aId === 'buy_base') continue;
+        if (seen.has(aId)) continue;
+        const apps = appsPerState.get(i) ?? [];
+        const app = apps.find((x) => x.actionId === aId);
+        if (!app) continue;
+        // Unit cost: max costEx over the action's outcomes (all
+        // outcomes share the same costEx by construction, but use
+        // max for safety against any future per-outcome variant).
+        let unit = 0;
+        for (const o of app.outcomes) if ((o.costEx ?? 0) > unit) unit = o.costEx ?? 0;
+        if (unit > budgetCap) seen.set(aId, { actionId: aId, costEx: unit });
+      }
+      return [...seen.values()];
+    })(),
+    // Essences the adapter wanted to surface as actions but couldn't
+    // price (no rates.csv row). Passed through verbatim so the UI can
+    // render per-essence links to poe2db's detail page (the canonical
+    // place to verify "no recent trade volume" upstream).
+    unpricedEssences: Array.isArray(input.unpricedEssences) ? input.unpricedEssences : [],
     // Expose the budget cap as a sampler input, so trajectories can
     // truncate when they exceed budget. Otherwise null = unbounded.
     budgetCap,

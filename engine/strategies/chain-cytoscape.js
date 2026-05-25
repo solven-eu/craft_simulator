@@ -125,8 +125,10 @@ export function chainToCytoscape(chain, options = {}) {
     const useSccWrap = group.length >= 2 && sccKey >= 0;
     if (useSccWrap) {
       const totalVisits = group.reduce((a, g) => a + (g.loop.totalVisits ?? 0), 0);
-      const bundles = [...new Set(group.map((g) => g.loop.bundle).filter(Boolean))];
-      const macroLabel = `${bundles.join(' / ')} cycle · ~${totalVisits.toFixed(1)}× visits`;
+      // Title from observed dominantActions (spec §7.5) — no static
+      // bundle map. See chain-mermaid.js for the same convention.
+      const titles = [...new Set(group.map((g) => (g.loop.dominantActions ?? []).join('+')).filter(Boolean))];
+      const macroLabel = `${titles.join(' / ')} cycle · ~${totalVisits.toFixed(1)}× visits`;
       const sccId = `scc_${sccKey}`;
       elements.push({
         group: 'nodes',
@@ -219,21 +221,25 @@ export function chainToCytoscape(chain, options = {}) {
   // ── Edges ─────────────────────────────────────────────────────────
   for (const e of edges) {
     const prob = Number.isFinite(e.prob) ? e.prob : 1;
+    const action = (e.label ?? '').split('\n')[0] ?? '';
     elements.push({
       group: 'edges',
       data: {
-        id: `${e.from}__${e.to}__${(e.label ?? '').split('\n')[0]}`,
+        id: `${e.from}__${e.to}__${action}`,
         source: e.from,
         target: e.to,
         label: edgeLabel(e.label),
         kind: e.kind ?? 'internal',
+        // Per-action class: 'essence' for edges whose raw action id
+        // begins with `essence_`. We classify by the stable engine id
+        // (stored on the edge as `e.actionId`) rather than the
+        // user-facing label, since the label is now the friendly
+        // essence name without the `essence_` prefix.
+        actionClass: (e.actionId ?? '').startsWith('essence_')
+          || /\bessence_/.test(e.actionId ?? '') ? 'essence' : '',
         prob,
         width: strokeWidthForProb(prob),
-        // Per-edge fade: low-prob branches recede visually, high-prob
-        // stay vivid. Read by the edge style selector via data().
         opacity: opacityForProb(prob),
-        // Per-edge spring rest length: rare branches sprawl, trunk
-        // edges pull tight. fcose reads this when configured below.
         idealLength: idealLengthForProb(prob),
       },
     });
@@ -331,6 +337,11 @@ export function chainToCytoscape(chain, options = {}) {
     { selector: 'edge[kind = "fail"]',      style: { 'line-color': '#e07a5f', 'target-arrow-color': '#e07a5f', 'color': '#f5b09c', 'line-style': 'dashed' } },
     { selector: 'edge[kind = "reset"]',     style: { 'line-color': '#d97a4a', 'target-arrow-color': '#d97a4a', 'color': '#ffd0b0' } },
     { selector: 'edge[kind = "orb"]',       style: { 'line-color': '#5cb',    'target-arrow-color': '#5cb',    'color': '#cfeaff' } },
+    // Essence override — applies LAST in the cascade so it wins over
+    // the kind-based colours above. Distinct purple so the user can
+    // spot essence steps at a glance, separate from the green/red
+    // success/improving/fail hues (per user request 2026-05-09).
+    { selector: 'edge[actionClass = "essence"]', style: { 'line-color': '#a065d0', 'target-arrow-color': '#a065d0', 'color': '#d8c0e8' } },
     // Self-loops need cytoscape's loop curve style explicitly —
     // unbundled-bezier with a single midpoint control collapses
     // a from===to edge to a single point.

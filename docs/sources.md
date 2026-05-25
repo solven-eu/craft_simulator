@@ -82,6 +82,11 @@ _(none yet)_
 
 - [r/PathOfExile2 — Beginner Crafting Guide for PoE2](https://www.reddit.com/r/PathOfExile2/comments/1kbdnzv/beginner_crafting_guide_for_path_of_exile_2/) — community guide describing high-level PoE2 craft patterns (fracture-anchor + reset-via-annul, alch-spam, chaos-spam, exalt-fill). Used as the source list for strategies modeled in `engine/strategies.js`. (added 2026-04-29)
 
+## Related work
+
+- [Denny Britz — *Applying Machine Learning to Path of Exile Crafting*](https://dennybritz.com/posts/poe-crafting/) — long-form write-up on framing PoE crafting as a sequential decision problem and applying RL / ML to it. Closely related to what this project does (MDP-α: value iteration over a discretized item state space) but Britz's take leans toward learned policies over neural-net state encodings, where we lean analytical (closed-form Markov chains, exact V*). Useful as cross-reference for problem framing, state-space reductions, and reward-shaping pitfalls. (added 2026-05-09)
+- [Kvan7/Exiled-Exchange-2](https://github.com/Kvan7/Exiled-Exchange-2) — open-source PoE2 in-game overlay addon for price-checking items via the official trade API. Out of scope for crafting (no evaluator), but the live currency-rate seed in `data/poe2/rates.csv` could in principle be sourced or cross-checked against this addon's price feed instead of poe2db scraping. Worth tracking if the rates panel grows beyond a manual snapshot. (added 2026-05-09)
+
 ## Reference tools (do NOT emulate)
 
 The two leading existing crafting tools, kept here as reference UX / feature

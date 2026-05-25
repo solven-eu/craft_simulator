@@ -162,6 +162,17 @@ export default {
           <option value="mermaid">Mermaid (dagre, layered)</option>
           <option value="cytoscape">Cytoscape (fcose, force-directed)</option>
         </select>
+        <label class="hint" style="margin-left: 0.6rem;"
+          title="Chain merge strategy. See docs/chain-rendering.md.&#10;• none — one chain node per engine state (raw view).&#10;• per-action — group every state by next-action; high-level overview.&#10;• top-down — partition by (kind, policy, fractured, totalMods) + disambiguator.&#10;• bottom-up — sibling-merge: A→B and A→C with same next ⇒ merge.">
+          merge:
+          <select :value="craft.mdpMergeStrategy"
+            @change="craft.setMdpMergeStrategy($event.target.value); craft.solveMdp();">
+            <option value="none">none (raw)</option>
+            <option value="per-action">per-action</option>
+            <option value="top-down">top-down</option>
+            <option value="bottom-up">bottom-up</option>
+          </select>
+        </label>
         <button class="link" @click="copyChainDump" title="Copy a textual dump of every state's label and edge to the clipboard. Paste into chat / a bug report so labels can be inspected without DOM-fighting Mermaid's SVG selection.">📋 copy chain</button>
       </div>
       <details open v-if="craft.mdpResult?.chain && craft.game" class="orb-disable-panel">

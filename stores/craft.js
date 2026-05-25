@@ -232,6 +232,15 @@ export const useCraftStore = defineStore('craft', {
      */
     showMdpStepIds: fromUrlOr('showMdpStepIds', true),
     /**
+     * Chain merge strategy. See docs/chain-rendering.md.
+     *   'none'        — no merging (one node per engine state).
+     *   'per-action'  — group all states by (kind, policy).
+     *   'top-down'    — partition by (kind, policy, fractured, totalMods)
+     *                   then disambiguator (current default).
+     *   'bottom-up'   — sibling-merge: A→B and A→C with same next ⇒ merge.
+     */
+    mdpMergeStrategy: fromUrlOr('mdpMergeStrategy', 'top-down'),
+    /**
      * Total time stop-loss in seconds: abandon the craft after this much
      * wall-clock time. Infinity = unbounded.
      */
@@ -243,7 +252,12 @@ export const useCraftStore = defineStore('craft', {
      * roughly the same as 0.1 ex per second. Tunable per-user; entered as
      * a single positive float. Set to 0 to ignore time entirely.
      */
-    timeWeightExPerSec: fromUrlOr('timeWeightExPerSec', 0.1),
+    // How many ex one second of player wall-clock time is worth.
+    // Default = 50 ex / 60 sec ≈ 0.833 ex/sec — the user's stated
+    // value-of-time at "I'd accept 50 ex per minute spent crafting."
+    // The rates panel surfaces this as a per-MINUTE rate (× 60) so
+    // the value the user reads/edits matches the natural unit.
+    timeWeightExPerSec: fromUrlOr('timeWeightExPerSec', 50 / 60),
     /**
      * Per-action cost cap: actions whose single-application cost exceeds
      * this are dropped from the action set. Infinity = unbounded.
@@ -324,8 +338,13 @@ export const useCraftStore = defineStore('craft', {
     tierComparisonMode: fromUrlOr('tierComparisonMode', 'gameplay'),
     /** Loaded essence catalog. */
     essences: [],
-    /** Essence price lookup: { [name]: { priceEx, source } }. */
-    essencePrices: {},
+    /**
+     * Essence price lookup is no longer a state field — it's derived
+     * on the fly from `state.rates.byName` via the
+     * `effectiveEssencePrices` getter. Missing entries are surfaced
+     * as warnings (see solveMdp) rather than silently falling back
+     * to placeholder values.
+     */
     /**
      * User availability overrides for catalog items.
      * Key: `${kind}:${id}` (e.g. `omen:omen-of-homogenising-exaltation`).
@@ -615,7 +634,7 @@ export const useCraftStore = defineStore('craft', {
         disabledOrbs: state.disabledOrbs ?? {},
         isAvailable: (kind, id) => this.isMechanicEnabled(kind, id),
         essences: state.essences,
-        essencePrices: state.essencePrices,
+        essencePrices: this.effectiveEssencePrices,
         itemClass: this.itemType,
         basePriceEx: state.basePriceEx,
         fracturedAnchorPriceEx: state.fracturedAnchorPriceEx,
@@ -627,6 +646,7 @@ export const useCraftStore = defineStore('craft', {
         // itemValue = budgetEx − V*(s).
         totalBudgetEx: state.totalBudgetEx,
         showStepIds: state.showMdpStepIds,
+        mergeStrategy: state.mdpMergeStrategy,
         startingFracturedKey,
         requiredFracturedKey,
       };
@@ -674,6 +694,26 @@ export const useCraftStore = defineStore('craft', {
       for (const [slug, entry] of Object.entries(bySlug)) {
         if (entry?.kind !== 'omen') continue;
         if (Number.isFinite(entry.exaltedPer)) out[slug] = entry.exaltedPer;
+      }
+      return out;
+    },
+    /**
+     * Essence price lookup, sourced exclusively from the live
+     * `rates.csv` snapshot. Missing essences are NOT papered over with
+     * placeholder values — the engine surfaces them as warnings (see
+     * the adapter's price-lookup branch) so the user knows the chosen
+     * action set is incomplete and can refresh rates / list the
+     * missing essence on poe2db.
+     *
+     * Returns: `{ [essenceName]: { priceEx, source } }`.
+     */
+    effectiveEssencePrices(state) {
+      const out = {};
+      const live = state.rates?.byName ?? {};
+      for (const [name, entry] of Object.entries(live)) {
+        if (entry?.kind !== 'essence') continue;
+        if (!Number.isFinite(entry.exaltedPer)) continue;
+        out[name] = { priceEx: entry.exaltedPer, source: 'rates.csv (live)' };
       }
       return out;
     },
@@ -749,25 +789,33 @@ export const useCraftStore = defineStore('craft', {
           appliesToItemClasses,
         };
       }
-      // Virtual "Player time" currency. Its rate is the
-      // `timeWeightExPerSec` knob — how many ex one second of
-      // wall-clock player time is worth, used by the engine to fold
-      // time into the unified cost objective. Surfacing it here lets
-      // users edit it from the same panel as orb prices, instead of a
-      // separate field. Tagged `__virtual: true` so setRate can route
-      // writes to setTimeWeightExPerSec rather than rateOverrides.
+      // (essence_prices.csv was removed 2026-05-10 — rates.csv is the
+      // single source. Lesser / Normal essences not in the live
+      // snapshot are intentionally invisible in the rates panel and
+      // surface as engine warnings if the user's craft would have
+      // used them.)
+      // Virtual "Player time" currency. The engine stores the rate as
+      // `timeWeightExPerSec` (ex per second), but the natural unit a
+      // user reasons in is ex per MINUTE — "I'd take 50 ex per minute
+      // of my time to grind." The rates panel surfaces the per-minute
+      // rate; setRate('time:player', X) treats X as ex/min and divides
+      // by 60 before writing the per-second store value. This keeps
+      // the user input in a familiar unit while the engine sees the
+      // canonical per-second weight everywhere downstream.
+      const tw = Number.isFinite(state.timeWeightExPerSec) ? state.timeWeightExPerSec : (50 / 60);
       out['time:player'] = {
         id: 'time:player',
-        name: 'Player time (1s)',
-        short: 'sec',
+        name: 'Player time (per minute)',
+        short: 'min',
         kind: 'meta',
-        exaltedPer: Number.isFinite(state.timeWeightExPerSec) ? state.timeWeightExPerSec : 0.1,
+        exaltedPer: tw * 60,
         overridden: false,
         live: false,
         trend7dPct: null,
         dailyVolume: null,
         rateFetchedAt: '',
         __virtual: 'time',
+        __unit: 'minute',
       };
       return out;
     },
@@ -1014,8 +1062,8 @@ export const useCraftStore = defineStore('craft', {
         this.mods = mod.game.loadMods ? await mod.game.loadMods() : [];
         this.omens = mod.game.loadOmens ? await mod.game.loadOmens() : [];
         this.essences = mod.game.loadEssences ? await mod.game.loadEssences() : [];
-        this.essencePrices = mod.game.loadEssencePrices
-          ? await mod.game.loadEssencePrices() : {};
+        // `loadEssencePrices` was retired with `essence_prices.csv`
+        // (2026-05-10). Live rates.csv is now the only source.
         this.modTags = mod.game.loadModTags ? await mod.game.loadModTags() : {};
         this.modRanges = mod.game.loadModRanges ? await mod.game.loadModRanges() : {};
         this.modIds = mod.game.loadModIds
@@ -1563,8 +1611,10 @@ export const useCraftStore = defineStore('craft', {
       // single source of truth for engine consumers while letting the
       // rates panel act as the universal editor surface.
       if (currencyId === 'time:player') {
+        // Input is ex/MINUTE (per the rates-panel display). Convert
+        // to ex/sec for the engine-canonical timeWeightExPerSec.
         const v = Number(exaltedPer);
-        if (Number.isFinite(v) && v > 0) this.setTimeWeightExPerSec(v);
+        if (Number.isFinite(v) && v > 0) this.setTimeWeightExPerSec(v / 60);
         return;
       }
       const v = Number(exaltedPer);
@@ -1626,6 +1676,11 @@ export const useCraftStore = defineStore('craft', {
       this.totalBudgetEx = Number.isFinite(n) && n > 0 ? n : Infinity;
     },
     setShowMdpStepIds(v) { this.showMdpStepIds = !!v; },
+    setMdpMergeStrategy(s) {
+      if (['none', 'per-action', 'top-down', 'bottom-up'].includes(s)) {
+        this.mdpMergeStrategy = s;
+      }
+    },
 
     /**
      * Sample one trajectory through the optimal MDP policy and append

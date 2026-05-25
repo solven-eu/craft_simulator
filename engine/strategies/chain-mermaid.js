@@ -50,6 +50,11 @@ const EDGE_COLOR = {
   reset:     'stroke:#d97a4a,color:#ffd0b0',
   orb:       'stroke:#5cb,color:#cfeaff',
   internal:  'stroke:#888,color:#aaa',
+  // Essence edges: distinct purple stroke so the user can spot
+  // essence steps at a glance. Per-action override (applied after
+  // the kind-based style) — the kind itself is still success /
+  // improving / fail; only the colour swaps.
+  essence:   'stroke:#a065d0,color:#d8c0e8',
 };
 
 // Map a transition probability ∈ [0, 1] to a stroke-width in px.
@@ -292,8 +297,13 @@ export function chainToMermaid(chain, options = {}) {
       // macro title. Bundles list is short (~2-3 entries), reads as
       // "exalt+annul / chaos cycle".
       const totalVisits = group.reduce((a, g) => a + (g.loop.totalVisits ?? 0), 0);
-      const bundles = [...new Set(group.map((g) => g.loop.bundle).filter(Boolean))];
-      const macroTitle = `${bundles.join(' / ')} cycle · ~${totalVisits.toFixed(1)}× visits`;
+      // Per chain-rendering spec §7.5: title is derived from observed
+      // intra-SCC actions (loop.dominantActions), no static bundle map.
+      // Take the top action of each member loop, join with `/` so an
+      // SCC containing both an `exalt+annul` loop and a `chaos` loop
+      // reads "exalt+annul / chaos cycle".
+      const titles = [...new Set(group.map((g) => (g.loop.dominantActions ?? []).join('+')).filter(Boolean))];
+      const macroTitle = `${titles.join(' / ')} cycle · ~${totalVisits.toFixed(1)}× visits`;
       lines.push(`  subgraph scc_${sccKey} ["${escapeLabel(macroTitle)}"]`);
       for (const { loop, idx } of group) emitLoop(loop, idx, '    ');
       lines.push('  end');
@@ -328,7 +338,17 @@ export function chainToMermaid(chain, options = {}) {
   // have importance signals — every edge then renders at full opacity.)
   const stateById = new Map(chain.states.map((s) => [s.id, s]));
   chain.edges.forEach((e, i) => {
-    const color = EDGE_COLOR[e.kind ?? 'internal'];
+    // Per-action colour override: essence edges get a distinctive
+    // purple stroke regardless of their V*-derived kind. We classify
+    // by the raw action id stored on the edge (e.g.
+    // "essence_Lesser_Essence_of_Insulation") — earlier this regex
+    // ran on the user-facing label, but the label is now the friendly
+    // name without the `essence_` prefix, so the regex never matched.
+    const isEssence = (e.actionId ?? '').startsWith('essence_')
+      || /\bessence_/.test(e.actionId ?? '');
+    const color = isEssence
+      ? EDGE_COLOR.essence
+      : EDGE_COLOR[e.kind ?? 'internal'];
     if (!color) return;
     const width = strokeWidthForProb(e.prob);
     let style = `${color},stroke-width:${width}px`;

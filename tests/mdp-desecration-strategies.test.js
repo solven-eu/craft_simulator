@@ -8,17 +8,17 @@
 //
 //   1. Cheap plain bones, no omens ⇒ plain reveal_bone in policy.
 //   2. Cheap Abyssal Echoes vs expensive plain reveal ⇒ Abyssal in policy.
-//   3. Required-PREFIX desecrated affix + cheap Sinistral Necromancy
-//      ⇒ reveal_bone_sinistral in policy.
-//   4. Required-SUFFIX desecrated affix + cheap Dextral Necromancy
-//      ⇒ reveal_bone_dextral in policy.
-//   5. Comparator: omen cost gates the choice — make the omen
-//      expensive and the plain variant should reclaim the policy.
 //
-// Gap (not yet covered): Omen of Light (Annulment removes only
-// Desecrated). The engine doesn't have an `annul_omen_of_light` action
-// yet, so we can't test that strategy choice. Listed here as a known
-// data point so the test file isn't read as exhaustive.
+// Removed (2026-05-11): scenarios for `reveal_bone_sinistral` /
+// `reveal_bone_dextral` — those actions don't exist any more. PoE2
+// has no "Omen of Sinistral/Dextral Necromancy"; side-forcing on
+// bone reveal is set at apply_bone time via Sinistral/Dextral
+// Crystallisation, which the adapter already models by pinning
+// state.boneSide. Plain reveal_bone uses the matching side pool
+// automatically when boneSide is set.
+//
+// Gap (not yet covered): Omen of Light annulment cleanup is exercised
+// in mdp-omen-of-light-cleanup.test.js (separate file).
 
 import { strict as assert } from 'node:assert';
 import { solveMDP } from '../engine/mdp/solve.js';
@@ -74,8 +74,6 @@ const baseOrbTimes = {
   transmute: 1, augment: 1, regal: 1, alch: 1,
   exalt: 1, annul: 1, fracturing: 3,
   reveal_bone: 1,
-  reveal_bone_sinistral: 1,
-  reveal_bone_dextral: 1,
   reveal_bone_abyssal: 1,
 };
 
@@ -123,78 +121,6 @@ test('cheap Abyssal Echoes + expensive plain reveal ⇒ reveal_bone_abyssal in p
   const policies = new Set([...result.policy.values()].filter(Boolean));
   assert.ok(policies.has('reveal_bone_abyssal'),
     `Abyssal Echoes should be picked when its hit rate is much higher and cost is lower. Got: ${[...policies]}`);
-});
-
-// ─── Scenario 3: required PREFIX + cheap Sinistral Necromancy ───────────
-test('required PREFIX + cheap Sinistral Necromancy ⇒ reveal_bone_sinistral in policy', () => {
-  const result = solve({
-    target: { requiredMods: ['WISH_P'], minFilled: 1, maxFilled: 6 },
-    boneCostEx: 0.5,
-    pBoneRevealHit:        [0.3, 0],
-    pBoneRevealHitPrefix:  [0.6, 0],   // Sinistral filters pool ⇒ higher hit
-    pBoneRevealHitSuffix:  [0,   0],
-    pBoneRevealHitAbyssal: [0,   0],
-    orbCosts: {
-      reveal_bone:           5,        // plain reveal moderate
-      reveal_bone_sinistral: 0.5,      // omen cheap
-    },
-  });
-  const policies = new Set([...result.policy.values()].filter(Boolean));
-  assert.ok(policies.has('reveal_bone_sinistral'),
-    `Sinistral Necromancy should dominate when prefix-only hit rate >> plain rate AND omen cheap. Got: ${[...policies]}`);
-});
-
-// ─── Scenario 4: required SUFFIX + cheap Dextral Necromancy ─────────────
-test('required SUFFIX + cheap Dextral Necromancy ⇒ reveal_bone_dextral in policy', () => {
-  const result = solve({
-    target: { requiredMods: ['WISH_S'], minFilled: 1, maxFilled: 6 },
-    boneCostEx: 0.5,
-    pBoneRevealHit:        [0, 0.3],
-    pBoneRevealHitPrefix:  [0, 0],
-    pBoneRevealHitSuffix:  [0, 0.6],   // Dextral filter ⇒ higher hit
-    pBoneRevealHitAbyssal: [0, 0],
-    orbCosts: {
-      reveal_bone:         5,
-      reveal_bone_dextral: 0.5,
-    },
-  });
-  const policies = new Set([...result.policy.values()].filter(Boolean));
-  assert.ok(policies.has('reveal_bone_dextral'),
-    `Dextral Necromancy should dominate for SUFFIX target with cheap omen. Got: ${[...policies]}`);
-});
-
-// ─── Scenario 5: omen cost gates the choice — expensive omen flips back ─
-test('expensive Sinistral omen ⇒ Sinistral excluded; V* worse than cheap-omen baseline', () => {
-  const cheap = solve({
-    target: { requiredMods: ['WISH_P'], minFilled: 1, maxFilled: 6 },
-    boneCostEx: 0.5,
-    pBoneRevealHit:        [0.3, 0],
-    pBoneRevealHitPrefix:  [0.6, 0],
-    pBoneRevealHitSuffix:  [0,   0],
-    pBoneRevealHitAbyssal: [0,   0],
-    orbCosts: { reveal_bone: 1, reveal_bone_sinistral: 0.5 },
-  });
-  const expensive = solve({
-    target: { requiredMods: ['WISH_P'], minFilled: 1, maxFilled: 6 },
-    boneCostEx: 0.5,
-    pBoneRevealHit:        [0.3, 0],
-    pBoneRevealHitPrefix:  [0.6, 0],
-    pBoneRevealHitSuffix:  [0,   0],
-    pBoneRevealHitAbyssal: [0,   0],
-    // budgetEx=100000 from baseInput; 1e6 is over budget so sinistral
-    // gets pruned via budgetExcluded, not just out-priced in EV.
-    orbCosts: { reveal_bone: 1, reveal_bone_sinistral: 1_000_000 },
-  });
-  const cheapPolicies     = new Set([...cheap.policy.values()].filter(Boolean));
-  const expensivePolicies = new Set([...expensive.policy.values()].filter(Boolean));
-  assert.ok(cheapPolicies.has('reveal_bone_sinistral'),
-    `cheap Sinistral should be chosen; got: ${[...cheapPolicies]}`);
-  assert.ok(!expensivePolicies.has('reveal_bone_sinistral'),
-    `expensive Sinistral (over budget) should be excluded; got: ${[...expensivePolicies]}`);
-  // (V* equality across the two regimes is OK — under the
-  // one-desecrated-cap the engine has limited room to differentiate
-  // by reveal-variant cost. The load-bearing claim is just that
-  // Sinistral is admitted iff its cost fits the budget.)
 });
 
 // ─── Scenario 6: requiring TWO desecrated mods is fundamentally unreachable ──

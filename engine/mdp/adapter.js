@@ -52,6 +52,10 @@ export function ctxToMdpInput(ctx) {
       // strategies or not.
       desecrationConstraint: w.desecrationConstraint ?? null,
       tierScores: w.tierScores ?? null,
+      // Per-wished base score: used by the engine's minDesireScore
+      // gate to sum landed wished bits. Default 1 so legacy callers
+      // (no score field) treat every wished mod as score-1.
+      score: Number.isFinite(w.score) ? w.score : 1,
       requiredTier: pickFiniteMin(w.requiredTier, w.minTier),
       tiers: poolEntry?.tiers ?? [],
     };
@@ -391,6 +395,10 @@ export function ctxToMdpInput(ctx) {
       // Acceptance bounds (game-target shape, NOT crafting cap).
       minFilled: ctx.minFilled ?? null,
       maxFilled: ctx.maxFilled ?? null,
+      // Σ desire-score gate (per project memory `required-plus-desire-score`).
+      // Plumbed from the store's `minDesireScore` setting; engine
+      // enforces in isGoalState by summing wished-bit scores.
+      minDesireScore: ctx.minDesireScore ?? 0,
       // Allow the goal state to carry a pending unrevealed bone-mod.
       // Default false: a pending bone is treated as "step still
       // pending" and the state isn't goal until reveal completes.
@@ -426,6 +434,11 @@ export function ctxToMdpInput(ctx) {
       boneSide: ctx.startingBoneSide ?? null,
     },
     orbCosts, orbTimes, pTierAcceptable,
+    // Snake_case action-id set of orbs disabled by the user (per-orb
+    // checkbox in the rates panel). Used by solve.js to emit "disabled
+    // by user" warnings instead of the misleading "missing rate" text
+    // when the rate is actually present but the user opted out.
+    disabledActionIds: buildDisabledActionIds(ctx),
     boneCostEx,
     boneName,
     pBoneRevealHit,
@@ -482,6 +495,30 @@ export function ctxToMdpInput(ctx) {
     // page is the only way for the user to verify "no price history."
     unpricedEssences: [...new Set(unpricedEssences)].sort(),
   };
+}
+
+// Map snake_case action ids (as solve.js sees them) to the camelCase
+// orb-id keys used by ctx.disabledOrbs (per-orb checkbox state). Same
+// pairs as the safeCost(...) calls in orbCosts above.
+const ACTION_TO_ORB_ID = {
+  transmute: 'transmute', transmute_greater: 'transmuteGreater', transmute_perfect: 'transmutePerfect',
+  augment: 'augment', augment_greater: 'augmentGreater', augment_perfect: 'augmentPerfect',
+  regal: 'regal', regal_greater: 'regalGreater', regal_perfect: 'regalPerfect',
+  alch: 'alchemy',
+  exalt: 'exalted', exalt_greater: 'exaltedGreater', exalt_perfect: 'exaltedPerfect',
+  annul: 'annulment',
+  chaos: 'chaos', chaos_greater: 'chaosGreater', chaos_perfect: 'chaosPerfect',
+  fracturing: 'fracturing',
+};
+
+function buildDisabledActionIds(ctx) {
+  const out = {};
+  const disabled = ctx?.disabledOrbs;
+  if (!disabled) return out;
+  for (const [actionId, orbId] of Object.entries(ACTION_TO_ORB_ID)) {
+    if (disabled[orbId]) out[actionId] = true;
+  }
+  return out;
 }
 
 function safeCost(orbId, ctx) {
@@ -641,6 +678,16 @@ function buildEssenceSpecs(ctx, wishlist, helpers = {}) {
       const required = w?.requiredTier;
       const essenceOnly = (w?.weight ?? 0) === 0;
       if (essenceOnly) continue;
+      // Only enforce the essence-rank-vs-requiredTier gate when the
+      // wishlist entry is actually REQUIRED. When `required: false`,
+      // the wish is a soft preference (any tier is acceptable per
+      // tierScores), so a Lesser/Normal essence still contributes
+      // — it lands the mod even if at a lower base-pool tier than
+      // the user "minTier" hint. Without this guard, clicking a soft
+      // wish silently excluded Lesser/Normal essences as if the user
+      // had required a high tier, hiding cheap essence paths from
+      // the Q-value comparison.
+      if (!w?.required) continue;
       if (Number.isFinite(required) && essenceTier > required) {
         pAcceptable = 0; // essence's tier band is below the user's bar
         break;

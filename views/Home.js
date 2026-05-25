@@ -634,6 +634,19 @@ export default {
     const desecratedBySide = computed(() => splitBySide(filteredDesecrated.value));
     const essencesBySide   = computed(() => splitBySide(filteredEssences.value));
 
+    // Pick the BEST (lowest-numbered) base-mod tier reachable via
+    // any available essence for this affix on the current base.
+    // Used by the essence-row "+ wish" button so clicking, say,
+    // Hysteria's Movement Speed adds the wish at T2 (the actual
+    // tier the essence rolls into), not the hardcoded T1. Falls
+    // back to 1 if the helper returns nothing — the caller can
+    // still wish the mod, the user just sees an over-strict bar.
+    const bestEssenceTier = (type, name) => {
+      const tiers = craft.essenceableTiers(type, name);
+      if (!tiers || tiers.size === 0) return 1;
+      return Math.min(...tiers);
+    };
+
     // ─────────────────────────────────────────────────────────
     // Pending-bone-mod helpers (rendered inline as a green-glow
     // "encrypted-glyph" affix slot, matching the in-game tooltip).
@@ -1309,7 +1322,7 @@ export default {
              allAffixesPanelOpen,
              essenceableNamesBySide, essenceTierMismatch, lowerRequiredTierForEssence,
              desecratedNames,
-             groupedEssences, filteredEssences, essencesBySide,
+             groupedEssences, filteredEssences, essencesBySide, bestEssenceTier,
              groupedDesecrated, filteredDesecrated, desecratedBySide,
              desecratedFamilyTags,
              ESSENCE_TIERS, ESSENCE_TIER_LABELS,
@@ -2079,7 +2092,7 @@ export default {
                         class="link"
                         :disabled="row.tagFiltered"
                         :title="row.tagFiltered ? 'Filtered out by tag selection' : 'Add to wishlist (prefix)'"
-                        @click="craft.addTargetMod('PREFIX', row.text, 1, [], true)">+ wish</button>
+                        @click="craft.addTargetMod('PREFIX', row.text, bestEssenceTier('PREFIX', row.text), [], true)">+ wish</button>
                       <span v-else class="hint wished-tag">★ wished</span>
                     </td>
                   </tr>
@@ -2130,7 +2143,7 @@ export default {
                         class="link"
                         :disabled="row.tagFiltered"
                         :title="row.tagFiltered ? 'Filtered out by tag selection' : 'Add to wishlist (suffix)'"
-                        @click="craft.addTargetMod('SUFFIX', row.text, 1, [], true)">+ wish</button>
+                        @click="craft.addTargetMod('SUFFIX', row.text, bestEssenceTier('SUFFIX', row.text), [], true)">+ wish</button>
                       <span v-else class="hint wished-tag">★ wished</span>
                     </td>
                   </tr>

@@ -87,6 +87,12 @@ export function solveMDP(input) {
     if (bit === undefined) return m;
     return m | (1 << bit);
   }, 0);
+  // Per-wished score contribution when bit i lands. Default 1 per
+  // wished mod (any landing satisfies a "≥N landed wished mods"
+  // gate). The adapter passes the user's per-wish score so the gate
+  // can express "Life is worth 2, ES is worth 1, minDesire=3" style
+  // preferences without per-tier state tracking.
+  const wishedScores = wishlist.map((w) => Number.isFinite(w.score) ? w.score : 1);
   const target = {
     requiredMask,
     fracturedBit,
@@ -97,6 +103,11 @@ export function solveMDP(input) {
     // crafting). See isGoalState for semantics.
     minFilled: input.target?.minFilled ?? null,
     maxFilled: input.target?.maxFilled ?? null,
+    // Σ desire-score gate per project memory `required-plus-desire-score`.
+    // 0 = no gate (any state passes the score check). >0 = sum of
+    // wishedScores for landed wished bits must be ≥ this value.
+    minDesireScore: input.target?.minDesireScore ?? 0,
+    wishedScores,
     // Allow goal states to carry a pending unrevealed bone-mod —
     // user opt-in for "stop at bone applied, defer reveal."
     allowBonePending: !!input.target?.allowBonePending,
@@ -373,7 +384,20 @@ export function solveMDP(input) {
         continue;
       }
       missing.push(`orbCosts.${action.id}`);
-      if (allowMissing) warnings.push(`Action "${action.id}" excluded: missing rate (orbCosts.${action.id}).`);
+      if (allowMissing) {
+        // Distinguish "disabled by user" (checkbox unticked in the rates
+        // panel) from "genuinely missing rate" — the rate IS present
+        // upstream, the user just opted out. The misleading "missing
+        // rate" message used to send users to scripts/update-poe2-rates.sh
+        // for nothing.
+        if (input.disabledActionIds?.[action.id]) {
+          warnings.push(
+            `Action "${action.id}" excluded: disabled by user in the Action set panel. ` +
+            `Re-tick the orb to include it in the engine's policy.`);
+        } else {
+          warnings.push(`Action "${action.id}" excluded: missing rate (orbCosts.${action.id}).`);
+        }
+      }
       continue;
     }
     actionList.push(action);

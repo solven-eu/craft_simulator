@@ -158,10 +158,19 @@ export const modHelperActions = {
       for (const t of synthesisedTiers) out.add(t.tier);
       return out;
     }
-    // Parse "(N—M)" or "+(N—M)" → [N, M]. Returns null if no range.
+    // Parse the numeric span from a mod display. Two cases:
+    //   1. Parenthesised range  "(N—M)" or "+(N—M)"  → [N, M].
+    //   2. Single fixed value   "30% increased ..."  → [N, N] (degenerate).
+    //      Fixed-roll essences (Essence of Hysteria) and fixed-value
+    //      base mod tiers (Movement Speed: "35%", "30%", ...) both
+    //      need this; without it both sides parse as null and no tier
+    //      is ever marked essence-grantable.
     const parseRange = (s) => {
-      const m = /\(\s*(-?\d+(?:\.\d+)?)\s*[—–-]\s*(-?\d+(?:\.\d+)?)\s*\)/.exec(s ?? '');
-      return m ? [parseFloat(m[1]), parseFloat(m[2])] : null;
+      const str = s ?? '';
+      const ranged = /\(\s*(-?\d+(?:\.\d+)?)\s*[—–-]\s*(-?\d+(?:\.\d+)?)\s*\)/.exec(str);
+      if (ranged) return [parseFloat(ranged[1]), parseFloat(ranged[2])];
+      const single = /(-?\d+(?:\.\d+)?)/.exec(str);
+      return single ? [parseFloat(single[1]), parseFloat(single[1])] : null;
     };
     for (const ess of essRows) {
       const er = parseRange(ess.display);

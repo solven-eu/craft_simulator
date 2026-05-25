@@ -604,6 +604,7 @@ export const useCraftStore = defineStore('craft', {
         wishlist: wishlistInput,
         requiredHits: state.requiredHits,
         minFilled: state.minFilled,
+        minDesireScore: state.minDesireScore,
         maxFilled: state.maxFilled,
         startingHits: this.startingHits,
         startingR,

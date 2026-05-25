@@ -183,6 +183,22 @@ export function isGoalState(s, target) {
   // to undefined so simpler scenarios that don't care still work.
   if (target.minFilled != null && s.totalMods < target.minFilled) return false;
   if (target.maxFilled != null && s.totalMods > target.maxFilled) return false;
+  // Aggregate desire score across landed wished mods (per project
+  // memory `required-plus-desire-score`). Without this clause, a
+  // Magic-with-irrelevant-affix state passes the goal check the
+  // moment minFilled is satisfied, even though no wished mod
+  // contributes any score — defeating the whole point of the gate.
+  // wishedScores[i] is the per-mod score contribution when bit i is
+  // present (default 1 for every wished mod; the adapter feeds the
+  // user's per-wish score). Score of 0 effectively rejects the mod.
+  if (target.minDesireScore != null && target.minDesireScore > 0) {
+    const scores = target.wishedScores;
+    let sum = 0;
+    for (let i = 0; scores && i < scores.length; i++) {
+      if ((s.modMask >> i) & 1) sum += scores[i] || 0;
+    }
+    if (sum < target.minDesireScore) return false;
+  }
   return true;
 }
 

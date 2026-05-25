@@ -31,7 +31,21 @@ export default {
      *  Triggered by the `mdp-embed` route. */
     const embedMode = computed(() => route.name === 'mdp-embed');
 
-    return { game, gameLabel, games, embedMode };
+    /** Build identifier from the <meta name="build-sha"> tag in
+     *  index.html. The CI workflow rewrites the placeholder to the
+     *  commit SHA at deploy time, so the footer can show users
+     *  exactly which revision is live. Stays "dev" locally. */
+    const buildSha = computed(() => {
+      const tag = document.querySelector('meta[name="build-sha"]');
+      return tag?.getAttribute('content') || 'dev';
+    });
+    const buildShaShort = computed(() => buildSha.value.slice(0, 8));
+    const buildShaUrl = computed(() =>
+      buildSha.value === 'dev'
+        ? null
+        : `https://github.com/solven-eu/craft_simulator/commit/${buildSha.value}`);
+
+    return { game, gameLabel, games, embedMode, buildShaShort, buildShaUrl };
   },
   template: `
     <main class="app" :class="{ 'embed-mode': embedMode }">
@@ -52,7 +66,10 @@ export default {
           licensed under
           <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> ·
           <a href="https://github.com/solven-eu/craft_simulator/issues" target="_blank" rel="noopener">🐛 report issue / ask question</a> ·
-          <router-link :to="'/' + game + '/disclaimer'">full disclaimer & sources</router-link>
+          <router-link :to="'/' + game + '/disclaimer'">full disclaimer & sources</router-link> ·
+          <a v-if="buildShaUrl" :href="buildShaUrl" target="_blank" rel="noopener"
+             :title="'Deployed commit — click to view on GitHub'">build {{ buildShaShort }}</a>
+          <span v-else :title="'Local serving — no commit SHA injected'">build {{ buildShaShort }}</span>
         </small>
       </footer>
     </main>

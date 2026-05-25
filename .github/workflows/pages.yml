@@ -49,6 +49,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Inject build SHA into index.html
+        # Replaces the <meta name="build-sha" content="dev"> placeholder
+        # so the deployed footer shows the exact commit. Uses GITHUB_SHA
+        # (the full 40-char SHA) — the footer truncates to 8 chars for
+        # display and links to the GitHub commit page.
+        run: |
+          sed -i 's|<meta name="build-sha" content="dev" />|<meta name="build-sha" content="'"${GITHUB_SHA}"'" />|' index.html
+          grep '<meta name="build-sha"' index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

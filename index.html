@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Build identifier — replaced at deploy time by the GitHub Actions
+         workflow (scripts/inject-build-sha.sh) with the commit SHA so
+         the deployed site is easy to pin to a specific revision. Stays
+         "dev" for local serving. -->
+    <meta name="build-sha" content="dev" />
     <title>Craft Simulator</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />

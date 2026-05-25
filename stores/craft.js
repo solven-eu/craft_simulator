@@ -854,8 +854,18 @@ export const useCraftStore = defineStore('craft', {
           });
         }
         if (c.appliesToItemClasses && c.appliesToItemClasses.length) {
+          // `appliesToItemClasses` is stored singular ("Boot",
+          // "Glove") per the CSV-normalisation comment above;
+          // `state.itemType` is plural ("Boots", "Gloves"). Without
+          // matching normalisation here the equality check NEVER
+          // hits and every item_classes-tagged essence was marked
+          // not-applicable, greying it in the rates panel even when
+          // the engine adapter (which normalises both sides) would
+          // happily use it.
+          const norm = (s) => String(s || '').toLowerCase().replace(/s$/, '');
+          const itemNorm = norm(state.itemType);
           const violated = state.itemType
-            && !c.appliesToItemClasses.includes(state.itemType);
+            && !c.appliesToItemClasses.some((cls) => norm(cls) === itemNorm);
           const classes = c.appliesToItemClasses;
           const display = classes.length <= 2 ? classes.join(' / ')
             : classes.slice(0, 2).join(' / ') + '…';

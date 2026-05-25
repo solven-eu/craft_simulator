@@ -4,3 +4,12 @@ node_modules/
 .cache/
 .tmp/
 *.log
+
+# Scraper HTML cache (data/raw/poe2db_*.html). Used as transient
+# input by scripts/update-poe2-*.sh and committed historically, but
+# now refreshed every 3h by .github/workflows/refresh-rates.yml —
+# keeping these in git would churn ~13 MB/day of timestamp diffs
+# with no review value (the canonical output is data/poe2/rates.csv).
+# Manually-curated raw data (krakenbul_*.csv, manual/, README.md)
+# stays tracked.
+data/raw/poe2db_*.html

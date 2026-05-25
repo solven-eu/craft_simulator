@@ -1,0 +1,87 @@
+name: Refresh PoE2 rates
+
+# Periodic refresh of data/poe2/rates.csv from poe2db. Runs every
+# 3 hours and on manual dispatch. If the snapshot changes, commit
+# and push so the deployed site picks up the latest prices (the
+# pages.yml workflow re-deploys on master push).
+#
+# Failure of the upstream scrape is NOT a workflow failure — the
+# script warns about missing detail-page rows but exits 0 so a
+# transient poe2db hiccup doesn't spam noise.
+on:
+  schedule:
+    # Every 3 hours, on the hour. GitHub's scheduler runs in UTC
+    # and may drift / skip during outages, so the exact cadence is
+    # best-effort — fine for our use case (3h granularity is plenty
+    # for trade-rate drift).
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # required to push the rates.csv update back
+
+concurrency:
+  group: refresh-rates
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Scrape and commit rates.csv
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Default fetch-depth=1 is enough; we only commit one new
+          # change on top of the current HEAD.
+          fetch-depth: 1
+      - name: Run rate-update script
+        # The script uses curl + python3 (both preinstalled on
+        # ubuntu-latest runners) — no setup needed.
+        run: bash scripts/update-poe2-rates.sh
+      - name: Enforce file allowlist
+        # Defence in depth: the GITHUB_TOKEN's contents:write permission
+        # grants repo-wide push access, so a buggy / compromised
+        # scraper could touch any file. This step asserts that the only
+        # changes are in the explicit allowlist below and fails the
+        # workflow otherwise — refusing to push anything unexpected.
+        #
+        # Allowlist intentionally narrow: just the canonical rates
+        # snapshot. data/raw/poe2db_*.html is .gitignored (transient
+        # scraper input, no review value at 8-runs-per-day churn).
+        run: |
+          ALLOWED='^data/poe2/rates\.csv$'
+          # `git status --porcelain` lists every modified / added /
+          # deleted file with a 2-char status prefix and a space.
+          OFFENDERS=$(git status --porcelain | awk '{print $2}' | grep -Ev "$ALLOWED" || true)
+          if [ -n "$OFFENDERS" ]; then
+            echo "::error::Workflow tried to modify files outside the allowlist:"
+            echo "$OFFENDERS"
+            echo "Allowed paths: $ALLOWED"
+            exit 1
+          fi
+      - name: Detect changes
+        id: diff
+        run: |
+          if git diff --quiet -- data/poe2/rates.csv; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No rate changes to commit."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "rates.csv changed — will commit."
+            git diff --stat -- data/poe2/rates.csv
+          fi
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Stage by EXPLICIT path only (never `git add -A`/`.`) — even
+          # though the allowlist step above already vetted the diff,
+          # path-restricted staging is one more guard against
+          # accidental scope creep.
+          git add data/poe2/rates.csv
+          # Brief, machine-readable commit message: the auto-deploy
+          # workflow keys off the master push, so the timestamp in
+          # the body helps trace which scrape produced the values.
+          git commit -m "chore(rates): refresh poe2db snapshot ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push

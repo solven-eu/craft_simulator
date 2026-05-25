@@ -68,11 +68,25 @@ function alchMaskDistribution(nDraws, env, actionId = 'alch') {
   // Default 1.0 = no tier restriction (legacy / non-tier-aware setup).
   const pAccept = env.pTierAcceptable?.[actionId] ?? new Array(N).fill(1);
   const out = new Map();
-  // Recurse: (drawsLeft, pickedMask, weightConsumedByWished). When a
-  // wished mod lands, with probability pAccept[i] the tier is OK and
-  // the bit is set; otherwise the slot is consumed but the bit stays
-  // unset (sub-spec wished = irrelevant slot for state purposes).
-  const rec = (drawsLeft, mask, consumedW, prob) => {
+  // Recurse: (drawsLeft, pickedMask, drawnMask, consumedW, prob).
+  //
+  // Two distinct masks:
+  //   `mask`       — wished bits whose roll landed at an ACCEPTABLE
+  //                  tier (these contribute to the goal check).
+  //   `drawnMask`  — wished mods already drawn this iteration,
+  //                  regardless of tier. Used to enforce
+  //                  weighted-without-replacement semantics so a
+  //                  mod that rolled at sub-tier doesn't get
+  //                  re-considered on subsequent draws.
+  //
+  // The previous implementation conflated the two by using `mask`
+  // for both purposes: a sub-tier'd mod's weight was deducted from
+  // the pool denominator (consumedW += w) but the mask bit stayed
+  // unset, so the same mod could be re-drawn with its full weight
+  // in the numerator. That double-counted the mod's weight,
+  // inflating per-step probability mass above 1.0 (user-reported
+  // 101.2% overflow, 2026-05-25).
+  const rec = (drawsLeft, mask, drawnMask, consumedW, prob) => {
     if (drawsLeft === 0) {
       out.set(mask, (out.get(mask) ?? 0) + prob);
       return;
@@ -80,23 +94,25 @@ function alchMaskDistribution(nDraws, env, actionId = 'alch') {
     const remaining = totalW - consumedW;
     if (remaining <= 0) return;
     for (let i = 0; i < N; i++) {
-      if (mask & (1 << i)) continue;
+      if (drawnMask & (1 << i)) continue;
       const w = env.wishlistWeights[i];
       if (w <= 0) continue;
       const pHit = w / remaining;
       const pOk = pAccept[i] ?? 1;
-      // Acceptable-tier branch: bit set, weight consumed.
-      if (pOk > 0) rec(drawsLeft - 1, mask | (1 << i), consumedW + w, prob * pHit * pOk);
-      // Sub-tier branch: slot consumed, bit unchanged. Weight still
-      // "consumed" since this specific mod can no longer roll on
-      // subsequent draws (wo-replacement semantics).
-      if (pOk < 1) rec(drawsLeft - 1, mask, consumedW + w, prob * pHit * (1 - pOk));
+      const nextDrawn = drawnMask | (1 << i);
+      // Acceptable-tier branch: bit set (counts toward goal) and
+      // mod marked drawn.
+      if (pOk > 0) rec(drawsLeft - 1, mask | (1 << i), nextDrawn, consumedW + w, prob * pHit * pOk);
+      // Sub-tier branch: mod marked drawn (can't re-roll) but goal
+      // bit stays unset — slot occupied by an irrelevant-from-goal-
+      // perspective affix.
+      if (pOk < 1) rec(drawsLeft - 1, mask, nextDrawn, consumedW + w, prob * pHit * (1 - pOk));
     }
     if (irrW > 0) {
-      rec(drawsLeft - 1, mask, consumedW, prob * (irrW / remaining));
+      rec(drawsLeft - 1, mask, drawnMask, consumedW, prob * (irrW / remaining));
     }
   };
-  rec(nDraws, 0, 0, 1);
+  rec(nDraws, 0, 0, 0, 1);
   return out;
 }
 

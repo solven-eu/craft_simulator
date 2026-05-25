@@ -2,8 +2,8 @@ id,name,effect,target_orb,side_constraint,available,notes
 omen-of-dextral-exaltation,Omen of Dextral Exaltation,Exalted Orb will add only Suffix modifiers,Exalted,SUFFIX,true,
 omen-of-sinistral-exaltation,Omen of Sinistral Exaltation,Exalted Orb will add only Prefix modifiers,Exalted,PREFIX,true,
 omen-of-greater-exaltation,Omen of Greater Exaltation,Exalted Orb will add two random modifiers,Exalted,BOTH,true,
-omen-of-sinistral-coronation,Omen of Sinistral Coronation,Regal Orb will only add a Prefix modifier,Regal,PREFIX,true,
-omen-of-dextral-coronation,Omen of Dextral Coronation,Regal Orb will only add a Suffix modifier,Regal,SUFFIX,true,
+omen-of-sinistral-coronation,Omen of Sinistral Coronation,Regal Orb will only add a Prefix modifier,Regal,PREFIX,false,Removed in PoE2 0.3
+omen-of-dextral-coronation,Omen of Dextral Coronation,Regal Orb will only add a Suffix modifier,Regal,SUFFIX,false,Removed in PoE2 0.3
 omen-of-sinistral-alchemy,Omen of Sinistral Alchemy,Orb of Alchemy will inflict the maximum number of prefixes,Alchemy,PREFIX,true,
 omen-of-dextral-alchemy,Omen of Dextral Alchemy,Orb of Alchemy will inflict the maximum number of suffixes,Alchemy,SUFFIX,true,
 omen-of-greater-annulment,Omen of Greater Annulment,Orb of Annulment will remove two random modifiers,Annulment,BOTH,true,

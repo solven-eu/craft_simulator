@@ -1,0 +1,878 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - heading "Craft Simulator Path of Exile 2" [level=1] [ref=e5]
+    - navigation [ref=e6]:
+      - link "Plan" [ref=e7] [cursor=pointer]:
+        - /url: "#/poe2"
+      - link "Divine Bench" [ref=e8] [cursor=pointer]:
+        - /url: "#/poe2/divine-bench"
+      - link "About" [ref=e9] [cursor=pointer]:
+        - /url: "#/poe2/about"
+      - link "Disclaimer" [ref=e10] [cursor=pointer]:
+        - /url: "#/poe2/disclaimer"
+  - generic [ref=e11]:
+    - group [ref=e12]:
+      - generic "★ Saved crafts (5) ★ Save current" [ref=e13] [cursor=pointer]:
+        - text: ★ Saved crafts
+        - generic [ref=e14]: (5)
+        - button "★ Save current" [ref=e15]
+    - list [ref=e16]:
+      - listitem [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]: 1. Item type
+          - combobox "1. Item type" [ref=e20]:
+            - option "— pick a type —"
+            - option "Amulet"
+            - option "Belt"
+            - option "Body Armour"
+            - option "Boots" [selected]
+            - option "Bow"
+            - option "Buckler"
+            - option "Crossbow"
+            - option "Focus"
+            - option "Gloves"
+            - option "Helmet"
+            - option "One Hand Mace"
+            - option "Quiver"
+            - option "Ring"
+            - option "Sceptre"
+            - option "Shield"
+            - option "Spear"
+            - option "Staff"
+            - option "Talisman"
+            - option "Two Hand Mace"
+            - option "Wand"
+            - option "Warstaff"
+      - listitem [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: 2. Specialization
+          - combobox "2. Specialization" [ref=e24]:
+            - option "— pick attributes —" [disabled]
+            - option "DEX"
+            - option "DEX/INT" [selected]
+            - option "INT"
+            - option "STR"
+            - option "STR/DEX"
+            - option "STR/INT"
+      - listitem [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: 3. Item level
+          - generic [ref=e28]:
+            - slider "3. Item level 74" [ref=e29]: "74"
+            - spinbutton [ref=e30]: "74"
+    - generic [ref=e31]:
+      - article [ref=e32]:
+        - generic [ref=e33]:
+          - heading "Base item" [level=3] [ref=e34]
+          - generic [ref=e35]:
+            - combobox [ref=e36]:
+              - option "Normal" [selected]
+              - option "Magic"
+              - option "Rare"
+            - text: · 0 affix(es) on BOOTS (DEX/INT) (ilvl 74)
+          - button "Reset" [disabled] [ref=e37]
+        - generic [ref=e38]:
+          - button "🦴 + bone" [ref=e40] [cursor=pointer]
+          - button "🦴 + bone" [ref=e42] [cursor=pointer]
+        - generic [ref=e44]:
+          - generic [ref=e45]: Base item price (Ex)
+          - spinbutton "Base item price (Ex) cost to acquire this item — covers white bases, drop value, OR a pre-fractured trade-buy (whichever applies)" [ref=e46]: "40"
+          - generic [ref=e47]: cost to acquire this item — covers white bases, drop value, OR a pre-fractured trade-buy (whichever applies)
+        - generic [ref=e49]:
+          - text: Add affixes via the
+          - emphasis [ref=e50]: + start
+          - text: buttons in the mod pool below. Use the
+          - img "Fracturing Orb" [ref=e51]
+          - text: to mark one as fractured (PoE2 allows max 1 per item).
+      - article [ref=e52]:
+        - generic [ref=e53]:
+          - heading "Acceptable final items" [level=3] [ref=e54]
+          - generic [ref=e55]: 0 required, 1 desired, 0 empty · hit threshold = 1, maxFilled = 6
+          - button "Reset" [ref=e56] [cursor=pointer]
+        - paragraph [ref=e57]:
+          - text: "⚠ Goal is trivially satisfiable: 0 required mods and minimum desire score = 0. Any item — including a White base — satisfies the goal as written, so the engine will report V*(start) ≈ 0 and \"do nothing\". Either"
+          - button "mark all desired as required" [ref=e58] [cursor=pointer]
+          - text: ", or raise the minimum desire score below."
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]: Min desire score
+            - slider "Min desire score 0 / 1 max · 0 required + 1 desired. Required mods must always be present; desired mods + tier upgrades feed this soft pool. (Score-aware solver pending — the strategy table currently approximates with a hit-count threshold.)" [ref=e62]: "0"
+            - spinbutton [ref=e63]: "0"
+            - generic [ref=e64]:
+              - text: / 1 max ·
+              - strong [ref=e65]: "0"
+              - text: required +
+              - strong [ref=e66]: "1"
+              - text: desired. Required mods must always be present; desired mods + tier upgrades feed this soft pool.
+              - emphasis [ref=e67]: (Score-aware solver pending — the strategy table currently approximates with a hit-count threshold.)
+          - button "☑ Mark all required (1)" [ref=e69] [cursor=pointer]
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - heading "Prefixes (0 required, 1 desired, 0/3 empty) + empty prefix 🦴 + bone" [level=4] [ref=e72]:
+              - text: Prefixes
+              - generic [ref=e73]: (0 required, 1 desired, 0/3 empty)
+              - button "+ empty prefix" [ref=e74] [cursor=pointer]
+              - button "🦴 + bone" [ref=e75] [cursor=pointer]
+            - generic [ref=e76]:
+              - generic [ref=e77]: "# to maximum Life"
+              - button "life" [ref=e79] [cursor=pointer]
+              - button "×" [ref=e80] [cursor=pointer]
+              - 'generic "Slider: minimal acceptable tier. Tiers worse than this are meaningless. Click the req/des badge to toggle required vs desired." [ref=e81]':
+                - button "desired ≥" [ref=e82] [cursor=pointer]
+                - slider [ref=e83]: "3"
+                - generic [ref=e84]: T3
+                - button "fractured" [ref=e85] [cursor=pointer]:
+                  - img "fractured" [ref=e86]
+                - button "🦴" [ref=e87] [cursor=pointer]
+                - button "⏸" [ref=e88] [cursor=pointer]
+              - generic "Worst-case roll at the chosen minimum tier — i.e. the floor any acceptable item must clear." [ref=e89]: ≥ +85 to maximum Life
+              - generic [ref=e90]:
+                - generic [ref=e91]: "score per tier:"
+                - generic "Athlete's · ilvl 60" [ref=e92]:
+                  - generic [ref=e93]: T1
+                  - spinbutton "T1" [ref=e94]: "1"
+                - generic "Virile · ilvl 54" [ref=e95]:
+                  - generic [ref=e96]: T2
+                  - spinbutton "T2" [ref=e97]: "1"
+                - generic "Rotund · ilvl 46" [ref=e98]:
+                  - generic [ref=e99]: T3
+                  - generic "An Essence consumable can guarantee this mod at this tier" [ref=e100]: 🟢
+                  - spinbutton "T3 🟢" [ref=e101]: "1"
+                - 'generic "Robust · ilvl 38 — meaningless: outside desired band" [ref=e102]':
+                  - generic [ref=e103]: T4
+                  - generic "An Essence consumable can guarantee this mod at this tier" [ref=e104]: 🟢
+                  - spinbutton "T4 🟢" [ref=e105]: "1"
+                - 'generic "Stout · ilvl 33 — meaningless: outside desired band" [ref=e106]':
+                  - generic [ref=e107]: T5
+                  - spinbutton "T5" [ref=e108]: "1"
+                - 'generic "Stalwart · ilvl 24 — meaningless: outside desired band" [ref=e109]':
+                  - generic [ref=e110]: T6
+                  - spinbutton "T6" [ref=e111]: "1"
+                - 'generic "Sanguine · ilvl 16 — meaningless: outside desired band" [ref=e112]':
+                  - generic [ref=e113]: T7
+                  - generic "An Essence consumable can guarantee this mod at this tier" [ref=e114]: 🟢
+                  - spinbutton "T7 🟢" [ref=e115]: "1"
+                - 'generic "Healthy · ilvl 6 — meaningless: outside desired band" [ref=e116]':
+                  - generic [ref=e117]: T8
+                  - spinbutton "T8" [ref=e118]: "1"
+                - 'generic "Hale · ilvl 1 — meaningless: outside desired band" [ref=e119]':
+                  - generic [ref=e120]: T9
+                  - spinbutton "T9" [ref=e121]: "1"
+          - generic [ref=e122]:
+            - heading "Suffixes (0 required, 0 desired, 0/3 empty) + empty suffix 🦴 + bone" [level=4] [ref=e123]:
+              - text: Suffixes
+              - generic [ref=e124]: (0 required, 0 desired, 0/3 empty)
+              - button "+ empty suffix" [ref=e125] [cursor=pointer]
+              - button "🦴 + bone" [ref=e126] [cursor=pointer]
+            - generic [ref=e127]:
+              - text: — add wished suffixes via
+              - emphasis [ref=e128]: + wish
+              - text: in the pool below —
+        - generic [ref=e129]:
+          - generic [ref=e130]: "Tags on target:"
+          - button "life ×1" [ref=e131] [cursor=pointer]
+        - generic [ref=e133]:
+          - text: Add wished mods with
+          - emphasis [ref=e134]: + wish
+          - text: in the pool — list grows freely.
+          - emphasis [ref=e135]: + empty
+          - text: requires an unfilled slot on that side.
+    - generic [ref=e136]:
+      - generic [ref=e137]: "Filter by tag:"
+      - button "ailment" [ref=e138] [cursor=pointer]
+      - button "attribute" [ref=e139] [cursor=pointer]
+      - button "chaos" [ref=e140] [cursor=pointer]
+      - button "cold" [ref=e141] [cursor=pointer]
+      - button "defences" [ref=e142] [cursor=pointer]
+      - button "elemental" [ref=e143] [cursor=pointer]
+      - button "fire" [ref=e144] [cursor=pointer]
+      - button "life" [ref=e145] [cursor=pointer]
+      - button "lightning" [ref=e146] [cursor=pointer]
+      - button "mana" [ref=e147] [cursor=pointer]
+      - button "resistance" [ref=e148] [cursor=pointer]
+      - button "speed" [ref=e149] [cursor=pointer]
+    - group [ref=e150]:
+      - generic "📚 Browse all affixes — collapsed; expand to add more (you have 1 wished mod(s))" [ref=e151]
+    - group [ref=e152]:
+      - generic "📝 Recipe (paste-able DSL)" [ref=e153] [cursor=pointer]
+    - generic [ref=e154]:
+      - heading "Strategy comparison" [level=3] [ref=e155]
+      - paragraph [ref=e156]:
+        - strong [ref=e157]: "1"
+        - text: wished mod(s) (1P / 0S)
+      - generic [ref=e158]:
+        - generic [ref=e159]:
+          - generic [ref=e160]: Total budget (Ex)
+          - spinbutton "Total budget (Ex) default 1,870 ex ≈ 10 div · stop-loss for most players · current = 12.7 div" [ref=e161]: "1870"
+          - generic [ref=e162]: default 1,870 ex ≈ 10 div · stop-loss for most players · current = 12.7 div
+        - generic [ref=e163]:
+          - generic [ref=e164]: Total time (h)
+          - spinbutton "Total time (h) stop-loss in wall-clock hours" [ref=e165]: "1.00"
+          - generic [ref=e166]: stop-loss in wall-clock hours
+      - generic [ref=e167]:
+        - group [ref=e168]:
+          - generic "🔧 Action set — untick to exclude an orb from the engine (3 disabled) reset" [ref=e169]:
+            - text: 🔧 Action set — untick to exclude an orb from the engine (3 disabled)
+            - button "reset" [ref=e170] [cursor=pointer]
+          - generic [ref=e171]:
+            - generic [ref=e172]:
+              - heading "Alchemy" [level=6] [ref=e173] [cursor=pointer]
+              - button "🟡 Alchemy 0.430 ex" [ref=e175] [cursor=pointer]:
+                - generic [ref=e176]: 🟡
+                - generic [ref=e177]: Alchemy
+                - generic [ref=e178]: 0.430 ex
+            - generic [ref=e179]:
+              - heading "Transmute (0/3)" [level=6] [ref=e180] [cursor=pointer]
+              - generic [ref=e181]:
+                - button "🔵 Transmutation 0.012 ex" [ref=e182] [cursor=pointer]:
+                  - generic [ref=e183]: 🔵
+                  - generic [ref=e184]: Transmutation
+                  - generic [ref=e185]: 0.012 ex
+                - button "🔵 Greater Orb of Transmutation 0.026 ex" [ref=e186] [cursor=pointer]:
+                  - generic [ref=e187]: 🔵
+                  - generic [ref=e188]: Greater Orb of Transmutation
+                  - generic [ref=e189]: 0.026 ex
+                - button "🔵 Perfect Orb of Transmutation 3.15 ex" [ref=e190] [cursor=pointer]:
+                  - generic [ref=e191]: 🔵
+                  - generic [ref=e192]: Perfect Orb of Transmutation
+                  - generic [ref=e193]: 3.15 ex
+            - generic [ref=e194]:
+              - heading "Augment" [level=6] [ref=e195] [cursor=pointer]
+              - generic [ref=e196]:
+                - button "🟢 Augmentation 0.020 ex" [ref=e197] [cursor=pointer]:
+                  - generic [ref=e198]: 🟢
+                  - generic [ref=e199]: Augmentation
+                  - generic [ref=e200]: 0.020 ex
+                - button "🟢 Greater Orb of Augmentation 0.124 ex" [ref=e201] [cursor=pointer]:
+                  - generic [ref=e202]: 🟢
+                  - generic [ref=e203]: Greater Orb of Augmentation
+                  - generic [ref=e204]: 0.124 ex
+                - button "🟢 Perfect Orb of Augmentation 4.14 ex" [ref=e205] [cursor=pointer]:
+                  - generic [ref=e206]: 🟢
+                  - generic [ref=e207]: Perfect Orb of Augmentation
+                  - generic [ref=e208]: 4.14 ex
+            - generic [ref=e209]:
+              - heading "Regal" [level=6] [ref=e210] [cursor=pointer]
+              - generic [ref=e211]:
+                - button "🟣 Regal 0.059 ex" [ref=e212] [cursor=pointer]:
+                  - generic [ref=e213]: 🟣
+                  - generic [ref=e214]: Regal
+                  - generic [ref=e215]: 0.059 ex
+                - button "🟣 Greater Regal 8.40 ex" [ref=e216] [cursor=pointer]:
+                  - generic [ref=e217]: 🟣
+                  - generic [ref=e218]: Greater Regal
+                  - generic [ref=e219]: 8.40 ex
+                - button "🟣 Perfect Regal 25.43 ex" [ref=e220] [cursor=pointer]:
+                  - generic [ref=e221]: 🟣
+                  - generic [ref=e222]: Perfect Regal
+                  - generic [ref=e223]: 25.43 ex
+            - generic [ref=e224]:
+              - heading "Exalt" [level=6] [ref=e225] [cursor=pointer]
+              - generic [ref=e226]:
+                - button "⭐ Exalted 1.00 ex" [ref=e227] [cursor=pointer]:
+                  - generic [ref=e228]: ⭐
+                  - generic [ref=e229]: Exalted
+                  - generic [ref=e230]: 1.00 ex
+                - button "⭐ Greater Exalted 3.20 ex" [ref=e231] [cursor=pointer]:
+                  - generic [ref=e232]: ⭐
+                  - generic [ref=e233]: Greater Exalted
+                  - generic [ref=e234]: 3.20 ex
+                - button "⭐ Perfect Exalted 55.26 ex" [ref=e235] [cursor=pointer]:
+                  - generic [ref=e236]: ⭐
+                  - generic [ref=e237]: Perfect Exalted
+                  - generic [ref=e238]: 55.26 ex
+            - generic [ref=e239]:
+              - heading "Annul" [level=6] [ref=e240] [cursor=pointer]
+              - button "❌ Annulment 16.18 ex" [ref=e242] [cursor=pointer]:
+                - generic [ref=e243]: ❌
+                - generic [ref=e244]: Annulment
+                - generic [ref=e245]: 16.18 ex
+            - generic [ref=e246]:
+              - heading "Chaos" [level=6] [ref=e247] [cursor=pointer]
+              - generic [ref=e248]:
+                - button "🟠 Chaos 4.54 ex" [ref=e249] [cursor=pointer]:
+                  - generic [ref=e250]: 🟠
+                  - generic [ref=e251]: Chaos
+                  - generic [ref=e252]: 4.54 ex
+                - button "🟠 Greater Chaos 26.15 ex" [ref=e253] [cursor=pointer]:
+                  - generic [ref=e254]: 🟠
+                  - generic [ref=e255]: Greater Chaos
+                  - generic [ref=e256]: 26.15 ex
+                - button "🟠 Perfect Chaos 422 ex" [ref=e257] [cursor=pointer]:
+                  - generic [ref=e258]: 🟠
+                  - generic [ref=e259]: Perfect Chaos
+                  - generic [ref=e260]: 422 ex
+            - generic [ref=e261]:
+              - heading "Fracture" [level=6] [ref=e262] [cursor=pointer]
+              - button "🔒 Fracturing 7761 ex" [ref=e264] [cursor=pointer]:
+                - generic [ref=e265]: 🔒
+                - generic [ref=e266]: Fracturing
+                - generic [ref=e267]: 7761 ex
+            - generic [ref=e268]:
+              - heading "Vaal" [level=6] [ref=e269] [cursor=pointer]
+              - button "🔴 Vaal 0.987 ex" [ref=e271] [cursor=pointer]:
+                - generic [ref=e272]: 🔴
+                - generic [ref=e273]: Vaal
+                - generic [ref=e274]: 0.987 ex
+            - generic [ref=e275]:
+              - heading "Divine" [level=6] [ref=e276] [cursor=pointer]
+              - button "💎 Divine 147 ex" [ref=e278] [cursor=pointer]:
+                - generic [ref=e279]: 💎
+                - generic [ref=e280]: Divine
+                - generic [ref=e281]: 147 ex
+            - generic [ref=e282]:
+              - heading "Chance" [level=6] [ref=e283] [cursor=pointer]
+              - button "🎲 Chance 6.15 ex" [ref=e285] [cursor=pointer]:
+                - generic [ref=e286]: 🎲
+                - generic [ref=e287]: Chance
+                - generic [ref=e288]: 6.15 ex
+        - 'heading "primary Optimal MDP policy (mixed-policy value-iteration) ↻ Re-solve show step ids merge: top-down 🎲 Simulate one craft 📊 1000-run distribution" [level=4] [ref=e289]':
+          - generic [ref=e290]: primary
+          - text: Optimal MDP policy (mixed-policy value-iteration)
+          - button "↻ Re-solve" [ref=e291] [cursor=pointer]
+          - generic "Prefix every chain node with its step id (e.g. [s5]) so you can refer to a specific node when discussing the policy. Disable when the chart gets too dense." [ref=e292]:
+            - checkbox "show step ids" [checked] [ref=e293]
+            - text: show step ids
+          - 'generic "Chain merge strategy. See docs/chain-rendering.md. • none — one chain node per engine state (raw view). • per-action — group every state by next-action; high-level overview. • top-down — partition by (kind, policy, fractured, totalMods) + disambiguator. • bottom-up — sibling-merge: A→B and A→C with same next ⇒ merge." [ref=e294]':
+            - text: "merge:"
+            - combobox "merge:" [ref=e295]:
+              - option "none (raw)"
+              - option "per-action"
+              - option "top-down" [selected]
+              - option "bottom-up"
+          - button "🎲 Simulate one craft" [ref=e296] [cursor=pointer]
+          - button "📊 1000-run distribution" [ref=e297] [cursor=pointer]
+        - generic [ref=e298]:
+          - table [ref=e299]:
+            - rowgroup [ref=e300]:
+              - row "P(success / attempt) E[attempts] · N95 E[cost / attempt] V* (total) P(1 base) P(within budget) Breakeven budget" [ref=e301]:
+                - columnheader "P(success / attempt)" [ref=e302]
+                - columnheader "E[attempts] · N95" [ref=e303]:
+                  - text: E[attempts] · N
+                  - subscript [ref=e304]: "95"
+                - columnheader "E[cost / attempt]" [ref=e305]
+                - columnheader "V* (total)" [ref=e306]
+                - columnheader "P(1 base)" [ref=e307]
+                - columnheader "P(within budget)" [ref=e308]
+                - columnheader "Breakeven budget" [ref=e309]
+            - rowgroup [ref=e310]:
+              - row "100.00% 1.00 · N95 1 115 ex 78.1 ex 100.00% 100.00% · 16 attempts 115 ex" [ref=e311]:
+                - cell "100.00%" [ref=e312]:
+                  - strong [ref=e313]: 100.00%
+                - cell "1.00 · N95 1" [ref=e314]:
+                  - generic [ref=e315]:
+                    - text: "1.00"
+                    - generic [ref=e316]:
+                      - text: · N
+                      - subscript [ref=e317]: "95"
+                      - text: "1"
+                - cell "115 ex" [ref=e318]
+                - cell "78.1 ex" [ref=e319]
+                - cell "100.00%" [ref=e320]
+                - cell "100.00% · 16 attempts" [ref=e321]:
+                  - generic [ref=e322]: 100.00% · 16 attempts
+                - cell "115 ex" [ref=e323]
+          - generic [ref=e324]:
+            - paragraph [ref=e325]:
+              - strong [ref=e326]: "Stockpile for 95% confidence:"
+              - text: 1 runs ·
+              - strong [ref=e327]: ≈ 40.4 ex
+              - text: total cash outlay
+            - table [ref=e328]:
+              - rowgroup [ref=e329]:
+                - row "Currency Count Unit price Stockpile cost per run" [ref=e330]:
+                  - columnheader [ref=e331]
+                  - columnheader "Currency" [ref=e332]
+                  - columnheader "Count" [ref=e333]
+                  - columnheader "Unit price" [ref=e334]
+                  - columnheader "Stockpile cost" [ref=e335]
+                  - columnheader "per run" [ref=e336]
+              - rowgroup [ref=e337]:
+                - row "🛒 Base 1 40.0 ex 40.0 ex 1.00" [ref=e338]:
+                  - cell "🛒" [ref=e339]:
+                    - generic [ref=e340]: 🛒
+                  - cell "Base" [ref=e341]
+                  - cell "1" [ref=e342]
+                  - cell "40.0 ex" [ref=e343]
+                  - cell "40.0 ex" [ref=e344]:
+                    - strong [ref=e345]: 40.0 ex
+                  - cell "1.00" [ref=e346]
+                - row "🟡 Orb of Alchemy 1 0.43 ex 0.43 ex 1.00" [ref=e347]:
+                  - cell "🟡" [ref=e348]:
+                    - generic [ref=e349]: 🟡
+                  - cell "Orb of Alchemy" [ref=e350]:
+                    - generic [ref=e351]: Orb of Alchemy
+                  - cell "1" [ref=e352]
+                  - cell "0.43 ex" [ref=e353]
+                  - cell "0.43 ex" [ref=e354]:
+                    - strong [ref=e355]: 0.43 ex
+                  - cell "1.00" [ref=e356]
+              - rowgroup [ref=e357]:
+                - row "Total 40.4 ex" [ref=e358]:
+                  - cell [ref=e359]
+                  - cell "Total" [ref=e360]:
+                    - strong [ref=e361]: Total
+                  - cell [ref=e362]
+                  - cell [ref=e363]
+                  - cell "40.4 ex" [ref=e364]:
+                    - strong [ref=e365]: 40.4 ex
+                  - cell [ref=e366]
+          - group [ref=e367]:
+            - generic "📖 What do these metrics mean?" [ref=e368] [cursor=pointer]
+          - paragraph [ref=e369]:
+            - strong [ref=e370]: "7"
+            - text: reachable states · 2 value-iteration sweeps · optimal start action =
+            - code [ref=e371]: alch
+          - list [ref=e372]:
+            - listitem [ref=e373]: "⚠ Action \"transmute\" excluded: missing rate (orbCosts.transmute)."
+            - listitem [ref=e374]: "⚠ Action \"apply_bone_sinistral\" excluded: missing rate for Omen of Sinistral Necromancy. Refresh rates via scripts/update-poe2-rates.sh, or list the omen on poe2db."
+            - listitem [ref=e375]: "⚠ Action \"apply_bone_dextral\" excluded: missing rate for Omen of Dextral Necromancy. Refresh rates via scripts/update-poe2-rates.sh, or list the omen on poe2db."
+            - listitem [ref=e376]: "⚠ Action \"reveal_bone_abyssal\" excluded: missing rate for Omen of Abyssal Echoes. Refresh rates via scripts/update-poe2-rates.sh, or list the omen on poe2db."
+            - listitem [ref=e377]: "⚠ Chain node s0 action \"alch\": outgoing edges sum to 103.5% (missing -3.5%). Visible edges: →s1 (11.3%), →s4 (92.2%)"
+            - listitem [ref=e378]: ⚠ pSuccess(start) raw value = 103.53% (clamped to 100%). Outcome mass exceeded 1.0 — likely an engine bug where a transition function emits branch probabilities summing > 1. Inspect the chain's incompleteEdges diagnostic to locate the offending action.
+          - group [ref=e379]:
+            - generic "▶ Optimal policy chain (3 states · 2 edges)" [ref=e380] [cursor=pointer]
+            - option "Mermaid (dagre, layered)" [selected]
+            - option "Cytoscape (fcose, force-directed)"
+            - option "↓ TD" [selected]
+            - option "→ LR"
+            - option "← RL"
+            - option "↑ BT"
+            - option "s0 (transient)" [selected]
+            - option "s1 (goal)"
+            - option "s4 (goal)"
+    - group [ref=e381]:
+      - generic "Currency rates 1 div = 147.00 ex · 0 overridden · report cost in Divine Orb" [ref=e382] [cursor=pointer]:
+        - text: Currency rates
+        - generic [ref=e383]:
+          - text: 1 div = 147.00 ex · 0 overridden · report cost in
+          - combobox [ref=e384]:
+            - option "Exalted Orb"
+            - option "Divine Orb" [selected]
+      - paragraph [ref=e385]:
+        - 'generic "fetched_at: 2026-05-25T13:42:12Z region: us league: (unknown) age: 0d staleness: fresh (green ≤7d · orange 8–30d · red >30d)" [ref=e386]':
+          - generic [ref=e387]: ●
+          - text: "Snapshot: poe2db/us — fetched just now"
+        - text: Rates are
+        - strong [ref=e388]: 1 unit of this currency = X Exalted Orbs
+        - text: . Edit any value below; overrides are saved locally. Refresh with
+        - code [ref=e389]: scripts/update-poe2-rates.sh [region]
+        - text: (region defaults to
+        - code [ref=e390]: us
+        - text: ;
+        - code [ref=e391]: cn de fr ru kr tw jp
+        - text: are language variants — prices are identical, only item names localise).
+      - group [ref=e392]:
+        - generic "Orbs (rarity & mod) 24 / 24 applicable to current item ↗ poe2db" [active] [ref=e393] [cursor=pointer]:
+          - text: Orbs (rarity & mod) 24 / 24 applicable to current item
+          - link "↗ poe2db" [ref=e394]:
+            - /url: https://poe2db.tw/Economy_Currency
+        - table [ref=e395]:
+          - rowgroup [ref=e396]:
+            - row "Currency 1 ↔ Exalted Time (s) Available" [ref=e397]:
+              - columnheader "Currency" [ref=e398]
+              - columnheader "1 ↔ Exalted" [ref=e399]
+              - columnheader "Time (s)" [ref=e400]
+              - columnheader "Available" [ref=e401]
+              - columnheader [ref=e402]
+          - rowgroup [ref=e403]:
+            - row "Fracturing Orb Fracturing Orb (fr) ↗ db ↗ wiki 7761 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e404]:
+              - cell "Fracturing Orb Fracturing Orb (fr) ↗ db ↗ wiki" [ref=e405]:
+                - img "Fracturing Orb" [ref=e406]
+                - text: Fracturing Orb
+                - generic [ref=e407]: (fr)
+                - link "↗ db" [ref=e408] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Fracturing_Orb
+                - link "↗ wiki" [ref=e409] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Fracturing+Orb
+              - cell "7761" [ref=e410]:
+                - spinbutton [ref=e411]: "7761"
+              - cell "90" [ref=e412]:
+                - spinbutton "Time factor to use one Fracturing Orb (seconds — at least 1s to glance at the outcome)" [ref=e413]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e414]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e415]
+              - cell [ref=e416]
+            - row "Vaal Cultivation Orb Vaal Cultivation Orb (vc) ↗ db ↗ wiki 424 —" [ref=e417]:
+              - cell "Vaal Cultivation Orb Vaal Cultivation Orb (vc) ↗ db ↗ wiki" [ref=e418]:
+                - img "Vaal Cultivation Orb" [ref=e419]
+                - text: Vaal Cultivation Orb
+                - generic [ref=e420]: (vc)
+                - link "↗ db" [ref=e421] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Vaal_Cultivation_Orb
+                - link "↗ wiki" [ref=e422] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Vaal+Cultivation+Orb
+              - cell "424" [ref=e423]:
+                - spinbutton [ref=e424]: "424"
+              - cell "—" [ref=e425]
+              - cell [ref=e426]
+              - cell [ref=e427]
+            - row "Perfect Chaos Orb Perfect Chaos Orb (pc) ↗ db ↗ wiki 421.9 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e428]:
+              - cell "Perfect Chaos Orb Perfect Chaos Orb (pc) ↗ db ↗ wiki" [ref=e429]:
+                - img "Perfect Chaos Orb" [ref=e430]
+                - text: Perfect Chaos Orb
+                - generic [ref=e431]: (pc)
+                - link "↗ db" [ref=e432] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Perfect_Chaos_Orb
+                - link "↗ wiki" [ref=e433] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Perfect+Chaos+Orb
+              - cell "421.9" [ref=e434]:
+                - spinbutton [ref=e435]: "421.9"
+              - cell "↑" [ref=e436]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e437]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e438]
+              - cell "⇆ synced" [ref=e439]
+            - row "Divine Orb Divine Orb (div) ↗ db ↗ wiki 147 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e440]:
+              - cell "Divine Orb Divine Orb (div) ↗ db ↗ wiki" [ref=e441]:
+                - img "Divine Orb" [ref=e442]
+                - text: Divine Orb
+                - generic [ref=e443]: (div)
+                - link "↗ db" [ref=e444] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Divine_Orb
+                - link "↗ wiki" [ref=e445] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Divine+Orb
+              - cell "147" [ref=e446]:
+                - spinbutton [ref=e447]: "147"
+              - cell "90" [ref=e448]:
+                - spinbutton "Time factor to use one Divine Orb (seconds — at least 1s to glance at the outcome)" [ref=e449]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e450]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e451]
+              - cell [ref=e452]
+            - row "Orb of Extraction Orb of Extraction (ext) ↗ db ↗ wiki 101 —" [ref=e453]:
+              - cell "Orb of Extraction Orb of Extraction (ext) ↗ db ↗ wiki" [ref=e454]:
+                - img "Orb of Extraction" [ref=e455]
+                - text: Orb of Extraction
+                - generic [ref=e456]: (ext)
+                - link "↗ db" [ref=e457] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Orb_of_Extraction
+                - link "↗ wiki" [ref=e458] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Orb+of+Extraction
+              - cell "101" [ref=e459]:
+                - spinbutton [ref=e460]: "101"
+              - cell "—" [ref=e461]
+              - cell [ref=e462]
+              - cell [ref=e463]
+            - row "Architect's Orb Architect's Orb (arc) ↗ db ↗ wiki 82 —" [ref=e464]:
+              - cell "Architect's Orb Architect's Orb (arc) ↗ db ↗ wiki" [ref=e465]:
+                - img "Architect's Orb" [ref=e466]
+                - text: Architect's Orb
+                - generic [ref=e467]: (arc)
+                - link "↗ db" [ref=e468] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Architect's_Orb
+                - link "↗ wiki" [ref=e469] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Architect's+Orb
+              - cell "82" [ref=e470]:
+                - spinbutton [ref=e471]: "82"
+              - cell "—" [ref=e472]
+              - cell [ref=e473]
+              - cell [ref=e474]
+            - row "Greater Regal Orb Greater Regal Orb (grg) ↗ db ↗ wiki 8.399 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e475]:
+              - cell "Greater Regal Orb Greater Regal Orb (grg) ↗ db ↗ wiki" [ref=e476]:
+                - img "Greater Regal Orb" [ref=e477]
+                - text: Greater Regal Orb
+                - generic [ref=e478]: (grg)
+                - link "↗ db" [ref=e479] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Greater_Regal_Orb
+                - link "↗ wiki" [ref=e480] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Greater+Regal+Orb
+              - cell "8.399" [ref=e481]:
+                - spinbutton [ref=e482]: "8.399"
+              - cell "↑" [ref=e483]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e484]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e485]
+              - cell "⇆ synced" [ref=e486]
+            - row "Perfect Exalted Orb Perfect Exalted Orb (pex) ↗ db ↗ wiki 55.26 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e487]:
+              - cell "Perfect Exalted Orb Perfect Exalted Orb (pex) ↗ db ↗ wiki" [ref=e488]:
+                - img "Perfect Exalted Orb" [ref=e489]
+                - text: Perfect Exalted Orb
+                - generic [ref=e490]: (pex)
+                - link "↗ db" [ref=e491] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Perfect_Exalted_Orb
+                - link "↗ wiki" [ref=e492] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Perfect+Exalted+Orb
+              - cell "55.26" [ref=e493]:
+                - spinbutton [ref=e494]: "55.26"
+              - cell "↑" [ref=e495]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e496]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e497]
+              - cell "⇆ synced" [ref=e498]
+            - row "Greater Chaos Orb Greater Chaos Orb (gc) ↗ db ↗ wiki 26.15 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e499]:
+              - cell "Greater Chaos Orb Greater Chaos Orb (gc) ↗ db ↗ wiki" [ref=e500]:
+                - img "Greater Chaos Orb" [ref=e501]
+                - text: Greater Chaos Orb
+                - generic [ref=e502]: (gc)
+                - link "↗ db" [ref=e503] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Greater_Chaos_Orb
+                - link "↗ wiki" [ref=e504] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Greater+Chaos+Orb
+              - cell "26.15" [ref=e505]:
+                - spinbutton [ref=e506]: "26.15"
+              - cell "↑" [ref=e507]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e508]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e509]
+              - cell "⇆ synced" [ref=e510]
+            - row "Orb of Annulment Orb of Annulment (ann) ↗ db ↗ wiki 16.18 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e511]:
+              - cell "Orb of Annulment Orb of Annulment (ann) ↗ db ↗ wiki" [ref=e512]:
+                - img "Orb of Annulment" [ref=e513]
+                - text: Orb of Annulment
+                - generic [ref=e514]: (ann)
+                - link "↗ db" [ref=e515] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Orb_of_Annulment
+                - link "↗ wiki" [ref=e516] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Orb+of+Annulment
+              - cell "16.18" [ref=e517]:
+                - spinbutton [ref=e518]: "16.18"
+              - cell "90" [ref=e519]:
+                - spinbutton "Time factor to use one Orb of Annulment (seconds — at least 1s to glance at the outcome)" [ref=e520]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e521]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e522]
+              - cell [ref=e523]
+            - row "Perfect Regal Orb Perfect Regal Orb (prg) ↗ db ↗ wiki 25.43 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e524]:
+              - cell "Perfect Regal Orb Perfect Regal Orb (prg) ↗ db ↗ wiki" [ref=e525]:
+                - img "Perfect Regal Orb" [ref=e526]
+                - text: Perfect Regal Orb
+                - generic [ref=e527]: (prg)
+                - link "↗ db" [ref=e528] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Perfect_Regal_Orb
+                - link "↗ wiki" [ref=e529] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Perfect+Regal+Orb
+              - cell "25.43" [ref=e530]:
+                - spinbutton [ref=e531]: "25.43"
+              - cell "↑" [ref=e532]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e533]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e534]
+              - cell "⇆ synced" [ref=e535]
+            - row "Chaos Orb Chaos Orb (c) ↗ db ↗ wiki 4.536 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e536]:
+              - cell "Chaos Orb Chaos Orb (c) ↗ db ↗ wiki" [ref=e537]:
+                - img "Chaos Orb" [ref=e538]
+                - text: Chaos Orb
+                - generic [ref=e539]: (c)
+                - link "↗ db" [ref=e540] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Chaos_Orb
+                - link "↗ wiki" [ref=e541] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Chaos+Orb
+              - cell "4.536" [ref=e542]:
+                - spinbutton [ref=e543]: "4.536"
+              - cell "90" [ref=e544]:
+                - spinbutton "Time factor to use one Chaos Orb (seconds — at least 1s to glance at the outcome)" [ref=e545]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e546]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e547]
+              - cell [ref=e548]
+            - row "Vaal Orb Vaal Orb (vl) ↗ db ↗ wiki 0.9865 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e549]:
+              - cell "Vaal Orb Vaal Orb (vl) ↗ db ↗ wiki" [ref=e550]:
+                - img "Vaal Orb" [ref=e551]
+                - text: Vaal Orb
+                - generic [ref=e552]: (vl)
+                - link "↗ db" [ref=e553] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Vaal_Orb
+                - link "↗ wiki" [ref=e554] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Vaal+Orb
+              - cell "0.9865" [ref=e555]:
+                - spinbutton [ref=e556]: "0.9865"
+              - cell "90" [ref=e557]:
+                - spinbutton "Time factor to use one Vaal Orb (seconds — at least 1s to glance at the outcome)" [ref=e558]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e559]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e560]
+              - cell [ref=e561]
+            - row "Perfect Orb of Augmentation Perfect Orb of Augmentation (pau) ↗ db ↗ wiki 4.141 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e562]:
+              - cell "Perfect Orb of Augmentation Perfect Orb of Augmentation (pau) ↗ db ↗ wiki" [ref=e563]:
+                - img "Perfect Orb of Augmentation" [ref=e564]
+                - text: Perfect Orb of Augmentation
+                - generic [ref=e565]: (pau)
+                - link "↗ db" [ref=e566] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Perfect_Orb_of_Augmentation
+                - link "↗ wiki" [ref=e567] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Perfect+Orb+of+Augmentation
+              - cell "4.141" [ref=e568]:
+                - spinbutton [ref=e569]: "4.141"
+              - cell "↑" [ref=e570]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e571]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e572]
+              - cell "⇆ synced" [ref=e573]
+            - row "Greater Exalted Orb Greater Exalted Orb (gex) ↗ db ↗ wiki 3.203 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e574]:
+              - cell "Greater Exalted Orb Greater Exalted Orb (gex) ↗ db ↗ wiki" [ref=e575]:
+                - img "Greater Exalted Orb" [ref=e576]
+                - text: Greater Exalted Orb
+                - generic [ref=e577]: (gex)
+                - link "↗ db" [ref=e578] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Greater_Exalted_Orb
+                - link "↗ wiki" [ref=e579] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Greater+Exalted+Orb
+              - cell "3.203" [ref=e580]:
+                - spinbutton [ref=e581]: "3.203"
+              - cell "↑" [ref=e582]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e583]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e584]
+              - cell "⇆ synced" [ref=e585]
+            - row "Orb of Chance Orb of Chance (chc) ↗ db ↗ wiki 6.15 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e586]:
+              - cell "Orb of Chance Orb of Chance (chc) ↗ db ↗ wiki" [ref=e587]:
+                - img "Orb of Chance" [ref=e588]
+                - text: Orb of Chance
+                - generic [ref=e589]: (chc)
+                - link "↗ db" [ref=e590] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Orb_of_Chance
+                - link "↗ wiki" [ref=e591] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Orb+of+Chance
+              - cell "6.15" [ref=e592]:
+                - spinbutton [ref=e593]: "6.15"
+              - cell "90" [ref=e594]:
+                - spinbutton "Time factor to use one Orb of Chance (seconds — at least 1s to glance at the outcome)" [ref=e595]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e596]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e597]
+              - cell [ref=e598]
+            - row "Perfect Orb of Transmutation (ptr) ↗ db ↗ wiki 3.147 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e599]:
+              - cell "Perfect Orb of Transmutation (ptr) ↗ db ↗ wiki" [ref=e600]:
+                - text: Perfect Orb of Transmutation
+                - generic [ref=e601]: (ptr)
+                - link "↗ db" [ref=e602] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Perfect_Orb_of_Transmutation
+                - link "↗ wiki" [ref=e603] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Perfect+Orb+of+Transmutation
+              - cell "3.147" [ref=e604]:
+                - spinbutton [ref=e605]: "3.147"
+              - cell "↑" [ref=e606]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e607]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e608]
+              - cell "⇆ synced" [ref=e609]
+            - row "Exalted Orb Exalted Orb (ex) ↗ db ↗ wiki 1 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e610]:
+              - cell "Exalted Orb Exalted Orb (ex) ↗ db ↗ wiki" [ref=e611]:
+                - img "Exalted Orb" [ref=e612]
+                - text: Exalted Orb
+                - generic [ref=e613]: (ex)
+                - link "↗ db" [ref=e614] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Exalted_Orb
+                - link "↗ wiki" [ref=e615] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Exalted+Orb
+              - cell "1" [ref=e616]:
+                - spinbutton [disabled] [ref=e617]: "1"
+              - cell "90" [ref=e618]:
+                - spinbutton "Time factor to use one Exalted Orb (seconds — at least 1s to glance at the outcome)" [ref=e619]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e620]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e621]
+              - cell [ref=e622]
+            - row "Regal Orb Regal Orb (rg) ↗ db ↗ wiki 0.05882 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e623]:
+              - cell "Regal Orb Regal Orb (rg) ↗ db ↗ wiki" [ref=e624]:
+                - img "Regal Orb" [ref=e625]
+                - text: Regal Orb
+                - generic [ref=e626]: (rg)
+                - link "↗ db" [ref=e627] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Regal_Orb
+                - link "↗ wiki" [ref=e628] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Regal+Orb
+              - cell "0.05882" [ref=e629]:
+                - spinbutton [ref=e630]: "0.05882"
+              - cell "90" [ref=e631]:
+                - spinbutton "Time factor to use one Regal Orb (seconds — at least 1s to glance at the outcome)" [ref=e632]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e633]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e634]
+              - cell [ref=e635]
+            - row "Greater Orb of Augmentation (gau) ↗ db ↗ wiki 0.1237 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e636]:
+              - cell "Greater Orb of Augmentation (gau) ↗ db ↗ wiki" [ref=e637]:
+                - text: Greater Orb of Augmentation
+                - generic [ref=e638]: (gau)
+                - link "↗ db" [ref=e639] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Greater_Orb_of_Augmentation
+                - link "↗ wiki" [ref=e640] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Greater+Orb+of+Augmentation
+              - cell "0.1237" [ref=e641]:
+                - spinbutton [ref=e642]: "0.1237"
+              - cell "↑" [ref=e643]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e644]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e645]
+              - cell "⇆ synced" [ref=e646]
+            - row "Greater Orb of Transmutation (gtr) ↗ db ↗ wiki 0.02616 ↑ Untick to exclude this orb from the MDP's action set (re-solves automatically) ⇆ synced" [ref=e647]:
+              - cell "Greater Orb of Transmutation (gtr) ↗ db ↗ wiki" [ref=e648]:
+                - text: Greater Orb of Transmutation
+                - generic [ref=e649]: (gtr)
+                - link "↗ db" [ref=e650] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Greater_Orb_of_Transmutation
+                - link "↗ wiki" [ref=e651] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Greater+Orb+of+Transmutation
+              - cell "0.02616" [ref=e652]:
+                - spinbutton [ref=e653]: "0.02616"
+              - cell "↑" [ref=e654]
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e655]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e656]
+              - cell "⇆ synced" [ref=e657]
+            - row "Orb of Alchemy Orb of Alchemy (alch) ↗ db ↗ wiki 0.4298 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e658]:
+              - cell "Orb of Alchemy Orb of Alchemy (alch) ↗ db ↗ wiki" [ref=e659]:
+                - img "Orb of Alchemy" [ref=e660]
+                - text: Orb of Alchemy
+                - generic [ref=e661]: (alch)
+                - link "↗ db" [ref=e662] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Orb_of_Alchemy
+                - link "↗ wiki" [ref=e663] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Orb+of+Alchemy
+              - cell "0.4298" [ref=e664]:
+                - spinbutton [ref=e665]: "0.4298"
+              - cell "90" [ref=e666]:
+                - spinbutton "Time factor to use one Orb of Alchemy (seconds — at least 1s to glance at the outcome)" [ref=e667]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e668]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e669]
+              - cell [ref=e670]
+            - row "Orb of Augmentation Orb of Augmentation (aug) ↗ db ↗ wiki 0.01992 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e671]:
+              - cell "Orb of Augmentation Orb of Augmentation (aug) ↗ db ↗ wiki" [ref=e672]:
+                - img "Orb of Augmentation" [ref=e673]
+                - text: Orb of Augmentation
+                - generic [ref=e674]: (aug)
+                - link "↗ db" [ref=e675] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Orb_of_Augmentation
+                - link "↗ wiki" [ref=e676] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Orb+of+Augmentation
+              - cell "0.01992" [ref=e677]:
+                - spinbutton [ref=e678]: "0.01992"
+              - cell "90" [ref=e679]:
+                - spinbutton "Time factor to use one Orb of Augmentation (seconds — at least 1s to glance at the outcome)" [ref=e680]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e681]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [checked] [ref=e682]
+              - cell [ref=e683]
+            - row "Orb of Transmutation Orb of Transmutation (tra) ↗ db ↗ wiki 0.01214 90 Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e684]:
+              - cell "Orb of Transmutation Orb of Transmutation (tra) ↗ db ↗ wiki" [ref=e685]:
+                - img "Orb of Transmutation" [ref=e686]
+                - text: Orb of Transmutation
+                - generic [ref=e687]: (tra)
+                - link "↗ db" [ref=e688] [cursor=pointer]:
+                  - /url: https://poe2db.tw/us/Orb_of_Transmutation
+                - link "↗ wiki" [ref=e689] [cursor=pointer]:
+                  - /url: https://pathofexile2.wiki.fextralife.com/Orb+of+Transmutation
+              - cell "0.01214" [ref=e690]:
+                - spinbutton [ref=e691]: "0.01214"
+              - cell "90" [ref=e692]:
+                - spinbutton "Time factor to use one Orb of Transmutation (seconds — at least 1s to glance at the outcome)" [ref=e693]: "90"
+              - cell "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e694]:
+                - checkbox "Untick to exclude this orb from the MDP's action set (re-solves automatically)" [ref=e695]
+              - cell [ref=e696]
+      - group [ref=e697]:
+        - generic "Essences 2 / 77 applicable to current item ↗ poe2db" [ref=e698] [cursor=pointer]:
+          - text: Essences 2 / 77 applicable to current item
+          - link "↗ poe2db" [ref=e699]:
+            - /url: https://poe2db.tw/Economy_Essences
+      - group [ref=e700]:
+        - generic "Desecration (Bones / Skulls / Gazes) 3 / 11 applicable to current item ↗ poe2db" [ref=e701] [cursor=pointer]:
+          - text: Desecration (Bones / Skulls / Gazes) 3 / 11 applicable to current item
+          - link "↗ poe2db" [ref=e702]:
+            - /url: https://poe2db.tw/Economy_Soul_Cores
+      - group [ref=e703]:
+        - generic "Omens 30 / 30 applicable to current item ↗ poe2db" [ref=e704] [cursor=pointer]:
+          - text: Omens 30 / 30 applicable to current item
+          - link "↗ poe2db" [ref=e705]:
+            - /url: https://poe2db.tw/Economy_Omen
+      - group [ref=e706]:
+        - generic "Meta (player time) 1 / 1 applicable to current item" [ref=e707] [cursor=pointer]
+      - group [ref=e708]:
+        - generic "Crafting items availability 0 overridden" [ref=e709] [cursor=pointer]
+    - group [ref=e710]:
+      - generic "Display preferences" [ref=e711] [cursor=pointer]
+      - option "Gameplay — T1 is best (≥ T3 = \"T3 or better\")" [selected]
+      - option "Math — tier numbers ascend (≤ T3 = \"T1, T2, or T3\")"
+      - option "Exalted" [selected]
+      - option "Divine"
+  - generic [ref=e713]:
+    - text: Craft Simulator is not affiliated with or endorsed by Grinding Gear Games. · Path of Exile 2 content © its respective rights-holders · whole project licensed under
+    - link "CC BY-NC-SA 4.0" [ref=e714] [cursor=pointer]:
+      - /url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+    - text: ·
+    - link "🐛 report issue / ask question" [ref=e715] [cursor=pointer]:
+      - /url: https://github.com/solven-eu/craft_simulator/issues
+    - text: ·
+    - link "full disclaimer & sources" [ref=e716] [cursor=pointer]:
+      - /url: "#/poe2/disclaimer"

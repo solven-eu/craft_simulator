@@ -587,6 +587,20 @@ function buildEssenceSpecs(ctx, wishlist, helpers = {}) {
     if (ess.target_affix) {
       candidateNames.push(stripRangeToHash(ess.target_affix).trim());
     }
+    // Per-base outcome fallback: multi-base essences like
+    // Essence of Hysteria roll a different specific mod per item base
+    // (Movement Speed on Boots, Minion Skills on Helmet, ...). The
+    // CSV row can't express that 1-row → N-bases mapping, so its
+    // `target_affix` is a meta-description ("Multiple effects
+    // depending on item type ...") that range-stripping can't
+    // canonicalise. The per-base outcome IS in extra_mods.json under
+    // each base's `essence` bucket, tagged `tier_name = ess.name`.
+    // Consult it as a last resort. Same applies to other multi-base
+    // corrupted essences (Horror, Delirium, Insanity, ...).
+    const baseExtras = ctx.extraMods?.[ctx.base]?.essence ?? [];
+    for (const m of baseExtras) {
+      if (m.tier_name === ess.name && m.text) candidateNames.push(m.text);
+    }
     const matchedKeys = [];
     for (const n of candidateNames) {
       const key = nameToKey.get(n) ?? idToKey.get(idForName(n));

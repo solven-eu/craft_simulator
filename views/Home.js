@@ -2079,7 +2079,7 @@ export default {
                         class="link"
                         :disabled="row.tagFiltered"
                         :title="row.tagFiltered ? 'Filtered out by tag selection' : 'Add to wishlist (prefix)'"
-                        @click="craft.addTargetMod('PREFIX', row.text, 1, [])">+ wish</button>
+                        @click="craft.addTargetMod('PREFIX', row.text, 1, [], true)">+ wish</button>
                       <span v-else class="hint wished-tag">★ wished</span>
                     </td>
                   </tr>
@@ -2130,7 +2130,7 @@ export default {
                         class="link"
                         :disabled="row.tagFiltered"
                         :title="row.tagFiltered ? 'Filtered out by tag selection' : 'Add to wishlist (suffix)'"
-                        @click="craft.addTargetMod('SUFFIX', row.text, 1, [])">+ wish</button>
+                        @click="craft.addTargetMod('SUFFIX', row.text, 1, [], true)">+ wish</button>
                       <span v-else class="hint wished-tag">★ wished</span>
                     </td>
                   </tr>
